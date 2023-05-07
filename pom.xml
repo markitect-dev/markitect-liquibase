@@ -83,6 +83,7 @@
     <skipNexusStagingDeployMojo>${maven.deploy.skip}</skipNexusStagingDeployMojo>
 
     <assertj.version>3.24.2</assertj.version>
+    <byte-buddy.version>1.14.4</byte-buddy.version>
     <checker-framework.version>3.34.0</checker-framework.version>
     <checkstyle.version>10.10.0</checkstyle.version>
     <error-prone.version>2.18.0</error-prone.version>
@@ -260,6 +261,16 @@
             <artifactId>hamcrest-core</artifactId>
           </exclusion>
         </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>net.bytebuddy</groupId>
+        <artifactId>byte-buddy</artifactId>
+        <version>${byte-buddy.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>net.bytebuddy</groupId>
+        <artifactId>byte-buddy-agent</artifactId>
+        <version>${byte-buddy.version}</version>
       </dependency>
       <dependency>
         <groupId>org.checkerframework</groupId>
