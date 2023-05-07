@@ -1,0 +1,9 @@
+* text=auto eol=lf
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+.mvn/* linguist-vendored
+mvnw linguist-vendored
+mvnw.cmd linguist-vendored
+mvnwDebug linguist-vendored
+mvnwDebug.cmd linguist-vendored

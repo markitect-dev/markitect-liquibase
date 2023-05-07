@@ -1,0 +1,618 @@
+{
+  "snapshot": {
+    "database": {
+      "productVersion": "16.00.4025",
+      "shortName": "mssql",
+      "majorVersion": "16",
+      "minorVersion": "0",
+      "user": "sa",
+      "productName": "Microsoft SQL Server",
+      "url": "jdbc:sqlserver://localhost;databaseName=AdventureWorks2019;trustServerCertificate=true"
+    },
+    "objects": {
+      "liquibase.structure.core.Catalog": [
+        {
+          "catalog": {
+            "default": true,
+            "name": "AdventureWorks2019",
+            "snapshotId": "a759100"
+          }
+        }
+      ],
+      "liquibase.structure.core.Column": [
+        {
+          "column": {
+            "computed": false,
+            "name": "Database Version",
+            "nullable": false,
+            "order": "2!{java.lang.Integer}",
+            "relation": "liquibase.structure.core.Table#a759114",
+            "remarks": "Version number of the database in 9.yy.mm.dd.00 format.",
+            "snapshotId": "a759117",
+            "type": {
+              "columnSize": "25!{java.lang.Integer}",
+              "columnSizeUnit": "BYTE!{liquibase.structure.core.DataType$ColumnSizeUnit}",
+              "dataTypeId": "-9!{java.lang.Integer}",
+              "radix": "10!{java.lang.Integer}",
+              "typeName": "nvarchar"
+            }
+          }
+        },
+        {
+          "column": {
+            "autoIncrementInformation": {
+              "incrementBy": "1!{java.math.BigInteger}",
+              "startWith": "1!{java.math.BigInteger}"
+            },
+            "computed": false,
+            "name": "DatabaseLogID",
+            "nullable": false,
+            "order": "1!{java.lang.Integer}",
+            "relation": "liquibase.structure.core.Table#a759121",
+            "remarks": "Primary key for DatabaseLog records.",
+            "snapshotId": "a759123",
+            "type": {
+              "columnSize": "10!{java.lang.Integer}",
+              "columnSizeUnit": "BYTE!{liquibase.structure.core.DataType$ColumnSizeUnit}",
+              "dataTypeId": "4!{java.lang.Integer}",
+              "radix": "10!{java.lang.Integer}",
+              "typeName": "int"
+            }
+          }
+        },
+        {
+          "column": {
+            "computed": false,
+            "name": "DatabaseUser",
+            "nullable": false,
+            "order": "3!{java.lang.Integer}",
+            "relation": "liquibase.structure.core.Table#a759121",
+            "remarks": "The user who implemented the DDL change.",
+            "snapshotId": "a759125",
+            "type": {
+              "columnSize": "256!{java.lang.Integer}",
+              "columnSizeUnit": "BYTE!{liquibase.structure.core.DataType$ColumnSizeUnit}",
+              "dataTypeId": "1111!{java.lang.Integer}",
+              "radix": "10!{java.lang.Integer}",
+              "typeName": "sysname"
+            }
+          }
+        },
+        {
+          "column": {
+            "computed": false,
+            "name": "ErrorLine",
+            "nullable": true,
+            "order": "8!{java.lang.Integer}",
+            "relation": "liquibase.structure.core.Table#a759102",
+            "remarks": "The line number at which the error occurred.",
+            "snapshotId": "a759111",
+            "type": {
+              "columnSize": "10!{java.lang.Integer}",
+              "columnSizeUnit": "BYTE!{liquibase.structure.core.DataType$ColumnSizeUnit}",
+              "dataTypeId": "4!{java.lang.Integer}",
+              "radix": "10!{java.lang.Integer}",
+              "typeName": "int"
+            }
+          }
+        },
+        {
+          "column": {
+            "autoIncrementInformation": {
+              "incrementBy": "1!{java.math.BigInteger}",
+              "startWith": "1!{java.math.BigInteger}"
+            },
+            "computed": false,
+            "name": "ErrorLogID",
+            "nullable": false,
+            "order": "1!{java.lang.Integer}",
+            "relation": "liquibase.structure.core.Table#a759102",
+            "remarks": "Primary key for ErrorLog records.",
+            "snapshotId": "a759104",
+            "type": {
+              "columnSize": "10!{java.lang.Integer}",
+              "columnSizeUnit": "BYTE!{liquibase.structure.core.DataType$ColumnSizeUnit}",
+              "dataTypeId": "4!{java.lang.Integer}",
+              "radix": "10!{java.lang.Integer}",
+              "typeName": "int"
+            }
+          }
+        },
+        {
+          "column": {
+            "computed": false,
+            "name": "ErrorMessage",
+            "nullable": false,
+            "order": "9!{java.lang.Integer}",
+            "relation": "liquibase.structure.core.Table#a759102",
+            "remarks": "The message text of the error that occurred.",
+            "snapshotId": "a759112",
+            "type": {
+              "columnSize": "4000!{java.lang.Integer}",
+              "columnSizeUnit": "BYTE!{liquibase.structure.core.DataType$ColumnSizeUnit}",
+              "dataTypeId": "-9!{java.lang.Integer}",
+              "radix": "10!{java.lang.Integer}",
+              "typeName": "nvarchar"
+            }
+          }
+        },
+        {
+          "column": {
+            "computed": false,
+            "name": "ErrorNumber",
+            "nullable": false,
+            "order": "4!{java.lang.Integer}",
+            "relation": "liquibase.structure.core.Table#a759102",
+            "remarks": "The error number of the error that occurred.",
+            "snapshotId": "a759107",
+            "type": {
+              "columnSize": "10!{java.lang.Integer}",
+              "columnSizeUnit": "BYTE!{liquibase.structure.core.DataType$ColumnSizeUnit}",
+              "dataTypeId": "4!{java.lang.Integer}",
+              "radix": "10!{java.lang.Integer}",
+              "typeName": "int"
+            }
+          }
+        },
+        {
+          "column": {
+            "computed": false,
+            "name": "ErrorProcedure",
+            "nullable": true,
+            "order": "7!{java.lang.Integer}",
+            "relation": "liquibase.structure.core.Table#a759102",
+            "remarks": "The name of the stored procedure or trigger where the error occurred.",
+            "snapshotId": "a759110",
+            "type": {
+              "columnSize": "126!{java.lang.Integer}",
+              "columnSizeUnit": "BYTE!{liquibase.structure.core.DataType$ColumnSizeUnit}",
+              "dataTypeId": "-9!{java.lang.Integer}",
+              "radix": "10!{java.lang.Integer}",
+              "typeName": "nvarchar"
+            }
+          }
+        },
+        {
+          "column": {
+            "computed": false,
+            "name": "ErrorSeverity",
+            "nullable": true,
+            "order": "5!{java.lang.Integer}",
+            "relation": "liquibase.structure.core.Table#a759102",
+            "remarks": "The severity of the error that occurred.",
+            "snapshotId": "a759108",
+            "type": {
+              "columnSize": "10!{java.lang.Integer}",
+              "columnSizeUnit": "BYTE!{liquibase.structure.core.DataType$ColumnSizeUnit}",
+              "dataTypeId": "4!{java.lang.Integer}",
+              "radix": "10!{java.lang.Integer}",
+              "typeName": "int"
+            }
+          }
+        },
+        {
+          "column": {
+            "computed": false,
+            "name": "ErrorState",
+            "nullable": true,
+            "order": "6!{java.lang.Integer}",
+            "relation": "liquibase.structure.core.Table#a759102",
+            "remarks": "The state number of the error that occurred.",
+            "snapshotId": "a759109",
+            "type": {
+              "columnSize": "10!{java.lang.Integer}",
+              "columnSizeUnit": "BYTE!{liquibase.structure.core.DataType$ColumnSizeUnit}",
+              "dataTypeId": "4!{java.lang.Integer}",
+              "radix": "10!{java.lang.Integer}",
+              "typeName": "int"
+            }
+          }
+        },
+        {
+          "column": {
+            "computed": false,
+            "defaultValue": "getdate()!{liquibase.statement.DatabaseFunction}",
+            "defaultValueConstraintName": "DF_ErrorLog_ErrorTime",
+            "name": "ErrorTime",
+            "nullable": false,
+            "order": "2!{java.lang.Integer}",
+            "relation": "liquibase.structure.core.Table#a759102",
+            "remarks": "The date and time at which the error occurred.",
+            "snapshotId": "a759105",
+            "type": {
+              "columnSizeUnit": "BYTE!{liquibase.structure.core.DataType$ColumnSizeUnit}",
+              "dataTypeId": "93!{java.lang.Integer}",
+              "radix": "10!{java.lang.Integer}",
+              "typeName": "datetime"
+            }
+          }
+        },
+        {
+          "column": {
+            "computed": false,
+            "name": "Event",
+            "nullable": false,
+            "order": "4!{java.lang.Integer}",
+            "relation": "liquibase.structure.core.Table#a759121",
+            "remarks": "The type of DDL statement that was executed.",
+            "snapshotId": "a759126",
+            "type": {
+              "columnSize": "256!{java.lang.Integer}",
+              "columnSizeUnit": "BYTE!{liquibase.structure.core.DataType$ColumnSizeUnit}",
+              "dataTypeId": "1111!{java.lang.Integer}",
+              "radix": "10!{java.lang.Integer}",
+              "typeName": "sysname"
+            }
+          }
+        },
+        {
+          "column": {
+            "computed": false,
+            "defaultValue": "getdate()!{liquibase.statement.DatabaseFunction}",
+            "defaultValueConstraintName": "DF_AWBuildVersion_ModifiedDate",
+            "name": "ModifiedDate",
+            "nullable": false,
+            "order": "4!{java.lang.Integer}",
+            "relation": "liquibase.structure.core.Table#a759114",
+            "remarks": "Date and time the record was last updated.",
+            "snapshotId": "a759119",
+            "type": {
+              "columnSizeUnit": "BYTE!{liquibase.structure.core.DataType$ColumnSizeUnit}",
+              "dataTypeId": "93!{java.lang.Integer}",
+              "radix": "10!{java.lang.Integer}",
+              "typeName": "datetime"
+            }
+          }
+        },
+        {
+          "column": {
+            "computed": false,
+            "name": "Object",
+            "nullable": true,
+            "order": "6!{java.lang.Integer}",
+            "relation": "liquibase.structure.core.Table#a759121",
+            "remarks": "The object that was changed by the DDL statment.",
+            "snapshotId": "a759128",
+            "type": {
+              "columnSize": "256!{java.lang.Integer}",
+              "columnSizeUnit": "BYTE!{liquibase.structure.core.DataType$ColumnSizeUnit}",
+              "dataTypeId": "1111!{java.lang.Integer}",
+              "radix": "10!{java.lang.Integer}",
+              "typeName": "sysname"
+            }
+          }
+        },
+        {
+          "column": {
+            "computed": false,
+            "name": "PostTime",
+            "nullable": false,
+            "order": "2!{java.lang.Integer}",
+            "relation": "liquibase.structure.core.Table#a759121",
+            "remarks": "The date and time the DDL change occurred.",
+            "snapshotId": "a759124",
+            "type": {
+              "columnSizeUnit": "BYTE!{liquibase.structure.core.DataType$ColumnSizeUnit}",
+              "dataTypeId": "93!{java.lang.Integer}",
+              "radix": "10!{java.lang.Integer}",
+              "typeName": "datetime"
+            }
+          }
+        },
+        {
+          "column": {
+            "computed": false,
+            "name": "Schema",
+            "nullable": true,
+            "order": "5!{java.lang.Integer}",
+            "relation": "liquibase.structure.core.Table#a759121",
+            "remarks": "The schema to which the changed object belongs.",
+            "snapshotId": "a759127",
+            "type": {
+              "columnSize": "256!{java.lang.Integer}",
+              "columnSizeUnit": "BYTE!{liquibase.structure.core.DataType$ColumnSizeUnit}",
+              "dataTypeId": "1111!{java.lang.Integer}",
+              "radix": "10!{java.lang.Integer}",
+              "typeName": "sysname"
+            }
+          }
+        },
+        {
+          "column": {
+            "autoIncrementInformation": {
+              "incrementBy": "1!{java.math.BigInteger}",
+              "startWith": "1!{java.math.BigInteger}"
+            },
+            "computed": false,
+            "name": "SystemInformationID",
+            "nullable": false,
+            "order": "1!{java.lang.Integer}",
+            "relation": "liquibase.structure.core.Table#a759114",
+            "remarks": "Primary key for AWBuildVersion records.",
+            "snapshotId": "a759116",
+            "type": {
+              "columnSize": "3!{java.lang.Integer}",
+              "columnSizeUnit": "BYTE!{liquibase.structure.core.DataType$ColumnSizeUnit}",
+              "dataTypeId": "-6!{java.lang.Integer}",
+              "radix": "10!{java.lang.Integer}",
+              "typeName": "tinyint"
+            }
+          }
+        },
+        {
+          "column": {
+            "computed": false,
+            "name": "TSQL",
+            "nullable": false,
+            "order": "7!{java.lang.Integer}",
+            "relation": "liquibase.structure.core.Table#a759121",
+            "remarks": "The exact Transact-SQL statement that was executed.",
+            "snapshotId": "a759129",
+            "type": {
+              "columnSize": "-1!{java.lang.Integer}",
+              "columnSizeUnit": "BYTE!{liquibase.structure.core.DataType$ColumnSizeUnit}",
+              "dataTypeId": "-9!{java.lang.Integer}",
+              "radix": "10!{java.lang.Integer}",
+              "typeName": "nvarchar"
+            }
+          }
+        },
+        {
+          "column": {
+            "computed": false,
+            "name": "UserName",
+            "nullable": false,
+            "order": "3!{java.lang.Integer}",
+            "relation": "liquibase.structure.core.Table#a759102",
+            "remarks": "The user who executed the batch in which the error occurred.",
+            "snapshotId": "a759106",
+            "type": {
+              "columnSize": "256!{java.lang.Integer}",
+              "columnSizeUnit": "BYTE!{liquibase.structure.core.DataType$ColumnSizeUnit}",
+              "dataTypeId": "1111!{java.lang.Integer}",
+              "radix": "10!{java.lang.Integer}",
+              "typeName": "sysname"
+            }
+          }
+        },
+        {
+          "column": {
+            "computed": false,
+            "name": "VersionDate",
+            "nullable": false,
+            "order": "3!{java.lang.Integer}",
+            "relation": "liquibase.structure.core.Table#a759114",
+            "remarks": "Date and time the record was last updated.",
+            "snapshotId": "a759118",
+            "type": {
+              "columnSizeUnit": "BYTE!{liquibase.structure.core.DataType$ColumnSizeUnit}",
+              "dataTypeId": "93!{java.lang.Integer}",
+              "radix": "10!{java.lang.Integer}",
+              "typeName": "datetime"
+            }
+          }
+        },
+        {
+          "column": {
+            "computed": false,
+            "name": "XmlEvent",
+            "nullable": false,
+            "order": "8!{java.lang.Integer}",
+            "relation": "liquibase.structure.core.Table#a759121",
+            "remarks": "The raw XML data generated by database trigger.",
+            "snapshotId": "a759130",
+            "type": {
+              "columnSizeUnit": "BYTE!{liquibase.structure.core.DataType$ColumnSizeUnit}",
+              "dataTypeId": "-1!{java.lang.Integer}",
+              "radix": "10!{java.lang.Integer}",
+              "typeName": "xml"
+            }
+          }
+        }
+      ],
+      "liquibase.structure.core.Index": [
+        {
+          "index": {
+            "allowPageLocks": true,
+            "allowRowLocks": true,
+            "clustered": true,
+            "columns": [
+              {
+                "column": {
+                  "computed": false,
+                  "name": "SystemInformationID"
+                }
+              }
+            ],
+            "fillFactor": "0!{java.lang.Short}",
+            "ignoreDuplicateKeys": false,
+            "incrementalStatistics": false,
+            "name": "PK_AWBuildVersion_SystemInformationID",
+            "padIndex": false,
+            "recomputeStatistics": true,
+            "snapshotId": "a759115",
+            "table": "liquibase.structure.core.Table#a759114",
+            "unique": true
+          }
+        },
+        {
+          "index": {
+            "allowPageLocks": true,
+            "allowRowLocks": true,
+            "clustered": false,
+            "columns": [
+              {
+                "column": {
+                  "computed": false,
+                  "name": "DatabaseLogID"
+                }
+              }
+            ],
+            "fillFactor": "0!{java.lang.Short}",
+            "ignoreDuplicateKeys": false,
+            "incrementalStatistics": false,
+            "name": "PK_DatabaseLog_DatabaseLogID",
+            "padIndex": false,
+            "recomputeStatistics": true,
+            "snapshotId": "a759122",
+            "table": "liquibase.structure.core.Table#a759121",
+            "unique": true
+          }
+        },
+        {
+          "index": {
+            "allowPageLocks": true,
+            "allowRowLocks": true,
+            "clustered": true,
+            "columns": [
+              {
+                "column": {
+                  "computed": false,
+                  "name": "ErrorLogID"
+                }
+              }
+            ],
+            "fillFactor": "0!{java.lang.Short}",
+            "ignoreDuplicateKeys": false,
+            "incrementalStatistics": false,
+            "name": "PK_ErrorLog_ErrorLogID",
+            "padIndex": false,
+            "recomputeStatistics": true,
+            "snapshotId": "a759103",
+            "table": "liquibase.structure.core.Table#a759102",
+            "unique": true
+          }
+        }
+      ],
+      "liquibase.structure.core.PrimaryKey": [
+        {
+          "primaryKey": {
+            "backingIndex": "liquibase.structure.core.Index#a759115",
+            "columns": [
+              "liquibase.structure.core.Column#a759116"
+            ],
+            "name": "PK_AWBuildVersion_SystemInformationID",
+            "snapshotId": "a759120",
+            "table": "liquibase.structure.core.Table#a759114"
+          }
+        },
+        {
+          "primaryKey": {
+            "backingIndex": "liquibase.structure.core.Index#a759122",
+            "columns": [
+              "liquibase.structure.core.Column#a759123"
+            ],
+            "name": "PK_DatabaseLog_DatabaseLogID",
+            "snapshotId": "a759131",
+            "table": "liquibase.structure.core.Table#a759121"
+          }
+        },
+        {
+          "primaryKey": {
+            "backingIndex": "liquibase.structure.core.Index#a759103",
+            "columns": [
+              "liquibase.structure.core.Column#a759104"
+            ],
+            "name": "PK_ErrorLog_ErrorLogID",
+            "snapshotId": "a759113",
+            "table": "liquibase.structure.core.Table#a759102"
+          }
+        }
+      ],
+      "liquibase.structure.core.Schema": [
+        {
+          "schema": {
+            "catalog": "liquibase.structure.core.Catalog#a759100",
+            "default": true,
+            "name": "dbo",
+            "snapshotId": "a759101"
+          }
+        }
+      ],
+      "liquibase.structure.core.Table": [
+        {
+          "table": {
+            "columns": [
+              "liquibase.structure.core.Column#a759116",
+              "liquibase.structure.core.Column#a759117",
+              "liquibase.structure.core.Column#a759118",
+              "liquibase.structure.core.Column#a759119"
+            ],
+            "default_tablespace": false,
+            "indexes": [
+              "liquibase.structure.core.Index#a759115"
+            ],
+            "name": "AWBuildVersion",
+            "primaryKey": "liquibase.structure.core.PrimaryKey#a759120",
+            "remarks": "Current version number of the AdventureWorks 2016 sample database.",
+            "schema": "liquibase.structure.core.Schema#a759101",
+            "snapshotId": "a759114"
+          }
+        },
+        {
+          "table": {
+            "columns": [
+              "liquibase.structure.core.Column#a759123",
+              "liquibase.structure.core.Column#a759124",
+              "liquibase.structure.core.Column#a759125",
+              "liquibase.structure.core.Column#a759126",
+              "liquibase.structure.core.Column#a759127",
+              "liquibase.structure.core.Column#a759128",
+              "liquibase.structure.core.Column#a759129",
+              "liquibase.structure.core.Column#a759130"
+            ],
+            "default_tablespace": false,
+            "indexes": [
+              "liquibase.structure.core.Index#a759122"
+            ],
+            "name": "DatabaseLog",
+            "primaryKey": "liquibase.structure.core.PrimaryKey#a759131",
+            "remarks": "Audit table tracking all DDL changes made to the AdventureWorks database. Data is captured by the database trigger ddlDatabaseTriggerLog.",
+            "schema": "liquibase.structure.core.Schema#a759101",
+            "snapshotId": "a759121"
+          }
+        },
+        {
+          "table": {
+            "columns": [
+              "liquibase.structure.core.Column#a759104",
+              "liquibase.structure.core.Column#a759105",
+              "liquibase.structure.core.Column#a759106",
+              "liquibase.structure.core.Column#a759107",
+              "liquibase.structure.core.Column#a759108",
+              "liquibase.structure.core.Column#a759109",
+              "liquibase.structure.core.Column#a759110",
+              "liquibase.structure.core.Column#a759111",
+              "liquibase.structure.core.Column#a759112"
+            ],
+            "default_tablespace": false,
+            "indexes": [
+              "liquibase.structure.core.Index#a759103"
+            ],
+            "name": "ErrorLog",
+            "primaryKey": "liquibase.structure.core.PrimaryKey#a759113",
+            "remarks": "Audit table tracking errors in the the AdventureWorks database that are caught by the CATCH block of a TRY...CATCH construct. Data is inserted by stored procedure dbo.uspLogError when it is executed from inside the CATCH block of a TRY...CATCH construct.",
+            "schema": "liquibase.structure.core.Schema#a759101",
+            "snapshotId": "a759102"
+          }
+        }
+      ]
+    },
+    "snapshotControl": {
+      "snapshotControl": {
+        "includedType": [
+          "liquibase.structure.core.Catalog",
+          "liquibase.structure.core.Column",
+          "liquibase.structure.core.ForeignKey",
+          "liquibase.structure.core.Index",
+          "liquibase.structure.core.PrimaryKey",
+          "liquibase.structure.core.Schema",
+          "liquibase.structure.core.Sequence",
+          "liquibase.structure.core.Table",
+          "liquibase.structure.core.UniqueConstraint",
+          "liquibase.structure.core.View"
+        ]
+      }
+    }
+  }
+}

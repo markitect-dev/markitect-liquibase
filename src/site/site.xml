@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/DECORATION/1.8.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/DECORATION/1.8.0 https://maven.apache.org/xsd/decoration-1.8.0.xsd"
+    name="${this.name}">
+  <skin>
+    <groupId>org.apache.maven.skins</groupId>
+    <artifactId>maven-fluido-skin</artifactId>
+  </skin>
+  <custom>
+    <fluidoSkin>
+      <gitHub>
+        <projectId>${maven.site.fluidoSkin.gitHub.projectId}</projectId>
+        <ribbonOrientation>right</ribbonOrientation>
+        <ribbonColor>gray</ribbonColor>
+      </gitHub>
+      <skipGenerationDate>true</skipGenerationDate>
+    </fluidoSkin>
+  </custom>
+  <bannerLeft>
+    <name>${this.name}</name>
+  </bannerLeft>
+  <body>
+    <links>
+      <item name="${this.name}" href="${this.url}"/>
+    </links>
+    <menu ref="parent" inherit="top"/>
+    <menu ref="modules" inherit="top"/>
+    <menu ref="reports" inherit="top"/>
+  </body>
+</project>
