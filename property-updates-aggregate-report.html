@@ -81,11 +81,11 @@
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" /></td>
 <td># of properties using the latest version available</td>
-<td>40</td></tr>
+<td>46</td></tr>
 <tr class="a">
-<td><img src="images/icon_warning_sml.gif" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td># of properties where the next version available is smaller than an incremental version update</td>
-<td>1</td></tr>
+<td>0</td></tr>
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" /></td>
 <td># of properties where the next version available is an incremental version update</td>
@@ -93,11 +93,11 @@
 <tr class="a">
 <td><img src="images/icon_warning_sml.gif" /></td>
 <td># of properties where the next version available is a minor version update</td>
-<td>2</td></tr>
+<td>1</td></tr>
 <tr class="b">
-<td><img src="images/icon_warning_sml.gif" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td># of properties where the next version available is a major version update</td>
-<td>4</td></tr></tr></table><section>
+<td>0</td></tr></tr></table><section>
 <h2>Summary of properties associated with artifact versions</h2>
 <table class="table table-striped">
 <tr class="a">
@@ -285,12 +285,12 @@
 <td></td>
 <td></td></tr>
 <tr class="b">
-<td><img src="images/icon_warning_sml.gif" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td>${maven-gpg-plugin.version}</td>
-<td>3.0.1</td>
+<td>3.1.0</td>
 <td></td>
 <td></td>
-<td><b>3.1.0</b></td>
+<td></td>
 <td></td></tr>
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" /></td>
@@ -373,28 +373,28 @@
 <td></td>
 <td></td></tr>
 <tr class="a">
-<td><img src="images/icon_success_sml.gif" /></td>
+<td><img src="images/icon_warning_sml.gif" /></td>
 <td>${maven-surefire-plugin.version}</td>
 <td>3.0.0</td>
 <td></td>
 <td></td>
-<td></td>
+<td><b>3.1.0</b></td>
 <td></td></tr>
 <tr class="b">
-<td><img src="images/icon_warning_sml.gif" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td>${mockito.version}</td>
 <td>4.11.0</td>
 <td></td>
 <td></td>
 <td></td>
-<td><b>5.3.1</b></td></tr>
+<td></td></tr>
 <tr class="a">
-<td><img src="images/icon_warning_sml.gif" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td>${mssql-jdbc.version}</td>
 <td>12.2.0.jre8</td>
-<td><b>12.2.0.jre11</b></td>
 <td></td>
-<td><b>12.3.0.jre20-preview</b></td>
+<td></td>
+<td></td>
 <td></td></tr>
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" /></td>
@@ -429,20 +429,20 @@
 <td></td>
 <td></td></tr>
 <tr class="b">
-<td><img src="images/icon_warning_sml.gif" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td>${snakeyaml.version}</td>
 <td>1.33</td>
 <td></td>
 <td></td>
 <td></td>
-<td><b>2.0</b></td></tr>
+<td></td></tr>
 <tr class="a">
-<td><img src="images/icon_warning_sml.gif" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td>${spock.version}</td>
 <td>2.3-groovy-4.0</td>
 <td></td>
 <td></td>
-<td><b>2.4-M1-groovy-4.0</b></td>
+<td></td>
 <td></td></tr>
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" /></td>
@@ -453,21 +453,21 @@
 <td></td>
 <td></td></tr>
 <tr class="a">
-<td><img src="images/icon_warning_sml.gif" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td>${spring-boot.version}</td>
 <td>2.7.11</td>
 <td></td>
 <td></td>
 <td></td>
-<td><b>3.0.6</b></td></tr>
+<td></td></tr>
 <tr class="b">
-<td><img src="images/icon_warning_sml.gif" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td>${spring-framework.version}</td>
 <td>5.3.27</td>
 <td></td>
 <td></td>
 <td></td>
-<td><b>6.0.8</b></td></tr>
+<td></td></tr>
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" /></td>
 <td>${testcontainers.version}</td>
@@ -1136,7 +1136,7 @@
 <table class="table table-striped">
 <tr class="a">
 <th>Status</th>
-<td style="text-align: left;"><img src="images/icon_warning_sml.gif" />&#160;There is at least one newer minor version available. Minor updates are sometimes passive.</td></tr>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
 <th>Property</th>
 <td style="text-align: left;">${maven-gpg-plugin.version}</td></tr>
@@ -1145,23 +1145,20 @@
 <td style="text-align: left;">org.apache.maven.plugins:maven-gpg-plugin</td></tr>
 <tr class="b">
 <th>Current Version</th>
-<td style="text-align: left;">3.0.1</td></tr>
+<td style="text-align: left;">3.1.0</td></tr>
 <tr class="a">
-<th>Newer versions</th>
-<td style="text-align: left;"><b>3.1.0</b>&#160;<i>Latest Minor</i></td></tr>
-<tr class="b">
 <th>Allowed version range</th>
-<td style="text-align: left;">3.0.1</td></tr>
-<tr class="a">
+<td style="text-align: left;">3.1.0</td></tr>
+<tr class="b">
 <th>Infer associations from project</th>
 <td style="text-align: left;">Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <th>Only use release versions</th>
 <td style="text-align: left;">No</td></tr>
-<tr class="a">
+<tr class="b">
 <th>Include projects from reactor</th>
 <td style="text-align: left;">Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <th>Always use reactor projects (even if older or -SNAPSHOT)</th>
 <td style="text-align: left;">Yes</td></tr></table></section><section>
 <h2>${maven-install-plugin.version}</h2>
@@ -1458,7 +1455,7 @@
 <table class="table table-striped">
 <tr class="a">
 <th>Status</th>
-<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
+<td style="text-align: left;"><img src="images/icon_warning_sml.gif" />&#160;There is at least one newer minor version available. Minor updates are sometimes passive.</td></tr>
 <tr class="b">
 <th>Property</th>
 <td style="text-align: left;">${maven-surefire-plugin.version}</td></tr>
@@ -1469,25 +1466,28 @@
 <th>Current Version</th>
 <td style="text-align: left;">3.0.0</td></tr>
 <tr class="a">
+<th>Newer versions</th>
+<td style="text-align: left;"><b>3.1.0</b>&#160;<i>Latest Minor</i></td></tr>
+<tr class="b">
 <th>Allowed version range</th>
 <td style="text-align: left;">3.0.0</td></tr>
-<tr class="b">
+<tr class="a">
 <th>Infer associations from project</th>
 <td style="text-align: left;">Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <th>Only use release versions</th>
 <td style="text-align: left;">No</td></tr>
-<tr class="b">
+<tr class="a">
 <th>Include projects from reactor</th>
 <td style="text-align: left;">Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <th>Always use reactor projects (even if older or -SNAPSHOT)</th>
 <td style="text-align: left;">Yes</td></tr></table></section><section>
 <h2>${mockito.version}</h2>
 <table class="table table-striped">
 <tr class="a">
 <th>Status</th>
-<td style="text-align: left;"><img src="images/icon_warning_sml.gif" />&#160;There is at least one newer major version available. Major updates are rarely passive.</td></tr>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
 <th>Property</th>
 <td style="text-align: left;">${mockito.version}</td></tr>
@@ -1498,28 +1498,25 @@
 <th>Current Version</th>
 <td style="text-align: left;">4.11.0</td></tr>
 <tr class="a">
-<th>Newer versions</th>
-<td style="text-align: left;">5.0.0<br />5.1.0<br />5.1.1<br />5.2.0<br />5.3.0<br /><b>5.3.1</b>&#160;<i>Latest Major</i></td></tr>
-<tr class="b">
 <th>Allowed version range</th>
 <td style="text-align: left;">4.11.0</td></tr>
-<tr class="a">
+<tr class="b">
 <th>Infer associations from project</th>
 <td style="text-align: left;">Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <th>Only use release versions</th>
 <td style="text-align: left;">No</td></tr>
-<tr class="a">
+<tr class="b">
 <th>Include projects from reactor</th>
 <td style="text-align: left;">Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <th>Always use reactor projects (even if older or -SNAPSHOT)</th>
 <td style="text-align: left;">Yes</td></tr></table></section><section>
 <h2>${mssql-jdbc.version}</h2>
 <table class="table table-striped">
 <tr class="a">
 <th>Status</th>
-<td style="text-align: left;"><img src="images/icon_warning_sml.gif" />&#160;There is at least one newer version available.</td></tr>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
 <th>Property</th>
 <td style="text-align: left;">${mssql-jdbc.version}</td></tr>
@@ -1530,21 +1527,18 @@
 <th>Current Version</th>
 <td style="text-align: left;">12.2.0.jre8</td></tr>
 <tr class="a">
-<th>Newer versions</th>
-<td style="text-align: left;"><b>12.2.0.jre11</b>&#160;<i>Latest Subincremental</i><br />12.3.0.jre8-preview<br />12.3.0.jre11-preview<br />12.3.0.jre17-preview<br /><b>12.3.0.jre20-preview</b>&#160;<i>Latest Minor</i></td></tr>
-<tr class="b">
 <th>Allowed version range</th>
 <td style="text-align: left;">12.2.0.jre8</td></tr>
-<tr class="a">
+<tr class="b">
 <th>Infer associations from project</th>
 <td style="text-align: left;">Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <th>Only use release versions</th>
 <td style="text-align: left;">No</td></tr>
-<tr class="a">
+<tr class="b">
 <th>Include projects from reactor</th>
 <td style="text-align: left;">Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <th>Always use reactor projects (even if older or -SNAPSHOT)</th>
 <td style="text-align: left;">Yes</td></tr></table></section><section>
 <h2>${mysql.version}</h2>
@@ -1667,7 +1661,7 @@
 <table class="table table-striped">
 <tr class="a">
 <th>Status</th>
-<td style="text-align: left;"><img src="images/icon_warning_sml.gif" />&#160;There is at least one newer major version available. Major updates are rarely passive.</td></tr>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
 <th>Property</th>
 <td style="text-align: left;">${snakeyaml.version}</td></tr>
@@ -1678,28 +1672,25 @@
 <th>Current Version</th>
 <td style="text-align: left;">1.33</td></tr>
 <tr class="a">
-<th>Newer versions</th>
-<td style="text-align: left;"><b>2.0</b>&#160;<i>Latest Major</i></td></tr>
-<tr class="b">
 <th>Allowed version range</th>
 <td style="text-align: left;">1.33</td></tr>
-<tr class="a">
+<tr class="b">
 <th>Infer associations from project</th>
 <td style="text-align: left;">Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <th>Only use release versions</th>
 <td style="text-align: left;">No</td></tr>
-<tr class="a">
+<tr class="b">
 <th>Include projects from reactor</th>
 <td style="text-align: left;">Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <th>Always use reactor projects (even if older or -SNAPSHOT)</th>
 <td style="text-align: left;">Yes</td></tr></table></section><section>
 <h2>${spock.version}</h2>
 <table class="table table-striped">
 <tr class="a">
 <th>Status</th>
-<td style="text-align: left;"><img src="images/icon_warning_sml.gif" />&#160;There is at least one newer minor version available. Minor updates are sometimes passive.</td></tr>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
 <th>Property</th>
 <td style="text-align: left;">${spock.version}</td></tr>
@@ -1710,21 +1701,18 @@
 <th>Current Version</th>
 <td style="text-align: left;">2.3-groovy-4.0</td></tr>
 <tr class="a">
-<th>Newer versions</th>
-<td style="text-align: left;">2.4-M1-groovy-2.5<br />2.4-M1-groovy-3.0<br /><b>2.4-M1-groovy-4.0</b>&#160;<i>Latest Minor</i></td></tr>
-<tr class="b">
 <th>Allowed version range</th>
 <td style="text-align: left;">2.3-groovy-4.0</td></tr>
-<tr class="a">
+<tr class="b">
 <th>Infer associations from project</th>
 <td style="text-align: left;">Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <th>Only use release versions</th>
 <td style="text-align: left;">No</td></tr>
-<tr class="a">
+<tr class="b">
 <th>Include projects from reactor</th>
 <td style="text-align: left;">Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <th>Always use reactor projects (even if older or -SNAPSHOT)</th>
 <td style="text-align: left;">Yes</td></tr></table></section><section>
 <h2>${spotless.version}</h2>
@@ -1760,39 +1748,36 @@
 <table class="table table-striped">
 <tr class="a">
 <th>Status</th>
-<td style="text-align: left;"><img src="images/icon_warning_sml.gif" />&#160;There is at least one newer major version available. Major updates are rarely passive.</td></tr>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
 <th>Property</th>
 <td style="text-align: left;">${spring-boot.version}</td></tr>
 <tr class="a">
 <th>Associated artifacts</th>
-<td style="text-align: left;">org.springframework.boot:spring-boot-dependencies<br />org.springframework.boot:spring-boot-starter</td></tr>
+<td style="text-align: left;">org.springframework.boot:spring-boot-starter<br />org.springframework.boot:spring-boot-starter-jdbc<br />org.springframework.boot:spring-boot-starter-test</td></tr>
 <tr class="b">
 <th>Current Version</th>
 <td style="text-align: left;">2.7.11</td></tr>
 <tr class="a">
-<th>Newer versions</th>
-<td style="text-align: left;">3.0.0<br />3.0.1<br />3.0.2<br />3.0.3<br />3.0.4<br />3.0.5<br /><b>3.0.6</b>&#160;<i>Latest Major</i></td></tr>
-<tr class="b">
 <th>Allowed version range</th>
 <td style="text-align: left;">2.7.11</td></tr>
-<tr class="a">
+<tr class="b">
 <th>Infer associations from project</th>
 <td style="text-align: left;">Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <th>Only use release versions</th>
 <td style="text-align: left;">No</td></tr>
-<tr class="a">
+<tr class="b">
 <th>Include projects from reactor</th>
 <td style="text-align: left;">Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <th>Always use reactor projects (even if older or -SNAPSHOT)</th>
 <td style="text-align: left;">Yes</td></tr></table></section><section>
 <h2>${spring-framework.version}</h2>
 <table class="table table-striped">
 <tr class="a">
 <th>Status</th>
-<td style="text-align: left;"><img src="images/icon_warning_sml.gif" />&#160;There is at least one newer major version available. Major updates are rarely passive.</td></tr>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
 <th>Property</th>
 <td style="text-align: left;">${spring-framework.version}</td></tr>
@@ -1803,21 +1788,18 @@
 <th>Current Version</th>
 <td style="text-align: left;">5.3.27</td></tr>
 <tr class="a">
-<th>Newer versions</th>
-<td style="text-align: left;">6.0.0<br />6.0.1<br />6.0.2<br />6.0.3<br />6.0.4<br />6.0.5<br />6.0.6<br />6.0.7<br /><b>6.0.8</b>&#160;<i>Latest Major</i></td></tr>
-<tr class="b">
 <th>Allowed version range</th>
 <td style="text-align: left;">5.3.27</td></tr>
-<tr class="a">
+<tr class="b">
 <th>Infer associations from project</th>
 <td style="text-align: left;">Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <th>Only use release versions</th>
 <td style="text-align: left;">No</td></tr>
-<tr class="a">
+<tr class="b">
 <th>Include projects from reactor</th>
 <td style="text-align: left;">Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <th>Always use reactor projects (even if older or -SNAPSHOT)</th>
 <td style="text-align: left;">Yes</td></tr></table></section><section>
 <h2>${testcontainers.version}</h2>
