@@ -89,7 +89,7 @@
     <error-prone.version>2.18.0</error-prone.version>
     <flatten-maven-plugin.version>1.4.1</flatten-maven-plugin.version>
     <gmavenplus-plugin.version>2.1.0</gmavenplus-plugin.version>
-    <groovy.version>4.0.11</groovy.version>
+    <groovy.version>4.0.12</groovy.version>
     <h2.version>2.1.214</h2.version>
     <jackson.version>2.15.0</jackson.version>
     <junit.version>4.13.2</junit.version>
