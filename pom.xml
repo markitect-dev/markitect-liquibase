@@ -9,7 +9,7 @@
   <packaging>pom</packaging>
 
   <name>${project.artifactId}</name>
-  <description>Markitect Liquibase</description>
+  <description>Markitect Liquibase Extensions &amp; Integrations</description>
   <url>https://github.com/markitect-dev/markitect-liquibase</url>
   <inceptionYear>2023</inceptionYear>
   <organization>
