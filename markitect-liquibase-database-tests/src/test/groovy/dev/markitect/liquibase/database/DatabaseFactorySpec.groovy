@@ -17,6 +17,7 @@
 package dev.markitect.liquibase.database
 
 import dev.markitect.liquibase.database.h2.H2Database
+import dev.markitect.liquibase.database.hsqldb.HsqlDatabase
 import dev.markitect.liquibase.database.mssql.MSSQLDatabase
 import dev.markitect.liquibase.database.postgresql.PostgresDatabase
 import liquibase.database.DatabaseFactory
@@ -41,6 +42,7 @@ class DatabaseFactorySpec extends Specification {
     where:
     shortName    || expectedType
     'h2'         || H2Database
+    'hsqldb'     || HsqlDatabase
     'mssql'      || MSSQLDatabase
     'postgresql' || PostgresDatabase
   }
