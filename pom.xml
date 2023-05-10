@@ -93,6 +93,7 @@
     <error-prone.version>2.18.0</error-prone.version>
     <flatten-maven-plugin.version>1.4.1</flatten-maven-plugin.version>
     <gmavenplus-plugin.version>2.1.0</gmavenplus-plugin.version>
+    <google-java-format.version>1.17.0</google-java-format.version>
     <groovy.version>4.0.12</groovy.version>
     <h2.version>2.1.214</h2.version>
     <hamcrest.version>2.2</hamcrest.version>
@@ -506,7 +507,9 @@
               <licenseHeader>
                 <file>src/spotless/license-header-java</file>
               </licenseHeader>
-              <googleJavaFormat/>
+              <googleJavaFormat>
+                <version>${google-java-format.version}</version>
+              </googleJavaFormat>
             </java>
             <pom>
               <includes>
@@ -537,6 +540,18 @@
               </jackson>
             </yaml>
           </configuration>
+          <dependencies>
+            <dependency>
+              <groupId>com.fasterxml.jackson.dataformat</groupId>
+              <artifactId>jackson-dataformat-yaml</artifactId>
+              <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>com.google.googlejavaformat</groupId>
+              <artifactId>google-java-format</artifactId>
+              <version>${google-java-format.version}</version>
+            </dependency>
+          </dependencies>
           <executions>
             <execution>
               <goals>
