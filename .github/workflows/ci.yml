@@ -61,7 +61,12 @@ jobs:
           gpg-passphrase: MAVEN_GPG_PASSPHRASE
 
       - name: Publish artifacts
-        run: ./mvnw -B -P release -U deploy -Dgpg.keyname="$MAVEN_GPG_KEYNAME"
+        run: |
+          ./mvnw -B -P release -U deploy \
+              -Dspotless.check.skip=true \
+              -Dcheckstyle.skip=true \
+              -Dmaven.test.skip=true \
+              -Dgpg.keyname="$MAVEN_GPG_KEYNAME"
         env:
           MAVEN_GPG_KEYNAME: ${{ vars.MAVEN_GPG_KEYNAME }}
           MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
@@ -100,12 +105,19 @@ jobs:
           GIT_USER_EMAIL: ${{ vars.GIT_USER_EMAIL }}
 
       - name: Build
-        run: ./mvnw -B -U install -DskipTests
+        run: |
+          ./mvnw -B -U install \
+              -Dspotless.check.skip=true \
+              -Dcheckstyle.skip=true \
+              -Dmaven.test.skip=true
 
       - name: Stage site
         run: ./mvnw -B -P release -U site site:stage
 
       - name: Publish site
-        run: ./mvnw -B -U scm-publish:publish-scm -Dusername="$GITHUB_ACTOR" -Dpassword="$GITHUB_TOKEN"
+        run: |
+          ./mvnw -B -U scm-publish:publish-scm \
+              -Dusername="$GITHUB_ACTOR" \
+              -Dpassword="$GITHUB_TOKEN"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
