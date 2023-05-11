@@ -26,7 +26,7 @@ import liquibase.integration.spring.SpringLiquibase;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.autoconfigure.AutoConfigurations;
-import org.springframework.boot.autoconfigure.jdbc.EmbeddedDataSourceConfiguration;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.liquibase.LiquibaseAutoConfiguration;
 import org.springframework.boot.test.context.runner.ApplicationContextRunner;
 import org.springframework.boot.test.system.CapturedOutput;
@@ -57,7 +57,7 @@ class AutoConfigurationTests {
   @Test
   void runsLiquibaseUpdate(CapturedOutput output) {
     contextRunner
-        .withUserConfiguration(EmbeddedDataSourceConfiguration.class)
+        .withConfiguration(AutoConfigurations.of(DataSourceAutoConfiguration.class))
         .run(
             context -> {
               assertThat(context).hasSingleBean(SpringLiquibaseBeanPostProcessor.class);
