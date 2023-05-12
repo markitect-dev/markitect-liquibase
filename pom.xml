@@ -949,13 +949,6 @@
           <groupId>org.liquibase</groupId>
           <artifactId>liquibase-maven-plugin</artifactId>
           <version>${liquibase.version}</version>
-          <dependencies>
-            <dependency>
-              <groupId>dev.markitect.liquibase</groupId>
-              <artifactId>markitect-liquibase-core</artifactId>
-              <version>${project.version}</version>
-            </dependency>
-          </dependencies>
         </plugin>
         <plugin>
           <groupId>org.sonatype.plugins</groupId>
