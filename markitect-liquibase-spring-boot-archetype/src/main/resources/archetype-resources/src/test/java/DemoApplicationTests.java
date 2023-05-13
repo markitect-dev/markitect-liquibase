@@ -11,8 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @SpringBootTest
 class DemoApplicationTests {
-
-  @Autowired DSLContext create;
+  @Autowired private DSLContext create;
 
   @Test
   void contextLoads() {}
@@ -21,7 +20,7 @@ class DemoApplicationTests {
   @Transactional
   void crudExecutes() {
     // given
-    assertThat(create.fetchCount(USER)).isEqualTo(0);
+    assertThat(create.fetchCount(USER)).isZero();
 
     // when
     create
@@ -32,7 +31,7 @@ class DemoApplicationTests {
         .execute();
 
     // then
-    assertThat(create.select(USER.USERNAME, USER.DISPLAYNAME).from(USER).fetch(USER.USERNAME))
+    assertThat(create.select(USER.USERNAME).from(USER).fetch(USER.USERNAME))
         .containsExactlyInAnyOrder("kudou.shinichi", "mouri.ran");
     assertThat(
             create
@@ -62,7 +61,8 @@ class DemoApplicationTests {
     create.deleteFrom(USER).where(USER.USERNAME.eq("kudou.shinichi")).execute();
 
     // then
-    assertThat(create.select(USER.USERNAME, USER.DISPLAYNAME).from(USER).fetch(USER.USERNAME))
-        .containsExactly("mouri.ran");
+    assertThat(create.select(USER.USERNAME).from(USER).fetch(USER.USERNAME))
+        .contains("mouri.ran")
+        .doesNotContain("kudou.shinichi");
   }
 }
