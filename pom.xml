@@ -44,8 +44,7 @@
     <module>markitect-liquibase-spring</module>
     <module>markitect-liquibase-spring-boot-starter</module>
     <module>markitect-liquibase-bom</module>
-    <module>markitect-liquibase-archetype-spring-boot-2.7-h2</module>
-    <module>markitect-liquibase-archetype-spring-boot-3.0-h2</module>
+    <module>markitect-liquibase-spring-boot-archetype</module>
   </modules>
 
   <scm>

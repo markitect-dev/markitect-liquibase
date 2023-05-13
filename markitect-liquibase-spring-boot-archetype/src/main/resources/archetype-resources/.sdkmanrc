@@ -2,4 +2,8 @@
 # Add key=value pairs of SDKs to use below
 java=17.0.7-tem
 maven=3.8.8
-springboot=2.7.11
+#if($springBootVersion)
+springboot=$springBootVersion
+#else
+springboot=3.0.6
+#end

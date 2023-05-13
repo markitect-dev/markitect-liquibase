@@ -9,11 +9,11 @@
     <version>1.0.0-SNAPSHOT</version>
   </parent>
 
-  <artifactId>markitect-liquibase-archetype-spring-boot-2.7-h2</artifactId>
+  <artifactId>markitect-liquibase-spring-boot-archetype</artifactId>
   <packaging>maven-archetype</packaging>
 
   <name>${project.artifactId}</name>
-  <description>Markitect Liquibase Spring Boot 2.7, H2 Archetype</description>
+  <description>Markitect Liquibase Spring Boot Archetype</description>
   <url>https://github.com/markitect-dev/markitect-liquibase</url>
 
   <build>

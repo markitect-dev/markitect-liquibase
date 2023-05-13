@@ -6,7 +6,11 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
+#if($springBootVersion)
+    <version>${springBootVersion}</version>
+#else
     <version>3.0.6</version>
+#end
     <relativePath/>
   </parent>
 
@@ -17,6 +21,11 @@
   <properties>
     <java.version>17</java.version>
 
+#if($h2Version)
+    <h2.version>${h2Version}</h2.version>
+#elseif($springBootVersion.startsWith("2."))
+    <h2.version>1.4.200</h2.version>
+#end
     <liquibase.version>4.22.0</liquibase.version>
     <markitect-liquibase.version>1.0.0-SNAPSHOT</markitect-liquibase.version>
     <snakeyaml.version>2.0</snakeyaml.version>
