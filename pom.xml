@@ -44,6 +44,8 @@
     <module>markitect-liquibase-spring</module>
     <module>markitect-liquibase-spring-boot-starter</module>
     <module>markitect-liquibase-bom</module>
+    <module>markitect-liquibase-archetype-spring-boot-2.7-h2</module>
+    <module>markitect-liquibase-archetype-spring-boot-3.0-h2</module>
   </modules>
 
   <scm>
@@ -113,6 +115,7 @@
     <logback.version>1.2.12</logback.version>
     <postgresql.version>42.6.0</postgresql.version>
     <maven-antrun-plugin.version>3.1.0</maven-antrun-plugin.version>
+    <maven-archetype.version>3.2.1</maven-archetype.version>
     <maven-assembly-plugin.version>3.5.0</maven-assembly-plugin.version>
     <maven-checkstyle-plugin.version>3.2.2</maven-checkstyle-plugin.version>
     <maven-clean-plugin.version>3.2.0</maven-clean-plugin.version>
@@ -524,6 +527,7 @@
             </java>
             <pom>
               <includes>
+                <include>src/**/pom.xml</include>
                 <include>pom.xml</include>
               </includes>
               <sortPom>
@@ -544,6 +548,21 @@
               <trimTrailingWhitespace/>
               <endWithNewline/>
             </yaml>
+            <formats>
+              <format>
+                <includes>
+                  <include>src/**/*.properties</include>
+                  <include>src/**/*.txt</include>
+                  <include>src/**/*.xml</include>
+                </includes>
+                <trimTrailingWhitespace/>
+                <endWithNewline/>
+                <indent>
+                  <spaces>true</spaces>
+                  <spacesPerTab>2</spacesPerTab>
+                </indent>
+              </format>
+            </formats>
           </configuration>
           <dependencies>
             <dependency>
@@ -565,6 +584,11 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-antrun-plugin</artifactId>
           <version>${maven-antrun-plugin.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-archetype-plugin</artifactId>
+          <version>${maven-archetype.version}</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>

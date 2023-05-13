@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>dev.markitect.liquibase</groupId>
+    <artifactId>markitect-liquibase</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>markitect-liquibase-archetype-spring-boot-2.7-h2</artifactId>
+  <packaging>maven-archetype</packaging>
+
+  <name>${project.artifactId}</name>
+  <description>Markitect Liquibase Spring Boot 2.7, H2 Archetype</description>
+  <url>https://github.com/markitect-dev/markitect-liquibase</url>
+
+  <build>
+    <extensions>
+      <extension>
+        <groupId>org.apache.maven.archetype</groupId>
+        <artifactId>archetype-packaging</artifactId>
+        <version>${maven-archetype.version}</version>
+      </extension>
+    </extensions>
+  </build>
+</project>
