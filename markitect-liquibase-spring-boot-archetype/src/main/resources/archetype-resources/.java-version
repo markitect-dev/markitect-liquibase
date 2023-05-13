@@ -1,1 +1,1 @@
-17
+#if($javaVersion)${javaVersion}#{else}17#{end}
