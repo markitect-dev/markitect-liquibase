@@ -111,7 +111,6 @@ public class MarkitectLiquibaseAutoConfiguration {
           migrationDataSource != liquibaseDataSource && migrationDataSource != dataSource);
       liquibase.setOutputDefaultCatalog(markitectProperties.getOutputDefaultCatalog());
       liquibase.setOutputDefaultSchema(markitectProperties.getOutputDefaultSchema());
-      liquibase.setObjectQuotingStrategy(markitectProperties.getObjectQuotingStrategy());
       return liquibase;
     }
 

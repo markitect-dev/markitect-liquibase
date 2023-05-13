@@ -19,7 +19,6 @@ package dev.markitect.liquibase.spring;
 import java.sql.Connection;
 import java.util.Optional;
 import liquibase.database.Database;
-import liquibase.database.ObjectQuotingStrategy;
 import liquibase.exception.DatabaseException;
 import liquibase.exception.LiquibaseException;
 import liquibase.integration.spring.SpringLiquibase;
@@ -30,7 +29,6 @@ import org.springframework.util.ReflectionUtils;
 
 public class MarkitectSpringLiquibase extends SpringLiquibase implements DisposableBean {
   private volatile boolean closeDataSourceOnceMigrated;
-  protected volatile ObjectQuotingStrategy objectQuotingStrategy;
   protected volatile Boolean outputDefaultCatalog;
   protected volatile Boolean outputDefaultSchema;
 
@@ -38,7 +36,6 @@ public class MarkitectSpringLiquibase extends SpringLiquibase implements Disposa
   protected Database createDatabase(@Nullable Connection c, ResourceAccessor resourceAccessor)
       throws DatabaseException {
     Database database = super.createDatabase(c, resourceAccessor);
-    Optional.ofNullable(objectQuotingStrategy).ifPresent(database::setObjectQuotingStrategy);
     Optional.ofNullable(outputDefaultCatalog).ifPresent(database::setOutputDefaultCatalog);
     Optional.ofNullable(outputDefaultSchema).ifPresent(database::setOutputDefaultSchema);
     return database;
@@ -66,10 +63,6 @@ public class MarkitectSpringLiquibase extends SpringLiquibase implements Disposa
 
   public void setCloseDataSourceOnceMigrated(boolean closeDataSourceOnceMigrated) {
     this.closeDataSourceOnceMigrated = closeDataSourceOnceMigrated;
-  }
-
-  public void setObjectQuotingStrategy(@Nullable ObjectQuotingStrategy objectQuotingStrategy) {
-    this.objectQuotingStrategy = objectQuotingStrategy;
   }
 
   public void setOutputDefaultCatalog(@Nullable Boolean outputDefaultCatalog) {

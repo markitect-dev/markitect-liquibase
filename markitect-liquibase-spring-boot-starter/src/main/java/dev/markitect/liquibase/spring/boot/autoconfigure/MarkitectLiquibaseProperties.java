@@ -19,15 +19,11 @@ package dev.markitect.liquibase.spring.boot.autoconfigure;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.util.HashMap;
 import java.util.Map;
-import liquibase.database.ObjectQuotingStrategy;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @ConfigurationProperties(prefix = "markitect.liquibase")
 public class MarkitectLiquibaseProperties {
-  /** Object quoting strategy. */
-  private volatile @Nullable ObjectQuotingStrategy objectQuotingStrategy;
-
   /** Whether to qualify the names of objects in the default catalog. */
   private volatile @Nullable Boolean outputDefaultCatalog = null;
 
@@ -39,16 +35,6 @@ public class MarkitectLiquibaseProperties {
 
   /** Additional properties used to configure Liquibase. */
   private final Map<String, String> properties = new HashMap<>();
-
-  public @Nullable ObjectQuotingStrategy getObjectQuotingStrategy() {
-    return objectQuotingStrategy;
-  }
-
-  public MarkitectLiquibaseProperties setObjectQuotingStrategy(
-      @Nullable ObjectQuotingStrategy objectQuotingStrategy) {
-    this.objectQuotingStrategy = objectQuotingStrategy;
-    return this;
-  }
 
   public @Nullable Boolean getOutputDefaultCatalog() {
     return outputDefaultCatalog;
