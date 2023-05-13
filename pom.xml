@@ -33,7 +33,6 @@
   </developers>
 
   <modules>
-    <module>markitect-liquibase-bom</module>
     <module>markitect-liquibase-core</module>
     <module>markitect-liquibase-database</module>
     <module>markitect-liquibase-database-h2</module>
@@ -44,6 +43,7 @@
     <module>markitect-liquibase-logging-spring-jcl</module>
     <module>markitect-liquibase-spring</module>
     <module>markitect-liquibase-spring-boot-starter</module>
+    <module>markitect-liquibase-bom</module>
   </modules>
 
   <scm>
