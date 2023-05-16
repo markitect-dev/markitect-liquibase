@@ -66,6 +66,7 @@ jobs:
               -Dspotless.check.skip=true \
               -Dcheckstyle.skip=true \
               -Dmaven.test.skip=true \
+              -Darchetype.test.skip=true \
               -Dgpg.keyname="$MAVEN_GPG_KEYNAME"
         env:
           MAVEN_GPG_KEYNAME: ${{ vars.MAVEN_GPG_KEYNAME }}
@@ -109,7 +110,8 @@ jobs:
           ./mvnw -B -U install \
               -Dspotless.check.skip=true \
               -Dcheckstyle.skip=true \
-              -Dmaven.test.skip=true
+              -Dmaven.test.skip=true \
+              -Darchetype.test.skip=true
 
       - name: Stage site
         run: ./mvnw -B -P release -U site site:stage
