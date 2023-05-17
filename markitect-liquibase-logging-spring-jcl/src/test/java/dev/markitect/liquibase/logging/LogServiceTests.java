@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package dev.markitect.liquibase.spring;
+package dev.markitect.liquibase.logging;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -22,6 +22,7 @@ import dev.markitect.liquibase.logging.spring.jcl.SpringJclLogService;
 import dev.markitect.liquibase.logging.spring.jcl.SpringJclLogger;
 import liquibase.Scope;
 import liquibase.changelog.visitor.UpdateVisitor;
+import liquibase.changelog.visitor.ValidatingVisitor;
 import liquibase.logging.LogService;
 import liquibase.logging.Logger;
 import org.junit.jupiter.api.DisplayNameGeneration;
@@ -44,15 +45,24 @@ class LogServiceTests {
 
     // when
     Logger log = Scope.getCurrentScope().getLog(UpdateVisitor.class);
+    Logger log2 = Scope.getCurrentScope().getLog(ValidatingVisitor.class);
 
     // then
     assertThat(log).isInstanceOf(SpringJclLogger.class);
+    assertThat(log2).isInstanceOf(SpringJclLogger.class);
 
     // when
-    log.fine("Running Changeset: ");
+    log.fine("Running Changeset: filePath::id::author");
+    Exception e = new Exception("Preconditions Failed");
+    log2.fine("Precondition failed: " + e.getMessage(), e);
 
     // then
     assertThat(output)
-        .contains(" [main] DEBUG liquibase.changelog.visitor.UpdateVisitor - Running Changeset: ");
+        .contains(
+            " [main] DEBUG liquibase.changelog.visitor.UpdateVisitor - "
+                + "Running Changeset: filePath::id::author",
+            " [main] DEBUG liquibase.changelog.visitor.ValidatingVisitor - "
+                + "Precondition failed: Preconditions Failed",
+            "java.lang.Exception: Preconditions Failed");
   }
 }
