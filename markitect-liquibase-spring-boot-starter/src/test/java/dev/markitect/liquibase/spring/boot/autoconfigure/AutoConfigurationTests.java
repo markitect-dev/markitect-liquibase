@@ -14,13 +14,12 @@
  * limitations under the License.
  */
 
-package com.example;
+package dev.markitect.liquibase.spring.boot.autoconfigure;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import dev.markitect.liquibase.spring.MarkitectSpringLiquibase;
 import dev.markitect.liquibase.spring.SpringLiquibaseBeanPostProcessor;
-import dev.markitect.liquibase.spring.boot.autoconfigure.MarkitectLiquibaseAutoConfiguration;
 import liquibase.Scope;
 import liquibase.ThreadLocalScopeManager;
 import liquibase.integration.spring.SpringLiquibase;
