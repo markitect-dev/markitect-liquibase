@@ -16,6 +16,20 @@
   <description>Markitect Liquibase Spring Boot Archetype</description>
   <url>https://github.com/markitect-dev/markitect-liquibase</url>
 
+  <dependencies>
+    <dependency>
+      <groupId>dev.markitect.liquibase</groupId>
+      <artifactId>markitect-liquibase-bom</artifactId>
+      <type>pom</type>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>dev.markitect.liquibase</groupId>
+      <artifactId>markitect-liquibase-spring-boot-starter</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
   <build>
     <plugins>
       <plugin>
