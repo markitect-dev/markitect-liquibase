@@ -21,5 +21,6 @@ import liquibase.exception.DatabaseException;
 
 @FunctionalInterface
 public interface DatabaseFactory<D extends Database> {
+  @SuppressWarnings("RedundantThrows")
   D get() throws DatabaseException;
 }
