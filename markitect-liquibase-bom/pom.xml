@@ -50,12 +50,7 @@
       </dependency>
       <dependency>
         <groupId>dev.markitect.liquibase</groupId>
-        <artifactId>markitect-liquibase-logging-slf4j</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
-      </dependency>
-      <dependency>
-        <groupId>dev.markitect.liquibase</groupId>
-        <artifactId>markitect-liquibase-logging-spring-jcl</artifactId>
+        <artifactId>markitect-liquibase-logging</artifactId>
         <version>1.0.0-SNAPSHOT</version>
       </dependency>
       <dependency>
