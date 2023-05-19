@@ -6,7 +6,7 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>#if($springBootVersion)${springBootVersion}#{else}3.0.6#{end}</version>
+    <version>#if($springBootVersion)${springBootVersion}#{else}3.0.7#{end}</version>
     <relativePath/>
   </parent>
 
