@@ -34,7 +34,7 @@ jobs:
           cache: 'maven'
 
       - name: Build and test
-        run: ./mvnw -B -U install
+        run: ./mvnw -B -ntp -U install
 
   publish-artifacts:
     name: Publish artifacts
@@ -62,7 +62,7 @@ jobs:
 
       - name: Publish artifacts
         run: |
-          ./mvnw -B -P release -U deploy \
+          ./mvnw -B -ntp -P release -U deploy \
               -Dspotless.check.skip=true \
               -Dcheckstyle.skip=true \
               -Dmaven.test.skip=true \
@@ -107,18 +107,18 @@ jobs:
 
       - name: Build
         run: |
-          ./mvnw -B -U install \
+          ./mvnw -B -ntp -U install \
               -Dspotless.check.skip=true \
               -Dcheckstyle.skip=true \
               -Dmaven.test.skip=true \
               -Darchetype.test.skip=true
 
       - name: Stage site
-        run: ./mvnw -B -P release -U site site:stage
+        run: ./mvnw -B -ntp -P release -U site site:stage
 
       - name: Publish site
         run: |
-          ./mvnw -B -U scm-publish:publish-scm \
+          ./mvnw -B -ntp -U scm-publish:publish-scm \
               -Dusername="$GITHUB_ACTOR" \
               -Dpassword="$GITHUB_TOKEN"
         env:
