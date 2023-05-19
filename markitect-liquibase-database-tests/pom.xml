@@ -19,33 +19,46 @@
     <dependency>
       <groupId>com.google.errorprone</groupId>
       <artifactId>error_prone_annotations</artifactId>
-      <optional>true</optional>
+      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>dev.markitect.liquibase</groupId>
       <artifactId>markitect-liquibase-database-h2</artifactId>
+      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>dev.markitect.liquibase</groupId>
       <artifactId>markitect-liquibase-database-hsqldb</artifactId>
+      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>dev.markitect.liquibase</groupId>
       <artifactId>markitect-liquibase-database-mssql</artifactId>
+      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>dev.markitect.liquibase</groupId>
       <artifactId>markitect-liquibase-database-postgresql</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>dev.markitect.liquibase</groupId>
+      <artifactId>markitect-liquibase-logging</artifactId>
+      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.checkerframework</groupId>
       <artifactId>checker-qual</artifactId>
-      <optional>true</optional>
+      <scope>test</scope>
     </dependency>
-
     <dependency>
       <groupId>org.spockframework</groupId>
       <artifactId>spock-core</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-logging</artifactId>
       <scope>test</scope>
     </dependency>
   </dependencies>
