@@ -51,6 +51,7 @@ class H2DatabaseSpec extends Specification {
     null               | null              || 'Tbl1'     | Table      || 'Tbl1'
     null               | QUOTE_ALL_OBJECTS || 'Tbl1'     | Table      || '"Tbl1"'
     null               | null              || 'Sch1'     | Schema     || 'Sch1'
+    true               | null              || 'SCH1'     | Schema     || 'SCH1'
     true               | null              || 'Sch1'     | Schema     || '"Sch1"'
     null               | null              || 'Tbl 1'    | Table      || '"TBL 1"'
     null               | QUOTE_ALL_OBJECTS || 'Tbl 1'    | Table      || '"Tbl 1"'

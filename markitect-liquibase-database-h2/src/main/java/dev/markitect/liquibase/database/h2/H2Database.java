@@ -52,7 +52,8 @@ public class H2Database extends liquibase.database.core.H2Database {
     checkNotNull(objectType);
     return quotingStrategy == ObjectQuotingStrategy.QUOTE_ALL_OBJECTS
         || (isCatalogOrSchemaType(objectType)
-            && isTrue(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getCurrentValue()))
+            && isTrue(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getCurrentValue())
+            && !objectName.equals(objectName.toUpperCase(Locale.US)))
         || isIllegalIdentifier(objectName)
         || isReservedWord(objectName);
   }

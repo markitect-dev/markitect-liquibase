@@ -16,7 +16,6 @@
 
 package dev.markitect.liquibase.database.mssql;
 
-import static dev.markitect.liquibase.structure.Structures.isCatalogOrSchemaType;
 import static dev.markitect.liquibase.util.Preconditions.checkNotNull;
 import static dev.markitect.liquibase.util.Strings.isIllegalIdentifier;
 import static liquibase.util.BooleanUtil.isTrue;
@@ -53,8 +52,6 @@ public class MSSQLDatabase extends liquibase.database.core.MSSQLDatabase {
     checkNotNull(objectName);
     checkNotNull(objectType);
     return quotingStrategy == ObjectQuotingStrategy.QUOTE_ALL_OBJECTS
-        || (isCatalogOrSchemaType(objectType)
-            && isTrue(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getCurrentValue()))
         || isIllegalIdentifier(objectName)
         || isReservedWord(objectName);
   }

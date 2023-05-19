@@ -52,7 +52,8 @@ public class PostgresDatabase extends liquibase.database.core.PostgresDatabase {
     checkNotNull(objectType);
     return quotingStrategy == ObjectQuotingStrategy.QUOTE_ALL_OBJECTS
         || (isCatalogOrSchemaType(objectType)
-            && isTrue(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getCurrentValue()))
+            && isTrue(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getCurrentValue())
+            && !objectName.equals(objectName.toLowerCase(Locale.US)))
         || isIllegalIdentifier(objectName)
         || isReservedWord(objectName);
   }
