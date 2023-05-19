@@ -22,7 +22,6 @@ import static dev.markitect.liquibase.util.Strings.isIllegalIdentifier;
 import static liquibase.util.BooleanUtil.isTrue;
 
 import java.util.Locale;
-import liquibase.CatalogAndSchema;
 import liquibase.GlobalConfiguration;
 import liquibase.database.ObjectQuotingStrategy;
 import liquibase.structure.DatabaseObject;
@@ -41,11 +40,9 @@ public class PostgresDatabase extends liquibase.database.core.PostgresDatabase {
     if (objectName == null) {
       return null;
     }
-    if (quotingStrategy == ObjectQuotingStrategy.QUOTE_ALL_OBJECTS
-        || mustQuoteObjectName(objectName, objectType)) {
-      return quoteObject(correctObjectName(objectName, objectType), objectType);
-    }
-    return objectName;
+    return mustQuoteObjectName(objectName, objectType)
+        ? quoteObject(correctObjectName(objectName, objectType), objectType)
+        : objectName;
   }
 
   @Override
@@ -53,10 +50,9 @@ public class PostgresDatabase extends liquibase.database.core.PostgresDatabase {
       String objectName, Class<? extends DatabaseObject> objectType) {
     checkNotNull(objectName);
     checkNotNull(objectType);
-    return (isCatalogOrSchemaType(objectType)
-            && (isTrue(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getCurrentValue())
-                || getSchemaAndCatalogCase()
-                    == CatalogAndSchema.CatalogAndSchemaCase.ORIGINAL_CASE))
+    return quotingStrategy == ObjectQuotingStrategy.QUOTE_ALL_OBJECTS
+        || (isCatalogOrSchemaType(objectType)
+            && isTrue(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getCurrentValue()))
         || isIllegalIdentifier(objectName)
         || isReservedWord(objectName);
   }
@@ -70,9 +66,7 @@ public class PostgresDatabase extends liquibase.database.core.PostgresDatabase {
     }
     return quotingStrategy == ObjectQuotingStrategy.QUOTE_ALL_OBJECTS
             || (isCatalogOrSchemaType(objectType)
-                && (isTrue(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getCurrentValue())
-                    || getSchemaAndCatalogCase()
-                        == CatalogAndSchema.CatalogAndSchemaCase.ORIGINAL_CASE))
+                && isTrue(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getCurrentValue()))
         ? objectName
         : objectName.toLowerCase(Locale.US);
   }
