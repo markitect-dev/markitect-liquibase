@@ -19,75 +19,80 @@ package dev.markitect.liquibase.logging;
 import static dev.markitect.liquibase.util.Preconditions.checkNotNull;
 
 import java.util.logging.Level;
+import java.util.logging.LogRecord;
 import java.util.logging.Logger;
 import liquibase.logging.core.AbstractLogger;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
 public class JulLogger extends AbstractLogger {
+  private static final String FQCN = JulLogger.class.getName();
+
+  private final @Nullable String name;
   private final Logger logger;
 
   JulLogger(@Nullable String name) {
+    this.name = name;
     this.logger = Logger.getLogger(name);
   }
 
   @Override
   public void severe(@Nullable String message) {
-    logger.log(Level.SEVERE, message);
+    log(Level.SEVERE, message, null);
   }
 
   @Override
   public void severe(@Nullable String message, @Nullable Throwable e) {
-    logger.log(Level.SEVERE, message, e);
+    log(Level.SEVERE, message, e);
   }
 
   @Override
   public void warning(@Nullable String message) {
-    logger.log(Level.WARNING, message);
+    log(Level.WARNING, message, null);
   }
 
   @Override
   public void warning(@Nullable String message, @Nullable Throwable e) {
-    logger.log(Level.WARNING, message, e);
+    log(Level.WARNING, message, e);
   }
 
   @Override
   public void info(@Nullable String message) {
-    logger.log(Level.INFO, message);
+    log(Level.INFO, message, null);
   }
 
   @Override
   public void info(@Nullable String message, @Nullable Throwable e) {
-    logger.log(Level.INFO, message, e);
+    log(Level.INFO, message, e);
   }
 
   @Override
   public void config(@Nullable String message) {
-    logger.log(Level.CONFIG, message);
+    log(Level.CONFIG, message, null);
   }
 
   @Override
   public void config(@Nullable String message, @Nullable Throwable e) {
-    logger.log(Level.CONFIG, message, e);
+    log(Level.CONFIG, message, e);
   }
 
   @Override
   public void fine(@Nullable String message) {
-    logger.log(Level.FINE, message);
+    log(Level.FINE, message, null);
   }
 
   @Override
   public void fine(@Nullable String message, @Nullable Throwable e) {
-    logger.log(Level.FINE, message, e);
+    log(Level.FINE, message, e);
   }
 
   @Override
   public void debug(@Nullable String message) {
-    logger.log(Level.FINE, message);
+    log(Level.FINE, message, null);
   }
 
   @Override
   public void debug(@Nullable String message, @Nullable Throwable e) {
-    logger.log(Level.FINE, message, e);
+    log(Level.FINE, message, e);
   }
 
   @Override
@@ -96,6 +101,34 @@ public class JulLogger extends AbstractLogger {
   @Override
   public void log(Level level, @Nullable String message, @Nullable Throwable e) {
     checkNotNull(level);
-    logger.log(level, message, e);
+    if (logger.isLoggable(level)) {
+      logger.log(toLogRecord(level, message, e));
+    }
+  }
+
+  @SuppressWarnings("ReassignedVariable")
+  private LogRecord toLogRecord(Level level, @Nullable String message, @Nullable Throwable e) {
+    checkNotNull(level);
+    @Nullable String sourceClassName = null;
+    @Nullable String sourceMethodName = null;
+    boolean found = false;
+    for (StackTraceElement element : new Throwable().getStackTrace()) {
+      String className = element.getClassName();
+      if (FQCN.equals(className)) {
+        found = true;
+      } else if (found) {
+        sourceClassName = className;
+        sourceMethodName = element.getMethodName();
+        break;
+      }
+    }
+    LogRecord record = new LogRecord(level, message);
+    record.setLoggerName(name);
+    record.setThrown(e);
+    record.setSourceClassName(sourceClassName);
+    record.setSourceMethodName(sourceMethodName);
+    record.setResourceBundleName(logger.getResourceBundleName());
+    record.setResourceBundle(logger.getResourceBundle());
+    return record;
   }
 }

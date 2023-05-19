@@ -25,10 +25,10 @@ public class LoggerAdapter {
   private static final LoggingApi LOGGING_API;
 
   static {
-    if (isPresent("org.apache.logging.log4j.Logger")
+    if (isPresent("org.apache.logging.log4j.spi.ExtendedLogger")
         && !isPresent("org.apache.logging.slf4j.SLF4JProvider")) {
       LOGGING_API = LoggingApi.LOG4J;
-    } else if (isPresent("org.slf4j.Logger")) {
+    } else if (isPresent("org.slf4j.spi.LocationAwareLogger")) {
       LOGGING_API = LoggingApi.SLF4J;
     } else {
       LOGGING_API = LoggingApi.JUL;
@@ -46,13 +46,14 @@ public class LoggerAdapter {
   }
 
   public static Logger getLogger(@Nullable String name) {
-    if (LOGGING_API == LoggingApi.SLF4J) {
-      return Slf4jAdapter.getLogger(name);
+    switch (LOGGING_API) {
+      case SLF4J:
+        return Slf4jAdapter.getLogger(name);
+      case LOG4J:
+        return Log4jAdapter.getLogger(name);
+      default:
+        return JulAdapter.getLogger(name);
     }
-    if (LOGGING_API == LoggingApi.LOG4J) {
-      return Log4jAdapter.getLogger(name);
-    }
-    return JulAdapter.getLogger(name);
   }
 
   private enum LoggingApi {
