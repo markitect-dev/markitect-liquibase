@@ -6,8 +6,6 @@ logging:
 
 markitect:
   liquibase:
-    output-default-catalog: false
-    output-default-schema: false
     use-thread-local-scope-manager: true
     properties:
       liquibase.sql.logLevel: info

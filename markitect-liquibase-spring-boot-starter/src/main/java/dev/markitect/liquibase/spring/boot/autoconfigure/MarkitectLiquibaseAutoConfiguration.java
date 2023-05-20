@@ -109,8 +109,8 @@ public class MarkitectLiquibaseAutoConfiguration {
       liquibase.setRollbackFile(properties.getRollbackFile());
       liquibase.setCloseDataSourceOnceMigrated(
           migrationDataSource != liquibaseDataSource && migrationDataSource != dataSource);
-      liquibase.setOutputDefaultCatalog(markitectProperties.getOutputDefaultCatalog());
-      liquibase.setOutputDefaultSchema(markitectProperties.getOutputDefaultSchema());
+      liquibase.setOutputDefaultCatalog(markitectProperties.isOutputDefaultCatalog());
+      liquibase.setOutputDefaultSchema(markitectProperties.isOutputDefaultSchema());
       return liquibase;
     }
 

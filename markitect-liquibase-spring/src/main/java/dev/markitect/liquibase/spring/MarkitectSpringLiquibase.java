@@ -29,15 +29,15 @@ import org.springframework.util.ReflectionUtils;
 
 public class MarkitectSpringLiquibase extends SpringLiquibase implements DisposableBean {
   private volatile boolean closeDataSourceOnceMigrated;
-  protected volatile Boolean outputDefaultCatalog;
-  protected volatile Boolean outputDefaultSchema;
+  protected volatile boolean outputDefaultCatalog;
+  protected volatile boolean outputDefaultSchema;
 
   @Override
   protected Database createDatabase(@Nullable Connection c, ResourceAccessor resourceAccessor)
       throws DatabaseException {
     Database database = super.createDatabase(c, resourceAccessor);
-    Optional.ofNullable(outputDefaultCatalog).ifPresent(database::setOutputDefaultCatalog);
-    Optional.ofNullable(outputDefaultSchema).ifPresent(database::setOutputDefaultSchema);
+    database.setOutputDefaultCatalog(outputDefaultCatalog);
+    database.setOutputDefaultSchema(outputDefaultSchema);
     return database;
   }
 
@@ -65,11 +65,11 @@ public class MarkitectSpringLiquibase extends SpringLiquibase implements Disposa
     this.closeDataSourceOnceMigrated = closeDataSourceOnceMigrated;
   }
 
-  public void setOutputDefaultCatalog(@Nullable Boolean outputDefaultCatalog) {
+  public void setOutputDefaultCatalog(boolean outputDefaultCatalog) {
     this.outputDefaultCatalog = outputDefaultCatalog;
   }
 
-  public void setOutputDefaultSchema(@Nullable Boolean outputDefaultSchema) {
+  public void setOutputDefaultSchema(boolean outputDefaultSchema) {
     this.outputDefaultSchema = outputDefaultSchema;
   }
 }

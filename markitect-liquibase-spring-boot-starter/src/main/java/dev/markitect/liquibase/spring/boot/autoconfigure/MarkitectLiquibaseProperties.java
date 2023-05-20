@@ -19,16 +19,15 @@ package dev.markitect.liquibase.spring.boot.autoconfigure;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.util.HashMap;
 import java.util.Map;
-import org.checkerframework.checker.nullness.qual.Nullable;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @ConfigurationProperties(prefix = "markitect.liquibase")
 public class MarkitectLiquibaseProperties {
   /** Whether to qualify the names of objects in the default catalog. */
-  private volatile @Nullable Boolean outputDefaultCatalog = null;
+  private volatile boolean outputDefaultCatalog;
 
   /** Whether to qualify the names of objects in the default schema. */
-  private volatile @Nullable Boolean outputDefaultSchema = null;
+  private volatile boolean outputDefaultSchema;
 
   /** Whether to use ThreadLocalScopeManager instead of SingletonScopeManager. */
   private volatile boolean useThreadLocalScopeManager = false;
@@ -36,22 +35,20 @@ public class MarkitectLiquibaseProperties {
   /** Additional properties used to configure Liquibase. */
   private final Map<String, String> properties = new HashMap<>();
 
-  public @Nullable Boolean getOutputDefaultCatalog() {
+  public boolean isOutputDefaultCatalog() {
     return outputDefaultCatalog;
   }
 
-  public MarkitectLiquibaseProperties setOutputDefaultCatalog(
-      @Nullable Boolean outputDefaultCatalog) {
+  public MarkitectLiquibaseProperties setOutputDefaultCatalog(boolean outputDefaultCatalog) {
     this.outputDefaultCatalog = outputDefaultCatalog;
     return this;
   }
 
-  public @Nullable Boolean getOutputDefaultSchema() {
+  public boolean isOutputDefaultSchema() {
     return outputDefaultSchema;
   }
 
-  public MarkitectLiquibaseProperties setOutputDefaultSchema(
-      @Nullable Boolean outputDefaultSchema) {
+  public MarkitectLiquibaseProperties setOutputDefaultSchema(boolean outputDefaultSchema) {
     this.outputDefaultSchema = outputDefaultSchema;
     return this;
   }

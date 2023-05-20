@@ -79,7 +79,6 @@ class SpringTests {
       MarkitectSpringLiquibase liquibase = new MarkitectSpringLiquibase();
       liquibase.setDataSource(dataSource);
       liquibase.setChangeLog("db/changelog/db.changelog-master.xml");
-      liquibase.setOutputDefaultSchema(false);
       return liquibase;
     }
 
