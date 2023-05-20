@@ -30,7 +30,7 @@ public class MarkitectLiquibaseProperties {
   private volatile boolean outputDefaultSchema;
 
   /** Whether to use ThreadLocalScopeManager instead of SingletonScopeManager. */
-  private volatile boolean useThreadLocalScopeManager = false;
+  private volatile boolean useThreadLocalScopeManager;
 
   /** Additional properties used to configure Liquibase. */
   private final Map<String, String> properties = new HashMap<>();
