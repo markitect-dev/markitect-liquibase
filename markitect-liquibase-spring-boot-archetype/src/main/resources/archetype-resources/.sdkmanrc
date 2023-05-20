@@ -1,5 +1,10 @@
+#set($Integer = 0)
+#set($effectiveJavaVersion = '17.0.7-tem')
+#if($javaVersion == '20')
+#set($effectiveJavaVersion = '20.0.1-tem')
+#end
 # Enable auto-env through the sdkman_auto_env config
 # Add key=value pairs of SDKs to use below
-java=17.0.7-tem
+java=${effectiveJavaVersion}
 maven=3.8.8
-springboot=#if($springBootVersion)${springBootVersion}#{else}3.0.7#{end}
+springboot=${springBootVersion}

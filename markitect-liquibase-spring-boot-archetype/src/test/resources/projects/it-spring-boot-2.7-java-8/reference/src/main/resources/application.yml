@@ -2,7 +2,7 @@ logging:
   level:
     dev.markitect.liquibase: info
     liquibase: info
-    liquibase.executor.jvm.[JdbcExecutor$ExecuteStatementCallback]: debug
+    liquibase.executor.jvm.[JdbcExecutor$ExecuteStatementCallback]: info
 
 markitect:
   liquibase:
@@ -10,4 +10,4 @@ markitect:
     output-default-schema: false
     use-thread-local-scope-manager: true
     properties:
-      liquibase.sql.logLevel: fine
+      liquibase.sql.logLevel: info

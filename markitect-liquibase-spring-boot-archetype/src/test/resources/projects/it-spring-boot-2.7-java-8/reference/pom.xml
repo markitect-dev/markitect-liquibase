@@ -16,9 +16,10 @@
 
   <properties>
     <java.version>1.8</java.version>
+    <maven.compiler.release>8</maven.compiler.release>
 
     <h2.version>1.4.200</h2.version>
-    <jooq.version>3.15.12</jooq.version>
+    <jooq.version>3.14.16</jooq.version>
     <liquibase.version>4.22.0</liquibase.version>
     <markitect-liquibase.version>1.0.0-SNAPSHOT</markitect-liquibase.version>
     <snakeyaml.version>1.33</snakeyaml.version>
@@ -85,10 +86,10 @@
           <url>jdbc:h2:${project.build.directory}/jooq-liquibase/h2</url>
           <username>sa</username>
           <password/>
+          <includeArtifact>false</includeArtifact>
+          <includeTestOutputDirectory>false</includeTestOutputDirectory>
           <searchPath>src/main/resources</searchPath>
           <changeLogFile>db/changelog/db.changelog-master.yaml</changeLogFile>
-          <outputDefaultCatalog>false</outputDefaultCatalog>
-          <outputDefaultSchema>false</outputDefaultSchema>
         </configuration>
         <executions>
           <execution>
