@@ -39,6 +39,7 @@ public class MarkitectLiquibaseProperties {
     return outputDefaultCatalog;
   }
 
+  @CanIgnoreReturnValue
   public MarkitectLiquibaseProperties setOutputDefaultCatalog(boolean outputDefaultCatalog) {
     this.outputDefaultCatalog = outputDefaultCatalog;
     return this;
@@ -48,6 +49,7 @@ public class MarkitectLiquibaseProperties {
     return outputDefaultSchema;
   }
 
+  @CanIgnoreReturnValue
   public MarkitectLiquibaseProperties setOutputDefaultSchema(boolean outputDefaultSchema) {
     this.outputDefaultSchema = outputDefaultSchema;
     return this;
