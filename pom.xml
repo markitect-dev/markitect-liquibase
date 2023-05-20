@@ -581,6 +581,13 @@
             <formats>
               <format>
                 <includes>
+                  <include>.editorconfig</include>
+                  <include>.gitattributes</include>
+                  <include>.gitignore</include>
+                  <include>.java-version</include>
+                  <include>.sdkmanrc</include>
+                  <include>src/**/.java-version</include>
+                  <include>src/**/.sdkmanrc</include>
                   <include>src/**/*.properties</include>
                   <include>src/**/*.txt</include>
                   <include>src/**/*.xml</include>
