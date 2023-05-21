@@ -35,35 +35,6 @@ public class MSSQLDatabase extends liquibase.database.core.MSSQLDatabase {
   }
 
   @Override
-  public @Nullable String escapeObjectName(
-      @Nullable String objectName, Class<? extends DatabaseObject> objectType) {
-    checkNotNull(objectType);
-    if (objectName == null) {
-      return null;
-    }
-    return mustQuoteObjectName(objectName, objectType)
-        ? quoteObject(correctObjectName(objectName, objectType), objectType)
-        : objectName;
-  }
-
-  @Override
-  protected boolean mustQuoteObjectName(
-      String objectName, Class<? extends DatabaseObject> objectType) {
-    checkNotNull(objectName);
-    checkNotNull(objectType);
-    return quotingStrategy == ObjectQuotingStrategy.QUOTE_ALL_OBJECTS
-        || isIllegalIdentifier(objectName)
-        || isReservedWord(objectName);
-  }
-
-  @Override
-  public @Nullable String correctObjectName(
-      @Nullable String objectName, Class<? extends DatabaseObject> objectType) {
-    checkNotNull(objectType);
-    return objectName;
-  }
-
-  @Override
   public String escapeObjectName(
       @Nullable String catalogName,
       @Nullable String schemaName,
@@ -91,5 +62,34 @@ public class MSSQLDatabase extends liquibase.database.core.MSSQLDatabase {
         + (schemaNameToUse != null ? escapeObjectName(schemaNameToUse, Schema.class) : "")
         + (catalogNameToUse != null || schemaNameToUse != null ? "." : "")
         + escapeObjectName(objectName, objectType);
+  }
+
+  @Override
+  public @Nullable String escapeObjectName(
+      @Nullable String objectName, Class<? extends DatabaseObject> objectType) {
+    checkNotNull(objectType);
+    if (objectName == null) {
+      return null;
+    }
+    return mustQuoteObjectName(objectName, objectType)
+        ? quoteObject(correctObjectName(objectName, objectType), objectType)
+        : objectName;
+  }
+
+  @Override
+  protected boolean mustQuoteObjectName(
+      String objectName, Class<? extends DatabaseObject> objectType) {
+    checkNotNull(objectName);
+    checkNotNull(objectType);
+    return quotingStrategy == ObjectQuotingStrategy.QUOTE_ALL_OBJECTS
+        || isIllegalIdentifier(objectName)
+        || isReservedWord(objectName);
+  }
+
+  @Override
+  public @Nullable String correctObjectName(
+      @Nullable String objectName, Class<? extends DatabaseObject> objectType) {
+    checkNotNull(objectType);
+    return objectName;
   }
 }
