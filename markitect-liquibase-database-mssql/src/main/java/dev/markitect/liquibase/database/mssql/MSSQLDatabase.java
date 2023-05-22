@@ -43,20 +43,9 @@ public class MSSQLDatabase extends liquibase.database.core.MSSQLDatabase {
     if (Index.class.isAssignableFrom(objectType)) {
       return escapeObjectName(objectName, objectType);
     }
-    String catalogNameToUse =
-        (isTrue(GlobalConfiguration.INCLUDE_CATALOG_IN_SPECIFICATION.getCurrentValue())
-                    && getOutputDefaultCatalog())
-                || !isDefaultCatalog(catalogName)
-            ? (catalogName != null ? catalogName : getDefaultCatalogName())
-            : null;
-    String schemaNameToUse =
-        getOutputDefaultSchema() || !isDefaultSchema(catalogName, schemaName)
-            ? (schemaName != null
-                ? schemaName
-                : (isDefaultCatalog(catalogName) ? getDefaultSchemaName() : null))
-            : null;
-    return (catalogNameToUse != null ? escapeObjectName(catalogNameToUse, Catalog.class) : "")
-        + (catalogNameToUse != null ? "." : "")
+    String catalogNameToUse = toCatalogNameToUse(catalogName);
+    String schemaNameToUse = toSchemaNameToUse(catalogName, schemaName);
+    return (catalogNameToUse != null ? escapeObjectName(catalogNameToUse, Catalog.class) + "." : "")
         + (schemaNameToUse != null ? escapeObjectName(schemaNameToUse, Schema.class) : "")
         + (catalogNameToUse != null || schemaNameToUse != null ? "." : "")
         + escapeObjectName(objectName, objectType);
@@ -79,5 +68,30 @@ public class MSSQLDatabase extends liquibase.database.core.MSSQLDatabase {
   public @Nullable String correctObjectName(
       @Nullable String objectName, Class<? extends DatabaseObject> objectType) {
     return Databases.correctObjectName(this, unquotedObjectsAreUppercased, objectName, objectType);
+  }
+
+  private @Nullable String toCatalogNameToUse(@Nullable String catalogName) {
+    if ((isTrue(GlobalConfiguration.INCLUDE_CATALOG_IN_SPECIFICATION.getCurrentValue())
+            && getOutputDefaultCatalog())
+        || !isDefaultCatalog(catalogName)) {
+      if (catalogName != null) {
+        return catalogName;
+      }
+      return getDefaultCatalogName();
+    }
+    return null;
+  }
+
+  private @Nullable String toSchemaNameToUse(
+      @Nullable String catalogName, @Nullable String schemaName) {
+    if (getOutputDefaultSchema() || !isDefaultSchema(catalogName, schemaName)) {
+      if (schemaName != null) {
+        return schemaName;
+      }
+      if (isDefaultCatalog(catalogName)) {
+        return getDefaultSchemaName();
+      }
+    }
+    return null;
   }
 }
