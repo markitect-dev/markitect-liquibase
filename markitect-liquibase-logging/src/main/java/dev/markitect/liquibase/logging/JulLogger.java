@@ -24,6 +24,7 @@ import java.util.logging.Logger;
 import liquibase.logging.core.AbstractLogger;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
+@SuppressWarnings("squid:S2160")
 public class JulLogger extends AbstractLogger {
   private static final String FQCN = JulLogger.class.getName();
 

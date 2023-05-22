@@ -24,6 +24,7 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 import org.slf4j.LoggerFactory;
 import org.slf4j.spi.LocationAwareLogger;
 
+@SuppressWarnings("squid:S2160")
 public class Slf4jLogger extends AbstractLogger {
   private static final String FQCN = Slf4jLogger.class.getName();
   private static final int DEBUG_THRESHOLD = Level.FINER.intValue();

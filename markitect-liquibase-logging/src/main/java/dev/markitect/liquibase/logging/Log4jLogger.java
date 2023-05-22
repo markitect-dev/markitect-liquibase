@@ -24,6 +24,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.spi.ExtendedLogger;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
+@SuppressWarnings("squid:S2160")
 public class Log4jLogger extends AbstractLogger {
   private static final String FQCN = Log4jLogger.class.getName();
   private static final int DEBUG_THRESHOLD = Level.FINER.intValue();

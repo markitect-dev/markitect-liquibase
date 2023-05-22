@@ -44,6 +44,7 @@ public final class OfflineConnectionBuilder {
   private final @Nullable String schema;
   private final Map<String, String> databaseParams;
 
+  @SuppressWarnings("squid:S107")
   private OfflineConnectionBuilder(
       @Nullable ResourceAccessor resourceAccessor,
       @Nullable String shortName,
