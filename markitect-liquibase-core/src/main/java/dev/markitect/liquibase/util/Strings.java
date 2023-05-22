@@ -21,7 +21,7 @@ import static dev.markitect.liquibase.util.Preconditions.checkNotNull;
 import java.util.regex.Pattern;
 
 public final class Strings {
-  private static final Pattern LEGAL_IDENTIFIER_PATTERN = Pattern.compile("[a-zA-Z_][a-zA-Z_0-9]*");
+  private static final Pattern LEGAL_IDENTIFIER_PATTERN = Pattern.compile("[a-zA-Z_]\\w*");
 
   public static boolean isIllegalIdentifier(String objectName) {
     checkNotNull(objectName);
