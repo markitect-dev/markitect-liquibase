@@ -22,6 +22,7 @@ import dev.markitect.liquibase.database.DatabaseBuilder
 import liquibase.GlobalConfiguration
 import liquibase.Scope
 import liquibase.Scope.ScopedRunnerWithReturn
+import liquibase.database.core.H2Database
 import liquibase.resource.ClassLoaderResourceAccessor
 import liquibase.structure.core.Schema
 import liquibase.structure.core.Table
@@ -36,7 +37,7 @@ class CoreH2DatabaseSpec extends Specification {
       }
       it
     }
-    def database = DatabaseBuilder.of(liquibase.database.core.H2Database::new)
+    def database = DatabaseBuilder.of(H2Database::new)
         .setResourceAccessor(new ClassLoaderResourceAccessor())
         .useOfflineConnection()
         .setObjectQuotingStrategy(quotingStrategy)
@@ -61,7 +62,7 @@ class CoreH2DatabaseSpec extends Specification {
 
   def escapeTableName() {
     when:
-    def database = DatabaseBuilder.of(liquibase.database.core.H2Database::new)
+    def database = DatabaseBuilder.of(H2Database::new)
         .setResourceAccessor(new ClassLoaderResourceAccessor())
         .setOutputDefaultSchema(outputDefaultSchema)
         .useOfflineConnection()

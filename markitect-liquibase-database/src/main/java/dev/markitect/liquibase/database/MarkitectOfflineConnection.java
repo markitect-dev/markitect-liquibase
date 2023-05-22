@@ -17,13 +17,14 @@
 package dev.markitect.liquibase.database;
 
 import java.util.Optional;
+import liquibase.database.OfflineConnection;
 import liquibase.resource.ResourceAccessor;
 
-public class OfflineConnection extends liquibase.database.OfflineConnection {
+public class MarkitectOfflineConnection extends OfflineConnection {
   private String schema;
 
   @SuppressWarnings("unused")
-  public OfflineConnection(String url, ResourceAccessor resourceAccessor) {
+  public MarkitectOfflineConnection(String url, ResourceAccessor resourceAccessor) {
     super(url, resourceAccessor);
   }
 

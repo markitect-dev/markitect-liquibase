@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package dev.markitect.liquibase.database.postgresql
+package dev.markitect.liquibase.database.mssql
 
 import static liquibase.database.ObjectQuotingStrategy.QUOTE_ALL_OBJECTS
 
@@ -27,7 +27,7 @@ import liquibase.structure.core.Schema
 import liquibase.structure.core.Table
 import spock.lang.Specification
 
-class PostgresDatabaseSpec extends Specification {
+class MarkitectMSSQLDatabaseSpec extends Specification {
   def correctObjectName() {
     when:
     def scopeValues = new LinkedHashMap<String, Object>().tap {
@@ -36,7 +36,7 @@ class PostgresDatabaseSpec extends Specification {
       }
       it
     }
-    def database = DatabaseBuilder.of(PostgresDatabase::new)
+    def database = DatabaseBuilder.of(MarkitectMSSQLDatabase::new)
         .setResourceAccessor(new ClassLoaderResourceAccessor())
         .useOfflineConnection()
         .setObjectQuotingStrategy(quotingStrategy)
@@ -48,13 +48,13 @@ class PostgresDatabaseSpec extends Specification {
     where:
     preserveSchemaCase | quotingStrategy   || objectName | objectType || expected
     null               | null              || null       | Table      || null
-    null               | null              || 'Tbl1'     | Table      || 'tbl1'
+    null               | null              || 'Tbl1'     | Table      || 'Tbl1'
     null               | QUOTE_ALL_OBJECTS || 'Tbl1'     | Table      || 'Tbl1'
-    null               | null              || 'Sch1'     | Schema     || 'sch1'
+    null               | null              || 'Sch1'     | Schema     || 'Sch1'
     true               | null              || 'Sch1'     | Schema     || 'Sch1'
-    null               | null              || 'Tbl 1'    | Table      || 'tbl 1'
+    null               | null              || 'Tbl 1'    | Table      || 'Tbl 1'
     null               | QUOTE_ALL_OBJECTS || 'Tbl 1'    | Table      || 'Tbl 1'
-    null               | null              || 'Sch 1'    | Schema     || 'sch 1'
+    null               | null              || 'Sch 1'    | Schema     || 'Sch 1'
     true               | null              || 'Sch 1'    | Schema     || 'Sch 1'
   }
 
@@ -66,7 +66,7 @@ class PostgresDatabaseSpec extends Specification {
       }
       it
     }
-    def database = DatabaseBuilder.of(PostgresDatabase::new)
+    def database = DatabaseBuilder.of(MarkitectMSSQLDatabase::new)
         .setResourceAccessor(new ClassLoaderResourceAccessor())
         .useOfflineConnection()
         .setObjectQuotingStrategy(quotingStrategy)
@@ -79,34 +79,48 @@ class PostgresDatabaseSpec extends Specification {
     preserveSchemaCase | quotingStrategy   || objectName | objectType || expected
     null               | null              || null       | Table      || null
     null               | null              || 'Tbl1'     | Table      || 'Tbl1'
-    null               | QUOTE_ALL_OBJECTS || 'Tbl1'     | Table      || '"Tbl1"'
+    null               | QUOTE_ALL_OBJECTS || 'Tbl1'     | Table      || '[Tbl1]'
     null               | null              || 'Sch1'     | Schema     || 'Sch1'
-    true               | null              || 'sch1'     | Schema     || 'sch1'
-    true               | null              || 'Sch1'     | Schema     || '"Sch1"'
-    null               | null              || 'Tbl 1'    | Table      || '"tbl 1"'
-    null               | QUOTE_ALL_OBJECTS || 'Tbl 1'    | Table      || '"Tbl 1"'
-    null               | null              || 'Sch 1'    | Schema     || '"sch 1"'
-    true               | null              || 'Sch 1'    | Schema     || '"Sch 1"'
+    true               | null              || 'Sch1'     | Schema     || 'Sch1'
+    null               | null              || 'Tbl 1'    | Table      || '[Tbl 1]'
+    null               | QUOTE_ALL_OBJECTS || 'Tbl 1'    | Table      || '[Tbl 1]'
+    null               | null              || 'Sch 1'    | Schema     || '[Sch 1]'
+    true               | null              || 'Sch 1'    | Schema     || '[Sch 1]'
   }
 
   def escapeTableName() {
     when:
-    def database = DatabaseBuilder.of(PostgresDatabase::new)
+    def scopeValues = new LinkedHashMap<String, Object>().tap {
+      if (includeCatalog != null) {
+        it[GlobalConfiguration.INCLUDE_CATALOG_IN_SPECIFICATION.getKey()] = includeCatalog
+      }
+      it
+    }
+    def database = DatabaseBuilder.of(MarkitectMSSQLDatabase::new)
         .setResourceAccessor(new ClassLoaderResourceAccessor())
+        .setOutputDefaultCatalog(outputDefaultCatalog)
         .setOutputDefaultSchema(outputDefaultSchema)
-        .useOfflineConnection(ocb ->
-            ocb.setSchema('PUBLIC'))
+        .useOfflineConnection(ocb -> ocb
+            .setCatalog('Cat1')
+            .setSchema('Sch1'))
         .build()
 
     then:
-    database.defaultSchemaName == 'PUBLIC'
-    database.escapeTableName(catalogName, schemaName, tableName) == expected
+    database.defaultCatalogName == 'Cat1'
+    database.defaultSchemaName == 'Sch1'
+    Scope.child(scopeValues, { database.escapeTableName(catalogName, schemaName, tableName) } as ScopedRunnerWithReturn<String>) == expected
 
     where:
-    outputDefaultSchema || catalogName | schemaName | tableName || expected
-    null                || null        | null       | 'Tbl1'    || 'PUBLIC.Tbl1'
-    null                || null        | 'PUBLIC'   | 'Tbl1'    || 'PUBLIC.Tbl1'
-    false               || null        | null       | 'Tbl1'    || 'Tbl1'
-    false               || null        | 'PUBLIC'   | 'Tbl1'    || 'Tbl1'
+    includeCatalog | outputDefaultCatalog | outputDefaultSchema || catalogName | schemaName | tableName || expected
+    null           | null                 | null                || null        | null       | 'Tbl1'    || 'Sch1.Tbl1'
+    null           | null                 | null                || null        | 'Sch1'     | 'Tbl1'    || 'Sch1.Tbl1'
+    null           | null                 | false               || null        | null       | 'Tbl1'    || 'Tbl1'
+    null           | null                 | false               || null        | 'Sch1'     | 'Tbl1'    || 'Tbl1'
+    true           | null                 | null                || null        | null       | 'Tbl1'    || 'Cat1.Sch1.Tbl1'
+    true           | null                 | null                || null        | 'Sch1'     | 'Tbl1'    || 'Cat1.Sch1.Tbl1'
+    true           | null                 | false               || null        | null       | 'Tbl1'    || 'Cat1..Tbl1'
+    true           | null                 | false               || null        | 'Sch1'     | 'Tbl1'    || 'Cat1..Tbl1'
+    null           | false                | null                || 'Cat2'      | null       | 'Tbl1'    || 'Cat2..Tbl1'
+    null           | false                | null                || 'Cat2'      | 'Sch1'     | 'Tbl1'    || 'Cat2.Sch1.Tbl1'
   }
 }

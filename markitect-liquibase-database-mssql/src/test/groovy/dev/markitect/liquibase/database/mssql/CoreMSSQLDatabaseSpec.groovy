@@ -22,6 +22,7 @@ import dev.markitect.liquibase.database.DatabaseBuilder
 import liquibase.GlobalConfiguration
 import liquibase.Scope
 import liquibase.Scope.ScopedRunnerWithReturn
+import liquibase.database.core.MSSQLDatabase
 import liquibase.resource.ClassLoaderResourceAccessor
 import liquibase.structure.core.Schema
 import liquibase.structure.core.Table
@@ -36,7 +37,7 @@ class CoreMSSQLDatabaseSpec extends Specification {
       }
       it
     }
-    def database = DatabaseBuilder.of(liquibase.database.core.MSSQLDatabase::new)
+    def database = DatabaseBuilder.of(MSSQLDatabase::new)
         .setResourceAccessor(new ClassLoaderResourceAccessor())
         .useOfflineConnection()
         .setObjectQuotingStrategy(quotingStrategy)
@@ -66,7 +67,7 @@ class CoreMSSQLDatabaseSpec extends Specification {
       }
       it
     }
-    def database = DatabaseBuilder.of(liquibase.database.core.MSSQLDatabase::new)
+    def database = DatabaseBuilder.of(MSSQLDatabase::new)
         .setResourceAccessor(new ClassLoaderResourceAccessor())
         .useOfflineConnection()
         .setObjectQuotingStrategy(quotingStrategy)
@@ -96,7 +97,7 @@ class CoreMSSQLDatabaseSpec extends Specification {
       }
       it
     }
-    def database = DatabaseBuilder.of(liquibase.database.core.MSSQLDatabase::new)
+    def database = DatabaseBuilder.of(MSSQLDatabase::new)
         .setResourceAccessor(new ClassLoaderResourceAccessor())
         .setOutputDefaultCatalog(outputDefaultCatalog)
         .setOutputDefaultSchema(outputDefaultSchema)

@@ -21,13 +21,14 @@ import static liquibase.util.BooleanUtil.isTrue;
 
 import dev.markitect.liquibase.database.Databases;
 import liquibase.GlobalConfiguration;
+import liquibase.database.core.MSSQLDatabase;
 import liquibase.structure.DatabaseObject;
 import liquibase.structure.core.Catalog;
 import liquibase.structure.core.Index;
 import liquibase.structure.core.Schema;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
-public class MSSQLDatabase extends liquibase.database.core.MSSQLDatabase {
+public class MarkitectMSSQLDatabase extends MSSQLDatabase {
   @Override
   public int getPriority() {
     return super.getPriority() + 5;

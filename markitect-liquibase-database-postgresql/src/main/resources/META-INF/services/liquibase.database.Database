@@ -1,1 +1,1 @@
-dev.markitect.liquibase.database.postgresql.PostgresDatabase
+dev.markitect.liquibase.database.postgresql.MarkitectPostgresDatabase

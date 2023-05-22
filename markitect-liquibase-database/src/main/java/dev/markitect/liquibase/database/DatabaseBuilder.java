@@ -128,7 +128,7 @@ public final class DatabaseBuilder<D extends Database> {
       throw new RuntimeException(e);
     }
     if (offlineConnectionCustomizer != null) {
-      OfflineConnection connection =
+      MarkitectOfflineConnection connection =
           offlineConnectionCustomizer
               .andThen(Verify::verifyNotNull)
               .apply(

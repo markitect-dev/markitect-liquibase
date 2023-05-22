@@ -1,1 +1,1 @@
-dev.markitect.liquibase.database.mssql.MSSQLDatabase
+dev.markitect.liquibase.database.mssql.MarkitectMSSQLDatabase

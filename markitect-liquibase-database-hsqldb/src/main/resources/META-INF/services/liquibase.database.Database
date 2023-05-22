@@ -1,1 +1,1 @@
-dev.markitect.liquibase.database.hsqldb.HsqlDatabase
+dev.markitect.liquibase.database.hsqldb.MarkitectHsqlDatabase

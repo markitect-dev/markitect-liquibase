@@ -27,7 +27,7 @@ import liquibase.structure.core.Schema
 import liquibase.structure.core.Table
 import spock.lang.Specification
 
-class HsqlDatabaseSpec extends Specification {
+class MarkitectHsqlDatabaseSpec extends Specification {
   def escapeObjectName() {
     when:
     def scopeValues = new LinkedHashMap<String, Object>().tap {
@@ -36,7 +36,7 @@ class HsqlDatabaseSpec extends Specification {
       }
       it
     }
-    def database = DatabaseBuilder.of(HsqlDatabase::new)
+    def database = DatabaseBuilder.of(MarkitectHsqlDatabase::new)
         .setResourceAccessor(new ClassLoaderResourceAccessor())
         .useOfflineConnection()
         .setObjectQuotingStrategy(quotingStrategy)
@@ -61,7 +61,7 @@ class HsqlDatabaseSpec extends Specification {
 
   def escapeTableName() {
     when:
-    def database = DatabaseBuilder.of(HsqlDatabase::new)
+    def database = DatabaseBuilder.of(MarkitectHsqlDatabase::new)
         .setResourceAccessor(new ClassLoaderResourceAccessor())
         .setOutputDefaultSchema(outputDefaultSchema)
         .useOfflineConnection()

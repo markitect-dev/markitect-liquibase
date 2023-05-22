@@ -14,13 +14,14 @@
  * limitations under the License.
  */
 
-package dev.markitect.liquibase.database.h2;
+package dev.markitect.liquibase.database.postgresql;
 
 import dev.markitect.liquibase.database.Databases;
+import liquibase.database.core.PostgresDatabase;
 import liquibase.structure.DatabaseObject;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
-public class H2Database extends liquibase.database.core.H2Database {
+public class MarkitectPostgresDatabase extends PostgresDatabase {
   @Override
   public int getPriority() {
     return super.getPriority() + 5;

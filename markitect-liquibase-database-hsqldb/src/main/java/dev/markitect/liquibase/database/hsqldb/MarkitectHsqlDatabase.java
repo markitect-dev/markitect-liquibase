@@ -17,10 +17,11 @@
 package dev.markitect.liquibase.database.hsqldb;
 
 import dev.markitect.liquibase.database.Databases;
+import liquibase.database.core.HsqlDatabase;
 import liquibase.structure.DatabaseObject;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
-public class HsqlDatabase extends liquibase.database.core.HsqlDatabase {
+public class MarkitectHsqlDatabase extends HsqlDatabase {
   @Override
   public int getPriority() {
     return super.getPriority() + 5;

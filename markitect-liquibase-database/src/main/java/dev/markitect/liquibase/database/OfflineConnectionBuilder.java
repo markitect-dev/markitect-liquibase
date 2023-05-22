@@ -159,7 +159,7 @@ public final class OfflineConnectionBuilder {
         databaseParams);
   }
 
-  public OfflineConnection build() {
+  public MarkitectOfflineConnection build() {
     checkState(resourceAccessor != null);
     checkState(shortName != null);
     StringJoiner params = new StringJoiner("&", "?", "");
@@ -177,7 +177,7 @@ public final class OfflineConnectionBuilder {
     }
     this.databaseParams.forEach((key, value) -> params.add(key + "=" + value));
     String url = "offline:" + shortName + params;
-    OfflineConnection connection = new OfflineConnection(url, resourceAccessor);
+    MarkitectOfflineConnection connection = new MarkitectOfflineConnection(url, resourceAccessor);
     connection.setSchema(schema);
     return connection;
   }

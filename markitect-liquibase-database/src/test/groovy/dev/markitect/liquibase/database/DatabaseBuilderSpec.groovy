@@ -51,7 +51,7 @@ class DatabaseBuilderSpec extends Specification {
     database.objectQuotingStrategy == Optional.ofNullable(quotingStrategy).orElse(ObjectQuotingStrategy.LEGACY)
     database.outputDefaultCatalog == Optional.ofNullable(outputDefaultCatalog).orElse(true)
     database.outputDefaultSchema == Optional.ofNullable(outputDefaultSchema).orElse(true)
-    useOfflineConnection ? database.connection && database.connection.class === OfflineConnection : !database.connection
+    useOfflineConnection ? database.connection && database.connection.class === MarkitectOfflineConnection : !database.connection
 
     when:
     builder = builder.setDatabaseFactory(MSSQLDatabase::new)
@@ -68,7 +68,7 @@ class DatabaseBuilderSpec extends Specification {
     database.objectQuotingStrategy == Optional.ofNullable(quotingStrategy).orElse(ObjectQuotingStrategy.LEGACY)
     database.outputDefaultCatalog == Optional.ofNullable(outputDefaultCatalog).orElse(true)
     database.outputDefaultSchema == Optional.ofNullable(outputDefaultSchema).orElse(true)
-    database.connection && database.connection.class === OfflineConnection
+    database.connection && database.connection.class === MarkitectOfflineConnection
 
     where:
     databaseClass    | quotingStrategy                         | outputDefaultCatalog | outputDefaultSchema | useOfflineConnection | version   || shortName    | productName          | majorVersion | minorVersion
