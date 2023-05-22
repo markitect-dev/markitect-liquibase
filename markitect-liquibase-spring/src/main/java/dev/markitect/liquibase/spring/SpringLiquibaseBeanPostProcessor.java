@@ -37,12 +37,12 @@ public class SpringLiquibaseBeanPostProcessor implements InstantiationAwareBeanP
   @Override
   @SuppressWarnings("NullableProblems")
   public Object postProcessBeforeInstantiation(Class<?> beanClass, String beanName) {
-    if (beanClass.isAssignableFrom(SpringLiquibase.class)) {
-      if (environment.getProperty(
-          "markitect.liquibase.use-thread-local-scope-manager", Boolean.class, false)) {
-        log.debug("Initializing Liquibase scope manager");
-        ScopeManagerHelper.useThreadLocalScopeManager();
-      }
+    if (beanClass.isAssignableFrom(SpringLiquibase.class)
+        && Boolean.TRUE.equals(
+            environment.getProperty(
+                "markitect.liquibase.use-thread-local-scope-manager", Boolean.class))) {
+      log.debug("Initializing Liquibase scope manager");
+      ScopeManagerHelper.useThreadLocalScopeManager();
     }
     return null;
   }
