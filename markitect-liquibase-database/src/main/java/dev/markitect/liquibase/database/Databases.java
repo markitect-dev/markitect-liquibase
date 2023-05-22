@@ -76,14 +76,16 @@ public final class Databases {
     if (objectName == null) {
       return null;
     }
-    return unquotedObjectsAreUppercased == null
-            || database.getObjectQuotingStrategy() == ObjectQuotingStrategy.QUOTE_ALL_OBJECTS
-            || (isCatalogOrSchemaType(objectType)
-                && isTrue(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getCurrentValue()))
-        ? objectName
-        : unquotedObjectsAreUppercased
-            ? objectName.toUpperCase(Locale.US)
-            : objectName.toLowerCase(Locale.US);
+    if (unquotedObjectsAreUppercased == null
+        || database.getObjectQuotingStrategy() == ObjectQuotingStrategy.QUOTE_ALL_OBJECTS
+        || (isCatalogOrSchemaType(objectType)
+            && isTrue(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getCurrentValue()))) {
+      return objectName;
+    }
+    if (unquotedObjectsAreUppercased) {
+      return objectName.toUpperCase(Locale.US);
+    }
+    return objectName.toLowerCase(Locale.US);
   }
 
   private Databases() {}
