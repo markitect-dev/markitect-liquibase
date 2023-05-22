@@ -20,6 +20,7 @@ import static dev.markitect.liquibase.util.Preconditions.checkNotNull;
 import static dev.markitect.liquibase.util.Preconditions.checkState;
 import static dev.markitect.liquibase.util.Verify.verifyNotNull;
 
+import dev.markitect.liquibase.exception.UncheckedDatabaseException;
 import dev.markitect.liquibase.util.Verify;
 import java.util.function.UnaryOperator;
 import liquibase.database.Database;
@@ -125,7 +126,7 @@ public final class DatabaseBuilder<D extends Database> {
     try {
       database = verifyNotNull(databaseFactory.get());
     } catch (DatabaseException e) {
-      throw new RuntimeException(e);
+      throw new UncheckedDatabaseException(e);
     }
     if (offlineConnectionCustomizer != null) {
       MarkitectOfflineConnection connection =
