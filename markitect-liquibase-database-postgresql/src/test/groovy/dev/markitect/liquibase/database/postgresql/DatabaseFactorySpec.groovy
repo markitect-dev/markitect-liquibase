@@ -14,12 +14,9 @@
  * limitations under the License.
  */
 
-package dev.markitect.liquibase.database
+package dev.markitect.liquibase.database.postgresql
 
-import dev.markitect.liquibase.database.h2.MarkitectH2Database
-import dev.markitect.liquibase.database.hsqldb.MarkitectHsqlDatabase
-import dev.markitect.liquibase.database.mssql.MarkitectMSSQLDatabase
-import dev.markitect.liquibase.database.postgresql.MarkitectPostgresDatabase
+import dev.markitect.liquibase.database.OfflineConnectionBuilder
 import liquibase.database.DatabaseFactory
 import liquibase.resource.ClassLoaderResourceAccessor
 import spock.lang.Specification
@@ -41,9 +38,6 @@ class DatabaseFactorySpec extends Specification {
 
     where:
     shortName    || expectedType
-    'h2'         || MarkitectH2Database
-    'hsqldb'     || MarkitectHsqlDatabase
-    'mssql'      || MarkitectMSSQLDatabase
     'postgresql' || MarkitectPostgresDatabase
   }
 }

@@ -40,7 +40,6 @@
     <module>markitect-liquibase-database-hsqldb</module>
     <module>markitect-liquibase-database-mssql</module>
     <module>markitect-liquibase-database-postgresql</module>
-    <module>markitect-liquibase-database-tests</module>
     <module>markitect-liquibase-logging</module>
     <module>markitect-liquibase-spring</module>
     <module>markitect-liquibase-spring-boot-archetype</module>
