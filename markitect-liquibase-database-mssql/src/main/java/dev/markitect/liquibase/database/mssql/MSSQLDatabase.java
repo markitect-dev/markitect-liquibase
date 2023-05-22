@@ -40,7 +40,6 @@ public class MSSQLDatabase extends liquibase.database.core.MSSQLDatabase {
       @Nullable String schemaName,
       @Nullable String objectName,
       Class<? extends DatabaseObject> objectType) {
-    checkNotNull(objectName);
     checkNotNull(objectType);
     if (Index.class.isAssignableFrom(objectType)) {
       return escapeObjectName(objectName, objectType);
