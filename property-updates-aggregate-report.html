@@ -59,6 +59,13 @@
     <li><a href="project-info.html" title="Project Information"><span class="icon-chevron-right"></span>Project Information</a></li>
     <li><a href="project-reports.html" title="Project Reports"><span class="icon-chevron-down"></span>Project Reports</a>
      <ul class="nav nav-list">
+      <li><a href="checkstyle-aggregate.html" title="Checkstyle"><span class="none"></span>Checkstyle</a></li>
+      <li><a href="apidocs/index.html" title="Javadoc"><span class="none"></span>Javadoc</a></li>
+      <li><a href="xref/index.html" title="Source Xref"><span class="none"></span>Source Xref</a></li>
+      <li><a href="xref-test/index.html" title="Test Source Xref"><span class="none"></span>Test Source Xref</a></li>
+      <li><a href="cpd.html" title="CPD"><span class="none"></span>CPD</a></li>
+      <li><a href="pmd.html" title="PMD"><span class="none"></span>PMD</a></li>
+      <li><a href="surefire-report.html" title="Surefire"><span class="none"></span>Surefire</a></li>
       <li><a href="dependency-updates-aggregate-report.html" title="Dependency Updates Aggregate Report"><span class="none"></span>Dependency Updates Aggregate Report</a></li>
       <li><a href="plugin-updates-aggregate-report.html" title="Plugin Updates Aggregate Report"><span class="none"></span>Plugin Updates Aggregate Report</a></li>
       <li class="active"><a><span class="none"></span>Property Updates Aggregate Report</a></li>
@@ -83,7 +90,7 @@
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" /></td>
 <td># of properties using the latest version available</td>
-<td>65</td></tr>
+<td>67</td></tr>
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" /></td>
 <td># of properties where the next version available is smaller than an incremental version update</td>
@@ -448,6 +455,22 @@
 <td></td></tr>
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" /></td>
+<td>${maven-jxr.version}</td>
+<td>3.3.0</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td>${maven-pmd-plugin.version}</td>
+<td>3.21.0</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" /></td>
 <td>${maven-project-info-reports-plugin.version}</td>
 <td>3.4.3</td>
 <td></td>
@@ -504,7 +527,7 @@
 <td></td></tr>
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" /></td>
-<td>${maven-surefire-plugin.version}</td>
+<td>${maven-surefire.version}</td>
 <td>3.1.0</td>
 <td></td>
 <td></td>
@@ -1858,6 +1881,64 @@
 <tr class="a">
 <th>Always use reactor projects (even if older or -SNAPSHOT)</th>
 <td style="text-align: left;">Yes</td></tr></table></section><section>
+<h2>${maven-jxr.version}</h2>
+<table class="table table-striped">
+<tr class="a">
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
+<tr class="b">
+<th>Property</th>
+<td style="text-align: left;">${maven-jxr.version}</td></tr>
+<tr class="a">
+<th>Associated artifacts</th>
+<td style="text-align: left;">org.apache.maven.plugins:maven-jxr-plugin</td></tr>
+<tr class="b">
+<th>Current Version</th>
+<td style="text-align: left;">3.3.0</td></tr>
+<tr class="a">
+<th>Allowed version range</th>
+<td style="text-align: left;">3.3.0</td></tr>
+<tr class="b">
+<th>Infer associations from project</th>
+<td style="text-align: left;">Yes</td></tr>
+<tr class="a">
+<th>Only use release versions</th>
+<td style="text-align: left;">No</td></tr>
+<tr class="b">
+<th>Include projects from reactor</th>
+<td style="text-align: left;">Yes</td></tr>
+<tr class="a">
+<th>Always use reactor projects (even if older or -SNAPSHOT)</th>
+<td style="text-align: left;">Yes</td></tr></table></section><section>
+<h2>${maven-pmd-plugin.version}</h2>
+<table class="table table-striped">
+<tr class="a">
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
+<tr class="b">
+<th>Property</th>
+<td style="text-align: left;">${maven-pmd-plugin.version}</td></tr>
+<tr class="a">
+<th>Associated artifacts</th>
+<td style="text-align: left;">org.apache.maven.plugins:maven-pmd-plugin</td></tr>
+<tr class="b">
+<th>Current Version</th>
+<td style="text-align: left;">3.21.0</td></tr>
+<tr class="a">
+<th>Allowed version range</th>
+<td style="text-align: left;">3.21.0</td></tr>
+<tr class="b">
+<th>Infer associations from project</th>
+<td style="text-align: left;">Yes</td></tr>
+<tr class="a">
+<th>Only use release versions</th>
+<td style="text-align: left;">No</td></tr>
+<tr class="b">
+<th>Include projects from reactor</th>
+<td style="text-align: left;">Yes</td></tr>
+<tr class="a">
+<th>Always use reactor projects (even if older or -SNAPSHOT)</th>
+<td style="text-align: left;">Yes</td></tr></table></section><section>
 <h2>${maven-project-info-reports-plugin.version}</h2>
 <table class="table table-striped">
 <tr class="a">
@@ -2061,17 +2142,17 @@
 <tr class="a">
 <th>Always use reactor projects (even if older or -SNAPSHOT)</th>
 <td style="text-align: left;">Yes</td></tr></table></section><section>
-<h2>${maven-surefire-plugin.version}</h2>
+<h2>${maven-surefire.version}</h2>
 <table class="table table-striped">
 <tr class="a">
 <th>Status</th>
 <td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
 <th>Property</th>
-<td style="text-align: left;">${maven-surefire-plugin.version}</td></tr>
+<td style="text-align: left;">${maven-surefire.version}</td></tr>
 <tr class="a">
 <th>Associated artifacts</th>
-<td style="text-align: left;">org.apache.maven.plugins:maven-surefire-plugin</td></tr>
+<td style="text-align: left;">org.apache.maven.plugins:maven-surefire-plugin<br />org.apache.maven.plugins:maven-surefire-report-plugin</td></tr>
 <tr class="b">
 <th>Current Version</th>
 <td style="text-align: left;">3.1.0</td></tr>
