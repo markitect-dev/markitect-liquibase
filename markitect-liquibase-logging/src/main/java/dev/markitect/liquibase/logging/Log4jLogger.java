@@ -98,7 +98,9 @@ public class Log4jLogger extends AbstractLogger {
   }
 
   @Override
-  public void close() {}
+  public void close() {
+    // Redeclared to throw no exception
+  }
 
   @Override
   public void log(Level level, @Nullable String message, @Nullable Throwable e) {
