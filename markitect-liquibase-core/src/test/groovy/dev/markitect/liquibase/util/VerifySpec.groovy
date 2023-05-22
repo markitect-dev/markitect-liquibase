@@ -59,7 +59,6 @@ class VerifySpec extends Specification {
     then:
     thrown(VerifyException)
 
-
     when:
     Verify.verifyNotNull(null, 'errorMessage')
 
