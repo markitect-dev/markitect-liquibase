@@ -43,6 +43,24 @@
   </dependencies>
 
   <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-install-plugin</artifactId>
+          <version>${maven-install-plugin.version}</version>
+          <executions>
+            <execution>
+              <id>install-pre-integration-test</id>
+              <goals>
+                <goal>install</goal>
+              </goals>
+              <phase>pre-integration-test</phase>
+            </execution>
+          </executions>
+        </plugin>
+      </plugins>
+    </pluginManagement>
     <plugins>
       <plugin>
         <groupId>org.sonatype.plugins</groupId>

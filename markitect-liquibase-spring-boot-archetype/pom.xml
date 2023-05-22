@@ -25,6 +25,11 @@
     </dependency>
     <dependency>
       <groupId>dev.markitect.liquibase</groupId>
+      <artifactId>markitect-liquibase-database-h2</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>dev.markitect.liquibase</groupId>
       <artifactId>markitect-liquibase-spring-boot-starter</artifactId>
       <scope>test</scope>
     </dependency>

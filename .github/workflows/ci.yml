@@ -34,7 +34,7 @@ jobs:
           cache: 'maven'
 
       - name: Build and test
-        run: ./mvnw -B -ntp -U install
+        run: ./mvnw -B -ntp -U verify
 
   publish-artifacts:
     name: Publish artifacts
