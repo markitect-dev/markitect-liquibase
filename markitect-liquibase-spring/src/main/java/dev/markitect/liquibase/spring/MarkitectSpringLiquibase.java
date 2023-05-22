@@ -28,9 +28,9 @@ import org.springframework.beans.factory.DisposableBean;
 import org.springframework.util.ReflectionUtils;
 
 public class MarkitectSpringLiquibase extends SpringLiquibase implements DisposableBean {
-  private volatile boolean closeDataSourceOnceMigrated;
-  protected volatile boolean outputDefaultCatalog;
-  protected volatile boolean outputDefaultSchema;
+  private boolean closeDataSourceOnceMigrated;
+  protected boolean outputDefaultCatalog;
+  protected boolean outputDefaultSchema;
 
   @Override
   protected Database createDatabase(@Nullable Connection c, ResourceAccessor resourceAccessor)

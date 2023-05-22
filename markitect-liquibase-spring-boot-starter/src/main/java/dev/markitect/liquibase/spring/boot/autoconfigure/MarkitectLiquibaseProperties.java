@@ -24,13 +24,13 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "markitect.liquibase")
 public class MarkitectLiquibaseProperties {
   /** Whether to qualify the names of objects in the default catalog. */
-  private volatile boolean outputDefaultCatalog;
+  private boolean outputDefaultCatalog;
 
   /** Whether to qualify the names of objects in the default schema. */
-  private volatile boolean outputDefaultSchema;
+  private boolean outputDefaultSchema;
 
   /** Whether to use ThreadLocalScopeManager instead of SingletonScopeManager. */
-  private volatile boolean useThreadLocalScopeManager;
+  private boolean useThreadLocalScopeManager;
 
   /** Additional properties used to configure Liquibase. */
   private final Map<String, String> properties = new HashMap<>();
