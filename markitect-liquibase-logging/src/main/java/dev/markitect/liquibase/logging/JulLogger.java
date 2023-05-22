@@ -122,13 +122,13 @@ public class JulLogger extends AbstractLogger {
         break;
       }
     }
-    LogRecord record = new LogRecord(level, message);
-    record.setLoggerName(name);
-    record.setThrown(e);
-    record.setSourceClassName(sourceClassName);
-    record.setSourceMethodName(sourceMethodName);
-    record.setResourceBundleName(logger.getResourceBundleName());
-    record.setResourceBundle(logger.getResourceBundle());
-    return record;
+    LogRecord logRecord = new LogRecord(level, message);
+    logRecord.setLoggerName(name);
+    logRecord.setThrown(e);
+    logRecord.setSourceClassName(sourceClassName);
+    logRecord.setSourceMethodName(sourceMethodName);
+    logRecord.setResourceBundleName(logger.getResourceBundleName());
+    logRecord.setResourceBundle(logger.getResourceBundle());
+    return logRecord;
   }
 }
