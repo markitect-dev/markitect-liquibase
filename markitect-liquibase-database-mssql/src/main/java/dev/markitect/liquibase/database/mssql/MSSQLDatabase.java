@@ -17,11 +17,10 @@
 package dev.markitect.liquibase.database.mssql;
 
 import static dev.markitect.liquibase.util.Preconditions.checkNotNull;
-import static dev.markitect.liquibase.util.Strings.isIllegalIdentifier;
 import static liquibase.util.BooleanUtil.isTrue;
 
+import dev.markitect.liquibase.database.Databases;
 import liquibase.GlobalConfiguration;
-import liquibase.database.ObjectQuotingStrategy;
 import liquibase.structure.DatabaseObject;
 import liquibase.structure.core.Catalog;
 import liquibase.structure.core.Index;
@@ -66,29 +65,19 @@ public class MSSQLDatabase extends liquibase.database.core.MSSQLDatabase {
   @Override
   public @Nullable String escapeObjectName(
       @Nullable String objectName, Class<? extends DatabaseObject> objectType) {
-    checkNotNull(objectType);
-    if (objectName == null) {
-      return null;
-    }
-    return mustQuoteObjectName(objectName, objectType)
-        ? quoteObject(correctObjectName(objectName, objectType), objectType)
-        : objectName;
+    return Databases.escapeObjectName(this, this::mustQuoteObjectName, objectName, objectType);
   }
 
   @Override
   protected boolean mustQuoteObjectName(
       String objectName, Class<? extends DatabaseObject> objectType) {
-    checkNotNull(objectName);
-    checkNotNull(objectType);
-    return quotingStrategy == ObjectQuotingStrategy.QUOTE_ALL_OBJECTS
-        || isIllegalIdentifier(objectName)
-        || isReservedWord(objectName);
+    return Databases.mustQuoteObjectName(
+        this, unquotedObjectsAreUppercased, objectName, objectType);
   }
 
   @Override
   public @Nullable String correctObjectName(
       @Nullable String objectName, Class<? extends DatabaseObject> objectType) {
-    checkNotNull(objectType);
-    return objectName;
+    return Databases.correctObjectName(this, unquotedObjectsAreUppercased, objectName, objectType);
   }
 }

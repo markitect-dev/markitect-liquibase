@@ -16,14 +16,7 @@
 
 package dev.markitect.liquibase.database.hsqldb;
 
-import static dev.markitect.liquibase.structure.Structures.isCatalogOrSchemaType;
-import static dev.markitect.liquibase.util.Preconditions.checkNotNull;
-import static dev.markitect.liquibase.util.Strings.isIllegalIdentifier;
-import static liquibase.util.BooleanUtil.isTrue;
-
-import java.util.Locale;
-import liquibase.GlobalConfiguration;
-import liquibase.database.ObjectQuotingStrategy;
+import dev.markitect.liquibase.database.Databases;
 import liquibase.structure.DatabaseObject;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
@@ -36,39 +29,19 @@ public class HsqlDatabase extends liquibase.database.core.HsqlDatabase {
   @Override
   public @Nullable String escapeObjectName(
       @Nullable String objectName, Class<? extends DatabaseObject> objectType) {
-    checkNotNull(objectType);
-    if (objectName == null) {
-      return null;
-    }
-    return mustQuoteObjectName(objectName, objectType)
-        ? quoteObject(correctObjectName(objectName, objectType), objectType)
-        : objectName;
+    return Databases.escapeObjectName(this, this::mustQuoteObjectName, objectName, objectType);
   }
 
   @Override
   protected boolean mustQuoteObjectName(
       String objectName, Class<? extends DatabaseObject> objectType) {
-    checkNotNull(objectName);
-    checkNotNull(objectType);
-    return quotingStrategy == ObjectQuotingStrategy.QUOTE_ALL_OBJECTS
-        || (isCatalogOrSchemaType(objectType)
-            && isTrue(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getCurrentValue())
-            && !objectName.equals(objectName.toUpperCase(Locale.US)))
-        || isIllegalIdentifier(objectName)
-        || isReservedWord(objectName);
+    return Databases.mustQuoteObjectName(
+        this, unquotedObjectsAreUppercased, objectName, objectType);
   }
 
   @Override
   public @Nullable String correctObjectName(
       @Nullable String objectName, Class<? extends DatabaseObject> objectType) {
-    checkNotNull(objectType);
-    if (objectName == null) {
-      return null;
-    }
-    return quotingStrategy == ObjectQuotingStrategy.QUOTE_ALL_OBJECTS
-            || (isCatalogOrSchemaType(objectType)
-                && isTrue(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getCurrentValue()))
-        ? objectName
-        : objectName.toUpperCase(Locale.US);
+    return Databases.correctObjectName(this, unquotedObjectsAreUppercased, objectName, objectType);
   }
 }
