@@ -145,7 +145,7 @@
     <slf4j.version>1.7.36</slf4j.version>
     <snakeyaml.version>2.0</snakeyaml.version>
     <spock.version>2.3-groovy-4.0</spock.version>
-    <spotless.version>2.36.0</spotless.version>
+    <spotless.version>2.37.0</spotless.version>
     <spring-boot.version>2.7.12</spring-boot.version>
     <spring-framework.version>5.3.27</spring-framework.version>
     <testcontainers.version>1.18.1</testcontainers.version>
