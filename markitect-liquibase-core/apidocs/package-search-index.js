@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"dev.markitect.liquibase"},{"l":"dev.markitect.liquibase.structure"},{"l":"dev.markitect.liquibase.util"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"dev.markitect.liquibase"},{"l":"dev.markitect.liquibase.exception"},{"l":"dev.markitect.liquibase.structure"},{"l":"dev.markitect.liquibase.util"}];updateSearchResults();

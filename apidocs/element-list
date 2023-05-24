@@ -4,6 +4,7 @@ dev.markitect.liquibase.database.h2
 dev.markitect.liquibase.database.hsqldb
 dev.markitect.liquibase.database.mssql
 dev.markitect.liquibase.database.postgresql
+dev.markitect.liquibase.exception
 dev.markitect.liquibase.logging
 dev.markitect.liquibase.spring
 dev.markitect.liquibase.spring.boot.autoconfigure

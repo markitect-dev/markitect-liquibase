@@ -1,1 +1,1 @@
-typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"dev.markitect.liquibase.database.hsqldb","l":"HsqlDatabase"}];updateSearchResults();
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"dev.markitect.liquibase.database.hsqldb","l":"MarkitectHsqlDatabase"}];updateSearchResults();
