@@ -93,7 +93,7 @@
     <commons-text.version>1.10.0</commons-text.version>
     <error-prone.version>2.19.1</error-prone.version>
     <flatten-maven-plugin.version>1.5.0</flatten-maven-plugin.version>
-    <gmavenplus-plugin.version>2.1.0</gmavenplus-plugin.version>
+    <gmavenplus-plugin.version>3.0.0</gmavenplus-plugin.version>
     <google-java-format.version>1.17.0</google-java-format.version>
     <groovy.version>4.0.12</groovy.version>
     <h2.version>2.1.214</h2.version>
