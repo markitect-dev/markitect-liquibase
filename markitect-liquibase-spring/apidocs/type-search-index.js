@@ -1,1 +1,0 @@
-typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"dev.markitect.liquibase.spring","l":"MarkitectSpringLiquibase"},{"p":"dev.markitect.liquibase.spring","l":"SpringEnvironmentValueProvider"},{"p":"dev.markitect.liquibase.spring","l":"SpringLiquibaseBeanPostProcessor"}];updateSearchResults();

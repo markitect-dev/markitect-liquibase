@@ -1,1 +1,0 @@
-typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"dev.markitect.liquibase.database.h2","l":"MarkitectH2Database"}];updateSearchResults();
