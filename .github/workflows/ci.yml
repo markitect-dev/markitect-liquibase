@@ -107,7 +107,7 @@ jobs:
 
       - name: Build
         run: |
-          ./mvnw -B -ntp -U install \
+          ./mvnw -B -ntp -U verify \
               -Dspotless.check.skip=true \
               -Dcheckstyle.skip=true \
               -Dmaven.test.skip=true \
