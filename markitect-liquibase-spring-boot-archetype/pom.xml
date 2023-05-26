@@ -67,4 +67,32 @@
       </extension>
     </extensions>
   </build>
+
+  <profiles>
+    <profile>
+      <id>coverage</id>
+      <build>
+        <pluginManagement>
+          <plugins>
+            <plugin>
+              <groupId>org.jacoco</groupId>
+              <artifactId>jacoco-maven-plugin</artifactId>
+              <version>${jacoco.version}</version>
+              <inherited>false</inherited>
+              <executions>
+                <execution>
+                  <id>prepare-agent</id>
+                  <phase>none</phase>
+                </execution>
+                <execution>
+                  <id>report</id>
+                  <phase>none</phase>
+                </execution>
+              </executions>
+            </plugin>
+          </plugins>
+        </pluginManagement>
+      </build>
+    </profile>
+  </profiles>
 </project>

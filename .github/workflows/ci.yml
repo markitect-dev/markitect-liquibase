@@ -107,14 +107,14 @@ jobs:
 
       - name: Build
         run: |
-          ./mvnw -B verify \
+          ./mvnw -B -P coverage verify \
               -Dspotless.check.skip=true \
               -Dcheckstyle.skip=true \
               -Dmaven.test.skip=true \
               -Darchetype.test.skip=true
 
       - name: Stage site
-        run: ./mvnw -B -P release site site:stage
+        run: ./mvnw -B -P coverage,release site site:stage
 
       - name: Publish site
         run: |

@@ -35,6 +35,7 @@
   <modules>
     <module>markitect-liquibase-bom</module>
     <module>markitect-liquibase-core</module>
+    <module>markitect-liquibase-coverage-report-aggregate</module>
     <module>markitect-liquibase-database</module>
     <module>markitect-liquibase-database-h2</module>
     <module>markitect-liquibase-database-hsqldb</module>
@@ -100,6 +101,7 @@
     <hamcrest.version>2.2</hamcrest.version>
     <hikaricp.version>4.0.3</hikaricp.version>
     <hsqldb.version>2.7.1</hsqldb.version>
+    <jacoco.version>0.8.10</jacoco.version>
     <jakarta-activation.version>1.2.2</jakarta-activation.version>
     <jakarta-annotation.version>1.3.5</jakarta-annotation.version>
     <jakarta-xml-bind.version>2.3.3</jakarta-xml-bind.version>
@@ -1015,6 +1017,11 @@
           </configuration>
         </plugin>
         <plugin>
+          <groupId>org.jacoco</groupId>
+          <artifactId>jacoco-maven-plugin</artifactId>
+          <version>${jacoco.version}</version>
+        </plugin>
+        <plugin>
           <groupId>org.liquibase</groupId>
           <artifactId>liquibase-maven-plugin</artifactId>
           <version>${liquibase.version}</version>
@@ -1117,6 +1124,72 @@
   </reporting>
 
   <profiles>
+    <profile>
+      <id>coverage</id>
+      <build>
+        <pluginManagement>
+          <plugins>
+            <plugin>
+              <groupId>org.jacoco</groupId>
+              <artifactId>jacoco-maven-plugin</artifactId>
+              <version>${jacoco.version}</version>
+              <executions>
+                <execution>
+                  <id>prepare-agent</id>
+                  <goals>
+                    <goal>prepare-agent</goal>
+                  </goals>
+                </execution>
+                <execution>
+                  <id>report</id>
+                  <goals>
+                    <goal>report</goal>
+                  </goals>
+                  <configuration>
+                    <formats>
+                      <format>HTML</format>
+                      <format>XML</format>
+                      <format>CSV</format>
+                    </formats>
+                  </configuration>
+                </execution>
+                <execution>
+                  <id>report-aggregate</id>
+                  <goals>
+                    <goal>report-aggregate</goal>
+                  </goals>
+                  <configuration>
+                    <formats>
+                      <format>HTML</format>
+                      <format>XML</format>
+                      <format>CSV</format>
+                    </formats>
+                  </configuration>
+                </execution>
+              </executions>
+            </plugin>
+          </plugins>
+        </pluginManagement>
+        <plugins>
+          <plugin>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>${jacoco.version}</version>
+            <inherited>false</inherited>
+            <executions>
+              <execution>
+                <id>prepare-agent</id>
+                <phase>none</phase>
+              </execution>
+              <execution>
+                <id>report</id>
+                <phase>none</phase>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
     <profile>
       <id>release</id>
       <build>
