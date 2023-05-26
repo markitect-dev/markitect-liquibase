@@ -38,6 +38,6 @@ class DatabaseFactorySpec extends Specification {
 
     where:
     shortName    || expectedType
-    'mssql'      || MarkitectMSSQLDatabase
+    'mssql'      || MarkitectMssqlDatabase
   }
 }

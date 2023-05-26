@@ -3,7 +3,6 @@
     "-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN"
     "https://checkstyle.org/dtds/suppressions_1_2.dtd">
 <suppressions>
-  <suppress checks="AbbreviationAsWordInName" files="(?:MariaDB|MSSQL|MySQL).+\.java"/>
   <suppress checks="LineLength" files=".+Test\.java"/>
   <suppress checks="MissingJavadocMethod|MissingJavadocType"/>
 </suppressions>

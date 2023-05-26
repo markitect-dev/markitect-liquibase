@@ -28,7 +28,7 @@ import liquibase.structure.core.Index;
 import liquibase.structure.core.Schema;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
-public class MarkitectMSSQLDatabase extends MSSQLDatabase {
+public class MarkitectMssqlDatabase extends MSSQLDatabase {
   @Override
   public int getPriority() {
     return super.getPriority() + 5;
