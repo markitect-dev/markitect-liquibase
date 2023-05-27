@@ -1,1 +1,1 @@
-validate
+verify
