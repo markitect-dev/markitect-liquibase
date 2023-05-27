@@ -19,7 +19,7 @@ package dev.markitect.liquibase.database.mssql;
 import static dev.markitect.liquibase.util.Preconditions.checkNotNull;
 import static liquibase.util.BooleanUtil.isTrue;
 
-import dev.markitect.liquibase.database.Databases;
+import dev.markitect.liquibase.database.MarkitectDatabase;
 import liquibase.GlobalConfiguration;
 import liquibase.database.core.MSSQLDatabase;
 import liquibase.structure.DatabaseObject;
@@ -28,10 +28,16 @@ import liquibase.structure.core.Index;
 import liquibase.structure.core.Schema;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
-public class MarkitectMssqlDatabase extends MSSQLDatabase {
+public class MarkitectMssqlDatabase extends MSSQLDatabase implements MarkitectDatabase {
   @Override
   public int getPriority() {
     return super.getPriority() + 5;
+  }
+
+  @Override
+  public @Nullable String correctObjectName(
+      @Nullable String objectName, Class<? extends DatabaseObject> objectType) {
+    return MarkitectDatabase.super.correctObjectName(objectName, objectType);
   }
 
   @Override
@@ -44,8 +50,8 @@ public class MarkitectMssqlDatabase extends MSSQLDatabase {
     if (Index.class.isAssignableFrom(objectType)) {
       return escapeObjectName(objectName, objectType);
     }
-    String catalogNameToUse = toCatalogNameToUse(catalogName);
-    String schemaNameToUse = toSchemaNameToUse(catalogName, schemaName);
+    @Nullable String catalogNameToUse = toCatalogNameToUse(catalogName);
+    @Nullable String schemaNameToUse = toSchemaNameToUse(catalogName, schemaName);
     return (catalogNameToUse != null ? escapeObjectName(catalogNameToUse, Catalog.class) + "." : "")
         + (schemaNameToUse != null ? escapeObjectName(schemaNameToUse, Schema.class) : "")
         + (catalogNameToUse != null || schemaNameToUse != null ? "." : "")
@@ -55,20 +61,18 @@ public class MarkitectMssqlDatabase extends MSSQLDatabase {
   @Override
   public @Nullable String escapeObjectName(
       @Nullable String objectName, Class<? extends DatabaseObject> objectType) {
-    return Databases.escapeObjectName(this, this::mustQuoteObjectName, objectName, objectType);
+    return MarkitectDatabase.super.escapeObjectName(objectName, objectType);
   }
 
   @Override
-  protected boolean mustQuoteObjectName(
+  public boolean mustQuoteObjectName(
       String objectName, Class<? extends DatabaseObject> objectType) {
-    return Databases.mustQuoteObjectName(
-        this, unquotedObjectsAreUppercased, objectName, objectType);
+    return MarkitectDatabase.super.mustQuoteObjectName(objectName, objectType);
   }
 
   @Override
-  public @Nullable String correctObjectName(
-      @Nullable String objectName, Class<? extends DatabaseObject> objectType) {
-    return Databases.correctObjectName(this, unquotedObjectsAreUppercased, objectName, objectType);
+  public @Nullable Boolean getUnquotedObjectsAreUppercased() {
+    return unquotedObjectsAreUppercased;
   }
 
   private @Nullable String toCatalogNameToUse(@Nullable String catalogName) {

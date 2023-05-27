@@ -14,29 +14,25 @@
  * limitations under the License.
  */
 
-package dev.markitect.liquibase.database.hsqldb;
+package dev.markitect.liquibase.database;
 
-import dev.markitect.liquibase.database.MarkitectDatabase;
-import liquibase.database.core.HsqlDatabase;
+import liquibase.database.core.H2Database;
 import liquibase.structure.DatabaseObject;
-import org.checkerframework.checker.nullness.qual.Nullable;
 
-public class MarkitectHsqlDatabase extends HsqlDatabase implements MarkitectDatabase {
+class MarkitectH2Database extends H2Database implements MarkitectDatabase {
   @Override
   public int getPriority() {
     return super.getPriority() + 5;
   }
 
   @Override
-  public @Nullable String correctObjectName(
-      @Nullable String objectName, Class<? extends DatabaseObject> objectType) {
-    return MarkitectDatabase.super.correctObjectName(objectName, objectType);
+  public String escapeObjectName(String objectName, Class<? extends DatabaseObject> objectType) {
+    return MarkitectDatabase.super.escapeObjectName(objectName, objectType);
   }
 
   @Override
-  public @Nullable String escapeObjectName(
-      @Nullable String objectName, Class<? extends DatabaseObject> objectType) {
-    return MarkitectDatabase.super.escapeObjectName(objectName, objectType);
+  public String correctObjectName(String objectName, Class<? extends DatabaseObject> objectType) {
+    return MarkitectDatabase.super.correctObjectName(objectName, objectType);
   }
 
   @Override
@@ -46,7 +42,7 @@ public class MarkitectHsqlDatabase extends HsqlDatabase implements MarkitectData
   }
 
   @Override
-  public @Nullable Boolean getUnquotedObjectsAreUppercased() {
+  public Boolean getUnquotedObjectsAreUppercased() {
     return unquotedObjectsAreUppercased;
   }
 }

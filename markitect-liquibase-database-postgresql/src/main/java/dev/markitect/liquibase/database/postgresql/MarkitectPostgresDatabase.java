@@ -16,33 +16,37 @@
 
 package dev.markitect.liquibase.database.postgresql;
 
-import dev.markitect.liquibase.database.Databases;
+import dev.markitect.liquibase.database.MarkitectDatabase;
 import liquibase.database.core.PostgresDatabase;
 import liquibase.structure.DatabaseObject;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
-public class MarkitectPostgresDatabase extends PostgresDatabase {
+public class MarkitectPostgresDatabase extends PostgresDatabase implements MarkitectDatabase {
   @Override
   public int getPriority() {
     return super.getPriority() + 5;
   }
 
   @Override
-  public @Nullable String escapeObjectName(
-      @Nullable String objectName, Class<? extends DatabaseObject> objectType) {
-    return Databases.escapeObjectName(this, this::mustQuoteObjectName, objectName, objectType);
-  }
-
-  @Override
-  protected boolean mustQuoteObjectName(
-      String objectName, Class<? extends DatabaseObject> objectType) {
-    return Databases.mustQuoteObjectName(
-        this, unquotedObjectsAreUppercased, objectName, objectType);
-  }
-
-  @Override
   public @Nullable String correctObjectName(
       @Nullable String objectName, Class<? extends DatabaseObject> objectType) {
-    return Databases.correctObjectName(this, unquotedObjectsAreUppercased, objectName, objectType);
+    return MarkitectDatabase.super.correctObjectName(objectName, objectType);
+  }
+
+  @Override
+  public @Nullable String escapeObjectName(
+      @Nullable String objectName, Class<? extends DatabaseObject> objectType) {
+    return MarkitectDatabase.super.escapeObjectName(objectName, objectType);
+  }
+
+  @Override
+  public boolean mustQuoteObjectName(
+      String objectName, Class<? extends DatabaseObject> objectType) {
+    return MarkitectDatabase.super.mustQuoteObjectName(objectName, objectType);
+  }
+
+  @Override
+  public @Nullable Boolean getUnquotedObjectsAreUppercased() {
+    return unquotedObjectsAreUppercased;
   }
 }
