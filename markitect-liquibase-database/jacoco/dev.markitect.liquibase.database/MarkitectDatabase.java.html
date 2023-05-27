@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MarkitectDatabase.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">markitect-liquibase-database</a> &gt; <a href="index.source.html" class="el_package">dev.markitect.liquibase.database</a> &gt; <span class="el_source">MarkitectDatabase.java</span></div><h1>MarkitectDatabase.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2023 Markitect
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.markitect.liquibase.database;
+
+import static dev.markitect.liquibase.structure.Structures.isCatalogOrSchemaType;
+import static dev.markitect.liquibase.util.Preconditions.checkNotNull;
+import static dev.markitect.liquibase.util.Strings.isIllegalIdentifier;
+import static liquibase.util.BooleanUtil.isTrue;
+
+import java.util.Locale;
+import liquibase.GlobalConfiguration;
+import liquibase.database.Database;
+import liquibase.database.ObjectQuotingStrategy;
+import liquibase.structure.DatabaseObject;
+import org.checkerframework.checker.nullness.qual.Nullable;
+
+public interface MarkitectDatabase extends Database {
+  @Override
+  default @Nullable String correctObjectName(
+      @Nullable String objectName, Class&lt;? extends DatabaseObject&gt; objectType) {
+<span class="fc" id="L35">    checkNotNull(objectType);</span>
+<span class="fc bfc" id="L36" title="All 2 branches covered.">    if (objectName == null) {</span>
+<span class="fc" id="L37">      return null;</span>
+    }
+    @Nullable Boolean unquotedObjectsAreUppercased;
+<span class="pc bpc" id="L40" title="1 of 2 branches missed.">    if ((unquotedObjectsAreUppercased = getUnquotedObjectsAreUppercased()) == null</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">        || getObjectQuotingStrategy() == ObjectQuotingStrategy.QUOTE_ALL_OBJECTS</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">        || (isCatalogOrSchemaType(objectType)</span>
+<span class="fc bfc" id="L43" title="All 2 branches covered.">            &amp;&amp; isTrue(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getCurrentValue()))) {</span>
+<span class="fc" id="L44">      return objectName;</span>
+    }
+<span class="fc bfc" id="L46" title="All 2 branches covered.">    if (isTrue(unquotedObjectsAreUppercased)) {</span>
+<span class="fc" id="L47">      return objectName.toUpperCase(Locale.US);</span>
+    }
+<span class="fc" id="L49">    return objectName.toLowerCase(Locale.US);</span>
+  }
+
+  @Override
+  default @Nullable String escapeObjectName(
+      @Nullable String objectName, Class&lt;? extends DatabaseObject&gt; objectType) {
+<span class="fc" id="L55">    checkNotNull(objectType);</span>
+<span class="fc bfc" id="L56" title="All 2 branches covered.">    if (objectName == null) {</span>
+<span class="fc" id="L57">      return null;</span>
+    }
+<span class="fc bfc" id="L59" title="All 2 branches covered.">    return mustQuoteObjectName(objectName, objectType)</span>
+<span class="fc" id="L60">        ? quoteObject(correctObjectName(objectName, objectType), objectType)</span>
+<span class="fc" id="L61">        : objectName;</span>
+  }
+
+  default boolean mustQuoteObjectName(
+      String objectName, Class&lt;? extends DatabaseObject&gt; objectType) {
+<span class="fc" id="L66">    checkNotNull(objectName);</span>
+<span class="fc" id="L67">    checkNotNull(objectType);</span>
+    @Nullable Boolean unquotedObjectsAreUppercased;
+<span class="fc bfc" id="L69" title="All 2 branches covered.">    return getObjectQuotingStrategy() == ObjectQuotingStrategy.QUOTE_ALL_OBJECTS</span>
+<span class="fc bfc" id="L70" title="All 2 branches covered.">        || isIllegalIdentifier(objectName)</span>
+<span class="pc bpc" id="L71" title="1 of 2 branches missed.">        || isReservedWord(objectName)</span>
+<span class="pc bpc" id="L72" title="1 of 2 branches missed.">        || ((unquotedObjectsAreUppercased = getUnquotedObjectsAreUppercased()) != null</span>
+<span class="fc bfc" id="L73" title="All 2 branches covered.">            &amp;&amp; isCatalogOrSchemaType(objectType)</span>
+<span class="fc bfc" id="L74" title="All 2 branches covered.">            &amp;&amp; isTrue(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getCurrentValue())</span>
+<span class="pc bpc" id="L75" title="1 of 2 branches missed.">            &amp;&amp; !objectName.equals(</span>
+<span class="fc bfc" id="L76" title="All 2 branches covered.">                isTrue(unquotedObjectsAreUppercased)</span>
+<span class="fc" id="L77">                    ? objectName.toUpperCase(Locale.US)</span>
+<span class="fc" id="L78">                    : objectName.toLowerCase(Locale.US)));</span>
+  }
+
+  @Nullable String quoteObject(
+      @Nullable String objectName, Class&lt;? extends DatabaseObject&gt; objectType);
+
+  @Nullable Boolean getUnquotedObjectsAreUppercased();
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>
