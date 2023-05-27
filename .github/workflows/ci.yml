@@ -107,10 +107,9 @@ jobs:
 
       - name: Build
         run: |
-          ./mvnw -B -P coverage verify \
+          ./mvnw -B -P coverage install \
               -Dspotless.check.skip=true \
               -Dcheckstyle.skip=true \
-              -Dmaven.test.skip=true \
               -Darchetype.test.skip=true
 
       - name: Stage site
