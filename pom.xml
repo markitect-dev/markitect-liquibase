@@ -1124,32 +1124,6 @@
                     <goal>prepare-agent</goal>
                   </goals>
                 </execution>
-                <execution>
-                  <id>report</id>
-                  <goals>
-                    <goal>report</goal>
-                  </goals>
-                  <configuration>
-                    <formats>
-                      <format>HTML</format>
-                      <format>XML</format>
-                      <format>CSV</format>
-                    </formats>
-                  </configuration>
-                </execution>
-                <execution>
-                  <id>report-aggregate</id>
-                  <goals>
-                    <goal>report-aggregate</goal>
-                  </goals>
-                  <configuration>
-                    <formats>
-                      <format>HTML</format>
-                      <format>XML</format>
-                      <format>CSV</format>
-                    </formats>
-                  </configuration>
-                </execution>
               </executions>
             </plugin>
           </plugins>
@@ -1163,10 +1137,6 @@
             <executions>
               <execution>
                 <id>prepare-agent</id>
-                <phase>none</phase>
-              </execution>
-              <execution>
-                <id>report</id>
                 <phase>none</phase>
               </execution>
             </executions>
