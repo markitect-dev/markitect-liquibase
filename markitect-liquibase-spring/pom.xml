@@ -82,18 +82,6 @@
             </execution>
           </executions>
         </plugin>
-        <plugin>
-          <groupId>org.codehaus.gmavenplus</groupId>
-          <artifactId>gmavenplus-plugin</artifactId>
-          <version>${gmavenplus-plugin.version}</version>
-          <inherited>false</inherited>
-          <executions>
-            <execution>
-              <id>default</id>
-              <phase>none</phase>
-            </execution>
-          </executions>
-        </plugin>
       </plugins>
     </pluginManagement>
     <plugins>
