@@ -850,6 +850,9 @@
           <version>${flatten-maven-plugin.version}</version>
           <configuration>
             <flattenMode>oss</flattenMode>
+            <pomElements>
+              <build>remove</build>
+            </pomElements>
             <updatePomFile>true</updatePomFile>
           </configuration>
           <executions>
