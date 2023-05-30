@@ -151,26 +151,28 @@
     <profile>
       <id>coverage</id>
       <build>
-        <plugins>
-          <plugin>
-            <groupId>org.jacoco</groupId>
-            <artifactId>jacoco-maven-plugin</artifactId>
-            <version>${jacoco.version}</version>
-            <executions>
-              <execution>
-                <id>prepare-agent</id>
-                <phase>none</phase>
-              </execution>
-              <execution>
-                <id>report-aggregate</id>
-                <goals>
-                  <goal>report-aggregate</goal>
-                </goals>
-                <phase>verify</phase>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
+        <pluginManagement>
+          <plugins>
+            <plugin>
+              <groupId>org.jacoco</groupId>
+              <artifactId>jacoco-maven-plugin</artifactId>
+              <version>${jacoco.version}</version>
+              <executions>
+                <execution>
+                  <id>prepare-agent</id>
+                  <phase>none</phase>
+                </execution>
+                <execution>
+                  <id>report-aggregate</id>
+                  <goals>
+                    <goal>report-aggregate</goal>
+                  </goals>
+                  <phase>verify</phase>
+                </execution>
+              </executions>
+            </plugin>
+          </plugins>
+        </pluginManagement>
       </build>
       <reporting>
         <plugins>

@@ -1131,12 +1131,11 @@
               <groupId>org.jacoco</groupId>
               <artifactId>jacoco-maven-plugin</artifactId>
               <version>${jacoco.version}</version>
+              <inherited>false</inherited>
               <executions>
                 <execution>
                   <id>prepare-agent</id>
-                  <goals>
-                    <goal>prepare-agent</goal>
-                  </goals>
+                  <phase>none</phase>
                 </execution>
               </executions>
             </plugin>
@@ -1147,11 +1146,12 @@
             <groupId>org.jacoco</groupId>
             <artifactId>jacoco-maven-plugin</artifactId>
             <version>${jacoco.version}</version>
-            <inherited>false</inherited>
             <executions>
               <execution>
                 <id>prepare-agent</id>
-                <phase>none</phase>
+                <goals>
+                  <goal>prepare-agent</goal>
+                </goals>
               </execution>
             </executions>
           </plugin>
