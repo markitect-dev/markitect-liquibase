@@ -25,16 +25,14 @@ public class ScopeManagerHelper {
   private static volatile boolean initialized;
 
   public static void useThreadLocalScopeManager() {
-    if (!initialized) {
-      initLock.lock();
-      try {
-        if (!initialized) {
-          Scope.setScopeManager(new ThreadLocalScopeManager());
-          initialized = true;
-        }
-      } finally {
-        initLock.unlock();
+    initLock.lock();
+    try {
+      if (!initialized) {
+        Scope.setScopeManager(new ThreadLocalScopeManager());
+        initialized = true;
       }
+    } finally {
+      initLock.unlock();
     }
   }
 
