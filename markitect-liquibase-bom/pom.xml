@@ -21,47 +21,47 @@
       <dependency>
         <groupId>dev.markitect.liquibase</groupId>
         <artifactId>markitect-liquibase-core</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>dev.markitect.liquibase</groupId>
         <artifactId>markitect-liquibase-database</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>dev.markitect.liquibase</groupId>
         <artifactId>markitect-liquibase-database-h2</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>dev.markitect.liquibase</groupId>
         <artifactId>markitect-liquibase-database-hsqldb</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>dev.markitect.liquibase</groupId>
         <artifactId>markitect-liquibase-database-mssql</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>dev.markitect.liquibase</groupId>
         <artifactId>markitect-liquibase-database-postgresql</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>dev.markitect.liquibase</groupId>
         <artifactId>markitect-liquibase-logging</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>dev.markitect.liquibase</groupId>
         <artifactId>markitect-liquibase-spring</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>dev.markitect.liquibase</groupId>
         <artifactId>markitect-liquibase-spring-boot-starter</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>${project.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
@@ -90,7 +90,8 @@
           <configuration>
             <flattenMode>bom</flattenMode>
             <pomElements>
-              <properties>keep</properties>
+              <properties>remove</properties>
+              <dependencyManagement>resolve</dependencyManagement>
             </pomElements>
           </configuration>
         </plugin>
