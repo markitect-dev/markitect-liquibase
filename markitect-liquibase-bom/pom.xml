@@ -92,7 +92,6 @@
             <pomElements>
               <properties>keep</properties>
             </pomElements>
-            <updatePomFile>true</updatePomFile>
           </configuration>
         </plugin>
       </plugins>
