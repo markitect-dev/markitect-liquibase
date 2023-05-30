@@ -36,13 +36,6 @@
   </dependencies>
 
   <build>
-    <plugins>
-      <plugin>
-        <groupId>org.sonatype.plugins</groupId>
-        <artifactId>nexus-staging-maven-plugin</artifactId>
-        <version>${nexus-staging-maven-plugin.version}</version>
-      </plugin>
-    </plugins>
     <extensions>
       <extension>
         <groupId>org.apache.maven.archetype</groupId>
