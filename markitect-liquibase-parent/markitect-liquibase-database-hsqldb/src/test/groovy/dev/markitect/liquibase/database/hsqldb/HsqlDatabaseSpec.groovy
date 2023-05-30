@@ -28,7 +28,7 @@ import liquibase.structure.core.Schema
 import liquibase.structure.core.Table
 import spock.lang.Specification
 
-class CoreHsqlDatabaseSpec extends Specification {
+class HsqlDatabaseSpec extends Specification {
   def escapeObjectName() {
     when:
     def scopeValues = new LinkedHashMap<String, Object>().tap {

@@ -16,6 +16,7 @@
 
 package dev.markitect.liquibase.database
 
+import liquibase.database.OfflineConnection
 import liquibase.resource.ClassLoaderResourceAccessor
 import spock.lang.Specification
 
@@ -38,8 +39,8 @@ class OfflineConnectionBuilderSpec extends Specification {
     connection.databaseProductVersion == productVersion
     connection.databaseMajorVersion == majorVersion
     connection.databaseMinorVersion == minorVersion
-    (liquibase.database.OfflineConnection.metaClass.getProperty(connection, 'snapshot') == null) == (snapshot == null)
-    liquibase.database.OfflineConnection.metaClass.getProperty(connection, 'databaseParams') == databaseParams
+    (OfflineConnection.metaClass.getProperty(connection, 'snapshot') == null) == (snapshot == null)
+    OfflineConnection.metaClass.getProperty(connection, 'databaseParams') == databaseParams
 
     where:
     shortName    | productName            | version      | snapshot                        | databaseParams                 || expectedProductName    | productVersion | majorVersion | minorVersion

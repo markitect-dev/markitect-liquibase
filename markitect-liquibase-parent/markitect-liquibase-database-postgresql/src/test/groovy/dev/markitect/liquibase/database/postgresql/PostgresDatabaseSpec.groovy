@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package dev.markitect.liquibase.database.h2
+package dev.markitect.liquibase.database.postgresql
 
 import static liquibase.database.ObjectQuotingStrategy.QUOTE_ALL_OBJECTS
 
@@ -22,13 +22,43 @@ import dev.markitect.liquibase.database.DatabaseBuilder
 import liquibase.GlobalConfiguration
 import liquibase.Scope
 import liquibase.Scope.ScopedRunnerWithReturn
-import liquibase.database.core.H2Database
+import liquibase.database.core.PostgresDatabase
 import liquibase.resource.ClassLoaderResourceAccessor
 import liquibase.structure.core.Schema
 import liquibase.structure.core.Table
 import spock.lang.Specification
 
-class CoreH2DatabaseSpec extends Specification {
+class PostgresDatabaseSpec extends Specification {
+  def correctObjectName() {
+    when:
+    def scopeValues = new LinkedHashMap<String, Object>().tap {
+      if (preserveSchemaCase != null) {
+        it[GlobalConfiguration.PRESERVE_SCHEMA_CASE.getKey()] = preserveSchemaCase
+      }
+      it
+    }
+    def database = DatabaseBuilder.of(PostgresDatabase::new)
+        .setResourceAccessor(new ClassLoaderResourceAccessor())
+        .useOfflineConnection()
+        .setObjectQuotingStrategy(quotingStrategy)
+        .build()
+
+    then:
+    Scope.child(scopeValues, { database.correctObjectName(objectName, objectType) } as ScopedRunnerWithReturn<String>) == expected
+
+    where:
+    preserveSchemaCase | quotingStrategy   || objectName | objectType || expected
+    null               | null              || null       | Table      || null
+    null               | null              || 'Tbl1'     | Table      || 'Tbl1'
+    null               | QUOTE_ALL_OBJECTS || 'Tbl1'     | Table      || 'Tbl1'
+    null               | null              || 'Sch1'     | Schema     || 'Sch1'
+    true               | null              || 'Sch1'     | Schema     || 'Sch1'
+    null               | null              || 'Tbl 1'    | Table      || 'Tbl 1'
+    null               | QUOTE_ALL_OBJECTS || 'Tbl 1'    | Table      || 'Tbl 1'
+    null               | null              || 'Sch 1'    | Schema     || 'Sch 1'
+    true               | null              || 'Sch 1'    | Schema     || 'Sch 1'
+  }
+
   def escapeObjectName() {
     when:
     def scopeValues = new LinkedHashMap<String, Object>().tap {
@@ -37,7 +67,7 @@ class CoreH2DatabaseSpec extends Specification {
       }
       it
     }
-    def database = DatabaseBuilder.of(H2Database::new)
+    def database = DatabaseBuilder.of(PostgresDatabase::new)
         .setResourceAccessor(new ClassLoaderResourceAccessor())
         .useOfflineConnection()
         .setObjectQuotingStrategy(quotingStrategy)
@@ -49,10 +79,10 @@ class CoreH2DatabaseSpec extends Specification {
     where:
     preserveSchemaCase | quotingStrategy   || objectName | objectType || expected
     null               | null              || null       | Table      || null
-    null               | null              || 'Tbl1'     | Table      || 'Tbl1'
+    null               | null              || 'Tbl1'     | Table      || '"Tbl1"'
     null               | QUOTE_ALL_OBJECTS || 'Tbl1'     | Table      || '"Tbl1"'
-    null               | null              || 'Sch1'     | Schema     || 'Sch1'
-    true               | null              || 'SCH1'     | Schema     || '"SCH1"'
+    null               | null              || 'Sch1'     | Schema     || '"Sch1"'
+    true               | null              || 'sch1'     | Schema     || '"sch1"'
     true               | null              || 'Sch1'     | Schema     || '"Sch1"'
     null               | null              || 'Tbl 1'    | Table      || '"Tbl 1"'
     null               | QUOTE_ALL_OBJECTS || 'Tbl 1'    | Table      || '"Tbl 1"'
@@ -62,10 +92,11 @@ class CoreH2DatabaseSpec extends Specification {
 
   def escapeTableName() {
     when:
-    def database = DatabaseBuilder.of(H2Database::new)
+    def database = DatabaseBuilder.of(PostgresDatabase::new)
         .setResourceAccessor(new ClassLoaderResourceAccessor())
         .setOutputDefaultSchema(outputDefaultSchema)
-        .useOfflineConnection()
+        .useOfflineConnection(ocb ->
+            ocb.setSchema('PUBLIC'))
         .build()
 
     then:
@@ -74,9 +105,9 @@ class CoreH2DatabaseSpec extends Specification {
 
     where:
     outputDefaultSchema || catalogName | schemaName | tableName || expected
-    null                || null        | null       | 'Tbl1'    || 'PUBLIC.Tbl1'
-    null                || null        | 'PUBLIC'   | 'Tbl1'    || 'PUBLIC.Tbl1'
-    false               || null        | null       | 'Tbl1'    || 'Tbl1'
-    false               || null        | 'PUBLIC'   | 'Tbl1'    || 'Tbl1'
+    null                || null        | null       | 'Tbl1'    || 'PUBLIC."Tbl1"'
+    null                || null        | 'PUBLIC'   | 'Tbl1'    || 'PUBLIC."Tbl1"'
+    false               || null        | null       | 'Tbl1'    || '"Tbl1"'
+    false               || null        | 'PUBLIC'   | 'Tbl1'    || '"Tbl1"'
   }
 }
