@@ -5,18 +5,18 @@
 
   <parent>
     <groupId>dev.markitect.liquibase</groupId>
-    <artifactId>markitect-liquibase</artifactId>
+    <artifactId>markitect-liquibase-parent</artifactId>
     <version>1.0.0-SNAPSHOT</version>
   </parent>
 
-  <artifactId>markitect-liquibase-database</artifactId>
+  <artifactId>markitect-liquibase-spring-boot-starter</artifactId>
 
   <name>${project.artifactId}</name>
-  <description>Markitect Liquibase Database Module</description>
+  <description>Markitect Liquibase Spring Boot Starter</description>
   <url>https://github.com/markitect-dev/markitect-liquibase</url>
 
   <properties>
-    <automatic.module.name>dev.markitect.liquibase.database</automatic.module.name>
+    <automatic.module.name>dev.markitect.liquibase.spring.boot.starter</automatic.module.name>
   </properties>
 
   <dependencies>
@@ -27,37 +27,35 @@
     </dependency>
     <dependency>
       <groupId>dev.markitect.liquibase</groupId>
-      <artifactId>markitect-liquibase-core</artifactId>
+      <artifactId>markitect-liquibase-spring</artifactId>
     </dependency>
     <dependency>
       <groupId>org.checkerframework</groupId>
       <artifactId>checker-qual</artifactId>
       <optional>true</optional>
     </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-jdbc</artifactId>
+    </dependency>
 
     <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
       <groupId>dev.markitect.liquibase</groupId>
-      <artifactId>markitect-liquibase-logging</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.assertj</groupId>
-      <artifactId>assertj-core</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.spockframework</groupId>
-      <artifactId>spock-core</artifactId>
+      <artifactId>markitect-liquibase-database-h2</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-logging</artifactId>
+      <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -81,19 +79,5 @@
         </plugin>
       </plugins>
     </pluginManagement>
-    <plugins>
-      <plugin>
-        <groupId>org.codehaus.gmavenplus</groupId>
-        <artifactId>gmavenplus-plugin</artifactId>
-        <version>${gmavenplus-plugin.version}</version>
-        <executions>
-          <execution>
-            <goals>
-              <goal>compileTests</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
   </build>
 </project>
