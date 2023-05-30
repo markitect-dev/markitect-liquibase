@@ -1,7 +1,0 @@
-GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-markitect-liquibase-spring-boot-starter,dev.markitect.liquibase.spring.boot.autoconfigure,MarkitectLiquibaseAutoConfiguration,0,8,0,0,0,2,0,2,0,2
-markitect-liquibase-spring-boot-starter,dev.markitect.liquibase.spring.boot.autoconfigure,MarkitectLiquibaseAutoConfiguration.LiquibaseDataSourceCondition,0,4,0,0,0,2,0,1,0,1
-markitect-liquibase-spring-boot-starter,dev.markitect.liquibase.spring.boot.autoconfigure,MarkitectLiquibaseAutoConfiguration.LiquibaseDataSourceCondition.DataSourceBeanCondition,3,0,0,0,1,0,1,0,1,0
-markitect-liquibase-spring-boot-starter,dev.markitect.liquibase.spring.boot.autoconfigure,MarkitectLiquibaseAutoConfiguration.LiquibaseDataSourceCondition.LiquibaseUrlCondition,3,0,0,0,1,0,1,0,1,0
-markitect-liquibase-spring-boot-starter,dev.markitect.liquibase.spring.boot.autoconfigure,MarkitectLiquibaseAutoConfiguration.MarkitectLiquibaseConfiguration,59,152,6,6,16,35,7,4,1,4
-markitect-liquibase-spring-boot-starter,dev.markitect.liquibase.spring.boot.autoconfigure,MarkitectLiquibaseProperties,11,24,0,0,4,8,3,5,3,5

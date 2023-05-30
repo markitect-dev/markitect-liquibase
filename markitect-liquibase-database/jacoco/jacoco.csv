@@ -1,5 +1,0 @@
-GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-markitect-liquibase-database,dev.markitect.liquibase.database,DatabaseBuilder,7,195,1,11,2,37,1,15,0,10
-markitect-liquibase-database,dev.markitect.liquibase.database,MarkitectDatabase,0,106,4,28,0,29,4,15,0,3
-markitect-liquibase-database,dev.markitect.liquibase.database,MarkitectOfflineConnection,11,9,0,0,1,4,2,2,2,2
-markitect-liquibase-database,dev.markitect.liquibase.database,OfflineConnectionBuilder,50,275,1,11,3,34,3,16,2,11
