@@ -16,11 +16,13 @@
 
 package dev.markitect.liquibase.database
 
+import dev.markitect.liquibase.exception.UncheckedDatabaseException
 import dev.markitect.liquibase.util.VerifyException
 import liquibase.database.ObjectQuotingStrategy
 import liquibase.database.core.H2Database
 import liquibase.database.core.MSSQLDatabase
 import liquibase.database.core.PostgresDatabase
+import liquibase.exception.DatabaseException
 import liquibase.resource.ClassLoaderResourceAccessor
 import spock.lang.Specification
 
@@ -81,6 +83,17 @@ class DatabaseBuilderSpec extends Specification {
     PostgresDatabase | null                                    | null                 | null                | true                 | null      || 'postgresql' | 'Offline postgresql' | 999          | 999
   }
 
+  def 'build fails on database exception'() {
+    given:
+    def builder = DatabaseBuilder.of(() -> { throw new DatabaseException() })
+
+    when:
+    builder.build()
+
+    then:
+    thrown(UncheckedDatabaseException)
+  }
+
   def 'build with invalid database factory fails'() {
     given:
     def invalidBuilder = DatabaseBuilder.of(() -> null)
@@ -103,5 +116,16 @@ class DatabaseBuilderSpec extends Specification {
 
     then:
     thrown(VerifyException)
+  }
+
+  def 'build with offline connection customizer without resource accessor fails'() {
+    given:
+    def invalidBuilder = DatabaseBuilder.of(H2Database::new).useOfflineConnection()
+
+    when:
+    invalidBuilder.build()
+
+    then:
+    thrown(IllegalStateException)
   }
 }

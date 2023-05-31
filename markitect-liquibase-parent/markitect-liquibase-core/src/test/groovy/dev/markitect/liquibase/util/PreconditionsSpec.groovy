@@ -46,6 +46,7 @@ class PreconditionsSpec extends Specification {
 
     where:
     index | size
+    -1    | 0
     0     | 0
     1     | 1
   }

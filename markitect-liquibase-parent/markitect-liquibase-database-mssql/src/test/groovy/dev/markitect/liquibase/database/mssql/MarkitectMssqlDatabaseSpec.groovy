@@ -23,6 +23,7 @@ import liquibase.GlobalConfiguration
 import liquibase.Scope
 import liquibase.Scope.ScopedRunnerWithReturn
 import liquibase.resource.ClassLoaderResourceAccessor
+import liquibase.structure.core.Index
 import liquibase.structure.core.Schema
 import liquibase.structure.core.Table
 import spock.lang.Specification
@@ -56,6 +57,34 @@ class MarkitectMssqlDatabaseSpec extends Specification {
     null               | QUOTE_ALL_OBJECTS || 'Tbl 1'    | Table      || 'Tbl 1'
     null               | null              || 'Sch 1'    | Schema     || 'Sch 1'
     true               | null              || 'Sch 1'    | Schema     || 'Sch 1'
+  }
+
+  def escapeObjectName_catalogName_schemaName_objectName_objectType() {
+    when:
+    def scopeValues = new LinkedHashMap<String, Object>().tap {
+      if (includeCatalog != null) {
+        it[GlobalConfiguration.INCLUDE_CATALOG_IN_SPECIFICATION.getKey()] = includeCatalog
+      }
+      it
+    }
+    def database = DatabaseBuilder.of(MarkitectMssqlDatabase::new)
+        .setResourceAccessor(new ClassLoaderResourceAccessor())
+        .setOutputDefaultCatalog(outputDefaultCatalog)
+        .setOutputDefaultSchema(outputDefaultSchema)
+        .useOfflineConnection(ocb -> ocb
+            .setCatalog('Cat1')
+            .setSchema('Sch1'))
+        .build()
+
+    then:
+    database.defaultCatalogName == 'Cat1'
+    database.defaultSchemaName == 'Sch1'
+    Scope.child(scopeValues, { database.escapeObjectName(catalogName, schemaName, objectName, objectType) } as ScopedRunnerWithReturn<String>) == expected
+
+    where:
+    includeCatalog | outputDefaultCatalog | outputDefaultSchema || catalogName | schemaName | objectName | objectType || expected
+    null           | null                 | null                || null        | null       | 'Idx1'     | Index      || 'Idx1'
+    null           | null                 | null                || null        | 'Sch1'     | 'Idx1'     | Index      || 'Idx1'
   }
 
   def escapeObjectName() {
@@ -116,10 +145,13 @@ class MarkitectMssqlDatabaseSpec extends Specification {
     null           | null                 | null                || null        | 'Sch1'     | 'Tbl1'    || 'Sch1.Tbl1'
     null           | null                 | false               || null        | null       | 'Tbl1'    || 'Tbl1'
     null           | null                 | false               || null        | 'Sch1'     | 'Tbl1'    || 'Tbl1'
+    null           | null                 | false               || null        | 'Sch2'     | 'Tbl1'    || 'Sch2.Tbl1'
     true           | null                 | null                || null        | null       | 'Tbl1'    || 'Cat1.Sch1.Tbl1'
     true           | null                 | null                || null        | 'Sch1'     | 'Tbl1'    || 'Cat1.Sch1.Tbl1'
     true           | null                 | false               || null        | null       | 'Tbl1'    || 'Cat1..Tbl1'
     true           | null                 | false               || null        | 'Sch1'     | 'Tbl1'    || 'Cat1..Tbl1'
+    true           | false                | false               || null        | null       | 'Tbl1'    || 'Tbl1'
+    true           | false                | false               || null        | 'Sch1'     | 'Tbl1'    || 'Tbl1'
     null           | false                | null                || 'Cat2'      | null       | 'Tbl1'    || 'Cat2..Tbl1'
     null           | false                | null                || 'Cat2'      | 'Sch1'     | 'Tbl1'    || 'Cat2.Sch1.Tbl1'
   }
