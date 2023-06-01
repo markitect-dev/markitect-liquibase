@@ -701,8 +701,11 @@
         <inherited>false</inherited>
         <executions>
           <execution>
-            <id>default-install</id>
-            <phase>none</phase>
+            <id>install-pre-integration-test</id>
+            <goals>
+              <goal>install</goal>
+            </goals>
+            <phase>pre-integration-test</phase>
           </execution>
         </executions>
       </plugin>
