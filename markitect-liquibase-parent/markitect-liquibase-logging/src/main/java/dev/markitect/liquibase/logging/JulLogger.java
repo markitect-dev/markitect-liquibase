@@ -18,6 +18,8 @@ package dev.markitect.liquibase.logging;
 
 import static dev.markitect.liquibase.util.Preconditions.checkNotNull;
 
+import java.util.Arrays;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.logging.Level;
 import java.util.logging.LogRecord;
 import java.util.logging.Logger;
@@ -109,27 +111,27 @@ public class JulLogger extends AbstractLogger {
     }
   }
 
-  @SuppressWarnings("ReassignedVariable")
   private LogRecord toLogRecord(Level level, @Nullable String message, @Nullable Throwable e) {
     checkNotNull(level);
-    @Nullable String sourceClassName = null;
-    @Nullable String sourceMethodName = null;
-    boolean found = false;
-    for (StackTraceElement element : new Throwable().getStackTrace()) {
-      String className = element.getClassName();
-      if (FQCN.equals(className)) {
-        found = true;
-      } else if (found) {
-        sourceClassName = className;
-        sourceMethodName = element.getMethodName();
-        break;
-      }
-    }
     LogRecord logRecord = new LogRecord(level, message);
     logRecord.setLoggerName(name);
     logRecord.setThrown(e);
-    logRecord.setSourceClassName(sourceClassName);
-    logRecord.setSourceMethodName(sourceMethodName);
+    AtomicBoolean found = new AtomicBoolean();
+    Arrays.stream(new Throwable().getStackTrace())
+        .filter(
+            element -> {
+              if (FQCN.equals(element.getClassName())) {
+                found.set(true);
+                return false;
+              }
+              return found.get();
+            })
+        .findFirst()
+        .ifPresent(
+            element -> {
+              logRecord.setSourceClassName(element.getClassName());
+              logRecord.setSourceMethodName(element.getMethodName());
+            });
     logRecord.setResourceBundleName(logger.getResourceBundleName());
     logRecord.setResourceBundle(logger.getResourceBundle());
     return logRecord;

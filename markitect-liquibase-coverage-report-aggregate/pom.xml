@@ -53,6 +53,24 @@
     </dependency>
     <dependency>
       <groupId>dev.markitect.liquibase</groupId>
+      <artifactId>markitect-liquibase-logging-tests-jul</artifactId>
+      <version>${project.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>dev.markitect.liquibase</groupId>
+      <artifactId>markitect-liquibase-logging-tests-log4j</artifactId>
+      <version>${project.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>dev.markitect.liquibase</groupId>
+      <artifactId>markitect-liquibase-logging-tests-slf4j</artifactId>
+      <version>${project.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>dev.markitect.liquibase</groupId>
       <artifactId>markitect-liquibase-spring</artifactId>
       <version>${project.version}</version>
     </dependency>

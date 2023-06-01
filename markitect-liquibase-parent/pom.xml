@@ -24,6 +24,9 @@
     <module>markitect-liquibase-database-mssql</module>
     <module>markitect-liquibase-database-postgresql</module>
     <module>markitect-liquibase-logging</module>
+    <module>markitect-liquibase-logging-tests-jul</module>
+    <module>markitect-liquibase-logging-tests-log4j</module>
+    <module>markitect-liquibase-logging-tests-slf4j</module>
     <module>markitect-liquibase-spring</module>
     <module>markitect-liquibase-spring-boot-archetype</module>
     <module>markitect-liquibase-spring-boot-starter</module>
@@ -100,6 +103,21 @@
       <dependency>
         <groupId>dev.markitect.liquibase</groupId>
         <artifactId>markitect-liquibase-logging</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>dev.markitect.liquibase</groupId>
+        <artifactId>markitect-liquibase-logging-tests-jul</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>dev.markitect.liquibase</groupId>
+        <artifactId>markitect-liquibase-logging-tests-log4j</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>dev.markitect.liquibase</groupId>
+        <artifactId>markitect-liquibase-logging-tests-slf4j</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
