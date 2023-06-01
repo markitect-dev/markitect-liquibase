@@ -26,111 +26,111 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 
 @SuppressWarnings(&quot;squid:S2160&quot;)
 public class Log4jLogger extends AbstractLogger {
-<span class="nc" id="L29">  private static final String FQCN = Log4jLogger.class.getName();</span>
-<span class="nc" id="L30">  private static final int DEBUG_THRESHOLD = Level.FINER.intValue();</span>
-<span class="nc" id="L31">  private static final int INFO_THRESHOLD = Level.INFO.intValue();</span>
-<span class="nc" id="L32">  private static final int WARN_THRESHOLD = Level.WARNING.intValue();</span>
-<span class="nc" id="L33">  private static final int ERROR_THRESHOLD = Level.SEVERE.intValue();</span>
+<span class="fc" id="L29">  private static final String FQCN = Log4jLogger.class.getName();</span>
+<span class="fc" id="L30">  private static final int DEBUG_THRESHOLD = Level.FINER.intValue();</span>
+<span class="fc" id="L31">  private static final int INFO_THRESHOLD = Level.INFO.intValue();</span>
+<span class="fc" id="L32">  private static final int WARN_THRESHOLD = Level.WARNING.intValue();</span>
+<span class="fc" id="L33">  private static final int ERROR_THRESHOLD = Level.SEVERE.intValue();</span>
 
   private final ExtendedLogger logger;
 
-<span class="nc" id="L37">  public Log4jLogger(@Nullable String name) {</span>
-<span class="nc" id="L38">    this.logger = (ExtendedLogger) LogManager.getLogger(name);</span>
-<span class="nc" id="L39">  }</span>
+<span class="fc" id="L37">  public Log4jLogger(@Nullable String name) {</span>
+<span class="fc" id="L38">    this.logger = (ExtendedLogger) LogManager.getLogger(name);</span>
+<span class="fc" id="L39">  }</span>
 
   @Override
   public void severe(@Nullable String message) {
-<span class="nc" id="L43">    log(org.apache.logging.log4j.Level.ERROR, message, null);</span>
-<span class="nc" id="L44">  }</span>
+<span class="fc" id="L43">    log(org.apache.logging.log4j.Level.ERROR, message, null);</span>
+<span class="fc" id="L44">  }</span>
 
   @Override
   public void severe(@Nullable String message, @Nullable Throwable e) {
-<span class="nc" id="L48">    log(org.apache.logging.log4j.Level.ERROR, message, e);</span>
-<span class="nc" id="L49">  }</span>
+<span class="fc" id="L48">    log(org.apache.logging.log4j.Level.ERROR, message, e);</span>
+<span class="fc" id="L49">  }</span>
 
   @Override
   public void warning(@Nullable String message) {
-<span class="nc" id="L53">    log(org.apache.logging.log4j.Level.WARN, message, null);</span>
-<span class="nc" id="L54">  }</span>
+<span class="fc" id="L53">    log(org.apache.logging.log4j.Level.WARN, message, null);</span>
+<span class="fc" id="L54">  }</span>
 
   @Override
   public void warning(@Nullable String message, @Nullable Throwable e) {
-<span class="nc" id="L58">    log(org.apache.logging.log4j.Level.WARN, message, e);</span>
-<span class="nc" id="L59">  }</span>
+<span class="fc" id="L58">    log(org.apache.logging.log4j.Level.WARN, message, e);</span>
+<span class="fc" id="L59">  }</span>
 
   @Override
   public void info(@Nullable String message) {
-<span class="nc" id="L63">    log(org.apache.logging.log4j.Level.INFO, message, null);</span>
-<span class="nc" id="L64">  }</span>
+<span class="fc" id="L63">    log(org.apache.logging.log4j.Level.INFO, message, null);</span>
+<span class="fc" id="L64">  }</span>
 
   @Override
   public void info(@Nullable String message, @Nullable Throwable e) {
-<span class="nc" id="L68">    log(org.apache.logging.log4j.Level.INFO, message, e);</span>
-<span class="nc" id="L69">  }</span>
+<span class="fc" id="L68">    log(org.apache.logging.log4j.Level.INFO, message, e);</span>
+<span class="fc" id="L69">  }</span>
 
   @Override
   public void config(@Nullable String message) {
-<span class="nc" id="L73">    log(org.apache.logging.log4j.Level.DEBUG, message, null);</span>
-<span class="nc" id="L74">  }</span>
+<span class="fc" id="L73">    log(org.apache.logging.log4j.Level.DEBUG, message, null);</span>
+<span class="fc" id="L74">  }</span>
 
   @Override
   public void config(@Nullable String message, @Nullable Throwable e) {
-<span class="nc" id="L78">    log(org.apache.logging.log4j.Level.DEBUG, message, e);</span>
-<span class="nc" id="L79">  }</span>
+<span class="fc" id="L78">    log(org.apache.logging.log4j.Level.DEBUG, message, e);</span>
+<span class="fc" id="L79">  }</span>
 
   @Override
   public void fine(@Nullable String message) {
-<span class="nc" id="L83">    log(org.apache.logging.log4j.Level.DEBUG, message, null);</span>
-<span class="nc" id="L84">  }</span>
+<span class="fc" id="L83">    log(org.apache.logging.log4j.Level.DEBUG, message, null);</span>
+<span class="fc" id="L84">  }</span>
 
   @Override
   public void fine(@Nullable String message, @Nullable Throwable e) {
-<span class="nc" id="L88">    log(org.apache.logging.log4j.Level.DEBUG, message, e);</span>
-<span class="nc" id="L89">  }</span>
+<span class="fc" id="L88">    log(org.apache.logging.log4j.Level.DEBUG, message, e);</span>
+<span class="fc" id="L89">  }</span>
 
   @Override
   public void debug(@Nullable String message) {
-<span class="nc" id="L93">    log(org.apache.logging.log4j.Level.DEBUG, message, null);</span>
-<span class="nc" id="L94">  }</span>
+<span class="fc" id="L93">    log(org.apache.logging.log4j.Level.DEBUG, message, null);</span>
+<span class="fc" id="L94">  }</span>
 
   @Override
   public void debug(@Nullable String message, @Nullable Throwable e) {
-<span class="nc" id="L98">    log(org.apache.logging.log4j.Level.DEBUG, message, e);</span>
-<span class="nc" id="L99">  }</span>
+<span class="fc" id="L98">    log(org.apache.logging.log4j.Level.DEBUG, message, e);</span>
+<span class="fc" id="L99">  }</span>
 
   @Override
   public void close() {
     // Redeclared to throw no exception
-<span class="nc" id="L104">  }</span>
+<span class="fc" id="L104">  }</span>
 
   @Override
   public void log(Level level, @Nullable String message, @Nullable Throwable e) {
-<span class="nc" id="L108">    checkNotNull(level);</span>
-<span class="nc" id="L109">    log(toLog4jLevel(level), message, e);</span>
-<span class="nc" id="L110">  }</span>
+<span class="fc" id="L108">    checkNotNull(level);</span>
+<span class="fc" id="L109">    log(toLog4jLevel(level), message, e);</span>
+<span class="fc" id="L110">  }</span>
 
   private void log(
       org.apache.logging.log4j.Level level, @Nullable String message, @Nullable Throwable e) {
-<span class="nc" id="L114">    checkNotNull(level);</span>
-<span class="nc" id="L115">    logger.logIfEnabled(FQCN, level, null, message, e);</span>
-<span class="nc" id="L116">  }</span>
+<span class="fc" id="L114">    checkNotNull(level);</span>
+<span class="fc" id="L115">    logger.logIfEnabled(FQCN, level, null, message, e);</span>
+<span class="fc" id="L116">  }</span>
 
   private org.apache.logging.log4j.Level toLog4jLevel(Level level) {
-<span class="nc" id="L119">    checkNotNull(level);</span>
-<span class="nc" id="L120">    int value = level.intValue();</span>
-<span class="nc bnc" id="L121" title="All 2 branches missed.">    if (value &lt; DEBUG_THRESHOLD) {</span>
-<span class="nc" id="L122">      return org.apache.logging.log4j.Level.TRACE;</span>
+<span class="fc" id="L119">    checkNotNull(level);</span>
+<span class="fc" id="L120">    int value = level.intValue();</span>
+<span class="fc bfc" id="L121" title="All 2 branches covered.">    if (value &lt; DEBUG_THRESHOLD) {</span>
+<span class="fc" id="L122">      return org.apache.logging.log4j.Level.TRACE;</span>
     }
-<span class="nc bnc" id="L124" title="All 2 branches missed.">    if (value &lt; INFO_THRESHOLD) {</span>
-<span class="nc" id="L125">      return org.apache.logging.log4j.Level.DEBUG;</span>
+<span class="fc bfc" id="L124" title="All 2 branches covered.">    if (value &lt; INFO_THRESHOLD) {</span>
+<span class="fc" id="L125">      return org.apache.logging.log4j.Level.DEBUG;</span>
     }
-<span class="nc bnc" id="L127" title="All 2 branches missed.">    if (value &lt; WARN_THRESHOLD) {</span>
-<span class="nc" id="L128">      return org.apache.logging.log4j.Level.INFO;</span>
+<span class="fc bfc" id="L127" title="All 2 branches covered.">    if (value &lt; WARN_THRESHOLD) {</span>
+<span class="fc" id="L128">      return org.apache.logging.log4j.Level.INFO;</span>
     }
-<span class="nc bnc" id="L130" title="All 2 branches missed.">    if (value &lt; ERROR_THRESHOLD) {</span>
-<span class="nc" id="L131">      return org.apache.logging.log4j.Level.WARN;</span>
+<span class="fc bfc" id="L130" title="All 2 branches covered.">    if (value &lt; ERROR_THRESHOLD) {</span>
+<span class="fc" id="L131">      return org.apache.logging.log4j.Level.WARN;</span>
     }
-<span class="nc" id="L133">    return org.apache.logging.log4j.Level.ERROR;</span>
+<span class="fc" id="L133">    return org.apache.logging.log4j.Level.ERROR;</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

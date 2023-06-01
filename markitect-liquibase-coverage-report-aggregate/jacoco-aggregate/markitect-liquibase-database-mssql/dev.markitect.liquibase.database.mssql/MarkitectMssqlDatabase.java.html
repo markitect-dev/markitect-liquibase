@@ -47,8 +47,8 @@ import org.checkerframework.checker.nullness.qual.Nullable;
       @Nullable String objectName,
       Class&lt;? extends DatabaseObject&gt; objectType) {
 <span class="fc" id="L49">    checkNotNull(objectType);</span>
-<span class="pc bpc" id="L50" title="1 of 2 branches missed.">    if (Index.class.isAssignableFrom(objectType)) {</span>
-<span class="nc" id="L51">      return escapeObjectName(objectName, objectType);</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">    if (Index.class.isAssignableFrom(objectType)) {</span>
+<span class="fc" id="L51">      return escapeObjectName(objectName, objectType);</span>
     }
 <span class="fc" id="L53">    @Nullable String catalogNameToUse = toCatalogNameToUse(catalogName);</span>
 <span class="fc" id="L54">    @Nullable String schemaNameToUse = toSchemaNameToUse(catalogName, schemaName);</span>
@@ -77,7 +77,7 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 
   private @Nullable String toCatalogNameToUse(@Nullable String catalogName) {
 <span class="fc bfc" id="L79" title="All 2 branches covered.">    if ((isTrue(GlobalConfiguration.INCLUDE_CATALOG_IN_SPECIFICATION.getCurrentValue())</span>
-<span class="pc bpc" id="L80" title="1 of 2 branches missed.">            &amp;&amp; getOutputDefaultCatalog())</span>
+<span class="fc bfc" id="L80" title="All 2 branches covered.">            &amp;&amp; getOutputDefaultCatalog())</span>
 <span class="fc bfc" id="L81" title="All 2 branches covered.">        || !isDefaultCatalog(catalogName)) {</span>
 <span class="fc bfc" id="L82" title="All 2 branches covered.">      if (catalogName != null) {</span>
 <span class="fc" id="L83">        return catalogName;</span>
@@ -89,7 +89,7 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 
   private @Nullable String toSchemaNameToUse(
       @Nullable String catalogName, @Nullable String schemaName) {
-<span class="pc bpc" id="L92" title="1 of 4 branches missed.">    if (getOutputDefaultSchema() || !isDefaultSchema(catalogName, schemaName)) {</span>
+<span class="fc bfc" id="L92" title="All 4 branches covered.">    if (getOutputDefaultSchema() || !isDefaultSchema(catalogName, schemaName)) {</span>
 <span class="fc bfc" id="L93" title="All 2 branches covered.">      if (schemaName != null) {</span>
 <span class="fc" id="L94">        return schemaName;</span>
       }

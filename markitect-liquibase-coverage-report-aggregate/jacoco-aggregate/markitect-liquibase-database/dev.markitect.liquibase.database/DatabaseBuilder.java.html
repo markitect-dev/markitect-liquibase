@@ -121,12 +121,12 @@ public final class DatabaseBuilder&lt;D extends Database&gt; {
   }
 
   public D build() {
-<span class="pc bpc" id="L124" title="1 of 4 branches missed.">    checkState(offlineConnectionCustomizer == null || resourceAccessor != null);</span>
+<span class="fc bfc" id="L124" title="All 4 branches covered.">    checkState(offlineConnectionCustomizer == null || resourceAccessor != null);</span>
     D database;
     try {
 <span class="fc" id="L127">      database = verifyNotNull(databaseFactory.get());</span>
-<span class="nc" id="L128">    } catch (DatabaseException e) {</span>
-<span class="nc" id="L129">      throw new UncheckedDatabaseException(e);</span>
+<span class="fc" id="L128">    } catch (DatabaseException e) {</span>
+<span class="fc" id="L129">      throw new UncheckedDatabaseException(e);</span>
 <span class="fc" id="L130">    }</span>
 <span class="fc bfc" id="L131" title="All 2 branches covered.">    if (offlineConnectionCustomizer != null) {</span>
 <span class="fc" id="L132">      MarkitectOfflineConnection connection =</span>

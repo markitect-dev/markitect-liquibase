@@ -22,10 +22,10 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 public final class Preconditions {
   @CanIgnoreReturnValue
   public static int checkIndex(int index, int size) {
-<span class="pc bpc" id="L25" title="1 of 4 branches missed.">    if (index &lt; 0 || index &gt;= size) {</span>
+<span class="fc bfc" id="L25" title="All 4 branches covered.">    if (index &lt; 0 || index &gt;= size) {</span>
 <span class="fc" id="L26">      throw new IndexOutOfBoundsException(</span>
-<span class="pc bpc" id="L27" title="1 of 2 branches missed.">          index &lt; 0</span>
-<span class="nc" id="L28">              ? String.format(&quot;index (%s) must be non-negative&quot;, index)</span>
+<span class="fc bfc" id="L27" title="All 2 branches covered.">          index &lt; 0</span>
+<span class="fc" id="L28">              ? String.format(&quot;index (%s) must be non-negative&quot;, index)</span>
 <span class="fc" id="L29">              : String.format(&quot;index (%s) must be less than size (%s)&quot;, index, size));</span>
     }
 <span class="fc" id="L31">    return index;</span>
@@ -33,7 +33,7 @@ public final class Preconditions {
 
   @CanIgnoreReturnValue
   public static int checkIndex(int index, int size, @Nullable String errorMessage) {
-<span class="pc bpc" id="L36" title="1 of 4 branches missed.">    if (index &lt; 0 || index &gt;= size) {</span>
+<span class="fc bfc" id="L36" title="All 4 branches covered.">    if (index &lt; 0 || index &gt;= size) {</span>
 <span class="fc" id="L37">      throw new IndexOutOfBoundsException(String.valueOf(errorMessage));</span>
     }
 <span class="fc" id="L39">    return index;</span>

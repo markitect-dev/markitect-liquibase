@@ -25,18 +25,16 @@ public class ScopeManagerHelper {
   private static volatile boolean initialized;
 
   public static void useThreadLocalScopeManager() {
-<span class="pc bpc" id="L28" title="1 of 2 branches missed.">    if (!initialized) {</span>
-<span class="fc" id="L29">      initLock.lock();</span>
-      try {
-<span class="pc bpc" id="L31" title="1 of 2 branches missed.">        if (!initialized) {</span>
-<span class="fc" id="L32">          Scope.setScopeManager(new ThreadLocalScopeManager());</span>
-<span class="fc" id="L33">          initialized = true;</span>
-        }
-      } finally {
-<span class="fc" id="L36">        initLock.unlock();</span>
+<span class="fc" id="L28">    initLock.lock();</span>
+    try {
+<span class="fc bfc" id="L30" title="All 2 branches covered.">      if (!initialized) {</span>
+<span class="fc" id="L31">        Scope.setScopeManager(new ThreadLocalScopeManager());</span>
+<span class="fc" id="L32">        initialized = true;</span>
       }
+    } finally {
+<span class="fc" id="L35">      initLock.unlock();</span>
     }
-<span class="fc" id="L39">  }</span>
+<span class="fc" id="L37">  }</span>
 
   private ScopeManagerHelper() {}
 }
