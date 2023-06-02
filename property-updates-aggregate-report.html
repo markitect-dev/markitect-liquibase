@@ -44,7 +44,6 @@
   <ul class="nav nav-list">
    <li class="nav-header">Modules</li>
     <li><a href="markitect-liquibase-bom/index.html" title="markitect-liquibase-bom"><span class="none"></span>markitect-liquibase-bom</a></li>
-    <li><a href="markitect-liquibase-coverage-report-aggregate/index.html" title="markitect-liquibase-coverage-report-aggregate"><span class="none"></span>markitect-liquibase-coverage-report-aggregate</a></li>
     <li><a href="markitect-liquibase-parent/index.html" title="markitect-liquibase-parent"><span class="none"></span>markitect-liquibase-parent</a></li>
    <li class="nav-header">Project Documentation</li>
     <li><a href="project-info.html" title="Project Information"><span class="icon-chevron-right"></span>Project Information</a></li>
@@ -74,19 +73,19 @@
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" /></td>
 <td># of properties using the latest version available</td>
-<td>64</td></tr>
+<td>66</td></tr>
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" /></td>
 <td># of properties where the next version available is smaller than an incremental version update</td>
 <td>0</td></tr>
 <tr class="b">
-<td><img src="images/icon_warning_sml.gif" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td># of properties where the next version available is an incremental version update</td>
-<td>1</td></tr>
+<td>0</td></tr>
 <tr class="a">
-<td><img src="images/icon_warning_sml.gif" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td># of properties where the next version available is a minor version update</td>
-<td>1</td></tr>
+<td>0</td></tr>
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" /></td>
 <td># of properties where the next version available is a major version update</td>
@@ -118,20 +117,20 @@
 <td></td>
 <td></td></tr>
 <tr class="b">
-<td><img src="images/icon_warning_sml.gif" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td>${byte-buddy.version}</td>
-<td>1.14.4</td>
+<td>1.14.5</td>
 <td></td>
-<td><b>1.14.5</b></td>
+<td></td>
 <td></td>
 <td></td></tr>
 <tr class="a">
-<td><img src="images/icon_warning_sml.gif" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td>${checker-framework.version}</td>
-<td>3.34.0</td>
+<td>3.35.0</td>
 <td></td>
 <td></td>
-<td><b>3.35.0</b></td>
+<td></td>
 <td></td></tr>
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" /></td>
@@ -701,7 +700,7 @@
 <table class="table table-striped">
 <tr class="a">
 <th>Status</th>
-<td style="text-align: left;"><img src="images/icon_warning_sml.gif" />&#160;There is at least one newer incremental version available. Incremental updates are typically passive.</td></tr>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
 <th>Property</th>
 <td style="text-align: left;">${byte-buddy.version}</td></tr>
@@ -710,30 +709,27 @@
 <td style="text-align: left;">net.bytebuddy:byte-buddy<br />net.bytebuddy:byte-buddy-agent</td></tr>
 <tr class="b">
 <th>Current Version</th>
-<td style="text-align: left;">1.14.4</td></tr>
+<td style="text-align: left;">1.14.5</td></tr>
 <tr class="a">
-<th>Newer versions</th>
-<td style="text-align: left;"><b>1.14.5</b>&#160;<i>Latest Incremental</i></td></tr>
-<tr class="b">
 <th>Allowed version range</th>
-<td style="text-align: left;">1.14.4</td></tr>
-<tr class="a">
+<td style="text-align: left;">1.14.5</td></tr>
+<tr class="b">
 <th>Infer associations from project</th>
 <td style="text-align: left;">Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <th>Only use release versions</th>
 <td style="text-align: left;">No</td></tr>
-<tr class="a">
+<tr class="b">
 <th>Include projects from reactor</th>
 <td style="text-align: left;">Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <th>Always use reactor projects (even if older or -SNAPSHOT)</th>
 <td style="text-align: left;">Yes</td></tr></table></section><section>
 <h2>${checker-framework.version}</h2>
 <table class="table table-striped">
 <tr class="a">
 <th>Status</th>
-<td style="text-align: left;"><img src="images/icon_warning_sml.gif" />&#160;There is at least one newer minor version available. Minor updates are sometimes passive.</td></tr>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
 <th>Property</th>
 <td style="text-align: left;">${checker-framework.version}</td></tr>
@@ -742,23 +738,20 @@
 <td style="text-align: left;">org.checkerframework:checker-qual</td></tr>
 <tr class="b">
 <th>Current Version</th>
-<td style="text-align: left;">3.34.0</td></tr>
+<td style="text-align: left;">3.35.0</td></tr>
 <tr class="a">
-<th>Newer versions</th>
-<td style="text-align: left;"><b>3.35.0</b>&#160;<i>Latest Minor</i></td></tr>
-<tr class="b">
 <th>Allowed version range</th>
-<td style="text-align: left;">3.34.0</td></tr>
-<tr class="a">
+<td style="text-align: left;">3.35.0</td></tr>
+<tr class="b">
 <th>Infer associations from project</th>
 <td style="text-align: left;">Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <th>Only use release versions</th>
 <td style="text-align: left;">No</td></tr>
-<tr class="a">
+<tr class="b">
 <th>Include projects from reactor</th>
 <td style="text-align: left;">Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <th>Always use reactor projects (even if older or -SNAPSHOT)</th>
 <td style="text-align: left;">Yes</td></tr></table></section><section>
 <h2>${checkstyle.version}</h2>

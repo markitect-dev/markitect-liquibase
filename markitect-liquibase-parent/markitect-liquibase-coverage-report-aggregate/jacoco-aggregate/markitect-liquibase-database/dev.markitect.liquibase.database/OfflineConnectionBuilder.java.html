@@ -179,8 +179,9 @@ public final class OfflineConnectionBuilder {
 <span class="fc" id="L179">    this.databaseParams.forEach((key, value) -&gt; params.add(key + &quot;=&quot; + value));</span>
 <span class="fc" id="L180">    String url = &quot;offline:&quot; + shortName + params;</span>
 <span class="fc" id="L181">    MarkitectOfflineConnection connection = new MarkitectOfflineConnection(url, resourceAccessor);</span>
-<span class="fc" id="L182">    connection.setSchema(schema);</span>
-<span class="fc" id="L183">    return connection;</span>
+<span class="fc" id="L182">    connection.setCatalog(catalog);</span>
+<span class="fc" id="L183">    connection.setSchema(schema);</span>
+<span class="fc" id="L184">    return connection;</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

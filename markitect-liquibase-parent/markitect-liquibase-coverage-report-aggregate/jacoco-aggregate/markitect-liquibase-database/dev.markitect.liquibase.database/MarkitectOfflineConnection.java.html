@@ -16,25 +16,35 @@
 
 package dev.markitect.liquibase.database;
 
-import java.util.Optional;
 import liquibase.database.OfflineConnection;
+import liquibase.exception.DatabaseException;
 import liquibase.resource.ResourceAccessor;
+import org.checkerframework.checker.nullness.qual.Nullable;
 
 public class MarkitectOfflineConnection extends OfflineConnection {
-  private String schema;
+  @Nullable private String catalog;
+  @Nullable private String schema;
 
-  @SuppressWarnings(&quot;unused&quot;)
   public MarkitectOfflineConnection(String url, ResourceAccessor resourceAccessor) {
-<span class="fc" id="L28">    super(url, resourceAccessor);</span>
-<span class="fc" id="L29">  }</span>
+<span class="fc" id="L29">    super(url, resourceAccessor);</span>
+<span class="fc" id="L30">  }</span>
 
   @Override
-  public String getSchema() {
-<span class="pc" id="L33">    return Optional.ofNullable(schema).orElseGet(super::getSchema);</span>
+  public @Nullable String getCatalog() throws DatabaseException {
+<span class="fc bfc" id="L34" title="All 2 branches covered.">    return catalog != null ? catalog : super.getCatalog();</span>
   }
 
-  public void setSchema(String schema) {
-<span class="fc" id="L37">    this.schema = schema;</span>
-<span class="fc" id="L38">  }</span>
+  public void setCatalog(@Nullable String catalog) {
+<span class="fc" id="L38">    this.catalog = catalog;</span>
+<span class="fc" id="L39">  }</span>
+
+  @Override
+  public @Nullable String getSchema() {
+<span class="fc bfc" id="L43" title="All 2 branches covered.">    return schema != null ? schema : super.getSchema();</span>
+  }
+
+  public void setSchema(@Nullable String schema) {
+<span class="fc" id="L47">    this.schema = schema;</span>
+<span class="fc" id="L48">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

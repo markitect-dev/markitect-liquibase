@@ -9,8 +9,8 @@ markitect-liquibase-coverage-report-aggregate/markitect-liquibase-core,dev.marki
 markitect-liquibase-coverage-report-aggregate/markitect-liquibase-core,dev.markitect.liquibase.exception,UncheckedDatabaseException,0,9,0,0,0,4,0,2,0,2
 markitect-liquibase-coverage-report-aggregate/markitect-liquibase-database,dev.markitect.liquibase.database,DatabaseBuilder,0,202,0,12,0,39,0,16,0,10
 markitect-liquibase-coverage-report-aggregate/markitect-liquibase-database,dev.markitect.liquibase.database,MarkitectDatabase,0,106,0,32,0,29,0,19,0,3
-markitect-liquibase-coverage-report-aggregate/markitect-liquibase-database,dev.markitect.liquibase.database,MarkitectOfflineConnection,3,17,0,0,0,5,1,3,1,3
-markitect-liquibase-coverage-report-aggregate/markitect-liquibase-database,dev.markitect.liquibase.database,OfflineConnectionBuilder,0,325,0,12,0,37,0,19,0,13
+markitect-liquibase-coverage-report-aggregate/markitect-liquibase-database,dev.markitect.liquibase.database,MarkitectOfflineConnection,0,31,0,4,0,8,0,7,0,5
+markitect-liquibase-coverage-report-aggregate/markitect-liquibase-database,dev.markitect.liquibase.database,OfflineConnectionBuilder,0,329,0,12,0,38,0,19,0,13
 markitect-liquibase-coverage-report-aggregate/markitect-liquibase-database-h2,dev.markitect.liquibase.database.h2,MarkitectH2Database,0,26,0,0,0,6,0,6,0,6
 markitect-liquibase-coverage-report-aggregate/markitect-liquibase-database-hsqldb,dev.markitect.liquibase.database.hsqldb,MarkitectHsqlDatabase,0,26,0,0,0,6,0,6,0,6
 markitect-liquibase-coverage-report-aggregate/markitect-liquibase-database-mssql,dev.markitect.liquibase.database.mssql,MarkitectMssqlDatabase,0,132,0,26,0,28,0,22,0,9

@@ -44,7 +44,6 @@
   <ul class="nav nav-list">
    <li class="nav-header">Modules</li>
     <li><a href="markitect-liquibase-bom/index.html" title="markitect-liquibase-bom"><span class="none"></span>markitect-liquibase-bom</a></li>
-    <li><a href="markitect-liquibase-coverage-report-aggregate/index.html" title="markitect-liquibase-coverage-report-aggregate"><span class="none"></span>markitect-liquibase-coverage-report-aggregate</a></li>
     <li><a href="markitect-liquibase-parent/index.html" title="markitect-liquibase-parent"><span class="none"></span>markitect-liquibase-parent</a></li>
    <li class="nav-header">Project Documentation</li>
     <li><a href="project-info.html" title="Project Information"><span class="icon-chevron-down"></span>Project Information</a>
@@ -78,12 +77,6 @@
 <section>
 <h1>Reactor Dependency Convergence</h1>
 <table class="table table-striped"><caption>
-  <b>Legend:</b>
-</caption>
-<tr class="a">
-<td><img src="images/icon_error_sml.gif" alt="[Error]" /></td>
-<td>At least one dependency has a differing version of the dependency or has SNAPSHOT dependencies.</td></tr></table><br />
-<table class="table table-striped"><caption>
   <b>Statistics:</b>
 </caption>
 <tr class="a">
@@ -94,62 +87,19 @@
 <td>78</td></tr>
 <tr class="a">
 <th>Number of unique artifacts (NOA):</th>
-<td>85</td></tr>
+<td>78</td></tr>
 <tr class="b">
 <th>Number of version-conflicting artifacts (NOC):</th>
-<td>2</td></tr>
+<td>0</td></tr>
 <tr class="a">
 <th>Number of SNAPSHOT artifacts (NOS):</th>
 <td>0</td></tr>
 <tr class="b">
 <th>Convergence (NOD/NOA):</th>
-<td><img src="images/icon_error_sml.gif" alt="[Error]" />&#160;<b>91 %</b></td></tr>
+<td><img src="images/icon_success_sml.gif" alt="[Success]" />&#160;<b>100 %</b></td></tr>
 <tr class="a">
 <th>Ready for release (100% convergence and no SNAPSHOTS):</th>
-<td><img src="images/icon_error_sml.gif" alt="[Error]" />&#160;<b>Error</b><br />You do not have 100% convergence.</td></tr></table></section><section>
-<h2>Dependencies used in modules</h2><section>
-<h3>org.slf4j:slf4j-api</h3>
-<table class="table table-striped">
-<tr class="a">
-<td><img src="images/icon_error_sml.gif" alt="[Error]" /></td>
-<td>
-<table class="table table-striped">
-<tr class="b">
-<td>1.7.32</td>
-<td>
-<ol style="list-style-type: decimal">
-<li>dev.markitect.liquibase:markitect-liquibase-coverage-report-aggregate:jar:1.0.0-SNAPSHOT<br />\-&#160;dev.markitect.liquibase:markitect-liquibase-spring-boot-starter:jar:1.0.0-SNAPSHOT:compile<br />&#160;&#160;&#160;\-&#160;org.springframework.boot:spring-boot-starter:jar:2.7.12:compile<br />&#160;&#160;&#160;&#160;&#160;&#160;\-&#160;org.springframework.boot:spring-boot-starter-logging:jar:2.7.12:compile<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;\-&#160;ch.qos.logback:logback-classic:jar:1.2.12:compile<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;\-&#160;org.slf4j:slf4j-api:jar:1.7.32:compile<br /></li><br /></ol></td></tr>
-<tr class="a">
-<td>1.7.35</td>
-<td>
-<ol style="list-style-type: decimal">
-<li>dev.markitect.liquibase:markitect-liquibase-coverage-report-aggregate:jar:1.0.0-SNAPSHOT<br />\-&#160;dev.markitect.liquibase:markitect-liquibase-spring-boot-starter:jar:1.0.0-SNAPSHOT:compile<br />&#160;&#160;&#160;\-&#160;org.springframework.boot:spring-boot-starter:jar:2.7.12:compile<br />&#160;&#160;&#160;&#160;&#160;&#160;\-&#160;org.springframework.boot:spring-boot-starter-logging:jar:2.7.12:compile<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;\-&#160;org.apache.logging.log4j:log4j-to-slf4j:jar:2.17.2:compile<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;\-&#160;org.slf4j:slf4j-api:jar:1.7.35:compile<br /></li><br /></ol></td></tr>
-<tr class="b">
-<td>1.7.36</td>
-<td>
-<ol style="list-style-type: decimal">
-<li>dev.markitect.liquibase:markitect-liquibase-coverage-report-aggregate:jar:1.0.0-SNAPSHOT<br />\-&#160;dev.markitect.liquibase:markitect-liquibase-spring-boot-starter:jar:1.0.0-SNAPSHOT:compile<br />&#160;&#160;&#160;\-&#160;org.springframework.boot:spring-boot-starter:jar:2.7.12:compile<br />&#160;&#160;&#160;&#160;&#160;&#160;\-&#160;org.springframework.boot:spring-boot-starter-logging:jar:2.7.12:compile<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;\-&#160;org.slf4j:jul-to-slf4j:jar:1.7.36:compile<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;\-&#160;org.slf4j:slf4j-api:jar:1.7.36:compile<br /></li><br /></ol></td></tr>
-<tr class="a">
-<td>2.0.0-alpha1</td>
-<td>
-<ol style="list-style-type: decimal">
-<li>dev.markitect.liquibase:markitect-liquibase-coverage-report-aggregate:jar:1.0.0-SNAPSHOT<br />\-&#160;dev.markitect.liquibase:markitect-liquibase-spring-boot-starter:jar:1.0.0-SNAPSHOT:compile<br />&#160;&#160;&#160;\-&#160;org.springframework.boot:spring-boot-starter-jdbc:jar:2.7.12:compile<br />&#160;&#160;&#160;&#160;&#160;&#160;\-&#160;com.zaxxer:HikariCP:jar:4.0.3:compile<br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;\-&#160;org.slf4j:slf4j-api:jar:2.0.0-alpha1:compile<br /></li><br /></ol></td></tr></table></td></tr></table></section><section>
-<h3>org.yaml:snakeyaml</h3>
-<table class="table table-striped">
-<tr class="a">
-<td><img src="images/icon_error_sml.gif" alt="[Error]" /></td>
-<td>
-<table class="table table-striped">
-<tr class="b">
-<td>1.30</td>
-<td>
-<ol style="list-style-type: decimal">
-<li>dev.markitect.liquibase:markitect-liquibase-coverage-report-aggregate:jar:1.0.0-SNAPSHOT<br />\-&#160;dev.markitect.liquibase:markitect-liquibase-spring-boot-starter:jar:1.0.0-SNAPSHOT:compile<br />&#160;&#160;&#160;\-&#160;org.springframework.boot:spring-boot-starter:jar:2.7.12:compile<br />&#160;&#160;&#160;&#160;&#160;&#160;\-&#160;org.yaml:snakeyaml:jar:1.30:compile<br /></li><br /></ol></td></tr>
-<tr class="a">
-<td>2.0</td>
-<td>
-<ol style="list-style-type: decimal">
-<li>dev.markitect.liquibase:markitect-liquibase-coverage-report-aggregate:jar:1.0.0-SNAPSHOT<br />\-&#160;dev.markitect.liquibase:markitect-liquibase-core:jar:1.0.0-SNAPSHOT:compile<br />&#160;&#160;&#160;\-&#160;org.liquibase:liquibase-core:jar:4.22.0:compile<br />&#160;&#160;&#160;&#160;&#160;&#160;\-&#160;org.yaml:snakeyaml:jar:2.0:compile<br /></li><br /></ol></td></tr></table></td></tr></table></section></section>
+<td><img src="images/icon_success_sml.gif" alt="[Success]" />&#160;<b>Success</b></td></tr></table></section>
         </main>
       </div>
     </div>
