@@ -34,7 +34,6 @@
 
   <modules>
     <module>markitect-liquibase-bom</module>
-    <module>markitect-liquibase-coverage-report-aggregate</module>
     <module>markitect-liquibase-parent</module>
   </modules>
 
@@ -78,7 +77,7 @@
     <resource.delimiter>@</resource.delimiter>
     <skipNexusStagingDeployMojo>${maven.deploy.skip}</skipNexusStagingDeployMojo>
     <!--suppress UnresolvedMavenProperty -->
-    <sonar.coverage.jacoco.xmlReportPaths>${maven.multiModuleProjectDirectory}/markitect-liquibase-coverage-report-aggregate/target/site/jacoco-aggregate/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+    <sonar.coverage.jacoco.xmlReportPaths>${maven.multiModuleProjectDirectory}/markitect-liquibase-parent/markitect-liquibase-coverage-report-aggregate/target/site/jacoco-aggregate/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
 
     <apiguardian.version>1.1.2</apiguardian.version>
     <assertj.version>3.24.2</assertj.version>

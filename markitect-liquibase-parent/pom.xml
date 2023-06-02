@@ -18,6 +18,7 @@
 
   <modules>
     <module>markitect-liquibase-core</module>
+    <module>markitect-liquibase-coverage-report-aggregate</module>
     <module>markitect-liquibase-database</module>
     <module>markitect-liquibase-database-h2</module>
     <module>markitect-liquibase-database-hsqldb</module>
