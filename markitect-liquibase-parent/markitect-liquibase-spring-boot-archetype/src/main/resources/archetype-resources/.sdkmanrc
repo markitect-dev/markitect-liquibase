@@ -6,5 +6,5 @@
 # Enable auto-env through the sdkman_auto_env config
 # Add key=value pairs of SDKs to use below
 java=${effectiveJavaVersion}
-maven=3.8.8
+maven=3.9.2
 springboot=${springBootVersion}
