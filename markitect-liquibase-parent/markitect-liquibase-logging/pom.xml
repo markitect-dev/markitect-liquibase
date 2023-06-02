@@ -17,6 +17,9 @@
 
   <properties>
     <automatic.module.name>dev.markitect.liquibase.logging</automatic.module.name>
+    <maven.compiler.release>8</maven.compiler.release>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
 
   <dependencies>
