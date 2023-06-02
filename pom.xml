@@ -738,6 +738,32 @@
 
   <profiles>
     <profile>
+      <id>alt-deploy</id>
+      <distributionManagement>
+        <repository>
+          <id>${altReleaseDeploymentRepositoryId}</id>
+          <url>${altReleaseDeploymentRepositoryUrl}</url>
+        </repository>
+        <snapshotRepository>
+          <id>${altSnapshotDeploymentRepositoryId}</id>
+          <url>${altSnapshotDeploymentRepositoryUrl}</url>
+        </snapshotRepository>
+      </distributionManagement>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.sonatype.plugins</groupId>
+            <artifactId>nexus-staging-maven-plugin</artifactId>
+            <version>${nexus-staging-maven-plugin.version}</version>
+            <configuration>
+              <serverId>${serverId}</serverId>
+              <nexusUrl>${nexusUrl}</nexusUrl>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
       <id>coverage</id>
       <build>
         <pluginManagement>
