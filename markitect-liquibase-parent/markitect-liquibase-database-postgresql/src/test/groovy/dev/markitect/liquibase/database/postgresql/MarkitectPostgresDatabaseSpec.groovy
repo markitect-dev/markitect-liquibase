@@ -94,8 +94,8 @@ class MarkitectPostgresDatabaseSpec extends Specification {
     def database = DatabaseBuilder.of(MarkitectPostgresDatabase::new)
         .setResourceAccessor(new ClassLoaderResourceAccessor())
         .setOutputDefaultSchema(outputDefaultSchema)
-        .useOfflineConnection(ocb ->
-            ocb.setSchema('PUBLIC'))
+        .useOfflineConnection(ocb -> ocb
+            .setSchema('PUBLIC'))
         .build()
 
     then:

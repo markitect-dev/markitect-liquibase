@@ -16,24 +16,34 @@
 
 package dev.markitect.liquibase.database;
 
-import java.util.Optional;
 import liquibase.database.OfflineConnection;
+import liquibase.exception.DatabaseException;
 import liquibase.resource.ResourceAccessor;
+import org.checkerframework.checker.nullness.qual.Nullable;
 
 public class MarkitectOfflineConnection extends OfflineConnection {
-  private String schema;
+  @Nullable private String catalog;
+  @Nullable private String schema;
 
-  @SuppressWarnings("unused")
   public MarkitectOfflineConnection(String url, ResourceAccessor resourceAccessor) {
     super(url, resourceAccessor);
   }
 
   @Override
-  public String getSchema() {
-    return Optional.ofNullable(schema).orElseGet(super::getSchema);
+  public @Nullable String getCatalog() throws DatabaseException {
+    return catalog != null ? catalog : super.getCatalog();
   }
 
-  public void setSchema(String schema) {
+  public void setCatalog(@Nullable String catalog) {
+    this.catalog = catalog;
+  }
+
+  @Override
+  public @Nullable String getSchema() {
+    return schema != null ? schema : super.getSchema();
+  }
+
+  public void setSchema(@Nullable String schema) {
     this.schema = schema;
   }
 }

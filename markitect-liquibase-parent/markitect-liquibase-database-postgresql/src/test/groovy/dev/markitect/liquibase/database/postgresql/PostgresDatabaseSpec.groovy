@@ -95,8 +95,8 @@ class PostgresDatabaseSpec extends Specification {
     def database = DatabaseBuilder.of(PostgresDatabase::new)
         .setResourceAccessor(new ClassLoaderResourceAccessor())
         .setOutputDefaultSchema(outputDefaultSchema)
-        .useOfflineConnection(ocb ->
-            ocb.setSchema('PUBLIC'))
+        .useOfflineConnection(ocb -> ocb
+            .setSchema('PUBLIC'))
         .build()
 
     then:

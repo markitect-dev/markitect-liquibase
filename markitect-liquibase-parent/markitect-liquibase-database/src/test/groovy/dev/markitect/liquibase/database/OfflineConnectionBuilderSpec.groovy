@@ -29,6 +29,8 @@ class OfflineConnectionBuilderSpec extends Specification {
         .setProductName(productName)
         .setVersion(version)
         .setSnapshot(snapshot)
+        .setCatalog(catalog)
+        .setSchema(schema)
         .setDatabaseParams(databaseParams)
 
     when:
@@ -40,17 +42,19 @@ class OfflineConnectionBuilderSpec extends Specification {
     connection.databaseMajorVersion == majorVersion
     connection.databaseMinorVersion == minorVersion
     (OfflineConnection.metaClass.getProperty(connection, 'snapshot') == null) == (snapshot == null)
+    connection.catalog == expectedCatalog
+    connection.schema == expectedSchema
     OfflineConnection.metaClass.getProperty(connection, 'databaseParams') == databaseParams
 
     where:
-    shortName    | productName            | version      | snapshot                        | databaseParams                 || expectedProductName    | productVersion | majorVersion | minorVersion
-    'h2'         | null                   | null         | null                            | [:]                            || 'Offline h2'           | null           | 999          | 999
-    'h2'         | null                   | '1.4.200'    | null                            | [:]                            || 'Offline h2'           | '1.4.200'      | 1            | 4
-    'mssql'      | null                   | null         | null                            | [:]                            || 'Offline mssql'        | null           | 999          | 999
-    'mssql'      | null                   | null         | 'snapshots/snapshot-mssql.json' | [:]                            || 'Offline mssql'        | '16.00.4025'   | 999          | 999
-    'mssql'      | 'Microsoft SQL Server' | '16.00.4025' | 'snapshots/snapshot-mssql.json' | [:]                            || 'Microsoft SQL Server' | '16.00.4025'   | 16           | 0
-    'mssql'      | null                   | null         | null                            | ['defaultCatalogName': 'Cat1'] || 'Offline mssql'        | null           | 999          | 999
-    'postgresql' | null                   | null         | null                            | [:]                            || 'Offline postgresql'   | null           | 999          | 999
+    shortName    | productName            | version      | snapshot                        | catalog | schema | databaseParams                 || expectedProductName    | productVersion | majorVersion | minorVersion | expectedCatalog      | expectedSchema
+    'h2'         | null                   | null         | null                            | null    | null   | [:]                            || 'Offline h2'           | null           | 999          | 999          | null                 | null
+    'h2'         | null                   | '1.4.200'    | null                            | null    | null   | [:]                            || 'Offline h2'           | '1.4.200'      | 1            | 4            | null                 | null
+    'mssql'      | null                   | null         | null                            | null    | null   | [:]                            || 'Offline mssql'        | null           | 999          | 999          | null                 | null
+    'mssql'      | null                   | null         | 'snapshots/snapshot-mssql.json' | null    | null   | [:]                            || 'Offline mssql'        | '16.00.4025'   | 999          | 999          | 'AdventureWorks2019' | 'dbo'
+    'mssql'      | 'Microsoft SQL Server' | '16.00.4025' | 'snapshots/snapshot-mssql.json' | 'Cat1'  | 'Sch1' | [:]                            || 'Microsoft SQL Server' | '16.00.4025'   | 16           | 0            | 'Cat1'               | 'Sch1'
+    'mssql'      | null                   | null         | null                            | null    | null   | ['defaultCatalogName': 'Cat1'] || 'Offline mssql'        | null           | 999          | 999          | null                 | null
+    'postgresql' | null                   | null         | null                            | null    | null   | [:]                            || 'Offline postgresql'   | null           | 999          | 999          | null                 | null
   }
 
   def 'build fails'() {

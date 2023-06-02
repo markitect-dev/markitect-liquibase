@@ -179,6 +179,7 @@ public final class OfflineConnectionBuilder {
     this.databaseParams.forEach((key, value) -> params.add(key + "=" + value));
     String url = "offline:" + shortName + params;
     MarkitectOfflineConnection connection = new MarkitectOfflineConnection(url, resourceAccessor);
+    connection.setCatalog(catalog);
     connection.setSchema(schema);
     return connection;
   }

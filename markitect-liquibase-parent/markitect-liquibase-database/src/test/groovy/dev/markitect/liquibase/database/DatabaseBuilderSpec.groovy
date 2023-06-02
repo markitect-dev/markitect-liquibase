@@ -36,7 +36,11 @@ class DatabaseBuilderSpec extends Specification {
         .setOutputDefaultSchema(outputDefaultSchema)
         .with {
           useOfflineConnection
-              ? it.useOfflineConnection(ocb -> ocb.setVersion(version))
+              ? it.useOfflineConnection(ocb -> ocb
+                  .setVersion(version)
+                  .setCatalog(catalog)
+                  .setSchema(schema)
+                  .setDatabaseParams(databaseParams))
               : it
         }
 
@@ -50,6 +54,8 @@ class DatabaseBuilderSpec extends Specification {
     database.databaseProductVersion == version
     database.databaseMajorVersion == majorVersion
     database.databaseMinorVersion == minorVersion
+    database.defaultCatalogName == catalogName
+    database.defaultSchemaName == schemaName
     database.objectQuotingStrategy == Optional.ofNullable(quotingStrategy).orElse(ObjectQuotingStrategy.LEGACY)
     database.outputDefaultCatalog == Optional.ofNullable(outputDefaultCatalog).orElse(true)
     database.outputDefaultSchema == Optional.ofNullable(outputDefaultSchema).orElse(true)
@@ -67,20 +73,24 @@ class DatabaseBuilderSpec extends Specification {
     database.databaseProductVersion == null
     database.databaseMajorVersion == 999
     database.databaseMinorVersion == 999
+    database.defaultCatalogName == null
+    database.defaultSchemaName == null
     database.objectQuotingStrategy == Optional.ofNullable(quotingStrategy).orElse(ObjectQuotingStrategy.LEGACY)
     database.outputDefaultCatalog == Optional.ofNullable(outputDefaultCatalog).orElse(true)
     database.outputDefaultSchema == Optional.ofNullable(outputDefaultSchema).orElse(true)
     database.connection && database.connection.class === MarkitectOfflineConnection
 
     where:
-    databaseClass    | quotingStrategy                         | outputDefaultCatalog | outputDefaultSchema | useOfflineConnection | version   || shortName    | productName          | majorVersion | minorVersion
-    H2Database       | null                                    | null                 | null                | false                | null      || 'h2'         | 'H2'                 | 999          | -1
-    H2Database       | null                                    | null                 | null                | true                 | null      || 'h2'         | 'Offline h2'         | 999          | 999
-    H2Database       | null                                    | null                 | null                | true                 | '1.4.200' || 'h2'         | 'Offline h2'         | 1            | 4
-    H2Database       | null                                    | false                | false               | false                | null      || 'h2'         | 'H2'                 | 999          | -1
-    H2Database       | ObjectQuotingStrategy.QUOTE_ALL_OBJECTS | false                | true                | false                | null      || 'h2'         | 'H2'                 | 999          | -1
-    PostgresDatabase | null                                    | null                 | null                | false                | null      || 'postgresql' | 'PostgreSQL'         | 999          | -1
-    PostgresDatabase | null                                    | null                 | null                | true                 | null      || 'postgresql' | 'Offline postgresql' | 999          | 999
+    databaseClass    | quotingStrategy                         | outputDefaultCatalog | outputDefaultSchema | useOfflineConnection | version   | catalog | schema | databaseParams || shortName    | productName          | majorVersion | minorVersion | catalogName | schemaName
+    H2Database       | null                                    | null                 | null                | false                | null      | null    | null   | [:]            || 'h2'         | 'H2'                 | 999          | -1           | null        | null
+    H2Database       | null                                    | null                 | null                | true                 | null      | null    | null   | [:]            || 'h2'         | 'Offline h2'         | 999          | 999          | null        | 'PUBLIC'
+    H2Database       | null                                    | null                 | null                | true                 | '1.4.200' | null    | null   | [:]            || 'h2'         | 'Offline h2'         | 1            | 4            | null        | 'PUBLIC'
+    H2Database       | null                                    | false                | false               | false                | null      | null    | null   | [:]            || 'h2'         | 'H2'                 | 999          | -1           | null        | null
+    H2Database       | ObjectQuotingStrategy.QUOTE_ALL_OBJECTS | false                | true                | false                | null      | null    | null   | [:]            || 'h2'         | 'H2'                 | 999          | -1           | null        | null
+    MSSQLDatabase    | null                                    | null                 | null                | true                 | null      | 'Cat1'  | 'Sch1' | [:]            || 'mssql'      | 'Offline mssql'      | 999          | 999          | 'Cat1'      | 'Sch1'
+    PostgresDatabase | null                                    | null                 | null                | false                | null      | null    | null   | [:]            || 'postgresql' | 'PostgreSQL'         | 999          | -1           | null        | null
+    PostgresDatabase | null                                    | null                 | null                | true                 | null      | null    | null   | [:]            || 'postgresql' | 'Offline postgresql' | 999          | 999          | null        | null
+    PostgresDatabase | null                                    | null                 | null                | true                 | null      | 'Cat1'  | 'Sch1' | [:]            || 'postgresql' | 'Offline postgresql' | 999          | 999          | 'Cat1'      | 'Sch1'
   }
 
   def 'build fails on database exception'() {
