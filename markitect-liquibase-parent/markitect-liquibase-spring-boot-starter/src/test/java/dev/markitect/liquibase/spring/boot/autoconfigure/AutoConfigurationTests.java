@@ -43,6 +43,7 @@ class AutoConfigurationTests {
           .withPropertyValues(
               "markitect.liquibase.output-default-schema=false",
               "markitect.liquibase.use-thread-local-scope-manager=true",
+              "markitect.liquibase.properties.liquibase.sql.logLevel=info",
               "spring.datasource.generate-unique-name=true");
 
   @Test
