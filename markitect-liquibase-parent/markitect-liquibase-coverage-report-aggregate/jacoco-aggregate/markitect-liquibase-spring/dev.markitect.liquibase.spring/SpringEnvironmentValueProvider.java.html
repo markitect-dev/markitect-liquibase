@@ -50,7 +50,7 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 <span class="fc" id="L50">                    .map(environment -&gt; environment.getProperty(PROPERTY_PREFIX + requestedKey))</span>
 <span class="fc" id="L51">                    .map(</span>
                         value -&gt;
-<span class="nc" id="L53">                            new ProvidedValue(</span>
+<span class="fc" id="L53">                            new ProvidedValue(</span>
                                 requestedKey, actualKey, value, SOURCE_DESCRIPTION, this))
 <span class="fc" id="L55">                    .orElse(null))</span>
 <span class="fc" id="L56">        .filter(Objects::nonNull)</span>
