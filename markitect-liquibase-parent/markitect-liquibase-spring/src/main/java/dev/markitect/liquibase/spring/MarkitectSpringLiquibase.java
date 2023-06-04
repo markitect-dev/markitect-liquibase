@@ -23,8 +23,8 @@ import liquibase.exception.DatabaseException;
 import liquibase.exception.LiquibaseException;
 import liquibase.integration.spring.SpringLiquibase;
 import liquibase.resource.ResourceAccessor;
-import org.checkerframework.checker.nullness.qual.Nullable;
 import org.springframework.beans.factory.DisposableBean;
+import org.springframework.lang.Nullable;
 import org.springframework.util.ReflectionUtils;
 
 public class MarkitectSpringLiquibase extends SpringLiquibase implements DisposableBean {

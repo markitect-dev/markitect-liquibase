@@ -16,8 +16,8 @@
 
 package dev.markitect.liquibase.spring;
 
-import org.checkerframework.checker.nullness.qual.Nullable;
 import org.springframework.core.env.Environment;
+import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 final class SpringEnvironmentHolder {

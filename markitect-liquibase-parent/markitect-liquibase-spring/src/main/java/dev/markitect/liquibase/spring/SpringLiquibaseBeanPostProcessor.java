@@ -35,7 +35,6 @@ public class SpringLiquibaseBeanPostProcessor implements InstantiationAwareBeanP
   }
 
   @Override
-  @SuppressWarnings("NullableProblems")
   public Object postProcessBeforeInstantiation(Class<?> beanClass, String beanName) {
     if (beanClass.isAssignableFrom(SpringLiquibase.class)
         && Boolean.TRUE.equals(
@@ -48,7 +47,6 @@ public class SpringLiquibaseBeanPostProcessor implements InstantiationAwareBeanP
   }
 
   @Override
-  @SuppressWarnings("NullableProblems")
   public Object postProcessBeforeInitialization(Object bean, String beanName) {
     if (bean instanceof SpringLiquibase) {
       log.debug("Providing Spring environment to Liquibase");
@@ -58,7 +56,6 @@ public class SpringLiquibaseBeanPostProcessor implements InstantiationAwareBeanP
   }
 
   @Override
-  @SuppressWarnings("NullableProblems")
   public Object postProcessAfterInitialization(Object bean, String beanName) {
     if (bean instanceof SpringLiquibase) {
       SpringEnvironmentHolder.removeEnvironment();

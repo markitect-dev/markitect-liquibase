@@ -26,7 +26,7 @@ import java.util.Objects;
 import java.util.Optional;
 import liquibase.configuration.AbstractConfigurationValueProvider;
 import liquibase.configuration.ProvidedValue;
-import org.checkerframework.checker.nullness.qual.Nullable;
+import org.springframework.lang.Nullable;
 
 public class SpringEnvironmentValueProvider extends AbstractConfigurationValueProvider {
   private static final String PROPERTY_PREFIX = "markitect.liquibase.properties.";
