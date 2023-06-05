@@ -23,7 +23,6 @@ import java.util.Optional;
 import javax.sql.DataSource;
 import liquibase.change.DatabaseChange;
 import liquibase.integration.spring.SpringLiquibase;
-import org.checkerframework.checker.nullness.qual.Nullable;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.AnyNestedCondition;
@@ -46,6 +45,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.ConnectionCallback;
 import org.springframework.jdbc.datasource.SimpleDriverDataSource;
+import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
@@ -107,7 +107,7 @@ import org.springframework.util.StringUtils;
 <span class="fc" id="L107">      liquibase.setTestRollbackOnUpdate(properties.isTestRollbackOnUpdate());</span>
 <span class="fc" id="L108">      liquibase.setChangeLogParameters(properties.getParameters());</span>
 <span class="fc" id="L109">      liquibase.setRollbackFile(properties.getRollbackFile());</span>
-<span class="pc bpc" id="L110" title="2 of 4 branches missed.">      liquibase.setCloseDataSourceOnceMigrated(</span>
+<span class="fc bfc" id="L110" title="All 4 branches covered.">      liquibase.setCloseDataSourceOnceMigrated(</span>
           migrationDataSource != liquibaseDataSource &amp;&amp; migrationDataSource != dataSource);
 <span class="fc" id="L112">      liquibase.setOutputDefaultCatalog(markitectProperties.isOutputDefaultCatalog());</span>
 <span class="fc" id="L113">      liquibase.setOutputDefaultSchema(markitectProperties.isOutputDefaultSchema());</span>
@@ -116,34 +116,34 @@ import org.springframework.util.StringUtils;
 
     private DataSource toMigrationDataSource(
         @Nullable DataSource liquibaseDataSource, @Nullable DataSource dataSource) {
-<span class="pc bpc" id="L119" title="1 of 2 branches missed.">      if (liquibaseDataSource != null) {</span>
-<span class="nc" id="L120">        return liquibaseDataSource;</span>
+<span class="fc bfc" id="L119" title="All 2 branches covered.">      if (liquibaseDataSource != null) {</span>
+<span class="fc" id="L120">        return liquibaseDataSource;</span>
       }
 <span class="fc" id="L122">      String url = properties.getUrl();</span>
-<span class="pc bpc" id="L123" title="1 of 2 branches missed.">      if (url != null) {</span>
-<span class="nc" id="L124">        DataSourceBuilder&lt;?&gt; builder = DataSourceBuilder.create();</span>
-<span class="nc" id="L125">        builder.type(SimpleDriverDataSource.class);</span>
-<span class="nc" id="L126">        builder.url(url);</span>
-<span class="nc" id="L127">        applyCommonBuilderProperties(builder);</span>
-<span class="nc" id="L128">        return builder.build();</span>
+<span class="fc bfc" id="L123" title="All 2 branches covered.">      if (url != null) {</span>
+<span class="fc" id="L124">        DataSourceBuilder&lt;?&gt; builder = DataSourceBuilder.create();</span>
+<span class="fc" id="L125">        builder.type(SimpleDriverDataSource.class);</span>
+<span class="fc" id="L126">        builder.url(url);</span>
+<span class="fc" id="L127">        applyCommonBuilderProperties(builder);</span>
+<span class="fc" id="L128">        return builder.build();</span>
       }
-<span class="pc bpc" id="L130" title="1 of 2 branches missed.">      Assert.state(dataSource != null, &quot;Liquibase migration DataSource missing&quot;);</span>
-<span class="pc bpc" id="L131" title="1 of 2 branches missed.">      if (properties.getUser() != null) {</span>
-<span class="nc" id="L132">        DataSourceBuilder&lt;?&gt; builder = DataSourceBuilder.derivedFrom(dataSource);</span>
-<span class="nc" id="L133">        builder.type(SimpleDriverDataSource.class);</span>
-<span class="nc" id="L134">        applyCommonBuilderProperties(builder);</span>
-<span class="nc" id="L135">        return builder.build();</span>
+<span class="fc bfc" id="L130" title="All 2 branches covered.">      Assert.state(dataSource != null, &quot;Liquibase migration DataSource missing&quot;);</span>
+<span class="fc bfc" id="L131" title="All 2 branches covered.">      if (properties.getUser() != null) {</span>
+<span class="fc" id="L132">        DataSourceBuilder&lt;?&gt; builder = DataSourceBuilder.derivedFrom(dataSource);</span>
+<span class="fc" id="L133">        builder.type(SimpleDriverDataSource.class);</span>
+<span class="fc" id="L134">        applyCommonBuilderProperties(builder);</span>
+<span class="fc" id="L135">        return builder.build();</span>
       }
 <span class="fc" id="L137">      return dataSource;</span>
     }
 
     private void applyCommonBuilderProperties(DataSourceBuilder&lt;?&gt; builder) {
-<span class="nc" id="L141">      Optional.ofNullable(properties.getDriverClassName())</span>
-<span class="nc" id="L142">          .filter(StringUtils::hasText)</span>
-<span class="nc" id="L143">          .ifPresent(builder::driverClassName);</span>
-<span class="nc" id="L144">      builder.username(properties.getUser());</span>
-<span class="nc" id="L145">      builder.password(properties.getPassword());</span>
-<span class="nc" id="L146">    }</span>
+<span class="fc" id="L141">      Optional.ofNullable(properties.getDriverClassName())</span>
+<span class="fc" id="L142">          .filter(StringUtils::hasText)</span>
+<span class="fc" id="L143">          .ifPresent(builder::driverClassName);</span>
+<span class="fc" id="L144">      builder.username(properties.getUser());</span>
+<span class="fc" id="L145">      builder.password(properties.getPassword());</span>
+<span class="fc" id="L146">    }</span>
   }
 
   static final class LiquibaseDataSourceCondition extends AnyNestedCondition {
@@ -151,13 +151,11 @@ import org.springframework.util.StringUtils;
 <span class="fc" id="L151">      super(ConfigurationPhase.REGISTER_BEAN);</span>
 <span class="fc" id="L152">    }</span>
 
-    @SuppressWarnings(&quot;unused&quot;)
     @ConditionalOnBean(DataSource.class)
-<span class="nc" id="L156">    static final class DataSourceBeanCondition {}</span>
+<span class="fc" id="L155">    static final class DataSourceBeanCondition {}</span>
 
-    @SuppressWarnings(&quot;unused&quot;)
     @ConditionalOnProperty(prefix = &quot;spring.liquibase&quot;, name = &quot;url&quot;)
-<span class="nc" id="L160">    static final class LiquibaseUrlCondition {}</span>
+<span class="fc" id="L158">    static final class LiquibaseUrlCondition {}</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

@@ -35,35 +35,32 @@ public class SpringLiquibaseBeanPostProcessor implements InstantiationAwareBeanP
 <span class="fc" id="L35">  }</span>
 
   @Override
-  @SuppressWarnings(&quot;NullableProblems&quot;)
   public Object postProcessBeforeInstantiation(Class&lt;?&gt; beanClass, String beanName) {
-<span class="fc bfc" id="L40" title="All 2 branches covered.">    if (beanClass.isAssignableFrom(SpringLiquibase.class)</span>
-<span class="pc bpc" id="L41" title="1 of 2 branches missed.">        &amp;&amp; Boolean.TRUE.equals(</span>
-<span class="fc" id="L42">            environment.getProperty(</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">    if (SpringLiquibase.class.isAssignableFrom(beanClass)</span>
+<span class="fc bfc" id="L40" title="All 2 branches covered.">        &amp;&amp; Boolean.TRUE.equals(</span>
+<span class="fc" id="L41">            environment.getProperty(</span>
                 &quot;markitect.liquibase.use-thread-local-scope-manager&quot;, Boolean.class))) {
-<span class="fc" id="L44">      log.debug(&quot;Initializing Liquibase scope manager&quot;);</span>
-<span class="fc" id="L45">      ScopeManagerHelper.useThreadLocalScopeManager();</span>
+<span class="fc" id="L43">      log.debug(&quot;Initializing Liquibase scope manager&quot;);</span>
+<span class="fc" id="L44">      ScopeManagerHelper.useThreadLocalScopeManager();</span>
     }
-<span class="fc" id="L47">    return null;</span>
+<span class="fc" id="L46">    return null;</span>
   }
 
   @Override
-  @SuppressWarnings(&quot;NullableProblems&quot;)
   public Object postProcessBeforeInitialization(Object bean, String beanName) {
-<span class="fc bfc" id="L53" title="All 2 branches covered.">    if (bean instanceof SpringLiquibase) {</span>
-<span class="fc" id="L54">      log.debug(&quot;Providing Spring environment to Liquibase&quot;);</span>
-<span class="fc" id="L55">      SpringEnvironmentHolder.setEnvironment(environment);</span>
+<span class="fc bfc" id="L51" title="All 2 branches covered.">    if (bean instanceof SpringLiquibase) {</span>
+<span class="fc" id="L52">      log.debug(&quot;Providing Spring environment to Liquibase&quot;);</span>
+<span class="fc" id="L53">      SpringEnvironmentHolder.setEnvironment(environment);</span>
     }
-<span class="fc" id="L57">    return bean;</span>
+<span class="fc" id="L55">    return bean;</span>
   }
 
   @Override
-  @SuppressWarnings(&quot;NullableProblems&quot;)
   public Object postProcessAfterInitialization(Object bean, String beanName) {
-<span class="fc bfc" id="L63" title="All 2 branches covered.">    if (bean instanceof SpringLiquibase) {</span>
-<span class="fc" id="L64">      SpringEnvironmentHolder.removeEnvironment();</span>
+<span class="fc bfc" id="L60" title="All 2 branches covered.">    if (bean instanceof SpringLiquibase) {</span>
+<span class="fc" id="L61">      SpringEnvironmentHolder.removeEnvironment();</span>
     }
-<span class="fc" id="L66">    return bean;</span>
+<span class="fc" id="L63">    return bean;</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>
