@@ -151,11 +151,9 @@ public class MarkitectLiquibaseAutoConfiguration {
       super(ConfigurationPhase.REGISTER_BEAN);
     }
 
-    @SuppressWarnings("unused")
     @ConditionalOnBean(DataSource.class)
     static final class DataSourceBeanCondition {}
 
-    @SuppressWarnings("unused")
     @ConditionalOnProperty(prefix = "spring.liquibase", name = "url")
     static final class LiquibaseUrlCondition {}
   }
