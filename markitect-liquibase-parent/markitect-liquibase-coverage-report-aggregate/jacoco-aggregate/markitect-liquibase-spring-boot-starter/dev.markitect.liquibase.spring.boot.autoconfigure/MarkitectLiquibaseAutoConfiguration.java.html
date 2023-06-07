@@ -152,10 +152,12 @@ import org.springframework.util.StringUtils;
 <span class="fc" id="L152">    }</span>
 
     @ConditionalOnBean(DataSource.class)
-<span class="fc" id="L155">    static final class DataSourceBeanCondition {}</span>
+    @SuppressWarnings(&quot;unused&quot;)
+    interface DataSourceBeanCondition {}
 
     @ConditionalOnProperty(prefix = &quot;spring.liquibase&quot;, name = &quot;url&quot;)
-<span class="fc" id="L158">    static final class LiquibaseUrlCondition {}</span>
+    @SuppressWarnings(&quot;unused&quot;)
+    interface LiquibaseUrlCondition {}
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>
