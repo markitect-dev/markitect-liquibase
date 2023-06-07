@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
-package dev.markitect.liquibase.database;
+package dev.markitect.liquibase.database.h2;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import dev.markitect.liquibase.database.DatabaseBuilder;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import liquibase.GlobalConfiguration;
@@ -28,31 +29,32 @@ import liquibase.structure.DatabaseObject;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-class MarkitectH2DatabaseTest {
+class MarkitectH2DatabaseTests {
   @ParameterizedTest
   @CsvSource(
       textBlock =
           """
-          preserveSchemaCase | quotingStrategy   | objectName | objectType | expected
-                             |                   |            | Table      |
-                             |                   | Tbl1       | Table      | Tbl1
-                             | QUOTE_ALL_OBJECTS | Tbl1       | Table      | "Tbl1"
-                             |                   | Tbl 1      | Table      | "TBL 1"
-                             | QUOTE_ALL_OBJECTS | Tbl 1      | Table      | "Tbl 1"
-                             |                   | Sch1       | Schema     | Sch1
-                             | QUOTE_ALL_OBJECTS | Sch1       | Schema     | "Sch1"
-          true               |                   | Sch1       | Schema     | "Sch1"
-                             |                   | Sch 1      | Schema     | "SCH 1"
-                             | QUOTE_ALL_OBJECTS | Sch 1      | Schema     | "Sch 1"
-          true               |                   | Sch 1      | Schema     | "Sch 1"
+          preserveSchemaCase | quotingStrategy   | objectName | objectType                      | expected
+                             |                   |            | liquibase.structure.core.Table  |
+                             |                   | Tbl1       | liquibase.structure.core.Table  | Tbl1
+                             | QUOTE_ALL_OBJECTS | Tbl1       | liquibase.structure.core.Table  | "Tbl1"
+                             |                   | Tbl 1      | liquibase.structure.core.Table  | "TBL 1"
+                             | QUOTE_ALL_OBJECTS | Tbl 1      | liquibase.structure.core.Table  | "Tbl 1"
+                             |                   | Sch1       | liquibase.structure.core.Schema | Sch1
+                             | QUOTE_ALL_OBJECTS | Sch1       | liquibase.structure.core.Schema | "Sch1"
+          true               |                   | Sch1       | liquibase.structure.core.Schema | "Sch1"
+                             |                   | Sch 1      | liquibase.structure.core.Schema | "SCH 1"
+                             | QUOTE_ALL_OBJECTS | Sch 1      | liquibase.structure.core.Schema | "Sch 1"
+          true               |                   | Sch 1      | liquibase.structure.core.Schema | "Sch 1"
           """,
       useHeadersInDisplayName = true,
       delimiter = '|')
+  @SuppressWarnings("resource")
   void escapeObjectName(
       Boolean preserveSchemaCase,
       ObjectQuotingStrategy quotingStrategy,
       String objectName,
-      @ToObjectType Class<? extends DatabaseObject> objectType,
+      Class<? extends DatabaseObject> objectType,
       String expected)
       throws Exception {
     // given
@@ -78,26 +80,27 @@ class MarkitectH2DatabaseTest {
   @CsvSource(
       textBlock =
           """
-          preserveSchemaCase | quotingStrategy   | objectName | objectType | expected
-                             |                   |            | Table      |
-                             |                   | Tbl1       | Table      | TBL1
-                             | QUOTE_ALL_OBJECTS | Tbl1       | Table      | Tbl1
-                             |                   | Tbl 1      | Table      | TBL 1
-                             | QUOTE_ALL_OBJECTS | Tbl 1      | Table      | Tbl 1
-                             |                   | Sch1       | Schema     | SCH1
-                             | QUOTE_ALL_OBJECTS | Sch1       | Schema     | Sch1
-          true               |                   | Sch1       | Schema     | Sch1
-                             |                   | Sch 1      | Schema     | SCH 1
-                             | QUOTE_ALL_OBJECTS | Sch 1      | Schema     | Sch 1
-          true               |                   | Sch 1      | Schema     | Sch 1
+          preserveSchemaCase | quotingStrategy   | objectName | objectType                      | expected
+                             |                   |            | liquibase.structure.core.Table  |
+                             |                   | Tbl1       | liquibase.structure.core.Table  | TBL1
+                             | QUOTE_ALL_OBJECTS | Tbl1       | liquibase.structure.core.Table  | Tbl1
+                             |                   | Tbl 1      | liquibase.structure.core.Table  | TBL 1
+                             | QUOTE_ALL_OBJECTS | Tbl 1      | liquibase.structure.core.Table  | Tbl 1
+                             |                   | Sch1       | liquibase.structure.core.Schema | SCH1
+                             | QUOTE_ALL_OBJECTS | Sch1       | liquibase.structure.core.Schema | Sch1
+          true               |                   | Sch1       | liquibase.structure.core.Schema | Sch1
+                             |                   | Sch 1      | liquibase.structure.core.Schema | SCH 1
+                             | QUOTE_ALL_OBJECTS | Sch 1      | liquibase.structure.core.Schema | Sch 1
+          true               |                   | Sch 1      | liquibase.structure.core.Schema | Sch 1
           """,
       useHeadersInDisplayName = true,
       delimiter = '|')
+  @SuppressWarnings("resource")
   void correctObjectName(
       Boolean preserveSchemaCase,
       ObjectQuotingStrategy quotingStrategy,
       String objectName,
-      @ToObjectType Class<? extends DatabaseObject> objectType,
+      Class<? extends DatabaseObject> objectType,
       String expected)
       throws Exception {
     // given

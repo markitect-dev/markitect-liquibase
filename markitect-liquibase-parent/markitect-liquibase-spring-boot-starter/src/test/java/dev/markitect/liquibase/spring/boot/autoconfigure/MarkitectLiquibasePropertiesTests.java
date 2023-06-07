@@ -21,13 +21,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
 
-class MarkitectLiquibasePropertiesTest {
-  @Test
-  void test() {
-    // when
-    var markitectLiquibaseProperties = new MarkitectLiquibaseProperties();
+class MarkitectLiquibasePropertiesTests {
+  private final MarkitectLiquibaseProperties markitectLiquibaseProperties =
+      new MarkitectLiquibaseProperties();
 
-    // then
+  @Test
+  void accessorsShouldReturnDefaults() {
     assertThat(markitectLiquibaseProperties)
         .extracting(
             MarkitectLiquibaseProperties::isOutputDefaultCatalog,
@@ -35,7 +34,10 @@ class MarkitectLiquibasePropertiesTest {
             MarkitectLiquibaseProperties::isUseThreadLocalScopeManager,
             MarkitectLiquibaseProperties::getProperties)
         .containsExactly(false, false, false, Map.of());
+  }
 
+  @Test
+  void mutatorsShouldAffectState() {
     // when
     markitectLiquibaseProperties.setOutputDefaultCatalog(true);
     markitectLiquibaseProperties.setOutputDefaultSchema(true);

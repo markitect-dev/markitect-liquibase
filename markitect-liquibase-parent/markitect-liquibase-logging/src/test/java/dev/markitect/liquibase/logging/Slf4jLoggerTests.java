@@ -26,7 +26,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.slf4j.spi.LocationAwareLogger;
 
 @ExtendWith(MockitoExtension.class)
-class Slf4jLoggerTest {
+class Slf4jLoggerTests {
   @Mock private LocationAwareLogger logger;
 
   @Test
@@ -35,7 +35,7 @@ class Slf4jLoggerTest {
     final String fqcn = Slf4jLogger.class.getName();
     var loggerField = Slf4jLogger.class.getDeclaredField("logger");
     loggerField.setAccessible(true);
-    var slf4jLogger = new Slf4jLogger(Slf4jLoggerTest.class.getName());
+    var slf4jLogger = new Slf4jLogger(Slf4jLoggerTests.class.getName());
     loggerField.set(slf4jLogger, logger);
 
     // when

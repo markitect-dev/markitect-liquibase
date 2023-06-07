@@ -26,7 +26,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-class Log4jLoggerTest {
+class Log4jLoggerTests {
   @Mock private ExtendedLogger logger;
 
   @Test
@@ -35,7 +35,7 @@ class Log4jLoggerTest {
     final String fqcn = Log4jLogger.class.getName();
     var loggerField = Log4jLogger.class.getDeclaredField("logger");
     loggerField.setAccessible(true);
-    var log4jLogger = new Log4jLogger(Log4jLoggerTest.class.getName());
+    var log4jLogger = new Log4jLogger(Log4jLoggerTests.class.getName());
     loggerField.set(log4jLogger, logger);
 
     // when

@@ -76,7 +76,7 @@ class SpringTests {
 
     @Bean
     SpringLiquibase liquibase(DataSource dataSource) {
-      MarkitectSpringLiquibase liquibase = new MarkitectSpringLiquibase();
+      var liquibase = new MarkitectSpringLiquibase();
       liquibase.setDataSource(dataSource);
       liquibase.setChangeLog("db/changelog/db.changelog-master.xml");
       return liquibase;

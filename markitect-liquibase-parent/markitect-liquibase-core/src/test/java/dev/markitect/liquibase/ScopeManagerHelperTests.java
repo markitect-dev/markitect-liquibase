@@ -17,8 +17,6 @@
 package dev.markitect.liquibase;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.mockConstruction;
-import static org.mockito.Mockito.mockStatic;
 
 import java.lang.reflect.Field;
 import liquibase.Scope;
@@ -31,12 +29,13 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
+import org.mockito.Mock;
 import org.mockito.MockedConstruction;
 import org.mockito.MockedStatic;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-class ScopeManagerHelperTest {
+class ScopeManagerHelperTests {
   private static Field initializedField;
 
   @BeforeAll
@@ -46,6 +45,8 @@ class ScopeManagerHelperTest {
   }
 
   private boolean originalInitialized;
+  @Mock private MockedConstruction<ThreadLocalScopeManager> mockedThreadLocalScopeManager;
+  @Mock private MockedStatic<Scope> mockedScope;
   @Captor private ArgumentCaptor<ScopeManager> scopeManagerCaptor;
 
   @BeforeEach
@@ -60,16 +61,14 @@ class ScopeManagerHelperTest {
   }
 
   @Test
+  @SuppressWarnings("DirectInvocationOnMock")
   void useThreadLocalScopeManager() {
-    try (MockedConstruction<ThreadLocalScopeManager> mockedConstruction =
-            mockConstruction(ThreadLocalScopeManager.class);
-        MockedStatic<Scope> mockedStatic = mockStatic(Scope.class)) {
-      ScopeManagerHelper.useThreadLocalScopeManager();
-      ScopeManagerHelper.useThreadLocalScopeManager();
-      assertThat(mockedConstruction.constructed()).hasSize(1);
-      mockedStatic.verify(() -> Scope.setScopeManager(scopeManagerCaptor.capture()));
-      assertThat(scopeManagerCaptor.getAllValues()).isEqualTo(mockedConstruction.constructed());
-      mockedStatic.verifyNoMoreInteractions();
-    }
+    ScopeManagerHelper.useThreadLocalScopeManager();
+    ScopeManagerHelper.useThreadLocalScopeManager();
+    assertThat(mockedThreadLocalScopeManager.constructed()).hasSize(1);
+    mockedScope.verify(() -> Scope.setScopeManager(scopeManagerCaptor.capture()));
+    assertThat(scopeManagerCaptor.getAllValues())
+        .isEqualTo(mockedThreadLocalScopeManager.constructed());
+    mockedScope.verifyNoMoreInteractions();
   }
 }

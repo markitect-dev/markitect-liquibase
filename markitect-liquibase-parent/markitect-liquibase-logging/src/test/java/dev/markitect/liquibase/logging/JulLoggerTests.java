@@ -36,7 +36,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-class JulLoggerTest {
+class JulLoggerTests {
   @Mock private Logger logger;
   @Mock private ResourceBundle rb;
   @Captor private ArgumentCaptor<Level> levelCaptor;
@@ -45,8 +45,8 @@ class JulLoggerTest {
   @Test
   void test() throws Exception {
     // given
-    final String name = JulLoggerTest.class.getName();
-    final String sourceClassName = JulLoggerTest.class.getName();
+    final String name = JulLoggerTests.class.getName();
+    final String sourceClassName = JulLoggerTests.class.getName();
     given(logger.isLoggable(any()))
         .willAnswer(
             invocation -> invocation.<Level>getArgument(0).intValue() >= Level.FINER.intValue());
