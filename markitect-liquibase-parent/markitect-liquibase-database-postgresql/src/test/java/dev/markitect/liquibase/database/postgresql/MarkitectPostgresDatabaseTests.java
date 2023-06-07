@@ -34,7 +34,7 @@ class MarkitectPostgresDatabaseTests {
   @CsvSource(
       textBlock =
           """
-          preserveSchemaCase | quotingStrategy   | objectName | objectType 　　　　　　　　　　　　　| expected
+          preserveSchemaCase | quotingStrategy   | objectName | objectType                      | expected
                              |                   |            | liquibase.structure.core.Table  |
                              |                   | Tbl1       | liquibase.structure.core.Table  | Tbl1
                              | QUOTE_ALL_OBJECTS | Tbl1       | liquibase.structure.core.Table  | "Tbl1"
@@ -80,7 +80,7 @@ class MarkitectPostgresDatabaseTests {
   @CsvSource(
       textBlock =
           """
-          preserveSchemaCase | quotingStrategy   | objectName | objectType　　　　　　　　　　　　　 | expected
+          preserveSchemaCase | quotingStrategy   | objectName | objectType                      | expected
                              |                   |            | liquibase.structure.core.Table  |
                              |                   | Tbl1       | liquibase.structure.core.Table  | tbl1
                              | QUOTE_ALL_OBJECTS | Tbl1       | liquibase.structure.core.Table  | Tbl1
