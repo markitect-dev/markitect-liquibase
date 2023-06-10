@@ -14,8 +14,8 @@
       <validationRegex>8|11|17|20</validationRegex>
     </requiredProperty>
     <requiredProperty key="liquibaseVersion">
-      <defaultValue>4.22.0</defaultValue>
-      <validationRegex>inherit|4.22.0|.+</validationRegex>
+      <defaultValue>4.21.1</defaultValue>
+      <validationRegex>inherit|4.21.1|.+</validationRegex>
     </requiredProperty>
     <requiredProperty key="snakeyamlVersion">
       <defaultValue>2.0</defaultValue>

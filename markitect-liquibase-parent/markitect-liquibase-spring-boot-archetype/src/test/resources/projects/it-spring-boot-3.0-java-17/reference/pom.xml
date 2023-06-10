@@ -20,7 +20,7 @@
 
     <h2.version>2.1.214</h2.version>
     <jooq.version>3.17.13</jooq.version>
-    <liquibase.version>4.22.0</liquibase.version>
+    <liquibase.version>4.21.1</liquibase.version>
     <markitect-liquibase.version>1.0.0-SNAPSHOT</markitect-liquibase.version>
     <snakeyaml.version>1.33</snakeyaml.version>
   </properties>

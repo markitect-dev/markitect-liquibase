@@ -106,7 +106,7 @@
     <junit-jupiter.version>5.9.3</junit-jupiter.version>
     <junit-platform.version>1.9.3</junit-platform.version>
     <jsr305.version>3.0.2</jsr305.version>
-    <liquibase.version>4.22.0</liquibase.version>
+    <liquibase.version>4.21.1</liquibase.version>
     <log4j2.version>2.20.0</log4j2.version>
     <logback.version>1.2.12</logback.version>
     <postgresql.version>42.6.0</postgresql.version>
@@ -581,6 +581,14 @@
                     <ignoreVersion>
                       <type>regex</type>
                       <version>.+-(?:M|RC)\d+\b.*</version>
+                    </ignoreVersion>
+                  </ignoreVersions>
+                </rule>
+                <rule>
+                  <groupId>org.liquibase</groupId>
+                  <ignoreVersions>
+                    <ignoreVersion>
+                      <version>4.22.0</version>
                     </ignoreVersion>
                   </ignoreVersions>
                 </rule>
