@@ -49,7 +49,7 @@ class SpringEnvironmentHolderTests {
 
   @Test
   @SuppressWarnings("DataFlowIssue")
-  void shouldFailToSetNulLEnvironment() {
+  void shouldFailToSetNullEnvironment() {
     // when
     var thrown = catchThrowable(() -> SpringEnvironmentHolder.setEnvironment(null));
 
