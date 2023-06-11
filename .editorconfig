@@ -33,6 +33,8 @@ ij_groovy_packages_to_use_import_on_demand =
 
 [*.xml]
 ij_xml_align_attributes = false
+ij_xml_attribute_wrap = off
 ij_xml_block_comment_at_first_column = false
 ij_xml_keep_blank_lines = 1
 ij_xml_line_comment_at_first_column = false
+ij_xml_text_wrap = off
