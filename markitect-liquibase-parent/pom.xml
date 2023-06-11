@@ -258,6 +258,11 @@
         <version>${hsqldb.version}</version>
       </dependency>
       <dependency>
+        <groupId>org.jooq</groupId>
+        <artifactId>jooq</artifactId>
+        <version>${jooq.version}</version>
+      </dependency>
+      <dependency>
         <groupId>org.junit.jupiter</groupId>
         <artifactId>junit-jupiter</artifactId>
         <version>${junit-jupiter.version}</version>
@@ -380,6 +385,11 @@
       <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-jdbc</artifactId>
+        <version>${spring-boot.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-jooq</artifactId>
         <version>${spring-boot.version}</version>
       </dependency>
       <dependency>

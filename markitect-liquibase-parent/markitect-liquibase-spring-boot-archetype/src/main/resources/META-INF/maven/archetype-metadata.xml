@@ -7,27 +7,27 @@
   <requiredProperties>
     <requiredProperty key="springBootVersion">
       <defaultValue>3.1.0</defaultValue>
-      <validationRegex>2.7.12|3.0.7|3.1.0|.+</validationRegex>
+      <validationRegex>@spring-boot.version@|3.0.7|3.1.0|.+</validationRegex>
     </requiredProperty>
     <requiredProperty key="javaVersion">
       <defaultValue>17</defaultValue>
       <validationRegex>8|11|17|20</validationRegex>
     </requiredProperty>
     <requiredProperty key="liquibaseVersion">
-      <defaultValue>4.21.1</defaultValue>
-      <validationRegex>inherit|4.21.1|.+</validationRegex>
+      <defaultValue>@liquibase.version@</defaultValue>
+      <validationRegex>inherit|@liquibase.version@|.+</validationRegex>
     </requiredProperty>
     <requiredProperty key="snakeyamlVersion">
-      <defaultValue>2.0</defaultValue>
-      <validationRegex>inherit|1.33|2.0|.+</validationRegex>
+      <defaultValue>@snakeyaml.version@</defaultValue>
+      <validationRegex>inherit|1.33|@snakeyaml.version@|.+</validationRegex>
     </requiredProperty>
     <requiredProperty key="h2Version">
-      <defaultValue>2.1.214</defaultValue>
-      <validationRegex>inherit|1.4.200|2.1.214|.+</validationRegex>
+      <defaultValue>@h2.version@</defaultValue>
+      <validationRegex>inherit|1.4.200|@h2.version@|.+</validationRegex>
     </requiredProperty>
     <requiredProperty key="jooqVersion">
-      <defaultValue>3.18.4</defaultValue>
-      <validationRegex>inherit|3.14.16|3.15.12|3.16.19|3.17.13|3.18.4|.+</validationRegex>
+      <defaultValue>@jooq.version@</defaultValue>
+      <validationRegex>inherit|3.14.16|3.15.12|3.16.19|3.17.13|@jooq.version@|.+</validationRegex>
     </requiredProperty>
   </requiredProperties>
   <fileSets>

@@ -36,7 +36,52 @@
   </dependencies>
 
   <build>
+    <resources>
+      <resource>
+        <filtering>true</filtering>
+        <directory>src/main/resources</directory>
+        <includes>
+          <include>archetype-resources/**/pom.xml</include>
+          <include>META-INF/maven/archetype-metadata.xml</include>
+        </includes>
+      </resource>
+      <resource>
+        <directory>src/main/resources</directory>
+        <excludes>
+          <exclude>archetype-resources/**/pom.xml</exclude>
+          <exclude>META-INF/maven/archetype-metadata.xml</exclude>
+        </excludes>
+      </resource>
+    </resources>
+    <testResources>
+      <testResource>
+        <filtering>true</filtering>
+        <directory>src/test/resources</directory>
+        <includes>
+          <include>projects/*/reference/**/pom.xml</include>
+          <include>projects/*/archetype.properties</include>
+        </includes>
+      </testResource>
+      <testResource>
+        <directory>src/test/resources</directory>
+        <excludes>
+          <exclude>projects/*/reference/**/pom.xml</exclude>
+          <exclude>projects/*/archetype.properties</exclude>
+        </excludes>
+      </testResource>
+    </testResources>
     <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>${maven-resources-plugin.version}</version>
+        <configuration>
+          <delimiters>
+            <delimiter>${resource.delimiter}</delimiter>
+          </delimiters>
+          <useDefaultDelimiters>false</useDefaultDelimiters>
+        </configuration>
+      </plugin>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>flatten-maven-plugin</artifactId>

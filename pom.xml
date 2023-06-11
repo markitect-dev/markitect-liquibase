@@ -102,6 +102,7 @@
     <jakarta-xml-bind.version>2.3.3</jakarta-xml-bind.version>
     <javax-activation.version>1.2.0</javax-activation.version>
     <javax-jaxb.version>2.3.1</javax-jaxb.version>
+    <jooq.version>3.18.4</jooq.version>
     <junit.version>4.13.2</junit.version>
     <junit-jupiter.version>5.9.3</junit-jupiter.version>
     <junit-platform.version>1.9.3</junit-platform.version>
@@ -658,6 +659,11 @@
           <groupId>org.jacoco</groupId>
           <artifactId>jacoco-maven-plugin</artifactId>
           <version>${jacoco.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.jooq</groupId>
+          <artifactId>jooq-codegen-maven</artifactId>
+          <version>${jooq.version}</version>
         </plugin>
         <plugin>
           <groupId>org.liquibase</groupId>

@@ -6,7 +6,7 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.7.12</version>
+    <version>@spring-boot.version@</version>
     <relativePath/>
   </parent>
 
@@ -18,10 +18,10 @@
     <java.version>17</java.version>
     <maven.compiler.release>${java.version}</maven.compiler.release>
 
-    <h2.version>2.1.214</h2.version>
+    <h2.version>@h2.version@</h2.version>
     <jooq.version>3.17.13</jooq.version>
-    <liquibase.version>4.21.1</liquibase.version>
-    <markitect-liquibase.version>1.0.0-SNAPSHOT</markitect-liquibase.version>
+    <liquibase.version>@liquibase.version@</liquibase.version>
+    <markitect-liquibase.version>@project.version@</markitect-liquibase.version>
     <snakeyaml.version>1.33</snakeyaml.version>
   </properties>
 

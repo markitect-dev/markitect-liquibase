@@ -44,7 +44,7 @@
 #if($liquibaseVersion != 'inherit')
     <liquibase.version>${liquibaseVersion}</liquibase.version>
 #end
-    <markitect-liquibase.version>1.0.0-SNAPSHOT</markitect-liquibase.version>
+    <markitect-liquibase.version>@project.version@</markitect-liquibase.version>
 #if($snakeyamlVersion != 'inherit')
     <snakeyaml.version>${snakeyamlVersion}</snakeyaml.version>
 #end
