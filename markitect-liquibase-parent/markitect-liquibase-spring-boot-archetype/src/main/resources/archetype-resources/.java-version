@@ -1,6 +1,0 @@
-#set($Integer = 0)
-#set($effectiveJavaVersion = $javaVersion)
-#if($Integer.parseInt($javaVersion) < 17)
-#set($effectiveJavaVersion = '17')
-#end
-${effectiveJavaVersion}
