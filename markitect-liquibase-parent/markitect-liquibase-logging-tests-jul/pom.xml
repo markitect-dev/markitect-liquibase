@@ -6,7 +6,7 @@
   <parent>
     <groupId>dev.markitect.liquibase</groupId>
     <artifactId>markitect-liquibase-parent</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>${revision}${sha1}${changelist}</version>
   </parent>
 
   <artifactId>markitect-liquibase-logging-tests-jul</artifactId>
