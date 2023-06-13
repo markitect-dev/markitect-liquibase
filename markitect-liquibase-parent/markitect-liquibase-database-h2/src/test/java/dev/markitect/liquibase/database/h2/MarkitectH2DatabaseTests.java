@@ -36,10 +36,66 @@ class MarkitectH2DatabaseTests {
           """
           preserveSchemaCase | quotingStrategy   | objectName | objectType                      | expected
                              |                   |            | liquibase.structure.core.Table  |
+                             |                   | TBL1       | liquibase.structure.core.Table  | TBL1
+                             | QUOTE_ALL_OBJECTS | TBL1       | liquibase.structure.core.Table  | TBL1
+                             |                   | Tbl1       | liquibase.structure.core.Table  | TBL1
+                             | QUOTE_ALL_OBJECTS | Tbl1       | liquibase.structure.core.Table  | Tbl1
+                             |                   | Tbl 1      | liquibase.structure.core.Table  | TBL 1
+                             | QUOTE_ALL_OBJECTS | Tbl 1      | liquibase.structure.core.Table  | Tbl 1
+                             |                   | SCH1       | liquibase.structure.core.Schema | SCH1
+                             | QUOTE_ALL_OBJECTS | SCH1       | liquibase.structure.core.Schema | SCH1
+          true               |                   | SCH1       | liquibase.structure.core.Schema | SCH1
+                             |                   | Sch1       | liquibase.structure.core.Schema | SCH1
+                             | QUOTE_ALL_OBJECTS | Sch1       | liquibase.structure.core.Schema | Sch1
+          true               |                   | Sch1       | liquibase.structure.core.Schema | Sch1
+                             |                   | Sch 1      | liquibase.structure.core.Schema | SCH 1
+                             | QUOTE_ALL_OBJECTS | Sch 1      | liquibase.structure.core.Schema | Sch 1
+          true               |                   | Sch 1      | liquibase.structure.core.Schema | Sch 1
+          """,
+      useHeadersInDisplayName = true,
+      delimiter = '|')
+  void correctObjectName(
+      Boolean preserveSchemaCase,
+      ObjectQuotingStrategy quotingStrategy,
+      String objectName,
+      Class<? extends DatabaseObject> objectType,
+      String expected)
+      throws Exception {
+    // given
+    var scopeValues = new LinkedHashMap<String, Object>();
+    if (preserveSchemaCase != null) {
+      scopeValues.put(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getKey(), preserveSchemaCase);
+    }
+    try (var database =
+        DatabaseBuilder.of(MarkitectH2Database::new)
+            .setResourceAccessor(new ClassLoaderResourceAccessor())
+            .setObjectQuotingStrategy(quotingStrategy)
+            .build()) {
+
+      // when
+      String actual =
+          Scope.child(scopeValues, () -> database.correctObjectName(objectName, objectType));
+
+      // then
+      assertThat(actual).isEqualTo(expected);
+    }
+  }
+
+  @ParameterizedTest
+  @CsvSource(
+      textBlock =
+          """
+          preserveSchemaCase | quotingStrategy   | objectName | objectType                      | expected
+                             |                   |            | liquibase.structure.core.Table  |
+                             |                   | TBL1       | liquibase.structure.core.Table  | TBL1
+                             | QUOTE_ALL_OBJECTS | TBL1       | liquibase.structure.core.Table  | "TBL1"
                              |                   | Tbl1       | liquibase.structure.core.Table  | Tbl1
                              | QUOTE_ALL_OBJECTS | Tbl1       | liquibase.structure.core.Table  | "Tbl1"
                              |                   | Tbl 1      | liquibase.structure.core.Table  | "TBL 1"
                              | QUOTE_ALL_OBJECTS | Tbl 1      | liquibase.structure.core.Table  | "Tbl 1"
+                             |                   | SCH1       | liquibase.structure.core.Schema | SCH1
+                             | QUOTE_ALL_OBJECTS | SCH1       | liquibase.structure.core.Schema | "SCH1"
+          true               |                   | SCH1       | liquibase.structure.core.Schema | SCH1
                              |                   | Sch1       | liquibase.structure.core.Schema | Sch1
                              | QUOTE_ALL_OBJECTS | Sch1       | liquibase.structure.core.Schema | "Sch1"
           true               |                   | Sch1       | liquibase.structure.core.Schema | "Sch1"
@@ -49,7 +105,6 @@ class MarkitectH2DatabaseTests {
           """,
       useHeadersInDisplayName = true,
       delimiter = '|')
-  @SuppressWarnings("resource")
   void escapeObjectName(
       Boolean preserveSchemaCase,
       ObjectQuotingStrategy quotingStrategy,
@@ -62,63 +117,54 @@ class MarkitectH2DatabaseTests {
     if (preserveSchemaCase != null) {
       scopeValues.put(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getKey(), preserveSchemaCase);
     }
-    var database =
+    try (var database =
         DatabaseBuilder.of(MarkitectH2Database::new)
             .setResourceAccessor(new ClassLoaderResourceAccessor())
             .setObjectQuotingStrategy(quotingStrategy)
-            .build();
+            .build()) {
 
-    // when
-    String actual =
-        Scope.child(scopeValues, () -> database.escapeObjectName(objectName, objectType));
+      // when
+      String actual =
+          Scope.child(scopeValues, () -> database.escapeObjectName(objectName, objectType));
 
-    // then
-    assertThat(actual).isEqualTo(expected);
+      // then
+      assertThat(actual).isEqualTo(expected);
+    }
   }
 
   @ParameterizedTest
   @CsvSource(
       textBlock =
           """
-          preserveSchemaCase | quotingStrategy   | objectName | objectType                      | expected
-                             |                   |            | liquibase.structure.core.Table  |
-                             |                   | Tbl1       | liquibase.structure.core.Table  | TBL1
-                             | QUOTE_ALL_OBJECTS | Tbl1       | liquibase.structure.core.Table  | Tbl1
-                             |                   | Tbl 1      | liquibase.structure.core.Table  | TBL 1
-                             | QUOTE_ALL_OBJECTS | Tbl 1      | liquibase.structure.core.Table  | Tbl 1
-                             |                   | Sch1       | liquibase.structure.core.Schema | SCH1
-                             | QUOTE_ALL_OBJECTS | Sch1       | liquibase.structure.core.Schema | Sch1
-          true               |                   | Sch1       | liquibase.structure.core.Schema | Sch1
-                             |                   | Sch 1      | liquibase.structure.core.Schema | SCH 1
-                             | QUOTE_ALL_OBJECTS | Sch 1      | liquibase.structure.core.Schema | Sch 1
-          true               |                   | Sch 1      | liquibase.structure.core.Schema | Sch 1
+          outputDefaultSchema | catalogName | schemaName | tableName | expected
+                              |             |            | Tbl1      | PUBLIC.Tbl1
+                              |             | PUBLIC     | Tbl1      | PUBLIC.Tbl1
+          false               |             |            | Tbl1      | Tbl1
+          false               |             | PUBLIC     | Tbl1      | Tbl1
           """,
       useHeadersInDisplayName = true,
       delimiter = '|')
-  @SuppressWarnings("resource")
-  void correctObjectName(
-      Boolean preserveSchemaCase,
-      ObjectQuotingStrategy quotingStrategy,
-      String objectName,
-      Class<? extends DatabaseObject> objectType,
+  void escapeTableName(
+      Boolean outputDefaultSchema,
+      String catalogName,
+      String schemaName,
+      String tableName,
       String expected)
       throws Exception {
     // given
-    Map<String, Object> scopeValues = new LinkedHashMap<>();
-    if (preserveSchemaCase != null) {
-      scopeValues.put(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getKey(), preserveSchemaCase);
-    }
-    var database =
+    try (var database =
         DatabaseBuilder.of(MarkitectH2Database::new)
             .setResourceAccessor(new ClassLoaderResourceAccessor())
-            .setObjectQuotingStrategy(quotingStrategy)
-            .build();
+            .setOutputDefaultSchema(outputDefaultSchema)
+            .useOfflineConnection()
+            .build()) {
+      assertThat(database.getDefaultSchemaName()).isEqualTo("PUBLIC");
 
-    // when
-    String actual =
-        Scope.child(scopeValues, () -> database.correctObjectName(objectName, objectType));
+      // when
+      String actual = database.escapeTableName(catalogName, schemaName, tableName);
 
-    // then
-    assertThat(actual).isEqualTo(expected);
+      // then
+      assertThat(actual).isEqualTo(expected);
+    }
   }
 }
