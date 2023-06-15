@@ -36,8 +36,9 @@ import org.junitpioneer.jupiter.json.Property;
 
 class DatabaseBuilderTests {
   @ParameterizedTest
-  @JsonSource({
-    """
+  @JsonSource(
+      """
+      [
         {
           databaseClass: 'liquibase.database.core.H2Database',
           useOfflineConnection: false,
@@ -46,9 +47,7 @@ class DatabaseBuilderTests {
           productName: 'H2',
           majorVersion: 999,
           minorVersion: -1
-        }
-        """,
-    """
+        },
         {
           databaseClass: 'liquibase.database.core.H2Database',
           useOfflineConnection: true,
@@ -58,9 +57,7 @@ class DatabaseBuilderTests {
           majorVersion: 999,
           minorVersion: 999,
           schemaName: 'PUBLIC'
-        }
-        """,
-    """
+        },
         {
           databaseClass: 'liquibase.database.core.H2Database',
           useOfflineConnection: true,
@@ -71,9 +68,7 @@ class DatabaseBuilderTests {
           majorVersion: 1,
           minorVersion: 4,
           schemaName: 'PUBLIC'
-        }
-        """,
-    """
+        },
         {
           databaseClass: 'liquibase.database.core.H2Database',
           outputDefaultCatalog: false,
@@ -84,9 +79,7 @@ class DatabaseBuilderTests {
           productName: 'H2',
           majorVersion: 999,
           minorVersion: -1
-        }
-        """,
-    """
+        },
         {
           databaseClass: 'liquibase.database.core.H2Database',
           quotingStrategy: 'QUOTE_ALL_OBJECTS',
@@ -98,9 +91,7 @@ class DatabaseBuilderTests {
           productName: 'H2',
           majorVersion: 999,
           minorVersion: -1
-        }
-        """,
-    """
+        },
         {
           databaseClass: 'liquibase.database.core.MSSQLDatabase',
           useOfflineConnection: true,
@@ -113,9 +104,7 @@ class DatabaseBuilderTests {
           minorVersion: 999,
           catalogName: 'Cat1',
           schemaName: 'Sch1'
-        }
-        """,
-    """
+        },
         {
           databaseClass: 'liquibase.database.core.PostgresDatabase',
           useOfflineConnection: false,
@@ -124,9 +113,7 @@ class DatabaseBuilderTests {
           productName: 'PostgreSQL',
           majorVersion: 999,
           minorVersion: -1
-        }
-        """,
-    """
+        },
         {
           databaseClass: 'liquibase.database.core.PostgresDatabase',
           useOfflineConnection: true,
@@ -135,9 +122,7 @@ class DatabaseBuilderTests {
           productName: 'Offline postgresql',
           majorVersion: 999,
           minorVersion: 999
-        }
-        """,
-    """
+        },
         {
           databaseClass: 'liquibase.database.core.PostgresDatabase',
           useOfflineConnection: true,
@@ -151,8 +136,8 @@ class DatabaseBuilderTests {
           catalogName: 'Cat1',
           schemaName: 'Sch1'
         }
-        """,
-  })
+      ]
+      """)
   void build(
       @Property("databaseClass") Class<? extends Database> databaseClass,
       @Property("quotingStrategy") ObjectQuotingStrategy quotingStrategy,

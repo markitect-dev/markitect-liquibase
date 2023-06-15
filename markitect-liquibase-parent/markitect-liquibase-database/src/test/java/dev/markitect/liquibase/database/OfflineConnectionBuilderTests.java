@@ -32,17 +32,16 @@ import org.junitpioneer.jupiter.json.Property;
 
 class OfflineConnectionBuilderTests {
   @ParameterizedTest
-  @JsonSource({
-    """
+  @JsonSource(
+      """
+      [
         {
           shortName: 'h2',
           databaseParams: {},
           expectedProductName: 'Offline h2',
           majorVersion: 999,
           minorVersion: 999
-        }
-        """,
-    """
+        },
         {
           shortName: 'h2',
           version: '1.4.200',
@@ -51,18 +50,14 @@ class OfflineConnectionBuilderTests {
           productVersion: '1.4.200',
           majorVersion: 1,
           minorVersion: 4
-        }
-        """,
-    """
+        },
         {
           shortName: 'mssql',
           databaseParams: {},
           expectedProductName: 'Offline mssql',
           majorVersion: 999,
           minorVersion: 999
-        }
-        """,
-    """
+        },
         {
           shortName: 'mssql',
           snapshot: 'snapshots/snapshot-mssql.json',
@@ -73,9 +68,7 @@ class OfflineConnectionBuilderTests {
           minorVersion: 999,
           expectedCatalog: 'AdventureWorks2019',
           expectedSchema: 'dbo'
-        }
-        """,
-    """
+        },
         {
           shortName: 'mssql',
           productName: 'Microsoft SQL Server',
@@ -90,9 +83,7 @@ class OfflineConnectionBuilderTests {
           minorVersion: 0,
           expectedCatalog: 'Cat1',
           expectedSchema: 'Sch1'
-        }
-        """,
-    """
+        },
         {
           shortName: 'mssql',
           databaseParams: {
@@ -101,9 +92,7 @@ class OfflineConnectionBuilderTests {
           expectedProductName: 'Offline mssql',
           majorVersion: 999,
           minorVersion: 999
-        }
-        """,
-    """
+        },
         {
           shortName: 'postgresql',
           databaseParams: {},
@@ -111,8 +100,8 @@ class OfflineConnectionBuilderTests {
           majorVersion: 999,
           minorVersion: 999
         }
-        """,
-  })
+      ]
+      """)
   void build(
       @Property("shortName") String shortName,
       @Property("productName") String productName,
