@@ -10,7 +10,7 @@
     <relativePath>../markitect-liquibase-parent/pom.xml</relativePath>
   </parent>
 
-  <artifactId>markitect-liquibase-coverage-report-aggregate</artifactId>
+  <artifactId>markitect-liquibase-aggregate-coverage-report</artifactId>
 
   <name>${project.artifactId}</name>
   <description>Markitect Liquibase Aggregate Coverage Report</description>
