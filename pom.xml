@@ -146,7 +146,7 @@
     <snakeyaml.version>2.0</snakeyaml.version>
     <spotless.version>2.37.0</spotless.version>
     <spring-boot.version>2.7.12</spring-boot.version>
-    <spring-framework.version>5.3.27</spring-framework.version>
+    <spring-framework.version>5.3.28</spring-framework.version>
     <testcontainers.version>1.18.3</testcontainers.version>
     <versions-maven-plugin.version>2.16.0</versions-maven-plugin.version>
   </properties>
