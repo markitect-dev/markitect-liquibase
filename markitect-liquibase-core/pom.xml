@@ -7,16 +7,24 @@
     <groupId>dev.markitect.liquibase</groupId>
     <artifactId>markitect-liquibase-parent</artifactId>
     <version>${revision}${sha1}${changelist}</version>
+    <relativePath>../markitect-liquibase-parent/pom.xml</relativePath>
   </parent>
 
-  <artifactId>markitect-liquibase-spring</artifactId>
+  <artifactId>markitect-liquibase-core</artifactId>
 
   <name>${project.artifactId}</name>
-  <description>Markitect Liquibase Spring Integration</description>
+  <description>Markitect Liquibase Core Module</description>
   <url>https://github.com/markitect-dev/markitect-liquibase</url>
 
+  <distributionManagement>
+    <site>
+      <id>github</id>
+      <url>scm:git:https://github.com/markitect-dev/markitect-liquibase.git/${project.artifactId}</url>
+    </site>
+  </distributionManagement>
+
   <properties>
-    <automatic.module.name>dev.markitect.liquibase.spring</automatic.module.name>
+    <automatic.module.name>dev.markitect.liquibase.core</automatic.module.name>
     <maven.compiler.release>8</maven.compiler.release>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
@@ -24,36 +32,33 @@
 
   <dependencies>
     <dependency>
-      <groupId>com.google.code.findbugs</groupId>
-      <artifactId>jsr305</artifactId>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
       <groupId>com.google.errorprone</groupId>
       <artifactId>error_prone_annotations</artifactId>
       <optional>true</optional>
     </dependency>
     <dependency>
-      <groupId>dev.markitect.liquibase</groupId>
-      <artifactId>markitect-liquibase-core</artifactId>
+      <groupId>org.checkerframework</groupId>
+      <artifactId>checker-qual</artifactId>
+      <optional>true</optional>
     </dependency>
     <dependency>
-      <groupId>dev.markitect.liquibase</groupId>
-      <artifactId>markitect-liquibase-logging</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-context</artifactId>
+      <groupId>org.liquibase</groupId>
+      <artifactId>liquibase-core</artifactId>
     </dependency>
 
     <dependency>
-      <groupId>com.h2database</groupId>
-      <artifactId>h2</artifactId>
+      <groupId>org.assertj</groupId>
+      <artifactId>assertj-core</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>dev.markitect.liquibase</groupId>
-      <artifactId>markitect-liquibase-database-h2</artifactId>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -62,13 +67,8 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-jdbc</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-test</artifactId>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-junit-jupiter</artifactId>
       <scope>test</scope>
     </dependency>
   </dependencies>

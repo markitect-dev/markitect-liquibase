@@ -34,7 +34,21 @@
 
   <modules>
     <module>markitect-liquibase-bom</module>
+    <module>markitect-liquibase-core</module>
+    <module>markitect-liquibase-coverage-report-aggregate</module>
+    <module>markitect-liquibase-database</module>
+    <module>markitect-liquibase-database-h2</module>
+    <module>markitect-liquibase-database-hsqldb</module>
+    <module>markitect-liquibase-database-mssql</module>
+    <module>markitect-liquibase-database-postgresql</module>
+    <module>markitect-liquibase-logging</module>
+    <module>markitect-liquibase-logging-tests-jul</module>
+    <module>markitect-liquibase-logging-tests-log4j</module>
+    <module>markitect-liquibase-logging-tests-slf4j</module>
     <module>markitect-liquibase-parent</module>
+    <module>markitect-liquibase-spring</module>
+    <module>markitect-liquibase-spring-boot-archetype</module>
+    <module>markitect-liquibase-spring-boot-starter</module>
   </modules>
 
   <scm>
@@ -80,7 +94,7 @@
     <sha1/>
     <skipNexusStagingDeployMojo>${maven.deploy.skip}</skipNexusStagingDeployMojo>
     <!--suppress UnresolvedMavenProperty -->
-    <sonar.coverage.jacoco.xmlReportPaths>${maven.multiModuleProjectDirectory}/markitect-liquibase-parent/markitect-liquibase-coverage-report-aggregate/target/site/jacoco-aggregate/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+    <sonar.coverage.jacoco.xmlReportPaths>${maven.multiModuleProjectDirectory}/markitect-liquibase-coverage-report-aggregate/target/site/jacoco-aggregate/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
 
     <apiguardian.version>1.1.2</apiguardian.version>
     <assertj.version>3.24.2</assertj.version>

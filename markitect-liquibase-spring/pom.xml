@@ -7,16 +7,24 @@
     <groupId>dev.markitect.liquibase</groupId>
     <artifactId>markitect-liquibase-parent</artifactId>
     <version>${revision}${sha1}${changelist}</version>
+    <relativePath>../markitect-liquibase-parent/pom.xml</relativePath>
   </parent>
 
-  <artifactId>markitect-liquibase-spring-boot-starter</artifactId>
+  <artifactId>markitect-liquibase-spring</artifactId>
 
   <name>${project.artifactId}</name>
-  <description>Markitect Liquibase Spring Boot Starter</description>
+  <description>Markitect Liquibase Spring Integration</description>
   <url>https://github.com/markitect-dev/markitect-liquibase</url>
 
+  <distributionManagement>
+    <site>
+      <id>github</id>
+      <url>scm:git:https://github.com/markitect-dev/markitect-liquibase.git/${project.artifactId}</url>
+    </site>
+  </distributionManagement>
+
   <properties>
-    <automatic.module.name>dev.markitect.liquibase.spring.boot.starter</automatic.module.name>
+    <automatic.module.name>dev.markitect.liquibase.spring</automatic.module.name>
     <maven.compiler.release>8</maven.compiler.release>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
@@ -35,15 +43,15 @@
     </dependency>
     <dependency>
       <groupId>dev.markitect.liquibase</groupId>
-      <artifactId>markitect-liquibase-spring</artifactId>
+      <artifactId>markitect-liquibase-core</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter</artifactId>
+      <groupId>dev.markitect.liquibase</groupId>
+      <artifactId>markitect-liquibase-logging</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-jdbc</artifactId>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
     </dependency>
 
     <dependency>
@@ -54,6 +62,16 @@
     <dependency>
       <groupId>dev.markitect.liquibase</groupId>
       <artifactId>markitect-liquibase-database-h2</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-inline</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-jdbc</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>

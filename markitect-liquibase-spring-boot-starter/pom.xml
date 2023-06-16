@@ -7,16 +7,24 @@
     <groupId>dev.markitect.liquibase</groupId>
     <artifactId>markitect-liquibase-parent</artifactId>
     <version>${revision}${sha1}${changelist}</version>
+    <relativePath>../markitect-liquibase-parent/pom.xml</relativePath>
   </parent>
 
-  <artifactId>markitect-liquibase-logging</artifactId>
+  <artifactId>markitect-liquibase-spring-boot-starter</artifactId>
 
   <name>${project.artifactId}</name>
-  <description>Markitect Liquibase Logging Extension</description>
+  <description>Markitect Liquibase Spring Boot Starter</description>
   <url>https://github.com/markitect-dev/markitect-liquibase</url>
 
+  <distributionManagement>
+    <site>
+      <id>github</id>
+      <url>scm:git:https://github.com/markitect-dev/markitect-liquibase.git/${project.artifactId}</url>
+    </site>
+  </distributionManagement>
+
   <properties>
-    <automatic.module.name>dev.markitect.liquibase.logging</automatic.module.name>
+    <automatic.module.name>dev.markitect.liquibase.spring.boot.starter</automatic.module.name>
     <maven.compiler.release>8</maven.compiler.release>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
@@ -24,8 +32,9 @@
 
   <dependencies>
     <dependency>
-      <groupId>dev.markitect.liquibase</groupId>
-      <artifactId>markitect-liquibase-core</artifactId>
+      <groupId>com.google.code.findbugs</groupId>
+      <artifactId>jsr305</artifactId>
+      <optional>true</optional>
     </dependency>
     <dependency>
       <groupId>com.google.errorprone</groupId>
@@ -33,21 +42,28 @@
       <optional>true</optional>
     </dependency>
     <dependency>
-      <groupId>org.apache.logging.log4j</groupId>
-      <artifactId>log4j-api</artifactId>
-      <optional>true</optional>
+      <groupId>dev.markitect.liquibase</groupId>
+      <artifactId>markitect-liquibase-spring</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.checkerframework</groupId>
-      <artifactId>checker-qual</artifactId>
-      <optional>true</optional>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-api</artifactId>
-      <optional>true</optional>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-jdbc</artifactId>
     </dependency>
 
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>dev.markitect.liquibase</groupId>
+      <artifactId>markitect-liquibase-database-h2</artifactId>
+      <scope>test</scope>
+    </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>

@@ -7,13 +7,21 @@
     <groupId>dev.markitect.liquibase</groupId>
     <artifactId>markitect-liquibase-parent</artifactId>
     <version>${revision}${sha1}${changelist}</version>
+    <relativePath>../markitect-liquibase-parent/pom.xml</relativePath>
   </parent>
 
-  <artifactId>markitect-liquibase-logging-tests-log4j</artifactId>
+  <artifactId>markitect-liquibase-logging-tests-jul</artifactId>
 
   <name>${project.artifactId}</name>
-  <description>Markitect Liquibase Logging Extension Log4j Tests</description>
+  <description>Markitect Liquibase Logging Extension JUL Tests</description>
   <url>https://github.com/markitect-dev/markitect-liquibase</url>
+
+  <distributionManagement>
+    <site>
+      <id>github</id>
+      <url>scm:git:https://github.com/markitect-dev/markitect-liquibase.git/${project.artifactId}</url>
+    </site>
+  </distributionManagement>
 
   <dependencyManagement>
     <dependencies>
@@ -34,11 +42,6 @@
     <dependency>
       <groupId>dev.markitect.liquibase</groupId>
       <artifactId>markitect-liquibase-logging</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-log4j2</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>

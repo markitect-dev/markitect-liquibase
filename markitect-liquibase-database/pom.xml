@@ -7,16 +7,24 @@
     <groupId>dev.markitect.liquibase</groupId>
     <artifactId>markitect-liquibase-parent</artifactId>
     <version>${revision}${sha1}${changelist}</version>
+    <relativePath>../markitect-liquibase-parent/pom.xml</relativePath>
   </parent>
 
-  <artifactId>markitect-liquibase-database-mssql</artifactId>
+  <artifactId>markitect-liquibase-database</artifactId>
 
   <name>${project.artifactId}</name>
-  <description>Markitect Liquibase Microsoft SQL Server Database Extension</description>
+  <description>Markitect Liquibase Database Module</description>
   <url>https://github.com/markitect-dev/markitect-liquibase</url>
 
+  <distributionManagement>
+    <site>
+      <id>github</id>
+      <url>scm:git:https://github.com/markitect-dev/markitect-liquibase.git/${project.artifactId}</url>
+    </site>
+  </distributionManagement>
+
   <properties>
-    <automatic.module.name>dev.markitect.liquibase.database.mssql</automatic.module.name>
+    <automatic.module.name>dev.markitect.liquibase.database</automatic.module.name>
     <maven.compiler.release>8</maven.compiler.release>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
@@ -30,7 +38,7 @@
     </dependency>
     <dependency>
       <groupId>dev.markitect.liquibase</groupId>
-      <artifactId>markitect-liquibase-database</artifactId>
+      <artifactId>markitect-liquibase-core</artifactId>
     </dependency>
     <dependency>
       <groupId>org.checkerframework</groupId>
@@ -38,6 +46,11 @@
       <optional>true</optional>
     </dependency>
 
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <scope>test</scope>
+    </dependency>
     <dependency>
       <groupId>dev.markitect.liquibase</groupId>
       <artifactId>markitect-liquibase-logging</artifactId>
@@ -51,6 +64,11 @@
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit-pioneer</groupId>
+      <artifactId>junit-pioneer</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>

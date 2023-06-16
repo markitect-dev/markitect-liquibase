@@ -7,16 +7,24 @@
     <groupId>dev.markitect.liquibase</groupId>
     <artifactId>markitect-liquibase-parent</artifactId>
     <version>${revision}${sha1}${changelist}</version>
+    <relativePath>../markitect-liquibase-parent/pom.xml</relativePath>
   </parent>
 
-  <artifactId>markitect-liquibase-core</artifactId>
+  <artifactId>markitect-liquibase-database-mssql</artifactId>
 
   <name>${project.artifactId}</name>
-  <description>Markitect Liquibase Core Module</description>
+  <description>Markitect Liquibase Microsoft SQL Server Database Extension</description>
   <url>https://github.com/markitect-dev/markitect-liquibase</url>
 
+  <distributionManagement>
+    <site>
+      <id>github</id>
+      <url>scm:git:https://github.com/markitect-dev/markitect-liquibase.git/${project.artifactId}</url>
+    </site>
+  </distributionManagement>
+
   <properties>
-    <automatic.module.name>dev.markitect.liquibase.core</automatic.module.name>
+    <automatic.module.name>dev.markitect.liquibase.database.mssql</automatic.module.name>
     <maven.compiler.release>8</maven.compiler.release>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
@@ -29,15 +37,20 @@
       <optional>true</optional>
     </dependency>
     <dependency>
+      <groupId>dev.markitect.liquibase</groupId>
+      <artifactId>markitect-liquibase-database</artifactId>
+    </dependency>
+    <dependency>
       <groupId>org.checkerframework</groupId>
       <artifactId>checker-qual</artifactId>
       <optional>true</optional>
     </dependency>
-    <dependency>
-      <groupId>org.liquibase</groupId>
-      <artifactId>liquibase-core</artifactId>
-    </dependency>
 
+    <dependency>
+      <groupId>dev.markitect.liquibase</groupId>
+      <artifactId>markitect-liquibase-logging</artifactId>
+      <scope>test</scope>
+    </dependency>
     <dependency>
       <groupId>org.assertj</groupId>
       <artifactId>assertj-core</artifactId>
@@ -49,18 +62,8 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>org.mockito</groupId>
-      <artifactId>mockito-core</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.mockito</groupId>
-      <artifactId>mockito-inline</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.mockito</groupId>
-      <artifactId>mockito-junit-jupiter</artifactId>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-logging</artifactId>
       <scope>test</scope>
     </dependency>
   </dependencies>
