@@ -28,7 +28,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junitpioneer.jupiter.json.JsonSource;
-import org.junitpioneer.jupiter.json.Property;
 
 class OfflineConnectionBuilderTests {
   @ParameterizedTest
@@ -103,19 +102,19 @@ class OfflineConnectionBuilderTests {
       ]
       """)
   void build(
-      @Property("shortName") String shortName,
-      @Property("productName") String productName,
-      @Property("version") String version,
-      @Property("snapshot") String snapshot,
-      @Property("catalog") String catalog,
-      @Property("schema") String schema,
-      @Property("databaseParams") Map<String, String> databaseParams,
-      @Property("expectedProductName") String expectedProductName,
-      @Property("productVersion") String productVersion,
-      @Property("majorVersion") int majorVersion,
-      @Property("minorVersion") int minorVersion,
-      @Property("expectedCatalog") String expectedCatalog,
-      @Property("expectedSchema") String expectedSchema)
+      String shortName,
+      String productName,
+      String version,
+      String snapshot,
+      String catalog,
+      String schema,
+      Map<String, String> databaseParams,
+      String expectedProductName,
+      String productVersion,
+      int majorVersion,
+      int minorVersion,
+      String expectedCatalog,
+      String expectedSchema)
       throws Exception {
     // given
     var builder =

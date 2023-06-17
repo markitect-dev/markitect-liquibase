@@ -32,7 +32,6 @@ import liquibase.resource.ClassLoaderResourceAccessor;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junitpioneer.jupiter.json.JsonSource;
-import org.junitpioneer.jupiter.json.Property;
 
 class DatabaseBuilderTests {
   @ParameterizedTest
@@ -139,21 +138,21 @@ class DatabaseBuilderTests {
       ]
       """)
   void build(
-      @Property("databaseClass") Class<? extends Database> databaseClass,
-      @Property("quotingStrategy") ObjectQuotingStrategy quotingStrategy,
-      @Property("outputDefaultCatalog") Boolean outputDefaultCatalog,
-      @Property("outputDefaultSchema") Boolean outputDefaultSchema,
-      @Property("useOfflineConnection") boolean useOfflineConnection,
-      @Property("version") String version,
-      @Property("catalog") String catalog,
-      @Property("schema") String schema,
-      @Property("databaseParams") Map<String, String> databaseParams,
-      @Property("shortName") String shortName,
-      @Property("productName") String productName,
-      @Property("majorVersion") int majorVersion,
-      @Property("minorVersion") int minorVersion,
-      @Property("catalogName") String catalogName,
-      @Property("schemaName") String schemaName)
+      Class<? extends Database> databaseClass,
+      ObjectQuotingStrategy quotingStrategy,
+      Boolean outputDefaultCatalog,
+      Boolean outputDefaultSchema,
+      boolean useOfflineConnection,
+      String version,
+      String catalog,
+      String schema,
+      Map<String, String> databaseParams,
+      String shortName,
+      String productName,
+      int majorVersion,
+      int minorVersion,
+      String catalogName,
+      String schemaName)
       throws Exception {
     // given
     var builder =
