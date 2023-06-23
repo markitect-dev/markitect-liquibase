@@ -18,11 +18,11 @@
     <java.version>1.8</java.version>
     <maven.compiler.release>8</maven.compiler.release>
 
-    <h2.version>1.4.200</h2.version>
-    <jooq.version>3.14.16</jooq.version>
+    <h2.version>@h2-1.4.version@</h2.version>
+    <jooq.version>@jooq-3.14.version@</jooq.version>
     <liquibase.version>@liquibase.version@</liquibase.version>
     <markitect-liquibase.version>@project.version@</markitect-liquibase.version>
-    <snakeyaml.version>1.33</snakeyaml.version>
+    <snakeyaml.version>@snakeyaml-1.version@</snakeyaml.version>
   </properties>
 
   <dependencyManagement>
