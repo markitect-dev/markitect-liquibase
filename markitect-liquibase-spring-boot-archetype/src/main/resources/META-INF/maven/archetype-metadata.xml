@@ -49,12 +49,5 @@
         <include>**/*.java</include>
       </includes>
     </fileSet>
-    <fileSet filtered="true">
-      <directory/>
-      <includes>
-        <include>.java-version</include>
-        <include>.sdkmanrc</include>
-      </includes>
-    </fileSet>
   </fileSets>
 </archetype-descriptor>
