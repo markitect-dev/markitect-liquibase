@@ -41,10 +41,8 @@ class AutoConfigurationTests {
               AutoConfigurations.of(
                   LiquibaseAutoConfiguration.class, MarkitectLiquibaseAutoConfiguration.class))
           .withPropertyValues(
-              "markitect.liquibase.output-default-schema=false",
               "markitect.liquibase.use-thread-local-scope-manager=true",
-              "markitect.liquibase.properties.liquibase.sql.logLevel=info",
-              "spring.datasource.generate-unique-name=true");
+              "markitect.liquibase.properties.liquibase.sql.logLevel=info");
 
   @Test
   void backsOffWithNoDataSourceBean() {
