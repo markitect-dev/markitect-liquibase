@@ -560,6 +560,19 @@
                   </ignoreVersions>
                 </rule>
                 <rule>
+                  <groupId>org.apache.logging.log4j</groupId>
+                  <ignoreVersions>
+                    <ignoreVersion>
+                      <type>regex</type>
+                      <version>(?!2\.).+</version>
+                    </ignoreVersion>
+                    <ignoreVersion>
+                      <type>regex</type>
+                      <version>.+-(?:alpha|beta)\d+\b.*</version>
+                    </ignoreVersion>
+                  </ignoreVersions>
+                </rule>
+                <rule>
                   <groupId>org.junit.jupiter</groupId>
                   <ignoreVersions>
                     <ignoreVersion>
