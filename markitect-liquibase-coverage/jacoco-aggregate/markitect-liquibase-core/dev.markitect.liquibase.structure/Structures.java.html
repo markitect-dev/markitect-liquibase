@@ -16,7 +16,7 @@
 
 package dev.markitect.liquibase.structure;
 
-import static dev.markitect.liquibase.util.Preconditions.checkNotNull;
+import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
 
 import liquibase.structure.DatabaseObject;
 import liquibase.structure.core.Catalog;

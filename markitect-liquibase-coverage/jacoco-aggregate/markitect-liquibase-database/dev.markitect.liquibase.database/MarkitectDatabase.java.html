@@ -16,17 +16,17 @@
 
 package dev.markitect.liquibase.database;
 
+import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
 import static dev.markitect.liquibase.structure.Structures.isCatalogOrSchemaType;
-import static dev.markitect.liquibase.util.Preconditions.checkNotNull;
 import static dev.markitect.liquibase.util.Strings.isIllegalIdentifier;
 import static liquibase.util.BooleanUtil.isTrue;
 
+import dev.markitect.liquibase.base.Nullable;
 import java.util.Locale;
 import liquibase.GlobalConfiguration;
 import liquibase.database.Database;
 import liquibase.database.ObjectQuotingStrategy;
 import liquibase.structure.DatabaseObject;
-import org.checkerframework.checker.nullness.qual.Nullable;
 
 public interface MarkitectDatabase extends Database {
   @Override
@@ -78,9 +78,10 @@ public interface MarkitectDatabase extends Database {
 <span class="fc" id="L78">                    : objectName.toLowerCase(Locale.US)));</span>
   }
 
-  @Nullable String quoteObject(
-      @Nullable String objectName, Class&lt;? extends DatabaseObject&gt; objectType);
+  @Nullable
+  String quoteObject(@Nullable String objectName, Class&lt;? extends DatabaseObject&gt; objectType);
 
-  @Nullable Boolean getUnquotedObjectsAreUppercased();
+  @Nullable
+  Boolean getUnquotedObjectsAreUppercased();
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

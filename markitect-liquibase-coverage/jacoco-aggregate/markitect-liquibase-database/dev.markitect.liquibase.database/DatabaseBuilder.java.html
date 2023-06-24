@@ -16,22 +16,22 @@
 
 package dev.markitect.liquibase.database;
 
-import static dev.markitect.liquibase.util.Preconditions.checkNotNull;
-import static dev.markitect.liquibase.util.Preconditions.checkState;
-import static dev.markitect.liquibase.util.Verify.verifyNotNull;
+import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
+import static dev.markitect.liquibase.base.Preconditions.checkState;
+import static dev.markitect.liquibase.base.Verify.verifyNotNull;
 
+import dev.markitect.liquibase.base.Nullable;
+import dev.markitect.liquibase.base.Verify;
 import dev.markitect.liquibase.exception.UncheckedDatabaseException;
-import dev.markitect.liquibase.util.Verify;
 import java.util.function.UnaryOperator;
 import liquibase.database.Database;
 import liquibase.database.ObjectQuotingStrategy;
 import liquibase.exception.DatabaseException;
 import liquibase.resource.ResourceAccessor;
-import org.checkerframework.checker.nullness.qual.Nullable;
 
 public final class DatabaseBuilder&lt;D extends Database&gt; {
   private final DatabaseFactory&lt;D&gt; databaseFactory;
-  private final ResourceAccessor resourceAccessor;
+  private final @Nullable ResourceAccessor resourceAccessor;
   private final @Nullable UnaryOperator&lt;OfflineConnectionBuilder&gt; offlineConnectionCustomizer;
   private final @Nullable ObjectQuotingStrategy objectQuotingStrategy;
   private final @Nullable Boolean outputDefaultCatalog;

@@ -16,11 +16,11 @@
 
 package dev.markitect.liquibase.spring;
 
+import static dev.markitect.liquibase.base.Preconditions.checkIndex;
+import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
 import static dev.markitect.liquibase.spring.SpringEnvironmentHolder.getEnvironment;
-import static dev.markitect.liquibase.util.Preconditions.checkIndex;
-import static dev.markitect.liquibase.util.Preconditions.checkNotNull;
 
-import dev.markitect.liquibase.util.Preconditions;
+import dev.markitect.liquibase.base.Preconditions;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.Optional;

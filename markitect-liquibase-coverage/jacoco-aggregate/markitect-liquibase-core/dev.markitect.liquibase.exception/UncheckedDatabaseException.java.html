@@ -16,17 +16,18 @@
 
 package dev.markitect.liquibase.exception;
 
+import dev.markitect.liquibase.base.Nullable;
 import liquibase.exception.DatabaseException;
 
 public class UncheckedDatabaseException extends UncheckedLiquibaseException {
   private static final long serialVersionUID = 2675141079999797754L;
 
-  public UncheckedDatabaseException(String message, DatabaseException cause) {
-<span class="fc" id="L25">    super(message, cause);</span>
-<span class="fc" id="L26">  }</span>
+  public UncheckedDatabaseException(@Nullable String message, @Nullable DatabaseException cause) {
+<span class="fc" id="L26">    super(message, cause);</span>
+<span class="fc" id="L27">  }</span>
 
-  public UncheckedDatabaseException(DatabaseException cause) {
-<span class="fc" id="L29">    super(cause);</span>
-<span class="fc" id="L30">  }</span>
+  public UncheckedDatabaseException(@Nullable DatabaseException cause) {
+<span class="fc" id="L30">    super(cause);</span>
+<span class="fc" id="L31">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

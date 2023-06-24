@@ -16,10 +16,10 @@
 
 package dev.markitect.liquibase.logging;
 
-import static dev.markitect.liquibase.util.Preconditions.checkNotNull;
+import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
 
+import dev.markitect.liquibase.base.Nullable;
 import liquibase.logging.Logger;
-import org.checkerframework.checker.nullness.qual.Nullable;
 
 public class LoggerAdapter {
   private static final LoggingApi LOGGING_API;
@@ -63,19 +63,19 @@ public class LoggerAdapter {
   }
 
   private static class JulAdapter {
-    public static Logger getLogger(String name) {
+    public static Logger getLogger(@Nullable String name) {
 <span class="fc" id="L67">      return new JulLogger(name);</span>
     }
   }
 
   private static class Log4jAdapter {
-    public static Logger getLogger(String name) {
+    public static Logger getLogger(@Nullable String name) {
 <span class="fc" id="L73">      return new Log4jLogger(name);</span>
     }
   }
 
   private static class Slf4jAdapter {
-    public static Logger getLogger(String name) {
+    public static Logger getLogger(@Nullable String name) {
 <span class="fc" id="L79">      return new Slf4jLogger(name);</span>
     }
   }

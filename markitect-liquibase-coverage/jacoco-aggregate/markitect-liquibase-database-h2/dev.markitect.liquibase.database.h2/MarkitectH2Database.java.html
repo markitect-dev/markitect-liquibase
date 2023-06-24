@@ -16,10 +16,10 @@
 
 package dev.markitect.liquibase.database.h2;
 
+import dev.markitect.liquibase.base.Nullable;
 import dev.markitect.liquibase.database.MarkitectDatabase;
 import liquibase.database.core.H2Database;
 import liquibase.structure.DatabaseObject;
-import org.checkerframework.checker.nullness.qual.Nullable;
 
 <span class="fc" id="L24">public class MarkitectH2Database extends H2Database implements MarkitectDatabase {</span>
   @Override
@@ -46,8 +46,15 @@ import org.checkerframework.checker.nullness.qual.Nullable;
   }
 
   @Override
+  @SuppressWarnings(&quot;squid:S1185&quot;)
+  public String quoteObject(
+      @Nullable String objectName, Class&lt;? extends DatabaseObject&gt; objectType) {
+<span class="fc" id="L52">    return super.quoteObject(objectName, objectType);</span>
+  }
+
+  @Override
   public @Nullable Boolean getUnquotedObjectsAreUppercased() {
-<span class="fc" id="L50">    return unquotedObjectsAreUppercased;</span>
+<span class="fc" id="L57">    return unquotedObjectsAreUppercased;</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

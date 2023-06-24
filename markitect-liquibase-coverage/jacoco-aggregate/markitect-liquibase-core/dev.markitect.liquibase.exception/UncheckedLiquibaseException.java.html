@@ -16,17 +16,18 @@
 
 package dev.markitect.liquibase.exception;
 
+import dev.markitect.liquibase.base.Nullable;
 import liquibase.exception.LiquibaseException;
 
 public class UncheckedLiquibaseException extends RuntimeException {
   private static final long serialVersionUID = -4705769305667371486L;
 
-  public UncheckedLiquibaseException(String message, LiquibaseException cause) {
-<span class="fc" id="L25">    super(message, cause);</span>
-<span class="fc" id="L26">  }</span>
+  public UncheckedLiquibaseException(@Nullable String message, @Nullable LiquibaseException cause) {
+<span class="fc" id="L26">    super(message, cause);</span>
+<span class="fc" id="L27">  }</span>
 
-  public UncheckedLiquibaseException(LiquibaseException cause) {
-<span class="fc" id="L29">    super(cause);</span>
-<span class="fc" id="L30">  }</span>
+  public UncheckedLiquibaseException(@Nullable LiquibaseException cause) {
+<span class="fc" id="L30">    super(cause);</span>
+<span class="fc" id="L31">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

@@ -16,9 +16,10 @@
 
 package dev.markitect.liquibase.database.mssql;
 
-import static dev.markitect.liquibase.util.Preconditions.checkNotNull;
+import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
 import static liquibase.util.BooleanUtil.isTrue;
 
+import dev.markitect.liquibase.base.Nullable;
 import dev.markitect.liquibase.database.MarkitectDatabase;
 import liquibase.GlobalConfiguration;
 import liquibase.database.core.MSSQLDatabase;
@@ -26,7 +27,6 @@ import liquibase.structure.DatabaseObject;
 import liquibase.structure.core.Catalog;
 import liquibase.structure.core.Index;
 import liquibase.structure.core.Schema;
-import org.checkerframework.checker.nullness.qual.Nullable;
 
 <span class="fc" id="L31">public class MarkitectMssqlDatabase extends MSSQLDatabase implements MarkitectDatabase {</span>
   @Override
@@ -41,7 +41,7 @@ import org.checkerframework.checker.nullness.qual.Nullable;
   }
 
   @Override
-  public String escapeObjectName(
+  public @Nullable String escapeObjectName(
       @Nullable String catalogName,
       @Nullable String schemaName,
       @Nullable String objectName,
@@ -71,33 +71,40 @@ import org.checkerframework.checker.nullness.qual.Nullable;
   }
 
   @Override
+  @SuppressWarnings(&quot;squid:S1185&quot;)
+  public String quoteObject(
+      @Nullable String objectName, Class&lt;? extends DatabaseObject&gt; objectType) {
+<span class="fc" id="L77">    return super.quoteObject(objectName, objectType);</span>
+  }
+
+  @Override
   public @Nullable Boolean getUnquotedObjectsAreUppercased() {
-<span class="fc" id="L75">    return unquotedObjectsAreUppercased;</span>
+<span class="fc" id="L82">    return unquotedObjectsAreUppercased;</span>
   }
 
   private @Nullable String toCatalogNameToUse(@Nullable String catalogName) {
-<span class="fc bfc" id="L79" title="All 2 branches covered.">    if ((isTrue(GlobalConfiguration.INCLUDE_CATALOG_IN_SPECIFICATION.getCurrentValue())</span>
-<span class="fc bfc" id="L80" title="All 2 branches covered.">            &amp;&amp; getOutputDefaultCatalog())</span>
-<span class="fc bfc" id="L81" title="All 2 branches covered.">        || !isDefaultCatalog(catalogName)) {</span>
-<span class="fc bfc" id="L82" title="All 2 branches covered.">      if (catalogName != null) {</span>
-<span class="fc" id="L83">        return catalogName;</span>
+<span class="fc bfc" id="L86" title="All 2 branches covered.">    if ((isTrue(GlobalConfiguration.INCLUDE_CATALOG_IN_SPECIFICATION.getCurrentValue())</span>
+<span class="fc bfc" id="L87" title="All 2 branches covered.">            &amp;&amp; getOutputDefaultCatalog())</span>
+<span class="fc bfc" id="L88" title="All 2 branches covered.">        || !isDefaultCatalog(catalogName)) {</span>
+<span class="fc bfc" id="L89" title="All 2 branches covered.">      if (catalogName != null) {</span>
+<span class="fc" id="L90">        return catalogName;</span>
       }
-<span class="fc" id="L85">      return getDefaultCatalogName();</span>
+<span class="fc" id="L92">      return getDefaultCatalogName();</span>
     }
-<span class="fc" id="L87">    return null;</span>
+<span class="fc" id="L94">    return null;</span>
   }
 
   private @Nullable String toSchemaNameToUse(
       @Nullable String catalogName, @Nullable String schemaName) {
-<span class="fc bfc" id="L92" title="All 4 branches covered.">    if (getOutputDefaultSchema() || !isDefaultSchema(catalogName, schemaName)) {</span>
-<span class="fc bfc" id="L93" title="All 2 branches covered.">      if (schemaName != null) {</span>
-<span class="fc" id="L94">        return schemaName;</span>
+<span class="fc bfc" id="L99" title="All 4 branches covered.">    if (getOutputDefaultSchema() || !isDefaultSchema(catalogName, schemaName)) {</span>
+<span class="fc bfc" id="L100" title="All 2 branches covered.">      if (schemaName != null) {</span>
+<span class="fc" id="L101">        return schemaName;</span>
       }
-<span class="fc bfc" id="L96" title="All 2 branches covered.">      if (isDefaultCatalog(catalogName)) {</span>
-<span class="fc" id="L97">        return getDefaultSchemaName();</span>
+<span class="fc bfc" id="L103" title="All 2 branches covered.">      if (isDefaultCatalog(catalogName)) {</span>
+<span class="fc" id="L104">        return getDefaultSchemaName();</span>
       }
     }
-<span class="fc" id="L100">    return null;</span>
+<span class="fc" id="L107">    return null;</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>
