@@ -119,9 +119,9 @@
     <jakarta-xml-bind.version>2.3.3</jakarta-xml-bind.version>
     <javax-activation.version>1.2.0</javax-activation.version>
     <javax-jaxb.version>2.3.1</javax-jaxb.version>
-    <jooq.version>3.18.4</jooq.version>
-    <jooq-3.17.version>3.17.13</jooq-3.17.version>
-    <jooq-3.16.version>3.16.19</jooq-3.16.version>
+    <jooq.version>3.18.5</jooq.version>
+    <jooq-3.17.version>3.17.14</jooq-3.17.version>
+    <jooq-3.16.version>3.16.20</jooq-3.16.version>
     <jooq-3.15.version>3.15.12</jooq-3.15.version>
     <jooq-3.14.version>3.14.16</jooq-3.14.version>
     <junit.version>4.13.2</junit.version>
