@@ -271,7 +271,7 @@
             "nullable": true,
             "order": "6!{java.lang.Integer}",
             "relation": "liquibase.structure.core.Table#a759121",
-            "remarks": "The object that was changed by the DDL statment.",
+            "remarks": "The object that was changed by the DDL statement.",
             "snapshotId": "a759128",
             "type": {
               "columnSize": "256!{java.lang.Integer}",
