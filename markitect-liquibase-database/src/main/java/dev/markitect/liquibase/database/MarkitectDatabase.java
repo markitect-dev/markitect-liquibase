@@ -16,8 +16,8 @@
 
 package dev.markitect.liquibase.database;
 
+import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
 import static dev.markitect.liquibase.structure.Structures.isCatalogOrSchemaType;
-import static dev.markitect.liquibase.util.Preconditions.checkNotNull;
 import static dev.markitect.liquibase.util.Strings.isIllegalIdentifier;
 import static liquibase.util.BooleanUtil.isTrue;
 

@@ -16,12 +16,12 @@
 
 package dev.markitect.liquibase.database;
 
-import static dev.markitect.liquibase.util.Preconditions.checkNotNull;
-import static dev.markitect.liquibase.util.Preconditions.checkState;
-import static dev.markitect.liquibase.util.Verify.verifyNotNull;
+import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
+import static dev.markitect.liquibase.base.Preconditions.checkState;
+import static dev.markitect.liquibase.base.Verify.verifyNotNull;
 
+import dev.markitect.liquibase.base.Verify;
 import dev.markitect.liquibase.exception.UncheckedDatabaseException;
-import dev.markitect.liquibase.util.Verify;
 import java.util.function.UnaryOperator;
 import liquibase.database.Database;
 import liquibase.database.ObjectQuotingStrategy;

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package dev.markitect.liquibase.util;
+package dev.markitect.liquibase.base;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;

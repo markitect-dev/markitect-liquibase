@@ -16,7 +16,7 @@
 
 package dev.markitect.liquibase.database.mssql;
 
-import static dev.markitect.liquibase.util.Preconditions.checkNotNull;
+import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
 import static liquibase.util.BooleanUtil.isTrue;
 
 import dev.markitect.liquibase.database.MarkitectDatabase;

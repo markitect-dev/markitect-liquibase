@@ -16,8 +16,8 @@
 
 package dev.markitect.liquibase.database;
 
-import static dev.markitect.liquibase.util.Preconditions.checkNotNull;
-import static dev.markitect.liquibase.util.Preconditions.checkState;
+import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
+import static dev.markitect.liquibase.base.Preconditions.checkState;
 import static java.util.Collections.emptyMap;
 import static java.util.Collections.unmodifiableMap;
 

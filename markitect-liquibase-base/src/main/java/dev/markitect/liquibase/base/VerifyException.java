@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package dev.markitect.liquibase.util;
+package dev.markitect.liquibase.base;
 
 public class VerifyException extends RuntimeException {
   private static final long serialVersionUID = -1807820882768027324L;

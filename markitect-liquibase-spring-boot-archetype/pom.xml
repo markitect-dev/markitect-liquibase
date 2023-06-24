@@ -100,6 +100,17 @@
         <artifactId>maven-install-plugin</artifactId>
         <executions>
           <execution>
+            <id>install-markitect-liquibase-base</id>
+            <goals>
+              <goal>install-file</goal>
+            </goals>
+            <phase>pre-integration-test</phase>
+            <configuration>
+              <file>${project.basedir}/../markitect-liquibase-base/target/markitect-liquibase-base-${project.version}.jar</file>
+              <pomFile>${project.basedir}/../markitect-liquibase-base/.flattened-pom.xml</pomFile>
+            </configuration>
+          </execution>
+          <execution>
             <id>install-markitect-liquibase-bom</id>
             <goals>
               <goal>install-file</goal>

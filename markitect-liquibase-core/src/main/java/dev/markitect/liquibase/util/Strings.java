@@ -16,7 +16,7 @@
 
 package dev.markitect.liquibase.util;
 
-import static dev.markitect.liquibase.util.Preconditions.checkNotNull;
+import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
 
 import java.util.regex.Pattern;
 

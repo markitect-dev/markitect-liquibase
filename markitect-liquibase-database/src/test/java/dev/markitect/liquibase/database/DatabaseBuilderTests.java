@@ -19,8 +19,8 @@ package dev.markitect.liquibase.database;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
 
+import dev.markitect.liquibase.base.VerifyException;
 import dev.markitect.liquibase.exception.UncheckedDatabaseException;
-import dev.markitect.liquibase.util.VerifyException;
 import java.util.Map;
 import java.util.Optional;
 import liquibase.database.Database;

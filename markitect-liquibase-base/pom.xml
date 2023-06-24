@@ -10,10 +10,10 @@
     <relativePath>../markitect-liquibase-parent/pom.xml</relativePath>
   </parent>
 
-  <artifactId>markitect-liquibase-logging</artifactId>
+  <artifactId>markitect-liquibase-base</artifactId>
 
   <name>${project.artifactId}</name>
-  <description>Markitect Liquibase Logging Extension</description>
+  <description>Markitect Liquibase Base Module</description>
   <url>https://github.com/markitect-dev/markitect-liquibase</url>
 
   <distributionManagement>
@@ -24,7 +24,7 @@
   </distributionManagement>
 
   <properties>
-    <automatic.module.name>dev.markitect.liquibase.logging</automatic.module.name>
+    <automatic.module.name>dev.markitect.liquibase.base</automatic.module.name>
     <maven.compiler.release>8</maven.compiler.release>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
@@ -32,17 +32,8 @@
 
   <dependencies>
     <dependency>
-      <groupId>dev.markitect.liquibase</groupId>
-      <artifactId>markitect-liquibase-base</artifactId>
-    </dependency>
-    <dependency>
       <groupId>com.google.errorprone</groupId>
       <artifactId>error_prone_annotations</artifactId>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.logging.log4j</groupId>
-      <artifactId>log4j-api</artifactId>
       <optional>true</optional>
     </dependency>
     <dependency>
@@ -50,19 +41,15 @@
       <artifactId>checker-qual</artifactId>
       <optional>true</optional>
     </dependency>
-    <dependency>
-      <groupId>org.liquibase</groupId>
-      <artifactId>liquibase-core</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-api</artifactId>
-      <optional>true</optional>
-    </dependency>
 
     <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-test</artifactId>
+      <groupId>org.assertj</groupId>
+      <artifactId>assertj-core</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
       <scope>test</scope>
     </dependency>
   </dependencies>

@@ -16,7 +16,7 @@
 
 package dev.markitect.liquibase.logging;
 
-import static dev.markitect.liquibase.util.Preconditions.checkNotNull;
+import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
 
 import liquibase.logging.Logger;
 import org.checkerframework.checker.nullness.qual.Nullable;

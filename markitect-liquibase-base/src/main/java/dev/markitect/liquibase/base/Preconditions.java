@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package dev.markitect.liquibase.util;
+package dev.markitect.liquibase.base;
 
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import org.checkerframework.checker.nullness.qual.Nullable;
