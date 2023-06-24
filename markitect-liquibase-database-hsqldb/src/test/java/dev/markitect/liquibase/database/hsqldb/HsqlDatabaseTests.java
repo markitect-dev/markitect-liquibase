@@ -18,6 +18,7 @@ package dev.markitect.liquibase.database.hsqldb;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import dev.markitect.liquibase.base.Nullable;
 import dev.markitect.liquibase.database.DatabaseBuilder;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -56,11 +57,11 @@ class HsqlDatabaseTests {
       useHeadersInDisplayName = true,
       delimiter = '|')
   void correctObjectName(
-      Boolean preserveSchemaCase,
-      ObjectQuotingStrategy quotingStrategy,
-      String objectName,
+      @Nullable Boolean preserveSchemaCase,
+      @Nullable ObjectQuotingStrategy quotingStrategy,
+      @Nullable String objectName,
       Class<? extends DatabaseObject> objectType,
-      String expected)
+      @Nullable String expected)
       throws Exception {
     // given
     var scopeValues = new LinkedHashMap<String, Object>();
@@ -107,11 +108,11 @@ class HsqlDatabaseTests {
       useHeadersInDisplayName = true,
       delimiter = '|')
   void escapeObjectName(
-      Boolean preserveSchemaCase,
-      ObjectQuotingStrategy quotingStrategy,
-      String objectName,
+      @Nullable Boolean preserveSchemaCase,
+      @Nullable ObjectQuotingStrategy quotingStrategy,
+      @Nullable String objectName,
       Class<? extends DatabaseObject> objectType,
-      String expected)
+      @Nullable String expected)
       throws Exception {
     // given
     Map<String, Object> scopeValues = new LinkedHashMap<>();
@@ -146,11 +147,11 @@ class HsqlDatabaseTests {
       useHeadersInDisplayName = true,
       delimiter = '|')
   void escapeTableName(
-      Boolean outputDefaultSchema,
-      String catalogName,
-      String schemaName,
-      String tableName,
-      String expected)
+      @Nullable Boolean outputDefaultSchema,
+      @Nullable String catalogName,
+      @Nullable String schemaName,
+      @Nullable String tableName,
+      @Nullable String expected)
       throws Exception {
     // given
     try (var database =

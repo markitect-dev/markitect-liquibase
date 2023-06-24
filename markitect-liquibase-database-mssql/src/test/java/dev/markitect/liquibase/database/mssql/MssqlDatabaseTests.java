@@ -18,6 +18,7 @@ package dev.markitect.liquibase.database.mssql;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import dev.markitect.liquibase.base.Nullable;
 import dev.markitect.liquibase.database.DatabaseBuilder;
 import java.util.LinkedHashMap;
 import liquibase.GlobalConfiguration;
@@ -48,11 +49,11 @@ class MssqlDatabaseTests {
       useHeadersInDisplayName = true,
       delimiter = '|')
   void correctObjectName(
-      Boolean preserveSchemaCase,
-      ObjectQuotingStrategy quotingStrategy,
-      String objectName,
+      @Nullable Boolean preserveSchemaCase,
+      @Nullable ObjectQuotingStrategy quotingStrategy,
+      @Nullable String objectName,
       Class<? extends DatabaseObject> objectType,
-      String expected)
+      @Nullable String expected)
       throws Exception {
     // given
     var scopeValues = new LinkedHashMap<String, Object>();
@@ -86,14 +87,14 @@ class MssqlDatabaseTests {
       useHeadersInDisplayName = true,
       delimiter = '|')
   void escapeObjectName_catalogName_schemaName_objectName_objectType(
-      Boolean includeCatalog,
-      Boolean outputDefaultCatalog,
-      Boolean outputDefaultSchema,
-      String catalogName,
-      String schemaName,
-      String objectName,
+      @Nullable Boolean includeCatalog,
+      @Nullable Boolean outputDefaultCatalog,
+      @Nullable Boolean outputDefaultSchema,
+      @Nullable String catalogName,
+      @Nullable String schemaName,
+      @Nullable String objectName,
       Class<? extends DatabaseObject> objectType,
-      String expected)
+      @Nullable String expected)
       throws Exception {
     // given
     var scopeValues = new LinkedHashMap<String, Object>();
@@ -140,11 +141,11 @@ class MssqlDatabaseTests {
       useHeadersInDisplayName = true,
       delimiter = '|')
   void escapeObjectName(
-      Boolean preserveSchemaCase,
-      ObjectQuotingStrategy quotingStrategy,
-      String objectName,
+      @Nullable Boolean preserveSchemaCase,
+      @Nullable ObjectQuotingStrategy quotingStrategy,
+      @Nullable String objectName,
       Class<? extends DatabaseObject> objectType,
-      String expected)
+      @Nullable String expected)
       throws Exception {
     // given
     var scopeValues = new LinkedHashMap<String, Object>();
@@ -189,13 +190,13 @@ class MssqlDatabaseTests {
       useHeadersInDisplayName = true,
       delimiter = '|')
   void escapeTableName(
-      Boolean includeCatalog,
-      Boolean outputDefaultCatalog,
-      Boolean outputDefaultSchema,
-      String catalogName,
-      String schemaName,
-      String tableName,
-      String expected)
+      @Nullable Boolean includeCatalog,
+      @Nullable Boolean outputDefaultCatalog,
+      @Nullable Boolean outputDefaultSchema,
+      @Nullable String catalogName,
+      @Nullable String schemaName,
+      @Nullable String tableName,
+      @Nullable String expected)
       throws Exception {
     var scopeValues = new LinkedHashMap<String, Object>();
     if (includeCatalog != null) {

@@ -14,19 +14,20 @@
  * limitations under the License.
  */
 
-package dev.markitect.liquibase.exception;
+package dev.markitect.liquibase.base;
 
-import dev.markitect.liquibase.base.Nullable;
-import liquibase.exception.LiquibaseException;
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+import javax.annotation.Nonnull;
+import javax.annotation.meta.TypeQualifierNickname;
 
-public class UncheckedLiquibaseException extends RuntimeException {
-  private static final long serialVersionUID = -4705769305667371486L;
-
-  public UncheckedLiquibaseException(@Nullable String message, @Nullable LiquibaseException cause) {
-    super(message, cause);
-  }
-
-  public UncheckedLiquibaseException(@Nullable LiquibaseException cause) {
-    super(cause);
-  }
-}
+@Documented
+@Target({ElementType.TYPE_PARAMETER, ElementType.TYPE_USE})
+@Retention(RetentionPolicy.RUNTIME)
+@Nonnull
+@TypeQualifierNickname
+@SuppressWarnings("unused")
+public @interface NotNull {}

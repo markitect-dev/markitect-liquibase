@@ -47,6 +47,7 @@ class StringsTests {
   }
 
   @Test
+  @SuppressWarnings("DataFlowIssue")
   void isIllegalIdentifierThrowsNullPointerException() {
     // when
     var thrown = catchThrowable(() -> Strings.isIllegalIdentifier(null));

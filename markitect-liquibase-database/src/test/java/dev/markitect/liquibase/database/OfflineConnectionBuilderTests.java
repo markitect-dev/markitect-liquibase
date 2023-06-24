@@ -20,6 +20,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
+import dev.markitect.liquibase.base.Nullable;
 import java.util.Map;
 import java.util.stream.Stream;
 import liquibase.resource.ClassLoaderResourceAccessor;
@@ -103,18 +104,18 @@ class OfflineConnectionBuilderTests {
       """)
   void build(
       String shortName,
-      String productName,
-      String version,
-      String snapshot,
-      String catalog,
-      String schema,
+      @Nullable String productName,
+      @Nullable String version,
+      @Nullable String snapshot,
+      @Nullable String catalog,
+      @Nullable String schema,
       Map<String, String> databaseParams,
       String expectedProductName,
       String productVersion,
       int majorVersion,
       int minorVersion,
-      String expectedCatalog,
-      String expectedSchema)
+      @Nullable String expectedCatalog,
+      @Nullable String expectedSchema)
       throws Exception {
     // given
     var builder =
@@ -152,7 +153,7 @@ class OfflineConnectionBuilderTests {
 
   @ParameterizedTest
   @MethodSource
-  void buildFails(ResourceAccessor resourceAccessor, String shortName) {
+  void buildFails(@Nullable ResourceAccessor resourceAccessor, @Nullable String shortName) {
     // given
     var builder =
         OfflineConnectionBuilder.of().setResourceAccessor(resourceAccessor).setShortName(shortName);

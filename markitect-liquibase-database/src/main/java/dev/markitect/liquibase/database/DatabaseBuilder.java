@@ -31,7 +31,7 @@ import liquibase.resource.ResourceAccessor;
 
 public final class DatabaseBuilder<D extends Database> {
   private final DatabaseFactory<D> databaseFactory;
-  private final ResourceAccessor resourceAccessor;
+  private final @Nullable ResourceAccessor resourceAccessor;
   private final @Nullable UnaryOperator<OfflineConnectionBuilder> offlineConnectionCustomizer;
   private final @Nullable ObjectQuotingStrategy objectQuotingStrategy;
   private final @Nullable Boolean outputDefaultCatalog;

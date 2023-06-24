@@ -16,8 +16,10 @@
 
 package dev.markitect.liquibase;
 
+import static dev.markitect.liquibase.base.Verify.verifyNotNull;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import dev.markitect.liquibase.base.Nullable;
 import java.lang.reflect.Field;
 import liquibase.Scope;
 import liquibase.ScopeManager;
@@ -36,7 +38,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
 class ScopeManagerHelperTests {
-  private static Field initializedField;
+  private static @Nullable Field initializedField;
 
   @BeforeAll
   static void setUpClass() throws Exception {
@@ -51,13 +53,13 @@ class ScopeManagerHelperTests {
 
   @BeforeEach
   void setUp() throws Exception {
-    originalInitialized = (boolean) initializedField.get(ScopeManagerHelper.class);
+    originalInitialized = (boolean) verifyNotNull(initializedField).get(ScopeManagerHelper.class);
     initializedField.set(ScopeManagerHelper.class, false);
   }
 
   @AfterEach
   void tearDown() throws Exception {
-    initializedField.set(ScopeManagerHelper.class, originalInitialized);
+    verifyNotNull(initializedField).set(ScopeManagerHelper.class, originalInitialized);
   }
 
   @Test

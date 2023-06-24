@@ -46,6 +46,13 @@ public class MarkitectPostgresDatabase extends PostgresDatabase implements Marki
   }
 
   @Override
+  @SuppressWarnings("squid:S1185")
+  public String quoteObject(
+      @Nullable String objectName, Class<? extends DatabaseObject> objectType) {
+    return super.quoteObject(objectName, objectType);
+  }
+
+  @Override
   public @Nullable Boolean getUnquotedObjectsAreUppercased() {
     return unquotedObjectsAreUppercased;
   }

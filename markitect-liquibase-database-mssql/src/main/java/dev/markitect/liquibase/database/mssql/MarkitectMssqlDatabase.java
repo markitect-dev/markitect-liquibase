@@ -41,7 +41,7 @@ public class MarkitectMssqlDatabase extends MSSQLDatabase implements MarkitectDa
   }
 
   @Override
-  public String escapeObjectName(
+  public @Nullable String escapeObjectName(
       @Nullable String catalogName,
       @Nullable String schemaName,
       @Nullable String objectName,
@@ -68,6 +68,13 @@ public class MarkitectMssqlDatabase extends MSSQLDatabase implements MarkitectDa
   public boolean mustQuoteObjectName(
       String objectName, Class<? extends DatabaseObject> objectType) {
     return MarkitectDatabase.super.mustQuoteObjectName(objectName, objectType);
+  }
+
+  @Override
+  @SuppressWarnings("squid:S1185")
+  public String quoteObject(
+      @Nullable String objectName, Class<? extends DatabaseObject> objectType) {
+    return super.quoteObject(objectName, objectType);
   }
 
   @Override

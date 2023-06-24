@@ -1,7 +1,7 @@
 @CheckReturnValue
 @NonNullApi
 @NonNullFields
-package dev.markitect.liquibase.database.hsqldb;
+package dev.markitect.liquibase.exception;
 
 import com.google.errorprone.annotations.CheckReturnValue;
 import dev.markitect.liquibase.base.NonNullApi;

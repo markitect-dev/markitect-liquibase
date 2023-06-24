@@ -28,6 +28,7 @@
     <maven.compiler.release>8</maven.compiler.release>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
+    <sonar.cpd.exclusions>src/main/java/dev/markitect/liquibase/database/h2/MarkitectH2Database.java</sonar.cpd.exclusions>
   </properties>
 
   <dependencies>

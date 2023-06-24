@@ -16,16 +16,17 @@
 
 package dev.markitect.liquibase.exception;
 
+import dev.markitect.liquibase.base.Nullable;
 import liquibase.exception.DatabaseException;
 
 public class UncheckedDatabaseException extends UncheckedLiquibaseException {
   private static final long serialVersionUID = 2675141079999797754L;
 
-  public UncheckedDatabaseException(String message, DatabaseException cause) {
+  public UncheckedDatabaseException(@Nullable String message, @Nullable DatabaseException cause) {
     super(message, cause);
   }
 
-  public UncheckedDatabaseException(DatabaseException cause) {
+  public UncheckedDatabaseException(@Nullable DatabaseException cause) {
     super(cause);
   }
 }

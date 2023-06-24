@@ -19,6 +19,7 @@ package dev.markitect.liquibase.database;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
 
+import dev.markitect.liquibase.base.Nullable;
 import dev.markitect.liquibase.base.VerifyException;
 import dev.markitect.liquibase.exception.UncheckedDatabaseException;
 import java.util.Map;
@@ -139,20 +140,20 @@ class DatabaseBuilderTests {
       """)
   void build(
       Class<? extends Database> databaseClass,
-      ObjectQuotingStrategy quotingStrategy,
-      Boolean outputDefaultCatalog,
-      Boolean outputDefaultSchema,
+      @Nullable ObjectQuotingStrategy quotingStrategy,
+      @Nullable Boolean outputDefaultCatalog,
+      @Nullable Boolean outputDefaultSchema,
       boolean useOfflineConnection,
-      String version,
-      String catalog,
-      String schema,
+      @Nullable String version,
+      @Nullable String catalog,
+      @Nullable String schema,
       Map<String, String> databaseParams,
       String shortName,
       String productName,
       int majorVersion,
       int minorVersion,
-      String catalogName,
-      String schemaName)
+      @Nullable String catalogName,
+      @Nullable String schemaName)
       throws Exception {
     // given
     var builder =
@@ -241,6 +242,7 @@ class DatabaseBuilderTests {
   }
 
   @Test
+  @SuppressWarnings("DataFlowIssue")
   void buildWithInvalidDatabaseFactoryFails() {
     // given
     var invalidBuilder = DatabaseBuilder.of(() -> null);

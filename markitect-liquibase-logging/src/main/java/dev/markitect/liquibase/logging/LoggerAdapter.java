@@ -63,19 +63,19 @@ public class LoggerAdapter {
   }
 
   private static class JulAdapter {
-    public static Logger getLogger(String name) {
+    public static Logger getLogger(@Nullable String name) {
       return new JulLogger(name);
     }
   }
 
   private static class Log4jAdapter {
-    public static Logger getLogger(String name) {
+    public static Logger getLogger(@Nullable String name) {
       return new Log4jLogger(name);
     }
   }
 
   private static class Slf4jAdapter {
-    public static Logger getLogger(String name) {
+    public static Logger getLogger(@Nullable String name) {
       return new Slf4jLogger(name);
     }
   }
