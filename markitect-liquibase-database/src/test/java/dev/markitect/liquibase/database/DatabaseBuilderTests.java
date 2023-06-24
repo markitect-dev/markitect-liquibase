@@ -225,7 +225,6 @@ class DatabaseBuilderTests {
   }
 
   @Test
-  @SuppressWarnings("ResultOfMethodCallIgnored")
   void buildFailsOnDatabaseException() {
     // given
     var builder =
@@ -242,7 +241,6 @@ class DatabaseBuilderTests {
   }
 
   @Test
-  @SuppressWarnings("ResultOfMethodCallIgnored")
   void buildWithInvalidDatabaseFactoryFails() {
     // given
     var invalidBuilder = DatabaseBuilder.of(() -> null);
@@ -255,7 +253,6 @@ class DatabaseBuilderTests {
   }
 
   @Test
-  @SuppressWarnings("ResultOfMethodCallIgnored")
   void buildWithInvalidOfflineConnectionCustomizerFails() {
     // given
     var invalidBuilder =
@@ -271,7 +268,6 @@ class DatabaseBuilderTests {
   }
 
   @Test
-  @SuppressWarnings("ResultOfMethodCallIgnored")
   void buildWithOfflineConnectionCustomizerWithoutResourceAccessorFails() {
     // given
     var invalidBuilder = DatabaseBuilder.of(H2Database::new).useOfflineConnection();

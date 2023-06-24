@@ -152,7 +152,6 @@ class OfflineConnectionBuilderTests {
 
   @ParameterizedTest
   @MethodSource
-  @SuppressWarnings("ResultOfMethodCallIgnored")
   void buildFails(ResourceAccessor resourceAccessor, String shortName) {
     // given
     var builder =

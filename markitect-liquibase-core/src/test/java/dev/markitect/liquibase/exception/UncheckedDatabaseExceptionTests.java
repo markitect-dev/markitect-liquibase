@@ -23,6 +23,7 @@ import org.junit.jupiter.api.Test;
 
 class UncheckedDatabaseExceptionTests {
   @Test
+  @SuppressWarnings("AssertBetweenInconvertibleTypes")
   void newInstance() {
     // given
     final String message = "message";

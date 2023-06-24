@@ -44,7 +44,7 @@ class SpringEnvironmentValueProviderTests {
   }
 
   @Test
-  @SuppressWarnings({"DirectInvocationOnMock", "ResultOfMethodCallIgnored"})
+  @SuppressWarnings({"DirectInvocationOnMock", "ResultOfMethodCallIgnored", "RedundantSuppression"})
   void shouldReturnProvidedValue() {
     // given
     mockedSpringEnvironmentHolder
@@ -71,7 +71,7 @@ class SpringEnvironmentValueProviderTests {
   }
 
   @Test
-  @SuppressWarnings({"DirectInvocationOnMock", "ResultOfMethodCallIgnored"})
+  @SuppressWarnings({"DirectInvocationOnMock", "ResultOfMethodCallIgnored", "RedundantSuppression"})
   void shouldNotReturnProvidedValue() {
     // given
     mockedSpringEnvironmentHolder

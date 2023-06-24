@@ -47,7 +47,6 @@ class StringsTests {
   }
 
   @Test
-  @SuppressWarnings("ResultOfMethodCallIgnored")
   void isIllegalIdentifierThrowsNullPointerException() {
     // when
     var thrown = catchThrowable(() -> Strings.isIllegalIdentifier(null));

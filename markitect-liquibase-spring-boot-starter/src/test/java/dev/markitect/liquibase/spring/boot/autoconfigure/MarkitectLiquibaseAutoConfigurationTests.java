@@ -70,7 +70,6 @@ class MarkitectLiquibaseAutoConfigurationTests {
     @Mock private DataSource dataSource;
 
     @Test
-    @SuppressWarnings("ResultOfMethodCallIgnored")
     void shouldFailToCreateLiquibaseBeanWithNoDataSourceUrlOrLiquibaseUrl() {
       // when
       var thrown =

@@ -54,7 +54,6 @@ class StructuresTests {
   }
 
   @Test
-  @SuppressWarnings("ResultOfMethodCallIgnored")
   void isCatalogOrSchemaTypeThrowsNullPointerException() {
     // when
     var thrown = catchThrowable(() -> Structures.isCatalogOrSchemaType(null));
