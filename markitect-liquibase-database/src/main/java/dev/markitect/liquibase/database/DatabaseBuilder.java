@@ -20,6 +20,7 @@ import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
 import static dev.markitect.liquibase.base.Preconditions.checkState;
 import static dev.markitect.liquibase.base.Verify.verifyNotNull;
 
+import dev.markitect.liquibase.base.Nullable;
 import dev.markitect.liquibase.base.Verify;
 import dev.markitect.liquibase.exception.UncheckedDatabaseException;
 import java.util.function.UnaryOperator;
@@ -27,7 +28,6 @@ import liquibase.database.Database;
 import liquibase.database.ObjectQuotingStrategy;
 import liquibase.exception.DatabaseException;
 import liquibase.resource.ResourceAccessor;
-import org.checkerframework.checker.nullness.qual.Nullable;
 
 public final class DatabaseBuilder<D extends Database> {
   private final DatabaseFactory<D> databaseFactory;

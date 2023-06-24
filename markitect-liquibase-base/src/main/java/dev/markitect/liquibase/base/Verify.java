@@ -17,7 +17,6 @@
 package dev.markitect.liquibase.base;
 
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
-import org.checkerframework.checker.nullness.qual.Nullable;
 
 public final class Verify {
   public static void verify(boolean expression) {

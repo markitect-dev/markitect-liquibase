@@ -18,13 +18,13 @@ package dev.markitect.liquibase.logging;
 
 import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
 
+import dev.markitect.liquibase.base.Nullable;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.logging.Level;
 import java.util.logging.LogRecord;
 import java.util.logging.Logger;
 import liquibase.logging.core.AbstractLogger;
-import org.checkerframework.checker.nullness.qual.Nullable;
 
 @SuppressWarnings("squid:S2160")
 public class JulLogger extends AbstractLogger {

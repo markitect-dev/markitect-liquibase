@@ -18,9 +18,9 @@ package dev.markitect.liquibase.logging;
 
 import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
 
+import dev.markitect.liquibase.base.Nullable;
 import java.util.logging.Level;
 import liquibase.logging.core.AbstractLogger;
-import org.checkerframework.checker.nullness.qual.Nullable;
 import org.slf4j.LoggerFactory;
 import org.slf4j.spi.LocationAwareLogger;
 

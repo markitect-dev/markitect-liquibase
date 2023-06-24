@@ -16,10 +16,10 @@
 
 package dev.markitect.liquibase.database.h2;
 
+import dev.markitect.liquibase.base.Nullable;
 import dev.markitect.liquibase.database.MarkitectDatabase;
 import liquibase.database.core.H2Database;
 import liquibase.structure.DatabaseObject;
-import org.checkerframework.checker.nullness.qual.Nullable;
 
 public class MarkitectH2Database extends H2Database implements MarkitectDatabase {
   @Override

@@ -21,11 +21,11 @@ import static dev.markitect.liquibase.base.Preconditions.checkState;
 import static java.util.Collections.emptyMap;
 import static java.util.Collections.unmodifiableMap;
 
+import dev.markitect.liquibase.base.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.StringJoiner;
 import liquibase.resource.ResourceAccessor;
-import org.checkerframework.checker.nullness.qual.Nullable;
 
 public final class OfflineConnectionBuilder {
   private static final OfflineConnectionBuilder SINGLETON =
