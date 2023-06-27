@@ -18,16 +18,11 @@ package dev.markitect.liquibase.database;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
-import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 import dev.markitect.liquibase.base.Nullable;
 import java.util.Map;
-import java.util.stream.Stream;
-import liquibase.resource.ClassLoaderResourceAccessor;
-import liquibase.resource.ResourceAccessor;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.NullSource;
 import org.junitpioneer.jupiter.json.JsonSource;
 
 class OfflineConnectionBuilderTests {
@@ -120,7 +115,6 @@ class OfflineConnectionBuilderTests {
     // given
     var builder =
         OfflineConnectionBuilder.of()
-            .setResourceAccessor(new ClassLoaderResourceAccessor())
             .setShortName(shortName)
             .setProductName(productName)
             .setVersion(version)
@@ -147,16 +141,11 @@ class OfflineConnectionBuilderTests {
     assertThat(connection).extracting("databaseParams").isEqualTo(databaseParams);
   }
 
-  static Stream<Arguments> buildFails() {
-    return Stream.of(arguments(new ClassLoaderResourceAccessor(), null), arguments(null, "h2"));
-  }
-
   @ParameterizedTest
-  @MethodSource
-  void buildFails(@Nullable ResourceAccessor resourceAccessor, @Nullable String shortName) {
+  @NullSource
+  void buildFails(@Nullable String shortName) {
     // given
-    var builder =
-        OfflineConnectionBuilder.of().setResourceAccessor(resourceAccessor).setShortName(shortName);
+    var builder = OfflineConnectionBuilder.of().setShortName(shortName);
 
     // when
     var thrown = catchThrowable(builder::build);

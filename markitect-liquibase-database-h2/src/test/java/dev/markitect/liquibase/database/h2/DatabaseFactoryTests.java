@@ -21,7 +21,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import dev.markitect.liquibase.database.OfflineConnectionBuilder;
 import liquibase.database.Database;
 import liquibase.database.DatabaseFactory;
-import liquibase.resource.ClassLoaderResourceAccessor;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -38,11 +37,7 @@ class DatabaseFactoryTests {
   void findCorrectDatabaseImplementation(String shortName, Class<? extends Database> expectedType)
       throws Exception {
     // given
-    var connection =
-        OfflineConnectionBuilder.of()
-            .setResourceAccessor(new ClassLoaderResourceAccessor())
-            .setShortName(shortName)
-            .build();
+    var connection = OfflineConnectionBuilder.of().setShortName(shortName).build();
 
     // when
     var database = DatabaseFactory.getInstance().findCorrectDatabaseImplementation(connection);

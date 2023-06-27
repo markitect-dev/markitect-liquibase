@@ -25,17 +25,16 @@ import dev.markitect.liquibase.base.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.StringJoiner;
-import liquibase.resource.ResourceAccessor;
+import liquibase.Scope;
 
 public final class OfflineConnectionBuilder {
   private static final OfflineConnectionBuilder SINGLETON =
-      new OfflineConnectionBuilder(null, null, null, null, null, null, null, emptyMap());
+      new OfflineConnectionBuilder(null, null, null, null, null, null, emptyMap());
 
   public static OfflineConnectionBuilder of() {
     return SINGLETON;
   }
 
-  private final @Nullable ResourceAccessor resourceAccessor;
   private final @Nullable String shortName;
   private final @Nullable String productName;
   private final @Nullable String version;
@@ -44,9 +43,7 @@ public final class OfflineConnectionBuilder {
   private final @Nullable String schema;
   private final Map<String, String> databaseParams;
 
-  @SuppressWarnings("squid:S107")
   private OfflineConnectionBuilder(
-      @Nullable ResourceAccessor resourceAccessor,
       @Nullable String shortName,
       @Nullable String productName,
       @Nullable String version,
@@ -54,7 +51,6 @@ public final class OfflineConnectionBuilder {
       @Nullable String catalog,
       @Nullable String schema,
       Map<String, String> databaseParams) {
-    this.resourceAccessor = resourceAccessor;
     this.schema = schema;
     this.shortName = shortName;
     this.productName = productName;
@@ -64,104 +60,42 @@ public final class OfflineConnectionBuilder {
     this.databaseParams = unmodifiableMap(new HashMap<>(checkNotNull(databaseParams)));
   }
 
-  public OfflineConnectionBuilder setResourceAccessor(@Nullable ResourceAccessor resourceAccessor) {
-    return new OfflineConnectionBuilder(
-        resourceAccessor,
-        shortName,
-        productName,
-        version,
-        snapshot,
-        catalog,
-        schema,
-        databaseParams);
-  }
-
   public OfflineConnectionBuilder setShortName(@Nullable String shortName) {
     return new OfflineConnectionBuilder(
-        resourceAccessor,
-        shortName,
-        productName,
-        version,
-        snapshot,
-        catalog,
-        schema,
-        databaseParams);
+        shortName, productName, version, snapshot, catalog, schema, databaseParams);
   }
 
   public OfflineConnectionBuilder setProductName(@Nullable String productName) {
     return new OfflineConnectionBuilder(
-        resourceAccessor,
-        shortName,
-        productName,
-        version,
-        snapshot,
-        catalog,
-        schema,
-        databaseParams);
+        shortName, productName, version, snapshot, catalog, schema, databaseParams);
   }
 
   public OfflineConnectionBuilder setVersion(@Nullable String version) {
     return new OfflineConnectionBuilder(
-        resourceAccessor,
-        shortName,
-        productName,
-        version,
-        snapshot,
-        catalog,
-        schema,
-        databaseParams);
+        shortName, productName, version, snapshot, catalog, schema, databaseParams);
   }
 
   public OfflineConnectionBuilder setSnapshot(@Nullable String snapshot) {
     return new OfflineConnectionBuilder(
-        resourceAccessor,
-        shortName,
-        productName,
-        version,
-        snapshot,
-        catalog,
-        schema,
-        databaseParams);
+        shortName, productName, version, snapshot, catalog, schema, databaseParams);
   }
 
   public OfflineConnectionBuilder setCatalog(@Nullable String catalog) {
     return new OfflineConnectionBuilder(
-        resourceAccessor,
-        shortName,
-        productName,
-        version,
-        snapshot,
-        catalog,
-        schema,
-        databaseParams);
+        shortName, productName, version, snapshot, catalog, schema, databaseParams);
   }
 
   public OfflineConnectionBuilder setSchema(@Nullable String schema) {
     return new OfflineConnectionBuilder(
-        resourceAccessor,
-        shortName,
-        productName,
-        version,
-        snapshot,
-        catalog,
-        schema,
-        databaseParams);
+        shortName, productName, version, snapshot, catalog, schema, databaseParams);
   }
 
   public OfflineConnectionBuilder setDatabaseParams(Map<String, String> databaseParams) {
     return new OfflineConnectionBuilder(
-        resourceAccessor,
-        shortName,
-        productName,
-        version,
-        snapshot,
-        catalog,
-        schema,
-        databaseParams);
+        shortName, productName, version, snapshot, catalog, schema, databaseParams);
   }
 
   public MarkitectOfflineConnection build() {
-    checkState(resourceAccessor != null);
     checkState(shortName != null);
     StringJoiner params = new StringJoiner("&", "?", "");
     if (productName != null) {
@@ -178,7 +112,8 @@ public final class OfflineConnectionBuilder {
     }
     this.databaseParams.forEach((key, value) -> params.add(key + "=" + value));
     String url = "offline:" + shortName + params;
-    MarkitectOfflineConnection connection = new MarkitectOfflineConnection(url, resourceAccessor);
+    MarkitectOfflineConnection connection =
+        new MarkitectOfflineConnection(url, Scope.getCurrentScope().getResourceAccessor());
     connection.setCatalog(catalog);
     connection.setSchema(schema);
     return connection;

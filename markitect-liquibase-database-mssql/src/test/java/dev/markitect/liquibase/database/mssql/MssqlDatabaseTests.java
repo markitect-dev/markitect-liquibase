@@ -25,7 +25,6 @@ import liquibase.GlobalConfiguration;
 import liquibase.Scope;
 import liquibase.database.ObjectQuotingStrategy;
 import liquibase.database.core.MSSQLDatabase;
-import liquibase.resource.ClassLoaderResourceAccessor;
 import liquibase.structure.DatabaseObject;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -62,7 +61,6 @@ class MssqlDatabaseTests {
     }
     try (var database =
         DatabaseBuilder.of(MSSQLDatabase::new)
-            .setResourceAccessor(new ClassLoaderResourceAccessor())
             .useOfflineConnection()
             .setObjectQuotingStrategy(quotingStrategy)
             .build()) {
@@ -104,7 +102,6 @@ class MssqlDatabaseTests {
     }
     try (var database =
         DatabaseBuilder.of(MSSQLDatabase::new)
-            .setResourceAccessor(new ClassLoaderResourceAccessor())
             .setOutputDefaultCatalog(outputDefaultCatalog)
             .setOutputDefaultSchema(outputDefaultSchema)
             .useOfflineConnection(ocb -> ocb.setCatalog("Cat1").setSchema("Sch1"))
@@ -154,7 +151,6 @@ class MssqlDatabaseTests {
     }
     try (var database =
         DatabaseBuilder.of(MSSQLDatabase::new)
-            .setResourceAccessor(new ClassLoaderResourceAccessor())
             .useOfflineConnection()
             .setObjectQuotingStrategy(quotingStrategy)
             .build()) {
@@ -205,7 +201,6 @@ class MssqlDatabaseTests {
     }
     try (var database =
         DatabaseBuilder.of(MSSQLDatabase::new)
-            .setResourceAccessor(new ClassLoaderResourceAccessor())
             .setOutputDefaultCatalog(outputDefaultCatalog)
             .setOutputDefaultSchema(outputDefaultSchema)
             .useOfflineConnection(ocb -> ocb.setCatalog("Cat1").setSchema("Sch1"))

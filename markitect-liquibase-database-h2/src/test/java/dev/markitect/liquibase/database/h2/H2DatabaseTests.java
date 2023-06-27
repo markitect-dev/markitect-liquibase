@@ -26,7 +26,6 @@ import liquibase.GlobalConfiguration;
 import liquibase.Scope;
 import liquibase.database.ObjectQuotingStrategy;
 import liquibase.database.core.H2Database;
-import liquibase.resource.ClassLoaderResourceAccessor;
 import liquibase.structure.DatabaseObject;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -69,10 +68,7 @@ class H2DatabaseTests {
       scopeValues.put(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getKey(), preserveSchemaCase);
     }
     try (var database =
-        DatabaseBuilder.of(H2Database::new)
-            .setResourceAccessor(new ClassLoaderResourceAccessor())
-            .setObjectQuotingStrategy(quotingStrategy)
-            .build()) {
+        DatabaseBuilder.of(H2Database::new).setObjectQuotingStrategy(quotingStrategy).build()) {
 
       // when
       String actual =
@@ -120,10 +116,7 @@ class H2DatabaseTests {
       scopeValues.put(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getKey(), preserveSchemaCase);
     }
     try (var database =
-        DatabaseBuilder.of(H2Database::new)
-            .setResourceAccessor(new ClassLoaderResourceAccessor())
-            .setObjectQuotingStrategy(quotingStrategy)
-            .build()) {
+        DatabaseBuilder.of(H2Database::new).setObjectQuotingStrategy(quotingStrategy).build()) {
 
       // when
       String actual =
@@ -156,7 +149,6 @@ class H2DatabaseTests {
     // given
     try (var database =
         DatabaseBuilder.of(H2Database::new)
-            .setResourceAccessor(new ClassLoaderResourceAccessor())
             .setOutputDefaultSchema(outputDefaultSchema)
             .useOfflineConnection()
             .build()) {

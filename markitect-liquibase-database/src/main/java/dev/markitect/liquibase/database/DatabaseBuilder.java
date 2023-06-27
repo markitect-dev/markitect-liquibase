@@ -17,7 +17,6 @@
 package dev.markitect.liquibase.database;
 
 import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
-import static dev.markitect.liquibase.base.Preconditions.checkState;
 import static dev.markitect.liquibase.base.Verify.verifyNotNull;
 
 import dev.markitect.liquibase.base.Nullable;
@@ -27,11 +26,9 @@ import java.util.function.UnaryOperator;
 import liquibase.database.Database;
 import liquibase.database.ObjectQuotingStrategy;
 import liquibase.exception.DatabaseException;
-import liquibase.resource.ResourceAccessor;
 
 public final class DatabaseBuilder<D extends Database> {
   private final DatabaseFactory<D> databaseFactory;
-  private final @Nullable ResourceAccessor resourceAccessor;
   private final @Nullable UnaryOperator<OfflineConnectionBuilder> offlineConnectionCustomizer;
   private final @Nullable ObjectQuotingStrategy objectQuotingStrategy;
   private final @Nullable Boolean outputDefaultCatalog;
@@ -39,13 +36,11 @@ public final class DatabaseBuilder<D extends Database> {
 
   private DatabaseBuilder(
       DatabaseFactory<D> databaseFactory,
-      @Nullable ResourceAccessor resourceAccessor,
       @Nullable UnaryOperator<OfflineConnectionBuilder> offlineConnectionCustomizer,
       @Nullable ObjectQuotingStrategy objectQuotingStrategy,
       @Nullable Boolean outputDefaultCatalog,
       @Nullable Boolean outputDefaultSchema) {
     this.databaseFactory = checkNotNull(databaseFactory);
-    this.resourceAccessor = resourceAccessor;
     this.offlineConnectionCustomizer = offlineConnectionCustomizer;
     this.objectQuotingStrategy = objectQuotingStrategy;
     this.outputDefaultCatalog = outputDefaultCatalog;
@@ -57,17 +52,6 @@ public final class DatabaseBuilder<D extends Database> {
     checkNotNull(databaseFactory);
     return new DatabaseBuilder<>(
         databaseFactory,
-        resourceAccessor,
-        offlineConnectionCustomizer,
-        objectQuotingStrategy,
-        outputDefaultCatalog,
-        outputDefaultSchema);
-  }
-
-  public DatabaseBuilder<D> setResourceAccessor(@Nullable ResourceAccessor resourceAccessor) {
-    return new DatabaseBuilder<>(
-        databaseFactory,
-        resourceAccessor,
         offlineConnectionCustomizer,
         objectQuotingStrategy,
         outputDefaultCatalog,
@@ -82,7 +66,6 @@ public final class DatabaseBuilder<D extends Database> {
       @Nullable UnaryOperator<OfflineConnectionBuilder> offlineConnectionCustomizer) {
     return new DatabaseBuilder<>(
         databaseFactory,
-        resourceAccessor,
         offlineConnectionCustomizer,
         objectQuotingStrategy,
         outputDefaultCatalog,
@@ -93,7 +76,6 @@ public final class DatabaseBuilder<D extends Database> {
       @Nullable ObjectQuotingStrategy objectQuotingStrategy) {
     return new DatabaseBuilder<>(
         databaseFactory,
-        resourceAccessor,
         offlineConnectionCustomizer,
         objectQuotingStrategy,
         outputDefaultCatalog,
@@ -103,7 +85,6 @@ public final class DatabaseBuilder<D extends Database> {
   public DatabaseBuilder<D> setOutputDefaultCatalog(@Nullable Boolean outputDefaultCatalog) {
     return new DatabaseBuilder<>(
         databaseFactory,
-        resourceAccessor,
         offlineConnectionCustomizer,
         objectQuotingStrategy,
         outputDefaultCatalog,
@@ -113,7 +94,6 @@ public final class DatabaseBuilder<D extends Database> {
   public DatabaseBuilder<D> setOutputDefaultSchema(@Nullable Boolean outputDefaultSchema) {
     return new DatabaseBuilder<>(
         databaseFactory,
-        resourceAccessor,
         offlineConnectionCustomizer,
         objectQuotingStrategy,
         outputDefaultCatalog,
@@ -121,7 +101,6 @@ public final class DatabaseBuilder<D extends Database> {
   }
 
   public D build() {
-    checkState(offlineConnectionCustomizer == null || resourceAccessor != null);
     D database;
     try {
       database = verifyNotNull(databaseFactory.get());
@@ -132,10 +111,7 @@ public final class DatabaseBuilder<D extends Database> {
       MarkitectOfflineConnection connection =
           offlineConnectionCustomizer
               .andThen(Verify::verifyNotNull)
-              .apply(
-                  OfflineConnectionBuilder.of()
-                      .setResourceAccessor(resourceAccessor)
-                      .setShortName(database.getShortName()))
+              .apply(OfflineConnectionBuilder.of().setShortName(database.getShortName()))
               .build();
       database.setConnection(connection);
     }
@@ -153,6 +129,6 @@ public final class DatabaseBuilder<D extends Database> {
 
   public static <D extends Database> DatabaseBuilder<D> of(DatabaseFactory<D> databaseFactory) {
     checkNotNull(databaseFactory);
-    return new DatabaseBuilder<>(databaseFactory, null, null, null, null, null);
+    return new DatabaseBuilder<>(databaseFactory, null, null, null, null);
   }
 }

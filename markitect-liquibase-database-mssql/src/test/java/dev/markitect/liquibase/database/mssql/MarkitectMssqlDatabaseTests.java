@@ -24,7 +24,6 @@ import java.util.LinkedHashMap;
 import liquibase.GlobalConfiguration;
 import liquibase.Scope;
 import liquibase.database.ObjectQuotingStrategy;
-import liquibase.resource.ClassLoaderResourceAccessor;
 import liquibase.structure.DatabaseObject;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -61,7 +60,6 @@ class MarkitectMssqlDatabaseTests {
     }
     try (var database =
         DatabaseBuilder.of(MarkitectMssqlDatabase::new)
-            .setResourceAccessor(new ClassLoaderResourceAccessor())
             .useOfflineConnection()
             .setObjectQuotingStrategy(quotingStrategy)
             .build()) {
@@ -103,7 +101,6 @@ class MarkitectMssqlDatabaseTests {
     }
     try (var database =
         DatabaseBuilder.of(MarkitectMssqlDatabase::new)
-            .setResourceAccessor(new ClassLoaderResourceAccessor())
             .setOutputDefaultCatalog(outputDefaultCatalog)
             .setOutputDefaultSchema(outputDefaultSchema)
             .useOfflineConnection(ocb -> ocb.setCatalog("Cat1").setSchema("Sch1"))
@@ -153,7 +150,6 @@ class MarkitectMssqlDatabaseTests {
     }
     try (var database =
         DatabaseBuilder.of(MarkitectMssqlDatabase::new)
-            .setResourceAccessor(new ClassLoaderResourceAccessor())
             .useOfflineConnection()
             .setObjectQuotingStrategy(quotingStrategy)
             .build()) {
@@ -204,7 +200,6 @@ class MarkitectMssqlDatabaseTests {
     }
     try (var database =
         DatabaseBuilder.of(MarkitectMssqlDatabase::new)
-            .setResourceAccessor(new ClassLoaderResourceAccessor())
             .setOutputDefaultCatalog(outputDefaultCatalog)
             .setOutputDefaultSchema(outputDefaultSchema)
             .useOfflineConnection(ocb -> ocb.setCatalog("Cat1").setSchema("Sch1"))

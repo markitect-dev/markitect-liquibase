@@ -29,7 +29,6 @@ import liquibase.database.ObjectQuotingStrategy;
 import liquibase.database.core.H2Database;
 import liquibase.database.core.MSSQLDatabase;
 import liquibase.exception.DatabaseException;
-import liquibase.resource.ClassLoaderResourceAccessor;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junitpioneer.jupiter.json.JsonSource;
@@ -165,7 +164,6 @@ class DatabaseBuilderTests {
                     throw new DatabaseException(e);
                   }
                 })
-            .setResourceAccessor(new ClassLoaderResourceAccessor())
             .setObjectQuotingStrategy(quotingStrategy)
             .setOutputDefaultCatalog(outputDefaultCatalog)
             .setOutputDefaultSchema(outputDefaultSchema);
@@ -257,27 +255,12 @@ class DatabaseBuilderTests {
   @Test
   void buildWithInvalidOfflineConnectionCustomizerFails() {
     // given
-    var invalidBuilder =
-        DatabaseBuilder.of(H2Database::new)
-            .setResourceAccessor(new ClassLoaderResourceAccessor())
-            .useOfflineConnection(ocb -> null);
+    var invalidBuilder = DatabaseBuilder.of(H2Database::new).useOfflineConnection(ocb -> null);
 
     // when
     var thrown = catchThrowable(invalidBuilder::build);
 
     // then
     assertThat(thrown).isInstanceOf(VerifyException.class);
-  }
-
-  @Test
-  void buildWithOfflineConnectionCustomizerWithoutResourceAccessorFails() {
-    // given
-    var invalidBuilder = DatabaseBuilder.of(H2Database::new).useOfflineConnection();
-
-    // when
-    var thrown = catchThrowable(invalidBuilder::build);
-
-    // then
-    assertThat(thrown).isInstanceOf(IllegalStateException.class);
   }
 }

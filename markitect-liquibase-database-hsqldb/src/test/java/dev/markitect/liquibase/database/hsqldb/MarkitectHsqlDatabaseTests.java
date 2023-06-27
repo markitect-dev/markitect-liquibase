@@ -25,7 +25,6 @@ import java.util.Map;
 import liquibase.GlobalConfiguration;
 import liquibase.Scope;
 import liquibase.database.ObjectQuotingStrategy;
-import liquibase.resource.ClassLoaderResourceAccessor;
 import liquibase.structure.DatabaseObject;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -69,7 +68,6 @@ class MarkitectHsqlDatabaseTests {
     }
     try (var database =
         DatabaseBuilder.of(MarkitectHsqlDatabase::new)
-            .setResourceAccessor(new ClassLoaderResourceAccessor())
             .setObjectQuotingStrategy(quotingStrategy)
             .build()) {
 
@@ -120,7 +118,6 @@ class MarkitectHsqlDatabaseTests {
     }
     try (var database =
         DatabaseBuilder.of(MarkitectHsqlDatabase::new)
-            .setResourceAccessor(new ClassLoaderResourceAccessor())
             .setObjectQuotingStrategy(quotingStrategy)
             .build()) {
 
@@ -155,7 +152,6 @@ class MarkitectHsqlDatabaseTests {
     // given
     try (var database =
         DatabaseBuilder.of(MarkitectHsqlDatabase::new)
-            .setResourceAccessor(new ClassLoaderResourceAccessor())
             .setOutputDefaultSchema(outputDefaultSchema)
             .useOfflineConnection()
             .build()) {

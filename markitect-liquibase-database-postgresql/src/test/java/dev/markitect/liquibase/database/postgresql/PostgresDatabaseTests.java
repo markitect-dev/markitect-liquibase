@@ -26,7 +26,6 @@ import liquibase.GlobalConfiguration;
 import liquibase.Scope;
 import liquibase.database.ObjectQuotingStrategy;
 import liquibase.database.core.PostgresDatabase;
-import liquibase.resource.ClassLoaderResourceAccessor;
 import liquibase.structure.DatabaseObject;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -70,7 +69,6 @@ class PostgresDatabaseTests {
     }
     try (var database =
         DatabaseBuilder.of(PostgresDatabase::new)
-            .setResourceAccessor(new ClassLoaderResourceAccessor())
             .setObjectQuotingStrategy(quotingStrategy)
             .build()) {
 
@@ -121,7 +119,6 @@ class PostgresDatabaseTests {
     }
     try (var database =
         DatabaseBuilder.of(PostgresDatabase::new)
-            .setResourceAccessor(new ClassLoaderResourceAccessor())
             .setObjectQuotingStrategy(quotingStrategy)
             .build()) {
 
@@ -156,7 +153,6 @@ class PostgresDatabaseTests {
     // given
     try (var database =
         DatabaseBuilder.of(PostgresDatabase::new)
-            .setResourceAccessor(new ClassLoaderResourceAccessor())
             .setOutputDefaultSchema(outputDefaultSchema)
             .useOfflineConnection(ocb -> ocb.setSchema("PUBLIC"))
             .build()) {
