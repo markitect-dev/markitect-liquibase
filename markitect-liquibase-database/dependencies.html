@@ -31,7 +31,7 @@
 
         <div id="breadcrumbs">
           <ul class="breadcrumb">
-        <li id="publishDate">Last Published: 2023-06-26<span class="divider">|</span>
+        <li id="publishDate">Last Published: 2023-06-27<span class="divider">|</span>
 </li>
           <li id="projectVersion">Version: 0.1.0-SNAPSHOT</li>
         <li class="pull-right"><a href="./" title="markitect-liquibase">markitect-liquibase</a></li>
@@ -83,13 +83,36 @@
 <th>ArtifactId</th>
 <th>Version</th>
 <th>Type</th>
-<th>Licenses</th></tr>
+<th>Licenses</th>
+<th>Optional</th></tr>
 <tr class="b">
+<td style="text-align: left;">dev.markitect.liquibase</td>
+<td><a class="externalLink" href="https://github.com/markitect-dev/markitect-liquibase">markitect-liquibase-base</a></td>
+<td>0.1.0-SNAPSHOT</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></td>
+<td>No</td></tr>
+<tr class="a">
 <td style="text-align: left;">dev.markitect.liquibase</td>
 <td><a class="externalLink" href="https://github.com/markitect-dev/markitect-liquibase">markitect-liquibase-core</a></td>
 <td>0.1.0-SNAPSHOT</td>
 <td>jar</td>
-<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></td></tr></table></section><a id="Project_Dependencies_test"></a><section>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></td>
+<td>No</td></tr>
+<tr class="b">
+<td style="text-align: left;">com.google.code.findbugs</td>
+<td><a class="externalLink" href="http://findbugs.sourceforge.net/">jsr305</a></td>
+<td>3.0.2</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td>
+<td>Yes</td></tr>
+<tr class="a">
+<td style="text-align: left;">com.google.errorprone</td>
+<td><a class="externalLink" href="https://errorprone.info/error_prone_annotations">error_prone_annotations</a></td>
+<td>2.20.0</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache 2.0</a></td>
+<td>Yes</td></tr></table></section><a id="Project_Dependencies_test"></a><section>
 <h2>test</h2>
 <p>The following is a list of test dependencies for this project. These dependencies are only required to compile and run unit tests for the application:</p>
 <table class="table table-striped">
@@ -147,66 +170,48 @@
 <th>Type</th>
 <th>Licenses</th></tr>
 <tr class="b">
-<td style="text-align: left;">com.google.code.findbugs</td>
-<td><a class="externalLink" href="http://findbugs.sourceforge.net/">jsr305</a></td>
-<td>3.0.2</td>
-<td>jar</td>
-<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
-<tr class="a">
-<td style="text-align: left;">com.google.errorprone</td>
-<td><a class="externalLink" href="https://errorprone.info/error_prone_annotations">error_prone_annotations</a></td>
-<td>2.20.0</td>
-<td>jar</td>
-<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache 2.0</a></td></tr>
-<tr class="b">
 <td style="text-align: left;">com.opencsv</td>
 <td><a class="externalLink" href="http://opencsv.sf.net">opencsv</a></td>
 <td>5.7.1</td>
 <td>jar</td>
 <td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache 2</a></td></tr>
 <tr class="a">
-<td style="text-align: left;">dev.markitect.liquibase</td>
-<td><a class="externalLink" href="https://github.com/markitect-dev/markitect-liquibase">markitect-liquibase-base</a></td>
-<td>0.1.0-SNAPSHOT</td>
-<td>jar</td>
-<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></td></tr>
-<tr class="b">
 <td style="text-align: left;">javax.activation</td>
 <td><a class="externalLink" href="http://java.net/all/javax.activation-api/">javax.activation-api</a></td>
 <td>1.2.0</td>
 <td>jar</td>
 <td><a class="externalLink" href="https://github.com/javaee/activation/blob/master/LICENSE.txt">CDDL/GPLv2+CE</a></td></tr>
-<tr class="a">
+<tr class="b">
 <td style="text-align: left;">javax.xml.bind</td>
 <td><a class="externalLink" href="https://github.com/javaee/jaxb-spec/jaxb-api">jaxb-api</a></td>
 <td>2.3.1</td>
 <td>jar</td>
 <td><a class="externalLink" href="https://oss.oracle.com/licenses/CDDL+GPL-1.1">CDDL 1.1</a><a class="externalLink" href="https://oss.oracle.com/licenses/CDDL+GPL-1.1">GPL2 w/ CPE</a></td></tr>
-<tr class="b">
+<tr class="a">
 <td style="text-align: left;">org.apache.commons</td>
 <td><a class="externalLink" href="https://commons.apache.org/proper/commons-collections/">commons-collections4</a></td>
 <td>4.4</td>
 <td>jar</td>
 <td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
-<tr class="a">
+<tr class="b">
 <td style="text-align: left;">org.apache.commons</td>
 <td><a class="externalLink" href="https://commons.apache.org/proper/commons-lang/">commons-lang3</a></td>
 <td>3.12.0</td>
 <td>jar</td>
 <td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
-<tr class="b">
+<tr class="a">
 <td style="text-align: left;">org.apache.commons</td>
 <td><a class="externalLink" href="https://commons.apache.org/proper/commons-text">commons-text</a></td>
 <td>1.10.0</td>
 <td>jar</td>
 <td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
-<tr class="a">
+<tr class="b">
 <td style="text-align: left;">org.liquibase</td>
-<td><a class="externalLink" href="http://www.liquibase.org/liquibase-root/liquibase-dist">liquibase-core</a></td>
-<td>4.21.1</td>
+<td><a class="externalLink" href="http://www.liquibase.com">liquibase-core</a></td>
+<td>4.23.0</td>
 <td>jar</td>
 <td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a></td></tr>
-<tr class="b">
+<tr class="a">
 <td style="text-align: left;">org.yaml</td>
 <td><a class="externalLink" href="https://bitbucket.org/snakeyaml/snakeyaml">snakeyaml</a></td>
 <td>2.0</td>
@@ -354,7 +359,34 @@
 <p><b>URL: </b><a class="externalLink" href="https://github.com/markitect-dev/markitect-liquibase">https://github.com/markitect-dev/markitect-liquibase</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></p></td></tr></table></div>
 <ul>
-<li>dev.markitect.liquibase:markitect-liquibase-core:jar:0.1.0-SNAPSHOT (compile) <img id="_img3" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep2', '_img3' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep2" style="display:none">
+<li>com.google.code.findbugs:jsr305:jar:3.0.2 (compile) <img id="_img3" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep2', '_img3' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep2" style="display:none">
+<table class="table table-striped">
+<tr class="a">
+<th>FindBugs-jsr305</th></tr>
+<tr class="b">
+<td style="text-align: left;">
+<p><b>Description: </b>JSR305 Annotations for Findbugs</p>
+<p><b>URL: </b><a class="externalLink" href="http://findbugs.sourceforge.net/">http://findbugs.sourceforge.net/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
+<li>com.google.errorprone:error_prone_annotations:jar:2.20.0 (compile) <img id="_img5" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep4', '_img5' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep4" style="display:none">
+<table class="table table-striped">
+<tr class="a">
+<th>error-prone annotations</th></tr>
+<tr class="b">
+<td style="text-align: left;">
+<p><b>Description: </b>Error Prone is a static analysis tool for Java that catches common programming mistakes at compile-time.</p>
+<p><b>URL: </b><a class="externalLink" href="https://errorprone.info/error_prone_annotations">https://errorprone.info/error_prone_annotations</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache 2.0</a></p></td></tr></table></div></li>
+<li>dev.markitect.liquibase:markitect-liquibase-base:jar:0.1.0-SNAPSHOT (compile) <img id="_img7" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep6', '_img7' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep6" style="display:none">
+<table class="table table-striped">
+<tr class="a">
+<th>markitect-liquibase-base</th></tr>
+<tr class="b">
+<td style="text-align: left;">
+<p><b>Description: </b>Markitect Liquibase Base Module</p>
+<p><b>URL: </b><a class="externalLink" href="https://github.com/markitect-dev/markitect-liquibase">https://github.com/markitect-dev/markitect-liquibase</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></p></td></tr></table></div></li>
+<li>dev.markitect.liquibase:markitect-liquibase-core:jar:0.1.0-SNAPSHOT (compile) <img id="_img9" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep8', '_img9' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep8" style="display:none">
 <table class="table table-striped">
 <tr class="a">
 <th>markitect-liquibase-core</th></tr>
@@ -364,73 +396,17 @@
 <p><b>URL: </b><a class="externalLink" href="https://github.com/markitect-dev/markitect-liquibase">https://github.com/markitect-dev/markitect-liquibase</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></p></td></tr></table></div>
 <ul>
-<li>dev.markitect.liquibase:markitect-liquibase-base:jar:0.1.0-SNAPSHOT (compile) <img id="_img5" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep4', '_img5' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep4" style="display:none">
-<table class="table table-striped">
-<tr class="a">
-<th>markitect-liquibase-base</th></tr>
-<tr class="b">
-<td style="text-align: left;">
-<p><b>Description: </b>Markitect Liquibase Base Module</p>
-<p><b>URL: </b><a class="externalLink" href="https://github.com/markitect-dev/markitect-liquibase">https://github.com/markitect-dev/markitect-liquibase</a></p>
-<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></p></td></tr></table></div>
-<ul>
-<li>com.google.code.findbugs:jsr305:jar:3.0.2 (compile) <img id="_img7" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep6', '_img7' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep6" style="display:none">
-<table class="table table-striped">
-<tr class="a">
-<th>FindBugs-jsr305</th></tr>
-<tr class="b">
-<td style="text-align: left;">
-<p><b>Description: </b>JSR305 Annotations for Findbugs</p>
-<p><b>URL: </b><a class="externalLink" href="http://findbugs.sourceforge.net/">http://findbugs.sourceforge.net/</a></p>
-<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
-<li>com.google.errorprone:error_prone_annotations:jar:2.20.0 (compile) <img id="_img9" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep8', '_img9' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep8" style="display:none">
-<table class="table table-striped">
-<tr class="a">
-<th>error-prone annotations</th></tr>
-<tr class="b">
-<td style="text-align: left;">
-<p><b>Description: </b>Error Prone is a static analysis tool for Java that catches common programming mistakes at compile-time.</p>
-<p><b>URL: </b><a class="externalLink" href="https://errorprone.info/error_prone_annotations">https://errorprone.info/error_prone_annotations</a></p>
-<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache 2.0</a></p></td></tr></table></div></li></ul></li>
-<li>org.liquibase:liquibase-core:jar:4.21.1 (compile) <img id="_img11" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep10', '_img11' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep10" style="display:none">
+<li>org.liquibase:liquibase-core:jar:4.23.0 (compile) <img id="_img11" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep10', '_img11' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep10" style="display:none">
 <table class="table table-striped">
 <tr class="a">
 <th>Liquibase</th></tr>
 <tr class="b">
 <td style="text-align: left;">
 <p><b>Description: </b>Liquibase is a tool for managing and executing database changes.</p>
-<p><b>URL: </b><a class="externalLink" href="http://www.liquibase.org/liquibase-root/liquibase-dist">http://www.liquibase.org/liquibase-root/liquibase-dist</a></p>
+<p><b>URL: </b><a class="externalLink" href="http://www.liquibase.com">http://www.liquibase.com</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a></p></td></tr></table></div>
 <ul>
-<li>javax.xml.bind:jaxb-api:jar:2.3.1 (compile) <img id="_img13" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep12', '_img13' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep12" style="display:none">
-<table class="table table-striped">
-<tr class="a">
-<th>jaxb-api</th></tr>
-<tr class="b">
-<td style="text-align: left;">
-<p><b>Description: </b>JAXB (JSR 222) API</p>
-<p><b>URL: </b><a class="externalLink" href="https://github.com/javaee/jaxb-spec/jaxb-api">https://github.com/javaee/jaxb-spec/jaxb-api</a></p>
-<p><b>Project Licenses: </b><a class="externalLink" href="https://oss.oracle.com/licenses/CDDL+GPL-1.1">CDDL 1.1</a>, <a class="externalLink" href="https://oss.oracle.com/licenses/CDDL+GPL-1.1">GPL2 w/ CPE</a></p></td></tr></table></div>
-<ul>
-<li>javax.activation:javax.activation-api:jar:1.2.0 (compile) <img id="_img15" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep14', '_img15' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep14" style="display:none">
-<table class="table table-striped">
-<tr class="a">
-<th>JavaBeans Activation Framework API jar</th></tr>
-<tr class="b">
-<td style="text-align: left;">
-<p><b>Description: </b>JavaBeans Activation Framework API jar</p>
-<p><b>URL: </b><a class="externalLink" href="http://java.net/all/javax.activation-api/">http://java.net/all/javax.activation-api/</a></p>
-<p><b>Project Licenses: </b><a class="externalLink" href="https://github.com/javaee/activation/blob/master/LICENSE.txt">CDDL/GPLv2+CE</a></p></td></tr></table></div></li></ul></li>
-<li>org.yaml:snakeyaml:jar:2.0 (compile) <img id="_img17" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep16', '_img17' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep16" style="display:none">
-<table class="table table-striped">
-<tr class="a">
-<th>SnakeYAML</th></tr>
-<tr class="b">
-<td style="text-align: left;">
-<p><b>Description: </b>YAML 1.1 parser and emitter for Java</p>
-<p><b>URL: </b><a class="externalLink" href="https://bitbucket.org/snakeyaml/snakeyaml">https://bitbucket.org/snakeyaml/snakeyaml</a></p>
-<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></li>
-<li>com.opencsv:opencsv:jar:5.7.1 (compile) <img id="_img19" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep18', '_img19' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep18" style="display:none">
+<li>com.opencsv:opencsv:jar:5.7.1 (compile) <img id="_img13" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep12', '_img13' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep12" style="display:none">
 <table class="table table-striped">
 <tr class="a">
 <th>opencsv</th></tr>
@@ -438,9 +414,8 @@
 <td style="text-align: left;">
 <p><b>Description: </b>A simple library for reading and writing CSV in Java</p>
 <p><b>URL: </b><a class="externalLink" href="http://opencsv.sf.net">http://opencsv.sf.net</a></p>
-<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache 2</a></p></td></tr></table></div>
-<ul>
-<li>org.apache.commons:commons-lang3:jar:3.12.0 (compile) <img id="_img21" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep20', '_img21' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep20" style="display:none">
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache 2</a></p></td></tr></table></div></li>
+<li>org.apache.commons:commons-lang3:jar:3.12.0 (compile) <img id="_img15" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep14', '_img15' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep14" style="display:none">
 <table class="table table-striped">
 <tr class="a">
 <th>Apache Commons Lang</th></tr>
@@ -451,7 +426,7 @@
   standard as to justify existence in java.lang.</p>
 <p><b>URL: </b><a class="externalLink" href="https://commons.apache.org/proper/commons-lang/">https://commons.apache.org/proper/commons-lang/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></li>
-<li>org.apache.commons:commons-text:jar:1.10.0 (compile) <img id="_img23" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep22', '_img23' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep22" style="display:none">
+<li>org.apache.commons:commons-text:jar:1.10.0 (compile) <img id="_img17" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep16', '_img17' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep16" style="display:none">
 <table class="table table-striped">
 <tr class="a">
 <th>Apache Commons Text</th></tr>
@@ -460,7 +435,7 @@
 <p><b>Description: </b>Apache Commons Text is a library focused on algorithms working on strings.</p>
 <p><b>URL: </b><a class="externalLink" href="https://commons.apache.org/proper/commons-text">https://commons.apache.org/proper/commons-text</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></li>
-<li>org.apache.commons:commons-collections4:jar:4.4 (compile) <img id="_img25" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep24', '_img25' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep24" style="display:none">
+<li>org.apache.commons:commons-collections4:jar:4.4 (compile) <img id="_img19" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep18', '_img19' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep18" style="display:none">
 <table class="table table-striped">
 <tr class="a">
 <th>Apache Commons Collections</th></tr>
@@ -468,7 +443,34 @@
 <td style="text-align: left;">
 <p><b>Description: </b>The Apache Commons Collections package contains types that extend and augment the Java Collections Framework.</p>
 <p><b>URL: </b><a class="externalLink" href="https://commons.apache.org/proper/commons-collections/">https://commons.apache.org/proper/commons-collections/</a></p>
-<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></li></ul></li></ul></li></ul></li>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></li>
+<li>org.yaml:snakeyaml:jar:2.0 (compile) <img id="_img21" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep20', '_img21' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep20" style="display:none">
+<table class="table table-striped">
+<tr class="a">
+<th>SnakeYAML</th></tr>
+<tr class="b">
+<td style="text-align: left;">
+<p><b>Description: </b>YAML 1.1 parser and emitter for Java</p>
+<p><b>URL: </b><a class="externalLink" href="https://bitbucket.org/snakeyaml/snakeyaml">https://bitbucket.org/snakeyaml/snakeyaml</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></li>
+<li>javax.xml.bind:jaxb-api:jar:2.3.1 (compile) <img id="_img23" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep22', '_img23' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep22" style="display:none">
+<table class="table table-striped">
+<tr class="a">
+<th>jaxb-api</th></tr>
+<tr class="b">
+<td style="text-align: left;">
+<p><b>Description: </b>JAXB (JSR 222) API</p>
+<p><b>URL: </b><a class="externalLink" href="https://github.com/javaee/jaxb-spec/jaxb-api">https://github.com/javaee/jaxb-spec/jaxb-api</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://oss.oracle.com/licenses/CDDL+GPL-1.1">CDDL 1.1</a>, <a class="externalLink" href="https://oss.oracle.com/licenses/CDDL+GPL-1.1">GPL2 w/ CPE</a></p></td></tr></table></div></li>
+<li>javax.activation:javax.activation-api:jar:1.2.0 (compile) <img id="_img25" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep24', '_img25' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep24" style="display:none">
+<table class="table table-striped">
+<tr class="a">
+<th>JavaBeans Activation Framework API jar</th></tr>
+<tr class="b">
+<td style="text-align: left;">
+<p><b>Description: </b>JavaBeans Activation Framework API jar</p>
+<p><b>URL: </b><a class="externalLink" href="http://java.net/all/javax.activation-api/">http://java.net/all/javax.activation-api/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://github.com/javaee/activation/blob/master/LICENSE.txt">CDDL/GPLv2+CE</a></p></td></tr></table></div></li></ul></li></ul></li>
 <li>com.fasterxml.jackson.core:jackson-databind:jar:2.15.2 (test) <img id="_img27" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep26', '_img27' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep26" style="display:none">
 <table class="table table-striped">
 <tr class="a">
@@ -694,8 +696,8 @@
 <p><b>Eclipse Public License v2.0: </b>JUnit Jupiter (Aggregator), JUnit Jupiter API, JUnit Jupiter Engine, JUnit Jupiter Params, JUnit Platform Commons, JUnit Platform Engine API, JUnit Platform Launcher, junit-pioneer</p>
 <p><b>GPL2 w/ CPE: </b>jaxb-api</p>
 <p><b>GNU Lesser General Public License: </b>Logback Classic Module, Logback Core Module</p>
-<p><b>CDDL/GPLv2+CE: </b>JavaBeans Activation Framework API jar</p>
 <p><b>Apache 2: </b>opencsv</p>
+<p><b>CDDL/GPLv2+CE: </b>JavaBeans Activation Framework API jar</p>
 <p><b>Apache-2.0: </b>markitect-liquibase-base, markitect-liquibase-core, markitect-liquibase-database, markitect-liquibase-logging</p>
 <p><b>Apache License, Version 2.0: </b>Apache Commons Collections, Apache Commons Lang, Apache Commons Text, Apache Log4j API, Apache Log4j to SLF4J Adapter, AssertJ Core, Byte Buddy (without dependencies), Liquibase, SnakeYAML, spring-boot-starter-logging</p>
 <p><b>The Apache Software License, Version 2.0: </b>FindBugs-jsr305, Jackson-annotations, Jackson-core, jackson-databind</p>
@@ -751,22 +753,6 @@
 <td style="text-align: center;">9</td>
 <td style="text-align: center;">Yes</td></tr>
 <tr class="a">
-<td style="text-align: left;">jsr305-3.0.2.jar</td>
-<td style="text-align: right;">19.9 kB</td>
-<td style="text-align: right;">46</td>
-<td style="text-align: right;">35</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: center;">1.5</td>
-<td style="text-align: center;">Yes</td></tr>
-<tr class="b">
-<td style="text-align: left;">error_prone_annotations-2.20.0.jar</td>
-<td style="text-align: right;">16.8 kB</td>
-<td style="text-align: right;">39</td>
-<td style="text-align: right;">27</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: center;">1.8</td>
-<td style="text-align: center;">Yes</td></tr>
-<tr class="a">
 <td style="text-align: left;">opencsv-5.7.1.jar</td>
 <td style="text-align: right;">238.8 kB</td>
 <td style="text-align: right;">195</td>
@@ -784,7 +770,7 @@
 <td style="text-align: center;">Yes</td></tr>
 <tr class="a">
 <td style="text-align: left;">markitect-liquibase-core-0.1.0-SNAPSHOT.jar</td>
-<td style="text-align: right;">7.9 kB</td>
+<td style="text-align: right;">8 kB</td>
 <td style="text-align: right;">22</td>
 <td style="text-align: right;">9</td>
 <td style="text-align: right;">4</td>
@@ -792,7 +778,7 @@
 <td style="text-align: center;">Yes</td></tr>
 <tr class="b">
 <td style="text-align: left;">markitect-liquibase-logging-0.1.0-SNAPSHOT.jar</td>
-<td style="text-align: right;">14.2 kB</td>
+<td style="text-align: right;">14.3 kB</td>
 <td style="text-align: right;">24</td>
 <td style="text-align: right;">11</td>
 <td style="text-align: right;">1</td>
@@ -943,11 +929,11 @@
 <td style="text-align: center;">9</td>
 <td style="text-align: center;">Yes</td></tr>
 <tr class="a">
-<td style="text-align: left;">liquibase-core-4.21.1.jar</td>
-<td style="text-align: right;">2.7 MB</td>
-<td style="text-align: right;">1470</td>
-<td style="text-align: right;">1233</td>
-<td style="text-align: right;">89</td>
+<td style="text-align: left;">liquibase-core-4.23.0.jar</td>
+<td style="text-align: right;">2.6 MB</td>
+<td style="text-align: right;">1443</td>
+<td style="text-align: right;">1208</td>
+<td style="text-align: right;">85</td>
 <td style="text-align: center;">1.8</td>
 <td style="text-align: center;">Yes</td></tr>
 <tr class="b">
@@ -991,6 +977,22 @@
 <td style="text-align: center;">9</td>
 <td style="text-align: center;">Yes</td></tr>
 <tr class="a">
+<td style="text-align: left;">jsr305-3.0.2.jar</td>
+<td style="text-align: right;">19.9 kB</td>
+<td style="text-align: right;">46</td>
+<td style="text-align: right;">35</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: center;">1.5</td>
+<td style="text-align: center;">Yes</td></tr>
+<tr class="b">
+<td style="text-align: left;">error_prone_annotations-2.20.0.jar</td>
+<td style="text-align: right;">16.8 kB</td>
+<td style="text-align: right;">39</td>
+<td style="text-align: right;">27</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: center;">1.8</td>
+<td style="text-align: center;">Yes</td></tr>
+<tr class="a">
 <th>Total</th>
 <th>Size</th>
 <th>Entries</th>
@@ -1001,17 +1003,17 @@
 <tr class="b">
 <td style="text-align: right;">35</td>
 <td style="text-align: right;">15.6 MB</td>
-<td style="text-align: right;">10446</td>
-<td style="text-align: right;">9421</td>
-<td style="text-align: right;">449</td>
+<td style="text-align: right;">10419</td>
+<td style="text-align: right;">9396</td>
+<td style="text-align: right;">445</td>
 <td style="text-align: center;">19</td>
 <td style="text-align: right;">33</td></tr>
 <tr class="a">
 <td style="text-align: right;">compile: 12</td>
-<td style="text-align: right;">compile: 5.1 MB</td>
-<td style="text-align: right;">compile: 3351</td>
-<td style="text-align: right;">compile: 2865</td>
-<td style="text-align: right;">compile: 190</td>
+<td style="text-align: right;">compile: 5 MB</td>
+<td style="text-align: right;">compile: 3324</td>
+<td style="text-align: right;">compile: 2840</td>
+<td style="text-align: right;">compile: 186</td>
 <td style="text-align: center;">9</td>
 <td style="text-align: right;">compile: 12</td></tr>
 <tr class="b">

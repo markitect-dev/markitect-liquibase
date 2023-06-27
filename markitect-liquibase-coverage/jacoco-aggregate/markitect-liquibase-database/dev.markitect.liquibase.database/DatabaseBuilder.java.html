@@ -16,7 +16,6 @@
 
 package dev.markitect.liquibase.database;
 
-import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
 import static dev.markitect.liquibase.base.Preconditions.checkState;
 import static dev.markitect.liquibase.base.Verify.verifyNotNull;
 
@@ -27,93 +26,81 @@ import java.util.function.UnaryOperator;
 import liquibase.database.Database;
 import liquibase.database.ObjectQuotingStrategy;
 import liquibase.exception.DatabaseException;
-import liquibase.resource.ResourceAccessor;
 
 public final class DatabaseBuilder&lt;D extends Database&gt; {
-  private final DatabaseFactory&lt;D&gt; databaseFactory;
-  private final @Nullable ResourceAccessor resourceAccessor;
+<span class="fc" id="L31">  private static final DatabaseBuilder&lt;?&gt; SINGLETON =</span>
+      new DatabaseBuilder&lt;&gt;(null, null, null, null, null);
+
+  @SuppressWarnings(&quot;unchecked&quot;)
+  public static &lt;T extends Database&gt; DatabaseBuilder&lt;T&gt; of() {
+<span class="fc" id="L36">    return (DatabaseBuilder&lt;T&gt;) SINGLETON;</span>
+  }
+
+  private final @Nullable DatabaseFactory&lt;D&gt; databaseFactory;
   private final @Nullable UnaryOperator&lt;OfflineConnectionBuilder&gt; offlineConnectionCustomizer;
   private final @Nullable ObjectQuotingStrategy objectQuotingStrategy;
   private final @Nullable Boolean outputDefaultCatalog;
   private final @Nullable Boolean outputDefaultSchema;
 
   private DatabaseBuilder(
-      DatabaseFactory&lt;D&gt; databaseFactory,
-      @Nullable ResourceAccessor resourceAccessor,
+      @Nullable DatabaseFactory&lt;D&gt; databaseFactory,
       @Nullable UnaryOperator&lt;OfflineConnectionBuilder&gt; offlineConnectionCustomizer,
       @Nullable ObjectQuotingStrategy objectQuotingStrategy,
       @Nullable Boolean outputDefaultCatalog,
-<span class="fc" id="L46">      @Nullable Boolean outputDefaultSchema) {</span>
-<span class="fc" id="L47">    this.databaseFactory = checkNotNull(databaseFactory);</span>
-<span class="fc" id="L48">    this.resourceAccessor = resourceAccessor;</span>
-<span class="fc" id="L49">    this.offlineConnectionCustomizer = offlineConnectionCustomizer;</span>
-<span class="fc" id="L50">    this.objectQuotingStrategy = objectQuotingStrategy;</span>
-<span class="fc" id="L51">    this.outputDefaultCatalog = outputDefaultCatalog;</span>
-<span class="fc" id="L52">    this.outputDefaultSchema = outputDefaultSchema;</span>
-<span class="fc" id="L53">  }</span>
+<span class="fc" id="L50">      @Nullable Boolean outputDefaultSchema) {</span>
+<span class="fc" id="L51">    this.databaseFactory = databaseFactory;</span>
+<span class="fc" id="L52">    this.offlineConnectionCustomizer = offlineConnectionCustomizer;</span>
+<span class="fc" id="L53">    this.objectQuotingStrategy = objectQuotingStrategy;</span>
+<span class="fc" id="L54">    this.outputDefaultCatalog = outputDefaultCatalog;</span>
+<span class="fc" id="L55">    this.outputDefaultSchema = outputDefaultSchema;</span>
+<span class="fc" id="L56">  }</span>
 
-  public &lt;T extends Database&gt; DatabaseBuilder&lt;T&gt; setDatabaseFactory(
-      DatabaseFactory&lt;T&gt; databaseFactory) {
-<span class="fc" id="L57">    checkNotNull(databaseFactory);</span>
-<span class="fc" id="L58">    return new DatabaseBuilder&lt;&gt;(</span>
+  public &lt;T extends Database&gt; DatabaseBuilder&lt;T&gt; withDatabaseFactory(
+      @Nullable DatabaseFactory&lt;T&gt; databaseFactory) {
+<span class="fc" id="L60">    return new DatabaseBuilder&lt;&gt;(</span>
         databaseFactory,
-        resourceAccessor,
         offlineConnectionCustomizer,
         objectQuotingStrategy,
         outputDefaultCatalog,
         outputDefaultSchema);
   }
 
-  public DatabaseBuilder&lt;D&gt; setResourceAccessor(@Nullable ResourceAccessor resourceAccessor) {
-<span class="fc" id="L68">    return new DatabaseBuilder&lt;&gt;(</span>
-        databaseFactory,
-        resourceAccessor,
-        offlineConnectionCustomizer,
-        objectQuotingStrategy,
-        outputDefaultCatalog,
-        outputDefaultSchema);
+  public DatabaseBuilder&lt;D&gt; withOfflineConnection() {
+<span class="fc" id="L69">    return withOfflineConnection(UnaryOperator.identity());</span>
   }
 
-  public DatabaseBuilder&lt;D&gt; useOfflineConnection() {
-<span class="fc" id="L78">    return useOfflineConnection(UnaryOperator.identity());</span>
-  }
-
-  public DatabaseBuilder&lt;D&gt; useOfflineConnection(
+  public DatabaseBuilder&lt;D&gt; withOfflineConnection(
       @Nullable UnaryOperator&lt;OfflineConnectionBuilder&gt; offlineConnectionCustomizer) {
-<span class="fc" id="L83">    return new DatabaseBuilder&lt;&gt;(</span>
+<span class="fc" id="L74">    return new DatabaseBuilder&lt;&gt;(</span>
         databaseFactory,
-        resourceAccessor,
         offlineConnectionCustomizer,
         objectQuotingStrategy,
         outputDefaultCatalog,
         outputDefaultSchema);
   }
 
-  public DatabaseBuilder&lt;D&gt; setObjectQuotingStrategy(
+  public DatabaseBuilder&lt;D&gt; withObjectQuotingStrategy(
       @Nullable ObjectQuotingStrategy objectQuotingStrategy) {
-<span class="fc" id="L94">    return new DatabaseBuilder&lt;&gt;(</span>
+<span class="fc" id="L84">    return new DatabaseBuilder&lt;&gt;(</span>
         databaseFactory,
-        resourceAccessor,
         offlineConnectionCustomizer,
         objectQuotingStrategy,
         outputDefaultCatalog,
         outputDefaultSchema);
   }
 
-  public DatabaseBuilder&lt;D&gt; setOutputDefaultCatalog(@Nullable Boolean outputDefaultCatalog) {
-<span class="fc" id="L104">    return new DatabaseBuilder&lt;&gt;(</span>
+  public DatabaseBuilder&lt;D&gt; withOutputDefaultCatalog(@Nullable Boolean outputDefaultCatalog) {
+<span class="fc" id="L93">    return new DatabaseBuilder&lt;&gt;(</span>
         databaseFactory,
-        resourceAccessor,
         offlineConnectionCustomizer,
         objectQuotingStrategy,
         outputDefaultCatalog,
         outputDefaultSchema);
   }
 
-  public DatabaseBuilder&lt;D&gt; setOutputDefaultSchema(@Nullable Boolean outputDefaultSchema) {
-<span class="fc" id="L114">    return new DatabaseBuilder&lt;&gt;(</span>
+  public DatabaseBuilder&lt;D&gt; withOutputDefaultSchema(@Nullable Boolean outputDefaultSchema) {
+<span class="fc" id="L102">    return new DatabaseBuilder&lt;&gt;(</span>
         databaseFactory,
-        resourceAccessor,
         offlineConnectionCustomizer,
         objectQuotingStrategy,
         outputDefaultCatalog,
@@ -121,39 +108,31 @@ public final class DatabaseBuilder&lt;D extends Database&gt; {
   }
 
   public D build() {
-<span class="fc bfc" id="L124" title="All 4 branches covered.">    checkState(offlineConnectionCustomizer == null || resourceAccessor != null);</span>
+<span class="fc bfc" id="L111" title="All 2 branches covered.">    checkState(databaseFactory != null);</span>
     D database;
     try {
-<span class="fc" id="L127">      database = verifyNotNull(databaseFactory.get());</span>
-<span class="fc" id="L128">    } catch (DatabaseException e) {</span>
-<span class="fc" id="L129">      throw new UncheckedDatabaseException(e);</span>
-<span class="fc" id="L130">    }</span>
-<span class="fc bfc" id="L131" title="All 2 branches covered.">    if (offlineConnectionCustomizer != null) {</span>
-<span class="fc" id="L132">      MarkitectOfflineConnection connection =</span>
+<span class="fc" id="L114">      database = verifyNotNull(databaseFactory.get());</span>
+<span class="fc" id="L115">    } catch (DatabaseException e) {</span>
+<span class="fc" id="L116">      throw new UncheckedDatabaseException(e);</span>
+<span class="fc" id="L117">    }</span>
+<span class="fc bfc" id="L118" title="All 2 branches covered.">    if (offlineConnectionCustomizer != null) {</span>
+<span class="fc" id="L119">      MarkitectOfflineConnection connection =</span>
           offlineConnectionCustomizer
-<span class="fc" id="L134">              .andThen(Verify::verifyNotNull)</span>
-<span class="fc" id="L135">              .apply(</span>
-<span class="fc" id="L136">                  OfflineConnectionBuilder.of()</span>
-<span class="fc" id="L137">                      .setResourceAccessor(resourceAccessor)</span>
-<span class="fc" id="L138">                      .setShortName(database.getShortName()))</span>
-<span class="fc" id="L139">              .build();</span>
-<span class="fc" id="L140">      database.setConnection(connection);</span>
+<span class="fc" id="L121">              .andThen(Verify::verifyNotNull)</span>
+<span class="fc" id="L122">              .apply(OfflineConnectionBuilder.of().withShortName(database.getShortName()))</span>
+<span class="fc" id="L123">              .build();</span>
+<span class="fc" id="L124">      database.setConnection(connection);</span>
     }
-<span class="fc bfc" id="L142" title="All 2 branches covered.">    if (objectQuotingStrategy != null) {</span>
-<span class="fc" id="L143">      database.setObjectQuotingStrategy(objectQuotingStrategy);</span>
+<span class="fc bfc" id="L126" title="All 2 branches covered.">    if (objectQuotingStrategy != null) {</span>
+<span class="fc" id="L127">      database.setObjectQuotingStrategy(objectQuotingStrategy);</span>
     }
-<span class="fc bfc" id="L145" title="All 2 branches covered.">    if (outputDefaultCatalog != null) {</span>
-<span class="fc" id="L146">      database.setOutputDefaultCatalog(outputDefaultCatalog);</span>
+<span class="fc bfc" id="L129" title="All 2 branches covered.">    if (outputDefaultCatalog != null) {</span>
+<span class="fc" id="L130">      database.setOutputDefaultCatalog(outputDefaultCatalog);</span>
     }
-<span class="fc bfc" id="L148" title="All 2 branches covered.">    if (outputDefaultSchema != null) {</span>
-<span class="fc" id="L149">      database.setOutputDefaultSchema(outputDefaultSchema);</span>
+<span class="fc bfc" id="L132" title="All 2 branches covered.">    if (outputDefaultSchema != null) {</span>
+<span class="fc" id="L133">      database.setOutputDefaultSchema(outputDefaultSchema);</span>
     }
-<span class="fc" id="L151">    return database;</span>
-  }
-
-  public static &lt;D extends Database&gt; DatabaseBuilder&lt;D&gt; of(DatabaseFactory&lt;D&gt; databaseFactory) {
-<span class="fc" id="L155">    checkNotNull(databaseFactory);</span>
-<span class="fc" id="L156">    return new DatabaseBuilder&lt;&gt;(databaseFactory, null, null, null, null, null);</span>
+<span class="fc" id="L135">    return database;</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>
