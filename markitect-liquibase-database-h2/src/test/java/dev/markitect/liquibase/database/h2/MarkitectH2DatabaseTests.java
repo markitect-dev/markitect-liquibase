@@ -67,8 +67,9 @@ class MarkitectH2DatabaseTests {
       scopeValues.put(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getKey(), preserveSchemaCase);
     }
     try (var database =
-        DatabaseBuilder.of(MarkitectH2Database::new)
-            .setObjectQuotingStrategy(quotingStrategy)
+        DatabaseBuilder.of()
+            .withDatabaseFactory(MarkitectH2Database::new)
+            .withObjectQuotingStrategy(quotingStrategy)
             .build()) {
 
       // when
@@ -117,8 +118,9 @@ class MarkitectH2DatabaseTests {
       scopeValues.put(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getKey(), preserveSchemaCase);
     }
     try (var database =
-        DatabaseBuilder.of(MarkitectH2Database::new)
-            .setObjectQuotingStrategy(quotingStrategy)
+        DatabaseBuilder.of()
+            .withDatabaseFactory(MarkitectH2Database::new)
+            .withObjectQuotingStrategy(quotingStrategy)
             .build()) {
 
       // when
@@ -151,9 +153,10 @@ class MarkitectH2DatabaseTests {
       throws Exception {
     // given
     try (var database =
-        DatabaseBuilder.of(MarkitectH2Database::new)
-            .setOutputDefaultSchema(outputDefaultSchema)
-            .useOfflineConnection()
+        DatabaseBuilder.of()
+            .withDatabaseFactory(MarkitectH2Database::new)
+            .withOfflineConnection()
+            .withOutputDefaultSchema(outputDefaultSchema)
             .build()) {
       assertThat(database.getDefaultSchemaName()).isEqualTo("PUBLIC");
 

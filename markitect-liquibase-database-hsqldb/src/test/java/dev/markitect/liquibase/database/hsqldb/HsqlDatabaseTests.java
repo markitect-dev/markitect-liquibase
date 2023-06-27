@@ -68,7 +68,10 @@ class HsqlDatabaseTests {
       scopeValues.put(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getKey(), preserveSchemaCase);
     }
     try (var database =
-        DatabaseBuilder.of(HsqlDatabase::new).setObjectQuotingStrategy(quotingStrategy).build()) {
+        DatabaseBuilder.of()
+            .withDatabaseFactory(HsqlDatabase::new)
+            .withObjectQuotingStrategy(quotingStrategy)
+            .build()) {
 
       // when
       String actual =
@@ -116,7 +119,10 @@ class HsqlDatabaseTests {
       scopeValues.put(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getKey(), preserveSchemaCase);
     }
     try (var database =
-        DatabaseBuilder.of(HsqlDatabase::new).setObjectQuotingStrategy(quotingStrategy).build()) {
+        DatabaseBuilder.of()
+            .withDatabaseFactory(HsqlDatabase::new)
+            .withObjectQuotingStrategy(quotingStrategy)
+            .build()) {
 
       // when
       String actual =
@@ -148,9 +154,10 @@ class HsqlDatabaseTests {
       throws Exception {
     // given
     try (var database =
-        DatabaseBuilder.of(HsqlDatabase::new)
-            .setOutputDefaultSchema(outputDefaultSchema)
-            .useOfflineConnection()
+        DatabaseBuilder.of()
+            .withDatabaseFactory(HsqlDatabase::new)
+            .withOfflineConnection()
+            .withOutputDefaultSchema(outputDefaultSchema)
             .build()) {
       assertThat(database.getDefaultSchemaName()).isEqualTo("PUBLIC");
 

@@ -60,9 +60,10 @@ class MssqlDatabaseTests {
       scopeValues.put(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getKey(), preserveSchemaCase);
     }
     try (var database =
-        DatabaseBuilder.of(MSSQLDatabase::new)
-            .useOfflineConnection()
-            .setObjectQuotingStrategy(quotingStrategy)
+        DatabaseBuilder.of()
+            .withDatabaseFactory(MSSQLDatabase::new)
+            .withOfflineConnection()
+            .withObjectQuotingStrategy(quotingStrategy)
             .build()) {
 
       // when
@@ -101,10 +102,11 @@ class MssqlDatabaseTests {
           GlobalConfiguration.INCLUDE_CATALOG_IN_SPECIFICATION.getKey(), includeCatalog);
     }
     try (var database =
-        DatabaseBuilder.of(MSSQLDatabase::new)
-            .setOutputDefaultCatalog(outputDefaultCatalog)
-            .setOutputDefaultSchema(outputDefaultSchema)
-            .useOfflineConnection(ocb -> ocb.setCatalog("Cat1").setSchema("Sch1"))
+        DatabaseBuilder.of()
+            .withDatabaseFactory(MSSQLDatabase::new)
+            .withOfflineConnection(ocb -> ocb.withCatalog("Cat1").withSchema("Sch1"))
+            .withOutputDefaultCatalog(outputDefaultCatalog)
+            .withOutputDefaultSchema(outputDefaultSchema)
             .build()) {
       assertThat(database.getDefaultCatalogName()).isEqualTo("Cat1");
       assertThat(database.getDefaultSchemaName()).isEqualTo("Sch1");
@@ -150,9 +152,10 @@ class MssqlDatabaseTests {
       scopeValues.put(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getKey(), preserveSchemaCase);
     }
     try (var database =
-        DatabaseBuilder.of(MSSQLDatabase::new)
-            .useOfflineConnection()
-            .setObjectQuotingStrategy(quotingStrategy)
+        DatabaseBuilder.of()
+            .withDatabaseFactory(MSSQLDatabase::new)
+            .withOfflineConnection()
+            .withObjectQuotingStrategy(quotingStrategy)
             .build()) {
 
       // when
@@ -200,10 +203,11 @@ class MssqlDatabaseTests {
           GlobalConfiguration.INCLUDE_CATALOG_IN_SPECIFICATION.getKey(), includeCatalog);
     }
     try (var database =
-        DatabaseBuilder.of(MSSQLDatabase::new)
-            .setOutputDefaultCatalog(outputDefaultCatalog)
-            .setOutputDefaultSchema(outputDefaultSchema)
-            .useOfflineConnection(ocb -> ocb.setCatalog("Cat1").setSchema("Sch1"))
+        DatabaseBuilder.of()
+            .withDatabaseFactory(MSSQLDatabase::new)
+            .withOfflineConnection(ocb -> ocb.withCatalog("Cat1").withSchema("Sch1"))
+            .withOutputDefaultCatalog(outputDefaultCatalog)
+            .withOutputDefaultSchema(outputDefaultSchema)
             .build()) {
       assertThat(database.getDefaultCatalogName()).isEqualTo("Cat1");
       assertThat(database.getDefaultSchemaName()).isEqualTo("Sch1");

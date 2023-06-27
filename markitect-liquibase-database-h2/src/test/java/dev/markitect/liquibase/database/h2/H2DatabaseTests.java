@@ -68,7 +68,10 @@ class H2DatabaseTests {
       scopeValues.put(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getKey(), preserveSchemaCase);
     }
     try (var database =
-        DatabaseBuilder.of(H2Database::new).setObjectQuotingStrategy(quotingStrategy).build()) {
+        DatabaseBuilder.of()
+            .withDatabaseFactory(H2Database::new)
+            .withObjectQuotingStrategy(quotingStrategy)
+            .build()) {
 
       // when
       String actual =
@@ -116,7 +119,10 @@ class H2DatabaseTests {
       scopeValues.put(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getKey(), preserveSchemaCase);
     }
     try (var database =
-        DatabaseBuilder.of(H2Database::new).setObjectQuotingStrategy(quotingStrategy).build()) {
+        DatabaseBuilder.of()
+            .withDatabaseFactory(H2Database::new)
+            .withObjectQuotingStrategy(quotingStrategy)
+            .build()) {
 
       // when
       String actual =
@@ -148,9 +154,10 @@ class H2DatabaseTests {
       throws Exception {
     // given
     try (var database =
-        DatabaseBuilder.of(H2Database::new)
-            .setOutputDefaultSchema(outputDefaultSchema)
-            .useOfflineConnection()
+        DatabaseBuilder.of()
+            .withDatabaseFactory(H2Database::new)
+            .withOfflineConnection()
+            .withOutputDefaultSchema(outputDefaultSchema)
             .build()) {
       assertThat(database.getDefaultSchemaName()).isEqualTo("PUBLIC");
 

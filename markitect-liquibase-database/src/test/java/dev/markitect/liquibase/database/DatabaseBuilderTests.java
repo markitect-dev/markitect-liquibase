@@ -16,6 +16,7 @@
 
 package dev.markitect.liquibase.database;
 
+import static dev.markitect.liquibase.database.DatabaseFactory.toDatabaseFactory;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
 
@@ -156,25 +157,19 @@ class DatabaseBuilderTests {
       throws Exception {
     // given
     var builder =
-        DatabaseBuilder.of(
-                () -> {
-                  try {
-                    return databaseClass.getDeclaredConstructor().newInstance();
-                  } catch (Exception e) {
-                    throw new DatabaseException(e);
-                  }
-                })
-            .setObjectQuotingStrategy(quotingStrategy)
-            .setOutputDefaultCatalog(outputDefaultCatalog)
-            .setOutputDefaultSchema(outputDefaultSchema);
+        DatabaseBuilder.of()
+            .withDatabaseFactory(toDatabaseFactory(databaseClass))
+            .withObjectQuotingStrategy(quotingStrategy)
+            .withOutputDefaultCatalog(outputDefaultCatalog)
+            .withOutputDefaultSchema(outputDefaultSchema);
     if (useOfflineConnection) {
       builder =
-          builder.useOfflineConnection(
+          builder.withOfflineConnection(
               ocb ->
-                  ocb.setVersion(version)
-                      .setCatalog(catalog)
-                      .setSchema(schema)
-                      .setDatabaseParams(databaseParams));
+                  ocb.withVersion(version)
+                      .withCatalog(catalog)
+                      .withSchema(schema)
+                      .withDatabaseParams(databaseParams));
     }
 
     // when
@@ -202,7 +197,7 @@ class DatabaseBuilderTests {
     }
 
     // when
-    builder = builder.setDatabaseFactory(MSSQLDatabase::new).useOfflineConnection();
+    builder = builder.withDatabaseFactory(MSSQLDatabase::new).withOfflineConnection();
     database = builder.build();
 
     // then
@@ -227,10 +222,11 @@ class DatabaseBuilderTests {
   void buildFailsOnDatabaseException() {
     // given
     var builder =
-        DatabaseBuilder.of(
-            () -> {
-              throw new DatabaseException();
-            });
+        DatabaseBuilder.of()
+            .withDatabaseFactory(
+                () -> {
+                  throw new DatabaseException();
+                });
 
     // when
     var thrown = catchThrowable(builder::build);
@@ -243,7 +239,7 @@ class DatabaseBuilderTests {
   @SuppressWarnings("DataFlowIssue")
   void buildWithInvalidDatabaseFactoryFails() {
     // given
-    var invalidBuilder = DatabaseBuilder.of(() -> null);
+    var invalidBuilder = DatabaseBuilder.of().withDatabaseFactory(() -> null);
 
     // when
     var thrown = catchThrowable(invalidBuilder::build);
@@ -255,12 +251,27 @@ class DatabaseBuilderTests {
   @Test
   void buildWithInvalidOfflineConnectionCustomizerFails() {
     // given
-    var invalidBuilder = DatabaseBuilder.of(H2Database::new).useOfflineConnection(ocb -> null);
+    var invalidBuilder =
+        DatabaseBuilder.of()
+            .withDatabaseFactory(H2Database::new)
+            .withOfflineConnection(ocb -> null);
 
     // when
     var thrown = catchThrowable(invalidBuilder::build);
 
     // then
     assertThat(thrown).isInstanceOf(VerifyException.class);
+  }
+
+  @Test
+  void buildWithoutDatabaseFactoryFails() {
+    // given
+    var invalidBuilder = DatabaseBuilder.of();
+
+    // when
+    var thrown = catchThrowable(invalidBuilder::build);
+
+    // then
+    assertThat(thrown).isInstanceOf(IllegalStateException.class);
   }
 }

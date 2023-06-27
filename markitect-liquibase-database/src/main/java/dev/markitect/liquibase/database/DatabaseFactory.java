@@ -16,11 +16,23 @@
 
 package dev.markitect.liquibase.database;
 
+import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
+
 import liquibase.database.Database;
 import liquibase.exception.DatabaseException;
 
 @FunctionalInterface
 public interface DatabaseFactory<D extends Database> {
-  @SuppressWarnings("RedundantThrows")
+  static <T extends Database> DatabaseFactory<T> toDatabaseFactory(Class<T> databaseClass) {
+    checkNotNull(databaseClass);
+    return () -> {
+      try {
+        return databaseClass.getDeclaredConstructor().newInstance();
+      } catch (Exception e) {
+        throw new DatabaseException(e);
+      }
+    };
+  }
+
   D get() throws DatabaseException;
 }

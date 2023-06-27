@@ -37,7 +37,7 @@ class DatabaseFactoryTests {
   void findCorrectDatabaseImplementation(String shortName, Class<? extends Database> expectedType)
       throws Exception {
     // given
-    var connection = OfflineConnectionBuilder.of().setShortName(shortName).build();
+    var connection = OfflineConnectionBuilder.of().withShortName(shortName).build();
 
     // when
     var database = DatabaseFactory.getInstance().findCorrectDatabaseImplementation(connection);

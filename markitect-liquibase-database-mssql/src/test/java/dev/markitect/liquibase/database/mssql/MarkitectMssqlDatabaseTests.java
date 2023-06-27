@@ -59,9 +59,10 @@ class MarkitectMssqlDatabaseTests {
       scopeValues.put(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getKey(), preserveSchemaCase);
     }
     try (var database =
-        DatabaseBuilder.of(MarkitectMssqlDatabase::new)
-            .useOfflineConnection()
-            .setObjectQuotingStrategy(quotingStrategy)
+        DatabaseBuilder.of()
+            .withDatabaseFactory(MarkitectMssqlDatabase::new)
+            .withOfflineConnection()
+            .withObjectQuotingStrategy(quotingStrategy)
             .build()) {
 
       // when
@@ -100,10 +101,11 @@ class MarkitectMssqlDatabaseTests {
           GlobalConfiguration.INCLUDE_CATALOG_IN_SPECIFICATION.getKey(), includeCatalog);
     }
     try (var database =
-        DatabaseBuilder.of(MarkitectMssqlDatabase::new)
-            .setOutputDefaultCatalog(outputDefaultCatalog)
-            .setOutputDefaultSchema(outputDefaultSchema)
-            .useOfflineConnection(ocb -> ocb.setCatalog("Cat1").setSchema("Sch1"))
+        DatabaseBuilder.of()
+            .withDatabaseFactory(MarkitectMssqlDatabase::new)
+            .withOfflineConnection(ocb -> ocb.withCatalog("Cat1").withSchema("Sch1"))
+            .withOutputDefaultCatalog(outputDefaultCatalog)
+            .withOutputDefaultSchema(outputDefaultSchema)
             .build()) {
       assertThat(database.getDefaultCatalogName()).isEqualTo("Cat1");
       assertThat(database.getDefaultSchemaName()).isEqualTo("Sch1");
@@ -149,9 +151,10 @@ class MarkitectMssqlDatabaseTests {
       scopeValues.put(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getKey(), preserveSchemaCase);
     }
     try (var database =
-        DatabaseBuilder.of(MarkitectMssqlDatabase::new)
-            .useOfflineConnection()
-            .setObjectQuotingStrategy(quotingStrategy)
+        DatabaseBuilder.of()
+            .withDatabaseFactory(MarkitectMssqlDatabase::new)
+            .withOfflineConnection()
+            .withObjectQuotingStrategy(quotingStrategy)
             .build()) {
 
       // when
@@ -199,10 +202,11 @@ class MarkitectMssqlDatabaseTests {
           GlobalConfiguration.INCLUDE_CATALOG_IN_SPECIFICATION.getKey(), includeCatalog);
     }
     try (var database =
-        DatabaseBuilder.of(MarkitectMssqlDatabase::new)
-            .setOutputDefaultCatalog(outputDefaultCatalog)
-            .setOutputDefaultSchema(outputDefaultSchema)
-            .useOfflineConnection(ocb -> ocb.setCatalog("Cat1").setSchema("Sch1"))
+        DatabaseBuilder.of()
+            .withDatabaseFactory(MarkitectMssqlDatabase::new)
+            .withOfflineConnection(ocb -> ocb.withCatalog("Cat1").withSchema("Sch1"))
+            .withOutputDefaultCatalog(outputDefaultCatalog)
+            .withOutputDefaultSchema(outputDefaultSchema)
             .build()) {
       assertThat(database.getDefaultCatalogName()).isEqualTo("Cat1");
       assertThat(database.getDefaultSchemaName()).isEqualTo("Sch1");

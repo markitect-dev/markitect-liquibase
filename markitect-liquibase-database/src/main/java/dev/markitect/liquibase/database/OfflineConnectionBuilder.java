@@ -22,7 +22,7 @@ import static java.util.Collections.emptyMap;
 import static java.util.Collections.unmodifiableMap;
 
 import dev.markitect.liquibase.base.Nullable;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.StringJoiner;
 import liquibase.Scope;
@@ -51,48 +51,55 @@ public final class OfflineConnectionBuilder {
       @Nullable String catalog,
       @Nullable String schema,
       Map<String, String> databaseParams) {
-    this.schema = schema;
     this.shortName = shortName;
     this.productName = productName;
     this.version = version;
     this.snapshot = snapshot;
     this.catalog = catalog;
-    this.databaseParams = unmodifiableMap(new HashMap<>(checkNotNull(databaseParams)));
+    this.schema = schema;
+    this.databaseParams = checkNotNull(databaseParams);
   }
 
-  public OfflineConnectionBuilder setShortName(@Nullable String shortName) {
+  public OfflineConnectionBuilder withShortName(String shortName) {
     return new OfflineConnectionBuilder(
         shortName, productName, version, snapshot, catalog, schema, databaseParams);
   }
 
-  public OfflineConnectionBuilder setProductName(@Nullable String productName) {
+  public OfflineConnectionBuilder withProductName(@Nullable String productName) {
     return new OfflineConnectionBuilder(
         shortName, productName, version, snapshot, catalog, schema, databaseParams);
   }
 
-  public OfflineConnectionBuilder setVersion(@Nullable String version) {
+  public OfflineConnectionBuilder withVersion(@Nullable String version) {
     return new OfflineConnectionBuilder(
         shortName, productName, version, snapshot, catalog, schema, databaseParams);
   }
 
-  public OfflineConnectionBuilder setSnapshot(@Nullable String snapshot) {
+  public OfflineConnectionBuilder withSnapshot(@Nullable String snapshot) {
     return new OfflineConnectionBuilder(
         shortName, productName, version, snapshot, catalog, schema, databaseParams);
   }
 
-  public OfflineConnectionBuilder setCatalog(@Nullable String catalog) {
+  public OfflineConnectionBuilder withCatalog(@Nullable String catalog) {
     return new OfflineConnectionBuilder(
         shortName, productName, version, snapshot, catalog, schema, databaseParams);
   }
 
-  public OfflineConnectionBuilder setSchema(@Nullable String schema) {
+  public OfflineConnectionBuilder withSchema(@Nullable String schema) {
     return new OfflineConnectionBuilder(
         shortName, productName, version, snapshot, catalog, schema, databaseParams);
   }
 
-  public OfflineConnectionBuilder setDatabaseParams(Map<String, String> databaseParams) {
+  public OfflineConnectionBuilder withDatabaseParams(Map<String, String> databaseParams) {
+    checkNotNull(databaseParams);
     return new OfflineConnectionBuilder(
-        shortName, productName, version, snapshot, catalog, schema, databaseParams);
+        shortName,
+        productName,
+        version,
+        snapshot,
+        catalog,
+        schema,
+        unmodifiableMap(new LinkedHashMap<>(databaseParams)));
   }
 
   public MarkitectOfflineConnection build() {
@@ -110,7 +117,7 @@ public final class OfflineConnectionBuilder {
     if (catalog != null) {
       params.add("catalog=" + catalog);
     }
-    this.databaseParams.forEach((key, value) -> params.add(key + "=" + value));
+    databaseParams.forEach((key, value) -> params.add(key + "=" + value));
     String url = "offline:" + shortName + params;
     MarkitectOfflineConnection connection =
         new MarkitectOfflineConnection(url, Scope.getCurrentScope().getResourceAccessor());

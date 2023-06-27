@@ -68,8 +68,9 @@ class PostgresDatabaseTests {
       scopeValues.put(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getKey(), preserveSchemaCase);
     }
     try (var database =
-        DatabaseBuilder.of(PostgresDatabase::new)
-            .setObjectQuotingStrategy(quotingStrategy)
+        DatabaseBuilder.of()
+            .withDatabaseFactory(PostgresDatabase::new)
+            .withObjectQuotingStrategy(quotingStrategy)
             .build()) {
 
       // when
@@ -118,8 +119,9 @@ class PostgresDatabaseTests {
       scopeValues.put(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getKey(), preserveSchemaCase);
     }
     try (var database =
-        DatabaseBuilder.of(PostgresDatabase::new)
-            .setObjectQuotingStrategy(quotingStrategy)
+        DatabaseBuilder.of()
+            .withDatabaseFactory(PostgresDatabase::new)
+            .withObjectQuotingStrategy(quotingStrategy)
             .build()) {
 
       // when
@@ -152,9 +154,10 @@ class PostgresDatabaseTests {
       throws Exception {
     // given
     try (var database =
-        DatabaseBuilder.of(PostgresDatabase::new)
-            .setOutputDefaultSchema(outputDefaultSchema)
-            .useOfflineConnection(ocb -> ocb.setSchema("PUBLIC"))
+        DatabaseBuilder.of()
+            .withDatabaseFactory(PostgresDatabase::new)
+            .withOfflineConnection(ocb -> ocb.withSchema("PUBLIC"))
+            .withOutputDefaultSchema(outputDefaultSchema)
             .build()) {
       assertThat(database.getDefaultSchemaName()).isEqualTo("PUBLIC");
 

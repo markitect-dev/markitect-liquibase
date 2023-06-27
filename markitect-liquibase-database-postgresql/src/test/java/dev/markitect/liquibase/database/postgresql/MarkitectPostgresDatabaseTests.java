@@ -67,8 +67,9 @@ class MarkitectPostgresDatabaseTests {
       scopeValues.put(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getKey(), preserveSchemaCase);
     }
     try (var database =
-        DatabaseBuilder.of(MarkitectPostgresDatabase::new)
-            .setObjectQuotingStrategy(quotingStrategy)
+        DatabaseBuilder.of()
+            .withDatabaseFactory(MarkitectPostgresDatabase::new)
+            .withObjectQuotingStrategy(quotingStrategy)
             .build()) {
 
       // when
@@ -117,8 +118,9 @@ class MarkitectPostgresDatabaseTests {
       scopeValues.put(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getKey(), preserveSchemaCase);
     }
     try (var database =
-        DatabaseBuilder.of(MarkitectPostgresDatabase::new)
-            .setObjectQuotingStrategy(quotingStrategy)
+        DatabaseBuilder.of()
+            .withDatabaseFactory(MarkitectPostgresDatabase::new)
+            .withObjectQuotingStrategy(quotingStrategy)
             .build()) {
 
       // when
@@ -151,9 +153,10 @@ class MarkitectPostgresDatabaseTests {
       throws Exception {
     // given
     try (var database =
-        DatabaseBuilder.of(MarkitectPostgresDatabase::new)
-            .setOutputDefaultSchema(outputDefaultSchema)
-            .useOfflineConnection(ocb -> ocb.setSchema("PUBLIC"))
+        DatabaseBuilder.of()
+            .withDatabaseFactory(MarkitectPostgresDatabase::new)
+            .withOfflineConnection(ocb -> ocb.withSchema("PUBLIC"))
+            .withOutputDefaultSchema(outputDefaultSchema)
             .build()) {
       assertThat(database.getDefaultSchemaName()).isEqualTo("PUBLIC");
 

@@ -21,8 +21,8 @@ import static org.assertj.core.api.Assertions.catchThrowable;
 
 import dev.markitect.liquibase.base.Nullable;
 import java.util.Map;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.NullSource;
 import org.junitpioneer.jupiter.json.JsonSource;
 
 class OfflineConnectionBuilderTests {
@@ -115,13 +115,13 @@ class OfflineConnectionBuilderTests {
     // given
     var builder =
         OfflineConnectionBuilder.of()
-            .setShortName(shortName)
-            .setProductName(productName)
-            .setVersion(version)
-            .setSnapshot(snapshot)
-            .setCatalog(catalog)
-            .setSchema(schema)
-            .setDatabaseParams(databaseParams);
+            .withShortName(shortName)
+            .withProductName(productName)
+            .withVersion(version)
+            .withSnapshot(snapshot)
+            .withCatalog(catalog)
+            .withSchema(schema)
+            .withDatabaseParams(databaseParams);
 
     // when
     var connection = builder.build();
@@ -141,11 +141,10 @@ class OfflineConnectionBuilderTests {
     assertThat(connection).extracting("databaseParams").isEqualTo(databaseParams);
   }
 
-  @ParameterizedTest
-  @NullSource
-  void buildFails(@Nullable String shortName) {
+  @Test
+  void buildWithoutShortNameFails() {
     // given
-    var builder = OfflineConnectionBuilder.of().setShortName(shortName);
+    var builder = OfflineConnectionBuilder.of();
 
     // when
     var thrown = catchThrowable(builder::build);
