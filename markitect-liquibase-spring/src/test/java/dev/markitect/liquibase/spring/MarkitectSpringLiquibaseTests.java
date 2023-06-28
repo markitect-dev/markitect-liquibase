@@ -83,13 +83,12 @@ class MarkitectSpringLiquibaseTests {
   @CsvSource(
       textBlock =
           """
-          outputDefaultCatalog | outputDefaultSchema
-          false                | false
-          false                | true
-          true                 | false
-          true                 | true
+          # outputDefaultCatalog | outputDefaultSchema
+          false                  | false
+          false                  | true
+          true                   | false
+          true                   | true
           """,
-      useHeadersInDisplayName = true,
       delimiter = '|')
   @SuppressWarnings("ConstantValue")
   void shouldCreateDatabase(boolean outputDefaultCatalog, boolean outputDefaultSchema)

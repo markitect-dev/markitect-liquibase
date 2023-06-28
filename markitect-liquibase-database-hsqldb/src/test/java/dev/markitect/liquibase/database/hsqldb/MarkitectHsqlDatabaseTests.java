@@ -34,25 +34,24 @@ class MarkitectHsqlDatabaseTests {
   @CsvSource(
       textBlock =
           """
-          preserveSchemaCase | quotingStrategy   | objectName | objectType                      | expected
-                             |                   |            | liquibase.structure.core.Table  |
-                             |                   | TBL1       | liquibase.structure.core.Table  | TBL1
-                             | QUOTE_ALL_OBJECTS | TBL1       | liquibase.structure.core.Table  | TBL1
-                             |                   | Tbl1       | liquibase.structure.core.Table  | TBL1
-                             | QUOTE_ALL_OBJECTS | Tbl1       | liquibase.structure.core.Table  | Tbl1
-                             |                   | Tbl 1      | liquibase.structure.core.Table  | TBL 1
-                             | QUOTE_ALL_OBJECTS | Tbl 1      | liquibase.structure.core.Table  | Tbl 1
-                             |                   | SCH1       | liquibase.structure.core.Schema | SCH1
-                             | QUOTE_ALL_OBJECTS | SCH1       | liquibase.structure.core.Schema | SCH1
-          true               |                   | SCH1       | liquibase.structure.core.Schema | SCH1
-                             |                   | Sch1       | liquibase.structure.core.Schema | SCH1
-                             | QUOTE_ALL_OBJECTS | Sch1       | liquibase.structure.core.Schema | Sch1
-          true               |                   | Sch1       | liquibase.structure.core.Schema | Sch1
-                             |                   | Sch 1      | liquibase.structure.core.Schema | SCH 1
-                             | QUOTE_ALL_OBJECTS | Sch 1      | liquibase.structure.core.Schema | Sch 1
-          true               |                   | Sch 1      | liquibase.structure.core.Schema | Sch 1
+          # preserveSchemaCase | quotingStrategy   | objectName | objectType                      | expected
+                               |                   |            | liquibase.structure.core.Table  |
+                               |                   | TBL1       | liquibase.structure.core.Table  | TBL1
+                               | QUOTE_ALL_OBJECTS | TBL1       | liquibase.structure.core.Table  | TBL1
+                               |                   | Tbl1       | liquibase.structure.core.Table  | TBL1
+                               | QUOTE_ALL_OBJECTS | Tbl1       | liquibase.structure.core.Table  | Tbl1
+                               |                   | Tbl 1      | liquibase.structure.core.Table  | TBL 1
+                               | QUOTE_ALL_OBJECTS | Tbl 1      | liquibase.structure.core.Table  | Tbl 1
+                               |                   | SCH1       | liquibase.structure.core.Schema | SCH1
+                               | QUOTE_ALL_OBJECTS | SCH1       | liquibase.structure.core.Schema | SCH1
+          true                 |                   | SCH1       | liquibase.structure.core.Schema | SCH1
+                               |                   | Sch1       | liquibase.structure.core.Schema | SCH1
+                               | QUOTE_ALL_OBJECTS | Sch1       | liquibase.structure.core.Schema | Sch1
+          true                 |                   | Sch1       | liquibase.structure.core.Schema | Sch1
+                               |                   | Sch 1      | liquibase.structure.core.Schema | SCH 1
+                               | QUOTE_ALL_OBJECTS | Sch 1      | liquibase.structure.core.Schema | Sch 1
+          true                 |                   | Sch 1      | liquibase.structure.core.Schema | Sch 1
           """,
-      useHeadersInDisplayName = true,
       delimiter = '|')
   void correctObjectName(
       @Nullable Boolean preserveSchemaCase,
@@ -85,25 +84,24 @@ class MarkitectHsqlDatabaseTests {
   @CsvSource(
       textBlock =
           """
-          preserveSchemaCase | quotingStrategy   | objectName | objectType                      | expected
-                             |                   |            | liquibase.structure.core.Table  |
-                             |                   | TBL1       | liquibase.structure.core.Table  | TBL1
-                             | QUOTE_ALL_OBJECTS | TBL1       | liquibase.structure.core.Table  | "TBL1"
-                             |                   | Tbl1       | liquibase.structure.core.Table  | Tbl1
-                             | QUOTE_ALL_OBJECTS | Tbl1       | liquibase.structure.core.Table  | "Tbl1"
-                             |                   | Tbl 1      | liquibase.structure.core.Table  | "TBL 1"
-                             | QUOTE_ALL_OBJECTS | Tbl 1      | liquibase.structure.core.Table  | "Tbl 1"
-                             |                   | SCH1       | liquibase.structure.core.Schema | SCH1
-                             | QUOTE_ALL_OBJECTS | SCH1       | liquibase.structure.core.Schema | "SCH1"
-          true               |                   | SCH1       | liquibase.structure.core.Schema | SCH1
-                             |                   | Sch1       | liquibase.structure.core.Schema | Sch1
-                             | QUOTE_ALL_OBJECTS | Sch1       | liquibase.structure.core.Schema | "Sch1"
-          true               |                   | Sch1       | liquibase.structure.core.Schema | "Sch1"
-                             |                   | Sch 1      | liquibase.structure.core.Schema | "SCH 1"
-                             | QUOTE_ALL_OBJECTS | Sch 1      | liquibase.structure.core.Schema | "Sch 1"
-          true               |                   | Sch 1      | liquibase.structure.core.Schema | "Sch 1"
+          # preserveSchemaCase | quotingStrategy   | objectName | objectType                      | expected
+                               |                   |            | liquibase.structure.core.Table  |
+                               |                   | TBL1       | liquibase.structure.core.Table  | TBL1
+                               | QUOTE_ALL_OBJECTS | TBL1       | liquibase.structure.core.Table  | "TBL1"
+                               |                   | Tbl1       | liquibase.structure.core.Table  | Tbl1
+                               | QUOTE_ALL_OBJECTS | Tbl1       | liquibase.structure.core.Table  | "Tbl1"
+                               |                   | Tbl 1      | liquibase.structure.core.Table  | "TBL 1"
+                               | QUOTE_ALL_OBJECTS | Tbl 1      | liquibase.structure.core.Table  | "Tbl 1"
+                               |                   | SCH1       | liquibase.structure.core.Schema | SCH1
+                               | QUOTE_ALL_OBJECTS | SCH1       | liquibase.structure.core.Schema | "SCH1"
+          true                 |                   | SCH1       | liquibase.structure.core.Schema | SCH1
+                               |                   | Sch1       | liquibase.structure.core.Schema | Sch1
+                               | QUOTE_ALL_OBJECTS | Sch1       | liquibase.structure.core.Schema | "Sch1"
+          true                 |                   | Sch1       | liquibase.structure.core.Schema | "Sch1"
+                               |                   | Sch 1      | liquibase.structure.core.Schema | "SCH 1"
+                               | QUOTE_ALL_OBJECTS | Sch 1      | liquibase.structure.core.Schema | "Sch 1"
+          true                 |                   | Sch 1      | liquibase.structure.core.Schema | "Sch 1"
           """,
-      useHeadersInDisplayName = true,
       delimiter = '|')
   void escapeObjectName(
       @Nullable Boolean preserveSchemaCase,
@@ -136,13 +134,12 @@ class MarkitectHsqlDatabaseTests {
   @CsvSource(
       textBlock =
           """
-          outputDefaultSchema | catalogName | schemaName | tableName | expected
-                              |             |            | Tbl1      | PUBLIC.Tbl1
-                              |             | PUBLIC     | Tbl1      | PUBLIC.Tbl1
-          false               |             |            | Tbl1      | Tbl1
-          false               |             | PUBLIC     | Tbl1      | Tbl1
+          # outputDefaultSchema | catalogName | schemaName | tableName | expected
+                                |             |            | Tbl1      | PUBLIC.Tbl1
+                                |             | PUBLIC     | Tbl1      | PUBLIC.Tbl1
+          false                 |             |            | Tbl1      | Tbl1
+          false                 |             | PUBLIC     | Tbl1      | Tbl1
           """,
-      useHeadersInDisplayName = true,
       delimiter = '|')
   void escapeTableName(
       @Nullable Boolean outputDefaultSchema,

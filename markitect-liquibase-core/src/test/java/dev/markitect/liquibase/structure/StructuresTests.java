@@ -29,7 +29,7 @@ class StructuresTests {
   @CsvSource(
       textBlock =
           """
-          objectType                                | expected
+          # objectType                              | expected
           liquibase.structure.core.Data             | false
           liquibase.structure.core.PrimaryKey       | false
           liquibase.structure.core.Schema           | true
@@ -43,7 +43,6 @@ class StructuresTests {
           liquibase.structure.core.Catalog          | true
           liquibase.structure.core.Sequence         | false
           """,
-      useHeadersInDisplayName = true,
       delimiter = '|')
   void isCatalogOrSchemaType(Class<? extends DatabaseObject> objectType, boolean expected) {
     // when

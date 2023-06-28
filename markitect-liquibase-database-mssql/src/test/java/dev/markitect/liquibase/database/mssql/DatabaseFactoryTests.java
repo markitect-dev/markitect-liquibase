@@ -29,10 +29,9 @@ class DatabaseFactoryTests {
   @CsvSource(
       textBlock =
           """
-          shortName | expectedType
-          mssql     | dev.markitect.liquibase.database.mssql.MarkitectMssqlDatabase
+          # shortName | expectedType
+          mssql       | dev.markitect.liquibase.database.mssql.MarkitectMssqlDatabase
           """,
-      useHeadersInDisplayName = true,
       delimiter = '|')
   void findCorrectDatabaseImplementation(String shortName, Class<? extends Database> expectedType)
       throws Exception {

@@ -26,12 +26,12 @@ import org.junit.jupiter.params.provider.CsvSource;
 class PreconditionsTests {
   @ParameterizedTest
   @CsvSource(
-      textBlock = """
-          index | size
-          0     | 1
-          1     | 2
+      textBlock =
+          """
+          # index | size
+                0 |    1
+                1 |    2
           """,
-      useHeadersInDisplayName = true,
       delimiter = '|')
   @SuppressWarnings("DataFlowIssue")
   void checkIndex(int index, int size) {
@@ -52,12 +52,11 @@ class PreconditionsTests {
   @CsvSource(
       textBlock =
           """
-          index | size
-          -1    | 0
-          0     | 0
-          1     | 1
+          # index | size
+               -1 |    0
+                0 |    0
+                1 |    1
           """,
-      useHeadersInDisplayName = true,
       delimiter = '|')
   void checkIndexThrowsIndexOutOfBoundsException(int index, int size) {
     // when

@@ -28,15 +28,14 @@ class StringsTests {
   @CsvSource(
       textBlock =
           """
-          objectName | expected
-          'abc_123'  | false
-          'Abc_123'  | false
-          'ABC_123'  | false
-          'abc 123'  | true
-          'abc-123'  | true
-          '123_abc'  | true
+          # objectName | expected
+          'abc_123'    | false
+          'Abc_123'    | false
+          'ABC_123'    | false
+          'abc 123'    | true
+          'abc-123'    | true
+          '123_abc'    | true
           """,
-      useHeadersInDisplayName = true,
       delimiter = '|')
   void isIllegalIdentifier(String objectName, boolean expected) {
     // when

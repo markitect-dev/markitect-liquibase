@@ -29,10 +29,9 @@ class DatabaseFactoryTests {
   @CsvSource(
       textBlock =
           """
-          shortName | expectedType
-          hsqldb    | dev.markitect.liquibase.database.hsqldb.MarkitectHsqlDatabase
+          # shortName | expectedType
+          hsqldb      | dev.markitect.liquibase.database.hsqldb.MarkitectHsqlDatabase
           """,
-      useHeadersInDisplayName = true,
       delimiter = '|')
   void findCorrectDatabaseImplementation(String shortName, Class<? extends Database> expectedType)
       throws Exception {

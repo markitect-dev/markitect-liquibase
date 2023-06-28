@@ -40,11 +40,10 @@ class SpringLiquibaseBeanPostProcessorTests {
   @CsvSource(
       textBlock =
           """
-          beanClass                                               | beanName
+          # beanClass                                             | beanName
           dev.markitect.liquibase.spring.MarkitectSpringLiquibase | liquibase
           liquibase.integration.spring.SpringLiquibase            | liquibase
           """,
-      useHeadersInDisplayName = true,
       delimiter = '|')
   @SuppressWarnings("DirectInvocationOnMock")
   void postProcessBeforeInstantiation(Class<?> beanClass, String beanName) {
@@ -65,10 +64,9 @@ class SpringLiquibaseBeanPostProcessorTests {
   @CsvSource(
       textBlock =
           """
-          beanClass            | beanName
+          # beanClass          | beanName
           javax.sql.DataSource | dataSource
           """,
-      useHeadersInDisplayName = true,
       delimiter = '|')
   @SuppressWarnings("DirectInvocationOnMock")
   void shouldNotUseThreadLocalScopeManagerBeforeInstantiationForNonLiquibaseBean(
@@ -89,11 +87,10 @@ class SpringLiquibaseBeanPostProcessorTests {
   @CsvSource(
       textBlock =
           """
-          beanClass                                               | beanName
+          # beanClass                                             | beanName
           dev.markitect.liquibase.spring.MarkitectSpringLiquibase | liquibase
           liquibase.integration.spring.SpringLiquibase            | liquibase
           """,
-      useHeadersInDisplayName = true,
       delimiter = '|')
   @SuppressWarnings("DirectInvocationOnMock")
   void shouldNotUseThreadLocalScopeManagerBeforeInstantiationWithoutEnvironmentProperty(
@@ -111,11 +108,10 @@ class SpringLiquibaseBeanPostProcessorTests {
   @CsvSource(
       textBlock =
           """
-          beanClass                                               | beanName
+          # beanClass                                             | beanName
           dev.markitect.liquibase.spring.MarkitectSpringLiquibase | liquibase
           liquibase.integration.spring.SpringLiquibase            | liquibase
           """,
-      useHeadersInDisplayName = true,
       delimiter = '|')
   @SuppressWarnings("DirectInvocationOnMock")
   void shouldSetEnvironmentBeforeInitialization(Class<?> beanClass, String beanName) {
@@ -136,10 +132,9 @@ class SpringLiquibaseBeanPostProcessorTests {
   @CsvSource(
       textBlock =
           """
-          beanClass            | beanName
+          # beanClass          | beanName
           javax.sql.DataSource | dataSource
           """,
-      useHeadersInDisplayName = true,
       delimiter = '|')
   @SuppressWarnings("DirectInvocationOnMock")
   void shouldNotSetEnvironmentBeforeInitialization(Class<?> beanClass, String beanName) {
@@ -159,11 +154,10 @@ class SpringLiquibaseBeanPostProcessorTests {
   @CsvSource(
       textBlock =
           """
-          beanClass                                               | beanName
+          # beanClass                                             | beanName
           dev.markitect.liquibase.spring.MarkitectSpringLiquibase | liquibase
           liquibase.integration.spring.SpringLiquibase            | liquibase
           """,
-      useHeadersInDisplayName = true,
       delimiter = '|')
   @SuppressWarnings("DirectInvocationOnMock")
   void shouldRemoveEnvironmentAfterInitialization(Class<?> beanClass, String beanName) {
@@ -183,10 +177,9 @@ class SpringLiquibaseBeanPostProcessorTests {
   @CsvSource(
       textBlock =
           """
-          beanClass            | beanName
+          # beanClass          | beanName
           javax.sql.DataSource | dataSource
           """,
-      useHeadersInDisplayName = true,
       delimiter = '|')
   @SuppressWarnings("DirectInvocationOnMock")
   void shouldNotRemoveEnvironmentAfterInitialization(Class<?> beanClass, String beanName) {

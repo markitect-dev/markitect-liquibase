@@ -34,18 +34,17 @@ class MssqlDatabaseTests {
   @CsvSource(
       textBlock =
           """
-          preserveSchemaCase | quotingStrategy   | objectName | objectType                      | expected
-                             |                   |            | liquibase.structure.core.Table  |
-                             |                   | Tbl1       | liquibase.structure.core.Table  | Tbl1
-                             | QUOTE_ALL_OBJECTS | Tbl1       | liquibase.structure.core.Table  | Tbl1
-                             |                   | Sch1       | liquibase.structure.core.Schema | Sch1
-          true               |                   | Sch1       | liquibase.structure.core.Schema | Sch1
-                             |                   | Tbl 1      | liquibase.structure.core.Table  | Tbl 1
-                             | QUOTE_ALL_OBJECTS | Tbl 1      | liquibase.structure.core.Table  | Tbl 1
-                             |                   | Sch 1      | liquibase.structure.core.Schema | Sch 1
-          true               |                   | Sch 1      | liquibase.structure.core.Schema | Sch 1
+          # preserveSchemaCase | quotingStrategy   | objectName | objectType                      | expected
+                               |                   |            | liquibase.structure.core.Table  |
+                               |                   | Tbl1       | liquibase.structure.core.Table  | Tbl1
+                               | QUOTE_ALL_OBJECTS | Tbl1       | liquibase.structure.core.Table  | Tbl1
+                               |                   | Sch1       | liquibase.structure.core.Schema | Sch1
+          true                 |                   | Sch1       | liquibase.structure.core.Schema | Sch1
+                               |                   | Tbl 1      | liquibase.structure.core.Table  | Tbl 1
+                               | QUOTE_ALL_OBJECTS | Tbl 1      | liquibase.structure.core.Table  | Tbl 1
+                               |                   | Sch 1      | liquibase.structure.core.Schema | Sch 1
+          true                 |                   | Sch 1      | liquibase.structure.core.Schema | Sch 1
           """,
-      useHeadersInDisplayName = true,
       delimiter = '|')
   void correctObjectName(
       @Nullable Boolean preserveSchemaCase,
@@ -79,11 +78,10 @@ class MssqlDatabaseTests {
   @CsvSource(
       textBlock =
           """
-          includeCatalog | outputDefaultCatalog | outputDefaultSchema | catalogName | schemaName | objectName | objectType                     | expected
-                         |                      |                     |             |            | Idx1       | liquibase.structure.core.Index | Idx1
-                         |                      |                     |             | Sch1       | Idx1       | liquibase.structure.core.Index | Idx1
+          # includeCatalog | outputDefaultCatalog | outputDefaultSchema | catalogName | schemaName | objectName | objectType                     | expected
+                           |                      |                     |             |            | Idx1       | liquibase.structure.core.Index | Idx1
+                           |                      |                     |             | Sch1       | Idx1       | liquibase.structure.core.Index | Idx1
           """,
-      useHeadersInDisplayName = true,
       delimiter = '|')
   void escapeObjectName_catalogName_schemaName_objectName_objectType(
       @Nullable Boolean includeCatalog,
@@ -126,18 +124,17 @@ class MssqlDatabaseTests {
   @CsvSource(
       textBlock =
           """
-          preserveSchemaCase | quotingStrategy   | objectName | objectType                      | expected
-                             |                   |            | liquibase.structure.core.Table  |
-                             |                   | Tbl1       | liquibase.structure.core.Table  | Tbl1
-                             | QUOTE_ALL_OBJECTS | Tbl1       | liquibase.structure.core.Table  | [Tbl1]
-                             |                   | Sch1       | liquibase.structure.core.Schema | Sch1
-          true               |                   | Sch1       | liquibase.structure.core.Schema | [Sch1]
-                             |                   | Tbl 1      | liquibase.structure.core.Table  | [Tbl 1]
-                             | QUOTE_ALL_OBJECTS | Tbl 1      | liquibase.structure.core.Table  | [Tbl 1]
-                             |                   | Sch 1      | liquibase.structure.core.Schema | [Sch 1]
-          true               |                   | Sch 1      | liquibase.structure.core.Schema | [Sch 1]
+          # preserveSchemaCase | quotingStrategy   | objectName | objectType                      | expected
+                               |                   |            | liquibase.structure.core.Table  |
+                               |                   | Tbl1       | liquibase.structure.core.Table  | Tbl1
+                               | QUOTE_ALL_OBJECTS | Tbl1       | liquibase.structure.core.Table  | [Tbl1]
+                               |                   | Sch1       | liquibase.structure.core.Schema | Sch1
+          true                 |                   | Sch1       | liquibase.structure.core.Schema | [Sch1]
+                               |                   | Tbl 1      | liquibase.structure.core.Table  | [Tbl 1]
+                               | QUOTE_ALL_OBJECTS | Tbl 1      | liquibase.structure.core.Table  | [Tbl 1]
+                               |                   | Sch 1      | liquibase.structure.core.Schema | [Sch 1]
+          true                 |                   | Sch 1      | liquibase.structure.core.Schema | [Sch 1]
           """,
-      useHeadersInDisplayName = true,
       delimiter = '|')
   void escapeObjectName(
       @Nullable Boolean preserveSchemaCase,
@@ -171,22 +168,21 @@ class MssqlDatabaseTests {
   @CsvSource(
       textBlock =
           """
-          includeCatalog | outputDefaultCatalog | outputDefaultSchema | catalogName | schemaName | tableName | expected
-                         |                      |                     |             |            | Tbl1      | Tbl1
-                         |                      |                     |             | Sch1       | Tbl1      | Tbl1
-                         |                      | false               |             |            | Tbl1      | Tbl1
-                         |                      | false               |             | Sch1       | Tbl1      | Tbl1
-                         |                      | false               |             | Sch2       | Tbl1      | Sch2.Tbl1
-          true           |                      |                     |             |            | Tbl1      | Tbl1
-          true           |                      |                     |             | Sch1       | Tbl1      | Tbl1
-          true           |                      | false               |             |            | Tbl1      | Tbl1
-          true           |                      | false               |             | Sch1       | Tbl1      | Tbl1
-          true           | false                | false               |             |            | Tbl1      | Tbl1
-          true           | false                | false               |             | Sch1       | Tbl1      | Tbl1
-                         | false                |                     | Cat2        |            | Tbl1      | Cat2.Sch1.Tbl1
-                         | false                |                     | Cat2        | Sch1       | Tbl1      | Cat2.Sch1.Tbl1
+          # includeCatalog | outputDefaultCatalog | outputDefaultSchema | catalogName | schemaName | tableName | expected
+                           |                      |                     |             |            | Tbl1      | Tbl1
+                           |                      |                     |             | Sch1       | Tbl1      | Tbl1
+                           |                      | false               |             |            | Tbl1      | Tbl1
+                           |                      | false               |             | Sch1       | Tbl1      | Tbl1
+                           |                      | false               |             | Sch2       | Tbl1      | Sch2.Tbl1
+          true             |                      |                     |             |            | Tbl1      | Tbl1
+          true             |                      |                     |             | Sch1       | Tbl1      | Tbl1
+          true             |                      | false               |             |            | Tbl1      | Tbl1
+          true             |                      | false               |             | Sch1       | Tbl1      | Tbl1
+          true             | false                | false               |             |            | Tbl1      | Tbl1
+          true             | false                | false               |             | Sch1       | Tbl1      | Tbl1
+                           | false                |                     | Cat2        |            | Tbl1      | Cat2.Sch1.Tbl1
+                           | false                |                     | Cat2        | Sch1       | Tbl1      | Cat2.Sch1.Tbl1
           """,
-      useHeadersInDisplayName = true,
       delimiter = '|')
   void escapeTableName(
       @Nullable Boolean includeCatalog,
