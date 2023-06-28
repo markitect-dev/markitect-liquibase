@@ -16,53 +16,37 @@
 
 package dev.markitect.liquibase.database;
 
-import static dev.markitect.liquibase.base.Preconditions.checkState;
-import static dev.markitect.liquibase.base.Verify.verifyNotNull;
+import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
 
 import dev.markitect.liquibase.base.Nullable;
 import dev.markitect.liquibase.base.Verify;
-import dev.markitect.liquibase.exception.UncheckedDatabaseException;
 import java.util.function.UnaryOperator;
 import liquibase.database.Database;
 import liquibase.database.ObjectQuotingStrategy;
-import liquibase.exception.DatabaseException;
 
 public final class DatabaseBuilder<D extends Database> {
-  private static final DatabaseBuilder<?> SINGLETON =
-      new DatabaseBuilder<>(null, null, null, null, null);
-
-  @SuppressWarnings("unchecked")
-  public static <T extends Database> DatabaseBuilder<T> of() {
-    return (DatabaseBuilder<T>) SINGLETON;
+  public static <T extends Database> DatabaseBuilder<T> of(Class<T> databaseClass) {
+    checkNotNull(databaseClass);
+    return new DatabaseBuilder<>(databaseClass, null, null, null, null);
   }
 
-  private final @Nullable DatabaseFactory<D> databaseFactory;
+  private final Class<D> databaseClass;
   private final @Nullable UnaryOperator<OfflineConnectionBuilder> offlineConnectionCustomizer;
   private final @Nullable ObjectQuotingStrategy objectQuotingStrategy;
   private final @Nullable Boolean outputDefaultCatalog;
   private final @Nullable Boolean outputDefaultSchema;
 
   private DatabaseBuilder(
-      @Nullable DatabaseFactory<D> databaseFactory,
+      Class<D> databaseClass,
       @Nullable UnaryOperator<OfflineConnectionBuilder> offlineConnectionCustomizer,
       @Nullable ObjectQuotingStrategy objectQuotingStrategy,
       @Nullable Boolean outputDefaultCatalog,
       @Nullable Boolean outputDefaultSchema) {
-    this.databaseFactory = databaseFactory;
+    this.databaseClass = checkNotNull(databaseClass);
     this.offlineConnectionCustomizer = offlineConnectionCustomizer;
     this.objectQuotingStrategy = objectQuotingStrategy;
     this.outputDefaultCatalog = outputDefaultCatalog;
     this.outputDefaultSchema = outputDefaultSchema;
-  }
-
-  public <T extends Database> DatabaseBuilder<T> withDatabaseFactory(
-      @Nullable DatabaseFactory<T> databaseFactory) {
-    return new DatabaseBuilder<>(
-        databaseFactory,
-        offlineConnectionCustomizer,
-        objectQuotingStrategy,
-        outputDefaultCatalog,
-        outputDefaultSchema);
   }
 
   public DatabaseBuilder<D> withOfflineConnection() {
@@ -72,7 +56,7 @@ public final class DatabaseBuilder<D extends Database> {
   public DatabaseBuilder<D> withOfflineConnection(
       @Nullable UnaryOperator<OfflineConnectionBuilder> offlineConnectionCustomizer) {
     return new DatabaseBuilder<>(
-        databaseFactory,
+        databaseClass,
         offlineConnectionCustomizer,
         objectQuotingStrategy,
         outputDefaultCatalog,
@@ -82,7 +66,7 @@ public final class DatabaseBuilder<D extends Database> {
   public DatabaseBuilder<D> withObjectQuotingStrategy(
       @Nullable ObjectQuotingStrategy objectQuotingStrategy) {
     return new DatabaseBuilder<>(
-        databaseFactory,
+        databaseClass,
         offlineConnectionCustomizer,
         objectQuotingStrategy,
         outputDefaultCatalog,
@@ -91,7 +75,7 @@ public final class DatabaseBuilder<D extends Database> {
 
   public DatabaseBuilder<D> withOutputDefaultCatalog(@Nullable Boolean outputDefaultCatalog) {
     return new DatabaseBuilder<>(
-        databaseFactory,
+        databaseClass,
         offlineConnectionCustomizer,
         objectQuotingStrategy,
         outputDefaultCatalog,
@@ -100,7 +84,7 @@ public final class DatabaseBuilder<D extends Database> {
 
   public DatabaseBuilder<D> withOutputDefaultSchema(@Nullable Boolean outputDefaultSchema) {
     return new DatabaseBuilder<>(
-        databaseFactory,
+        databaseClass,
         offlineConnectionCustomizer,
         objectQuotingStrategy,
         outputDefaultCatalog,
@@ -108,18 +92,17 @@ public final class DatabaseBuilder<D extends Database> {
   }
 
   public D build() {
-    checkState(databaseFactory != null);
     D database;
     try {
-      database = verifyNotNull(databaseFactory.get());
-    } catch (DatabaseException e) {
-      throw new UncheckedDatabaseException(e);
+      database = databaseClass.getConstructor().newInstance();
+    } catch (ReflectiveOperationException | RuntimeException e) {
+      throw new IllegalStateException(e);
     }
     if (offlineConnectionCustomizer != null) {
       MarkitectOfflineConnection connection =
           offlineConnectionCustomizer
               .andThen(Verify::verifyNotNull)
-              .apply(OfflineConnectionBuilder.of().withShortName(database.getShortName()))
+              .apply(OfflineConnectionBuilder.of(database.getShortName()))
               .build();
       database.setConnection(connection);
     }

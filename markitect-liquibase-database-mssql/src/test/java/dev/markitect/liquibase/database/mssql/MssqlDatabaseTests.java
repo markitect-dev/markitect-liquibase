@@ -59,8 +59,7 @@ class MssqlDatabaseTests {
       scopeValues.put(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getKey(), preserveSchemaCase);
     }
     try (var database =
-        DatabaseBuilder.of()
-            .withDatabaseFactory(MSSQLDatabase::new)
+        DatabaseBuilder.of(MSSQLDatabase.class)
             .withOfflineConnection()
             .withObjectQuotingStrategy(quotingStrategy)
             .build()) {
@@ -100,8 +99,7 @@ class MssqlDatabaseTests {
           GlobalConfiguration.INCLUDE_CATALOG_IN_SPECIFICATION.getKey(), includeCatalog);
     }
     try (var database =
-        DatabaseBuilder.of()
-            .withDatabaseFactory(MSSQLDatabase::new)
+        DatabaseBuilder.of(MSSQLDatabase.class)
             .withOfflineConnection(ocb -> ocb.withCatalog("Cat1").withSchema("Sch1"))
             .withOutputDefaultCatalog(outputDefaultCatalog)
             .withOutputDefaultSchema(outputDefaultSchema)
@@ -149,8 +147,7 @@ class MssqlDatabaseTests {
       scopeValues.put(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getKey(), preserveSchemaCase);
     }
     try (var database =
-        DatabaseBuilder.of()
-            .withDatabaseFactory(MSSQLDatabase::new)
+        DatabaseBuilder.of(MSSQLDatabase.class)
             .withOfflineConnection()
             .withObjectQuotingStrategy(quotingStrategy)
             .build()) {
@@ -199,8 +196,7 @@ class MssqlDatabaseTests {
           GlobalConfiguration.INCLUDE_CATALOG_IN_SPECIFICATION.getKey(), includeCatalog);
     }
     try (var database =
-        DatabaseBuilder.of()
-            .withDatabaseFactory(MSSQLDatabase::new)
+        DatabaseBuilder.of(MSSQLDatabase.class)
             .withOfflineConnection(ocb -> ocb.withCatalog("Cat1").withSchema("Sch1"))
             .withOutputDefaultCatalog(outputDefaultCatalog)
             .withOutputDefaultSchema(outputDefaultSchema)

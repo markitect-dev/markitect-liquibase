@@ -58,8 +58,7 @@ class MarkitectMssqlDatabaseTests {
       scopeValues.put(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getKey(), preserveSchemaCase);
     }
     try (var database =
-        DatabaseBuilder.of()
-            .withDatabaseFactory(MarkitectMssqlDatabase::new)
+        DatabaseBuilder.of(MarkitectMssqlDatabase.class)
             .withOfflineConnection()
             .withObjectQuotingStrategy(quotingStrategy)
             .build()) {
@@ -99,8 +98,7 @@ class MarkitectMssqlDatabaseTests {
           GlobalConfiguration.INCLUDE_CATALOG_IN_SPECIFICATION.getKey(), includeCatalog);
     }
     try (var database =
-        DatabaseBuilder.of()
-            .withDatabaseFactory(MarkitectMssqlDatabase::new)
+        DatabaseBuilder.of(MarkitectMssqlDatabase.class)
             .withOfflineConnection(ocb -> ocb.withCatalog("Cat1").withSchema("Sch1"))
             .withOutputDefaultCatalog(outputDefaultCatalog)
             .withOutputDefaultSchema(outputDefaultSchema)
@@ -148,8 +146,7 @@ class MarkitectMssqlDatabaseTests {
       scopeValues.put(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getKey(), preserveSchemaCase);
     }
     try (var database =
-        DatabaseBuilder.of()
-            .withDatabaseFactory(MarkitectMssqlDatabase::new)
+        DatabaseBuilder.of(MarkitectMssqlDatabase.class)
             .withOfflineConnection()
             .withObjectQuotingStrategy(quotingStrategy)
             .build()) {
@@ -198,8 +195,7 @@ class MarkitectMssqlDatabaseTests {
           GlobalConfiguration.INCLUDE_CATALOG_IN_SPECIFICATION.getKey(), includeCatalog);
     }
     try (var database =
-        DatabaseBuilder.of()
-            .withDatabaseFactory(MarkitectMssqlDatabase::new)
+        DatabaseBuilder.of(MarkitectMssqlDatabase.class)
             .withOfflineConnection(ocb -> ocb.withCatalog("Cat1").withSchema("Sch1"))
             .withOutputDefaultCatalog(outputDefaultCatalog)
             .withOutputDefaultSchema(outputDefaultSchema)

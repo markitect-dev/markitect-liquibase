@@ -66,8 +66,7 @@ class MarkitectH2DatabaseTests {
       scopeValues.put(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getKey(), preserveSchemaCase);
     }
     try (var database =
-        DatabaseBuilder.of()
-            .withDatabaseFactory(MarkitectH2Database::new)
+        DatabaseBuilder.of(MarkitectH2Database.class)
             .withObjectQuotingStrategy(quotingStrategy)
             .build()) {
 
@@ -116,8 +115,7 @@ class MarkitectH2DatabaseTests {
       scopeValues.put(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getKey(), preserveSchemaCase);
     }
     try (var database =
-        DatabaseBuilder.of()
-            .withDatabaseFactory(MarkitectH2Database::new)
+        DatabaseBuilder.of(MarkitectH2Database.class)
             .withObjectQuotingStrategy(quotingStrategy)
             .build()) {
 
@@ -150,8 +148,7 @@ class MarkitectH2DatabaseTests {
       throws Exception {
     // given
     try (var database =
-        DatabaseBuilder.of()
-            .withDatabaseFactory(MarkitectH2Database::new)
+        DatabaseBuilder.of(MarkitectH2Database.class)
             .withOfflineConnection()
             .withOutputDefaultSchema(outputDefaultSchema)
             .build()) {

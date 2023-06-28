@@ -66,8 +66,7 @@ class MarkitectPostgresDatabaseTests {
       scopeValues.put(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getKey(), preserveSchemaCase);
     }
     try (var database =
-        DatabaseBuilder.of()
-            .withDatabaseFactory(MarkitectPostgresDatabase::new)
+        DatabaseBuilder.of(MarkitectPostgresDatabase.class)
             .withObjectQuotingStrategy(quotingStrategy)
             .build()) {
 
@@ -116,8 +115,7 @@ class MarkitectPostgresDatabaseTests {
       scopeValues.put(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getKey(), preserveSchemaCase);
     }
     try (var database =
-        DatabaseBuilder.of()
-            .withDatabaseFactory(MarkitectPostgresDatabase::new)
+        DatabaseBuilder.of(MarkitectPostgresDatabase.class)
             .withObjectQuotingStrategy(quotingStrategy)
             .build()) {
 
@@ -150,8 +148,7 @@ class MarkitectPostgresDatabaseTests {
       throws Exception {
     // given
     try (var database =
-        DatabaseBuilder.of()
-            .withDatabaseFactory(MarkitectPostgresDatabase::new)
+        DatabaseBuilder.of(MarkitectPostgresDatabase.class)
             .withOfflineConnection(ocb -> ocb.withSchema("PUBLIC"))
             .withOutputDefaultSchema(outputDefaultSchema)
             .build()) {

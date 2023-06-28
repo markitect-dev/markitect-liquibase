@@ -67,8 +67,7 @@ class PostgresDatabaseTests {
       scopeValues.put(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getKey(), preserveSchemaCase);
     }
     try (var database =
-        DatabaseBuilder.of()
-            .withDatabaseFactory(PostgresDatabase::new)
+        DatabaseBuilder.of(PostgresDatabase.class)
             .withObjectQuotingStrategy(quotingStrategy)
             .build()) {
 
@@ -117,8 +116,7 @@ class PostgresDatabaseTests {
       scopeValues.put(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getKey(), preserveSchemaCase);
     }
     try (var database =
-        DatabaseBuilder.of()
-            .withDatabaseFactory(PostgresDatabase::new)
+        DatabaseBuilder.of(PostgresDatabase.class)
             .withObjectQuotingStrategy(quotingStrategy)
             .build()) {
 
@@ -151,8 +149,7 @@ class PostgresDatabaseTests {
       throws Exception {
     // given
     try (var database =
-        DatabaseBuilder.of()
-            .withDatabaseFactory(PostgresDatabase::new)
+        DatabaseBuilder.of(PostgresDatabase.class)
             .withOfflineConnection(ocb -> ocb.withSchema("PUBLIC"))
             .withOutputDefaultSchema(outputDefaultSchema)
             .build()) {

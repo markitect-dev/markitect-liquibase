@@ -67,10 +67,7 @@ class H2DatabaseTests {
       scopeValues.put(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getKey(), preserveSchemaCase);
     }
     try (var database =
-        DatabaseBuilder.of()
-            .withDatabaseFactory(H2Database::new)
-            .withObjectQuotingStrategy(quotingStrategy)
-            .build()) {
+        DatabaseBuilder.of(H2Database.class).withObjectQuotingStrategy(quotingStrategy).build()) {
 
       // when
       String actual =
@@ -117,10 +114,7 @@ class H2DatabaseTests {
       scopeValues.put(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getKey(), preserveSchemaCase);
     }
     try (var database =
-        DatabaseBuilder.of()
-            .withDatabaseFactory(H2Database::new)
-            .withObjectQuotingStrategy(quotingStrategy)
-            .build()) {
+        DatabaseBuilder.of(H2Database.class).withObjectQuotingStrategy(quotingStrategy).build()) {
 
       // when
       String actual =
@@ -151,8 +145,7 @@ class H2DatabaseTests {
       throws Exception {
     // given
     try (var database =
-        DatabaseBuilder.of()
-            .withDatabaseFactory(H2Database::new)
+        DatabaseBuilder.of(H2Database.class)
             .withOfflineConnection()
             .withOutputDefaultSchema(outputDefaultSchema)
             .build()) {

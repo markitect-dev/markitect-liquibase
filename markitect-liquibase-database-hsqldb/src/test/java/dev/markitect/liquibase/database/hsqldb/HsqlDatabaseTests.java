@@ -67,10 +67,7 @@ class HsqlDatabaseTests {
       scopeValues.put(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getKey(), preserveSchemaCase);
     }
     try (var database =
-        DatabaseBuilder.of()
-            .withDatabaseFactory(HsqlDatabase::new)
-            .withObjectQuotingStrategy(quotingStrategy)
-            .build()) {
+        DatabaseBuilder.of(HsqlDatabase.class).withObjectQuotingStrategy(quotingStrategy).build()) {
 
       // when
       String actual =
@@ -117,10 +114,7 @@ class HsqlDatabaseTests {
       scopeValues.put(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getKey(), preserveSchemaCase);
     }
     try (var database =
-        DatabaseBuilder.of()
-            .withDatabaseFactory(HsqlDatabase::new)
-            .withObjectQuotingStrategy(quotingStrategy)
-            .build()) {
+        DatabaseBuilder.of(HsqlDatabase.class).withObjectQuotingStrategy(quotingStrategy).build()) {
 
       // when
       String actual =
@@ -151,8 +145,7 @@ class HsqlDatabaseTests {
       throws Exception {
     // given
     try (var database =
-        DatabaseBuilder.of()
-            .withDatabaseFactory(HsqlDatabase::new)
+        DatabaseBuilder.of(HsqlDatabase.class)
             .withOfflineConnection()
             .withOutputDefaultSchema(outputDefaultSchema)
             .build()) {

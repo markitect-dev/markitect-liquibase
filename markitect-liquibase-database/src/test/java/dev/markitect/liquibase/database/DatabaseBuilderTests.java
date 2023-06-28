@@ -16,22 +16,21 @@
 
 package dev.markitect.liquibase.database;
 
-import static dev.markitect.liquibase.database.DatabaseFactory.toDatabaseFactory;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
 
 import dev.markitect.liquibase.base.Nullable;
 import dev.markitect.liquibase.base.VerifyException;
-import dev.markitect.liquibase.exception.UncheckedDatabaseException;
 import java.util.Map;
 import java.util.Optional;
+import liquibase.database.AbstractJdbcDatabase;
 import liquibase.database.Database;
 import liquibase.database.ObjectQuotingStrategy;
+import liquibase.database.core.AbstractDb2Database;
 import liquibase.database.core.H2Database;
-import liquibase.database.core.MSSQLDatabase;
-import liquibase.exception.DatabaseException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.junitpioneer.jupiter.json.JsonSource;
 
 class DatabaseBuilderTests {
@@ -157,8 +156,7 @@ class DatabaseBuilderTests {
       throws Exception {
     // given
     var builder =
-        DatabaseBuilder.of()
-            .withDatabaseFactory(toDatabaseFactory(databaseClass))
+        DatabaseBuilder.of(databaseClass)
             .withObjectQuotingStrategy(quotingStrategy)
             .withOutputDefaultCatalog(outputDefaultCatalog)
             .withOutputDefaultSchema(outputDefaultSchema);
@@ -195,83 +193,36 @@ class DatabaseBuilderTests {
     } else {
       assertThat(database.getConnection()).isNull();
     }
-
-    // when
-    builder = builder.withDatabaseFactory(MSSQLDatabase::new).withOfflineConnection();
-    database = builder.build();
-
-    // then
-    assertThat(database.getClass()).isEqualTo(MSSQLDatabase.class);
-    assertThat(database.getShortName()).isEqualTo("mssql");
-    assertThat(database.getDatabaseProductName()).isEqualTo("Offline mssql");
-    assertThat(database.getDatabaseProductVersion()).isNull();
-    assertThat(database.getDatabaseMajorVersion()).isEqualTo(999);
-    assertThat(database.getDatabaseMinorVersion()).isEqualTo(999);
-    assertThat(database.getDefaultCatalogName()).isNull();
-    assertThat(database.getDefaultSchemaName()).isNull();
-    assertThat(database.getObjectQuotingStrategy())
-        .isEqualTo(Optional.ofNullable(quotingStrategy).orElse(ObjectQuotingStrategy.LEGACY));
-    assertThat(database.getOutputDefaultCatalog())
-        .isEqualTo(Optional.ofNullable(outputDefaultCatalog).orElse(true));
-    assertThat(database.getOutputDefaultSchema())
-        .isEqualTo(Optional.ofNullable(outputDefaultSchema).orElse(true));
-    assertThat(database.getConnection()).isExactlyInstanceOf(MarkitectOfflineConnection.class);
   }
 
-  @Test
-  void buildFailsOnDatabaseException() {
+  @ParameterizedTest
+  @ValueSource(
+      classes = {
+        AbstractJdbcDatabase.class,
+        Database.class,
+        AbstractDb2Database.class,
+        MarkitectDatabase.class,
+      })
+  void buildWithInvalidDatabaseClassFails(Class<? extends Database> databaseClass) {
     // given
-    var builder =
-        DatabaseBuilder.of()
-            .withDatabaseFactory(
-                () -> {
-                  throw new DatabaseException();
-                });
-
-    // when
-    var thrown = catchThrowable(builder::build);
-
-    // then
-    assertThat(thrown).isInstanceOf(UncheckedDatabaseException.class);
-  }
-
-  @Test
-  @SuppressWarnings("DataFlowIssue")
-  void buildWithInvalidDatabaseFactoryFails() {
-    // given
-    var invalidBuilder = DatabaseBuilder.of().withDatabaseFactory(() -> null);
-
-    // when
-    var thrown = catchThrowable(invalidBuilder::build);
-
-    // then
-    assertThat(thrown).isInstanceOf(VerifyException.class);
-  }
-
-  @Test
-  void buildWithInvalidOfflineConnectionCustomizerFails() {
-    // given
-    var invalidBuilder =
-        DatabaseBuilder.of()
-            .withDatabaseFactory(H2Database::new)
-            .withOfflineConnection(ocb -> null);
-
-    // when
-    var thrown = catchThrowable(invalidBuilder::build);
-
-    // then
-    assertThat(thrown).isInstanceOf(VerifyException.class);
-  }
-
-  @Test
-  void buildWithoutDatabaseFactoryFails() {
-    // given
-    var invalidBuilder = DatabaseBuilder.of();
+    var invalidBuilder = DatabaseBuilder.of(databaseClass);
 
     // when
     var thrown = catchThrowable(invalidBuilder::build);
 
     // then
     assertThat(thrown).isInstanceOf(IllegalStateException.class);
+  }
+
+  @Test
+  void buildWithInvalidOfflineConnectionCustomizerFails() {
+    // given
+    var invalidBuilder = DatabaseBuilder.of(H2Database.class).withOfflineConnection(ocb -> null);
+
+    // when
+    var thrown = catchThrowable(invalidBuilder::build);
+
+    // then
+    assertThat(thrown).isInstanceOf(VerifyException.class);
   }
 }
