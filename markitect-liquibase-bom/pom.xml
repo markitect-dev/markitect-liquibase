@@ -30,31 +30,6 @@
       </dependency>
       <dependency>
         <groupId>dev.markitect.liquibase</groupId>
-        <artifactId>markitect-liquibase-database</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>dev.markitect.liquibase</groupId>
-        <artifactId>markitect-liquibase-database-h2</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>dev.markitect.liquibase</groupId>
-        <artifactId>markitect-liquibase-database-hsqldb</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>dev.markitect.liquibase</groupId>
-        <artifactId>markitect-liquibase-database-mssql</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>dev.markitect.liquibase</groupId>
-        <artifactId>markitect-liquibase-database-postgresql</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>dev.markitect.liquibase</groupId>
         <artifactId>markitect-liquibase-logging</artifactId>
         <version>${project.version}</version>
       </dependency>

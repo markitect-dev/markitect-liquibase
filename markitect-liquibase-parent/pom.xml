@@ -76,47 +76,22 @@
       </dependency>
       <dependency>
         <groupId>dev.markitect.liquibase</groupId>
-        <artifactId>markitect-liquibase-database</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>dev.markitect.liquibase</groupId>
-        <artifactId>markitect-liquibase-database-h2</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>dev.markitect.liquibase</groupId>
-        <artifactId>markitect-liquibase-database-hsqldb</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>dev.markitect.liquibase</groupId>
-        <artifactId>markitect-liquibase-database-mssql</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>dev.markitect.liquibase</groupId>
-        <artifactId>markitect-liquibase-database-postgresql</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>dev.markitect.liquibase</groupId>
         <artifactId>markitect-liquibase-logging</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>dev.markitect.liquibase</groupId>
-        <artifactId>markitect-liquibase-logging-tests-jul</artifactId>
+        <artifactId>markitect-liquibase-logging-jul-tests</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>dev.markitect.liquibase</groupId>
-        <artifactId>markitect-liquibase-logging-tests-log4j</artifactId>
+        <artifactId>markitect-liquibase-logging-log4j-tests</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>dev.markitect.liquibase</groupId>
-        <artifactId>markitect-liquibase-logging-tests-slf4j</artifactId>
+        <artifactId>markitect-liquibase-logging-slf4j-tests</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>

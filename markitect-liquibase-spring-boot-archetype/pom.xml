@@ -33,7 +33,7 @@
     </dependency>
     <dependency>
       <groupId>dev.markitect.liquibase</groupId>
-      <artifactId>markitect-liquibase-database-h2</artifactId>
+      <artifactId>markitect-liquibase-core</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -130,61 +130,6 @@
             <configuration>
               <file>${project.basedir}/../markitect-liquibase-core/target/markitect-liquibase-core-${project.version}.jar</file>
               <pomFile>${project.basedir}/../markitect-liquibase-core/.flattened-pom.xml</pomFile>
-            </configuration>
-          </execution>
-          <execution>
-            <id>install-markitect-liquibase-database</id>
-            <goals>
-              <goal>install-file</goal>
-            </goals>
-            <phase>pre-integration-test</phase>
-            <configuration>
-              <file>${project.basedir}/../markitect-liquibase-database/target/markitect-liquibase-database-${project.version}.jar</file>
-              <pomFile>${project.basedir}/../markitect-liquibase-database/.flattened-pom.xml</pomFile>
-            </configuration>
-          </execution>
-          <execution>
-            <id>install-markitect-liquibase-database-h2</id>
-            <goals>
-              <goal>install-file</goal>
-            </goals>
-            <phase>pre-integration-test</phase>
-            <configuration>
-              <file>${project.basedir}/../markitect-liquibase-database-h2/target/markitect-liquibase-database-h2-${project.version}.jar</file>
-              <pomFile>${project.basedir}/../markitect-liquibase-database-h2/.flattened-pom.xml</pomFile>
-            </configuration>
-          </execution>
-          <execution>
-            <id>install-markitect-liquibase-database-hsqldb</id>
-            <goals>
-              <goal>install-file</goal>
-            </goals>
-            <phase>pre-integration-test</phase>
-            <configuration>
-              <file>${project.basedir}/../markitect-liquibase-database-hsqldb/target/markitect-liquibase-database-hsqldb-${project.version}.jar</file>
-              <pomFile>${project.basedir}/../markitect-liquibase-database-hsqldb/.flattened-pom.xml</pomFile>
-            </configuration>
-          </execution>
-          <execution>
-            <id>install-markitect-liquibase-database-mssql</id>
-            <goals>
-              <goal>install-file</goal>
-            </goals>
-            <phase>pre-integration-test</phase>
-            <configuration>
-              <file>${project.basedir}/../markitect-liquibase-database-mssql/target/markitect-liquibase-database-mssql-${project.version}.jar</file>
-              <pomFile>${project.basedir}/../markitect-liquibase-database-mssql/.flattened-pom.xml</pomFile>
-            </configuration>
-          </execution>
-          <execution>
-            <id>install-markitect-liquibase-database-postgresql</id>
-            <goals>
-              <goal>install-file</goal>
-            </goals>
-            <phase>pre-integration-test</phase>
-            <configuration>
-              <file>${project.basedir}/../markitect-liquibase-database-postgresql/target/markitect-liquibase-database-postgresql-${project.version}.jar</file>
-              <pomFile>${project.basedir}/../markitect-liquibase-database-postgresql/.flattened-pom.xml</pomFile>
             </configuration>
           </execution>
           <execution>

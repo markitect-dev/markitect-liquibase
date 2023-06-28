@@ -1,0 +1,4 @@
+dev.markitect.liquibase.database.h2.MarkitectH2Database
+dev.markitect.liquibase.database.hsqldb.MarkitectHsqlDatabase
+dev.markitect.liquibase.database.mssql.MarkitectMssqlDatabase
+dev.markitect.liquibase.database.postgresql.MarkitectPostgresDatabase

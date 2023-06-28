@@ -52,10 +52,6 @@
     </dependency>
     <dependency>
       <groupId>dev.markitect.liquibase</groupId>
-      <artifactId>markitect-liquibase-database-h2</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>dev.markitect.liquibase</groupId>
       <artifactId>markitect-liquibase-spring-boot-starter</artifactId>
     </dependency>
     <dependency>
@@ -107,7 +103,7 @@
           </dependency>
           <dependency>
             <groupId>dev.markitect.liquibase</groupId>
-            <artifactId>markitect-liquibase-database-h2</artifactId>
+            <artifactId>markitect-liquibase-core</artifactId>
             <version>${markitect-liquibase.version}</version>
           </dependency>
         </dependencies>

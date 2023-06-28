@@ -13,7 +13,7 @@
   <artifactId>markitect-liquibase-core</artifactId>
 
   <name>${project.artifactId}</name>
-  <description>Markitect Liquibase Core Module</description>
+  <description>Markitect Liquibase Core</description>
   <url>https://github.com/markitect-dev/markitect-liquibase</url>
 
   <distributionManagement>
@@ -28,6 +28,12 @@
     <maven.compiler.release>8</maven.compiler.release>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
+    <sonar.cpd.exclusions><![CDATA[
+      src/main/java/dev/markitect/liquibase/database/h2/MarkitectH2Database.java,
+      src/main/java/dev/markitect/liquibase/database/hsqldb/MarkitectHsqlDatabase.java,
+      src/main/java/dev/markitect/liquibase/database/mssql/MarkitectMssqlDatabase.java,
+      src/main/java/dev/markitect/liquibase/database/postgresql/MarkitectPostgresDatabase.java
+    ]]></sonar.cpd.exclusions>
   </properties>
 
   <dependencies>
@@ -51,6 +57,16 @@
     </dependency>
 
     <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>dev.markitect.liquibase</groupId>
+      <artifactId>markitect-liquibase-logging</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
       <groupId>org.assertj</groupId>
       <artifactId>assertj-core</artifactId>
       <scope>test</scope>
@@ -58,6 +74,11 @@
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit-pioneer</groupId>
+      <artifactId>junit-pioneer</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>

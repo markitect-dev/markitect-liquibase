@@ -37,15 +37,10 @@
     <module>markitect-liquibase-bom</module>
     <module>markitect-liquibase-core</module>
     <module>markitect-liquibase-coverage</module>
-    <module>markitect-liquibase-database</module>
-    <module>markitect-liquibase-database-h2</module>
-    <module>markitect-liquibase-database-hsqldb</module>
-    <module>markitect-liquibase-database-mssql</module>
-    <module>markitect-liquibase-database-postgresql</module>
     <module>markitect-liquibase-logging</module>
-    <module>markitect-liquibase-logging-tests-jul</module>
-    <module>markitect-liquibase-logging-tests-log4j</module>
-    <module>markitect-liquibase-logging-tests-slf4j</module>
+    <module>markitect-liquibase-logging-jul-tests</module>
+    <module>markitect-liquibase-logging-log4j-tests</module>
+    <module>markitect-liquibase-logging-slf4j-tests</module>
     <module>markitect-liquibase-parent</module>
     <module>markitect-liquibase-spring</module>
     <module>markitect-liquibase-spring-boot-archetype</module>

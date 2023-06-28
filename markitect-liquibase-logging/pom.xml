@@ -13,7 +13,7 @@
   <artifactId>markitect-liquibase-logging</artifactId>
 
   <name>${project.artifactId}</name>
-  <description>Markitect Liquibase Logging Extension</description>
+  <description>Markitect Liquibase Logging</description>
   <url>https://github.com/markitect-dev/markitect-liquibase</url>
 
   <distributionManagement>
