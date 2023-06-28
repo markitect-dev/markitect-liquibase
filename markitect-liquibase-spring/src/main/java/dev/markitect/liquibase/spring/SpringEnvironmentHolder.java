@@ -16,8 +16,8 @@
 
 package dev.markitect.liquibase.spring;
 
+import dev.markitect.liquibase.base.Nullable;
 import org.springframework.core.env.Environment;
-import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 final class SpringEnvironmentHolder {
