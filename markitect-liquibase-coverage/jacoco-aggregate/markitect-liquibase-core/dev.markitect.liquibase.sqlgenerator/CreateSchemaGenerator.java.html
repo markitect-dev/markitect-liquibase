@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>CreateSchemaGenerator.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">markitect-liquibase-coverage</a> &gt; <a href="../index.html" class="el_bundle">markitect-liquibase-core</a> &gt; <a href="index.source.html" class="el_package">dev.markitect.liquibase.sqlgenerator</a> &gt; <span class="el_source">CreateSchemaGenerator.java</span></div><h1>CreateSchemaGenerator.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2023 Markitect
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.markitect.liquibase.sqlgenerator;
+
+import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
+
+import dev.markitect.liquibase.statement.CreateSchemaStatement;
+import liquibase.database.Database;
+import liquibase.database.core.H2Database;
+import liquibase.database.core.HsqlDatabase;
+import liquibase.database.core.MSSQLDatabase;
+import liquibase.database.core.PostgresDatabase;
+import liquibase.exception.ValidationErrors;
+import liquibase.sql.Sql;
+import liquibase.sql.UnparsedSql;
+import liquibase.sqlgenerator.SqlGeneratorChain;
+import liquibase.sqlgenerator.core.AbstractSqlGenerator;
+import liquibase.structure.core.Catalog;
+import liquibase.structure.core.Schema;
+
+<span class="fc" id="L35">public class CreateSchemaGenerator extends AbstractSqlGenerator&lt;CreateSchemaStatement&gt; {</span>
+  @Override
+  public boolean supports(CreateSchemaStatement statement, Database database) {
+<span class="fc" id="L38">    checkNotNull(statement);</span>
+<span class="fc" id="L39">    checkNotNull(database);</span>
+<span class="fc bfc" id="L40" title="All 8 branches covered.">    return database instanceof H2Database</span>
+        || database instanceof HsqlDatabase
+        || database instanceof MSSQLDatabase
+        || database instanceof PostgresDatabase;
+  }
+
+  @Override
+  @SuppressWarnings(&quot;DuplicatedCode&quot;)
+  public ValidationErrors validate(
+      CreateSchemaStatement statement,
+      Database database,
+      SqlGeneratorChain&lt;CreateSchemaStatement&gt; sqlGeneratorChain) {
+<span class="fc" id="L52">    checkNotNull(statement);</span>
+<span class="fc" id="L53">    checkNotNull(database);</span>
+<span class="fc" id="L54">    checkNotNull(sqlGeneratorChain);</span>
+<span class="fc" id="L55">    ValidationErrors errors = new ValidationErrors();</span>
+<span class="fc bfc" id="L56" title="All 2 branches covered.">    if (!(database instanceof MSSQLDatabase)) {</span>
+<span class="fc" id="L57">      errors.checkDisallowedField(</span>
+<span class="fc" id="L58">          &quot;catalogName&quot;, statement.getCatalogName(), database, database.getClass());</span>
+    }
+<span class="fc" id="L60">    errors.checkRequiredField(&quot;schemaName&quot;, statement.getSchemaName());</span>
+<span class="fc" id="L61">    return errors;</span>
+  }
+
+  @Override
+  public Sql[] generateSql(
+      CreateSchemaStatement statement,
+      Database database,
+      SqlGeneratorChain&lt;CreateSchemaStatement&gt; sqlGeneratorChain) {
+<span class="fc" id="L69">    checkNotNull(statement);</span>
+<span class="fc" id="L70">    checkNotNull(database);</span>
+<span class="fc" id="L71">    checkNotNull(sqlGeneratorChain);</span>
+<span class="fc" id="L72">    String sql =</span>
+<span class="fc" id="L73">        &quot;CREATE SCHEMA &quot; + database.escapeObjectName(statement.getSchemaName(), Schema.class);</span>
+<span class="fc bfc" id="L74" title="All 2 branches covered.">    if (database instanceof MSSQLDatabase) {</span>
+<span class="fc" id="L75">      sql = &quot;EXEC sp_executesql N'&quot; + database.escapeStringForDatabase(sql) + &quot;'&quot;;</span>
+<span class="fc bfc" id="L76" title="All 2 branches covered.">      if (statement.getCatalogName() != null) {</span>
+<span class="fc" id="L77">        sql =</span>
+            &quot;USE &quot;
+<span class="fc" id="L79">                + database.escapeObjectName(statement.getCatalogName(), Catalog.class)</span>
+                + &quot;; &quot;
+                + sql;
+<span class="fc" id="L82">        sql = &quot;EXEC sp_executesql N'&quot; + database.escapeStringForDatabase(sql) + &quot;'&quot;;</span>
+      }
+    }
+<span class="fc" id="L85">    return new Sql[] {</span>
+<span class="fc" id="L86">      new UnparsedSql(sql, new Schema(statement.getCatalogName(), statement.getSchemaName()))</span>
+    };
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>
