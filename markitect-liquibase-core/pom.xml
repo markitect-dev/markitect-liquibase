@@ -34,7 +34,7 @@
       src/main/java/dev/markitect/liquibase/database/h2/MarkitectH2Database.java,
       src/main/java/dev/markitect/liquibase/database/hsqldb/MarkitectHsqlDatabase.java,
       src/main/java/dev/markitect/liquibase/database/mssql/MarkitectMssqlDatabase.java,
-      src/main/java/dev/markitect/liquibase/database/postgresql/MarkitectPostgresDatabase.java
+      src/main/java/dev/markitect/liquibase/database/postgresql/MarkitectPostgresDatabase.java,
       src/main/java/dev/markitect/liquibase/statement/CreateSchemaStatement.java,
       src/main/java/dev/markitect/liquibase/statement/DropSchemaStatement.java
     ]]></sonar.cpd.exclusions>
