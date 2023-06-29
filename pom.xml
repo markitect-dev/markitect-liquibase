@@ -90,7 +90,9 @@
     <sha1/>
     <skipNexusStagingDeployMojo>${maven.deploy.skip}</skipNexusStagingDeployMojo>
     <!--suppress UnresolvedMavenProperty -->
-    <sonar.coverage.jacoco.xmlReportPaths>${maven.multiModuleProjectDirectory}/markitect-liquibase-coverage/target/site/jacoco-aggregate/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+    <sonar.coverage.jacoco.xmlReportPaths>
+      ${maven.multiModuleProjectDirectory}/markitect-liquibase-coverage/target/site/jacoco-aggregate/jacoco.xml
+    </sonar.coverage.jacoco.xmlReportPaths>
 
     <apiguardian.version>1.1.2</apiguardian.version>
     <assertj.version>3.24.2</assertj.version>
@@ -197,6 +199,13 @@
                 <searchRegex><![CDATA[(<project.*) (xsi:schemaLocation=.*>)]]></searchRegex>
                 <replacement><![CDATA[$1
     $2]]></replacement>
+              </replaceRegex>
+              <replaceRegex>
+                <name>indent-property-values</name>
+                <searchRegex><![CDATA[(?s)( {4,})(<sonar\.[^>]+>)([^<]+)(</[^>]+>)]]></searchRegex>
+                <replacement><![CDATA[$1$2
+$1  $3
+$1$4]]></replacement>
               </replaceRegex>
             </pom>
             <yaml>
