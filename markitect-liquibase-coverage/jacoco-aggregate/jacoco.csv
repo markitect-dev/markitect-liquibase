@@ -12,7 +12,7 @@ markitect-liquibase-coverage/markitect-liquibase-core,dev.markitect.liquibase.ch
 markitect-liquibase-coverage/markitect-liquibase-core,dev.markitect.liquibase.change,CreateSchemaChange,0,85,0,0,0,20,0,8,0,8
 markitect-liquibase-coverage/markitect-liquibase-core,dev.markitect.liquibase.sqlgenerator,CreateSchemaGenerator,0,155,0,14,0,26,0,11,0,4
 markitect-liquibase-coverage/markitect-liquibase-core,dev.markitect.liquibase.sqlgenerator,DropSchemaGenerator,0,142,0,14,0,24,0,11,0,4
-markitect-liquibase-coverage/markitect-liquibase-core,dev.markitect.liquibase.database,DatabaseBuilder,0,147,0,8,0,31,0,12,0,8
+markitect-liquibase-coverage/markitect-liquibase-core,dev.markitect.liquibase.database,DatabaseBuilder,0,180,0,10,0,35,0,14,0,9
 markitect-liquibase-coverage/markitect-liquibase-core,dev.markitect.liquibase.database,MarkitectDatabase,0,106,0,32,0,29,0,19,0,3
 markitect-liquibase-coverage/markitect-liquibase-core,dev.markitect.liquibase.database,MarkitectOfflineConnection,0,31,0,4,0,8,0,7,0,5
 markitect-liquibase-coverage/markitect-liquibase-core,dev.markitect.liquibase.database,OfflineConnectionBuilder,0,266,0,8,0,35,0,14,0,10
