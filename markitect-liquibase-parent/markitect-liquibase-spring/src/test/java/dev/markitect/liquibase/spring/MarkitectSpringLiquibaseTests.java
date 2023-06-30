@@ -17,6 +17,7 @@
 package dev.markitect.liquibase.spring;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
@@ -30,6 +31,7 @@ import liquibase.Scope;
 import liquibase.exception.DatabaseException;
 import liquibase.integration.commandline.LiquibaseCommandLineConfiguration;
 import liquibase.resource.ClassLoaderResourceAccessor;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -37,13 +39,28 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.core.io.ResourceLoader;
 
 @ExtendWith(MockitoExtension.class)
 class MarkitectSpringLiquibaseTests {
   @Mock private CloseableDataSource dataSource;
+
+  @Mock
+  @SuppressWarnings("unused")
+  private ResourceLoader resourceLoader;
+
   @InjectMocks private final MarkitectSpringLiquibase liquibase = new MarkitectSpringLiquibase();
+
   private final Map<String, Object> scopeValues =
       new LinkedHashMap<>(Map.of(LiquibaseCommandLineConfiguration.SHOULD_RUN.getKey(), false));
+
+  @BeforeEach
+  @SuppressWarnings("ResultOfMethodCallIgnored")
+  void setUp() {
+    liquibase.setBeanName("liquibase");
+    assertThat(liquibase.getBeanName()).isNotNull();
+    assertThatNoException().isThrownBy(liquibase::toString);
+  }
 
   @Test
   void shouldCloseDataSourceOnceMigratedOnly() throws Exception {

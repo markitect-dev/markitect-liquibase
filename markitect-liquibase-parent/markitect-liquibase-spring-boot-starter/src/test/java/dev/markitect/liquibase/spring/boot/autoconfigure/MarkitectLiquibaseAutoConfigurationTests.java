@@ -17,6 +17,7 @@
 package dev.markitect.liquibase.spring.boot.autoconfigure;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.assertj.core.api.InstanceOfAssertFactories.type;
 import static org.mockito.BDDMockito.given;
@@ -87,6 +88,7 @@ class MarkitectLiquibaseAutoConfigurationTests {
     }
 
     @Test
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     void shouldCreateLiquibaseBeanUsingLiquibaseDataSource() {
       // given
       given(liquibaseDataSourceProvider.getIfAvailable()).willReturn(liquibaseDataSource);
@@ -99,6 +101,8 @@ class MarkitectLiquibaseAutoConfigurationTests {
       liquibase.setResourceLoader(resourceLoader);
 
       // then
+      assertThat(liquibase.getBeanName()).isNotNull();
+      assertThatNoException().isThrownBy(liquibase::toString);
       assertThat(liquibase)
           .asInstanceOf(type(MarkitectSpringLiquibase.class))
           .extracting(SpringLiquibase::getDataSource)
@@ -109,6 +113,7 @@ class MarkitectLiquibaseAutoConfigurationTests {
     }
 
     @Test
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     void shouldCreateLiquibaseBeanUsingDataSource() {
       // given
       given(dataSourceProvider.getIfUnique()).willReturn(dataSource);
@@ -117,8 +122,12 @@ class MarkitectLiquibaseAutoConfigurationTests {
       var liquibase =
           markitectLiquibaseConfiguration.liquibase(
               liquibaseDataSourceProvider, dataSourceProvider);
+      liquibase.setBeanName("liquibase");
+      liquibase.setResourceLoader(resourceLoader);
 
       // then
+      assertThat(liquibase.getBeanName()).isNotNull();
+      assertThatNoException().isThrownBy(liquibase::toString);
       assertThat(liquibase)
           .asInstanceOf(type(MarkitectSpringLiquibase.class))
           .extracting(SpringLiquibase::getDataSource)
@@ -129,6 +138,7 @@ class MarkitectLiquibaseAutoConfigurationTests {
     }
 
     @Test
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     void shouldCreateLiquibaseBeanUsingLiquibaseUrl() {
       // given
       String url = "jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false";
@@ -141,8 +151,12 @@ class MarkitectLiquibaseAutoConfigurationTests {
       var liquibase =
           markitectLiquibaseConfiguration.liquibase(
               liquibaseDataSourceProvider, dataSourceProvider);
+      liquibase.setBeanName("liquibase");
+      liquibase.setResourceLoader(resourceLoader);
 
       // then
+      assertThat(liquibase.getBeanName()).isNotNull();
+      assertThatNoException().isThrownBy(liquibase::toString);
       assertThat(liquibase)
           .asInstanceOf(type(MarkitectSpringLiquibase.class))
           .extracting(SpringLiquibase::getDataSource)
@@ -162,6 +176,7 @@ class MarkitectLiquibaseAutoConfigurationTests {
     }
 
     @Test
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     void shouldCreateLiquibaseBeanUsingDataSourceUrl() {
       // given
       String url =
@@ -179,8 +194,12 @@ class MarkitectLiquibaseAutoConfigurationTests {
       var liquibase =
           markitectLiquibaseConfiguration.liquibase(
               liquibaseDataSourceProvider, dataSourceProvider);
+      liquibase.setBeanName("liquibase");
+      liquibase.setResourceLoader(resourceLoader);
 
       // then
+      assertThat(liquibase.getBeanName()).isNotNull();
+      assertThatNoException().isThrownBy(liquibase::toString);
       assertThat(liquibase)
           .asInstanceOf(type(MarkitectSpringLiquibase.class))
           .extracting(SpringLiquibase::getDataSource)
