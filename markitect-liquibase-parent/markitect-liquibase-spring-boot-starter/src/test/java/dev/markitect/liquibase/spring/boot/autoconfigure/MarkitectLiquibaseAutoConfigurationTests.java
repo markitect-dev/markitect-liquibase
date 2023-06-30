@@ -37,6 +37,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.boot.autoconfigure.liquibase.LiquibaseProperties;
 import org.springframework.context.annotation.ConfigurationCondition.ConfigurationPhase;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 import org.springframework.mock.env.MockEnvironment;
 import org.springframework.test.util.ReflectionTestUtils;
@@ -68,6 +69,7 @@ class MarkitectLiquibaseAutoConfigurationTests {
     @Mock private DataSource liquibaseDataSource;
     @Mock private ObjectProvider<DataSource> dataSourceProvider;
     @Mock private DataSource dataSource;
+    @Mock private ResourceLoader resourceLoader;
 
     @Test
     void shouldFailToCreateLiquibaseBeanWithNoDataSourceUrlOrLiquibaseUrl() {
@@ -93,6 +95,8 @@ class MarkitectLiquibaseAutoConfigurationTests {
       var liquibase =
           markitectLiquibaseConfiguration.liquibase(
               liquibaseDataSourceProvider, dataSourceProvider);
+      liquibase.setBeanName("liquibase");
+      liquibase.setResourceLoader(resourceLoader);
 
       // then
       assertThat(liquibase)

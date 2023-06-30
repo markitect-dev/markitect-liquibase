@@ -17,16 +17,16 @@
   <url>https://github.com/markitect-dev/markitect-liquibase</url>
 
   <modules>
-    <module>../markitect-liquibase-base</module>
-    <module>../markitect-liquibase-core</module>
-    <module>../markitect-liquibase-coverage</module>
-    <module>../markitect-liquibase-logging</module>
-    <module>../markitect-liquibase-logging-jul-tests</module>
-    <module>../markitect-liquibase-logging-log4j-tests</module>
-    <module>../markitect-liquibase-logging-slf4j-tests</module>
-    <module>../markitect-liquibase-spring</module>
-    <module>../markitect-liquibase-spring-boot-archetype</module>
-    <module>../markitect-liquibase-spring-boot-starter</module>
+    <module>markitect-liquibase-base</module>
+    <module>markitect-liquibase-core</module>
+    <module>markitect-liquibase-coverage</module>
+    <module>markitect-liquibase-logging</module>
+    <module>markitect-liquibase-logging-jul-tests</module>
+    <module>markitect-liquibase-logging-log4j-tests</module>
+    <module>markitect-liquibase-logging-slf4j-tests</module>
+    <module>markitect-liquibase-spring</module>
+    <module>markitect-liquibase-spring-boot-archetype</module>
+    <module>markitect-liquibase-spring-boot-starter</module>
   </modules>
 
   <dependencyManagement>

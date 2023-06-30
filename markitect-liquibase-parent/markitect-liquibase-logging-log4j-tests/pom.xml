@@ -7,7 +7,6 @@
     <groupId>dev.markitect.liquibase</groupId>
     <artifactId>markitect-liquibase-parent</artifactId>
     <version>${revision}${sha1}${changelist}</version>
-    <relativePath>../markitect-liquibase-parent/pom.xml</relativePath>
   </parent>
 
   <artifactId>markitect-liquibase-logging-log4j-tests</artifactId>

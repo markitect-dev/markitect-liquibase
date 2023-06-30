@@ -7,13 +7,12 @@
     <groupId>dev.markitect.liquibase</groupId>
     <artifactId>markitect-liquibase-parent</artifactId>
     <version>${revision}${sha1}${changelist}</version>
-    <relativePath>../markitect-liquibase-parent/pom.xml</relativePath>
   </parent>
 
-  <artifactId>markitect-liquibase-logging</artifactId>
+  <artifactId>markitect-liquibase-core</artifactId>
 
   <name>${project.artifactId}</name>
-  <description>Markitect Liquibase Logging</description>
+  <description>Markitect Liquibase Core</description>
   <url>https://github.com/markitect-dev/markitect-liquibase</url>
 
   <distributionManagement>
@@ -24,10 +23,20 @@
   </distributionManagement>
 
   <properties>
-    <automatic.module.name>dev.markitect.liquibase.logging</automatic.module.name>
+    <automatic.module.name>dev.markitect.liquibase.core</automatic.module.name>
     <maven.compiler.release>8</maven.compiler.release>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
+    <sonar.cpd.exclusions>
+      src/main/java/dev/markitect/liquibase/change/CreateSchemaChange.java,
+      src/main/java/dev/markitect/liquibase/change/DropSchemaChange.java,
+      src/main/java/dev/markitect/liquibase/database/h2/MarkitectH2Database.java,
+      src/main/java/dev/markitect/liquibase/database/hsqldb/MarkitectHsqlDatabase.java,
+      src/main/java/dev/markitect/liquibase/database/mssql/MarkitectMssqlDatabase.java,
+      src/main/java/dev/markitect/liquibase/database/postgresql/MarkitectPostgresDatabase.java,
+      src/main/java/dev/markitect/liquibase/statement/CreateSchemaStatement.java,
+      src/main/java/dev/markitect/liquibase/statement/DropSchemaStatement.java
+    </sonar.cpd.exclusions>
   </properties>
 
   <dependencies>
@@ -46,23 +55,48 @@
       <artifactId>markitect-liquibase-base</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.apache.logging.log4j</groupId>
-      <artifactId>log4j-api</artifactId>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
       <groupId>org.liquibase</groupId>
       <artifactId>liquibase-core</artifactId>
     </dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-api</artifactId>
-      <optional>true</optional>
-    </dependency>
 
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.microsoft.sqlserver</groupId>
+      <artifactId>mssql-jdbc</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>dev.markitect.liquibase</groupId>
+      <artifactId>markitect-liquibase-logging</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit-pioneer</groupId>
+      <artifactId>junit-pioneer</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-inline</artifactId>
+      <scope>test</scope>
+    </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>mssqlserver</artifactId>
       <scope>test</scope>
     </dependency>
   </dependencies>
