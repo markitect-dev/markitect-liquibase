@@ -30,4 +30,4 @@ import javax.annotation.meta.TypeQualifierNickname;
 @Nonnull
 @TypeQualifierNickname
 @SuppressWarnings("unused")
-public @interface NotNull {}
+public @interface NonNull {}
