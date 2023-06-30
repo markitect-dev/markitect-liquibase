@@ -129,7 +129,6 @@
     <junit.version>4.13.2</junit.version>
     <junit-jupiter.version>5.9.3</junit-jupiter.version>
     <junit-pioneer.version>2.0.1</junit-pioneer.version>
-    <junit-platform.version>1.9.3</junit-platform.version>
     <jsr305.version>3.0.2</jsr305.version>
     <liquibase.version>4.23.0</liquibase.version>
     <log4j2.version>2.20.0</log4j2.version>
@@ -588,6 +587,16 @@ $1$4]]></replacement>
                   </ignoreVersions>
                 </rule>
                 <rule>
+                  <groupId>org.junit</groupId>
+                  <artifactId>junit-bom</artifactId>
+                  <ignoreVersions>
+                    <ignoreVersion>
+                      <type>regex</type>
+                      <version>.+-(?:M|RC)\d+\b.*</version>
+                    </ignoreVersion>
+                  </ignoreVersions>
+                </rule>
+                <rule>
                   <groupId>org.junit.jupiter</groupId>
                   <ignoreVersions>
                     <ignoreVersion>
@@ -598,6 +607,15 @@ $1$4]]></replacement>
                 </rule>
                 <rule>
                   <groupId>org.junit.platform</groupId>
+                  <ignoreVersions>
+                    <ignoreVersion>
+                      <type>regex</type>
+                      <version>.+-(?:M|RC)\d+\b.*</version>
+                    </ignoreVersion>
+                  </ignoreVersions>
+                </rule>
+                <rule>
+                  <groupId>org.junit.vintage</groupId>
                   <ignoreVersions>
                     <ignoreVersion>
                       <type>regex</type>
