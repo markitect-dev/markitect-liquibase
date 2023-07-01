@@ -118,6 +118,7 @@
     <junit.version>4.13.2</junit.version>
     <junit-jupiter.version>5.9.3</junit-jupiter.version>
     <junit-pioneer.version>2.0.1</junit-pioneer.version>
+    <junit-platform.version>1.9.3</junit-platform.version>
     <jsr305.version>3.0.2</jsr305.version>
     <liquibase.version>4.23.0</liquibase.version>
     <log4j2.version>2.20.0</log4j2.version>
@@ -402,6 +403,16 @@ $1$4]]></replacement>
                   </requireSameVersions>
                   <requireSameVersions>
                     <dependencies>
+                      <dependency>com.fasterxml.jackson.core</dependency>
+                    </dependencies>
+                  </requireSameVersions>
+                  <requireSameVersions>
+                    <dependencies>
+                      <dependency>com.github.docker-java</dependency>
+                    </dependencies>
+                  </requireSameVersions>
+                  <requireSameVersions>
+                    <dependencies>
                       <dependency>dev.markitect.liquibase</dependency>
                     </dependencies>
                   </requireSameVersions>
@@ -425,6 +436,16 @@ $1$4]]></replacement>
                   </requireSameVersions>
                   <requireSameVersions>
                     <dependencies>
+                      <dependency>org.junit.jupiter</dependency>
+                    </dependencies>
+                  </requireSameVersions>
+                  <requireSameVersions>
+                    <dependencies>
+                      <dependency>org.junit.platform</dependency>
+                    </dependencies>
+                  </requireSameVersions>
+                  <requireSameVersions>
+                    <dependencies>
                       <dependency>org.liquibase</dependency>
                     </dependencies>
                     <plugins>
@@ -433,7 +454,17 @@ $1$4]]></replacement>
                   </requireSameVersions>
                   <requireSameVersions>
                     <dependencies>
+                      <dependency>org.mockito</dependency>
+                    </dependencies>
+                  </requireSameVersions>
+                  <requireSameVersions>
+                    <dependencies>
                       <dependency>org.slf4j</dependency>
+                    </dependencies>
+                  </requireSameVersions>
+                  <requireSameVersions>
+                    <dependencies>
+                      <dependency>org.springframework</dependency>
                     </dependencies>
                   </requireSameVersions>
                   <requireSameVersions>
@@ -443,6 +474,11 @@ $1$4]]></replacement>
                     <plugins>
                       <plugin>org.springframework.boot</plugin>
                     </plugins>
+                  </requireSameVersions>
+                  <requireSameVersions>
+                    <dependencies>
+                      <dependency>org.testcontainers</dependency>
+                    </dependencies>
                   </requireSameVersions>
                   <banCircularDependencies/>
                   <banDuplicateClasses>
@@ -659,16 +695,6 @@ $1$4]]></replacement>
                   </ignoreVersions>
                 </rule>
                 <rule>
-                  <groupId>org.junit</groupId>
-                  <artifactId>junit-bom</artifactId>
-                  <ignoreVersions>
-                    <ignoreVersion>
-                      <type>regex</type>
-                      <version>.+-(?:M|RC)\d+\b.*</version>
-                    </ignoreVersion>
-                  </ignoreVersions>
-                </rule>
-                <rule>
                   <groupId>org.junit.jupiter</groupId>
                   <ignoreVersions>
                     <ignoreVersion>
@@ -679,15 +705,6 @@ $1$4]]></replacement>
                 </rule>
                 <rule>
                   <groupId>org.junit.platform</groupId>
-                  <ignoreVersions>
-                    <ignoreVersion>
-                      <type>regex</type>
-                      <version>.+-(?:M|RC)\d+\b.*</version>
-                    </ignoreVersion>
-                  </ignoreVersions>
-                </rule>
-                <rule>
-                  <groupId>org.junit.vintage</groupId>
                   <ignoreVersions>
                     <ignoreVersion>
                       <type>regex</type>
