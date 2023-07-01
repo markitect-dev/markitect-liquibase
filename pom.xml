@@ -415,6 +415,22 @@ $1$4]]></replacement>
                   </requireSameVersions>
                   <requireSameVersions>
                     <dependencies>
+                      <dependency>org.jooq</dependency>
+                    </dependencies>
+                    <plugins>
+                      <plugin>org.jooq</plugin>
+                    </plugins>
+                  </requireSameVersions>
+                  <requireSameVersions>
+                    <dependencies>
+                      <dependency>org.liquibase</dependency>
+                    </dependencies>
+                    <plugins>
+                      <plugin>org.liquibase</plugin>
+                    </plugins>
+                  </requireSameVersions>
+                  <requireSameVersions>
+                    <dependencies>
                       <dependency>org.slf4j</dependency>
                     </dependencies>
                   </requireSameVersions>
@@ -422,6 +438,9 @@ $1$4]]></replacement>
                     <dependencies>
                       <dependency>org.springframework.boot</dependency>
                     </dependencies>
+                    <plugins>
+                      <plugin>org.springframework.boot</plugin>
+                    </plugins>
                   </requireSameVersions>
                   <banCircularDependencies/>
                   <banDuplicateClasses>
