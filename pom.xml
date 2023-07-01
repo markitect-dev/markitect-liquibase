@@ -147,7 +147,7 @@
     <maven-source-plugin.version>3.3.0</maven-source-plugin.version>
     <maven-surefire.version>3.1.2</maven-surefire.version>
     <mockito.version>4.11.0</mockito.version>
-    <mssql-jdbc.version>12.2.0.jre8</mssql-jdbc.version>
+    <mssql-jdbc.version>12.2.0.jre11</mssql-jdbc.version>
     <nexus-staging-maven-plugin.version>1.6.13</nexus-staging-maven-plugin.version>
     <objenesis.version>3.3</objenesis.version>
     <opencsv.version>5.7.1</opencsv.version>
@@ -638,7 +638,7 @@ $1$4]]></replacement>
                   <ignoreVersions>
                     <ignoreVersion>
                       <type>regex</type>
-                      <version>(?:(?!\.jre8\b).)*</version>
+                      <version>(?:(?!\.jre(?:11|17)\b).)*</version>
                     </ignoreVersion>
                     <ignoreVersion>
                       <type>regex</type>
