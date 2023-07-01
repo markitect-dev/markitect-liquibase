@@ -385,6 +385,7 @@ $1$4]]></replacement>
                     <excludes>
                       <exclude>javax.activation</exclude>
                       <exclude>javax.xml.bind</exclude>
+                      <exclude>org.hamcrest:hamcrest-core</exclude>
                     </excludes>
                   </bannedDependencies>
                   <dependencyConvergence/>
