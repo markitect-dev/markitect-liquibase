@@ -26,6 +26,11 @@
   <dependencies>
     <dependency>
       <groupId>dev.markitect.liquibase</groupId>
+      <artifactId>markitect-liquibase-base</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>dev.markitect.liquibase</groupId>
       <artifactId>markitect-liquibase-bom</artifactId>
       <type>pom</type>
       <scope>test</scope>
@@ -33,6 +38,16 @@
     <dependency>
       <groupId>dev.markitect.liquibase</groupId>
       <artifactId>markitect-liquibase-core</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>dev.markitect.liquibase</groupId>
+      <artifactId>markitect-liquibase-logging</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>dev.markitect.liquibase</groupId>
+      <artifactId>markitect-liquibase-spring</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
