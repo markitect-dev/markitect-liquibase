@@ -383,9 +383,12 @@ $1$4]]></replacement>
                   </banDynamicVersions>
                   <bannedDependencies>
                     <excludes>
+                      <exclude>com.jayway.jsonpath:json-path</exclude>
                       <exclude>javax.activation</exclude>
                       <exclude>javax.xml.bind</exclude>
                       <exclude>org.hamcrest:hamcrest-core</exclude>
+                      <exclude>org.skyscreamer:jsonassert</exclude>
+                      <exclude>org.xmlunit:xmlunit-core</exclude>
                     </excludes>
                   </bannedDependencies>
                   <dependencyConvergence/>
