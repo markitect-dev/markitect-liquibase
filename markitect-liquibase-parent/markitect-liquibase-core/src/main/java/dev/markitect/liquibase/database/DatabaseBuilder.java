@@ -22,8 +22,8 @@ import dev.markitect.liquibase.base.Nullable;
 import dev.markitect.liquibase.base.Verify;
 import java.util.function.UnaryOperator;
 import liquibase.database.Database;
+import liquibase.database.DatabaseConnection;
 import liquibase.database.ObjectQuotingStrategy;
-import liquibase.database.jvm.JdbcConnection;
 
 public final class DatabaseBuilder<D extends Database> {
   public static <T extends Database> DatabaseBuilder<T> of(Class<T> databaseClass) {
@@ -32,7 +32,7 @@ public final class DatabaseBuilder<D extends Database> {
   }
 
   private final Class<D> databaseClass;
-  private final @Nullable JdbcConnection jdbcConnection;
+  private final @Nullable DatabaseConnectionBuilder databaseConnectionBuilder;
   private final @Nullable UnaryOperator<OfflineConnectionBuilder> offlineConnectionCustomizer;
   private final @Nullable ObjectQuotingStrategy objectQuotingStrategy;
   private final @Nullable Boolean outputDefaultCatalog;
@@ -40,23 +40,24 @@ public final class DatabaseBuilder<D extends Database> {
 
   private DatabaseBuilder(
       Class<D> databaseClass,
-      @Nullable JdbcConnection jdbcConnection,
+      @Nullable DatabaseConnectionBuilder databaseConnectionBuilder,
       @Nullable UnaryOperator<OfflineConnectionBuilder> offlineConnectionCustomizer,
       @Nullable ObjectQuotingStrategy objectQuotingStrategy,
       @Nullable Boolean outputDefaultCatalog,
       @Nullable Boolean outputDefaultSchema) {
     this.databaseClass = checkNotNull(databaseClass);
-    this.jdbcConnection = jdbcConnection;
+    this.databaseConnectionBuilder = databaseConnectionBuilder;
     this.offlineConnectionCustomizer = offlineConnectionCustomizer;
     this.objectQuotingStrategy = objectQuotingStrategy;
     this.outputDefaultCatalog = outputDefaultCatalog;
     this.outputDefaultSchema = outputDefaultSchema;
   }
 
-  public DatabaseBuilder<D> withJdbcConnection(@Nullable JdbcConnection jdbcConnection) {
+  public DatabaseBuilder<D> withDatabaseConnection(
+      @Nullable DatabaseConnectionBuilder databaseConnectionBuilder) {
     return new DatabaseBuilder<>(
         databaseClass,
-        jdbcConnection,
+        databaseConnectionBuilder,
         null,
         objectQuotingStrategy,
         outputDefaultCatalog,
@@ -82,7 +83,7 @@ public final class DatabaseBuilder<D extends Database> {
       @Nullable ObjectQuotingStrategy objectQuotingStrategy) {
     return new DatabaseBuilder<>(
         databaseClass,
-        jdbcConnection,
+        databaseConnectionBuilder,
         offlineConnectionCustomizer,
         objectQuotingStrategy,
         outputDefaultCatalog,
@@ -92,7 +93,7 @@ public final class DatabaseBuilder<D extends Database> {
   public DatabaseBuilder<D> withOutputDefaultCatalog(@Nullable Boolean outputDefaultCatalog) {
     return new DatabaseBuilder<>(
         databaseClass,
-        jdbcConnection,
+        databaseConnectionBuilder,
         offlineConnectionCustomizer,
         objectQuotingStrategy,
         outputDefaultCatalog,
@@ -102,7 +103,7 @@ public final class DatabaseBuilder<D extends Database> {
   public DatabaseBuilder<D> withOutputDefaultSchema(@Nullable Boolean outputDefaultSchema) {
     return new DatabaseBuilder<>(
         databaseClass,
-        jdbcConnection,
+        databaseConnectionBuilder,
         offlineConnectionCustomizer,
         objectQuotingStrategy,
         outputDefaultCatalog,
@@ -116,8 +117,9 @@ public final class DatabaseBuilder<D extends Database> {
     } catch (ReflectiveOperationException | RuntimeException e) {
       throw new IllegalStateException(e);
     }
-    if (jdbcConnection != null) {
-      database.setConnection(jdbcConnection);
+    if (databaseConnectionBuilder != null) {
+      DatabaseConnection databaseConnection = databaseConnectionBuilder.build();
+      database.setConnection(databaseConnection);
     } else if (offlineConnectionCustomizer != null) {
       MarkitectOfflineConnection offlineConnection =
           offlineConnectionCustomizer

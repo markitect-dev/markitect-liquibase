@@ -20,13 +20,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import dev.markitect.liquibase.base.Nullable;
 import dev.markitect.liquibase.database.DatabaseBuilder;
+import dev.markitect.liquibase.database.DatabaseConnectionBuilder;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.LinkedHashMap;
 import liquibase.GlobalConfiguration;
 import liquibase.Scope;
 import liquibase.database.ObjectQuotingStrategy;
-import liquibase.database.jvm.JdbcConnection;
 import liquibase.structure.DatabaseObject;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -71,12 +70,12 @@ class MarkitectMssqlDatabaseIntegrationTests {
     }
   }
 
-  private static JdbcConnection toJdbcConnection() throws SQLException {
-    return new JdbcConnection(
-        DriverManager.getConnection(
-            databaseContainer.getJdbcUrl() + ";databaseName=Cat1",
-            "User1",
-            databaseContainer.getPassword()));
+  private static DatabaseConnectionBuilder toDatabaseConnectionBuilder() {
+    return DatabaseConnectionBuilder.of()
+        .withUrl(databaseContainer.getJdbcUrl() + ";databaseName=Cat1")
+        .withUsername("User1")
+        .withPassword(databaseContainer.getPassword())
+        .withDriver(databaseContainer.getDriverClassName());
   }
 
   @ParameterizedTest
@@ -109,7 +108,7 @@ class MarkitectMssqlDatabaseIntegrationTests {
     }
     try (var database =
         DatabaseBuilder.of(MarkitectMssqlDatabase.class)
-            .withJdbcConnection(toJdbcConnection())
+            .withDatabaseConnection(toDatabaseConnectionBuilder())
             .withObjectQuotingStrategy(quotingStrategy)
             .build()) {
 
@@ -149,7 +148,7 @@ class MarkitectMssqlDatabaseIntegrationTests {
     }
     try (var database =
         DatabaseBuilder.of(MarkitectMssqlDatabase.class)
-            .withJdbcConnection(toJdbcConnection())
+            .withDatabaseConnection(toDatabaseConnectionBuilder())
             .withOutputDefaultCatalog(outputDefaultCatalog)
             .withOutputDefaultSchema(outputDefaultSchema)
             .build()) {
@@ -197,7 +196,7 @@ class MarkitectMssqlDatabaseIntegrationTests {
     }
     try (var database =
         DatabaseBuilder.of(MarkitectMssqlDatabase.class)
-            .withJdbcConnection(toJdbcConnection())
+            .withDatabaseConnection(toDatabaseConnectionBuilder())
             .withObjectQuotingStrategy(quotingStrategy)
             .build()) {
 
@@ -246,7 +245,7 @@ class MarkitectMssqlDatabaseIntegrationTests {
     }
     try (var database =
         DatabaseBuilder.of(MarkitectMssqlDatabase.class)
-            .withJdbcConnection(toJdbcConnection())
+            .withDatabaseConnection(toDatabaseConnectionBuilder())
             .withOutputDefaultCatalog(outputDefaultCatalog)
             .withOutputDefaultSchema(outputDefaultSchema)
             .build()) {
