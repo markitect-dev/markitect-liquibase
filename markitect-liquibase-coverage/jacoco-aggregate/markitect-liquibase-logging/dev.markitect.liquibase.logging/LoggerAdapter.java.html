@@ -20,63 +20,74 @@ import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
 
 import dev.markitect.liquibase.base.Nullable;
 import liquibase.logging.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.spi.LoggerContext;
+import org.slf4j.LoggerFactory;
+import org.slf4j.spi.LocationAwareLogger;
 
 public class LoggerAdapter {
   private static final LoggingApi LOGGING_API;
 
   static {
-<span class="fc bfc" id="L28" title="All 2 branches covered.">    if (isPresent(&quot;org.apache.logging.log4j.spi.ExtendedLogger&quot;)</span>
-<span class="fc bfc" id="L29" title="All 2 branches covered.">        &amp;&amp; !isPresent(&quot;org.apache.logging.slf4j.SLF4JProvider&quot;)) {</span>
-<span class="fc" id="L30">      LOGGING_API = LoggingApi.LOG4J;</span>
-<span class="fc bfc" id="L31" title="All 2 branches covered.">    } else if (isPresent(&quot;org.slf4j.spi.LocationAwareLogger&quot;)) {</span>
-<span class="fc" id="L32">      LOGGING_API = LoggingApi.SLF4J;</span>
+<span class="fc bfc" id="L32" title="All 2 branches covered.">    if (isPresent(&quot;org.apache.logging.log4j.spi.ExtendedLogger&quot;)</span>
+<span class="fc bfc" id="L33" title="All 2 branches covered.">        &amp;&amp; !isPresent(&quot;org.apache.logging.slf4j.SLF4JProvider&quot;)) {</span>
+<span class="fc" id="L34">      LOGGING_API = LoggingApi.LOG4J;</span>
+<span class="fc bfc" id="L35" title="All 2 branches covered.">    } else if (isPresent(&quot;org.slf4j.spi.LocationAwareLogger&quot;)) {</span>
+<span class="fc" id="L36">      LOGGING_API = LoggingApi.SLF4J;</span>
     } else {
-<span class="fc" id="L34">      LOGGING_API = LoggingApi.JUL;</span>
+<span class="fc" id="L38">      LOGGING_API = LoggingApi.JUL;</span>
     }
-<span class="fc" id="L36">  }</span>
+<span class="fc" id="L40">  }</span>
 
   private static boolean isPresent(String className) {
-<span class="fc" id="L39">    checkNotNull(className);</span>
+<span class="fc" id="L43">    checkNotNull(className);</span>
     try {
-<span class="fc" id="L41">      Class.forName(className);</span>
-<span class="fc" id="L42">    } catch (ClassNotFoundException e) {</span>
-<span class="fc" id="L43">      return false;</span>
-<span class="fc" id="L44">    }</span>
-<span class="fc" id="L45">    return true;</span>
+<span class="fc" id="L45">      Class.forName(className);</span>
+<span class="fc" id="L46">    } catch (ClassNotFoundException e) {</span>
+<span class="fc" id="L47">      return false;</span>
+<span class="fc" id="L48">    }</span>
+<span class="fc" id="L49">    return true;</span>
   }
 
   public static Logger getLogger(@Nullable String name) {
-<span class="fc bfc" id="L49" title="All 3 branches covered.">    switch (LOGGING_API) {</span>
-      case SLF4J:
-<span class="fc" id="L51">        return Slf4jAdapter.getLogger(name);</span>
+<span class="fc bfc" id="L53" title="All 3 branches covered.">    switch (LOGGING_API) {</span>
       case LOG4J:
-<span class="fc" id="L53">        return Log4jAdapter.getLogger(name);</span>
+<span class="fc" id="L55">        return Log4jAdapter.getLogger(name);</span>
+      case SLF4J:
+<span class="fc" id="L57">        return Slf4jAdapter.getLogger(name);</span>
       default:
-<span class="fc" id="L55">        return JulAdapter.getLogger(name);</span>
+<span class="fc" id="L59">        return JulAdapter.getLogger(name);</span>
     }
   }
 
-<span class="fc" id="L59">  private enum LoggingApi {</span>
-<span class="fc" id="L60">    JUL,</span>
-<span class="fc" id="L61">    LOG4J,</span>
-<span class="fc" id="L62">    SLF4J</span>
+<span class="fc" id="L63">  private enum LoggingApi {</span>
+<span class="fc" id="L64">    JUL,</span>
+<span class="fc" id="L65">    LOG4J,</span>
+<span class="fc" id="L66">    SLF4J</span>
   }
 
   private static class JulAdapter {
     public static Logger getLogger(@Nullable String name) {
-<span class="fc" id="L67">      return new JulLogger(name);</span>
+<span class="fc" id="L71">      return new JulLogger(name);</span>
     }
   }
 
   private static class Log4jAdapter {
+<span class="fc" id="L76">    private static final LoggerContext context =</span>
+<span class="fc" id="L77">        LogManager.getContext(Log4jAdapter.class.getClassLoader(), false);</span>
+
     public static Logger getLogger(@Nullable String name) {
-<span class="fc" id="L73">      return new Log4jLogger(name);</span>
+<span class="fc" id="L80">      return new Log4jLogger(context.getLogger(name));</span>
     }
   }
 
   private static class Slf4jAdapter {
     public static Logger getLogger(@Nullable String name) {
-<span class="fc" id="L79">      return new Slf4jLogger(name);</span>
+<span class="fc" id="L86">      org.slf4j.Logger logger = LoggerFactory.getLogger(name);</span>
+<span class="fc bfc" id="L87" title="All 2 branches covered.">      if (logger instanceof LocationAwareLogger) {</span>
+<span class="fc" id="L88">        return new Slf4jLocationAwareLogger((LocationAwareLogger) logger);</span>
+      }
+<span class="fc" id="L90">      return new Slf4jLogger&lt;&gt;(logger);</span>
     }
   }
 

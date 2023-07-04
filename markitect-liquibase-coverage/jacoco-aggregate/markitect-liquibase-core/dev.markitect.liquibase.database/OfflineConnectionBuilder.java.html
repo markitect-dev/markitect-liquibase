@@ -17,6 +17,7 @@
 package dev.markitect.liquibase.database;
 
 import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
+import static dev.markitect.liquibase.base.Preconditions.checkState;
 import static java.util.Collections.emptyMap;
 import static java.util.Collections.unmodifiableMap;
 
@@ -27,12 +28,14 @@ import java.util.StringJoiner;
 import liquibase.Scope;
 
 public final class OfflineConnectionBuilder {
-  public static OfflineConnectionBuilder of(String shortName) {
-<span class="fc" id="L31">    checkNotNull(shortName);</span>
-<span class="fc" id="L32">    return new OfflineConnectionBuilder(shortName, null, null, null, null, null, emptyMap());</span>
+<span class="fc" id="L31">  private static final OfflineConnectionBuilder SINGLETON =</span>
+<span class="fc" id="L32">      new OfflineConnectionBuilder(null, null, null, null, null, null, emptyMap());</span>
+
+  public static OfflineConnectionBuilder of() {
+<span class="fc" id="L35">    return SINGLETON;</span>
   }
 
-  private final String shortName;
+  private final @Nullable String shortName;
   private final @Nullable String productName;
   private final @Nullable String version;
   private final @Nullable String snapshot;
@@ -41,80 +44,86 @@ public final class OfflineConnectionBuilder {
   private final Map&lt;String, String&gt; databaseParams;
 
   private OfflineConnectionBuilder(
-      String shortName,
+      @Nullable String shortName,
       @Nullable String productName,
       @Nullable String version,
       @Nullable String snapshot,
       @Nullable String catalog,
       @Nullable String schema,
-<span class="fc" id="L50">      Map&lt;String, String&gt; databaseParams) {</span>
-<span class="fc" id="L51">    this.shortName = checkNotNull(shortName);</span>
-<span class="fc" id="L52">    this.productName = productName;</span>
-<span class="fc" id="L53">    this.version = version;</span>
-<span class="fc" id="L54">    this.snapshot = snapshot;</span>
-<span class="fc" id="L55">    this.catalog = catalog;</span>
-<span class="fc" id="L56">    this.schema = schema;</span>
-<span class="fc" id="L57">    this.databaseParams = checkNotNull(databaseParams);</span>
-<span class="fc" id="L58">  }</span>
+<span class="fc" id="L53">      Map&lt;String, String&gt; databaseParams) {</span>
+<span class="fc" id="L54">    this.shortName = shortName;</span>
+<span class="fc" id="L55">    this.productName = productName;</span>
+<span class="fc" id="L56">    this.version = version;</span>
+<span class="fc" id="L57">    this.snapshot = snapshot;</span>
+<span class="fc" id="L58">    this.catalog = catalog;</span>
+<span class="fc" id="L59">    this.schema = schema;</span>
+<span class="fc" id="L60">    this.databaseParams = checkNotNull(databaseParams);</span>
+<span class="fc" id="L61">  }</span>
+
+  public OfflineConnectionBuilder withShortName(@Nullable String shortName) {
+<span class="fc" id="L64">    return new OfflineConnectionBuilder(</span>
+        shortName, productName, version, snapshot, catalog, schema, databaseParams);
+  }
 
   public OfflineConnectionBuilder withProductName(@Nullable String productName) {
-<span class="fc" id="L61">    return new OfflineConnectionBuilder(</span>
+<span class="fc" id="L69">    return new OfflineConnectionBuilder(</span>
         shortName, productName, version, snapshot, catalog, schema, databaseParams);
   }
 
   public OfflineConnectionBuilder withVersion(@Nullable String version) {
-<span class="fc" id="L66">    return new OfflineConnectionBuilder(</span>
+<span class="fc" id="L74">    return new OfflineConnectionBuilder(</span>
         shortName, productName, version, snapshot, catalog, schema, databaseParams);
   }
 
   public OfflineConnectionBuilder withSnapshot(@Nullable String snapshot) {
-<span class="fc" id="L71">    return new OfflineConnectionBuilder(</span>
+<span class="fc" id="L79">    return new OfflineConnectionBuilder(</span>
         shortName, productName, version, snapshot, catalog, schema, databaseParams);
   }
 
   public OfflineConnectionBuilder withCatalog(@Nullable String catalog) {
-<span class="fc" id="L76">    return new OfflineConnectionBuilder(</span>
+<span class="fc" id="L84">    return new OfflineConnectionBuilder(</span>
         shortName, productName, version, snapshot, catalog, schema, databaseParams);
   }
 
   public OfflineConnectionBuilder withSchema(@Nullable String schema) {
-<span class="fc" id="L81">    return new OfflineConnectionBuilder(</span>
+<span class="fc" id="L89">    return new OfflineConnectionBuilder(</span>
         shortName, productName, version, snapshot, catalog, schema, databaseParams);
   }
 
   public OfflineConnectionBuilder withDatabaseParams(Map&lt;String, String&gt; databaseParams) {
-<span class="fc" id="L86">    checkNotNull(databaseParams);</span>
-<span class="fc" id="L87">    return new OfflineConnectionBuilder(</span>
+<span class="fc" id="L94">    checkNotNull(databaseParams);</span>
+<span class="fc" id="L95">    return new OfflineConnectionBuilder(</span>
         shortName,
         productName,
         version,
         snapshot,
         catalog,
         schema,
-<span class="fc" id="L94">        unmodifiableMap(new LinkedHashMap&lt;&gt;(databaseParams)));</span>
+<span class="fc" id="L102">        unmodifiableMap(new LinkedHashMap&lt;&gt;(databaseParams)));</span>
   }
 
   public MarkitectOfflineConnection build() {
-<span class="fc" id="L98">    StringJoiner params = new StringJoiner(&quot;&amp;&quot;, &quot;?&quot;, &quot;&quot;);</span>
-<span class="fc bfc" id="L99" title="All 2 branches covered.">    if (productName != null) {</span>
-<span class="fc" id="L100">      params.add(&quot;productName=&quot; + productName);</span>
+<span class="fc bfc" id="L106" title="All 2 branches covered.">    checkState(shortName != null);</span>
+<span class="fc" id="L107">    StringJoiner params = new StringJoiner(&quot;&amp;&quot;, &quot;?&quot;, &quot;&quot;);</span>
+<span class="fc bfc" id="L108" title="All 2 branches covered.">    if (productName != null) {</span>
+<span class="fc" id="L109">      params.add(&quot;productName=&quot; + productName);</span>
     }
-<span class="fc bfc" id="L102" title="All 2 branches covered.">    if (version != null) {</span>
-<span class="fc" id="L103">      params.add(&quot;version=&quot; + version);</span>
+<span class="fc bfc" id="L111" title="All 2 branches covered.">    if (version != null) {</span>
+<span class="fc" id="L112">      params.add(&quot;version=&quot; + version);</span>
     }
-<span class="fc bfc" id="L105" title="All 2 branches covered.">    if (snapshot != null) {</span>
-<span class="fc" id="L106">      params.add(&quot;snapshot=&quot; + snapshot);</span>
+<span class="fc bfc" id="L114" title="All 2 branches covered.">    if (snapshot != null) {</span>
+<span class="fc" id="L115">      params.add(&quot;snapshot=&quot; + snapshot);</span>
     }
-<span class="fc bfc" id="L108" title="All 2 branches covered.">    if (catalog != null) {</span>
-<span class="fc" id="L109">      params.add(&quot;catalog=&quot; + catalog);</span>
+<span class="fc bfc" id="L117" title="All 2 branches covered.">    if (catalog != null) {</span>
+<span class="fc" id="L118">      params.add(&quot;catalog=&quot; + catalog);</span>
     }
-<span class="fc" id="L111">    databaseParams.forEach((key, value) -&gt; params.add(key + &quot;=&quot; + value));</span>
-<span class="fc" id="L112">    String url = &quot;offline:&quot; + shortName + params;</span>
-<span class="fc" id="L113">    MarkitectOfflineConnection connection =</span>
-<span class="fc" id="L114">        new MarkitectOfflineConnection(url, Scope.getCurrentScope().getResourceAccessor());</span>
-<span class="fc" id="L115">    connection.setCatalog(catalog);</span>
-<span class="fc" id="L116">    connection.setSchema(schema);</span>
-<span class="fc" id="L117">    return connection;</span>
+<span class="fc" id="L120">    databaseParams.forEach((key, value) -&gt; params.add(key + &quot;=&quot; + value));</span>
+<span class="fc" id="L121">    String url = &quot;offline:&quot; + shortName + params;</span>
+<span class="fc" id="L122">    MarkitectOfflineConnection connection =</span>
+<span class="fc" id="L123">        new MarkitectOfflineConnection(url, Scope.getCurrentScope().getResourceAccessor());</span>
+<span class="fc" id="L124">    connection.setCatalog(catalog);</span>
+<span class="fc" id="L125">    connection.setSchema(schema);</span>
+<span class="fc" id="L126">    return connection;</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

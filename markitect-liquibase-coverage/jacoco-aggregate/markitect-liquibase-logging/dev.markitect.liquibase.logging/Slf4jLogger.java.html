@@ -21,114 +21,101 @@ import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
 import dev.markitect.liquibase.base.Nullable;
 import java.util.logging.Level;
 import liquibase.logging.core.AbstractLogger;
-import org.slf4j.LoggerFactory;
-import org.slf4j.spi.LocationAwareLogger;
+import org.slf4j.Logger;
 
 @SuppressWarnings(&quot;squid:S2160&quot;)
-public class Slf4jLogger extends AbstractLogger {
-<span class="fc" id="L29">  private static final String FQCN = Slf4jLogger.class.getName();</span>
-<span class="fc" id="L30">  private static final int DEBUG_THRESHOLD = Level.FINER.intValue();</span>
-<span class="fc" id="L31">  private static final int INFO_THRESHOLD = Level.INFO.intValue();</span>
-<span class="fc" id="L32">  private static final int WARN_THRESHOLD = Level.WARNING.intValue();</span>
-<span class="fc" id="L33">  private static final int ERROR_THRESHOLD = Level.SEVERE.intValue();</span>
+public class Slf4jLogger&lt;L extends Logger&gt; extends AbstractLogger {
+<span class="fc" id="L28">  protected static final int DEBUG_THRESHOLD = Level.FINER.intValue();</span>
+<span class="fc" id="L29">  protected static final int INFO_THRESHOLD = Level.INFO.intValue();</span>
+<span class="fc" id="L30">  protected static final int WARN_THRESHOLD = Level.WARNING.intValue();</span>
+<span class="fc" id="L31">  protected static final int ERROR_THRESHOLD = Level.SEVERE.intValue();</span>
 
-  private final LocationAwareLogger logger;
+  protected final L logger;
 
-<span class="fc" id="L37">  public Slf4jLogger(@Nullable String name) {</span>
-<span class="fc" id="L38">    this.logger = (LocationAwareLogger) LoggerFactory.getLogger(name);</span>
-<span class="fc" id="L39">  }</span>
+<span class="fc" id="L35">  public Slf4jLogger(L logger) {</span>
+<span class="fc" id="L36">    this.logger = checkNotNull(logger);</span>
+<span class="fc" id="L37">  }</span>
 
   @Override
   public void severe(@Nullable String message) {
-<span class="fc" id="L43">    log(LocationAwareLogger.ERROR_INT, message, null);</span>
-<span class="fc" id="L44">  }</span>
+<span class="fc" id="L41">    logger.error(message);</span>
+<span class="fc" id="L42">  }</span>
 
   @Override
   public void severe(@Nullable String message, @Nullable Throwable e) {
-<span class="fc" id="L48">    log(LocationAwareLogger.ERROR_INT, message, e);</span>
-<span class="fc" id="L49">  }</span>
+<span class="fc" id="L46">    logger.error(message, e);</span>
+<span class="fc" id="L47">  }</span>
 
   @Override
   public void warning(@Nullable String message) {
-<span class="fc" id="L53">    log(LocationAwareLogger.WARN_INT, message, null);</span>
-<span class="fc" id="L54">  }</span>
+<span class="fc" id="L51">    logger.warn(message);</span>
+<span class="fc" id="L52">  }</span>
 
   @Override
   public void warning(@Nullable String message, @Nullable Throwable e) {
-<span class="fc" id="L58">    log(LocationAwareLogger.WARN_INT, message, e);</span>
-<span class="fc" id="L59">  }</span>
+<span class="fc" id="L56">    logger.warn(message, e);</span>
+<span class="fc" id="L57">  }</span>
 
   @Override
   public void info(@Nullable String message) {
-<span class="fc" id="L63">    log(LocationAwareLogger.INFO_INT, message, null);</span>
-<span class="fc" id="L64">  }</span>
+<span class="fc" id="L61">    logger.info(message);</span>
+<span class="fc" id="L62">  }</span>
 
   @Override
   public void info(@Nullable String message, @Nullable Throwable e) {
-<span class="fc" id="L68">    log(LocationAwareLogger.INFO_INT, message, e);</span>
-<span class="fc" id="L69">  }</span>
+<span class="fc" id="L66">    logger.info(message, e);</span>
+<span class="fc" id="L67">  }</span>
 
   @Override
   public void config(@Nullable String message) {
-<span class="fc" id="L73">    log(LocationAwareLogger.DEBUG_INT, message, null);</span>
-<span class="fc" id="L74">  }</span>
+<span class="fc" id="L71">    logger.debug(message);</span>
+<span class="fc" id="L72">  }</span>
 
   @Override
   public void config(@Nullable String message, @Nullable Throwable e) {
-<span class="fc" id="L78">    log(LocationAwareLogger.DEBUG_INT, message, e);</span>
-<span class="fc" id="L79">  }</span>
+<span class="fc" id="L76">    logger.debug(message, e);</span>
+<span class="fc" id="L77">  }</span>
 
   @Override
   public void fine(@Nullable String message) {
-<span class="fc" id="L83">    log(LocationAwareLogger.DEBUG_INT, message, null);</span>
-<span class="fc" id="L84">  }</span>
+<span class="fc" id="L81">    logger.debug(message);</span>
+<span class="fc" id="L82">  }</span>
 
   @Override
   public void fine(@Nullable String message, @Nullable Throwable e) {
-<span class="fc" id="L88">    log(LocationAwareLogger.DEBUG_INT, message, e);</span>
-<span class="fc" id="L89">  }</span>
+<span class="fc" id="L86">    logger.debug(message, e);</span>
+<span class="fc" id="L87">  }</span>
 
   @Override
   public void debug(@Nullable String message) {
-<span class="fc" id="L93">    log(LocationAwareLogger.DEBUG_INT, message, null);</span>
-<span class="fc" id="L94">  }</span>
+<span class="fc" id="L91">    logger.debug(message);</span>
+<span class="fc" id="L92">  }</span>
 
   @Override
   public void debug(@Nullable String message, @Nullable Throwable e) {
-<span class="fc" id="L98">    log(LocationAwareLogger.DEBUG_INT, message, e);</span>
-<span class="fc" id="L99">  }</span>
+<span class="fc" id="L96">    logger.debug(message, e);</span>
+<span class="fc" id="L97">  }</span>
 
   @Override
   public void close() {
     // Redeclared to throw no exception
-<span class="fc" id="L104">  }</span>
+<span class="fc" id="L102">  }</span>
 
   @Override
   public void log(Level level, @Nullable String message, @Nullable Throwable e) {
-<span class="fc" id="L108">    checkNotNull(level);</span>
-<span class="fc" id="L109">    log(toSlf4jLevel(level), message, e);</span>
-<span class="fc" id="L110">  }</span>
-
-  private void log(int level, @Nullable String message, @Nullable Throwable e) {
-<span class="fc" id="L113">    logger.log(null, FQCN, level, message, null, e);</span>
-<span class="fc" id="L114">  }</span>
-
-  private int toSlf4jLevel(Level level) {
-<span class="fc" id="L117">    checkNotNull(level);</span>
-<span class="fc" id="L118">    int value = level.intValue();</span>
-<span class="fc bfc" id="L119" title="All 2 branches covered.">    if (value &lt; DEBUG_THRESHOLD) {</span>
-<span class="fc" id="L120">      return LocationAwareLogger.TRACE_INT;</span>
+<span class="fc" id="L106">    checkNotNull(level);</span>
+<span class="fc" id="L107">    int value = level.intValue();</span>
+<span class="fc bfc" id="L108" title="All 2 branches covered.">    if (value &lt; DEBUG_THRESHOLD) {</span>
+<span class="fc" id="L109">      logger.trace(message, e);</span>
+<span class="fc bfc" id="L110" title="All 2 branches covered.">    } else if (value &lt; INFO_THRESHOLD) {</span>
+<span class="fc" id="L111">      logger.debug(message, e);</span>
+<span class="fc bfc" id="L112" title="All 2 branches covered.">    } else if (value &lt; WARN_THRESHOLD) {</span>
+<span class="fc" id="L113">      logger.info(message, e);</span>
+<span class="fc bfc" id="L114" title="All 2 branches covered.">    } else if (value &lt; ERROR_THRESHOLD) {</span>
+<span class="fc" id="L115">      logger.warn(message, e);</span>
+    } else {
+<span class="fc" id="L117">      logger.error(message, e);</span>
     }
-<span class="fc bfc" id="L122" title="All 2 branches covered.">    if (value &lt; INFO_THRESHOLD) {</span>
-<span class="fc" id="L123">      return LocationAwareLogger.DEBUG_INT;</span>
-    }
-<span class="fc bfc" id="L125" title="All 2 branches covered.">    if (value &lt; WARN_THRESHOLD) {</span>
-<span class="fc" id="L126">      return LocationAwareLogger.INFO_INT;</span>
-    }
-<span class="fc bfc" id="L128" title="All 2 branches covered.">    if (value &lt; ERROR_THRESHOLD) {</span>
-<span class="fc" id="L129">      return LocationAwareLogger.WARN_INT;</span>
-    }
-<span class="fc" id="L131">    return LocationAwareLogger.ERROR_INT;</span>
-  }
+<span class="fc" id="L119">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>
