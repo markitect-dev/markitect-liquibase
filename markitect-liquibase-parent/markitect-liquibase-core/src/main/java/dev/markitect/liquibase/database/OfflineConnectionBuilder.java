@@ -17,6 +17,7 @@
 package dev.markitect.liquibase.database;
 
 import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
+import static dev.markitect.liquibase.base.Preconditions.checkState;
 import static java.util.Collections.emptyMap;
 import static java.util.Collections.unmodifiableMap;
 
@@ -27,12 +28,14 @@ import java.util.StringJoiner;
 import liquibase.Scope;
 
 public final class OfflineConnectionBuilder {
-  public static OfflineConnectionBuilder of(String shortName) {
-    checkNotNull(shortName);
-    return new OfflineConnectionBuilder(shortName, null, null, null, null, null, emptyMap());
+  private static final OfflineConnectionBuilder SINGLETON =
+      new OfflineConnectionBuilder(null, null, null, null, null, null, emptyMap());
+
+  public static OfflineConnectionBuilder of() {
+    return SINGLETON;
   }
 
-  private final String shortName;
+  private final @Nullable String shortName;
   private final @Nullable String productName;
   private final @Nullable String version;
   private final @Nullable String snapshot;
@@ -41,20 +44,25 @@ public final class OfflineConnectionBuilder {
   private final Map<String, String> databaseParams;
 
   private OfflineConnectionBuilder(
-      String shortName,
+      @Nullable String shortName,
       @Nullable String productName,
       @Nullable String version,
       @Nullable String snapshot,
       @Nullable String catalog,
       @Nullable String schema,
       Map<String, String> databaseParams) {
-    this.shortName = checkNotNull(shortName);
+    this.shortName = shortName;
     this.productName = productName;
     this.version = version;
     this.snapshot = snapshot;
     this.catalog = catalog;
     this.schema = schema;
     this.databaseParams = checkNotNull(databaseParams);
+  }
+
+  public OfflineConnectionBuilder withShortName(@Nullable String shortName) {
+    return new OfflineConnectionBuilder(
+        shortName, productName, version, snapshot, catalog, schema, databaseParams);
   }
 
   public OfflineConnectionBuilder withProductName(@Nullable String productName) {
@@ -95,6 +103,7 @@ public final class OfflineConnectionBuilder {
   }
 
   public MarkitectOfflineConnection build() {
+    checkState(shortName != null);
     StringJoiner params = new StringJoiner("&", "?", "");
     if (productName != null) {
       params.add("productName=" + productName);

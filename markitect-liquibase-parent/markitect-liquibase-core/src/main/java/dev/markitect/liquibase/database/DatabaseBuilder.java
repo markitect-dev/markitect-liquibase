@@ -124,7 +124,7 @@ public final class DatabaseBuilder<D extends Database> {
       MarkitectOfflineConnection offlineConnection =
           offlineConnectionCustomizer
               .andThen(Verify::verifyNotNull)
-              .apply(OfflineConnectionBuilder.of(database.getShortName()))
+              .apply(OfflineConnectionBuilder.of().withShortName(database.getShortName()))
               .build();
       database.setConnection(offlineConnection);
     }

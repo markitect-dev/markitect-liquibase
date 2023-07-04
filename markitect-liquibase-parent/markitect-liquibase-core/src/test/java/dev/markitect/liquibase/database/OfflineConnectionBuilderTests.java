@@ -17,9 +17,11 @@
 package dev.markitect.liquibase.database;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.catchThrowable;
 
 import dev.markitect.liquibase.base.Nullable;
 import java.util.Map;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junitpioneer.jupiter.json.JsonSource;
 
@@ -112,7 +114,8 @@ class OfflineConnectionBuilderTests {
       throws Exception {
     // given
     var builder =
-        OfflineConnectionBuilder.of(shortName)
+        OfflineConnectionBuilder.of()
+            .withShortName(shortName)
             .withProductName(productName)
             .withVersion(version)
             .withSnapshot(snapshot)
@@ -136,5 +139,17 @@ class OfflineConnectionBuilderTests {
     assertThat(connection.getCatalog()).isEqualTo(expectedCatalog);
     assertThat(connection.getSchema()).isEqualTo(expectedSchema);
     assertThat(connection).extracting("databaseParams").isEqualTo(databaseParams);
+  }
+
+  @Test
+  void buildWithoutShortNameFails() {
+    // given
+    var builder = OfflineConnectionBuilder.of();
+
+    // when
+    var thrown = catchThrowable(builder::build);
+
+    // then
+    assertThat(thrown).isInstanceOf(IllegalStateException.class);
   }
 }
