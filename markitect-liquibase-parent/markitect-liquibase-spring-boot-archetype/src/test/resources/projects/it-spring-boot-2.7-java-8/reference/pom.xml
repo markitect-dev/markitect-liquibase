@@ -23,6 +23,7 @@
     <liquibase.version>@liquibase.version@</liquibase.version>
     <markitect-liquibase.version>@project.version@</markitect-liquibase.version>
     <snakeyaml.version>@snakeyaml-1.version@</snakeyaml.version>
+    <spring-boot.version>@spring-boot.version@</spring-boot.version>
   </properties>
 
   <dependencyManagement>
@@ -37,6 +38,7 @@
       <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter</artifactId>
+        <version>${spring-boot.version}</version>
         <exclusions>
           <exclusion>
             <groupId>org.springframework.boot</groupId>

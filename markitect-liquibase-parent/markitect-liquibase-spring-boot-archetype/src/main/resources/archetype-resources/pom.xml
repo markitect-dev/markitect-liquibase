@@ -48,6 +48,7 @@
 #if($snakeyamlVersion != 'inherit')
     <snakeyaml.version>${snakeyamlVersion}</snakeyaml.version>
 #end
+    <spring-boot.version>${springBootVersion}</spring-boot.version>
   </properties>
 
   <dependencyManagement>
@@ -62,6 +63,7 @@
       <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter</artifactId>
+        <version>${spring-boot.version}</version>
         <exclusions>
           <exclusion>
             <groupId>org.springframework.boot</groupId>
