@@ -22,7 +22,6 @@ import liquibase.Scope;
 import liquibase.changelog.visitor.UpdateVisitor;
 import liquibase.changelog.visitor.ValidatingVisitor;
 import liquibase.logging.LogService;
-import liquibase.logging.Logger;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.core.config.Configurator;
 import org.junit.jupiter.api.AfterEach;
@@ -51,14 +50,14 @@ class LogServiceTests {
   @Test
   void logs(CapturedOutput output) {
     // when
-    LogService logService = Scope.getCurrentScope().get(Scope.Attr.logService, LogService.class);
+    var logService = Scope.getCurrentScope().get(Scope.Attr.logService, LogService.class);
 
     // then
     assertThat(logService).isInstanceOf(MarkitectLogService.class);
 
     // when
-    Logger log = Scope.getCurrentScope().getLog(UpdateVisitor.class);
-    Logger log2 = Scope.getCurrentScope().getLog(ValidatingVisitor.class);
+    var log = Scope.getCurrentScope().getLog(UpdateVisitor.class);
+    var log2 = Scope.getCurrentScope().getLog(ValidatingVisitor.class);
 
     // then
     assertThat(log).isInstanceOf(Log4jLogger.class);
@@ -66,7 +65,7 @@ class LogServiceTests {
 
     // when
     log.fine("Running Changeset: filePath::id::author");
-    Exception e = new Exception("Preconditions Failed");
+    var e = new Exception("Preconditions Failed");
     log2.fine("Precondition failed: " + e.getMessage(), e);
 
     // then

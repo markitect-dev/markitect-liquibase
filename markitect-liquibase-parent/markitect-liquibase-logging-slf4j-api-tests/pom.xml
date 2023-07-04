@@ -9,10 +9,10 @@
     <version>${revision}${sha1}${changelist}</version>
   </parent>
 
-  <artifactId>markitect-liquibase-logging-slf4j-tests</artifactId>
+  <artifactId>markitect-liquibase-logging-slf4j-api-tests</artifactId>
 
   <name>${project.artifactId}</name>
-  <description>Markitect Liquibase Logging - SLF4J Tests</description>
+  <description>Markitect Liquibase Logging - SLF4J API Tests</description>
   <url>https://github.com/markitect-dev/markitect-liquibase</url>
 
   <distributionManagement>
@@ -22,6 +22,21 @@
     </site>
   </distributionManagement>
 
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-logging</artifactId>
+        <version>${spring-boot.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
   <dependencies>
     <dependency>
       <groupId>com.google.code.findbugs</groupId>
@@ -43,6 +58,11 @@
     <dependency>
       <groupId>dev.markitect.liquibase</groupId>
       <artifactId>markitect-liquibase-logging</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-simple</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>

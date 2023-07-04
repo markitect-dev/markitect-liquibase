@@ -22,7 +22,6 @@ import liquibase.Scope;
 import liquibase.changelog.visitor.UpdateVisitor;
 import liquibase.changelog.visitor.ValidatingVisitor;
 import liquibase.logging.LogService;
-import liquibase.logging.Logger;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
@@ -36,30 +35,30 @@ class LogServiceTests {
   @Test
   void logs(CapturedOutput output) {
     // when
-    LogService logService = Scope.getCurrentScope().get(Scope.Attr.logService, LogService.class);
+    var logService = Scope.getCurrentScope().get(Scope.Attr.logService, LogService.class);
 
     // then
     assertThat(logService).isInstanceOf(MarkitectLogService.class);
 
     // when
-    Logger log = Scope.getCurrentScope().getLog(UpdateVisitor.class);
-    Logger log2 = Scope.getCurrentScope().getLog(ValidatingVisitor.class);
+    var log = Scope.getCurrentScope().getLog(UpdateVisitor.class);
+    var log2 = Scope.getCurrentScope().getLog(ValidatingVisitor.class);
 
     // then
     assertThat(log).isInstanceOf(Slf4jLogger.class);
     assertThat(log2).isInstanceOf(Slf4jLogger.class);
 
     // when
-    log.fine("Running Changeset: filePath::id::author");
-    Exception e = new Exception("Preconditions Failed");
-    log2.fine("Precondition failed: " + e.getMessage(), e);
+    log.info("Running Changeset: filePath::id::author");
+    var e = new Exception("Preconditions Failed");
+    log2.info("Precondition failed: " + e.getMessage(), e);
 
     // then
     assertThat(output)
         .contains(
-            " [main] DEBUG liquibase.changelog.visitor.UpdateVisitor - "
+            "[main] INFO liquibase.changelog.visitor.UpdateVisitor - "
                 + "Running Changeset: filePath::id::author",
-            " [main] DEBUG liquibase.changelog.visitor.ValidatingVisitor - "
+            "[main] INFO liquibase.changelog.visitor.ValidatingVisitor - "
                 + "Precondition failed: Preconditions Failed",
             "java.lang.Exception: Preconditions Failed");
   }

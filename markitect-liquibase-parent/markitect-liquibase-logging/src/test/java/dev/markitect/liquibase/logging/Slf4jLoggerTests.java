@@ -23,19 +23,18 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.slf4j.spi.LocationAwareLogger;
+import org.slf4j.Logger;
 
 @ExtendWith(MockitoExtension.class)
 class Slf4jLoggerTests {
-  @Mock private LocationAwareLogger logger;
+  @Mock private Logger logger;
 
   @Test
   void test() throws Exception {
     // given
-    final String fqcn = Slf4jLogger.class.getName();
     var loggerField = Slf4jLogger.class.getDeclaredField("logger");
     loggerField.setAccessible(true);
-    var slf4jLogger = new Slf4jLogger(Slf4jLoggerTests.class.getName());
+    var slf4jLogger = new Slf4jLogger<>(logger);
     loggerField.set(slf4jLogger, logger);
 
     // when
@@ -64,26 +63,26 @@ class Slf4jLoggerTests {
 
     // then
     var inOrder = inOrder(logger);
-    inOrder.verify(logger).log(null, fqcn, LocationAwareLogger.ERROR_INT, "s", null, null);
-    inOrder.verify(logger).log(null, fqcn, LocationAwareLogger.ERROR_INT, "s", null, thrown);
-    inOrder.verify(logger).log(null, fqcn, LocationAwareLogger.WARN_INT, "w", null, null);
-    inOrder.verify(logger).log(null, fqcn, LocationAwareLogger.WARN_INT, "w", null, thrown);
-    inOrder.verify(logger).log(null, fqcn, LocationAwareLogger.INFO_INT, "i", null, null);
-    inOrder.verify(logger).log(null, fqcn, LocationAwareLogger.INFO_INT, "i", null, thrown);
-    inOrder.verify(logger).log(null, fqcn, LocationAwareLogger.DEBUG_INT, "c", null, null);
-    inOrder.verify(logger).log(null, fqcn, LocationAwareLogger.DEBUG_INT, "c", null, thrown);
-    inOrder.verify(logger).log(null, fqcn, LocationAwareLogger.DEBUG_INT, "f", null, null);
-    inOrder.verify(logger).log(null, fqcn, LocationAwareLogger.DEBUG_INT, "f", null, thrown);
-    inOrder.verify(logger).log(null, fqcn, LocationAwareLogger.DEBUG_INT, "d", null, null);
-    inOrder.verify(logger).log(null, fqcn, LocationAwareLogger.DEBUG_INT, "d", null, thrown);
-    inOrder.verify(logger).log(null, fqcn, LocationAwareLogger.ERROR_INT, "s", null, null);
-    inOrder.verify(logger).log(null, fqcn, LocationAwareLogger.ERROR_INT, "s", null, thrown);
-    inOrder.verify(logger).log(null, fqcn, LocationAwareLogger.WARN_INT, "w", null, null);
-    inOrder.verify(logger).log(null, fqcn, LocationAwareLogger.INFO_INT, "i", null, null);
-    inOrder.verify(logger).log(null, fqcn, LocationAwareLogger.DEBUG_INT, "c", null, null);
-    inOrder.verify(logger).log(null, fqcn, LocationAwareLogger.DEBUG_INT, "f", null, null);
-    inOrder.verify(logger).log(null, fqcn, LocationAwareLogger.DEBUG_INT, "fr", null, null);
-    inOrder.verify(logger).log(null, fqcn, LocationAwareLogger.TRACE_INT, "ft", null, null);
+    inOrder.verify(logger).error("s");
+    inOrder.verify(logger).error("s", thrown);
+    inOrder.verify(logger).warn("w");
+    inOrder.verify(logger).warn("w", thrown);
+    inOrder.verify(logger).info("i");
+    inOrder.verify(logger).info("i", thrown);
+    inOrder.verify(logger).debug("c");
+    inOrder.verify(logger).debug("c", thrown);
+    inOrder.verify(logger).debug("f");
+    inOrder.verify(logger).debug("f", thrown);
+    inOrder.verify(logger).debug("d");
+    inOrder.verify(logger).debug("d", thrown);
+    inOrder.verify(logger).error("s", (Throwable) null);
+    inOrder.verify(logger).error("s", thrown);
+    inOrder.verify(logger).warn("w", (Throwable) null);
+    inOrder.verify(logger).info("i", (Throwable) null);
+    inOrder.verify(logger).debug("c", (Throwable) null);
+    inOrder.verify(logger).debug("f", (Throwable) null);
+    inOrder.verify(logger).debug("fr", (Throwable) null);
+    inOrder.verify(logger).trace("ft", (Throwable) null);
     inOrder.verifyNoMoreInteractions();
   }
 }

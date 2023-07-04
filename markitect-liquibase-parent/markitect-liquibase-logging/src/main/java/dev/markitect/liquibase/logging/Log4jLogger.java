@@ -21,7 +21,6 @@ import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
 import dev.markitect.liquibase.base.Nullable;
 import java.util.logging.Level;
 import liquibase.logging.core.AbstractLogger;
-import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.spi.ExtendedLogger;
 
 @SuppressWarnings("squid:S2160")
@@ -34,68 +33,68 @@ public class Log4jLogger extends AbstractLogger {
 
   private final ExtendedLogger logger;
 
-  public Log4jLogger(@Nullable String name) {
-    this.logger = (ExtendedLogger) LogManager.getLogger(name);
+  public Log4jLogger(ExtendedLogger logger) {
+    this.logger = checkNotNull(logger);
   }
 
   @Override
   public void severe(@Nullable String message) {
-    log(org.apache.logging.log4j.Level.ERROR, message, null);
+    logger.logIfEnabled(FQCN, org.apache.logging.log4j.Level.ERROR, null, message);
   }
 
   @Override
   public void severe(@Nullable String message, @Nullable Throwable e) {
-    log(org.apache.logging.log4j.Level.ERROR, message, e);
+    logger.logIfEnabled(FQCN, org.apache.logging.log4j.Level.ERROR, null, message, e);
   }
 
   @Override
   public void warning(@Nullable String message) {
-    log(org.apache.logging.log4j.Level.WARN, message, null);
+    logger.logIfEnabled(FQCN, org.apache.logging.log4j.Level.WARN, null, message);
   }
 
   @Override
   public void warning(@Nullable String message, @Nullable Throwable e) {
-    log(org.apache.logging.log4j.Level.WARN, message, e);
+    logger.logIfEnabled(FQCN, org.apache.logging.log4j.Level.WARN, null, message, e);
   }
 
   @Override
   public void info(@Nullable String message) {
-    log(org.apache.logging.log4j.Level.INFO, message, null);
+    logger.logIfEnabled(FQCN, org.apache.logging.log4j.Level.INFO, null, message);
   }
 
   @Override
   public void info(@Nullable String message, @Nullable Throwable e) {
-    log(org.apache.logging.log4j.Level.INFO, message, e);
+    logger.logIfEnabled(FQCN, org.apache.logging.log4j.Level.INFO, null, message, e);
   }
 
   @Override
   public void config(@Nullable String message) {
-    log(org.apache.logging.log4j.Level.DEBUG, message, null);
+    logger.logIfEnabled(FQCN, org.apache.logging.log4j.Level.DEBUG, null, message);
   }
 
   @Override
   public void config(@Nullable String message, @Nullable Throwable e) {
-    log(org.apache.logging.log4j.Level.DEBUG, message, e);
+    logger.logIfEnabled(FQCN, org.apache.logging.log4j.Level.DEBUG, null, message, e);
   }
 
   @Override
   public void fine(@Nullable String message) {
-    log(org.apache.logging.log4j.Level.DEBUG, message, null);
+    logger.logIfEnabled(FQCN, org.apache.logging.log4j.Level.DEBUG, null, message);
   }
 
   @Override
   public void fine(@Nullable String message, @Nullable Throwable e) {
-    log(org.apache.logging.log4j.Level.DEBUG, message, e);
+    logger.logIfEnabled(FQCN, org.apache.logging.log4j.Level.DEBUG, null, message, e);
   }
 
   @Override
   public void debug(@Nullable String message) {
-    log(org.apache.logging.log4j.Level.DEBUG, message, null);
+    logger.logIfEnabled(FQCN, org.apache.logging.log4j.Level.DEBUG, null, message);
   }
 
   @Override
   public void debug(@Nullable String message, @Nullable Throwable e) {
-    log(org.apache.logging.log4j.Level.DEBUG, message, e);
+    logger.logIfEnabled(FQCN, org.apache.logging.log4j.Level.DEBUG, null, message, e);
   }
 
   @Override
@@ -106,13 +105,7 @@ public class Log4jLogger extends AbstractLogger {
   @Override
   public void log(Level level, @Nullable String message, @Nullable Throwable e) {
     checkNotNull(level);
-    log(toLog4jLevel(level), message, e);
-  }
-
-  private void log(
-      org.apache.logging.log4j.Level level, @Nullable String message, @Nullable Throwable e) {
-    checkNotNull(level);
-    logger.logIfEnabled(FQCN, level, null, message, e);
+    logger.logIfEnabled(FQCN, toLog4jLevel(level), null, message, e);
   }
 
   private org.apache.logging.log4j.Level toLog4jLevel(Level level) {

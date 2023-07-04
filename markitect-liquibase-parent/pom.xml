@@ -23,7 +23,8 @@
     <module>markitect-liquibase-logging</module>
     <module>markitect-liquibase-logging-jul-tests</module>
     <module>markitect-liquibase-logging-log4j-tests</module>
-    <module>markitect-liquibase-logging-slf4j-tests</module>
+    <module>markitect-liquibase-logging-slf4j-api-tests</module>
+    <module>markitect-liquibase-logging-slf4j-spi-tests</module>
     <module>markitect-liquibase-spring</module>
     <module>markitect-liquibase-spring-boot-archetype</module>
     <module>markitect-liquibase-spring-boot-starter</module>
@@ -134,7 +135,12 @@
       </dependency>
       <dependency>
         <groupId>dev.markitect.liquibase</groupId>
-        <artifactId>markitect-liquibase-logging-slf4j-tests</artifactId>
+        <artifactId>markitect-liquibase-logging-slf4j-api-tests</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>dev.markitect.liquibase</groupId>
+        <artifactId>markitect-liquibase-logging-slf4j-spi-tests</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
@@ -371,6 +377,11 @@
       <dependency>
         <groupId>org.slf4j</groupId>
         <artifactId>slf4j-api</artifactId>
+        <version>${slf4j.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-simple</artifactId>
         <version>${slf4j.version}</version>
       </dependency>
       <dependency>

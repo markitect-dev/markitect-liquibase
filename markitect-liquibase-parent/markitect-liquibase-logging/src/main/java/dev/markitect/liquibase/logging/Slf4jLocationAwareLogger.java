@@ -20,101 +20,96 @@ import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
 
 import dev.markitect.liquibase.base.Nullable;
 import java.util.logging.Level;
-import liquibase.logging.core.AbstractLogger;
-import org.slf4j.Logger;
+import org.slf4j.spi.LocationAwareLogger;
 
-@SuppressWarnings("squid:S2160")
-public class Slf4jLogger<L extends Logger> extends AbstractLogger {
-  protected static final int DEBUG_THRESHOLD = Level.FINER.intValue();
-  protected static final int INFO_THRESHOLD = Level.INFO.intValue();
-  protected static final int WARN_THRESHOLD = Level.WARNING.intValue();
-  protected static final int ERROR_THRESHOLD = Level.SEVERE.intValue();
+public class Slf4jLocationAwareLogger extends Slf4jLogger<LocationAwareLogger> {
+  private static final String FQCN = Slf4jLocationAwareLogger.class.getName();
 
-  protected final L logger;
-
-  public Slf4jLogger(L logger) {
-    this.logger = checkNotNull(logger);
+  public Slf4jLocationAwareLogger(LocationAwareLogger logger) {
+    super(logger);
   }
 
   @Override
   public void severe(@Nullable String message) {
-    logger.error(message);
+    logger.log(null, FQCN, LocationAwareLogger.ERROR_INT, message, null, null);
   }
 
   @Override
   public void severe(@Nullable String message, @Nullable Throwable e) {
-    logger.error(message, e);
+    logger.log(null, FQCN, LocationAwareLogger.ERROR_INT, message, null, e);
   }
 
   @Override
   public void warning(@Nullable String message) {
-    logger.warn(message);
+    logger.log(null, FQCN, LocationAwareLogger.WARN_INT, message, null, null);
   }
 
   @Override
   public void warning(@Nullable String message, @Nullable Throwable e) {
-    logger.warn(message, e);
+    logger.log(null, FQCN, LocationAwareLogger.WARN_INT, message, null, e);
   }
 
   @Override
   public void info(@Nullable String message) {
-    logger.info(message);
+    logger.log(null, FQCN, LocationAwareLogger.INFO_INT, message, null, null);
   }
 
   @Override
   public void info(@Nullable String message, @Nullable Throwable e) {
-    logger.info(message, e);
+    logger.log(null, FQCN, LocationAwareLogger.INFO_INT, message, null, e);
   }
 
   @Override
   public void config(@Nullable String message) {
-    logger.debug(message);
+    logger.log(null, FQCN, LocationAwareLogger.DEBUG_INT, message, null, null);
   }
 
   @Override
   public void config(@Nullable String message, @Nullable Throwable e) {
-    logger.debug(message, e);
+    logger.log(null, FQCN, LocationAwareLogger.DEBUG_INT, message, null, e);
   }
 
   @Override
   public void fine(@Nullable String message) {
-    logger.debug(message);
+    logger.log(null, FQCN, LocationAwareLogger.DEBUG_INT, message, null, null);
   }
 
   @Override
   public void fine(@Nullable String message, @Nullable Throwable e) {
-    logger.debug(message, e);
+    logger.log(null, FQCN, LocationAwareLogger.DEBUG_INT, message, null, e);
   }
 
   @Override
   public void debug(@Nullable String message) {
-    logger.debug(message);
+    logger.log(null, FQCN, LocationAwareLogger.DEBUG_INT, message, null, null);
   }
 
   @Override
   public void debug(@Nullable String message, @Nullable Throwable e) {
-    logger.debug(message, e);
-  }
-
-  @Override
-  public void close() {
-    // Redeclared to throw no exception
+    logger.log(null, FQCN, LocationAwareLogger.DEBUG_INT, message, null, e);
   }
 
   @Override
   public void log(Level level, @Nullable String message, @Nullable Throwable e) {
     checkNotNull(level);
+    logger.log(null, FQCN, toSlf4jLevel(level), message, null, e);
+  }
+
+  private int toSlf4jLevel(Level level) {
+    checkNotNull(level);
     int value = level.intValue();
     if (value < DEBUG_THRESHOLD) {
-      logger.trace(message, e);
-    } else if (value < INFO_THRESHOLD) {
-      logger.debug(message, e);
-    } else if (value < WARN_THRESHOLD) {
-      logger.info(message, e);
-    } else if (value < ERROR_THRESHOLD) {
-      logger.warn(message, e);
-    } else {
-      logger.error(message, e);
+      return LocationAwareLogger.TRACE_INT;
     }
+    if (value < INFO_THRESHOLD) {
+      return LocationAwareLogger.DEBUG_INT;
+    }
+    if (value < WARN_THRESHOLD) {
+      return LocationAwareLogger.INFO_INT;
+    }
+    if (value < ERROR_THRESHOLD) {
+      return LocationAwareLogger.WARN_INT;
+    }
+    return LocationAwareLogger.ERROR_INT;
   }
 }

@@ -20,6 +20,10 @@ import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
 
 import dev.markitect.liquibase.base.Nullable;
 import liquibase.logging.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.spi.LoggerContext;
+import org.slf4j.LoggerFactory;
+import org.slf4j.spi.LocationAwareLogger;
 
 public class LoggerAdapter {
   private static final LoggingApi LOGGING_API;
@@ -47,10 +51,10 @@ public class LoggerAdapter {
 
   public static Logger getLogger(@Nullable String name) {
     switch (LOGGING_API) {
-      case SLF4J:
-        return Slf4jAdapter.getLogger(name);
       case LOG4J:
         return Log4jAdapter.getLogger(name);
+      case SLF4J:
+        return Slf4jAdapter.getLogger(name);
       default:
         return JulAdapter.getLogger(name);
     }
@@ -69,14 +73,21 @@ public class LoggerAdapter {
   }
 
   private static class Log4jAdapter {
+    private static final LoggerContext context =
+        LogManager.getContext(Log4jAdapter.class.getClassLoader(), false);
+
     public static Logger getLogger(@Nullable String name) {
-      return new Log4jLogger(name);
+      return new Log4jLogger(context.getLogger(name));
     }
   }
 
   private static class Slf4jAdapter {
     public static Logger getLogger(@Nullable String name) {
-      return new Slf4jLogger(name);
+      org.slf4j.Logger logger = LoggerFactory.getLogger(name);
+      if (logger instanceof LocationAwareLogger) {
+        return new Slf4jLocationAwareLogger((LocationAwareLogger) logger);
+      }
+      return new Slf4jLogger<>(logger);
     }
   }
 

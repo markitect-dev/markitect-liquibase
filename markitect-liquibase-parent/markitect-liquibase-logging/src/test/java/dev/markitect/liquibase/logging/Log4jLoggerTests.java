@@ -35,7 +35,7 @@ class Log4jLoggerTests {
     final String fqcn = Log4jLogger.class.getName();
     var loggerField = Log4jLogger.class.getDeclaredField("logger");
     loggerField.setAccessible(true);
-    var log4jLogger = new Log4jLogger(Log4jLoggerTests.class.getName());
+    var log4jLogger = new Log4jLogger(logger);
     loggerField.set(log4jLogger, logger);
 
     // when
@@ -64,17 +64,17 @@ class Log4jLoggerTests {
 
     // then
     var inOrder = inOrder(logger);
-    inOrder.verify(logger).logIfEnabled(fqcn, Level.ERROR, null, "s", (Throwable) null);
+    inOrder.verify(logger).logIfEnabled(fqcn, Level.ERROR, null, "s");
     inOrder.verify(logger).logIfEnabled(fqcn, Level.ERROR, null, "s", thrown);
-    inOrder.verify(logger).logIfEnabled(fqcn, Level.WARN, null, "w", (Throwable) null);
+    inOrder.verify(logger).logIfEnabled(fqcn, Level.WARN, null, "w");
     inOrder.verify(logger).logIfEnabled(fqcn, Level.WARN, null, "w", thrown);
-    inOrder.verify(logger).logIfEnabled(fqcn, Level.INFO, null, "i", (Throwable) null);
+    inOrder.verify(logger).logIfEnabled(fqcn, Level.INFO, null, "i");
     inOrder.verify(logger).logIfEnabled(fqcn, Level.INFO, null, "i", thrown);
-    inOrder.verify(logger).logIfEnabled(fqcn, Level.DEBUG, null, "c", (Throwable) null);
+    inOrder.verify(logger).logIfEnabled(fqcn, Level.DEBUG, null, "c");
     inOrder.verify(logger).logIfEnabled(fqcn, Level.DEBUG, null, "c", thrown);
-    inOrder.verify(logger).logIfEnabled(fqcn, Level.DEBUG, null, "f", (Throwable) null);
+    inOrder.verify(logger).logIfEnabled(fqcn, Level.DEBUG, null, "f");
     inOrder.verify(logger).logIfEnabled(fqcn, Level.DEBUG, null, "f", thrown);
-    inOrder.verify(logger).logIfEnabled(fqcn, Level.DEBUG, null, "d", (Throwable) null);
+    inOrder.verify(logger).logIfEnabled(fqcn, Level.DEBUG, null, "d");
     inOrder.verify(logger).logIfEnabled(fqcn, Level.DEBUG, null, "d", thrown);
     inOrder.verify(logger).logIfEnabled(fqcn, Level.ERROR, null, "s", (Throwable) null);
     inOrder.verify(logger).logIfEnabled(fqcn, Level.ERROR, null, "s", thrown);

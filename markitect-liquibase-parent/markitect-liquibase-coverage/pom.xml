@@ -47,7 +47,12 @@
     </dependency>
     <dependency>
       <groupId>dev.markitect.liquibase</groupId>
-      <artifactId>markitect-liquibase-logging-slf4j-tests</artifactId>
+      <artifactId>markitect-liquibase-logging-slf4j-api-tests</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>dev.markitect.liquibase</groupId>
+      <artifactId>markitect-liquibase-logging-slf4j-spi-tests</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
