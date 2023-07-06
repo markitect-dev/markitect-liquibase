@@ -98,7 +98,8 @@
     <extra-enforcer-rules.version>1.7.0</extra-enforcer-rules.version>
     <flatten-maven-plugin.version>1.5.0</flatten-maven-plugin.version>
     <google-java-format.version>1.17.0</google-java-format.version>
-    <h2.version>2.1.214</h2.version>
+    <h2.version>2.2.220</h2.version>
+    <h2-2.1.version>2.1.214</h2-2.1.version>
     <h2-1.4.version>1.4.200</h2-1.4.version>
     <hamcrest.version>2.2</hamcrest.version>
     <hikaricp.version>4.0.3</hikaricp.version>

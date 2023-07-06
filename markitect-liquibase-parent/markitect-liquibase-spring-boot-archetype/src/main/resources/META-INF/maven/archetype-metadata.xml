@@ -23,7 +23,7 @@
     </requiredProperty>
     <requiredProperty key="h2Version">
       <defaultValue>@h2.version@</defaultValue>
-      <validationRegex>@h2.version@|@h2-1.4.version@|inherit|.+</validationRegex>
+      <validationRegex>@h2.version@|@h2-2.1.version@|@h2-1.4.version@|inherit|.+</validationRegex>
     </requiredProperty>
     <requiredProperty key="jooqVersion">
       <defaultValue>@jooq.version@</defaultValue>
