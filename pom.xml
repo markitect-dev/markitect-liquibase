@@ -98,9 +98,9 @@
     <extra-enforcer-rules.version>1.7.0</extra-enforcer-rules.version>
     <flatten-maven-plugin.version>1.5.0</flatten-maven-plugin.version>
     <google-java-format.version>1.17.0</google-java-format.version>
-    <h2.version>2.2.220</h2.version>
-    <h2-2.1.version>2.1.214</h2-2.1.version>
     <h2-1.4.version>1.4.200</h2-1.4.version>
+    <h2-2.1.version>2.1.214</h2-2.1.version>
+    <h2.version>2.2.220</h2.version>
     <hamcrest.version>2.2</hamcrest.version>
     <hikaricp.version>4.0.3</hikaricp.version>
     <hsqldb.version>2.7.2</hsqldb.version>
@@ -111,20 +111,19 @@
     <jakarta-xml-bind.version>2.3.3</jakarta-xml-bind.version>
     <jetbrains-annotations.version>24.0.1</jetbrains-annotations.version>
     <jna.version>5.13.0</jna.version>
-    <jooq.version>3.18.5</jooq.version>
-    <jooq-3.17.version>3.17.14</jooq-3.17.version>
-    <jooq-3.16.version>3.16.20</jooq-3.16.version>
-    <jooq-3.15.version>3.15.12</jooq-3.15.version>
     <jooq-3.14.version>3.14.16</jooq-3.14.version>
-    <junit.version>4.13.2</junit.version>
+    <jooq-3.15.version>3.15.12</jooq-3.15.version>
+    <jooq-3.16.version>3.16.20</jooq-3.16.version>
+    <jooq-3.17.version>3.17.14</jooq-3.17.version>
+    <jooq.version>3.18.5</jooq.version>
+    <jsr305.version>3.0.2</jsr305.version>
     <junit-jupiter.version>5.9.3</junit-jupiter.version>
     <junit-pioneer.version>2.0.1</junit-pioneer.version>
     <junit-platform.version>1.9.3</junit-platform.version>
-    <jsr305.version>3.0.2</jsr305.version>
+    <junit.version>4.13.2</junit.version>
     <liquibase.version>4.23.0</liquibase.version>
     <log4j2.version>2.20.0</log4j2.version>
     <logback.version>1.2.12</logback.version>
-    <postgresql.version>42.6.0</postgresql.version>
     <maven-antrun-plugin.version>3.1.0</maven-antrun-plugin.version>
     <maven-archetype.version>3.2.1</maven-archetype.version>
     <maven-assembly-plugin.version>3.6.0</maven-assembly-plugin.version>
@@ -134,9 +133,9 @@
     <maven-dependency-plugin.version>3.6.0</maven-dependency-plugin.version>
     <maven-deploy-plugin.version>3.1.1</maven-deploy-plugin.version>
     <maven-enforcer-plugin.version>3.3.0</maven-enforcer-plugin.version>
+    <maven-fluido-skin.version>2.0.0-M6</maven-fluido-skin.version>
     <maven-gpg-plugin.version>3.1.0</maven-gpg-plugin.version>
     <maven-install-plugin.version>3.1.1</maven-install-plugin.version>
-    <maven-fluido-skin.version>2.0.0-M6</maven-fluido-skin.version>
     <maven-jar-plugin.version>3.3.0</maven-jar-plugin.version>
     <maven-javadoc-plugin.version>3.5.0</maven-javadoc-plugin.version>
     <maven-project-info-reports-plugin.version>3.4.5</maven-project-info-reports-plugin.version>
@@ -153,14 +152,15 @@
     <objenesis.version>3.3</objenesis.version>
     <opencsv.version>5.7.1</opencsv.version>
     <opentest4j.version>1.2.0</opentest4j.version>
+    <postgresql.version>42.6.0</postgresql.version>
     <r2dbc-spi.version>1.0.0.RELEASE</r2dbc-spi.version>
     <reactive-streams.version>1.0.4</reactive-streams.version>
     <slf4j.version>1.7.36</slf4j.version>
-    <snakeyaml.version>2.0</snakeyaml.version>
     <snakeyaml-1.version>1.33</snakeyaml-1.version>
+    <snakeyaml.version>2.0</snakeyaml.version>
     <spotless.version>2.37.0</spotless.version>
-    <spring-boot-3.1.version>3.1.1</spring-boot-3.1.version>
     <spring-boot-3.0.version>3.0.8</spring-boot-3.0.version>
+    <spring-boot-3.1.version>3.1.1</spring-boot-3.1.version>
     <spring-boot.version>2.7.13</spring-boot.version>
     <spring-framework.version>5.3.28</spring-framework.version>
     <testcontainers.version>1.18.3</testcontainers.version>
@@ -918,14 +918,15 @@ $1$4]]></replacement>
           <plugins>
             <plugin>
               <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-source-plugin</artifactId>
-              <version>${maven-source-plugin.version}</version>
+              <artifactId>maven-gpg-plugin</artifactId>
+              <version>${maven-gpg-plugin.version}</version>
               <executions>
                 <execution>
-                  <id>attach-sources</id>
+                  <id>sign-artifacts</id>
                   <goals>
-                    <goal>jar-no-fork</goal>
+                    <goal>sign</goal>
                   </goals>
+                  <phase>verify</phase>
                 </execution>
               </executions>
             </plugin>
@@ -944,15 +945,14 @@ $1$4]]></replacement>
             </plugin>
             <plugin>
               <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-gpg-plugin</artifactId>
-              <version>${maven-gpg-plugin.version}</version>
+              <artifactId>maven-source-plugin</artifactId>
+              <version>${maven-source-plugin.version}</version>
               <executions>
                 <execution>
-                  <id>sign-artifacts</id>
+                  <id>attach-sources</id>
                   <goals>
-                    <goal>sign</goal>
+                    <goal>jar-no-fork</goal>
                   </goals>
-                  <phase>verify</phase>
                 </execution>
               </executions>
             </plugin>
