@@ -55,20 +55,20 @@ class OfflineConnectionBuilderTests {
         },
         {
           shortName: 'mssql',
-          snapshot: 'snapshots/snapshot-mssql.json',
+          snapshot: 'snapshots/mssql/AdventureWorks2022.json',
           databaseParams: {},
           expectedProductName: 'Offline mssql',
           productVersion: '16.00.4025',
           majorVersion: 999,
           minorVersion: 999,
-          expectedCatalog: 'AdventureWorks2019',
+          expectedCatalog: 'AdventureWorks2022',
           expectedSchema: 'dbo'
         },
         {
           shortName: 'mssql',
           productName: 'Microsoft SQL Server',
           version: '16.00.4025',
-          snapshot: 'snapshots/snapshot-mssql.json',
+          snapshot: 'snapshots/mssql/AdventureWorks2022.json',
           catalog: 'Cat1',
           schema: 'Sch1',
           databaseParams: {},
