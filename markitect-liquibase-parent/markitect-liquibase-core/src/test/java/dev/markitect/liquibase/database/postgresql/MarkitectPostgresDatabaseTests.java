@@ -133,10 +133,10 @@ class MarkitectPostgresDatabaseTests {
       textBlock =
           """
           #outputDefaultSchema | catalogName | schemaName | tableName | expected
-                                |             |            | Tbl1      | PUBLIC.Tbl1
-                                |             | PUBLIC     | Tbl1      | PUBLIC.Tbl1
-          false                 |             |            | Tbl1      | Tbl1
-          false                 |             | PUBLIC     | Tbl1      | Tbl1
+                               |             |            | Tbl1      | PUBLIC.Tbl1
+                               |             | PUBLIC     | Tbl1      | PUBLIC.Tbl1
+          false                |             |            | Tbl1      | Tbl1
+          false                |             | PUBLIC     | Tbl1      | Tbl1
           """,
       delimiter = '|')
   void escapeTableName(
