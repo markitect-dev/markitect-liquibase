@@ -279,8 +279,6 @@ $1$4]]></replacement>
             <suppressionsLocation>src/checkstyle/checkstyle-suppressions.xml</suppressionsLocation>
             <consoleOutput>true</consoleOutput>
             <failOnViolation>true</failOnViolation>
-            <includeResources>false</includeResources>
-            <includeTestSourceDirectory>true</includeTestSourceDirectory>
             <sourceDirectories>
               <sourceDirectory>${project.build.sourceDirectory}</sourceDirectory>
               <sourceDirectory>${project.build.testSourceDirectory}</sourceDirectory>
