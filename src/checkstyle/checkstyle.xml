@@ -378,5 +378,13 @@
       <!-- The check is suppressed in the next line of code after the comment -->
       <property name="influenceFormat" value="1"/>
     </module>
+    <module name="IllegalImport">
+      <property name="regexp" value="true"/>
+      <property name="illegalPkgs"
+               value="junit,
+                    org\.junit(?!\.(?:jupiter|platform)|pioneer),
+                    org\.testcontainers\.shaded,
+                    sun"/>
+    </module>
   </module>
 </module>
