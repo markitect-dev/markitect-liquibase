@@ -20,63 +20,22 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import dev.markitect.liquibase.base.Nullable;
 import dev.markitect.liquibase.database.DatabaseBuilder;
-import dev.markitect.liquibase.database.DatabaseConnectionBuilder;
-import java.sql.DriverManager;
+import dev.markitect.liquibase.database.TestDatabaseConfiguration;
 import java.util.LinkedHashMap;
 import liquibase.GlobalConfiguration;
 import liquibase.Scope;
 import liquibase.database.ObjectQuotingStrategy;
 import liquibase.structure.DatabaseObject;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.testcontainers.containers.MSSQLServerContainer;
-import org.testcontainers.junit.jupiter.Container;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.testcontainers.junit.jupiter.Testcontainers;
-import org.testcontainers.utility.DockerImageName;
 
+@SpringBootTest(classes = TestDatabaseConfiguration.class)
 @Testcontainers(disabledWithoutDocker = true)
 class MarkitectMssqlDatabaseIntegrationTests {
-  @Container
-  @SuppressWarnings("resource")
-  private static final MSSQLServerContainer<?> databaseContainer =
-      new MSSQLServerContainer<>(
-              DockerImageName.parse("mcr.microsoft.com/mssql/server").withTag("2022-latest"))
-          .acceptLicense();
-
-  @BeforeAll
-  static void setUpClass() throws Exception {
-    try (var connection =
-        DriverManager.getConnection(
-            databaseContainer.getJdbcUrl(),
-            databaseContainer.getUsername(),
-            databaseContainer.getPassword())) {
-      try (var statement = connection.createStatement()) {
-        statement.execute("CREATE DATABASE Cat1");
-        statement.execute(
-            "CREATE LOGIN User1 WITH PASSWORD = %s"
-                .formatted("N'" + databaseContainer.getPassword().replace("'", "''") + "'"));
-      }
-    }
-    try (var connection =
-        DriverManager.getConnection(
-            databaseContainer.getJdbcUrl() + ";databaseName=Cat1",
-            databaseContainer.getUsername(),
-            databaseContainer.getPassword())) {
-      try (var statement = connection.createStatement()) {
-        statement.execute("CREATE SCHEMA Sch1");
-        statement.execute("CREATE USER User1 FOR LOGIN User1 WITH DEFAULT_SCHEMA = Sch1");
-      }
-    }
-  }
-
-  private static DatabaseConnectionBuilder toDatabaseConnectionBuilder() {
-    return DatabaseConnectionBuilder.of()
-        .withUrl(databaseContainer.getJdbcUrl() + ";databaseName=Cat1")
-        .withUsername("User1")
-        .withPassword(databaseContainer.getPassword())
-        .withDriver(databaseContainer.getDriverClassName());
-  }
+  @Autowired private DatabaseBuilder<MarkitectMssqlDatabase> databaseBuilder;
 
   @ParameterizedTest
   @CsvSource(
@@ -106,11 +65,7 @@ class MarkitectMssqlDatabaseIntegrationTests {
     if (preserveSchemaCase != null) {
       scopeValues.put(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getKey(), preserveSchemaCase);
     }
-    try (var database =
-        DatabaseBuilder.of(MarkitectMssqlDatabase.class)
-            .withDatabaseConnection(toDatabaseConnectionBuilder())
-            .withObjectQuotingStrategy(quotingStrategy)
-            .build()) {
+    try (var database = databaseBuilder.withObjectQuotingStrategy(quotingStrategy).build()) {
 
       // when
       String actual =
@@ -127,7 +82,7 @@ class MarkitectMssqlDatabaseIntegrationTests {
           """
           # includeCatalog | outputDefaultCatalog | outputDefaultSchema | catalogName | schemaName | objectName | objectType                     | expected
                            |                      |                     |             |            | Idx1       | liquibase.structure.core.Index | Idx1
-                           |                      |                     |             | Sch1       | Idx1       | liquibase.structure.core.Index | Idx1
+                           |                      |                     |             | dbo        | Idx1       | liquibase.structure.core.Index | Idx1
           """,
       delimiter = '|')
   void escapeObjectName_catalogName_schemaName_objectName_objectType(
@@ -147,13 +102,12 @@ class MarkitectMssqlDatabaseIntegrationTests {
           GlobalConfiguration.INCLUDE_CATALOG_IN_SPECIFICATION.getKey(), includeCatalog);
     }
     try (var database =
-        DatabaseBuilder.of(MarkitectMssqlDatabase.class)
-            .withDatabaseConnection(toDatabaseConnectionBuilder())
+        databaseBuilder
             .withOutputDefaultCatalog(outputDefaultCatalog)
             .withOutputDefaultSchema(outputDefaultSchema)
             .build()) {
-      assertThat(database.getDefaultCatalogName()).isEqualTo("Cat1");
-      assertThat(database.getDefaultSchemaName()).isEqualTo("Sch1");
+      assertThat(database.getDefaultCatalogName()).isEqualTo("lbcat");
+      assertThat(database.getDefaultSchemaName()).isEqualTo("dbo");
 
       // when
       String actual =
@@ -194,11 +148,7 @@ class MarkitectMssqlDatabaseIntegrationTests {
     if (preserveSchemaCase != null) {
       scopeValues.put(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getKey(), preserveSchemaCase);
     }
-    try (var database =
-        DatabaseBuilder.of(MarkitectMssqlDatabase.class)
-            .withDatabaseConnection(toDatabaseConnectionBuilder())
-            .withObjectQuotingStrategy(quotingStrategy)
-            .build()) {
+    try (var database = databaseBuilder.withObjectQuotingStrategy(quotingStrategy).build()) {
 
       // when
       String actual =
@@ -214,19 +164,19 @@ class MarkitectMssqlDatabaseIntegrationTests {
       textBlock =
           """
           # includeCatalog | outputDefaultCatalog | outputDefaultSchema | catalogName | schemaName | tableName | expected
-                           |                      |                     |             |            | Tbl1      | Sch1.Tbl1
-                           |                      |                     |             | Sch1       | Tbl1      | Sch1.Tbl1
+                           |                      |                     |             |            | Tbl1      | dbo.Tbl1
+                           |                      |                     |             | dbo        | Tbl1      | dbo.Tbl1
                            |                      | false               |             |            | Tbl1      | Tbl1
-                           |                      | false               |             | Sch1       | Tbl1      | Tbl1
+                           |                      | false               |             | dbo        | Tbl1      | Tbl1
                            |                      | false               |             | Sch2       | Tbl1      | Sch2.Tbl1
-          true             |                      |                     |             |            | Tbl1      | Cat1.Sch1.Tbl1
-          true             |                      |                     |             | Sch1       | Tbl1      | Cat1.Sch1.Tbl1
-          true             |                      | false               |             |            | Tbl1      | Cat1..Tbl1
-          true             |                      | false               |             | Sch1       | Tbl1      | Cat1..Tbl1
+          true             |                      |                     |             |            | Tbl1      | lbcat.dbo.Tbl1
+          true             |                      |                     |             | dbo        | Tbl1      | lbcat.dbo.Tbl1
+          true             |                      | false               |             |            | Tbl1      | lbcat..Tbl1
+          true             |                      | false               |             | dbo        | Tbl1      | lbcat..Tbl1
           true             | false                | false               |             |            | Tbl1      | Tbl1
-          true             | false                | false               |             | Sch1       | Tbl1      | Tbl1
+          true             | false                | false               |             | dbo        | Tbl1      | Tbl1
                            | false                |                     | Cat2        |            | Tbl1      | Cat2..Tbl1
-                           | false                |                     | Cat2        | Sch1       | Tbl1      | Cat2.Sch1.Tbl1
+                           | false                |                     | Cat2        | dbo        | Tbl1      | Cat2.dbo.Tbl1
           """,
       delimiter = '|')
   void escapeTableName(
@@ -244,13 +194,12 @@ class MarkitectMssqlDatabaseIntegrationTests {
           GlobalConfiguration.INCLUDE_CATALOG_IN_SPECIFICATION.getKey(), includeCatalog);
     }
     try (var database =
-        DatabaseBuilder.of(MarkitectMssqlDatabase.class)
-            .withDatabaseConnection(toDatabaseConnectionBuilder())
+        databaseBuilder
             .withOutputDefaultCatalog(outputDefaultCatalog)
             .withOutputDefaultSchema(outputDefaultSchema)
             .build()) {
-      assertThat(database.getDefaultCatalogName()).isEqualTo("Cat1");
-      assertThat(database.getDefaultSchemaName()).isEqualTo("Sch1");
+      assertThat(database.getDefaultCatalogName()).isEqualTo("lbcat");
+      assertThat(database.getDefaultSchemaName()).isEqualTo("dbo");
 
       // when
       String actual =
