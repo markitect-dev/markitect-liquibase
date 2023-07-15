@@ -168,15 +168,15 @@ class MarkitectMssqlDatabaseIntegrationTests {
                            |                      |                     |             | dbo        | Tbl1      | dbo.Tbl1
                            |                      | false               |             |            | Tbl1      | Tbl1
                            |                      | false               |             | dbo        | Tbl1      | Tbl1
-                           |                      | false               |             | Sch2       | Tbl1      | Sch2.Tbl1
+                           |                      | false               |             | lbschem2   | Tbl1      | lbschem2.Tbl1
           true             |                      |                     |             |            | Tbl1      | lbcat.dbo.Tbl1
           true             |                      |                     |             | dbo        | Tbl1      | lbcat.dbo.Tbl1
           true             |                      | false               |             |            | Tbl1      | lbcat..Tbl1
           true             |                      | false               |             | dbo        | Tbl1      | lbcat..Tbl1
           true             | false                | false               |             |            | Tbl1      | Tbl1
           true             | false                | false               |             | dbo        | Tbl1      | Tbl1
-                           | false                |                     | Cat2        |            | Tbl1      | Cat2..Tbl1
-                           | false                |                     | Cat2        | dbo        | Tbl1      | Cat2.dbo.Tbl1
+                           | false                |                     | lbcat2      |            | Tbl1      | lbcat2..Tbl1
+                           | false                |                     | lbcat2      | dbo        | Tbl1      | lbcat2.dbo.Tbl1
           """,
       delimiter = '|')
   void escapeTableName(

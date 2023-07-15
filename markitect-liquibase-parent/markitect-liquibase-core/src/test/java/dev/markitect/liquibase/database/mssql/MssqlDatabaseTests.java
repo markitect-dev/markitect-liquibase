@@ -30,6 +30,10 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 class MssqlDatabaseTests {
+  private final DatabaseBuilder<MSSQLDatabase> databaseBuilder =
+      DatabaseBuilder.of(MSSQLDatabase.class)
+          .withOfflineConnection(ocb -> ocb.withCatalog("lbcat").withSchema("dbo"));
+
   @ParameterizedTest
   @CsvSource(
       textBlock =
@@ -58,11 +62,7 @@ class MssqlDatabaseTests {
     if (preserveSchemaCase != null) {
       scopeValues.put(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getKey(), preserveSchemaCase);
     }
-    try (var database =
-        DatabaseBuilder.of(MSSQLDatabase.class)
-            .withOfflineConnection()
-            .withObjectQuotingStrategy(quotingStrategy)
-            .build()) {
+    try (var database = databaseBuilder.withObjectQuotingStrategy(quotingStrategy).build()) {
 
       // when
       String actual =
@@ -79,7 +79,7 @@ class MssqlDatabaseTests {
           """
           # includeCatalog | outputDefaultCatalog | outputDefaultSchema | catalogName | schemaName | objectName | objectType                     | expected
                            |                      |                     |             |            | Idx1       | liquibase.structure.core.Index | Idx1
-                           |                      |                     |             | Sch1       | Idx1       | liquibase.structure.core.Index | Idx1
+                           |                      |                     |             | dbo        | Idx1       | liquibase.structure.core.Index | Idx1
           """,
       delimiter = '|')
   void escapeObjectName_catalogName_schemaName_objectName_objectType(
@@ -99,13 +99,12 @@ class MssqlDatabaseTests {
           GlobalConfiguration.INCLUDE_CATALOG_IN_SPECIFICATION.getKey(), includeCatalog);
     }
     try (var database =
-        DatabaseBuilder.of(MSSQLDatabase.class)
-            .withOfflineConnection(ocb -> ocb.withCatalog("Cat1").withSchema("Sch1"))
+        databaseBuilder
             .withOutputDefaultCatalog(outputDefaultCatalog)
             .withOutputDefaultSchema(outputDefaultSchema)
             .build()) {
-      assertThat(database.getDefaultCatalogName()).isEqualTo("Cat1");
-      assertThat(database.getDefaultSchemaName()).isEqualTo("Sch1");
+      assertThat(database.getDefaultCatalogName()).isEqualTo("lbcat");
+      assertThat(database.getDefaultSchemaName()).isEqualTo("dbo");
 
       // when
       String actual =
@@ -146,11 +145,7 @@ class MssqlDatabaseTests {
     if (preserveSchemaCase != null) {
       scopeValues.put(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getKey(), preserveSchemaCase);
     }
-    try (var database =
-        DatabaseBuilder.of(MSSQLDatabase.class)
-            .withOfflineConnection()
-            .withObjectQuotingStrategy(quotingStrategy)
-            .build()) {
+    try (var database = databaseBuilder.withObjectQuotingStrategy(quotingStrategy).build()) {
 
       // when
       String actual =
@@ -167,18 +162,18 @@ class MssqlDatabaseTests {
           """
           # includeCatalog | outputDefaultCatalog | outputDefaultSchema | catalogName | schemaName | tableName | expected
                            |                      |                     |             |            | Tbl1      | Tbl1
-                           |                      |                     |             | Sch1       | Tbl1      | Tbl1
+                           |                      |                     |             | dbo        | Tbl1      | Tbl1
                            |                      | false               |             |            | Tbl1      | Tbl1
-                           |                      | false               |             | Sch1       | Tbl1      | Tbl1
-                           |                      | false               |             | Sch2       | Tbl1      | Sch2.Tbl1
+                           |                      | false               |             | dbo        | Tbl1      | Tbl1
+                           |                      | false               |             | lbschem2   | Tbl1      | lbschem2.Tbl1
           true             |                      |                     |             |            | Tbl1      | Tbl1
-          true             |                      |                     |             | Sch1       | Tbl1      | Tbl1
+          true             |                      |                     |             | dbo        | Tbl1      | Tbl1
           true             |                      | false               |             |            | Tbl1      | Tbl1
-          true             |                      | false               |             | Sch1       | Tbl1      | Tbl1
+          true             |                      | false               |             | dbo        | Tbl1      | Tbl1
           true             | false                | false               |             |            | Tbl1      | Tbl1
-          true             | false                | false               |             | Sch1       | Tbl1      | Tbl1
-                           | false                |                     | Cat2        |            | Tbl1      | Cat2.Sch1.Tbl1
-                           | false                |                     | Cat2        | Sch1       | Tbl1      | Cat2.Sch1.Tbl1
+          true             | false                | false               |             | dbo        | Tbl1      | Tbl1
+                           | false                |                     | lbcat2      |            | Tbl1      | lbcat2.dbo.Tbl1
+                           | false                |                     | lbcat2      | dbo        | Tbl1      | lbcat2.dbo.Tbl1
           """,
       delimiter = '|')
   void escapeTableName(
@@ -196,13 +191,12 @@ class MssqlDatabaseTests {
           GlobalConfiguration.INCLUDE_CATALOG_IN_SPECIFICATION.getKey(), includeCatalog);
     }
     try (var database =
-        DatabaseBuilder.of(MSSQLDatabase.class)
-            .withOfflineConnection(ocb -> ocb.withCatalog("Cat1").withSchema("Sch1"))
+        databaseBuilder
             .withOutputDefaultCatalog(outputDefaultCatalog)
             .withOutputDefaultSchema(outputDefaultSchema)
             .build()) {
-      assertThat(database.getDefaultCatalogName()).isEqualTo("Cat1");
-      assertThat(database.getDefaultSchemaName()).isEqualTo("Sch1");
+      assertThat(database.getDefaultCatalogName()).isEqualTo("lbcat");
+      assertThat(database.getDefaultSchemaName()).isEqualTo("dbo");
 
       // when
       String actual =

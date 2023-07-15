@@ -21,7 +21,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import dev.markitect.liquibase.base.Nullable;
 import dev.markitect.liquibase.database.DatabaseBuilder;
 import java.util.LinkedHashMap;
-import java.util.Map;
 import liquibase.GlobalConfiguration;
 import liquibase.Scope;
 import liquibase.database.ObjectQuotingStrategy;
@@ -30,6 +29,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 class MarkitectHsqlDatabaseTests {
+  private final DatabaseBuilder<MarkitectHsqlDatabase> databaseBuilder =
+      DatabaseBuilder.of(MarkitectHsqlDatabase.class).withOfflineConnection();
+
   @ParameterizedTest
   @CsvSource(
       textBlock =
@@ -65,10 +67,7 @@ class MarkitectHsqlDatabaseTests {
     if (preserveSchemaCase != null) {
       scopeValues.put(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getKey(), preserveSchemaCase);
     }
-    try (var database =
-        DatabaseBuilder.of(MarkitectHsqlDatabase.class)
-            .withObjectQuotingStrategy(quotingStrategy)
-            .build()) {
+    try (var database = databaseBuilder.withObjectQuotingStrategy(quotingStrategy).build()) {
 
       // when
       String actual =
@@ -110,14 +109,11 @@ class MarkitectHsqlDatabaseTests {
       @Nullable String expected)
       throws Exception {
     // given
-    Map<String, Object> scopeValues = new LinkedHashMap<>();
+    var scopeValues = new LinkedHashMap<String, Object>();
     if (preserveSchemaCase != null) {
       scopeValues.put(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getKey(), preserveSchemaCase);
     }
-    try (var database =
-        DatabaseBuilder.of(MarkitectHsqlDatabase.class)
-            .withObjectQuotingStrategy(quotingStrategy)
-            .build()) {
+    try (var database = databaseBuilder.withObjectQuotingStrategy(quotingStrategy).build()) {
 
       // when
       String actual =
@@ -137,6 +133,7 @@ class MarkitectHsqlDatabaseTests {
                                 |             | PUBLIC     | Tbl1      | PUBLIC.Tbl1
           false                 |             |            | Tbl1      | Tbl1
           false                 |             | PUBLIC     | Tbl1      | Tbl1
+          false                 |             | lbschem2   | Tbl1      | lbschem2.Tbl1
           """,
       delimiter = '|')
   void escapeTableName(
@@ -147,11 +144,7 @@ class MarkitectHsqlDatabaseTests {
       @Nullable String expected)
       throws Exception {
     // given
-    try (var database =
-        DatabaseBuilder.of(MarkitectHsqlDatabase.class)
-            .withOfflineConnection()
-            .withOutputDefaultSchema(outputDefaultSchema)
-            .build()) {
+    try (var database = databaseBuilder.withOutputDefaultSchema(outputDefaultSchema).build()) {
       assertThat(database.getDefaultSchemaName()).isEqualTo("PUBLIC");
 
       // when

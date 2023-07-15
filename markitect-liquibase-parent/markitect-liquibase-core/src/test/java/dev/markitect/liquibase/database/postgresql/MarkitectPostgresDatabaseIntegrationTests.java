@@ -22,7 +22,6 @@ import dev.markitect.liquibase.base.Nullable;
 import dev.markitect.liquibase.database.DatabaseBuilder;
 import dev.markitect.liquibase.database.TestDatabaseConfiguration;
 import java.util.LinkedHashMap;
-import java.util.Map;
 import liquibase.GlobalConfiguration;
 import liquibase.Scope;
 import liquibase.database.ObjectQuotingStrategy;
@@ -33,11 +32,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
-@SpringBootTest(
-    properties = {
-      "logging.level.org.springframework.jdbc=debug",
-    },
-    classes = TestDatabaseConfiguration.class)
+@SpringBootTest(classes = TestDatabaseConfiguration.class)
 @Testcontainers(disabledWithoutDocker = true)
 class MarkitectPostgresDatabaseIntegrationTests {
   @Autowired private DatabaseBuilder<MarkitectPostgresDatabase> databaseBuilder;
@@ -73,7 +68,7 @@ class MarkitectPostgresDatabaseIntegrationTests {
       @Nullable String expected)
       throws Exception {
     // given
-    Map<String, Object> scopeValues = new LinkedHashMap<>();
+    var scopeValues = new LinkedHashMap<String, Object>();
     if (preserveSchemaCase != null) {
       scopeValues.put(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getKey(), preserveSchemaCase);
     }
@@ -119,7 +114,7 @@ class MarkitectPostgresDatabaseIntegrationTests {
       @Nullable String expected)
       throws Exception {
     // given
-    Map<String, Object> scopeValues = new LinkedHashMap<>();
+    var scopeValues = new LinkedHashMap<String, Object>();
     if (preserveSchemaCase != null) {
       scopeValues.put(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getKey(), preserveSchemaCase);
     }
@@ -138,11 +133,12 @@ class MarkitectPostgresDatabaseIntegrationTests {
   @CsvSource(
       textBlock =
           """
-          #outputDefaultSchema | catalogName | schemaName | tableName | expected
-                               |             |            | Tbl1      | public.Tbl1
-                               |             | public     | Tbl1      | public.Tbl1
-          false                |             |            | Tbl1      | Tbl1
-          false                |             | public     | Tbl1      | Tbl1
+          # outputDefaultSchema | catalogName | schemaName | tableName | expected
+                                |             |            | Tbl1      | public.Tbl1
+                                |             | public     | Tbl1      | public.Tbl1
+          false                 |             |            | Tbl1      | Tbl1
+          false                 |             | public     | Tbl1      | Tbl1
+          false                 |             | lbschem2   | Tbl1      | lbschem2.Tbl1
           """,
       delimiter = '|')
   void escapeTableName(
