@@ -16,24 +16,21 @@
 
 package dev.markitect.liquibase;
 
-import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.ConcurrentHashMap;
 import liquibase.Scope;
 import liquibase.ThreadLocalScopeManager;
 
-public class ScopeManagerHelper {
-  private static final ReentrantLock initLock = new ReentrantLock();
-  private static volatile boolean initialized;
+public final class ScopeManagerHelper {
+  @SuppressWarnings({"CanBeFinal", "FieldMayBeFinal"})
+  private static ConcurrentHashMap<Object, Object> cache = new ConcurrentHashMap<>(1);
 
   public static void useThreadLocalScopeManager() {
-    initLock.lock();
-    try {
-      if (!initialized) {
-        Scope.setScopeManager(new ThreadLocalScopeManager());
-        initialized = true;
-      }
-    } finally {
-      initLock.unlock();
-    }
+    cache.computeIfAbsent(
+        "",
+        key -> {
+          Scope.setScopeManager(new ThreadLocalScopeManager());
+          return key;
+        });
   }
 
   private ScopeManagerHelper() {}

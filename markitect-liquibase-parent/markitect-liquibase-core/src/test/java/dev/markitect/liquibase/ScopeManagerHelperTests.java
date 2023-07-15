@@ -21,6 +21,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import dev.markitect.liquibase.base.Nullable;
 import java.lang.reflect.Field;
+import java.util.concurrent.ConcurrentHashMap;
 import liquibase.Scope;
 import liquibase.ScopeManager;
 import liquibase.ThreadLocalScopeManager;
@@ -38,28 +39,30 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
 class ScopeManagerHelperTests {
-  private static @Nullable Field initializedField;
+  private static @Nullable Field cacheField;
 
   @BeforeAll
   static void setUpClass() throws Exception {
-    initializedField = ScopeManagerHelper.class.getDeclaredField("initialized");
-    initializedField.setAccessible(true);
+    cacheField = ScopeManagerHelper.class.getDeclaredField("cache");
+    cacheField.setAccessible(true);
   }
 
-  private boolean originalInitialized;
+  private ConcurrentHashMap<Object, Object> originalCache;
   @Mock private MockedConstruction<ThreadLocalScopeManager> mockedThreadLocalScopeManager;
   @Mock private MockedStatic<Scope> mockedScope;
   @Captor private ArgumentCaptor<ScopeManager> scopeManagerCaptor;
 
   @BeforeEach
+  @SuppressWarnings("unchecked")
   void setUp() throws Exception {
-    originalInitialized = (boolean) verifyNotNull(initializedField).get(ScopeManagerHelper.class);
-    initializedField.set(ScopeManagerHelper.class, false);
+    originalCache =
+        (ConcurrentHashMap<Object, Object>) verifyNotNull(cacheField).get(ScopeManagerHelper.class);
+    cacheField.set(ScopeManagerHelper.class, new ConcurrentHashMap<>());
   }
 
   @AfterEach
   void tearDown() throws Exception {
-    verifyNotNull(initializedField).set(ScopeManagerHelper.class, originalInitialized);
+    verifyNotNull(cacheField).set(ScopeManagerHelper.class, originalCache);
   }
 
   @Test
