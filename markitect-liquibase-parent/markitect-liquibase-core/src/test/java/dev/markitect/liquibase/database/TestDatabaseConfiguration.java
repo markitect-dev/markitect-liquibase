@@ -16,6 +16,8 @@
 
 package dev.markitect.liquibase.database;
 
+import dev.markitect.liquibase.database.h2.H2TestDatabaseConfiguration;
+import dev.markitect.liquibase.database.hsqldb.HsqlDatabaseConfiguration;
 import dev.markitect.liquibase.database.mssql.MssqlTestDatabaseConfiguration;
 import dev.markitect.liquibase.database.postgresql.PostgresTestDatabaseConfiguration;
 import org.springframework.context.annotation.Bean;
@@ -25,6 +27,8 @@ import org.springframework.context.annotation.Primary;
 
 @Configuration
 @Import({
+  H2TestDatabaseConfiguration.class,
+  HsqlDatabaseConfiguration.class,
   MssqlTestDatabaseConfiguration.class,
   PostgresTestDatabaseConfiguration.class,
 })
