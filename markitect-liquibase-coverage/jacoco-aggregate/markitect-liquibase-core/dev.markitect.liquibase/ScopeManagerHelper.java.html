@@ -16,25 +16,22 @@
 
 package dev.markitect.liquibase;
 
-import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.ConcurrentHashMap;
 import liquibase.Scope;
 import liquibase.ThreadLocalScopeManager;
 
-public class ScopeManagerHelper {
-<span class="fc" id="L24">  private static final ReentrantLock initLock = new ReentrantLock();</span>
-  private static volatile boolean initialized;
+public final class ScopeManagerHelper {
+  @SuppressWarnings({&quot;CanBeFinal&quot;, &quot;FieldMayBeFinal&quot;})
+<span class="fc" id="L25">  private static ConcurrentHashMap&lt;Object, Object&gt; cache = new ConcurrentHashMap&lt;&gt;(1);</span>
 
   public static void useThreadLocalScopeManager() {
-<span class="fc" id="L28">    initLock.lock();</span>
-    try {
-<span class="fc bfc" id="L30" title="All 2 branches covered.">      if (!initialized) {</span>
-<span class="fc" id="L31">        Scope.setScopeManager(new ThreadLocalScopeManager());</span>
-<span class="fc" id="L32">        initialized = true;</span>
-      }
-    } finally {
-<span class="fc" id="L35">      initLock.unlock();</span>
-    }
-<span class="fc" id="L37">  }</span>
+<span class="fc" id="L28">    cache.computeIfAbsent(</span>
+        &quot;&quot;,
+        key -&gt; {
+<span class="fc" id="L31">          Scope.setScopeManager(new ThreadLocalScopeManager());</span>
+<span class="fc" id="L32">          return key;</span>
+        });
+<span class="fc" id="L34">  }</span>
 
   private ScopeManagerHelper() {}
 }
