@@ -21,8 +21,7 @@ import liquibase.Scope;
 import liquibase.ThreadLocalScopeManager;
 
 public final class ScopeManagerHelper {
-  @SuppressWarnings({"CanBeFinal", "FieldMayBeFinal"})
-  private static ConcurrentHashMap<Object, Object> cache = new ConcurrentHashMap<>(1);
+  private static final ConcurrentHashMap<Object, Object> cache = new ConcurrentHashMap<>(1);
 
   public static void useThreadLocalScopeManager() {
     cache.computeIfAbsent(
