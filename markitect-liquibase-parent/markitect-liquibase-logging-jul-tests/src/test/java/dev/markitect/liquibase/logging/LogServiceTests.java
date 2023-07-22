@@ -18,17 +18,13 @@ package dev.markitect.liquibase.logging;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.Arrays;
-import java.util.logging.ConsoleHandler;
-import java.util.logging.Level;
 import java.util.logging.LogManager;
-import java.util.logging.SimpleFormatter;
 import liquibase.Scope;
 import liquibase.changelog.visitor.UpdateVisitor;
 import liquibase.changelog.visitor.ValidatingVisitor;
 import liquibase.logging.LogService;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
@@ -39,20 +35,17 @@ import org.springframework.boot.test.system.OutputCaptureExtension;
 @ExtendWith(OutputCaptureExtension.class)
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class LogServiceTests {
-  @BeforeEach
-  void setUp() {
-    getRootLogger().setLevel(Level.FINE);
-    var consoleHandler = getConsoleHandler();
-    consoleHandler.setLevel(Level.ALL);
-    consoleHandler.setFormatter(new org.springframework.boot.logging.java.SimpleFormatter());
+  @BeforeAll
+  static void setUpClass() throws Exception {
+    try (var ins =
+        LogServiceTests.class.getClassLoader().getResourceAsStream("logging.properties")) {
+      LogManager.getLogManager().readConfiguration(ins);
+    }
   }
 
-  @AfterEach
-  void tearDown() {
-    getRootLogger().setLevel(Level.INFO);
-    var consoleHandler = getConsoleHandler();
-    consoleHandler.setLevel(Level.INFO);
-    consoleHandler.setFormatter(new SimpleFormatter());
+  @AfterAll
+  static void tearDownClass() {
+    LogManager.getLogManager().reset();
   }
 
   @Test
@@ -79,22 +72,10 @@ class LogServiceTests {
     // then
     assertThat(output)
         .contains(
-            " FINE [main] --- liquibase.changelog.visitor.UpdateVisitor: "
+            " FINE liquibase.changelog.visitor.UpdateVisitor - "
                 + "Running Changeset: filePath::id::author",
-            " FINE [main] --- liquibase.changelog.visitor.ValidatingVisitor: "
+            " FINE liquibase.changelog.visitor.ValidatingVisitor - "
                 + "Precondition failed: Preconditions Failed",
             "java.lang.Exception: Preconditions Failed");
-  }
-
-  private static java.util.logging.Logger getRootLogger() {
-    return LogManager.getLogManager().getLogger("");
-  }
-
-  private static ConsoleHandler getConsoleHandler() {
-    return (ConsoleHandler)
-        Arrays.stream(getRootLogger().getHandlers())
-            .filter(handler -> handler instanceof ConsoleHandler)
-            .findFirst()
-            .orElseThrow();
   }
 }

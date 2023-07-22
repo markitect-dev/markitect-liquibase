@@ -22,10 +22,6 @@ import liquibase.Scope;
 import liquibase.changelog.visitor.UpdateVisitor;
 import liquibase.changelog.visitor.ValidatingVisitor;
 import liquibase.logging.LogService;
-import org.apache.logging.log4j.Level;
-import org.apache.logging.log4j.core.config.Configurator;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
@@ -36,17 +32,6 @@ import org.springframework.boot.test.system.OutputCaptureExtension;
 @ExtendWith(OutputCaptureExtension.class)
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class LogServiceTests {
-  @BeforeEach
-  void setUp() {
-    Configurator.reconfigure();
-    Configurator.setRootLevel(Level.DEBUG);
-  }
-
-  @AfterEach
-  void tearDown() {
-    Configurator.reconfigure();
-  }
-
   @Test
   void logs(CapturedOutput output) {
     // when

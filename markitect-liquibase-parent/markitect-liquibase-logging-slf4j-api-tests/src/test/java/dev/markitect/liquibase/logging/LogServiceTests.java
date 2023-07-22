@@ -49,16 +49,16 @@ class LogServiceTests {
     assertThat(log2).isInstanceOf(Slf4jLogger.class);
 
     // when
-    log.info("Running Changeset: filePath::id::author");
+    log.fine("Running Changeset: filePath::id::author");
     var e = new Exception("Preconditions Failed");
-    log2.info("Precondition failed: " + e.getMessage(), e);
+    log2.fine("Precondition failed: " + e.getMessage(), e);
 
     // then
     assertThat(output)
         .contains(
-            "[main] INFO liquibase.changelog.visitor.UpdateVisitor - "
+            " [main] DEBUG liquibase.changelog.visitor.UpdateVisitor - "
                 + "Running Changeset: filePath::id::author",
-            "[main] INFO liquibase.changelog.visitor.ValidatingVisitor - "
+            " [main] DEBUG liquibase.changelog.visitor.ValidatingVisitor - "
                 + "Precondition failed: Preconditions Failed",
             "java.lang.Exception: Preconditions Failed");
   }
