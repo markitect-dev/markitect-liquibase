@@ -26,7 +26,6 @@ import java.util.stream.Stream;
 import liquibase.change.AbstractChange;
 import liquibase.change.Change;
 import liquibase.change.ChangeMetaData;
-import liquibase.change.ChangeParameterMetaData;
 import liquibase.change.DatabaseChange;
 import liquibase.change.DatabaseChangeProperty;
 import liquibase.database.Database;
@@ -44,8 +43,6 @@ public class DropSchemaChange extends AbstractChange {
 
   @DatabaseChangeProperty(
       description = "Name of the database catalog",
-      requiredForDatabase = ChangeParameterMetaData.NONE,
-      supportsDatabase = "mssql",
       mustEqualExisting = "schema.catalog")
   @SuppressWarnings("unused")
   public @Nullable String getCatalogName() {
@@ -58,8 +55,6 @@ public class DropSchemaChange extends AbstractChange {
 
   @DatabaseChangeProperty(
       description = "Name of the database schema to drop",
-      requiredForDatabase = ChangeParameterMetaData.ALL,
-      supportsDatabase = ChangeParameterMetaData.ALL,
       mustEqualExisting = "schema")
   @SuppressWarnings("unused")
   public @Nullable String getSchemaName() {

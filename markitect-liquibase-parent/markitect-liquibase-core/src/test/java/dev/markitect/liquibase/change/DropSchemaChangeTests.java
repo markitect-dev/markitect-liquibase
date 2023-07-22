@@ -23,6 +23,7 @@ import dev.markitect.liquibase.database.DatabaseBuilder;
 import dev.markitect.liquibase.statement.CreateSchemaStatement;
 import java.util.List;
 import liquibase.database.Database;
+import liquibase.exception.DatabaseException;
 import liquibase.sql.UnparsedSql;
 import liquibase.sqlgenerator.SqlGeneratorFactory;
 import liquibase.structure.core.Schema;
@@ -31,6 +32,31 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junitpioneer.jupiter.json.JsonSource;
 
 class DropSchemaChangeTests {
+  @ParameterizedTest
+  @CsvSource(
+      textBlock =
+          """
+          # databaseClass                          | expected
+          liquibase.database.core.H2Database       | true
+          liquibase.database.core.HsqlDatabase     | true
+          liquibase.database.core.MSSQLDatabase    | true
+          liquibase.database.core.OracleDatabase   | false
+          liquibase.database.core.PostgresDatabase | true
+          """,
+      delimiter = '|')
+  void supports(Class<? extends Database> databaseClass, boolean expected) throws Exception {
+    // given
+    var change = new DropSchemaChange();
+    try (var database = DatabaseBuilder.of(databaseClass).build()) {
+
+      // when
+      var supports = change.supports(database);
+
+      // then
+      assertThat(supports).isEqualTo(expected);
+    }
+  }
+
   @ParameterizedTest
   @JsonSource(
       """
@@ -53,17 +79,20 @@ class DropSchemaChangeTests {
         }
       ]
       """)
-  void warn(Class<? extends Database> databaseClass, List<String> expectedMessages) {
+  void warn(Class<? extends Database> databaseClass, List<String> expectedMessages)
+      throws DatabaseException {
     // given
     var change = new DropSchemaChange();
-    var database = DatabaseBuilder.of(databaseClass).build();
+    try (var database = DatabaseBuilder.of(databaseClass).build()) {
+      assertThat(change.supports(database)).isTrue();
 
-    // when
-    var warnings = change.warn(database);
+      // when
+      var warnings = change.warn(database);
 
-    // then
-    assertThat(warnings.hasWarnings()).isEqualTo(!expectedMessages.isEmpty());
-    assertThat(warnings.getMessages()).containsExactlyInAnyOrderElementsOf(expectedMessages);
+      // then
+      assertThat(warnings.getMessages()).containsExactlyInAnyOrderElementsOf(expectedMessages);
+      assertThat(warnings.hasWarnings()).isEqualTo(!expectedMessages.isEmpty());
+    }
   }
 
   @ParameterizedTest
@@ -110,13 +139,8 @@ class DropSchemaChangeTests {
           databaseClass: 'liquibase.database.core.MSSQLDatabase',
           catalogName: 'cat1',
           schemaName: 'sch1',
-          expectedErrorMessages: []
-        },
-        {
-          databaseClass: 'liquibase.database.core.OracleDatabase',
-          schemaName: 'sch1',
           expectedErrorMessages: [
-            'dropSchema is not supported on oracle'
+            'catalogName is not allowed on mssql'
           ]
         },
         {
@@ -130,20 +154,23 @@ class DropSchemaChangeTests {
       Class<? extends Database> databaseClass,
       @Nullable String catalogName,
       String schemaName,
-      List<String> expectedErrorMessages) {
+      List<String> expectedErrorMessages)
+      throws Exception {
     // given
     var change = new DropSchemaChange();
     change.setCatalogName(catalogName);
     change.setSchemaName(schemaName);
-    var database = DatabaseBuilder.of(databaseClass).build();
+    try (var database = DatabaseBuilder.of(databaseClass).build()) {
+      assertThat(change.supports(database)).isTrue();
 
-    // when
-    var errors = change.validate(database);
+      // when
+      var errors = change.validate(database);
 
-    // then
-    assertThat(errors.hasErrors()).isEqualTo(!expectedErrorMessages.isEmpty());
-    assertThat(errors.getErrorMessages())
-        .containsExactlyInAnyOrderElementsOf(expectedErrorMessages);
+      // then
+      assertThat(errors.getErrorMessages())
+          .containsExactlyInAnyOrderElementsOf(expectedErrorMessages);
+      assertThat(errors.hasErrors()).isEqualTo(!expectedErrorMessages.isEmpty());
+    }
   }
 
   @ParameterizedTest
@@ -201,26 +228,32 @@ class DropSchemaChangeTests {
           liquibase.database.core.H2Database       |             | sch1
           liquibase.database.core.HsqlDatabase     |             | sch1
           liquibase.database.core.MSSQLDatabase    |             | sch1
-          liquibase.database.core.MSSQLDatabase    | cat1        | sch1
           liquibase.database.core.PostgresDatabase |             | sch1
           """,
       delimiter = '|')
   void generateStatements(
-      Class<? extends Database> databaseClass, @Nullable String catalogName, String schemaName) {
+      Class<? extends Database> databaseClass, @Nullable String catalogName, String schemaName)
+      throws Exception {
     // given
     var change = new DropSchemaChange();
     change.setCatalogName(catalogName);
     change.setSchemaName(schemaName);
-    var database = DatabaseBuilder.of(databaseClass).build();
     var statement = new CreateSchemaStatement();
     statement.setCatalogName(catalogName);
     statement.setSchemaName(schemaName);
+    try (var database = DatabaseBuilder.of(databaseClass).build()) {
+      assertThat(change.supports(database)).isTrue();
+      assertThat(change.warn(database).hasWarnings()).isFalse();
+      assertThat(change.validate(database).hasErrors()).isFalse();
 
-    // when
-    var statements = change.generateStatements(database);
+      // when
+      var statements = change.generateStatements(database);
 
-    // then
-    assertThat(statements).usingRecursiveFieldByFieldElementComparator().containsExactly(statement);
+      // then
+      assertThat(statements)
+          .usingRecursiveFieldByFieldElementComparator()
+          .containsExactly(statement);
+    }
   }
 
   @ParameterizedTest
@@ -231,7 +264,6 @@ class DropSchemaChangeTests {
           liquibase.database.core.H2Database       |             | sch1       | DROP SCHEMA sch1
           liquibase.database.core.HsqlDatabase     |             | sch1       | DROP SCHEMA sch1
           liquibase.database.core.MSSQLDatabase    |             | sch1       | DROP SCHEMA sch1
-          liquibase.database.core.MSSQLDatabase    | cat1        | sch1       | EXEC sp_executesql N'USE cat1; DROP SCHEMA sch1'
           liquibase.database.core.PostgresDatabase |             | sch1       | DROP SCHEMA sch1
           """,
       delimiter = '|')
@@ -239,22 +271,25 @@ class DropSchemaChangeTests {
       Class<? extends Database> databaseClass,
       @Nullable String catalogName,
       String schemaName,
-      String expectedSql) {
+      String expectedSql)
+      throws Exception {
     // given
     var change = new DropSchemaChange();
     change.setCatalogName(catalogName);
     change.setSchemaName(schemaName);
-    var database = DatabaseBuilder.of(databaseClass).build();
-    assertThat(change.warn(database).hasWarnings()).isFalse();
-    assertThat(change.validate(database).hasErrors()).isFalse();
+    try (var database = DatabaseBuilder.of(databaseClass).build()) {
+      assertThat(change.supports(database)).isTrue();
+      assertThat(change.warn(database).hasWarnings()).isFalse();
+      assertThat(change.validate(database).hasErrors()).isFalse();
 
-    // when
-    var sql = SqlGeneratorFactory.getInstance().generateSql(change, database);
+      // when
+      var sql = SqlGeneratorFactory.getInstance().generateSql(change, database);
 
-    // then
-    assertThat(sql)
-        .usingRecursiveFieldByFieldElementComparator()
-        .containsExactly(new UnparsedSql(expectedSql, new Schema(catalogName, schemaName)));
+      // then
+      assertThat(sql)
+          .usingRecursiveFieldByFieldElementComparator()
+          .containsExactly(new UnparsedSql(expectedSql, new Schema(catalogName, schemaName)));
+    }
   }
 
   @ParameterizedTest
@@ -264,8 +299,7 @@ class DropSchemaChangeTests {
           # databaseClass                          | catalogName | schemaName | expectedSql
           liquibase.database.core.H2Database       |             | sch1       | CREATE SCHEMA sch1
           liquibase.database.core.HsqlDatabase     |             | sch1       | CREATE SCHEMA sch1
-          liquibase.database.core.MSSQLDatabase    |             | sch1       | EXEC sp_executesql N'CREATE SCHEMA sch1'
-          liquibase.database.core.MSSQLDatabase    | cat1        | sch1       | EXEC sp_executesql N'USE cat1; EXEC sp_executesql N''CREATE SCHEMA sch1'''
+          liquibase.database.core.MSSQLDatabase    |             | sch1       | CREATE SCHEMA sch1
           liquibase.database.core.PostgresDatabase |             | sch1       | CREATE SCHEMA sch1
           """,
       delimiter = '|')
@@ -279,18 +313,20 @@ class DropSchemaChangeTests {
     var change = new DropSchemaChange();
     change.setCatalogName(catalogName);
     change.setSchemaName(schemaName);
-    var database = DatabaseBuilder.of(databaseClass).build();
-    assertThat(change.warn(database).hasWarnings()).isFalse();
-    assertThat(change.validate(database).hasErrors()).isFalse();
+    try (var database = DatabaseBuilder.of(databaseClass).build()) {
+      assertThat(change.supports(database)).isTrue();
+      assertThat(change.warn(database).hasWarnings()).isFalse();
+      assertThat(change.validate(database).hasErrors()).isFalse();
 
-    // when
-    var rollbackSql =
-        SqlGeneratorFactory.getInstance()
-            .generateSql(change.generateRollbackStatements(database), database);
+      // when
+      var rollbackSql =
+          SqlGeneratorFactory.getInstance()
+              .generateSql(change.generateRollbackStatements(database), database);
 
-    // then
-    assertThat(rollbackSql)
-        .usingRecursiveFieldByFieldElementComparator()
-        .containsExactly(new UnparsedSql(expectedSql, new Schema(catalogName, schemaName)));
+      // then
+      assertThat(rollbackSql)
+          .usingRecursiveFieldByFieldElementComparator()
+          .containsExactly(new UnparsedSql(expectedSql, new Schema(catalogName, schemaName)));
+    }
   }
 }

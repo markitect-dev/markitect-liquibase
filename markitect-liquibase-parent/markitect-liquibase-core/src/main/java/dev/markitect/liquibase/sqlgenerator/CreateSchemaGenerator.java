@@ -29,7 +29,6 @@ import liquibase.sql.Sql;
 import liquibase.sql.UnparsedSql;
 import liquibase.sqlgenerator.SqlGeneratorChain;
 import liquibase.sqlgenerator.core.AbstractSqlGenerator;
-import liquibase.structure.core.Catalog;
 import liquibase.structure.core.Schema;
 
 public class CreateSchemaGenerator extends AbstractSqlGenerator<CreateSchemaStatement> {
@@ -53,10 +52,8 @@ public class CreateSchemaGenerator extends AbstractSqlGenerator<CreateSchemaStat
     checkNotNull(database);
     checkNotNull(sqlGeneratorChain);
     ValidationErrors errors = new ValidationErrors();
-    if (!(database instanceof MSSQLDatabase)) {
-      errors.checkDisallowedField(
-          "catalogName", statement.getCatalogName(), database, database.getClass());
-    }
+    errors.checkDisallowedField(
+        "catalogName", statement.getCatalogName(), database, database.getClass());
     errors.checkRequiredField("schemaName", statement.getSchemaName());
     return errors;
   }
@@ -71,17 +68,6 @@ public class CreateSchemaGenerator extends AbstractSqlGenerator<CreateSchemaStat
     checkNotNull(sqlGeneratorChain);
     String sql =
         "CREATE SCHEMA " + database.escapeObjectName(statement.getSchemaName(), Schema.class);
-    if (database instanceof MSSQLDatabase) {
-      sql = "EXEC sp_executesql N'" + database.escapeStringForDatabase(sql) + "'";
-      if (statement.getCatalogName() != null) {
-        sql =
-            "USE "
-                + database.escapeObjectName(statement.getCatalogName(), Catalog.class)
-                + "; "
-                + sql;
-        sql = "EXEC sp_executesql N'" + database.escapeStringForDatabase(sql) + "'";
-      }
-    }
     return new Sql[] {
       new UnparsedSql(sql, new Schema(statement.getCatalogName(), statement.getSchemaName()))
     };
