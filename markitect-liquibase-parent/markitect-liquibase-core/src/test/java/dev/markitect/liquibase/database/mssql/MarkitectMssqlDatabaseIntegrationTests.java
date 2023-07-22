@@ -16,26 +16,42 @@
 
 package dev.markitect.liquibase.database.mssql;
 
+import static org.apache.commons.collections4.IterableUtils.reversedIterable;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.catchThrowable;
 
 import dev.markitect.liquibase.base.Nullable;
 import dev.markitect.liquibase.database.DatabaseBuilder;
+import dev.markitect.liquibase.database.DatabaseConnectionBuilder;
 import dev.markitect.liquibase.database.TestDatabaseConfiguration;
+import dev.markitect.liquibase.database.TestDatabaseSpecs;
+import java.time.Instant;
+import java.util.Date;
 import java.util.LinkedHashMap;
+import java.util.List;
 import liquibase.GlobalConfiguration;
 import liquibase.Scope;
+import liquibase.command.CommandScope;
+import liquibase.command.core.RollbackToDateCommandStep;
+import liquibase.command.core.UpdateCommandStep;
+import liquibase.command.core.helpers.DatabaseChangelogCommandStep;
+import liquibase.command.core.helpers.DbUrlConnectionCommandStep;
 import liquibase.database.ObjectQuotingStrategy;
 import liquibase.structure.DatabaseObject;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.testcontainers.containers.MSSQLServerContainer;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
 @SpringBootTest(classes = TestDatabaseConfiguration.class)
 @Testcontainers(disabledWithoutDocker = true)
 class MarkitectMssqlDatabaseIntegrationTests {
   @Autowired private DatabaseBuilder<MarkitectMssqlDatabase> databaseBuilder;
+  @Autowired private TestDatabaseSpecs specs;
+  @Autowired private MSSQLServerContainer<?> container;
 
   @ParameterizedTest
   @CsvSource(
@@ -188,6 +204,7 @@ class MarkitectMssqlDatabaseIntegrationTests {
       @Nullable String tableName,
       @Nullable String expected)
       throws Exception {
+    // given
     var scopeValues = new LinkedHashMap<String, Object>();
     if (includeCatalog != null) {
       scopeValues.put(
@@ -209,5 +226,75 @@ class MarkitectMssqlDatabaseIntegrationTests {
       // then
       assertThat(actual).isEqualTo(expected);
     }
+  }
+
+  @Test
+  void updateAndRollback() {
+    // given
+    var databaseNames = List.of("master", "AdventureWorks2022");
+
+    // when
+    var thrown =
+        catchThrowable(
+            () -> {
+              for (String databaseName : databaseNames) {
+                String jdbcUrl =
+                    "%s;databaseName=%s".formatted(container.getJdbcUrl(), databaseName);
+                String changeLogFileName =
+                    "db/changelog/mssql/database/%s/db.changelog.xml".formatted(databaseName);
+                try (var database =
+                    databaseBuilder
+                        .withDatabaseConnection(
+                            DatabaseConnectionBuilder.of()
+                                .withUrl(jdbcUrl)
+                                .withUsername(specs.getUsername())
+                                .withPassword(specs.getPassword())
+                                .withDriver(container.getDriverClassName()))
+                        .build()) {
+                  var scopeValues = new LinkedHashMap<String, Object>();
+                  scopeValues.put(Scope.Attr.database.name(), database);
+                  Scope.child(
+                      scopeValues,
+                      () ->
+                          new CommandScope(UpdateCommandStep.COMMAND_NAME)
+                              .addArgumentValue(DbUrlConnectionCommandStep.DATABASE_ARG, database)
+                              .addArgumentValue(
+                                  UpdateCommandStep.CHANGELOG_FILE_ARG, changeLogFileName)
+                              .execute());
+                }
+              }
+              for (String databaseName : reversedIterable(databaseNames)) {
+                String jdbcUrl =
+                    "%s;databaseName=%s".formatted(container.getJdbcUrl(), databaseName);
+                String changeLogFileName =
+                    "db/changelog/mssql/database/%s/db.changelog.xml".formatted(databaseName);
+                try (var database =
+                    databaseBuilder
+                        .withDatabaseConnection(
+                            DatabaseConnectionBuilder.of()
+                                .withUrl(jdbcUrl)
+                                .withUsername(specs.getUsername())
+                                .withPassword(specs.getPassword())
+                                .withDriver(container.getDriverClassName()))
+                        .build()) {
+                  var scopeValues = new LinkedHashMap<String, Object>();
+                  scopeValues.put(Scope.Attr.database.name(), database);
+                  Scope.child(
+                      scopeValues,
+                      () ->
+                          new CommandScope(RollbackToDateCommandStep.COMMAND_NAME)
+                              .addArgumentValue(DbUrlConnectionCommandStep.DATABASE_ARG, database)
+                              .addArgumentValue(
+                                  DatabaseChangelogCommandStep.CHANGELOG_FILE_ARG,
+                                  changeLogFileName)
+                              .addArgumentValue(
+                                  RollbackToDateCommandStep.DATE_ARG, Date.from(Instant.EPOCH))
+                              .execute());
+                }
+              }
+            });
+
+    // then
+    assertThat(thrown).isNull();
   }
 }

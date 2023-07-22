@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+  <changeSet id="1" author="markitect">
+    <setTableRemarks schemaName="Person" tableName="Address"
+        remarks="Street address information for customers, employees, and vendors."/>
+    <rollback/>
+  </changeSet>
+  <changeSet id="2" author="markitect">
+    <setColumnRemarks schemaName="Person" tableName="Address" columnName="AddressID"
+        remarks="Primary key for Address records."/>
+    <rollback/>
+  </changeSet>
+  <changeSet id="3" author="markitect">
+    <setColumnRemarks schemaName="Person" tableName="Address" columnName="AddressLine1"
+        remarks="First street address line."/>
+    <rollback/>
+  </changeSet>
+  <changeSet id="4" author="markitect">
+    <setColumnRemarks schemaName="Person" tableName="Address" columnName="AddressLine2"
+        remarks="Second street address line."/>
+    <rollback/>
+  </changeSet>
+  <changeSet id="5" author="markitect">
+    <setColumnRemarks schemaName="Person" tableName="Address" columnName="City"
+        remarks="First street address line."/>
+    <rollback/>
+  </changeSet>
+  <changeSet id="6" author="markitect">
+    <setColumnRemarks schemaName="Person" tableName="Address" columnName="StateProvinceID"
+        remarks="Unique identification number for the state or province. Foreign key to StateProvince table."/>
+    <rollback/>
+  </changeSet>
+  <changeSet id="7" author="markitect">
+    <setColumnRemarks schemaName="Person" tableName="Address" columnName="PostalCode"
+        remarks="Postal code for the street address."/>
+    <rollback/>
+  </changeSet>
+  <changeSet id="8" author="markitect">
+    <setColumnRemarks schemaName="Person" tableName="Address" columnName="SpatialLocation"
+        remarks="Latitude and longitude of this address."/>
+    <rollback/>
+  </changeSet>
+  <changeSet id="9" author="markitect">
+    <setColumnRemarks schemaName="Person" tableName="Address" columnName="rowguid"
+        remarks="ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample."/>
+    <rollback/>
+  </changeSet>
+  <changeSet id="10" author="markitect">
+    <setColumnRemarks schemaName="Person" tableName="Address" columnName="ModifiedDate"
+        remarks="Date and time the record was last updated."/>
+    <rollback/>
+  </changeSet>
+</databaseChangeLog>

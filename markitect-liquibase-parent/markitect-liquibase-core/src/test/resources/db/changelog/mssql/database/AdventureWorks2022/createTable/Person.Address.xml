@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+  <changeSet id="1" author="markitect">
+    <createTable schemaName="Person" tableName="Address" tablespace="PRIMARY">
+      <column name="AddressID" type="int" autoIncrement="true">
+        <constraints nullable="false"/>
+      </column>
+      <column name="AddressLine1" type="nvarchar(60)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="AddressLine2" type="nvarchar(60)"/>
+      <column name="City" type="nvarchar(30)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="StateProvinceID" type="int">
+        <constraints nullable="false"/>
+      </column>
+      <column name="PostalCode" type="nvarchar(15)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="SpatialLocation" type="geography"/>
+      <column name="rowguid" type="uniqueidentifier"
+          defaultValueConstraintName="DF_Address_rowguid" defaultValueComputed="NEWID()">
+        <constraints nullable="false"/>
+      </column>
+      <column name="ModifiedDate" type="datetime"
+          defaultValueConstraintName="DF_Address_ModifiedDate" defaultValueComputed="GETDATE()">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <modifySql>
+      <regExpReplace replace="IDENTITY \(1, 1\)" with="$0 NOT FOR REPLICATION"/>
+      <regExpReplace replace="uniqueidentifier" with="$0 ROWGUIDCOL"/>
+      <regExpReplace replace="(ON )(PRIMARY)" with="$1[$2]"/>
+    </modifySql>
+  </changeSet>
+</databaseChangeLog>
