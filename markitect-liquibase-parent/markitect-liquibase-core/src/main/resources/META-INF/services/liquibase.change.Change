@@ -1,2 +1,4 @@
+dev.markitect.liquibase.change.CreateDatabaseChange
 dev.markitect.liquibase.change.CreateSchemaChange
+dev.markitect.liquibase.change.DropDatabaseChange
 dev.markitect.liquibase.change.DropSchemaChange
