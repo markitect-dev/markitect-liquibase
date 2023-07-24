@@ -5,7 +5,9 @@
       <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger - %msg%n</pattern>
     </encoder>
   </appender>
-  <root level="DEBUG">
+  <logger name="dev.markitect.liquibase" level="DEBUG"/>
+  <logger name="liquibase" level="DEBUG"/>
+  <root level="INFO">
     <appender-ref ref="STDOUT"/>
   </root>
 </configuration>
