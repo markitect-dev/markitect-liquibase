@@ -102,7 +102,7 @@
     <h2-2.1.version>2.1.214</h2-2.1.version>
     <h2.version>2.2.220</h2.version>
     <hamcrest.version>2.2</hamcrest.version>
-    <hikaricp.version>4.0.3</hikaricp.version>
+    <hikaricp.version>5.0.1</hikaricp.version>
     <hsqldb.version>2.7.2</hsqldb.version>
     <jackson.version>2.15.2</jackson.version>
     <jacoco.version>0.8.10</jacoco.version>
