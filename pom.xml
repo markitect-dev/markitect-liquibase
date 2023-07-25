@@ -108,7 +108,7 @@
     <jacoco.version>0.8.10</jacoco.version>
     <jakarta-activation.version>1.2.2</jakarta-activation.version>
     <jakarta-annotation.version>1.3.5</jakarta-annotation.version>
-    <jakarta-xml-bind.version>2.3.3</jakarta-xml-bind.version>
+    <jakarta-xml-bind.version>4.0.0</jakarta-xml-bind.version>
     <jetbrains-annotations.version>24.0.1</jetbrains-annotations.version>
     <jna.version>5.13.0</jna.version>
     <jooq-3.14.version>3.14.16</jooq-3.14.version>
