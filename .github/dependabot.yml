@@ -13,3 +13,10 @@ updates:
       interval: "daily"
       time: "11:00"
     open-pull-requests-limit: 100
+    groups:
+      junit:
+        patterns:
+          - "org.apiguardian:*"
+          - "org.junit.platform:*"
+          - "org.junit.jupiter:*"
+          - "org.opentest4j:*"
