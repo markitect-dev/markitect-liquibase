@@ -21,6 +21,8 @@ updates:
     ignore:
       - dependency-name: "ch.qos.logback:*"
         update-types: [ "version-update:semver-minor" ]
+      - dependency-name: "com.microsoft.sqlserver:mssql-jdbc"
+        versions: [ "12.3.x" ]
       - dependency-name: "com.zaxxer:*"
         update-types: [ "version-update:semver-major" ]
       - dependency-name: "jakarta.activation:*"
