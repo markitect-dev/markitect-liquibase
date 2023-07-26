@@ -597,6 +597,7 @@ $1$4]]></replacement>
           <version>${flatten-maven-plugin.version}</version>
           <configuration>
             <flattenMode>oss</flattenMode>
+            <omitExclusions>true</omitExclusions>
             <pomElements>
               <build>remove</build>
             </pomElements>
