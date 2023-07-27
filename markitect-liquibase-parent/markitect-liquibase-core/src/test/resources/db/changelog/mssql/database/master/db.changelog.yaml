@@ -1,0 +1,12 @@
+databaseChangeLog:
+  - preConditions:
+      - dbms:
+          type: mssql
+      - connectionCatalog:
+          catalogName: master
+  - include:
+      file: db/changelog/mssql/database/master/createDatabase/AdventureWorks2019.yaml
+  - include:
+      file: db/changelog/mssql/database/master/createDatabase/AdventureWorks2022.yaml
+  - include:
+      file: db/changelog/mssql/database/master/dropDatabase/AdventureWorks2019.yaml

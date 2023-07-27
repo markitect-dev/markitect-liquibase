@@ -1,0 +1,15 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: markitect
+      changes:
+        - addPrimaryKey:
+            schemaName: Person
+            tableName: Address
+            constraintName: PK_Address_AddressID
+            columnNames: AddressID
+            tablespace: PRIMARY
+        - modifySql:
+            regExpReplace:
+              replace: (ON )(PRIMARY)
+              with: $1[$2]

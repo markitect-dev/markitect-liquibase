@@ -1,0 +1,14 @@
+databaseChangeLog:
+  - preConditions:
+      - dbms:
+          type: mssql
+      - connectionCatalog:
+          catalogName: AdventureWorks2022
+  - include:
+      file: db/changelog/mssql/database/AdventureWorks2022/createSchema/Person.yaml
+  - include:
+      file: db/changelog/mssql/database/AdventureWorks2022/createTable/Person.Address.yaml
+  - include:
+      file: db/changelog/mssql/database/AdventureWorks2022/addPrimaryKey/Person.Address.yaml
+  - include:
+      file: db/changelog/mssql/database/AdventureWorks2022/setTableRemarks/Person.Address.yaml

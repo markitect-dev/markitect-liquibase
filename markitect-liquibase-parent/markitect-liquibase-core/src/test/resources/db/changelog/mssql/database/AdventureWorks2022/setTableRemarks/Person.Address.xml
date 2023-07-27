@@ -25,7 +25,7 @@
   </changeSet>
   <changeSet id="5" author="markitect">
     <setColumnRemarks schemaName="Person" tableName="Address" columnName="City"
-        remarks="First street address line."/>
+        remarks="Name of the city."/>
     <rollback/>
   </changeSet>
   <changeSet id="6" author="markitect">
