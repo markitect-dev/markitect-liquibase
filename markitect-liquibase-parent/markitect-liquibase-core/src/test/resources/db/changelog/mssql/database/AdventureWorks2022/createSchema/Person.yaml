@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: markitect
+      changes:
+        - createSchema:
+            schemaName: Person
+        - modifySql:
+            append:
+              value: " AUTHORIZATION dbo"

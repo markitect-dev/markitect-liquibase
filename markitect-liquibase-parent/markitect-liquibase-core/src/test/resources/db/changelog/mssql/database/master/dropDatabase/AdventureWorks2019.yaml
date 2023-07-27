@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: markitect
+      changes:
+        - dropDatabase:
+            databaseName: AdventureWorks2019
+      rollback:
+        changeSetPath: db/changelog/mssql/database/master/createDatabase/AdventureWorks2019.yaml
+        changeSetId: 1
+        changeSetAuthor: markitect

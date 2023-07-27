@@ -1,0 +1,100 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: markitect
+      changes:
+        - setTableRemarks:
+            schemaName: Person
+            tableName: Address
+            remarks: Street address information for customers, employees, and vendors.
+      rollback:
+  - changeSet:
+      id: 2
+      author: markitect
+      changes:
+        - setColumnRemarks:
+            schemaName: Person
+            tableName: Address
+            columnName: AddressID
+            remarks: Primary key for Address records.
+      rollback:
+  - changeSet:
+      id: 3
+      author: markitect
+      changes:
+        - setColumnRemarks:
+            schemaName: Person
+            tableName: Address
+            columnName: AddressLine1
+            remarks: First street address line.
+      rollback:
+  - changeSet:
+      id: 4
+      author: markitect
+      changes:
+        - setColumnRemarks:
+            schemaName: Person
+            tableName: Address
+            columnName: AddressLine2
+            remarks: Second street address line.
+      rollback:
+  - changeSet:
+      id: 5
+      author: markitect
+      changes:
+        - setColumnRemarks:
+            schemaName: Person
+            tableName: Address
+            columnName: City
+            remarks: Name of the city.
+      rollback:
+  - changeSet:
+      id: 6
+      author: markitect
+      changes:
+        - setColumnRemarks:
+            schemaName: Person
+            tableName: Address
+            columnName: StateProvinceID
+            remarks: Unique identification number for the state or province. Foreign key to StateProvince table.
+      rollback:
+  - changeSet:
+      id: 7
+      author: markitect
+      changes:
+        - setColumnRemarks:
+            schemaName: Person
+            tableName: Address
+            columnName: PostalCode
+            remarks: Postal code for the street address.
+      rollback:
+  - changeSet:
+      id: 8
+      author: markitect
+      changes:
+        - setColumnRemarks:
+            schemaName: Person
+            tableName: Address
+            columnName: SpatialLocation
+            remarks: Latitude and longitude of this address.
+      rollback:
+  - changeSet:
+      id: 9
+      author: markitect
+      changes:
+        - setColumnRemarks:
+            schemaName: Person
+            tableName: Address
+            columnName: rowguid
+            remarks: Latitude and longitude of this address.
+      rollback:
+  - changeSet:
+      id: 10
+      author: markitect
+      changes:
+        - setColumnRemarks:
+            schemaName: Person
+            tableName: Address
+            columnName: ModifiedDate
+            remarks: Date and time the record was last updated.
+      rollback:

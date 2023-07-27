@@ -38,7 +38,6 @@ import liquibase.command.core.helpers.DatabaseChangelogCommandStep;
 import liquibase.command.core.helpers.DbUrlConnectionCommandStep;
 import liquibase.database.ObjectQuotingStrategy;
 import liquibase.structure.DatabaseObject;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -228,8 +227,16 @@ class MarkitectMssqlDatabaseIntegrationTests {
     }
   }
 
-  @Test
-  void updateAndRollback() {
+  @ParameterizedTest
+  @CsvSource(
+      textBlock =
+          """
+          # rootChangeLogName
+          db.changelog.xml
+          db.changelog.yaml
+          """,
+      delimiter = '|')
+  void updateAndRollback(String rootChangeLogName) {
     // given
     var databaseNames = List.of("master", "AdventureWorks2022");
 
@@ -241,7 +248,7 @@ class MarkitectMssqlDatabaseIntegrationTests {
                 String jdbcUrl =
                     "%s;databaseName=%s".formatted(container.getJdbcUrl(), databaseName);
                 String changeLogFileName =
-                    "db/changelog/mssql/database/%s/db.changelog.xml".formatted(databaseName);
+                    "db/changelog/mssql/database/%s/%s".formatted(databaseName, rootChangeLogName);
                 try (var database =
                     databaseBuilder
                         .withDatabaseConnection(
@@ -267,7 +274,7 @@ class MarkitectMssqlDatabaseIntegrationTests {
                 String jdbcUrl =
                     "%s;databaseName=%s".formatted(container.getJdbcUrl(), databaseName);
                 String changeLogFileName =
-                    "db/changelog/mssql/database/%s/db.changelog.xml".formatted(databaseName);
+                    "db/changelog/mssql/database/%s/%s".formatted(databaseName, rootChangeLogName);
                 try (var database =
                     databaseBuilder
                         .withDatabaseConnection(
