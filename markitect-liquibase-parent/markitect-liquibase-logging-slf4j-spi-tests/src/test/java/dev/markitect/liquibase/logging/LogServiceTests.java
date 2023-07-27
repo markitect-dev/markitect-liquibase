@@ -25,15 +25,14 @@ import liquibase.logging.LogService;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.boot.test.system.CapturedOutput;
-import org.springframework.boot.test.system.OutputCaptureExtension;
+import org.junitpioneer.jupiter.StdIo;
+import org.junitpioneer.jupiter.StdOut;
 
-@ExtendWith(OutputCaptureExtension.class)
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class LogServiceTests {
   @Test
-  void logs(CapturedOutput output) {
+  @StdIo
+  void logs(StdOut out) {
     // when
     var logService = Scope.getCurrentScope().get(Scope.Attr.logService, LogService.class);
 
@@ -54,7 +53,7 @@ class LogServiceTests {
     log2.fine("Precondition failed: " + e.getMessage(), e);
 
     // then
-    assertThat(output)
+    assertThat(String.join("\n", out.capturedLines()))
         .contains(
             " [main] DEBUG liquibase.changelog.visitor.UpdateVisitor - "
                 + "Running Changeset: filePath::id::author",
