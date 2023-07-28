@@ -21,6 +21,7 @@ import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
 import dev.markitect.liquibase.statement.CreateDatabaseStatement;
 import liquibase.database.Database;
 import liquibase.database.core.MSSQLDatabase;
+import liquibase.database.core.PostgresDatabase;
 import liquibase.exception.ValidationErrors;
 import liquibase.sql.Sql;
 import liquibase.sql.UnparsedSql;
@@ -28,12 +29,12 @@ import liquibase.sqlgenerator.SqlGeneratorChain;
 import liquibase.sqlgenerator.core.AbstractSqlGenerator;
 import liquibase.structure.core.Catalog;
 
-<span class="fc" id="L31">public class CreateDatabaseGenerator extends AbstractSqlGenerator&lt;CreateDatabaseStatement&gt; {</span>
+<span class="fc" id="L32">public class CreateDatabaseGenerator extends AbstractSqlGenerator&lt;CreateDatabaseStatement&gt; {</span>
   @Override
   public boolean supports(CreateDatabaseStatement statement, Database database) {
-<span class="fc" id="L34">    checkNotNull(statement);</span>
-<span class="fc" id="L35">    checkNotNull(database);</span>
-<span class="fc" id="L36">    return database instanceof MSSQLDatabase;</span>
+<span class="fc" id="L35">    checkNotNull(statement);</span>
+<span class="fc" id="L36">    checkNotNull(database);</span>
+<span class="fc bfc" id="L37" title="All 4 branches covered.">    return database instanceof MSSQLDatabase || database instanceof PostgresDatabase;</span>
   }
 
   @Override
@@ -41,12 +42,12 @@ import liquibase.structure.core.Catalog;
       CreateDatabaseStatement statement,
       Database database,
       SqlGeneratorChain&lt;CreateDatabaseStatement&gt; sqlGeneratorChain) {
-<span class="fc" id="L44">    checkNotNull(statement);</span>
-<span class="fc" id="L45">    checkNotNull(database);</span>
-<span class="fc" id="L46">    checkNotNull(sqlGeneratorChain);</span>
-<span class="fc" id="L47">    ValidationErrors errors = new ValidationErrors();</span>
-<span class="fc" id="L48">    errors.checkRequiredField(&quot;databaseName&quot;, statement.getDatabaseName());</span>
-<span class="fc" id="L49">    return errors;</span>
+<span class="fc" id="L45">    checkNotNull(statement);</span>
+<span class="fc" id="L46">    checkNotNull(database);</span>
+<span class="fc" id="L47">    checkNotNull(sqlGeneratorChain);</span>
+<span class="fc" id="L48">    ValidationErrors errors = new ValidationErrors();</span>
+<span class="fc" id="L49">    errors.checkRequiredField(&quot;databaseName&quot;, statement.getDatabaseName());</span>
+<span class="fc" id="L50">    return errors;</span>
   }
 
   @Override
@@ -54,12 +55,12 @@ import liquibase.structure.core.Catalog;
       CreateDatabaseStatement statement,
       Database database,
       SqlGeneratorChain&lt;CreateDatabaseStatement&gt; sqlGeneratorChain) {
-<span class="fc" id="L57">    checkNotNull(statement);</span>
-<span class="fc" id="L58">    checkNotNull(database);</span>
-<span class="fc" id="L59">    checkNotNull(sqlGeneratorChain);</span>
-<span class="fc" id="L60">    String sql =</span>
-<span class="fc" id="L61">        &quot;CREATE DATABASE &quot; + database.escapeObjectName(statement.getDatabaseName(), Catalog.class);</span>
-<span class="fc" id="L62">    return new Sql[] {new UnparsedSql(sql, new Catalog(statement.getDatabaseName()))};</span>
+<span class="fc" id="L58">    checkNotNull(statement);</span>
+<span class="fc" id="L59">    checkNotNull(database);</span>
+<span class="fc" id="L60">    checkNotNull(sqlGeneratorChain);</span>
+<span class="fc" id="L61">    String sql =</span>
+<span class="fc" id="L62">        &quot;CREATE DATABASE &quot; + database.escapeObjectName(statement.getDatabaseName(), Catalog.class);</span>
+<span class="fc" id="L63">    return new Sql[] {new UnparsedSql(sql, new Catalog(statement.getDatabaseName()))};</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>
