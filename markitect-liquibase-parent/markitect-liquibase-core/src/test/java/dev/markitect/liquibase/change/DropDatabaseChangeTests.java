@@ -39,7 +39,7 @@ class DropDatabaseChangeTests {
           liquibase.database.core.HsqlDatabase     | false
           liquibase.database.core.MSSQLDatabase    | true
           liquibase.database.core.OracleDatabase   | false
-          liquibase.database.core.PostgresDatabase | false
+          liquibase.database.core.PostgresDatabase | true
           """,
       delimiter = '|')
   void supports(Class<? extends Database> databaseClass, boolean expected) throws Exception {
@@ -61,6 +61,10 @@ class DropDatabaseChangeTests {
       [
         {
           databaseClass: 'liquibase.database.core.MSSQLDatabase',
+          expectedMessages: []
+        },
+        {
+          databaseClass: 'liquibase.database.core.PostgresDatabase',
           expectedMessages: []
         }
       ]
@@ -93,6 +97,11 @@ class DropDatabaseChangeTests {
         },
         {
           databaseClass: 'liquibase.database.core.MSSQLDatabase',
+          databaseName: 'cat1',
+          expectedErrorMessages: []
+        },
+        {
+          databaseClass: 'liquibase.database.core.PostgresDatabase',
           databaseName: 'cat1',
           expectedErrorMessages: []
         }
@@ -162,8 +171,9 @@ class DropDatabaseChangeTests {
   @CsvSource(
       textBlock =
           """
-          # databaseClass                       | databaseName
-          liquibase.database.core.MSSQLDatabase | cat1
+          # databaseClass                          | databaseName
+          liquibase.database.core.MSSQLDatabase    | cat1
+          liquibase.database.core.PostgresDatabase | cat1
           """,
       delimiter = '|')
   void generateStatements(Class<? extends Database> databaseClass, String databaseName)
@@ -192,8 +202,9 @@ class DropDatabaseChangeTests {
   @CsvSource(
       textBlock =
           """
-          # databaseClass                       | databaseName | expectedSql
-          liquibase.database.core.MSSQLDatabase | cat1         | DROP DATABASE cat1
+          # databaseClass                          | databaseName | expectedSql
+          liquibase.database.core.MSSQLDatabase    | cat1         | DROP DATABASE cat1
+          liquibase.database.core.PostgresDatabase | cat1         | DROP DATABASE cat1
           """,
       delimiter = '|')
   void generateSql(Class<? extends Database> databaseClass, String databaseName, String expectedSql)
@@ -220,8 +231,9 @@ class DropDatabaseChangeTests {
   @CsvSource(
       textBlock =
           """
-          # databaseClass                       | databaseName | expectedSql
-          liquibase.database.core.MSSQLDatabase | cat1         | CREATE DATABASE cat1
+          # databaseClass                          | databaseName | expectedSql
+          liquibase.database.core.MSSQLDatabase    | cat1         | CREATE DATABASE cat1
+          liquibase.database.core.PostgresDatabase | cat1         | CREATE DATABASE cat1
           """,
       delimiter = '|')
   void generateRollbackSql(
