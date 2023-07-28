@@ -21,6 +21,7 @@ import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
 import dev.markitect.liquibase.statement.CreateDatabaseStatement;
 import liquibase.database.Database;
 import liquibase.database.core.MSSQLDatabase;
+import liquibase.database.core.PostgresDatabase;
 import liquibase.exception.ValidationErrors;
 import liquibase.sql.Sql;
 import liquibase.sql.UnparsedSql;
@@ -33,7 +34,7 @@ public class CreateDatabaseGenerator extends AbstractSqlGenerator<CreateDatabase
   public boolean supports(CreateDatabaseStatement statement, Database database) {
     checkNotNull(statement);
     checkNotNull(database);
-    return database instanceof MSSQLDatabase;
+    return database instanceof MSSQLDatabase || database instanceof PostgresDatabase;
   }
 
   @Override
