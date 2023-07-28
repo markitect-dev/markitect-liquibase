@@ -55,11 +55,13 @@ jobs:
         run: |
           ./mvnw -B org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
               -Dsonar.host.url="$SONAR_HOST_URL" \
-              -Dsonar.organization="$SONAR_ORGANIZATION"
+              -Dsonar.organization="$SONAR_ORGANIZATION" \
+              -Dsonar.projectKey="$SONAR_PROJECTKEY"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
           SONAR_ORGANIZATION: ${{ vars.SONAR_ORGANIZATION }}
+          SONAR_PROJECTKEY: ${{ vars.SONAR_PROJECTKEY }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   publish-artifacts:
