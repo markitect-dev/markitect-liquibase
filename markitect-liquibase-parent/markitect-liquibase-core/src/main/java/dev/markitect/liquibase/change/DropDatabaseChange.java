@@ -51,20 +51,20 @@ public class DropDatabaseChange extends AbstractChange {
 
   @Override
   protected Change[] createInverses() {
-    CreateDatabaseChange inverse = new CreateDatabaseChange();
+    var inverse = new CreateDatabaseChange();
     inverse.setDatabaseName(databaseName);
     return new Change[] {inverse};
   }
 
   @Override
   public String getConfirmationMessage() {
-    return String.format("Database %s dropped", databaseName);
+    return "Database %s dropped".formatted(databaseName);
   }
 
   @Override
   public SqlStatement[] generateStatements(Database database) {
     checkNotNull(database);
-    DropDatabaseStatement statement = new DropDatabaseStatement();
+    var statement = new DropDatabaseStatement();
     statement.setDatabaseName(databaseName);
     return new SqlStatement[] {statement};
   }

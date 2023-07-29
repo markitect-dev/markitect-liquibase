@@ -67,7 +67,7 @@ public class DropSchemaChange extends AbstractChange {
 
   @Override
   protected Change[] createInverses() {
-    CreateSchemaChange inverse = new CreateSchemaChange();
+    var inverse = new CreateSchemaChange();
     inverse.setCatalogName(catalogName);
     inverse.setSchemaName(schemaName);
     return new Change[] {inverse};
@@ -75,17 +75,17 @@ public class DropSchemaChange extends AbstractChange {
 
   @Override
   public String getConfirmationMessage() {
-    return String.format(
-        "Schema %s dropped",
-        Stream.of(catalogName, String.valueOf(schemaName))
-            .filter(Objects::nonNull)
-            .collect(joining(".")));
+    return "Schema %s dropped"
+        .formatted(
+            Stream.of(catalogName, String.valueOf(schemaName))
+                .filter(Objects::nonNull)
+                .collect(joining(".")));
   }
 
   @Override
   public SqlStatement[] generateStatements(Database database) {
     checkNotNull(database);
-    DropSchemaStatement statement = new DropSchemaStatement();
+    var statement = new DropSchemaStatement();
     statement.setCatalogName(catalogName);
     statement.setSchemaName(schemaName);
     return new SqlStatement[] {statement};

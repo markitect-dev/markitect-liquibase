@@ -51,7 +51,7 @@ public class CreateSchemaGenerator extends AbstractSqlGenerator<CreateSchemaStat
     checkNotNull(statement);
     checkNotNull(database);
     checkNotNull(sqlGeneratorChain);
-    ValidationErrors errors = new ValidationErrors();
+    var errors = new ValidationErrors();
     errors.checkDisallowedField(
         "catalogName", statement.getCatalogName(), database, database.getClass());
     errors.checkRequiredField("schemaName", statement.getSchemaName());

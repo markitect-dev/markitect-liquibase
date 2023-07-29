@@ -113,10 +113,10 @@ public class JulLogger extends AbstractLogger {
 
   private LogRecord toLogRecord(Level level, @Nullable String message, @Nullable Throwable e) {
     checkNotNull(level);
-    LogRecord logRecord = new LogRecord(level, message);
+    var logRecord = new LogRecord(level, message);
     logRecord.setLoggerName(name);
     logRecord.setThrown(e);
-    AtomicBoolean found = new AtomicBoolean();
+    var found = new AtomicBoolean();
     Arrays.stream(new Throwable().getStackTrace())
         .filter(
             element -> {

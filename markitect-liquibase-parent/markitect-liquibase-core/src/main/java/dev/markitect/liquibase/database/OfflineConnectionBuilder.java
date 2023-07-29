@@ -104,7 +104,7 @@ public final class OfflineConnectionBuilder {
 
   public MarkitectOfflineConnection build() {
     checkState(shortName != null);
-    StringJoiner params = new StringJoiner("&", "?", "");
+    var params = new StringJoiner("&", "?", "");
     if (productName != null) {
       params.add("productName=" + productName);
     }
@@ -119,7 +119,7 @@ public final class OfflineConnectionBuilder {
     }
     databaseParams.forEach((key, value) -> params.add(key + "=" + value));
     String url = "offline:" + shortName + params;
-    MarkitectOfflineConnection connection =
+    var connection =
         new MarkitectOfflineConnection(url, Scope.getCurrentScope().getResourceAccessor());
     connection.setCatalog(catalog);
     connection.setSchema(schema);

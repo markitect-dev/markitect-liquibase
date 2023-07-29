@@ -22,7 +22,6 @@ import dev.markitect.liquibase.base.Nullable;
 import dev.markitect.liquibase.base.Verify;
 import java.util.function.UnaryOperator;
 import liquibase.database.Database;
-import liquibase.database.DatabaseConnection;
 import liquibase.database.ObjectQuotingStrategy;
 
 public final class DatabaseBuilder<D extends Database> {
@@ -118,10 +117,10 @@ public final class DatabaseBuilder<D extends Database> {
       throw new IllegalStateException(e);
     }
     if (databaseConnectionBuilder != null) {
-      DatabaseConnection databaseConnection = databaseConnectionBuilder.build();
+      var databaseConnection = databaseConnectionBuilder.build();
       database.setConnection(databaseConnection);
     } else if (offlineConnectionCustomizer != null) {
-      MarkitectOfflineConnection offlineConnection =
+      var offlineConnection =
           offlineConnectionCustomizer
               .andThen(Verify::verifyNotNull)
               .apply(OfflineConnectionBuilder.of().withShortName(database.getShortName()))

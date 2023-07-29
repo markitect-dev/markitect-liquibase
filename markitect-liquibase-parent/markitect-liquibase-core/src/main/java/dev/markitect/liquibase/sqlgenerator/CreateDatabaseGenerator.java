@@ -45,7 +45,7 @@ public class CreateDatabaseGenerator extends AbstractSqlGenerator<CreateDatabase
     checkNotNull(statement);
     checkNotNull(database);
     checkNotNull(sqlGeneratorChain);
-    ValidationErrors errors = new ValidationErrors();
+    var errors = new ValidationErrors();
     errors.checkRequiredField("databaseName", statement.getDatabaseName());
     return errors;
   }
