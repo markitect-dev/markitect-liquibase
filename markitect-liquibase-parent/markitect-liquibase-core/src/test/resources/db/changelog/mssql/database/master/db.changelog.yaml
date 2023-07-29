@@ -4,9 +4,27 @@ databaseChangeLog:
           type: mssql
       - connectionCatalog:
           catalogName: master
-  - include:
-      file: db/changelog/mssql/database/master/createDatabase/AdventureWorks2019.yaml
-  - include:
-      file: db/changelog/mssql/database/master/createDatabase/AdventureWorks2022.yaml
-  - include:
-      file: db/changelog/mssql/database/master/dropDatabase/AdventureWorks2019.yaml
+
+  - changeSet:
+      id: 1
+      author: markitect
+      changes:
+        - createDatabase:
+            databaseName: AdventureWorks2019
+
+  - changeSet:
+      id: 2
+      author: markitect
+      changes:
+        - createDatabase:
+            databaseName: AdventureWorks2022
+
+  - changeSet:
+      id: 3
+      author: markitect
+      changes:
+        - dropDatabase:
+            databaseName: AdventureWorks2019
+      rollback:
+        changeSetId: 1
+        changeSetAuthor: markitect

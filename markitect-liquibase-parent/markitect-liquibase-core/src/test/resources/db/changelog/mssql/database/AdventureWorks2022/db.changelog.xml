@@ -10,8 +10,109 @@
     <dbms type="mssql"/>
     <ext:connectionCatalog catalogName="AdventureWorks2022"/>
   </preConditions>
-  <include file="db/changelog/mssql/database/AdventureWorks2022/createSchema/Person.xml"/>
-  <include file="db/changelog/mssql/database/AdventureWorks2022/createTable/Person.Address.xml"/>
-  <include file="db/changelog/mssql/database/AdventureWorks2022/addPrimaryKey/Person.Address.xml"/>
-  <include file="db/changelog/mssql/database/AdventureWorks2022/setTableRemarks/Person.Address.xml"/>
+
+  <changeSet id="1" author="markitect">
+    <ext:createSchema schemaName="Person"/>
+    <modifySql>
+      <append value=" AUTHORIZATION dbo"/>
+    </modifySql>
+  </changeSet>
+
+  <changeSet id="2" author="markitect">
+    <createTable schemaName="Person" tableName="Address" tablespace="PRIMARY">
+      <column name="AddressID" type="int" autoIncrement="true">
+        <constraints nullable="false"/>
+      </column>
+      <column name="AddressLine1" type="nvarchar(60)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="AddressLine2" type="nvarchar(60)">
+        <constraints nullable="true"/>
+      </column>
+      <column name="City" type="nvarchar(30)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="StateProvinceID" type="int">
+        <constraints nullable="false"/>
+      </column>
+      <column name="PostalCode" type="nvarchar(15)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="SpatialLocation" type="geography">
+        <constraints nullable="true"/>
+      </column>
+      <column name="rowguid" type="uniqueidentifier"
+          defaultValueConstraintName="DF_Address_rowguid" defaultValueComputed="NEWID()">
+        <constraints nullable="false"/>
+      </column>
+      <column name="ModifiedDate" type="datetime"
+          defaultValueConstraintName="DF_Address_ModifiedDate" defaultValueComputed="GETDATE()">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <modifySql>
+      <regExpReplace replace="IDENTITY \(1, 1\)" with="$0 NOT FOR REPLICATION"/>
+      <regExpReplace replace="uniqueidentifier" with="$0 ROWGUIDCOL"/>
+      <regExpReplace replace="(ON )(PRIMARY)" with="$1[$2]"/>
+    </modifySql>
+  </changeSet>
+
+  <changeSet id="3" author="markitect">
+    <addPrimaryKey schemaName="Person" tableName="Address" constraintName="PK_Address_AddressID"
+        columnNames="AddressID" tablespace="PRIMARY"/>
+    <modifySql>
+      <regExpReplace replace="(ON )(PRIMARY)" with="$1[$2]"/>
+    </modifySql>
+  </changeSet>
+
+  <changeSet id="4" author="markitect">
+    <setTableRemarks schemaName="Person" tableName="Address"
+        remarks="Street address information for customers, employees, and vendors."/>
+    <rollback/>
+  </changeSet>
+  <changeSet id="5" author="markitect">
+    <setColumnRemarks schemaName="Person" tableName="Address" columnName="AddressID"
+        remarks="Primary key for Address records."/>
+    <rollback/>
+  </changeSet>
+  <changeSet id="6" author="markitect">
+    <setColumnRemarks schemaName="Person" tableName="Address" columnName="AddressLine1"
+        remarks="First street address line."/>
+    <rollback/>
+  </changeSet>
+  <changeSet id="7" author="markitect">
+    <setColumnRemarks schemaName="Person" tableName="Address" columnName="AddressLine2"
+        remarks="Second street address line."/>
+    <rollback/>
+  </changeSet>
+  <changeSet id="8" author="markitect">
+    <setColumnRemarks schemaName="Person" tableName="Address" columnName="City"
+        remarks="Name of the city."/>
+    <rollback/>
+  </changeSet>
+  <changeSet id="9" author="markitect">
+    <setColumnRemarks schemaName="Person" tableName="Address" columnName="StateProvinceID"
+        remarks="Unique identification number for the state or province. Foreign key to StateProvince table."/>
+    <rollback/>
+  </changeSet>
+  <changeSet id="10" author="markitect">
+    <setColumnRemarks schemaName="Person" tableName="Address" columnName="PostalCode"
+        remarks="Postal code for the street address."/>
+    <rollback/>
+  </changeSet>
+  <changeSet id="11" author="markitect">
+    <setColumnRemarks schemaName="Person" tableName="Address" columnName="SpatialLocation"
+        remarks="Latitude and longitude of this address."/>
+    <rollback/>
+  </changeSet>
+  <changeSet id="12" author="markitect">
+    <setColumnRemarks schemaName="Person" tableName="Address" columnName="rowguid"
+        remarks="ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample."/>
+    <rollback/>
+  </changeSet>
+  <changeSet id="13" author="markitect">
+    <setColumnRemarks schemaName="Person" tableName="Address" columnName="ModifiedDate"
+        remarks="Date and time the record was last updated."/>
+    <rollback/>
+  </changeSet>
 </databaseChangeLog>
