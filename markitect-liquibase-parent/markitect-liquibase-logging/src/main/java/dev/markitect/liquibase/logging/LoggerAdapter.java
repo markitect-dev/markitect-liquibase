@@ -50,14 +50,11 @@ public class LoggerAdapter {
   }
 
   public static Logger getLogger(@Nullable String name) {
-    switch (LOGGING_API) {
-      case LOG4J:
-        return Log4jAdapter.getLogger(name);
-      case SLF4J:
-        return Slf4jAdapter.getLogger(name);
-      default:
-        return JulAdapter.getLogger(name);
-    }
+    return switch (LOGGING_API) {
+      case LOG4J -> Log4jAdapter.getLogger(name);
+      case SLF4J -> Slf4jAdapter.getLogger(name);
+      default -> JulAdapter.getLogger(name);
+    };
   }
 
   private enum LoggingApi {
@@ -83,9 +80,9 @@ public class LoggerAdapter {
 
   private static class Slf4jAdapter {
     public static Logger getLogger(@Nullable String name) {
-      org.slf4j.Logger logger = LoggerFactory.getLogger(name);
-      if (logger instanceof LocationAwareLogger) {
-        return new Slf4jLocationAwareLogger((LocationAwareLogger) logger);
+      var logger = LoggerFactory.getLogger(name);
+      if (logger instanceof LocationAwareLogger locationAwareLogger) {
+        return new Slf4jLocationAwareLogger(locationAwareLogger);
       }
       return new Slf4jLogger<>(logger);
     }

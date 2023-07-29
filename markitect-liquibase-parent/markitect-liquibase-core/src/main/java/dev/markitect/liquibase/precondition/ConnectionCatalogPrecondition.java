@@ -52,7 +52,7 @@ public class ConnectionCatalogPrecondition extends AbstractPrecondition {
   @Override
   public ValidationErrors validate(Database database) {
     checkNotNull(database);
-    ValidationErrors errors = new ValidationErrors();
+    var errors = new ValidationErrors();
     errors.checkRequiredField("catalogName", catalogName);
     return errors;
   }
@@ -70,9 +70,8 @@ public class ConnectionCatalogPrecondition extends AbstractPrecondition {
       if (!Objects.equals(
           connectionCatalogName, database.correctObjectName(catalogName, Catalog.class))) {
         throw new PreconditionFailedException(
-            String.format(
-                "Connection catalog precondition failed: expected %s, was %s",
-                catalogName, connectionCatalogName),
+            "Connection catalog precondition failed: expected %s, was %s"
+                .formatted(catalogName, connectionCatalogName),
             changeLog,
             this);
       }

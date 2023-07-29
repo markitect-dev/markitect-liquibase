@@ -42,7 +42,7 @@ public class MssqlTestDatabaseConfiguration {
       TestDatabaseSpecs specs, MSSQLServerContainer<?> container) {
     var databaseConnectionBuilder =
         DatabaseConnectionBuilder.of()
-            .withUrl(container.getJdbcUrl() + ";databaseName=" + specs.getCatalogName())
+            .withUrl("%s;databaseName=%s".formatted(container.getJdbcUrl(), specs.getCatalogName()))
             .withUsername(specs.getUsername())
             .withPassword(specs.getPassword())
             .withDriver(container.getDriverClassName());
@@ -99,7 +99,8 @@ public class MssqlTestDatabaseConfiguration {
                     database.escapeObjectName(
                         specs.getAlternateTablespaceName(), DatabaseObject.class)));
         var hikariConfig = new HikariConfig();
-        hikariConfig.setJdbcUrl(container.getJdbcUrl() + ";databaseName=" + catalogName);
+        hikariConfig.setJdbcUrl(
+            "%s;databaseName=%s".formatted(container.getJdbcUrl(), catalogName));
         hikariConfig.setUsername(container.getUsername());
         hikariConfig.setPassword(container.getPassword());
         hikariConfig.setDriverClassName(container.getDriverClassName());

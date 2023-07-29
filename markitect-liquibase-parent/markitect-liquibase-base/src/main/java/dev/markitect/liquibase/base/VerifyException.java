@@ -16,8 +16,10 @@
 
 package dev.markitect.liquibase.base;
 
+import java.io.Serial;
+
 public class VerifyException extends RuntimeException {
-  private static final long serialVersionUID = -1807820882768027324L;
+  @Serial private static final long serialVersionUID = -1807820882768027324L;
 
   public VerifyException() {}
 

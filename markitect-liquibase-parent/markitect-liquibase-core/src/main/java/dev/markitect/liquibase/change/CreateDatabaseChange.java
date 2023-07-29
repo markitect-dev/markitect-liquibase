@@ -49,20 +49,20 @@ public class CreateDatabaseChange extends AbstractChange {
 
   @Override
   protected Change[] createInverses() {
-    DropDatabaseChange inverse = new DropDatabaseChange();
+    var inverse = new DropDatabaseChange();
     inverse.setDatabaseName(databaseName);
     return new Change[] {inverse};
   }
 
   @Override
   public String getConfirmationMessage() {
-    return String.format("Database %s created", databaseName);
+    return "Database %s created".formatted(databaseName);
   }
 
   @Override
   public SqlStatement[] generateStatements(Database database) {
     checkNotNull(database);
-    CreateDatabaseStatement statement = new CreateDatabaseStatement();
+    var statement = new CreateDatabaseStatement();
     statement.setDatabaseName(databaseName);
     return new SqlStatement[] {statement};
   }

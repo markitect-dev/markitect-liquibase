@@ -1,17 +1,6 @@
-#set($Integer = 0)
-#set($effectiveJavaVersion = $javaVersion)
-#if($springBootVersion.startsWith('3.') && $Integer.parseInt($javaVersion) < 17)
-#set($effectiveJavaVersion = '17')
-#elseif($javaVersion == '8')
-#set($effectiveJavaVersion = '1.8')
-#end
 #set($mavenCompilerRelease = 'inherit')
 #if(!$springBootVersion.startsWith('3.') || $springBootVersion.startsWith('3.0.'))
-#if($effectiveJavaVersion == '1.8')
-#set($mavenCompilerRelease = '8')
-#else
 #set($mavenCompilerRelease = '${java.version}')
-#end
 #end
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -30,7 +19,7 @@
   <version>${version}</version>
 
   <properties>
-    <java.version>${effectiveJavaVersion}</java.version>
+    <java.version>${javaVersion}</java.version>
 #if($mavenCompilerRelease != 'inherit')
     <maven.compiler.release>${mavenCompilerRelease}</maven.compiler.release>
 #end

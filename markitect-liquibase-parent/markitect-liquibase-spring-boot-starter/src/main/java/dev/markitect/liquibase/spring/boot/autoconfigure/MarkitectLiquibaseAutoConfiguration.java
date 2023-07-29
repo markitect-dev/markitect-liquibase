@@ -89,8 +89,8 @@ public class MarkitectLiquibaseAutoConfiguration {
 
     private SpringLiquibase toSpringLiquibase(
         @Nullable DataSource liquibaseDataSource, @Nullable DataSource dataSource) {
-      DataSource migrationDataSource = toMigrationDataSource(liquibaseDataSource, dataSource);
-      MarkitectSpringLiquibase liquibase = new MarkitectSpringLiquibase();
+      var migrationDataSource = toMigrationDataSource(liquibaseDataSource, dataSource);
+      var liquibase = new MarkitectSpringLiquibase();
       liquibase.setDropFirst(properties.isDropFirst());
       liquibase.setClearCheckSums(properties.isClearChecksums());
       liquibase.setShouldRun(properties.isEnabled());
@@ -121,7 +121,7 @@ public class MarkitectLiquibaseAutoConfiguration {
       }
       String url = properties.getUrl();
       if (url != null) {
-        DataSourceBuilder<?> builder = DataSourceBuilder.create();
+        var builder = DataSourceBuilder.create();
         builder.type(SimpleDriverDataSource.class);
         builder.url(url);
         applyCommonBuilderProperties(builder);
@@ -129,7 +129,7 @@ public class MarkitectLiquibaseAutoConfiguration {
       }
       Assert.state(dataSource != null, "Liquibase migration DataSource missing");
       if (properties.getUser() != null) {
-        DataSourceBuilder<?> builder = DataSourceBuilder.derivedFrom(dataSource);
+        var builder = DataSourceBuilder.derivedFrom(dataSource);
         builder.type(SimpleDriverDataSource.class);
         applyCommonBuilderProperties(builder);
         return builder.build();

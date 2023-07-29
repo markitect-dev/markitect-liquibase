@@ -35,7 +35,7 @@ public class MarkitectSpringLiquibase extends SpringLiquibase implements Disposa
   @Override
   protected Database createDatabase(@Nullable Connection c, ResourceAccessor resourceAccessor)
       throws DatabaseException {
-    Database database = super.createDatabase(c, resourceAccessor);
+    var database = super.createDatabase(c, resourceAccessor);
     database.setOutputDefaultCatalog(outputDefaultCatalog);
     database.setOutputDefaultSchema(outputDefaultSchema);
     return database;
