@@ -1,0 +1,14 @@
+databaseChangeLog:
+  - preConditions:
+      - dbms:
+          type: postgresql
+      - connectionCatalog:
+          catalogName: postgres
+
+  - changeSet:
+      id: 1
+      author: markitect
+      runInTransaction: false
+      changes:
+        - createDatabase:
+            databaseName: Northwind

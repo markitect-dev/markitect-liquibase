@@ -40,6 +40,7 @@ import liquibase.database.ObjectQuotingStrategy;
 import liquibase.structure.DatabaseObject;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junitpioneer.jupiter.json.JsonSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.testcontainers.containers.MSSQLServerContainer;
@@ -228,32 +229,50 @@ class MarkitectMssqlDatabaseIntegrationTests {
   }
 
   @ParameterizedTest
-  @CsvSource(
-      textBlock =
-          """
-          # rootChangeLogName
-          db.changelog.xml
-          db.changelog.yaml
-          """,
-      delimiter = '|')
-  void updateAndRollback(String rootChangeLogName) {
-    // given
-    var databaseNames = List.of("master", "AdventureWorks2022");
-
+  @JsonSource(
+      """
+      [
+        [
+          {
+            databaseName: 'master',
+            changeLogFileName: 'db/changelog/mssql/database/master/db.changelog.xml'
+          },
+          {
+            databaseName: 'AdventureWorks2022',
+            changeLogFileName: 'db/changelog/mssql/database/AdventureWorks2022/db.changelog.xml'
+          },
+          {
+            databaseName: 'Northwind',
+            changeLogFileName: 'db/changelog/common/database/Northwind/db.changelog.xml'
+          }
+        ],
+        [
+          {
+            databaseName: 'master',
+            changeLogFileName: 'db/changelog/mssql/database/master/db.changelog.yaml'
+          },
+          {
+            databaseName: 'AdventureWorks2022',
+            changeLogFileName: 'db/changelog/mssql/database/AdventureWorks2022/db.changelog.yaml'
+          },
+          {
+            databaseName: 'Northwind',
+            changeLogFileName: 'db/changelog/common/database/Northwind/db.changelog.yaml'
+          }
+        ]
+      ]
+      """)
+  void updateAndRollback(List<DatabaseRecord> databaseRecords) {
     // when
     var thrown =
         catchThrowable(
             () -> {
-              for (String databaseName : databaseNames) {
-                String jdbcUrl =
-                    "%s;databaseName=%s".formatted(container.getJdbcUrl(), databaseName);
-                String changeLogFileName =
-                    "db/changelog/mssql/database/%s/%s".formatted(databaseName, rootChangeLogName);
+              for (var databaseRecord : databaseRecords) {
                 try (var database =
                     databaseBuilder
                         .withDatabaseConnection(
                             DatabaseConnectionBuilder.of()
-                                .withUrl(jdbcUrl)
+                                .withUrl(toJdbcUrl(databaseRecord))
                                 .withUsername(specs.getUsername())
                                 .withPassword(specs.getPassword())
                                 .withDriver(container.getDriverClassName()))
@@ -266,20 +285,17 @@ class MarkitectMssqlDatabaseIntegrationTests {
                           new CommandScope(UpdateCommandStep.COMMAND_NAME)
                               .addArgumentValue(DbUrlConnectionCommandStep.DATABASE_ARG, database)
                               .addArgumentValue(
-                                  UpdateCommandStep.CHANGELOG_FILE_ARG, changeLogFileName)
+                                  UpdateCommandStep.CHANGELOG_FILE_ARG,
+                                  databaseRecord.changeLogFileName())
                               .execute());
                 }
               }
-              for (String databaseName : reversedIterable(databaseNames)) {
-                String jdbcUrl =
-                    "%s;databaseName=%s".formatted(container.getJdbcUrl(), databaseName);
-                String changeLogFileName =
-                    "db/changelog/mssql/database/%s/%s".formatted(databaseName, rootChangeLogName);
+              for (var databaseRecord : reversedIterable(databaseRecords)) {
                 try (var database =
                     databaseBuilder
                         .withDatabaseConnection(
                             DatabaseConnectionBuilder.of()
-                                .withUrl(jdbcUrl)
+                                .withUrl(toJdbcUrl(databaseRecord))
                                 .withUsername(specs.getUsername())
                                 .withPassword(specs.getPassword())
                                 .withDriver(container.getDriverClassName()))
@@ -293,7 +309,7 @@ class MarkitectMssqlDatabaseIntegrationTests {
                               .addArgumentValue(DbUrlConnectionCommandStep.DATABASE_ARG, database)
                               .addArgumentValue(
                                   DatabaseChangelogCommandStep.CHANGELOG_FILE_ARG,
-                                  changeLogFileName)
+                                  databaseRecord.changeLogFileName())
                               .addArgumentValue(
                                   RollbackToDateCommandStep.DATE_ARG, Date.from(Instant.EPOCH))
                               .execute());
@@ -304,4 +320,11 @@ class MarkitectMssqlDatabaseIntegrationTests {
     // then
     assertThat(thrown).isNull();
   }
+
+  private String toJdbcUrl(DatabaseRecord databaseRecord) {
+    return "%s;databaseName=%s".formatted(container.getJdbcUrl(), databaseRecord.databaseName());
+  }
+
+  @SuppressWarnings("unused")
+  private record DatabaseRecord(String databaseName, String changeLogFileName) {}
 }

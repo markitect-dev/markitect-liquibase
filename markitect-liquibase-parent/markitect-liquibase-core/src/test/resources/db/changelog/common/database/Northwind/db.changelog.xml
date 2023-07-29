@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+  <preConditions>
+    <or>
+      <dbms type="hsqldb"/>
+      <ext:connectionCatalog catalogName="Northwind"/>
+    </or>
+  </preConditions>
+
+  <changeSet id="1" author="markitect">
+    <createTable tableName="Employees">
+      <column name="EmployeeID" type="int" autoIncrement="true">
+        <constraints nullable="false" primaryKey="true" primaryKeyName="PK_Employees"/>
+      </column>
+      <column name="LastName" type="nvarchar(20)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="FirstName" type="nvarchar(10)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="Title" type="nvarchar(30)">
+        <constraints nullable="true"/>
+      </column>
+      <column name="TitleOfCourtesy" type="nvarchar(25)">
+        <constraints nullable="true"/>
+      </column>
+      <column name="BirthDate" type="datetime">
+        <constraints nullable="true"/>
+      </column>
+      <column name="HireDate" type="datetime">
+        <constraints nullable="true"/>
+      </column>
+      <column name="Address" type="nvarchar(60)">
+        <constraints nullable="true"/>
+      </column>
+      <column name="City" type="nvarchar(15)">
+        <constraints nullable="true"/>
+      </column>
+      <column name="Region" type="nvarchar(15)">
+        <constraints nullable="true"/>
+      </column>
+      <column name="PostalCode" type="nvarchar(10)">
+        <constraints nullable="true"/>
+      </column>
+      <column name="Country" type="nvarchar(15)">
+        <constraints nullable="true"/>
+      </column>
+      <column name="HomePhone" type="nvarchar(24)">
+        <constraints nullable="true"/>
+      </column>
+      <column name="Extension" type="nvarchar(4)">
+        <constraints nullable="true"/>
+      </column>
+      <column name="Photo" type="image">
+        <constraints nullable="true"/>
+      </column>
+      <column name="Notes" type="ntext">
+        <constraints nullable="true"/>
+      </column>
+      <column name="ReportsTo" type="int">
+        <constraints nullable="true" foreignKeyName="FK_Employees_Employees" referencedTableName="Employees"
+            referencedColumnNames="EmployeeID"/>
+      </column>
+      <column name="PhotoPath" type="nvarchar(255)">
+        <constraints nullable="true"/>
+      </column>
+    </createTable>
+    <modifySql dbms="mssql">
+      <regExpReplace replace="(\)$)" with=", CONSTRAINT CK_Birthdate CHECK (BirthDate &lt; getdate())$1"/>
+    </modifySql>
+    <modifySql dbms="h2,hsqldb,postgresql">
+      <regExpReplace replace="(\)$)" with=", CONSTRAINT CK_Birthdate CHECK (BirthDate &lt; LOCALTIMESTAMP)$1"/>
+    </modifySql>
+  </changeSet>
+</databaseChangeLog>

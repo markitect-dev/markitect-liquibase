@@ -7,24 +7,11 @@
         http://www.liquibase.org/xml/ns/dbchangelog-ext
         https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
   <preConditions>
-    <dbms type="mssql"/>
-    <ext:connectionCatalog catalogName="master"/>
+    <dbms type="postgresql"/>
+    <ext:connectionCatalog catalogName="postgres"/>
   </preConditions>
 
-  <changeSet id="1" author="markitect">
-    <ext:createDatabase databaseName="AdventureWorks2019"/>
-  </changeSet>
-
-  <changeSet id="2" author="markitect">
-    <ext:createDatabase databaseName="AdventureWorks2022"/>
-  </changeSet>
-
-  <changeSet id="3" author="markitect">
-    <ext:dropDatabase databaseName="AdventureWorks2019"/>
-    <rollback changeSetId="1" changeSetAuthor="markitect"/>
-  </changeSet>
-
-  <changeSet id="4" author="markitect">
+  <changeSet id="1" author="markitect" runInTransaction="false">
     <ext:createDatabase databaseName="Northwind"/>
   </changeSet>
 </databaseChangeLog>
