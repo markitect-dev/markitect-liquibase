@@ -24,6 +24,9 @@
 
   <properties>
     <automatic.module.name>dev.markitect.liquibase.core</automatic.module.name>
+    <maven.compiler.release>17</maven.compiler.release>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
     <sonar.cpd.exclusions>
       src/main/java/dev/markitect/liquibase/change/CreateSchemaChange.java,
       src/main/java/dev/markitect/liquibase/change/DropSchemaChange.java,
