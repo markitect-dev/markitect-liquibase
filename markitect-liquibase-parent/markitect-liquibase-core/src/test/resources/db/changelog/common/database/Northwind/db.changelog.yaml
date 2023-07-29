@@ -1,0 +1,121 @@
+databaseChangeLog:
+  - preConditions:
+      - or:
+          - dbms:
+              type: hsqldb
+          - connectionCatalog:
+              catalogName: Northwind
+
+  - changeSet:
+      id: 1
+      author: markitect
+      changes:
+        - createTable:
+            tableName: Employees
+            columns:
+              - column:
+                  name: EmployeeID
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: PK_Employees
+              - column:
+                  name: LastName
+                  type: nvarchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: FirstName
+                  type: nvarchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: Title
+                  type: nvarchar(30)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: TitleOfCourtesy
+                  type: nvarchar(25)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: BirthDate
+                  type: datetime
+                  constraints:
+                    nullable: true
+              - column:
+                  name: HireDate
+                  type: datetime
+                  constraints:
+                    nullable: true
+              - column:
+                  name: Address
+                  type: nvarchar(60)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: City
+                  type: nvarchar(15)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: Region
+                  type: nvarchar(15)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: PostalCode
+                  type: nvarchar(10)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: Country
+                  type: nvarchar(15)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: HomePhone
+                  type: nvarchar(24)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: Extension
+                  type: nvarchar(4)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: Photo
+                  type: image
+                  constraints:
+                    nullable: true
+              - column:
+                  name: Notes
+                  type: ntext
+                  constraints:
+                    nullable: true
+              - column:
+                  name: ReportsTo
+                  type: int
+                  constraints:
+                    nullable: true
+                    foreignKeyName: FK_Employees_Employees
+                    referencedTableName: Employees
+                    referencedColumnNames: EmployeeID
+              - column:
+                  name: PhotoPath
+                  type: nvarchar(255)
+                  constraints:
+                    nullable: true
+        - modifySql:
+            dbms: mssql
+            regExpReplace:
+              replace: (\)$)
+              with: ", CONSTRAINT CK_Birthdate CHECK (BirthDate < getdate())$1"
+        - modifySql:
+            dbms: h2,hsqldb,postgresql
+            regExpReplace:
+              replace: (\)$)
+              with: ", CONSTRAINT CK_Birthdate CHECK (BirthDate < LOCALTIMESTAMP)$1"

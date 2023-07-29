@@ -16,26 +16,43 @@
 
 package dev.markitect.liquibase.database.postgresql;
 
+import static org.apache.commons.collections4.IterableUtils.reversedIterable;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.catchThrowable;
 
 import dev.markitect.liquibase.base.Nullable;
 import dev.markitect.liquibase.database.DatabaseBuilder;
+import dev.markitect.liquibase.database.DatabaseConnectionBuilder;
 import dev.markitect.liquibase.database.TestDatabaseConfiguration;
+import dev.markitect.liquibase.database.TestDatabaseSpecs;
+import java.time.Instant;
+import java.util.Date;
 import java.util.LinkedHashMap;
+import java.util.List;
 import liquibase.GlobalConfiguration;
 import liquibase.Scope;
+import liquibase.command.CommandScope;
+import liquibase.command.core.RollbackToDateCommandStep;
+import liquibase.command.core.UpdateCommandStep;
+import liquibase.command.core.helpers.DatabaseChangelogCommandStep;
+import liquibase.command.core.helpers.DbUrlConnectionCommandStep;
 import liquibase.database.ObjectQuotingStrategy;
 import liquibase.structure.DatabaseObject;
+import liquibase.structure.core.Catalog;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junitpioneer.jupiter.json.JsonSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
 @SpringBootTest(classes = TestDatabaseConfiguration.class)
 @Testcontainers(disabledWithoutDocker = true)
 class MarkitectPostgresDatabaseIntegrationTests {
   @Autowired private DatabaseBuilder<MarkitectPostgresDatabase> databaseBuilder;
+  @Autowired private TestDatabaseSpecs specs;
+  @Autowired private PostgreSQLContainer<?> container;
 
   @ParameterizedTest
   @CsvSource(
@@ -159,4 +176,105 @@ class MarkitectPostgresDatabaseIntegrationTests {
       assertThat(actual).isEqualTo(expected);
     }
   }
+
+  @ParameterizedTest
+  @JsonSource(
+      """
+      [
+        [
+          {
+            databaseName: 'postgres',
+            changeLogFileName: 'db/changelog/postgresql/database/postgres/db.changelog.xml'
+          },
+          {
+            databaseName: 'Northwind',
+            changeLogFileName: 'db/changelog/common/database/Northwind/db.changelog.xml'
+          }
+        ],
+        [
+          {
+            databaseName: 'postgres',
+            changeLogFileName: 'db/changelog/postgresql/database/postgres/db.changelog.yaml'
+          },
+          {
+            databaseName: 'Northwind',
+            changeLogFileName: 'db/changelog/common/database/Northwind/db.changelog.yaml'
+          }
+        ]
+      ]
+      """)
+  void updateAndRollback(List<DatabaseRecord> databaseRecords) {
+    // when
+    var thrown =
+        catchThrowable(
+            () -> {
+              for (var databaseRecord : databaseRecords) {
+                String jdbcUrl = toJdbcUrl(databaseRecord);
+                try (var database =
+                    databaseBuilder
+                        .withDatabaseConnection(
+                            DatabaseConnectionBuilder.of()
+                                .withUrl(jdbcUrl)
+                                .withUsername(specs.getUsername())
+                                .withPassword(specs.getPassword())
+                                .withDriver(container.getDriverClassName()))
+                        .build()) {
+                  var scopeValues = new LinkedHashMap<String, Object>();
+                  scopeValues.put(Scope.Attr.database.name(), database);
+                  Scope.child(
+                      scopeValues,
+                      () ->
+                          new CommandScope(UpdateCommandStep.COMMAND_NAME)
+                              .addArgumentValue(DbUrlConnectionCommandStep.DATABASE_ARG, database)
+                              .addArgumentValue(
+                                  UpdateCommandStep.CHANGELOG_FILE_ARG,
+                                  databaseRecord.changeLogFileName())
+                              .execute());
+                }
+              }
+              for (var databaseRecord : reversedIterable(databaseRecords)) {
+                try (var database =
+                    databaseBuilder
+                        .withDatabaseConnection(
+                            DatabaseConnectionBuilder.of()
+                                .withUrl(toJdbcUrl(databaseRecord))
+                                .withUsername(specs.getUsername())
+                                .withPassword(specs.getPassword())
+                                .withDriver(container.getDriverClassName()))
+                        .build()) {
+                  var scopeValues = new LinkedHashMap<String, Object>();
+                  scopeValues.put(Scope.Attr.database.name(), database);
+                  Scope.child(
+                      scopeValues,
+                      () ->
+                          new CommandScope(RollbackToDateCommandStep.COMMAND_NAME)
+                              .addArgumentValue(DbUrlConnectionCommandStep.DATABASE_ARG, database)
+                              .addArgumentValue(
+                                  DatabaseChangelogCommandStep.CHANGELOG_FILE_ARG,
+                                  databaseRecord.changeLogFileName())
+                              .addArgumentValue(
+                                  RollbackToDateCommandStep.DATE_ARG, Date.from(Instant.EPOCH))
+                              .execute());
+                }
+              }
+            });
+
+    // then
+    assertThat(thrown).isNull();
+  }
+
+  @SuppressWarnings("resource")
+  private String toJdbcUrl(DatabaseRecord databaseRecord) {
+    try {
+      container.withDatabaseName(
+          new MarkitectPostgresDatabase()
+              .correctObjectName(databaseRecord.databaseName(), Catalog.class));
+      return container.getJdbcUrl();
+    } finally {
+      container.withDatabaseName(specs.getCatalogName());
+    }
+  }
+
+  @SuppressWarnings("unused")
+  private record DatabaseRecord(String databaseName, String changeLogFileName) {}
 }

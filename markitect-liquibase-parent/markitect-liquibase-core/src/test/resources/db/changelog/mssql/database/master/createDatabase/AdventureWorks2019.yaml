@@ -1,7 +1,0 @@
-databaseChangeLog:
-  - changeSet:
-      id: 1
-      author: markitect
-      changes:
-        - createDatabase:
-            databaseName: AdventureWorks2019
