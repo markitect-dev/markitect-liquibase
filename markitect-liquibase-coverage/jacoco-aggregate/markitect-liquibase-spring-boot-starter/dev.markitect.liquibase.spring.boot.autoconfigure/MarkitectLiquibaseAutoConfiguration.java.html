@@ -89,8 +89,8 @@ import org.springframework.util.StringUtils;
 
     private SpringLiquibase toSpringLiquibase(
         @Nullable DataSource liquibaseDataSource, @Nullable DataSource dataSource) {
-<span class="fc" id="L92">      DataSource migrationDataSource = toMigrationDataSource(liquibaseDataSource, dataSource);</span>
-<span class="fc" id="L93">      MarkitectSpringLiquibase liquibase = new MarkitectSpringLiquibase();</span>
+<span class="fc" id="L92">      var migrationDataSource = toMigrationDataSource(liquibaseDataSource, dataSource);</span>
+<span class="fc" id="L93">      var liquibase = new MarkitectSpringLiquibase();</span>
 <span class="fc" id="L94">      liquibase.setDropFirst(properties.isDropFirst());</span>
 <span class="fc" id="L95">      liquibase.setClearCheckSums(properties.isClearChecksums());</span>
 <span class="fc" id="L96">      liquibase.setShouldRun(properties.isEnabled());</span>
@@ -121,7 +121,7 @@ import org.springframework.util.StringUtils;
       }
 <span class="fc" id="L122">      String url = properties.getUrl();</span>
 <span class="fc bfc" id="L123" title="All 2 branches covered.">      if (url != null) {</span>
-<span class="fc" id="L124">        DataSourceBuilder&lt;?&gt; builder = DataSourceBuilder.create();</span>
+<span class="fc" id="L124">        var builder = DataSourceBuilder.create();</span>
 <span class="fc" id="L125">        builder.type(SimpleDriverDataSource.class);</span>
 <span class="fc" id="L126">        builder.url(url);</span>
 <span class="fc" id="L127">        applyCommonBuilderProperties(builder);</span>
@@ -129,7 +129,7 @@ import org.springframework.util.StringUtils;
       }
 <span class="fc bfc" id="L130" title="All 2 branches covered.">      Assert.state(dataSource != null, &quot;Liquibase migration DataSource missing&quot;);</span>
 <span class="fc bfc" id="L131" title="All 2 branches covered.">      if (properties.getUser() != null) {</span>
-<span class="fc" id="L132">        DataSourceBuilder&lt;?&gt; builder = DataSourceBuilder.derivedFrom(dataSource);</span>
+<span class="fc" id="L132">        var builder = DataSourceBuilder.derivedFrom(dataSource);</span>
 <span class="fc" id="L133">        builder.type(SimpleDriverDataSource.class);</span>
 <span class="fc" id="L134">        applyCommonBuilderProperties(builder);</span>
 <span class="fc" id="L135">        return builder.build();</span>

@@ -65,7 +65,7 @@ import liquibase.statement.SqlStatement;
 
   @Override
   protected Change[] createInverses() {
-<span class="fc" id="L68">    DropSchemaChange inverse = new DropSchemaChange();</span>
+<span class="fc" id="L68">    var inverse = new DropSchemaChange();</span>
 <span class="fc" id="L69">    inverse.setCatalogName(catalogName);</span>
 <span class="fc" id="L70">    inverse.setSchemaName(schemaName);</span>
 <span class="fc" id="L71">    return new Change[] {inverse};</span>
@@ -73,17 +73,17 @@ import liquibase.statement.SqlStatement;
 
   @Override
   public String getConfirmationMessage() {
-<span class="fc" id="L76">    return String.format(</span>
-        &quot;Schema %s created&quot;,
-<span class="fc" id="L78">        Stream.of(catalogName, String.valueOf(schemaName))</span>
-<span class="fc" id="L79">            .filter(Objects::nonNull)</span>
-<span class="fc" id="L80">            .collect(joining(&quot;.&quot;)));</span>
+<span class="fc" id="L76">    return &quot;Schema %s created&quot;</span>
+<span class="fc" id="L77">        .formatted(</span>
+<span class="fc" id="L78">            Stream.of(catalogName, String.valueOf(schemaName))</span>
+<span class="fc" id="L79">                .filter(Objects::nonNull)</span>
+<span class="fc" id="L80">                .collect(joining(&quot;.&quot;)));</span>
   }
 
   @Override
   public SqlStatement[] generateStatements(Database database) {
 <span class="fc" id="L85">    checkNotNull(database);</span>
-<span class="fc" id="L86">    CreateSchemaStatement statement = new CreateSchemaStatement();</span>
+<span class="fc" id="L86">    var statement = new CreateSchemaStatement();</span>
 <span class="fc" id="L87">    statement.setCatalogName(catalogName);</span>
 <span class="fc" id="L88">    statement.setSchemaName(schemaName);</span>
 <span class="fc" id="L89">    return new SqlStatement[] {statement};</span>

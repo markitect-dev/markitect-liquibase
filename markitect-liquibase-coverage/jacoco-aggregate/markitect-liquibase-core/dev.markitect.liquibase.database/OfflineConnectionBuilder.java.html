@@ -104,7 +104,7 @@ public final class OfflineConnectionBuilder {
 
   public MarkitectOfflineConnection build() {
 <span class="fc bfc" id="L106" title="All 2 branches covered.">    checkState(shortName != null);</span>
-<span class="fc" id="L107">    StringJoiner params = new StringJoiner(&quot;&amp;&quot;, &quot;?&quot;, &quot;&quot;);</span>
+<span class="fc" id="L107">    var params = new StringJoiner(&quot;&amp;&quot;, &quot;?&quot;, &quot;&quot;);</span>
 <span class="fc bfc" id="L108" title="All 2 branches covered.">    if (productName != null) {</span>
 <span class="fc" id="L109">      params.add(&quot;productName=&quot; + productName);</span>
     }
@@ -119,7 +119,7 @@ public final class OfflineConnectionBuilder {
     }
 <span class="fc" id="L120">    databaseParams.forEach((key, value) -&gt; params.add(key + &quot;=&quot; + value));</span>
 <span class="fc" id="L121">    String url = &quot;offline:&quot; + shortName + params;</span>
-<span class="fc" id="L122">    MarkitectOfflineConnection connection =</span>
+<span class="fc" id="L122">    var connection =</span>
 <span class="fc" id="L123">        new MarkitectOfflineConnection(url, Scope.getCurrentScope().getResourceAccessor());</span>
 <span class="fc" id="L124">    connection.setCatalog(catalog);</span>
 <span class="fc" id="L125">    connection.setSchema(schema);</span>

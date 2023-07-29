@@ -16,21 +16,23 @@
 
 package dev.markitect.liquibase.base;
 
-public class VerifyException extends RuntimeException {
-  private static final long serialVersionUID = -1807820882768027324L;
+import java.io.Serial;
 
-<span class="fc" id="L22">  public VerifyException() {}</span>
+public class VerifyException extends RuntimeException {
+  @Serial private static final long serialVersionUID = -1807820882768027324L;
+
+<span class="fc" id="L24">  public VerifyException() {}</span>
 
   public VerifyException(String message) {
-<span class="fc" id="L25">    super(message);</span>
-<span class="fc" id="L26">  }</span>
+<span class="fc" id="L27">    super(message);</span>
+<span class="fc" id="L28">  }</span>
 
   public VerifyException(String message, Throwable cause) {
-<span class="fc" id="L29">    super(message, cause);</span>
-<span class="fc" id="L30">  }</span>
+<span class="fc" id="L31">    super(message, cause);</span>
+<span class="fc" id="L32">  }</span>
 
   public VerifyException(Throwable cause) {
-<span class="fc" id="L33">    super(cause);</span>
-<span class="fc" id="L34">  }</span>
+<span class="fc" id="L35">    super(cause);</span>
+<span class="fc" id="L36">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

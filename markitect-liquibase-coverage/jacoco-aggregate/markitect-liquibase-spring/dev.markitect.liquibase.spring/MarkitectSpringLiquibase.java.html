@@ -35,7 +35,7 @@ import org.springframework.util.ReflectionUtils;
   @Override
   protected Database createDatabase(@Nullable Connection c, ResourceAccessor resourceAccessor)
       throws DatabaseException {
-<span class="fc" id="L38">    Database database = super.createDatabase(c, resourceAccessor);</span>
+<span class="fc" id="L38">    var database = super.createDatabase(c, resourceAccessor);</span>
 <span class="fc" id="L39">    database.setOutputDefaultCatalog(outputDefaultCatalog);</span>
 <span class="fc" id="L40">    database.setOutputDefaultSchema(outputDefaultSchema);</span>
 <span class="fc" id="L41">    return database;</span>

@@ -22,13 +22,12 @@ import dev.markitect.liquibase.base.Nullable;
 import dev.markitect.liquibase.base.Verify;
 import java.util.function.UnaryOperator;
 import liquibase.database.Database;
-import liquibase.database.DatabaseConnection;
 import liquibase.database.ObjectQuotingStrategy;
 
 public final class DatabaseBuilder&lt;D extends Database&gt; {
   public static &lt;T extends Database&gt; DatabaseBuilder&lt;T&gt; of(Class&lt;T&gt; databaseClass) {
-<span class="fc" id="L30">    checkNotNull(databaseClass);</span>
-<span class="fc" id="L31">    return new DatabaseBuilder&lt;&gt;(databaseClass, null, null, null, null, null);</span>
+<span class="fc" id="L29">    checkNotNull(databaseClass);</span>
+<span class="fc" id="L30">    return new DatabaseBuilder&lt;&gt;(databaseClass, null, null, null, null, null);</span>
   }
 
   private final Class&lt;D&gt; databaseClass;
@@ -44,18 +43,18 @@ public final class DatabaseBuilder&lt;D extends Database&gt; {
       @Nullable UnaryOperator&lt;OfflineConnectionBuilder&gt; offlineConnectionCustomizer,
       @Nullable ObjectQuotingStrategy objectQuotingStrategy,
       @Nullable Boolean outputDefaultCatalog,
-<span class="fc" id="L47">      @Nullable Boolean outputDefaultSchema) {</span>
-<span class="fc" id="L48">    this.databaseClass = checkNotNull(databaseClass);</span>
-<span class="fc" id="L49">    this.databaseConnectionBuilder = databaseConnectionBuilder;</span>
-<span class="fc" id="L50">    this.offlineConnectionCustomizer = offlineConnectionCustomizer;</span>
-<span class="fc" id="L51">    this.objectQuotingStrategy = objectQuotingStrategy;</span>
-<span class="fc" id="L52">    this.outputDefaultCatalog = outputDefaultCatalog;</span>
-<span class="fc" id="L53">    this.outputDefaultSchema = outputDefaultSchema;</span>
-<span class="fc" id="L54">  }</span>
+<span class="fc" id="L46">      @Nullable Boolean outputDefaultSchema) {</span>
+<span class="fc" id="L47">    this.databaseClass = checkNotNull(databaseClass);</span>
+<span class="fc" id="L48">    this.databaseConnectionBuilder = databaseConnectionBuilder;</span>
+<span class="fc" id="L49">    this.offlineConnectionCustomizer = offlineConnectionCustomizer;</span>
+<span class="fc" id="L50">    this.objectQuotingStrategy = objectQuotingStrategy;</span>
+<span class="fc" id="L51">    this.outputDefaultCatalog = outputDefaultCatalog;</span>
+<span class="fc" id="L52">    this.outputDefaultSchema = outputDefaultSchema;</span>
+<span class="fc" id="L53">  }</span>
 
   public DatabaseBuilder&lt;D&gt; withDatabaseConnection(
       @Nullable DatabaseConnectionBuilder databaseConnectionBuilder) {
-<span class="fc" id="L58">    return new DatabaseBuilder&lt;&gt;(</span>
+<span class="fc" id="L57">    return new DatabaseBuilder&lt;&gt;(</span>
         databaseClass,
         databaseConnectionBuilder,
         null,
@@ -65,12 +64,12 @@ public final class DatabaseBuilder&lt;D extends Database&gt; {
   }
 
   public DatabaseBuilder&lt;D&gt; withOfflineConnection() {
-<span class="fc" id="L68">    return withOfflineConnection(UnaryOperator.identity());</span>
+<span class="fc" id="L67">    return withOfflineConnection(UnaryOperator.identity());</span>
   }
 
   public DatabaseBuilder&lt;D&gt; withOfflineConnection(
       @Nullable UnaryOperator&lt;OfflineConnectionBuilder&gt; offlineConnectionCustomizer) {
-<span class="fc" id="L73">    return new DatabaseBuilder&lt;&gt;(</span>
+<span class="fc" id="L72">    return new DatabaseBuilder&lt;&gt;(</span>
         databaseClass,
         null,
         offlineConnectionCustomizer,
@@ -81,7 +80,7 @@ public final class DatabaseBuilder&lt;D extends Database&gt; {
 
   public DatabaseBuilder&lt;D&gt; withObjectQuotingStrategy(
       @Nullable ObjectQuotingStrategy objectQuotingStrategy) {
-<span class="fc" id="L84">    return new DatabaseBuilder&lt;&gt;(</span>
+<span class="fc" id="L83">    return new DatabaseBuilder&lt;&gt;(</span>
         databaseClass,
         databaseConnectionBuilder,
         offlineConnectionCustomizer,
@@ -91,7 +90,7 @@ public final class DatabaseBuilder&lt;D extends Database&gt; {
   }
 
   public DatabaseBuilder&lt;D&gt; withOutputDefaultCatalog(@Nullable Boolean outputDefaultCatalog) {
-<span class="fc" id="L94">    return new DatabaseBuilder&lt;&gt;(</span>
+<span class="fc" id="L93">    return new DatabaseBuilder&lt;&gt;(</span>
         databaseClass,
         databaseConnectionBuilder,
         offlineConnectionCustomizer,
@@ -101,7 +100,7 @@ public final class DatabaseBuilder&lt;D extends Database&gt; {
   }
 
   public DatabaseBuilder&lt;D&gt; withOutputDefaultSchema(@Nullable Boolean outputDefaultSchema) {
-<span class="fc" id="L104">    return new DatabaseBuilder&lt;&gt;(</span>
+<span class="fc" id="L103">    return new DatabaseBuilder&lt;&gt;(</span>
         databaseClass,
         databaseConnectionBuilder,
         offlineConnectionCustomizer,
@@ -113,31 +112,31 @@ public final class DatabaseBuilder&lt;D extends Database&gt; {
   public D build() {
     D database;
     try {
-<span class="fc" id="L116">      database = databaseClass.getConstructor().newInstance();</span>
-<span class="fc" id="L117">    } catch (ReflectiveOperationException | RuntimeException e) {</span>
-<span class="fc" id="L118">      throw new IllegalStateException(e);</span>
-<span class="fc" id="L119">    }</span>
-<span class="fc bfc" id="L120" title="All 2 branches covered.">    if (databaseConnectionBuilder != null) {</span>
-<span class="fc" id="L121">      DatabaseConnection databaseConnection = databaseConnectionBuilder.build();</span>
-<span class="fc" id="L122">      database.setConnection(databaseConnection);</span>
-<span class="fc bfc" id="L123" title="All 2 branches covered.">    } else if (offlineConnectionCustomizer != null) {</span>
-<span class="fc" id="L124">      MarkitectOfflineConnection offlineConnection =</span>
+<span class="fc" id="L115">      database = databaseClass.getConstructor().newInstance();</span>
+<span class="fc" id="L116">    } catch (ReflectiveOperationException | RuntimeException e) {</span>
+<span class="fc" id="L117">      throw new IllegalStateException(e);</span>
+<span class="fc" id="L118">    }</span>
+<span class="fc bfc" id="L119" title="All 2 branches covered.">    if (databaseConnectionBuilder != null) {</span>
+<span class="fc" id="L120">      var databaseConnection = databaseConnectionBuilder.build();</span>
+<span class="fc" id="L121">      database.setConnection(databaseConnection);</span>
+<span class="fc bfc" id="L122" title="All 2 branches covered.">    } else if (offlineConnectionCustomizer != null) {</span>
+<span class="fc" id="L123">      var offlineConnection =</span>
           offlineConnectionCustomizer
-<span class="fc" id="L126">              .andThen(Verify::verifyNotNull)</span>
-<span class="fc" id="L127">              .apply(OfflineConnectionBuilder.of().withShortName(database.getShortName()))</span>
-<span class="fc" id="L128">              .build();</span>
-<span class="fc" id="L129">      database.setConnection(offlineConnection);</span>
+<span class="fc" id="L125">              .andThen(Verify::verifyNotNull)</span>
+<span class="fc" id="L126">              .apply(OfflineConnectionBuilder.of().withShortName(database.getShortName()))</span>
+<span class="fc" id="L127">              .build();</span>
+<span class="fc" id="L128">      database.setConnection(offlineConnection);</span>
     }
-<span class="fc bfc" id="L131" title="All 2 branches covered.">    if (objectQuotingStrategy != null) {</span>
-<span class="fc" id="L132">      database.setObjectQuotingStrategy(objectQuotingStrategy);</span>
+<span class="fc bfc" id="L130" title="All 2 branches covered.">    if (objectQuotingStrategy != null) {</span>
+<span class="fc" id="L131">      database.setObjectQuotingStrategy(objectQuotingStrategy);</span>
     }
-<span class="fc bfc" id="L134" title="All 2 branches covered.">    if (outputDefaultCatalog != null) {</span>
-<span class="fc" id="L135">      database.setOutputDefaultCatalog(outputDefaultCatalog);</span>
+<span class="fc bfc" id="L133" title="All 2 branches covered.">    if (outputDefaultCatalog != null) {</span>
+<span class="fc" id="L134">      database.setOutputDefaultCatalog(outputDefaultCatalog);</span>
     }
-<span class="fc bfc" id="L137" title="All 2 branches covered.">    if (outputDefaultSchema != null) {</span>
-<span class="fc" id="L138">      database.setOutputDefaultSchema(outputDefaultSchema);</span>
+<span class="fc bfc" id="L136" title="All 2 branches covered.">    if (outputDefaultSchema != null) {</span>
+<span class="fc" id="L137">      database.setOutputDefaultSchema(outputDefaultSchema);</span>
     }
-<span class="fc" id="L140">    return database;</span>
+<span class="fc" id="L139">    return database;</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

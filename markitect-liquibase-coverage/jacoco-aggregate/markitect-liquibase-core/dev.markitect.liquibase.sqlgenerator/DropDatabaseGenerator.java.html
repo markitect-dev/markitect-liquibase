@@ -45,7 +45,7 @@ import liquibase.structure.core.Catalog;
 <span class="fc" id="L45">    checkNotNull(statement);</span>
 <span class="fc" id="L46">    checkNotNull(database);</span>
 <span class="fc" id="L47">    checkNotNull(sqlGeneratorChain);</span>
-<span class="fc" id="L48">    ValidationErrors errors = new ValidationErrors();</span>
+<span class="fc" id="L48">    var errors = new ValidationErrors();</span>
 <span class="fc" id="L49">    errors.checkRequiredField(&quot;databaseName&quot;, statement.getDatabaseName());</span>
 <span class="fc" id="L50">    return errors;</span>
   }

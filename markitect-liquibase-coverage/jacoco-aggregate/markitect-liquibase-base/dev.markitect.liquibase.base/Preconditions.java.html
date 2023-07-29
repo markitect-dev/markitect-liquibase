@@ -24,8 +24,8 @@ public final class Preconditions {
 <span class="fc bfc" id="L24" title="All 4 branches covered.">    if (index &lt; 0 || index &gt;= size) {</span>
 <span class="fc" id="L25">      throw new IndexOutOfBoundsException(</span>
 <span class="fc bfc" id="L26" title="All 2 branches covered.">          index &lt; 0</span>
-<span class="fc" id="L27">              ? String.format(&quot;index (%s) must be non-negative&quot;, index)</span>
-<span class="fc" id="L28">              : String.format(&quot;index (%s) must be less than size (%s)&quot;, index, size));</span>
+<span class="fc" id="L27">              ? &quot;index (%s) must be non-negative&quot;.formatted(index)</span>
+<span class="fc" id="L28">              : &quot;index (%s) must be less than size (%s)&quot;.formatted(index, size));</span>
     }
 <span class="fc" id="L30">    return index;</span>
   }

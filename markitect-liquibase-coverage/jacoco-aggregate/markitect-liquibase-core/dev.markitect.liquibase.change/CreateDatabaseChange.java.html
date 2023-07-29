@@ -49,20 +49,20 @@ import liquibase.statement.SqlStatement;
 
   @Override
   protected Change[] createInverses() {
-<span class="fc" id="L52">    DropDatabaseChange inverse = new DropDatabaseChange();</span>
+<span class="fc" id="L52">    var inverse = new DropDatabaseChange();</span>
 <span class="fc" id="L53">    inverse.setDatabaseName(databaseName);</span>
 <span class="fc" id="L54">    return new Change[] {inverse};</span>
   }
 
   @Override
   public String getConfirmationMessage() {
-<span class="fc" id="L59">    return String.format(&quot;Database %s created&quot;, databaseName);</span>
+<span class="fc" id="L59">    return &quot;Database %s created&quot;.formatted(databaseName);</span>
   }
 
   @Override
   public SqlStatement[] generateStatements(Database database) {
 <span class="fc" id="L64">    checkNotNull(database);</span>
-<span class="fc" id="L65">    CreateDatabaseStatement statement = new CreateDatabaseStatement();</span>
+<span class="fc" id="L65">    var statement = new CreateDatabaseStatement();</span>
 <span class="fc" id="L66">    statement.setDatabaseName(databaseName);</span>
 <span class="fc" id="L67">    return new SqlStatement[] {statement};</span>
   }

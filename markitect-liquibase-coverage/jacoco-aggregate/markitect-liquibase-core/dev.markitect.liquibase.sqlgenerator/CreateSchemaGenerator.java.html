@@ -51,7 +51,7 @@ import liquibase.structure.core.Schema;
 <span class="fc" id="L51">    checkNotNull(statement);</span>
 <span class="fc" id="L52">    checkNotNull(database);</span>
 <span class="fc" id="L53">    checkNotNull(sqlGeneratorChain);</span>
-<span class="fc" id="L54">    ValidationErrors errors = new ValidationErrors();</span>
+<span class="fc" id="L54">    var errors = new ValidationErrors();</span>
 <span class="fc" id="L55">    errors.checkDisallowedField(</span>
 <span class="fc" id="L56">        &quot;catalogName&quot;, statement.getCatalogName(), database, database.getClass());</span>
 <span class="fc" id="L57">    errors.checkRequiredField(&quot;schemaName&quot;, statement.getSchemaName());</span>
