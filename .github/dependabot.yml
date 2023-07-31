@@ -23,12 +23,7 @@ updates:
         update-types: [ "version-update:semver-minor" ]
       - dependency-name: "com.microsoft.sqlserver:mssql-jdbc"
         versions:
-          - "12.3.1.jre11-preview"
-          - "12.3.1.jre8-preview"
-          - "12.3.0.jre20-preview"
-          - "12.3.0.jre17-preview"
-          - "12.3.0.jre11-preview"
-          - "12.3.0.jre8-preview"
+          - "12.4.0.jre11-preview"
       - dependency-name: "com.zaxxer:*"
         update-types: [ "version-update:semver-major" ]
       - dependency-name: "jakarta.activation:*"
