@@ -67,7 +67,7 @@
     <maven.compiler.release>${java.version}</maven.compiler.release>
     <maven.compiler.testRelease>${java.version}</maven.compiler.testRelease>
     <maven.deploy.skip>false</maven.deploy.skip>
-    <maven.enforcer.requireMavenVersion>3.9.3</maven.enforcer.requireMavenVersion>
+    <maven.enforcer.requireMavenVersion>3.9.4</maven.enforcer.requireMavenVersion>
     <maven.site.fluidoSkin.gitHub.projectId>markitect-dev/markitect-liquibase</maven.site.fluidoSkin.gitHub.projectId>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
