@@ -53,7 +53,6 @@ class StructuresTests {
   }
 
   @Test
-  @SuppressWarnings("DataFlowIssue")
   void isCatalogOrSchemaTypeThrowsNullPointerException() {
     // when
     var thrown = catchThrowable(() -> Structures.isCatalogOrSchemaType(null));

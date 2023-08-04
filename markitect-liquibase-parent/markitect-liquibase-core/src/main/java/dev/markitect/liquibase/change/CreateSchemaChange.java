@@ -19,7 +19,6 @@ package dev.markitect.liquibase.change;
 import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
 import static java.util.stream.Collectors.joining;
 
-import dev.markitect.liquibase.base.Nullable;
 import dev.markitect.liquibase.statement.CreateSchemaStatement;
 import java.util.Objects;
 import java.util.stream.Stream;
@@ -30,6 +29,7 @@ import liquibase.change.DatabaseChange;
 import liquibase.change.DatabaseChangeProperty;
 import liquibase.database.Database;
 import liquibase.statement.SqlStatement;
+import org.jspecify.annotations.Nullable;
 
 @DatabaseChange(
     name = "createSchema",

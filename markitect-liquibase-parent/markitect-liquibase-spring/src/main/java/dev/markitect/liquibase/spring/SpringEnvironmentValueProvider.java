@@ -20,13 +20,13 @@ import static dev.markitect.liquibase.base.Preconditions.checkIndex;
 import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
 import static dev.markitect.liquibase.spring.SpringEnvironmentHolder.getEnvironment;
 
-import dev.markitect.liquibase.base.Nullable;
 import dev.markitect.liquibase.base.Preconditions;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.Optional;
 import liquibase.configuration.AbstractConfigurationValueProvider;
 import liquibase.configuration.ProvidedValue;
+import org.jspecify.annotations.Nullable;
 
 public class SpringEnvironmentValueProvider extends AbstractConfigurationValueProvider {
   private static final String PROPERTY_PREFIX = "markitect.liquibase.properties.";

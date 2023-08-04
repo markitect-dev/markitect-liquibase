@@ -16,8 +16,8 @@
 
 package dev.markitect.liquibase.statement;
 
-import dev.markitect.liquibase.base.Nullable;
 import liquibase.statement.AbstractSqlStatement;
+import org.jspecify.annotations.Nullable;
 
 public class CreateSchemaStatement extends AbstractSqlStatement {
   private @Nullable String catalogName;

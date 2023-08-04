@@ -20,7 +20,7 @@ import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
 import static dev.markitect.liquibase.base.Preconditions.checkState;
 
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
-import dev.markitect.liquibase.base.Nullable;
+import org.jspecify.annotations.Nullable;
 
 public final class TestDatabaseSpecs {
   public static Builder builder() {
