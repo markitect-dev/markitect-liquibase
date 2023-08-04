@@ -86,18 +86,18 @@
 <th>Licenses</th>
 <th>Optional</th></tr>
 <tr class="b">
-<td style="text-align: left;">com.google.code.findbugs</td>
-<td><a class="externalLink" href="http://findbugs.sourceforge.net/">jsr305</a></td>
-<td>3.0.2</td>
-<td>jar</td>
-<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td>
-<td>Yes</td></tr>
-<tr class="a">
 <td style="text-align: left;">com.google.errorprone</td>
 <td><a class="externalLink" href="https://errorprone.info/error_prone_annotations">error_prone_annotations</a></td>
 <td>2.21.0</td>
 <td>jar</td>
 <td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache 2.0</a></td>
+<td>Yes</td></tr>
+<tr class="a">
+<td style="text-align: left;">org.jspecify</td>
+<td><a class="externalLink" href="http://jspecify.org/">jspecify</a></td>
+<td>0.3.0</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache License, Version 2.0</a></td>
 <td>Yes</td></tr></table></section><a id="Project_Dependencies_test"></a><section>
 <h2>test</h2>
 <p>The following is a list of test dependencies for this project. These dependencies are only required to compile and run unit tests for the application:</p>
@@ -210,16 +210,7 @@
 <p><b>URL: </b><a class="externalLink" href="https://github.com/markitect-dev/markitect-liquibase">https://github.com/markitect-dev/markitect-liquibase</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></p></td></tr></table></div>
 <ul>
-<li>com.google.code.findbugs:jsr305:jar:3.0.2 (compile) <img id="_img3" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep2', '_img3' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep2" style="display:none">
-<table class="table table-striped">
-<tr class="a">
-<th>FindBugs-jsr305</th></tr>
-<tr class="b">
-<td style="text-align: left;">
-<p><b>Description: </b>JSR305 Annotations for Findbugs</p>
-<p><b>URL: </b><a class="externalLink" href="http://findbugs.sourceforge.net/">http://findbugs.sourceforge.net/</a></p>
-<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
-<li>com.google.errorprone:error_prone_annotations:jar:2.21.0 (compile) <img id="_img5" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep4', '_img5' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep4" style="display:none">
+<li>com.google.errorprone:error_prone_annotations:jar:2.21.0 (compile) <img id="_img3" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep2', '_img3' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep2" style="display:none">
 <table class="table table-striped">
 <tr class="a">
 <th>error-prone annotations</th></tr>
@@ -228,6 +219,15 @@
 <p><b>Description: </b>Error Prone is a static analysis tool for Java that catches common programming mistakes at compile-time.</p>
 <p><b>URL: </b><a class="externalLink" href="https://errorprone.info/error_prone_annotations">https://errorprone.info/error_prone_annotations</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache 2.0</a></p></td></tr></table></div></li>
+<li>org.jspecify:jspecify:jar:0.3.0 (compile) <img id="_img5" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep4', '_img5' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep4" style="display:none">
+<table class="table table-striped">
+<tr class="a">
+<th>JSpecify annotations</th></tr>
+<tr class="b">
+<td style="text-align: left;">
+<p><b>Description: </b>An artifact of well-named and well-specified annotations to power static analysis checks</p>
+<p><b>URL: </b><a class="externalLink" href="http://jspecify.org/">http://jspecify.org/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache License, Version 2.0</a></p></td></tr></table></div></li>
 <li>org.assertj:assertj-core:jar:3.24.2 (test) <img id="_img7" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep6', '_img7' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep6" style="display:none">
 <table class="table table-striped">
 <tr class="a">
@@ -325,11 +325,10 @@
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.eclipse.org/legal/epl-v20.html">Eclipse Public License v2.0</a></p></td></tr></table></div></li></ul></li></ul></li></ul></li></ul></section></section><a id="Licenses"></a><section>
 <h1>Licenses</h1>
 <p><b>Apache 2.0: </b>error-prone annotations</p>
-<p><b>The Apache License, Version 2.0: </b>org.apiguardian:apiguardian-api, org.opentest4j:opentest4j</p>
+<p><b>The Apache License, Version 2.0: </b>JSpecify annotations, org.apiguardian:apiguardian-api, org.opentest4j:opentest4j</p>
 <p><b>Apache-2.0: </b>markitect-liquibase-base</p>
 <p><b>Apache License, Version 2.0: </b>AssertJ Core, Byte Buddy (without dependencies)</p>
-<p><b>Eclipse Public License v2.0: </b>JUnit Jupiter (Aggregator), JUnit Jupiter API, JUnit Jupiter Engine, JUnit Jupiter Params, JUnit Platform Commons, JUnit Platform Engine API</p>
-<p><b>The Apache Software License, Version 2.0: </b>FindBugs-jsr305</p></section><a id="Dependency_File_Details"></a><section>
+<p><b>Eclipse Public License v2.0: </b>JUnit Jupiter (Aggregator), JUnit Jupiter API, JUnit Jupiter Engine, JUnit Jupiter Params, JUnit Platform Commons, JUnit Platform Engine API</p></section><a id="Dependency_File_Details"></a><section>
 <h1>Dependency File Details</h1>
 <table class="table table-striped">
 <tr class="a">
@@ -421,14 +420,6 @@
 <td style="text-align: center;">9</td>
 <td style="text-align: center;">Yes</td></tr>
 <tr class="b">
-<td style="text-align: left;">jsr305-3.0.2.jar</td>
-<td style="text-align: right;">19.9 kB</td>
-<td style="text-align: right;">46</td>
-<td style="text-align: right;">35</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: center;">1.5</td>
-<td style="text-align: center;">Yes</td></tr>
-<tr class="a">
 <td style="text-align: left;">error_prone_annotations-2.21.0.jar</td>
 <td style="text-align: right;">16.8 kB</td>
 <td style="text-align: right;">39</td>
@@ -436,6 +427,14 @@
 <td style="text-align: right;">2</td>
 <td style="text-align: center;">1.8</td>
 <td style="text-align: center;">Yes</td></tr>
+<tr class="a">
+<td style="text-align: left;">jspecify-0.3.0.jar</td>
+<td style="text-align: right;">2.8 kB</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">No</td></tr>
 <tr class="b">
 <th>Total</th>
 <th>Size</th>
@@ -447,19 +446,19 @@
 <tr class="a">
 <td style="text-align: right;">12</td>
 <td style="text-align: right;">6.9 MB</td>
-<td style="text-align: right;">4831</td>
-<td style="text-align: right;">4595</td>
-<td style="text-align: right;">133</td>
+<td style="text-align: right;">4797</td>
+<td style="text-align: right;">4565</td>
+<td style="text-align: right;">132</td>
 <td style="text-align: center;">9</td>
-<td style="text-align: right;">11</td></tr>
+<td style="text-align: right;">10</td></tr>
 <tr class="b">
 <td style="text-align: right;">compile: 2</td>
-<td style="text-align: right;">compile: 36.8 kB</td>
-<td style="text-align: right;">compile: 85</td>
-<td style="text-align: right;">compile: 62</td>
-<td style="text-align: right;">compile: 5</td>
-<td style="text-align: center;">1.8</td>
-<td style="text-align: right;">compile: 2</td></tr>
+<td style="text-align: right;">compile: 19.7 kB</td>
+<td style="text-align: right;">compile: 51</td>
+<td style="text-align: right;">compile: 32</td>
+<td style="text-align: right;">compile: 4</td>
+<td style="text-align: center;">9</td>
+<td style="text-align: right;">compile: 1</td></tr>
 <tr class="a">
 <td style="text-align: right;">test: 10</td>
 <td style="text-align: right;">test: 6.9 MB</td>

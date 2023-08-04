@@ -17,54 +17,55 @@
 package dev.markitect.liquibase.base;
 
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
+import org.jspecify.annotations.Nullable;
 
 public final class Preconditions {
   @CanIgnoreReturnValue
   public static int checkIndex(int index, int size) {
-<span class="fc bfc" id="L24" title="All 4 branches covered.">    if (index &lt; 0 || index &gt;= size) {</span>
-<span class="fc" id="L25">      throw new IndexOutOfBoundsException(</span>
-<span class="fc bfc" id="L26" title="All 2 branches covered.">          index &lt; 0</span>
-<span class="fc" id="L27">              ? &quot;index (%s) must be non-negative&quot;.formatted(index)</span>
-<span class="fc" id="L28">              : &quot;index (%s) must be less than size (%s)&quot;.formatted(index, size));</span>
+<span class="fc bfc" id="L25" title="All 4 branches covered.">    if (index &lt; 0 || index &gt;= size) {</span>
+<span class="fc" id="L26">      throw new IndexOutOfBoundsException(</span>
+<span class="fc bfc" id="L27" title="All 2 branches covered.">          index &lt; 0</span>
+<span class="fc" id="L28">              ? &quot;index (%s) must be non-negative&quot;.formatted(index)</span>
+<span class="fc" id="L29">              : &quot;index (%s) must be less than size (%s)&quot;.formatted(index, size));</span>
     }
-<span class="fc" id="L30">    return index;</span>
+<span class="fc" id="L31">    return index;</span>
   }
 
   @CanIgnoreReturnValue
   public static int checkIndex(int index, int size, @Nullable String errorMessage) {
-<span class="fc bfc" id="L35" title="All 4 branches covered.">    if (index &lt; 0 || index &gt;= size) {</span>
-<span class="fc" id="L36">      throw new IndexOutOfBoundsException(String.valueOf(errorMessage));</span>
+<span class="fc bfc" id="L36" title="All 4 branches covered.">    if (index &lt; 0 || index &gt;= size) {</span>
+<span class="fc" id="L37">      throw new IndexOutOfBoundsException(String.valueOf(errorMessage));</span>
     }
-<span class="fc" id="L38">    return index;</span>
+<span class="fc" id="L39">    return index;</span>
   }
 
   @CanIgnoreReturnValue
   public static &lt;T&gt; T checkNotNull(@Nullable T reference) {
-<span class="fc bfc" id="L43" title="All 2 branches covered.">    if (reference == null) {</span>
-<span class="fc" id="L44">      throw new NullPointerException();</span>
+<span class="fc bfc" id="L44" title="All 2 branches covered.">    if (reference == null) {</span>
+<span class="fc" id="L45">      throw new NullPointerException();</span>
     }
-<span class="fc" id="L46">    return reference;</span>
+<span class="fc" id="L47">    return reference;</span>
   }
 
   @CanIgnoreReturnValue
   public static &lt;T&gt; T checkNotNull(@Nullable T reference, @Nullable String errorMessage) {
-<span class="fc bfc" id="L51" title="All 2 branches covered.">    if (reference == null) {</span>
-<span class="fc" id="L52">      throw new NullPointerException(String.valueOf(errorMessage));</span>
+<span class="fc bfc" id="L52" title="All 2 branches covered.">    if (reference == null) {</span>
+<span class="fc" id="L53">      throw new NullPointerException(String.valueOf(errorMessage));</span>
     }
-<span class="fc" id="L54">    return reference;</span>
+<span class="fc" id="L55">    return reference;</span>
   }
 
   public static void checkState(boolean expression) {
-<span class="fc bfc" id="L58" title="All 2 branches covered.">    if (!expression) {</span>
-<span class="fc" id="L59">      throw new IllegalStateException();</span>
+<span class="fc bfc" id="L59" title="All 2 branches covered.">    if (!expression) {</span>
+<span class="fc" id="L60">      throw new IllegalStateException();</span>
     }
-<span class="fc" id="L61">  }</span>
+<span class="fc" id="L62">  }</span>
 
   public static void checkState(boolean expression, @Nullable String errorMessage) {
-<span class="fc bfc" id="L64" title="All 2 branches covered.">    if (!expression) {</span>
-<span class="fc" id="L65">      throw new IllegalStateException(String.valueOf(errorMessage));</span>
+<span class="fc bfc" id="L65" title="All 2 branches covered.">    if (!expression) {</span>
+<span class="fc" id="L66">      throw new IllegalStateException(String.valueOf(errorMessage));</span>
     }
-<span class="fc" id="L67">  }</span>
+<span class="fc" id="L68">  }</span>
 
   private Preconditions() {}
 }
