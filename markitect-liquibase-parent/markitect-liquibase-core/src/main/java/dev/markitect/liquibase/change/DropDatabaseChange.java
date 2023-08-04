@@ -18,7 +18,6 @@ package dev.markitect.liquibase.change;
 
 import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
 
-import dev.markitect.liquibase.base.Nullable;
 import dev.markitect.liquibase.statement.DropDatabaseStatement;
 import liquibase.change.AbstractChange;
 import liquibase.change.Change;
@@ -27,6 +26,7 @@ import liquibase.change.DatabaseChange;
 import liquibase.change.DatabaseChangeProperty;
 import liquibase.database.Database;
 import liquibase.statement.SqlStatement;
+import org.jspecify.annotations.Nullable;
 
 @DatabaseChange(
     name = "dropDatabase",

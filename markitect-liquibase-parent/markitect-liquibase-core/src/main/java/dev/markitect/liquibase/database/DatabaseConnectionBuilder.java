@@ -18,11 +18,11 @@ package dev.markitect.liquibase.database;
 
 import static dev.markitect.liquibase.base.Preconditions.checkState;
 
-import dev.markitect.liquibase.base.Nullable;
 import liquibase.Scope;
 import liquibase.database.DatabaseConnection;
 import liquibase.database.DatabaseFactory;
 import liquibase.exception.DatabaseException;
+import org.jspecify.annotations.Nullable;
 
 public final class DatabaseConnectionBuilder {
   private static final DatabaseConnectionBuilder SINGLETON =

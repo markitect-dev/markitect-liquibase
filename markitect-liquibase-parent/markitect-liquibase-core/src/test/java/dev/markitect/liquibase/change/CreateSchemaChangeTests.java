@@ -18,7 +18,6 @@ package dev.markitect.liquibase.change;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import dev.markitect.liquibase.base.Nullable;
 import dev.markitect.liquibase.database.DatabaseBuilder;
 import dev.markitect.liquibase.statement.CreateSchemaStatement;
 import java.util.List;
@@ -26,6 +25,7 @@ import liquibase.database.Database;
 import liquibase.sql.UnparsedSql;
 import liquibase.sqlgenerator.SqlGeneratorFactory;
 import liquibase.structure.core.Schema;
+import org.jspecify.annotations.Nullable;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junitpioneer.jupiter.json.JsonSource;

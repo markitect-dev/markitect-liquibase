@@ -16,7 +16,6 @@
 
 package dev.markitect.liquibase.spring.boot.autoconfigure;
 
-import dev.markitect.liquibase.base.Nullable;
 import dev.markitect.liquibase.spring.MarkitectSpringLiquibase;
 import dev.markitect.liquibase.spring.SpringLiquibaseBeanPostProcessor;
 import dev.markitect.liquibase.spring.boot.autoconfigure.MarkitectLiquibaseAutoConfiguration.LiquibaseDataSourceCondition;
@@ -24,6 +23,7 @@ import java.util.Optional;
 import javax.sql.DataSource;
 import liquibase.change.DatabaseChange;
 import liquibase.integration.spring.SpringLiquibase;
+import org.jspecify.annotations.Nullable;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.AnyNestedCondition;

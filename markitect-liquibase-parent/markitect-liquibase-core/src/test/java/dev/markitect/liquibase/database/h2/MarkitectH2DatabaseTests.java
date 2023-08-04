@@ -18,13 +18,13 @@ package dev.markitect.liquibase.database.h2;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import dev.markitect.liquibase.base.Nullable;
 import dev.markitect.liquibase.database.DatabaseBuilder;
 import java.util.LinkedHashMap;
 import liquibase.GlobalConfiguration;
 import liquibase.Scope;
 import liquibase.database.ObjectQuotingStrategy;
 import liquibase.structure.DatabaseObject;
+import org.jspecify.annotations.Nullable;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 

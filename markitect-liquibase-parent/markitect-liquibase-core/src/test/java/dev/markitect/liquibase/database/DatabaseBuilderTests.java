@@ -19,7 +19,6 @@ package dev.markitect.liquibase.database;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
 
-import dev.markitect.liquibase.base.Nullable;
 import dev.markitect.liquibase.base.VerifyException;
 import java.util.Map;
 import java.util.Optional;
@@ -28,6 +27,7 @@ import liquibase.database.Database;
 import liquibase.database.ObjectQuotingStrategy;
 import liquibase.database.core.AbstractDb2Database;
 import liquibase.database.core.H2Database;
+import org.jspecify.annotations.Nullable;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;

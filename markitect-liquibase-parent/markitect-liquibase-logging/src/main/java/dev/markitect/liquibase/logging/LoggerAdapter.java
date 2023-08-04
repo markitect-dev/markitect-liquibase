@@ -18,10 +18,10 @@ package dev.markitect.liquibase.logging;
 
 import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
 
-import dev.markitect.liquibase.base.Nullable;
 import liquibase.logging.Logger;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.spi.LoggerContext;
+import org.jspecify.annotations.Nullable;
 import org.slf4j.LoggerFactory;
 import org.slf4j.spi.LocationAwareLogger;
 
