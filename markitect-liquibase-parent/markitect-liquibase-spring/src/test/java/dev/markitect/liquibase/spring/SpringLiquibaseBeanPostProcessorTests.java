@@ -18,6 +18,8 @@ package dev.markitect.liquibase.spring;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 import dev.markitect.liquibase.ScopeManagerHelper;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -30,6 +32,7 @@ import org.springframework.mock.env.MockEnvironment;
 
 @ExtendWith(MockitoExtension.class)
 class SpringLiquibaseBeanPostProcessorTests {
+  @Mock private ScopeManagerHelper scopeManagerHelper;
   @Mock private MockedStatic<ScopeManagerHelper> mockedScopeManagerHelper;
   @Mock private MockedStatic<SpringEnvironmentHolder> mockedSpringEnvironmentHolder;
   private final MockEnvironment environment = new MockEnvironment();
@@ -45,18 +48,19 @@ class SpringLiquibaseBeanPostProcessorTests {
           liquibase.integration.spring.SpringLiquibase            | liquibase
           """,
       delimiter = '|')
-  @SuppressWarnings("DirectInvocationOnMock")
+  @SuppressWarnings({"DirectInvocationOnMock", "ResultOfMethodCallIgnored", "RedundantSuppression"})
   void postProcessBeforeInstantiation(Class<?> beanClass, String beanName) {
     // given
     environment.setProperty("markitect.liquibase.use-thread-local-scope-manager", "true");
+    mockedScopeManagerHelper.when(ScopeManagerHelper::getInstance).thenReturn(scopeManagerHelper);
 
     // when
     Object actual =
         springLiquibaseBeanPostProcessor.postProcessBeforeInstantiation(beanClass, beanName);
 
     // then
-    mockedScopeManagerHelper.verify(ScopeManagerHelper::useThreadLocalScopeManager);
-    mockedScopeManagerHelper.verifyNoMoreInteractions();
+    verify(scopeManagerHelper).useThreadLocalScopeManager();
+    verifyNoMoreInteractions(scopeManagerHelper);
     assertThat(actual).isNull();
   }
 

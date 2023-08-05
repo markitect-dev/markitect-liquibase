@@ -41,7 +41,7 @@ public class SpringLiquibaseBeanPostProcessor implements InstantiationAwareBeanP
             environment.getProperty(
                 "markitect.liquibase.use-thread-local-scope-manager", Boolean.class))) {
       log.debug("Initializing Liquibase scope manager");
-      ScopeManagerHelper.useThreadLocalScopeManager();
+      ScopeManagerHelper.getInstance().useThreadLocalScopeManager();
     }
     return null;
   }

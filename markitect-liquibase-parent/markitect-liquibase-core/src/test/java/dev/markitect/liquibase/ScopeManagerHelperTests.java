@@ -18,12 +18,9 @@ package dev.markitect.liquibase;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.concurrent.ConcurrentHashMap;
 import liquibase.Scope;
 import liquibase.ScopeManager;
 import liquibase.ThreadLocalScopeManager;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
@@ -35,33 +32,32 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
 class ScopeManagerHelperTests {
-  private ConcurrentHashMap<Object, Object> cache;
-  private ConcurrentHashMap<Object, Object> originalCacheCopy;
   @Mock private MockedConstruction<ThreadLocalScopeManager> mockedThreadLocalScopeManager;
   @Mock private MockedStatic<Scope> mockedScope;
   @Captor private ArgumentCaptor<ScopeManager> scopeManagerCaptor;
 
-  @BeforeEach
-  @SuppressWarnings("unchecked")
-  void setUp() throws Exception {
-    var cacheField = ScopeManagerHelper.class.getDeclaredField("cache");
-    cacheField.setAccessible(true);
-    cache = (ConcurrentHashMap<Object, Object>) cacheField.get(ScopeManagerHelper.class);
-    originalCacheCopy = new ConcurrentHashMap<>(cache);
-    cache.clear();
-  }
+  @Test
+  void getInstance() {
+    // when
+    var instance = ScopeManagerHelper.getInstance();
 
-  @AfterEach
-  void tearDown() {
-    cache.clear();
-    cache.putAll(originalCacheCopy);
+    // then
+    assertThat(instance).isNotNull();
   }
 
   @Test
   @SuppressWarnings("DirectInvocationOnMock")
-  void useThreadLocalScopeManager() {
-    ScopeManagerHelper.useThreadLocalScopeManager();
-    ScopeManagerHelper.useThreadLocalScopeManager();
+  void useThreadLocalScopeManager() throws Exception {
+    // given
+    var constructor = ScopeManagerHelper.class.getDeclaredConstructor();
+    constructor.setAccessible(true);
+    var instance = constructor.newInstance();
+
+    // when
+    instance.useThreadLocalScopeManager();
+    instance.useThreadLocalScopeManager();
+
+    // then
     assertThat(mockedThreadLocalScopeManager.constructed()).hasSize(1);
     mockedScope.verify(() -> Scope.setScopeManager(scopeManagerCaptor.capture()));
     assertThat(scopeManagerCaptor.getAllValues())
