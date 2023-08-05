@@ -16,20 +16,25 @@
 
 package dev.markitect.liquibase;
 
-import java.util.concurrent.ConcurrentHashMap;
+import dev.markitect.liquibase.base.Runnables;
+import dev.markitect.liquibase.base.Suppliers;
+import java.util.function.Supplier;
 import liquibase.Scope;
 import liquibase.ThreadLocalScopeManager;
 
 public final class ScopeManagerHelper {
-  private static final ConcurrentHashMap<Object, Object> cache = new ConcurrentHashMap<>(1);
+  private static final Supplier<ScopeManagerHelper> instance =
+      Suppliers.memoize(ScopeManagerHelper::new);
 
-  public static void useThreadLocalScopeManager() {
-    cache.computeIfAbsent(
-        "",
-        key -> {
-          Scope.setScopeManager(new ThreadLocalScopeManager());
-          return key;
-        });
+  public static ScopeManagerHelper getInstance() {
+    return instance.get();
+  }
+
+  private final Runnable useThreadLocalScopeManager =
+      Runnables.runOnce(() -> Scope.setScopeManager(new ThreadLocalScopeManager()));
+
+  public void useThreadLocalScopeManager() {
+    useThreadLocalScopeManager.run();
   }
 
   private ScopeManagerHelper() {}
