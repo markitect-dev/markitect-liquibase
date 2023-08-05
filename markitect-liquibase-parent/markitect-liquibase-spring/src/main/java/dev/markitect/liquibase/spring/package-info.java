@@ -1,6 +1,8 @@
 @CheckReturnValue
-@NullMarked
+@NonNullApi
+@NonNullFields
 package dev.markitect.liquibase.spring;
 
 import com.google.errorprone.annotations.CheckReturnValue;
-import org.jspecify.annotations.NullMarked;
+import org.springframework.lang.NonNullApi;
+import org.springframework.lang.NonNullFields;

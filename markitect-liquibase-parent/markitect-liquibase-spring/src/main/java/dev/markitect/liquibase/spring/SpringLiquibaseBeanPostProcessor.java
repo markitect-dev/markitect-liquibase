@@ -22,7 +22,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.config.InstantiationAwareBeanPostProcessor;
 import org.springframework.core.env.Environment;
-import org.springframework.lang.NonNull;
 import org.springframework.util.Assert;
 
 public class SpringLiquibaseBeanPostProcessor implements InstantiationAwareBeanPostProcessor {
@@ -36,8 +35,7 @@ public class SpringLiquibaseBeanPostProcessor implements InstantiationAwareBeanP
   }
 
   @Override
-  public Object postProcessBeforeInstantiation(
-      @NonNull Class<?> beanClass, @NonNull String beanName) {
+  public Object postProcessBeforeInstantiation(Class<?> beanClass, String beanName) {
     if (SpringLiquibase.class.isAssignableFrom(beanClass)
         && Boolean.TRUE.equals(
             environment.getProperty(
@@ -49,7 +47,7 @@ public class SpringLiquibaseBeanPostProcessor implements InstantiationAwareBeanP
   }
 
   @Override
-  public Object postProcessBeforeInitialization(@NonNull Object bean, @NonNull String beanName) {
+  public Object postProcessBeforeInitialization(Object bean, String beanName) {
     if (bean instanceof SpringLiquibase) {
       log.debug("Providing Spring environment to Liquibase");
       SpringEnvironmentHolder.setEnvironment(environment);
@@ -58,7 +56,7 @@ public class SpringLiquibaseBeanPostProcessor implements InstantiationAwareBeanP
   }
 
   @Override
-  public Object postProcessAfterInitialization(@NonNull Object bean, @NonNull String beanName) {
+  public Object postProcessAfterInitialization(Object bean, String beanName) {
     if (bean instanceof SpringLiquibase) {
       SpringEnvironmentHolder.removeEnvironment();
     }
