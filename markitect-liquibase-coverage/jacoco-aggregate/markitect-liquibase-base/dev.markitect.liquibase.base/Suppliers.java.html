@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>Suppliers.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">markitect-liquibase-coverage</a> &gt; <a href="../index.html" class="el_bundle">markitect-liquibase-base</a> &gt; <a href="index.source.html" class="el_package">dev.markitect.liquibase.base</a> &gt; <span class="el_source">Suppliers.java</span></div><h1>Suppliers.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2023 Markitect
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.markitect.liquibase.base;
+
+import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
+
+import java.util.Optional;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Supplier;
+
+public final class Suppliers {
+  public static &lt;T&gt; Supplier&lt;T&gt; memoize(Supplier&lt;T&gt; delegate) {
+<span class="fc" id="L27">    return new MemoizedSupplier&lt;&gt;(delegate);</span>
+  }
+
+  private Suppliers() {}
+
+  private static final class MemoizedSupplier&lt;T&gt; implements Supplier&lt;T&gt; {
+<span class="fc" id="L33">    private final ConcurrentHashMap&lt;Object, Optional&lt;T&gt;&gt; cache = new ConcurrentHashMap&lt;&gt;(1);</span>
+    private final Supplier&lt;T&gt; delegate;
+
+<span class="fc" id="L36">    private MemoizedSupplier(Supplier&lt;T&gt; delegate) {</span>
+<span class="fc" id="L37">      this.delegate = checkNotNull(delegate);</span>
+<span class="fc" id="L38">    }</span>
+
+    @Override
+    public T get() {
+<span class="fc" id="L42">      return cache.computeIfAbsent(&quot;&quot;, key -&gt; Optional.ofNullable(delegate.get())).orElse(null);</span>
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

@@ -16,22 +16,27 @@
 
 package dev.markitect.liquibase;
 
-import java.util.concurrent.ConcurrentHashMap;
+import dev.markitect.liquibase.base.Runnables;
+import dev.markitect.liquibase.base.Suppliers;
+import java.util.function.Supplier;
 import liquibase.Scope;
 import liquibase.ThreadLocalScopeManager;
 
 public final class ScopeManagerHelper {
-<span class="fc" id="L24">  private static final ConcurrentHashMap&lt;Object, Object&gt; cache = new ConcurrentHashMap&lt;&gt;(1);</span>
+<span class="fc" id="L26">  private static final Supplier&lt;ScopeManagerHelper&gt; instance =</span>
+<span class="fc" id="L27">      Suppliers.memoize(ScopeManagerHelper::new);</span>
 
-  public static void useThreadLocalScopeManager() {
-<span class="fc" id="L27">    cache.computeIfAbsent(</span>
-        &quot;&quot;,
-        key -&gt; {
-<span class="fc" id="L30">          Scope.setScopeManager(new ThreadLocalScopeManager());</span>
-<span class="fc" id="L31">          return key;</span>
-        });
-<span class="fc" id="L33">  }</span>
+  public static ScopeManagerHelper getInstance() {
+<span class="fc" id="L30">    return instance.get();</span>
+  }
 
-  private ScopeManagerHelper() {}
+<span class="fc" id="L33">  private final Runnable useThreadLocalScopeManager =</span>
+<span class="fc" id="L34">      Runnables.runOnce(() -&gt; Scope.setScopeManager(new ThreadLocalScopeManager()));</span>
+
+  public void useThreadLocalScopeManager() {
+<span class="fc" id="L37">    useThreadLocalScopeManager.run();</span>
+<span class="fc" id="L38">  }</span>
+
+<span class="fc" id="L40">  private ScopeManagerHelper() {}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>
