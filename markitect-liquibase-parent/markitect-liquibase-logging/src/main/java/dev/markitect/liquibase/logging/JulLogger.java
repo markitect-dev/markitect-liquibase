@@ -18,7 +18,6 @@ package dev.markitect.liquibase.logging;
 
 import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
 
-import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.logging.Level;
 import java.util.logging.LogRecord;
@@ -28,7 +27,8 @@ import org.jspecify.annotations.Nullable;
 
 @SuppressWarnings("squid:S2160")
 public class JulLogger extends AbstractLogger {
-  private static final String FQCN = JulLogger.class.getName();
+  private static final StackWalker stackWalker =
+      StackWalker.getInstance(StackWalker.Option.RETAIN_CLASS_REFERENCE);
 
   private final @Nullable String name;
   private final Logger logger;
@@ -36,66 +36,6 @@ public class JulLogger extends AbstractLogger {
   JulLogger(@Nullable String name) {
     this.name = name;
     this.logger = Logger.getLogger(name);
-  }
-
-  @Override
-  public void severe(@Nullable String message) {
-    log(Level.SEVERE, message, null);
-  }
-
-  @Override
-  public void severe(@Nullable String message, @Nullable Throwable e) {
-    log(Level.SEVERE, message, e);
-  }
-
-  @Override
-  public void warning(@Nullable String message) {
-    log(Level.WARNING, message, null);
-  }
-
-  @Override
-  public void warning(@Nullable String message, @Nullable Throwable e) {
-    log(Level.WARNING, message, e);
-  }
-
-  @Override
-  public void info(@Nullable String message) {
-    log(Level.INFO, message, null);
-  }
-
-  @Override
-  public void info(@Nullable String message, @Nullable Throwable e) {
-    log(Level.INFO, message, e);
-  }
-
-  @Override
-  public void config(@Nullable String message) {
-    log(Level.CONFIG, message, null);
-  }
-
-  @Override
-  public void config(@Nullable String message, @Nullable Throwable e) {
-    log(Level.CONFIG, message, e);
-  }
-
-  @Override
-  public void fine(@Nullable String message) {
-    log(Level.FINE, message, null);
-  }
-
-  @Override
-  public void fine(@Nullable String message, @Nullable Throwable e) {
-    log(Level.FINE, message, e);
-  }
-
-  @Override
-  public void debug(@Nullable String message) {
-    log(Level.FINE, message, null);
-  }
-
-  @Override
-  public void debug(@Nullable String message, @Nullable Throwable e) {
-    log(Level.FINE, message, e);
   }
 
   @Override
@@ -117,20 +57,24 @@ public class JulLogger extends AbstractLogger {
     logRecord.setLoggerName(name);
     logRecord.setThrown(e);
     var found = new AtomicBoolean();
-    Arrays.stream(new Throwable().getStackTrace())
-        .filter(
-            element -> {
-              if (FQCN.equals(element.getClassName())) {
-                found.set(true);
-                return false;
-              }
-              return found.get();
-            })
-        .findFirst()
+    stackWalker
+        .walk(
+            stream ->
+                stream
+                    .filter(
+                        stackFrame -> {
+                          if (liquibase.logging.Logger.class.isAssignableFrom(
+                              stackFrame.getDeclaringClass())) {
+                            found.set(true);
+                            return false;
+                          }
+                          return found.get();
+                        })
+                    .findFirst())
         .ifPresent(
-            element -> {
-              logRecord.setSourceClassName(element.getClassName());
-              logRecord.setSourceMethodName(element.getMethodName());
+            stackFrame -> {
+              logRecord.setSourceClassName(stackFrame.getClassName());
+              logRecord.setSourceMethodName(stackFrame.getMethodName());
             });
     logRecord.setResourceBundleName(logger.getResourceBundleName());
     logRecord.setResourceBundle(logger.getResourceBundle());
