@@ -24,9 +24,9 @@ import dev.markitect.liquibase.base.Preconditions;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.Optional;
+import javax.annotation.Nullable;
 import liquibase.configuration.AbstractConfigurationValueProvider;
 import liquibase.configuration.ProvidedValue;
-import org.springframework.lang.Nullable;
 
 public class SpringEnvironmentValueProvider extends AbstractConfigurationValueProvider {
   private static final String PROPERTY_PREFIX = "markitect.liquibase.properties.";

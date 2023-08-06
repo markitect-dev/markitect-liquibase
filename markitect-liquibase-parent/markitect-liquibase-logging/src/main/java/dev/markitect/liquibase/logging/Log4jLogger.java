@@ -19,9 +19,9 @@ package dev.markitect.liquibase.logging;
 import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
 
 import java.util.logging.Level;
+import javax.annotation.Nullable;
 import liquibase.logging.core.AbstractLogger;
 import org.apache.logging.log4j.spi.ExtendedLogger;
-import org.jspecify.annotations.Nullable;
 
 @SuppressWarnings("squid:S2160")
 public class Log4jLogger extends AbstractLogger {

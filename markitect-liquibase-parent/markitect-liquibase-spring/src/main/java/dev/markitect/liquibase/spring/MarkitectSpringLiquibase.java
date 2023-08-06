@@ -18,13 +18,13 @@ package dev.markitect.liquibase.spring;
 
 import java.sql.Connection;
 import java.util.Optional;
+import javax.annotation.Nullable;
 import liquibase.database.Database;
 import liquibase.exception.DatabaseException;
 import liquibase.exception.LiquibaseException;
 import liquibase.integration.spring.SpringLiquibase;
 import liquibase.resource.ResourceAccessor;
 import org.springframework.beans.factory.DisposableBean;
-import org.springframework.lang.Nullable;
 import org.springframework.util.ReflectionUtils;
 
 public class MarkitectSpringLiquibase extends SpringLiquibase implements DisposableBean {

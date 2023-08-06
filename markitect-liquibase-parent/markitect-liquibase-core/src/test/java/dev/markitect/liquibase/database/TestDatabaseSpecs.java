@@ -18,9 +18,10 @@ package dev.markitect.liquibase.database;
 
 import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
 import static dev.markitect.liquibase.base.Preconditions.checkState;
+import static dev.markitect.liquibase.base.Verify.verifyNotNull;
 
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
-import org.jspecify.annotations.Nullable;
+import javax.annotation.Nullable;
 
 public final class TestDatabaseSpecs {
   public static Builder builder() {
@@ -127,12 +128,12 @@ public final class TestDatabaseSpecs {
       checkState(alternateSchemaName != null);
       checkState(alternateTablespaceName != null);
       return new TestDatabaseSpecs(
-          username,
-          password,
-          catalogName,
-          alternateCatalogName,
-          alternateSchemaName,
-          alternateTablespaceName);
+          verifyNotNull(username),
+          verifyNotNull(password),
+          verifyNotNull(catalogName),
+          verifyNotNull(alternateCatalogName),
+          verifyNotNull(alternateSchemaName),
+          verifyNotNull(alternateTablespaceName));
     }
   }
 }

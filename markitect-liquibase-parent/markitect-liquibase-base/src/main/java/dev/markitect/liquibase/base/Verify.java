@@ -17,7 +17,7 @@
 package dev.markitect.liquibase.base;
 
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
-import org.jspecify.annotations.Nullable;
+import javax.annotation.Nullable;
 
 public final class Verify {
   public static void verify(boolean expression) {

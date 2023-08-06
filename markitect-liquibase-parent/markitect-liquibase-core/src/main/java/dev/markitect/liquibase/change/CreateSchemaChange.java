@@ -22,6 +22,7 @@ import static java.util.stream.Collectors.joining;
 import dev.markitect.liquibase.statement.CreateSchemaStatement;
 import java.util.Objects;
 import java.util.stream.Stream;
+import javax.annotation.Nullable;
 import liquibase.change.AbstractChange;
 import liquibase.change.Change;
 import liquibase.change.ChangeMetaData;
@@ -29,7 +30,6 @@ import liquibase.change.DatabaseChange;
 import liquibase.change.DatabaseChangeProperty;
 import liquibase.database.Database;
 import liquibase.statement.SqlStatement;
-import org.jspecify.annotations.Nullable;
 
 @DatabaseChange(
     name = "createSchema",

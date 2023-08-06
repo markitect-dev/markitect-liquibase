@@ -17,6 +17,7 @@
 package dev.markitect.liquibase.spring;
 
 import dev.markitect.liquibase.ScopeManagerHelper;
+import javax.annotation.Nullable;
 import liquibase.integration.spring.SpringLiquibase;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -35,7 +36,8 @@ public class SpringLiquibaseBeanPostProcessor implements InstantiationAwareBeanP
   }
 
   @Override
-  public Object postProcessBeforeInstantiation(Class<?> beanClass, String beanName) {
+  @SuppressWarnings("NullableProblems")
+  public @Nullable Object postProcessBeforeInstantiation(Class<?> beanClass, String beanName) {
     if (SpringLiquibase.class.isAssignableFrom(beanClass)
         && Boolean.TRUE.equals(
             environment.getProperty(
@@ -47,7 +49,8 @@ public class SpringLiquibaseBeanPostProcessor implements InstantiationAwareBeanP
   }
 
   @Override
-  public Object postProcessBeforeInitialization(Object bean, String beanName) {
+  @SuppressWarnings("NullableProblems")
+  public @Nullable Object postProcessBeforeInitialization(Object bean, String beanName) {
     if (bean instanceof SpringLiquibase) {
       log.debug("Providing Spring environment to Liquibase");
       SpringEnvironmentHolder.setEnvironment(environment);
@@ -56,7 +59,8 @@ public class SpringLiquibaseBeanPostProcessor implements InstantiationAwareBeanP
   }
 
   @Override
-  public Object postProcessAfterInitialization(Object bean, String beanName) {
+  @SuppressWarnings("NullableProblems")
+  public @Nullable Object postProcessAfterInitialization(Object bean, String beanName) {
     if (bean instanceof SpringLiquibase) {
       SpringEnvironmentHolder.removeEnvironment();
     }
