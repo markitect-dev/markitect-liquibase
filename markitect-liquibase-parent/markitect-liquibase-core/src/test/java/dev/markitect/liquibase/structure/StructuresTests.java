@@ -53,6 +53,7 @@ class StructuresTests {
   }
 
   @Test
+  @SuppressWarnings("NullAway")
   void isCatalogOrSchemaTypeThrowsNullPointerException() {
     // when
     var thrown = catchThrowable(() -> Structures.isCatalogOrSchemaType(null));

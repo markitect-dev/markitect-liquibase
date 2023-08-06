@@ -20,9 +20,9 @@ import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
 
 import dev.markitect.liquibase.base.Verify;
 import java.util.function.UnaryOperator;
+import javax.annotation.Nullable;
 import liquibase.database.Database;
 import liquibase.database.ObjectQuotingStrategy;
-import org.jspecify.annotations.Nullable;
 
 public final class DatabaseBuilder<D extends Database> {
   public static <T extends Database> DatabaseBuilder<T> of(Class<T> databaseClass) {

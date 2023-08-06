@@ -46,6 +46,7 @@ class StringsTests {
   }
 
   @Test
+  @SuppressWarnings("NullAway")
   void isIllegalIdentifierThrowsNullPointerException() {
     // when
     var thrown = catchThrowable(() -> Strings.isIllegalIdentifier(null));

@@ -19,8 +19,8 @@ package dev.markitect.liquibase.logging;
 import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
 
 import java.util.logging.Level;
+import javax.annotation.Nullable;
 import liquibase.logging.core.AbstractLogger;
-import org.jspecify.annotations.Nullable;
 import org.slf4j.Logger;
 
 @SuppressWarnings("squid:S2160")

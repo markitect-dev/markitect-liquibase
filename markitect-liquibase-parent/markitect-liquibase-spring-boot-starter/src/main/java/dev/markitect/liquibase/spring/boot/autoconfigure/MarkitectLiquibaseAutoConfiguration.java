@@ -16,10 +16,13 @@
 
 package dev.markitect.liquibase.spring.boot.autoconfigure;
 
+import static dev.markitect.liquibase.base.Verify.verifyNotNull;
+
 import dev.markitect.liquibase.spring.MarkitectSpringLiquibase;
 import dev.markitect.liquibase.spring.SpringLiquibaseBeanPostProcessor;
 import dev.markitect.liquibase.spring.boot.autoconfigure.MarkitectLiquibaseAutoConfiguration.LiquibaseDataSourceCondition;
 import java.util.Optional;
+import javax.annotation.Nullable;
 import javax.sql.DataSource;
 import liquibase.change.DatabaseChange;
 import liquibase.integration.spring.SpringLiquibase;
@@ -45,7 +48,6 @@ import org.springframework.context.annotation.Import;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.ConnectionCallback;
 import org.springframework.jdbc.datasource.SimpleDriverDataSource;
-import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
@@ -134,7 +136,7 @@ public class MarkitectLiquibaseAutoConfiguration {
         applyCommonBuilderProperties(builder);
         return builder.build();
       }
-      return dataSource;
+      return verifyNotNull(dataSource);
     }
 
     private void applyCommonBuilderProperties(DataSourceBuilder<?> builder) {

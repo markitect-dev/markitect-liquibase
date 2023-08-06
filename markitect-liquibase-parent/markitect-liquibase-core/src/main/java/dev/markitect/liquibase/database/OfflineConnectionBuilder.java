@@ -24,8 +24,8 @@ import static java.util.Collections.unmodifiableMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.StringJoiner;
+import javax.annotation.Nullable;
 import liquibase.Scope;
-import org.jspecify.annotations.Nullable;
 
 public final class OfflineConnectionBuilder {
   private static final OfflineConnectionBuilder SINGLETON =

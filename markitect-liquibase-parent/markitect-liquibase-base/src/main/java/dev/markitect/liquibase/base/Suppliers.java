@@ -21,6 +21,7 @@ import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Supplier;
+import javax.annotation.Nullable;
 
 public final class Suppliers {
   public static <T> Supplier<T> memoize(Supplier<T> delegate) {
@@ -38,7 +39,7 @@ public final class Suppliers {
     }
 
     @Override
-    public T get() {
+    public @Nullable T get() {
       return cache.computeIfAbsent("", key -> Optional.ofNullable(delegate.get())).orElse(null);
     }
   }
