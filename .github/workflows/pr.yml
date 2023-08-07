@@ -27,7 +27,9 @@ jobs:
           cache: 'maven'
 
       - name: Build and test, with coverage
-        run: ./mvnw -B -P coverage install
+        run: |
+          ./mvnw -B -P coverage,release install \
+              -Dgpg.skip=true
 
       - name: Cache SonarCloud packages
         uses: actions/cache@v3
