@@ -22,7 +22,7 @@ import dev.markitect.liquibase.base.Verify;
 import java.util.function.UnaryOperator;
 import liquibase.database.Database;
 import liquibase.database.ObjectQuotingStrategy;
-import org.jspecify.annotations.Nullable;
+import org.checkerframework.checker.nullness.qual.Nullable;
 
 public final class DatabaseBuilder&lt;D extends Database&gt; {
   public static &lt;T extends Database&gt; DatabaseBuilder&lt;T&gt; of(Class&lt;T&gt; databaseClass) {

@@ -30,7 +30,7 @@ import liquibase.exception.ValidationErrors;
 import liquibase.exception.Warnings;
 import liquibase.precondition.AbstractPrecondition;
 import liquibase.structure.core.Catalog;
-import org.jspecify.annotations.Nullable;
+import org.checkerframework.checker.nullness.qual.Nullable;
 
 <span class="fc" id="L35">public class ConnectionCatalogPrecondition extends AbstractPrecondition {</span>
   private @Nullable String catalogName;
