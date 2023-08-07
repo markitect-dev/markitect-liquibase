@@ -17,10 +17,10 @@
 package dev.markitect.liquibase.spring;
 
 import dev.markitect.liquibase.ScopeManagerHelper;
-import javax.annotation.Nullable;
 import liquibase.integration.spring.SpringLiquibase;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.springframework.beans.factory.config.InstantiationAwareBeanPostProcessor;
 import org.springframework.core.env.Environment;
 import org.springframework.util.Assert;

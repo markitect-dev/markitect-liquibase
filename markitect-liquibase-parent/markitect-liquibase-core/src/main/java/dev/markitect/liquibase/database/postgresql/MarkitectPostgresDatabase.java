@@ -17,9 +17,9 @@
 package dev.markitect.liquibase.database.postgresql;
 
 import dev.markitect.liquibase.database.MarkitectDatabase;
-import javax.annotation.Nullable;
 import liquibase.database.core.PostgresDatabase;
 import liquibase.structure.DatabaseObject;
+import org.checkerframework.checker.nullness.qual.Nullable;
 
 public class MarkitectPostgresDatabase extends PostgresDatabase implements MarkitectDatabase {
   @Override

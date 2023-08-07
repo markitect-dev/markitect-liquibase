@@ -19,7 +19,7 @@ package dev.markitect.liquibase.logging;
 import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
 
 import java.util.logging.Level;
-import javax.annotation.Nullable;
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.slf4j.spi.LocationAwareLogger;
 
 public class Slf4jLocationAwareLogger extends Slf4jLogger<LocationAwareLogger> {

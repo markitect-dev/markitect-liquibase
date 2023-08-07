@@ -18,12 +18,12 @@ package dev.markitect.liquibase.spring;
 
 import java.sql.Connection;
 import java.util.Optional;
-import javax.annotation.Nullable;
 import liquibase.database.Database;
 import liquibase.exception.DatabaseException;
 import liquibase.exception.LiquibaseException;
 import liquibase.integration.spring.SpringLiquibase;
 import liquibase.resource.ResourceAccessor;
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.util.ReflectionUtils;
 

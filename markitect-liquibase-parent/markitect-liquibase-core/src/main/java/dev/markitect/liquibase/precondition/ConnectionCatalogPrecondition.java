@@ -19,7 +19,6 @@ package dev.markitect.liquibase.precondition;
 import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
 
 import java.util.Objects;
-import javax.annotation.Nullable;
 import liquibase.changelog.ChangeSet;
 import liquibase.changelog.DatabaseChangeLog;
 import liquibase.changelog.visitor.ChangeExecListener;
@@ -31,6 +30,7 @@ import liquibase.exception.ValidationErrors;
 import liquibase.exception.Warnings;
 import liquibase.precondition.AbstractPrecondition;
 import liquibase.structure.core.Catalog;
+import org.checkerframework.checker.nullness.qual.Nullable;
 
 public class ConnectionCatalogPrecondition extends AbstractPrecondition {
   private @Nullable String catalogName;

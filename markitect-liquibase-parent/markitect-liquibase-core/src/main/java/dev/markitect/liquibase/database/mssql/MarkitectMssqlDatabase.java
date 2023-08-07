@@ -20,13 +20,13 @@ import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
 import static liquibase.util.BooleanUtil.isTrue;
 
 import dev.markitect.liquibase.database.MarkitectDatabase;
-import javax.annotation.Nullable;
 import liquibase.GlobalConfiguration;
 import liquibase.database.core.MSSQLDatabase;
 import liquibase.structure.DatabaseObject;
 import liquibase.structure.core.Catalog;
 import liquibase.structure.core.Index;
 import liquibase.structure.core.Schema;
+import org.checkerframework.checker.nullness.qual.Nullable;
 
 public class MarkitectMssqlDatabase extends MSSQLDatabase implements MarkitectDatabase {
   @Override

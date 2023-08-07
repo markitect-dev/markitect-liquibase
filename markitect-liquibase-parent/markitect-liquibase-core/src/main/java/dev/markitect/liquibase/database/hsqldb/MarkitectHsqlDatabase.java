@@ -17,9 +17,9 @@
 package dev.markitect.liquibase.database.hsqldb;
 
 import dev.markitect.liquibase.database.MarkitectDatabase;
-import javax.annotation.Nullable;
 import liquibase.database.core.HsqlDatabase;
 import liquibase.structure.DatabaseObject;
+import org.checkerframework.checker.nullness.qual.Nullable;
 
 public class MarkitectHsqlDatabase extends HsqlDatabase implements MarkitectDatabase {
   @Override

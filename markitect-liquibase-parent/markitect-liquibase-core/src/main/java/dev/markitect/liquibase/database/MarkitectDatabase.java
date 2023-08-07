@@ -22,11 +22,11 @@ import static dev.markitect.liquibase.util.Strings.isIllegalIdentifier;
 import static liquibase.util.BooleanUtil.isTrue;
 
 import java.util.Locale;
-import javax.annotation.Nullable;
 import liquibase.GlobalConfiguration;
 import liquibase.database.Database;
 import liquibase.database.ObjectQuotingStrategy;
 import liquibase.structure.DatabaseObject;
+import org.checkerframework.checker.nullness.qual.Nullable;
 
 public interface MarkitectDatabase extends Database {
   @Override
@@ -78,9 +78,8 @@ public interface MarkitectDatabase extends Database {
                     : objectName.toLowerCase(Locale.US)));
   }
 
-  @Nullable
-  String quoteObject(@Nullable String objectName, Class<? extends DatabaseObject> objectType);
+  @Nullable String quoteObject(
+      @Nullable String objectName, Class<? extends DatabaseObject> objectType);
 
-  @Nullable
-  Boolean getUnquotedObjectsAreUppercased();
+  @Nullable Boolean getUnquotedObjectsAreUppercased();
 }
