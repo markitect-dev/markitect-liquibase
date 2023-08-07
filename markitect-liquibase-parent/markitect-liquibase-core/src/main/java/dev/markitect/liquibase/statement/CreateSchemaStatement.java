@@ -16,8 +16,8 @@
 
 package dev.markitect.liquibase.statement;
 
-import javax.annotation.Nullable;
 import liquibase.statement.AbstractSqlStatement;
+import org.checkerframework.checker.nullness.qual.Nullable;
 
 public class CreateSchemaStatement extends AbstractSqlStatement {
   private @Nullable String catalogName;

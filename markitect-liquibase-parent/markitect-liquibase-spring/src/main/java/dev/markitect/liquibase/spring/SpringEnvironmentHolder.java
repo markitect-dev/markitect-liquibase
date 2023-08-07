@@ -16,7 +16,7 @@
 
 package dev.markitect.liquibase.spring;
 
-import javax.annotation.Nullable;
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.springframework.core.env.Environment;
 import org.springframework.util.Assert;
 

@@ -20,12 +20,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import dev.markitect.liquibase.database.DatabaseBuilder;
 import java.util.LinkedHashMap;
-import javax.annotation.Nullable;
 import liquibase.GlobalConfiguration;
 import liquibase.Scope;
 import liquibase.database.ObjectQuotingStrategy;
 import liquibase.database.core.MSSQLDatabase;
 import liquibase.structure.DatabaseObject;
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 

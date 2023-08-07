@@ -16,10 +16,10 @@
 
 package dev.markitect.liquibase.database;
 
-import javax.annotation.Nullable;
 import liquibase.database.OfflineConnection;
 import liquibase.exception.DatabaseException;
 import liquibase.resource.ResourceAccessor;
+import org.checkerframework.checker.nullness.qual.Nullable;
 
 public class MarkitectOfflineConnection extends OfflineConnection {
   @Nullable private String catalog;
