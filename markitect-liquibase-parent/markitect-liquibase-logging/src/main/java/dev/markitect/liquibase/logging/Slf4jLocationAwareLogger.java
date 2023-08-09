@@ -25,6 +25,24 @@ import org.slf4j.spi.LocationAwareLogger;
 public class Slf4jLocationAwareLogger extends Slf4jLogger<LocationAwareLogger> {
   private static final String FQCN = Slf4jLocationAwareLogger.class.getName();
 
+  private static int toSlf4jLevel(Level level) {
+    checkNotNull(level);
+    int value = level.intValue();
+    if (value < DEBUG_THRESHOLD) {
+      return LocationAwareLogger.TRACE_INT;
+    }
+    if (value < INFO_THRESHOLD) {
+      return LocationAwareLogger.DEBUG_INT;
+    }
+    if (value < WARN_THRESHOLD) {
+      return LocationAwareLogger.INFO_INT;
+    }
+    if (value < ERROR_THRESHOLD) {
+      return LocationAwareLogger.WARN_INT;
+    }
+    return LocationAwareLogger.ERROR_INT;
+  }
+
   public Slf4jLocationAwareLogger(LocationAwareLogger logger) {
     super(logger);
   }
@@ -93,23 +111,5 @@ public class Slf4jLocationAwareLogger extends Slf4jLogger<LocationAwareLogger> {
   public void log(Level level, @Nullable String message, @Nullable Throwable e) {
     checkNotNull(level);
     logger.log(null, FQCN, toSlf4jLevel(level), message, null, e);
-  }
-
-  private int toSlf4jLevel(Level level) {
-    checkNotNull(level);
-    int value = level.intValue();
-    if (value < DEBUG_THRESHOLD) {
-      return LocationAwareLogger.TRACE_INT;
-    }
-    if (value < INFO_THRESHOLD) {
-      return LocationAwareLogger.DEBUG_INT;
-    }
-    if (value < WARN_THRESHOLD) {
-      return LocationAwareLogger.INFO_INT;
-    }
-    if (value < ERROR_THRESHOLD) {
-      return LocationAwareLogger.WARN_INT;
-    }
-    return LocationAwareLogger.ERROR_INT;
   }
 }

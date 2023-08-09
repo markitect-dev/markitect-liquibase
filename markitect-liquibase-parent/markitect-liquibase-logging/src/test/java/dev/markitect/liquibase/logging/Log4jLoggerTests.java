@@ -32,7 +32,7 @@ class Log4jLoggerTests {
   @Test
   void test() throws Exception {
     // given
-    final String fqcn = Log4jLogger.class.getName();
+    String fqcn = Log4jLogger.class.getName();
     var loggerField = Log4jLogger.class.getDeclaredField("logger");
     loggerField.setAccessible(true);
     var log4jLogger = new Log4jLogger(logger);

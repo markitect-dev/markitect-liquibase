@@ -58,7 +58,7 @@ class VerifyTests {
   @SuppressWarnings("DataFlowIssue")
   void verifyNotNull() {
     // given
-    final var reference = new Object();
+    var reference = new Object();
 
     // when
     var result = Verify.verifyNotNull(reference);
