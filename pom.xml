@@ -113,7 +113,6 @@
     <jooq-3.16.version>3.16.20</jooq-3.16.version>
     <jooq-3.17.version>3.17.14</jooq-3.17.version>
     <jooq.version>3.18.5</jooq.version>
-    <jsr305.version>3.0.2</jsr305.version>
     <junit-jupiter.version>5.10.0</junit-jupiter.version>
     <junit-pioneer.version>2.0.1</junit-pioneer.version>
     <junit-platform.version>1.10.0</junit-platform.version>
@@ -385,6 +384,7 @@ $1$4]]></replacement>
                   </banDynamicVersions>
                   <bannedDependencies>
                     <excludes>
+                      <exclude>com.google.code.findbugs:jsr305</exclude>
                       <exclude>com.jayway.jsonpath:json-path</exclude>
                       <exclude>javax.activation</exclude>
                       <exclude>javax.xml.bind</exclude>
