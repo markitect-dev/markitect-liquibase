@@ -22,8 +22,8 @@ import liquibase.resource.ResourceAccessor;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
 public class MarkitectOfflineConnection extends OfflineConnection {
-  @Nullable private String catalog;
-  @Nullable private String schema;
+  private @Nullable String catalog;
+  private @Nullable String schema;
 
   public MarkitectOfflineConnection(String url, ResourceAccessor resourceAccessor) {
     super(url, resourceAccessor);

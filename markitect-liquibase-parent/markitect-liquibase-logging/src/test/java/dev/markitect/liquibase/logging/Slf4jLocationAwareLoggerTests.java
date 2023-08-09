@@ -32,7 +32,7 @@ class Slf4jLocationAwareLoggerTests {
   @Test
   void test() throws Exception {
     // given
-    final String fqcn = Slf4jLocationAwareLogger.class.getName();
+    String fqcn = Slf4jLocationAwareLogger.class.getName();
     var loggerField = Slf4jLogger.class.getDeclaredField("logger");
     loggerField.setAccessible(true);
     var slf4jLogger = new Slf4jLocationAwareLogger(logger);

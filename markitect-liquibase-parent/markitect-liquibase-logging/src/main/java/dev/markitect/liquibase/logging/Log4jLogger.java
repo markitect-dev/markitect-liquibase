@@ -31,6 +31,24 @@ public class Log4jLogger extends AbstractLogger {
   private static final int WARN_THRESHOLD = Level.WARNING.intValue();
   private static final int ERROR_THRESHOLD = Level.SEVERE.intValue();
 
+  private static org.apache.logging.log4j.Level toLog4jLevel(Level level) {
+    checkNotNull(level);
+    int value = level.intValue();
+    if (value < DEBUG_THRESHOLD) {
+      return org.apache.logging.log4j.Level.TRACE;
+    }
+    if (value < INFO_THRESHOLD) {
+      return org.apache.logging.log4j.Level.DEBUG;
+    }
+    if (value < WARN_THRESHOLD) {
+      return org.apache.logging.log4j.Level.INFO;
+    }
+    if (value < ERROR_THRESHOLD) {
+      return org.apache.logging.log4j.Level.WARN;
+    }
+    return org.apache.logging.log4j.Level.ERROR;
+  }
+
   private final ExtendedLogger logger;
 
   public Log4jLogger(ExtendedLogger logger) {
@@ -106,23 +124,5 @@ public class Log4jLogger extends AbstractLogger {
   public void log(Level level, @Nullable String message, @Nullable Throwable e) {
     checkNotNull(level);
     logger.logIfEnabled(FQCN, toLog4jLevel(level), null, message, e);
-  }
-
-  private org.apache.logging.log4j.Level toLog4jLevel(Level level) {
-    checkNotNull(level);
-    int value = level.intValue();
-    if (value < DEBUG_THRESHOLD) {
-      return org.apache.logging.log4j.Level.TRACE;
-    }
-    if (value < INFO_THRESHOLD) {
-      return org.apache.logging.log4j.Level.DEBUG;
-    }
-    if (value < WARN_THRESHOLD) {
-      return org.apache.logging.log4j.Level.INFO;
-    }
-    if (value < ERROR_THRESHOLD) {
-      return org.apache.logging.log4j.Level.WARN;
-    }
-    return org.apache.logging.log4j.Level.ERROR;
   }
 }

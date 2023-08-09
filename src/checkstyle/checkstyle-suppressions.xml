@@ -5,4 +5,5 @@
 <suppressions>
   <suppress checks="LineLength" files="^(?:Test.+|.+(?:Test|Tests|TestCase))\.java$"/>
   <suppress checks="MissingJavadocMethod|MissingJavadocType"/>
+  <suppress checks="VariableDeclarationUsageDistance" files="^(?:Test.+|.+(?:Test|Tests|TestCase))\.java$"/>
 </suppressions>

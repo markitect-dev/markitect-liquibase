@@ -24,8 +24,8 @@ class VerifyExceptionTests {
   @Test
   void newInstance() {
     // given
-    final String message = "message";
-    final var cause = new Exception();
+    String message = "message";
+    var cause = new Exception();
 
     // when
     var exception = new VerifyException();

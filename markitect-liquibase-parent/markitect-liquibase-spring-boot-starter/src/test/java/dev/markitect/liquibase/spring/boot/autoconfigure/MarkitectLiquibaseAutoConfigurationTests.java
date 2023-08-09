@@ -138,7 +138,7 @@ class MarkitectLiquibaseAutoConfigurationTests {
     }
 
     @Test
-    @SuppressWarnings("ResultOfMethodCallIgnored")
+    @SuppressWarnings({"ResultOfMethodCallIgnored", "UnnecessarilyFullyQualified"})
     void shouldCreateLiquibaseBeanUsingLiquibaseUrl() {
       // given
       String url = "jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false";
@@ -176,7 +176,7 @@ class MarkitectLiquibaseAutoConfigurationTests {
     }
 
     @Test
-    @SuppressWarnings("ResultOfMethodCallIgnored")
+    @SuppressWarnings({"ResultOfMethodCallIgnored", "UnnecessarilyFullyQualified"})
     void shouldCreateLiquibaseBeanUsingDataSourceUrl() {
       // given
       String url =

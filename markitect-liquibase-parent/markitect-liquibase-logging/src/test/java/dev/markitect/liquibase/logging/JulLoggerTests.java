@@ -45,8 +45,8 @@ class JulLoggerTests {
   @Test
   void test() throws Exception {
     // given
-    final String name = JulLoggerTests.class.getName();
-    final String sourceClassName = JulLoggerTests.class.getName();
+    String name = JulLoggerTests.class.getName();
+    String sourceClassName = JulLoggerTests.class.getName();
     given(logger.isLoggable(any()))
         .willAnswer(
             invocation -> invocation.<Level>getArgument(0).intValue() >= Level.FINER.intValue());

@@ -76,7 +76,7 @@ class PreconditionsTests {
   @SuppressWarnings("DataFlowIssue")
   void checkNotNull() {
     // given
-    final var reference = new Object();
+    var reference = new Object();
 
     // when
     var result = Preconditions.checkNotNull(reference);
