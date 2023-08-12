@@ -12,19 +12,37 @@
   </preConditions>
 
   <changeSet id="1" author="markitect" runInTransaction="false">
+    <preConditions>
+      <not>
+        <ext:catalogExists catalogName="AdventureWorks2019"/>
+      </not>
+    </preConditions>
     <ext:createDatabase databaseName="AdventureWorks2019"/>
   </changeSet>
 
   <changeSet id="2" author="markitect" runInTransaction="false">
+    <preConditions>
+      <not>
+        <ext:catalogExists catalogName="AdventureWorks2022"/>
+      </not>
+    </preConditions>
     <ext:createDatabase databaseName="AdventureWorks2022"/>
   </changeSet>
 
   <changeSet id="3" author="markitect" runInTransaction="false">
+    <preConditions>
+      <ext:catalogExists catalogName="AdventureWorks2019"/>
+    </preConditions>
     <ext:dropDatabase databaseName="AdventureWorks2019"/>
     <rollback changeSetId="1" changeSetAuthor="markitect"/>
   </changeSet>
 
   <changeSet id="4" author="markitect" runInTransaction="false">
+    <preConditions>
+      <not>
+        <ext:catalogExists catalogName="Northwind"/>
+      </not>
+    </preConditions>
     <ext:createDatabase databaseName="Northwind"/>
   </changeSet>
 </databaseChangeLog>

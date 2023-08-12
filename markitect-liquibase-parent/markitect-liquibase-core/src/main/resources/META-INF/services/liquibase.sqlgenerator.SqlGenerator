@@ -1,4 +1,6 @@
+dev.markitect.liquibase.sqlgenerator.CatalogExistsGenerator
 dev.markitect.liquibase.sqlgenerator.CreateDatabaseGenerator
 dev.markitect.liquibase.sqlgenerator.CreateSchemaGenerator
 dev.markitect.liquibase.sqlgenerator.DropDatabaseGenerator
 dev.markitect.liquibase.sqlgenerator.DropSchemaGenerator
+dev.markitect.liquibase.sqlgenerator.SchemaExistsGenerator

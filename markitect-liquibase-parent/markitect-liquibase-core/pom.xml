@@ -32,8 +32,11 @@
       src/main/java/dev/markitect/liquibase/database/hsqldb/MarkitectHsqlDatabase.java,
       src/main/java/dev/markitect/liquibase/database/mssql/MarkitectMssqlDatabase.java,
       src/main/java/dev/markitect/liquibase/database/postgresql/MarkitectPostgresDatabase.java,
+      src/main/java/dev/markitect/liquibase/precondition/CatalogExistsPrecondition.java,
+      src/main/java/dev/markitect/liquibase/precondition/SchemaExistsPrecondition.java,
       src/main/java/dev/markitect/liquibase/statement/CreateSchemaStatement.java,
-      src/main/java/dev/markitect/liquibase/statement/DropSchemaStatement.java
+      src/main/java/dev/markitect/liquibase/statement/DropSchemaStatement.java,
+      src/main/java/dev/markitect/liquibase/statement/SchemaExistsStatement.java
     </sonar.cpd.exclusions>
   </properties>
   <dependencies>

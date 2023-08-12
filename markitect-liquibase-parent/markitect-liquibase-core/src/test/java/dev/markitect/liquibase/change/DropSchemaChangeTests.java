@@ -22,7 +22,6 @@ import dev.markitect.liquibase.database.DatabaseBuilder;
 import dev.markitect.liquibase.statement.CreateSchemaStatement;
 import java.util.List;
 import liquibase.database.Database;
-import liquibase.exception.DatabaseException;
 import liquibase.sql.UnparsedSql;
 import liquibase.sqlgenerator.SqlGeneratorFactory;
 import liquibase.structure.core.Schema;
@@ -80,7 +79,7 @@ class DropSchemaChangeTests {
       ]
       """)
   void warn(Class<? extends Database> databaseClass, List<String> expectedMessages)
-      throws DatabaseException {
+      throws Exception {
     // given
     var change = new DropSchemaChange();
     try (var database = DatabaseBuilder.of(databaseClass).build()) {

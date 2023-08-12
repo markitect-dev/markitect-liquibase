@@ -1,4 +1,6 @@
+dev.markitect.liquibase.statement.CatalogExistsStatement
 dev.markitect.liquibase.statement.CreateDatabaseStatement
 dev.markitect.liquibase.statement.CreateSchemaStatement
 dev.markitect.liquibase.statement.DropDatabaseStatement
 dev.markitect.liquibase.statement.DropSchemaStatement
+dev.markitect.liquibase.statement.SchemaExistsStatement

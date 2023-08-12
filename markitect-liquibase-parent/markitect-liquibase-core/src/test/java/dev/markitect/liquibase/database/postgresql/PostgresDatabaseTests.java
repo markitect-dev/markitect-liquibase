@@ -32,7 +32,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 class PostgresDatabaseTests {
   private final DatabaseBuilder<PostgresDatabase> databaseBuilder =
       DatabaseBuilder.of(PostgresDatabase.class)
-          .withOfflineConnection(ocb -> ocb.withSchema("public"));
+          .withOfflineConnection(ocb -> ocb.withCatalog("lbcat").withSchema("public"));
 
   @ParameterizedTest
   @CsvSource(
@@ -130,15 +130,25 @@ class PostgresDatabaseTests {
   @CsvSource(
       textBlock =
           """
-          # outputDefaultSchema | catalogName | schemaName | tableName | expected
-                                |             |            | Tbl1      | public."Tbl1"
-                                |             | public     | Tbl1      | public."Tbl1"
-          false                 |             |            | Tbl1      | "Tbl1"
-          false                 |             | public     | Tbl1      | "Tbl1"
-          false                 |             | lbschem2   | Tbl1      | lbschem2."Tbl1"
+          # includeCatalog | outputDefaultCatalog | outputDefaultSchema | catalogName | schemaName | tableName | expected
+                           |                      |                     |             |            | Tbl1      | public."Tbl1"
+                           |                      |                     |             | public     | Tbl1      | public."Tbl1"
+                           |                      | false               |             |            | Tbl1      | "Tbl1"
+                           |                      | false               |             | public     | Tbl1      | "Tbl1"
+                           |                      | false               |             | lbschem2   | Tbl1      | lbschem2."Tbl1"
+          true             |                      |                     |             |            | Tbl1      | public."Tbl1"
+          true             |                      |                     |             | public     | Tbl1      | public."Tbl1"
+          true             |                      | false               |             |            | Tbl1      | "Tbl1"
+          true             |                      | false               |             | public     | Tbl1      | "Tbl1"
+          true             | false                | false               |             |            | Tbl1      | "Tbl1"
+          true             | false                | false               |             | public     | Tbl1      | "Tbl1"
+                           | false                |                     | lbcat2      |            | Tbl1      | public."Tbl1"
+                           | false                |                     | lbcat2      | public     | Tbl1      | public."Tbl1"
           """,
       delimiter = '|')
   void escapeTableName(
+      @Nullable Boolean includeCatalog,
+      @Nullable Boolean outputDefaultCatalog,
       @Nullable Boolean outputDefaultSchema,
       @Nullable String catalogName,
       @Nullable String schemaName,
@@ -146,11 +156,23 @@ class PostgresDatabaseTests {
       @Nullable String expected)
       throws Exception {
     // given
-    try (var database = databaseBuilder.withOutputDefaultSchema(outputDefaultSchema).build()) {
+    var scopeValues = new LinkedHashMap<String, Object>();
+    if (includeCatalog != null) {
+      scopeValues.put(
+          GlobalConfiguration.INCLUDE_CATALOG_IN_SPECIFICATION.getKey(), includeCatalog);
+    }
+    try (var database =
+        databaseBuilder
+            .withOutputDefaultCatalog(outputDefaultCatalog)
+            .withOutputDefaultSchema(outputDefaultSchema)
+            .build()) {
+      assertThat(database.getDefaultCatalogName()).isEqualTo("lbcat");
       assertThat(database.getDefaultSchemaName()).isEqualTo("public");
 
       // when
-      String actual = database.escapeTableName(catalogName, schemaName, tableName);
+      String actual =
+          Scope.child(
+              scopeValues, () -> database.escapeTableName(catalogName, schemaName, tableName));
 
       // then
       assertThat(actual).isEqualTo(expected);

@@ -19,33 +19,29 @@ package dev.markitect.liquibase.precondition;
 import static liquibase.serializer.LiquibaseSerializable.GENERIC_CHANGELOG_EXTENSION_NAMESPACE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
-import static org.assertj.core.api.InstanceOfAssertFactories.list;
-import static org.assertj.core.api.InstanceOfAssertFactories.type;
 
 import dev.markitect.liquibase.database.DatabaseBuilder;
 import java.util.List;
 import liquibase.database.Database;
 import liquibase.exception.PreconditionErrorException;
-import liquibase.exception.PreconditionFailedException;
-import liquibase.precondition.FailedPrecondition;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junitpioneer.jupiter.json.JsonSource;
 
-class ConnectionCatalogPreconditionTests {
+class CatalogExistsPreconditionTests {
   @Test
   void test() {
     // when
-    var precondition = new ConnectionCatalogPrecondition();
-    precondition.setCatalogName("cat1");
+    var precondition = new CatalogExistsPrecondition();
+    precondition.setCatalogName("Cat1");
 
     // then
-    assertThat(precondition.getCatalogName()).isEqualTo("cat1");
+    assertThat(precondition.getCatalogName()).isEqualTo("Cat1");
     assertThat(precondition.getSerializedObjectNamespace())
         .isEqualTo(GENERIC_CHANGELOG_EXTENSION_NAMESPACE);
-    assertThat(precondition.getSerializedObjectName()).isEqualTo("connectionCatalog");
+    assertThat(precondition.getSerializedObjectName()).isEqualTo("catalogExists");
   }
 
   @ParameterizedTest
@@ -55,22 +51,25 @@ class ConnectionCatalogPreconditionTests {
         {
           databaseClass: 'liquibase.database.core.MSSQLDatabase',
           expectedMessages: []
+        },
+                {
+          databaseClass: 'liquibase.database.core.PostgresDatabase',
+          expectedMessages: []
         }
+
       ]
       """)
-  void warn(Class<? extends Database> databaseClass, List<String> expectedMessages)
-      throws Exception {
+  void warn(Class<? extends Database> databaseClass, List<String> expectedMessages) {
     // given
-    var precondition = new ConnectionCatalogPrecondition();
-    try (var database = DatabaseBuilder.of(databaseClass).build()) {
+    var precondition = new CatalogExistsPrecondition();
+    var database = DatabaseBuilder.of(databaseClass).build();
 
-      // when
-      var warnings = precondition.warn(database);
+    // when
+    var warnings = precondition.warn(database);
 
-      // then
-      assertThat(warnings.hasWarnings()).isEqualTo(!expectedMessages.isEmpty());
-      assertThat(warnings.getMessages()).containsExactlyInAnyOrderElementsOf(expectedMessages);
-    }
+    // then
+    assertThat(warnings.hasWarnings()).isEqualTo(!expectedMessages.isEmpty());
+    assertThat(warnings.getMessages()).containsExactlyInAnyOrderElementsOf(expectedMessages);
   }
 
   @ParameterizedTest
@@ -85,7 +84,12 @@ class ConnectionCatalogPreconditionTests {
         },
         {
           databaseClass: 'liquibase.database.core.MSSQLDatabase',
-          catalogName: 'cat1',
+          catalogName: 'Cat1',
+          expectedErrorMessages: []
+        },
+        {
+          databaseClass: 'liquibase.database.core.PostgresDatabase',
+          catalogName: 'Cat1',
           expectedErrorMessages: []
         }
       ]
@@ -93,29 +97,28 @@ class ConnectionCatalogPreconditionTests {
   void validate(
       Class<? extends Database> databaseClass,
       @Nullable String catalogName,
-      List<String> expectedErrorMessages)
-      throws Exception {
+      List<String> expectedErrorMessages) {
     // given
-    var precondition = new ConnectionCatalogPrecondition();
+    var precondition = new CatalogExistsPrecondition();
     precondition.setCatalogName(catalogName);
-    try (var database = DatabaseBuilder.of(databaseClass).build()) {
+    var database = DatabaseBuilder.of(databaseClass).build();
 
-      // when
-      var errors = precondition.validate(database);
+    // when
+    var errors = precondition.validate(database);
 
-      // then
-      assertThat(errors.getErrorMessages())
-          .containsExactlyInAnyOrderElementsOf(expectedErrorMessages);
-      assertThat(errors.hasErrors()).isEqualTo(!expectedErrorMessages.isEmpty());
-    }
+    // then
+    assertThat(errors.getErrorMessages())
+        .containsExactlyInAnyOrderElementsOf(expectedErrorMessages);
+    assertThat(errors.hasErrors()).isEqualTo(!expectedErrorMessages.isEmpty());
   }
 
   @ParameterizedTest
   @CsvSource(
       textBlock =
           """
-          # databaseClass                                                | connectionCatalogName | connectionSchemaName | catalogName
-          dev.markitect.liquibase.database.mssql.MarkitectMssqlDatabase  | Cat1                  | dbo                  | Cat1
+          # databaseClass                                                       | connectionCatalogName | connectionSchemaName | catalogName
+          dev.markitect.liquibase.database.mssql.MarkitectMssqlDatabase         | Cat1                  | dbo                  | Cat1
+          dev.markitect.liquibase.database.postgresql.MarkitectPostgresDatabase | Cat1                  | public               | Cat1
           """,
       delimiter = '|')
   void check(
@@ -125,7 +128,7 @@ class ConnectionCatalogPreconditionTests {
       @Nullable String catalogName)
       throws Exception {
     // given
-    var precondition = new ConnectionCatalogPrecondition();
+    var precondition = new CatalogExistsPrecondition();
     precondition.setCatalogName(catalogName);
     try (var database =
         DatabaseBuilder.of(databaseClass)
@@ -149,45 +152,21 @@ class ConnectionCatalogPreconditionTests {
   @CsvSource(
       textBlock =
           """
-          # databaseClass                                               | catalogName
-          dev.markitect.liquibase.database.mssql.MarkitectMssqlDatabase | Cat2
+          # databaseClass                                                       | connectionCatalogName | connectionSchemaName | catalogName
+          dev.markitect.liquibase.database.mssql.MarkitectMssqlDatabase         | Cat1                  | dbo                  | Cat2
+          dev.markitect.liquibase.database.mssql.MarkitectMssqlDatabase         | Cat1                  | dbo                  | master
+          dev.markitect.liquibase.database.postgresql.MarkitectPostgresDatabase | Cat1                  | public               | Cat2
+          dev.markitect.liquibase.database.postgresql.MarkitectPostgresDatabase | Cat1                  | public               | postgres
           """,
       delimiter = '|')
   void checkThrowsPreconditionErrorException(
-      Class<? extends Database> databaseClass, @Nullable String catalogName) throws Exception {
-    // given
-    var precondition = new ConnectionCatalogPrecondition();
-    precondition.setCatalogName(catalogName);
-    try (var database = DatabaseBuilder.of(databaseClass).build()) {
-      assertThat(precondition.warn(database).hasWarnings()).isFalse();
-      assertThat(precondition.validate(database).hasErrors()).isFalse();
-
-      // when
-      var thrown = catchThrowable(() -> precondition.check(database, null, null, null));
-
-      // then
-      assertThat(thrown).isInstanceOf(PreconditionErrorException.class);
-    }
-  }
-
-  @ParameterizedTest
-  @CsvSource(
-      textBlock =
-          """
-          # databaseClass                                                | connectionCatalogName | connectionSchemaName | catalogName | expectedMessage
-          dev.markitect.liquibase.database.mssql.MarkitectMssqlDatabase  | Cat1                  | dbo                  | master      | Connection catalog precondition failed: expected master, was Cat1
-          dev.markitect.liquibase.database.mssql.MarkitectMssqlDatabase  | Cat1                  | dbo                  | Cat2        | Connection catalog precondition failed: expected Cat2, was Cat1
-          """,
-      delimiter = '|')
-  void checkThrowsPreconditionFailedException(
       Class<? extends Database> databaseClass,
       @Nullable String connectionCatalogName,
       @Nullable String connectionSchemaName,
-      @Nullable String catalogName,
-      String expectedMessage)
+      @Nullable String catalogName)
       throws Exception {
     // given
-    var precondition = new ConnectionCatalogPrecondition();
+    var precondition = new CatalogExistsPrecondition();
     precondition.setCatalogName(catalogName);
     try (var database =
         DatabaseBuilder.of(databaseClass)
@@ -203,12 +182,7 @@ class ConnectionCatalogPreconditionTests {
       var thrown = catchThrowable(() -> precondition.check(database, null, null, null));
 
       // then
-      assertThat(thrown)
-          .asInstanceOf(type(PreconditionFailedException.class))
-          .extracting(PreconditionFailedException::getFailedPreconditions)
-          .asInstanceOf(list(FailedPrecondition.class))
-          .extracting(FailedPrecondition::getMessage)
-          .containsExactly(expectedMessage);
+      assertThat(thrown).isInstanceOf(PreconditionErrorException.class);
     }
   }
 }

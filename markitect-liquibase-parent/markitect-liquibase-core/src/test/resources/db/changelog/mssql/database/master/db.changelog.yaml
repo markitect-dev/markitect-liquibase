@@ -9,6 +9,10 @@ databaseChangeLog:
       id: 1
       author: markitect
       runInTransaction: false
+      preConditions:
+        - not:
+            - catalogExists:
+                catalogName: AdventureWorks2019
       changes:
         - createDatabase:
             databaseName: AdventureWorks2019
@@ -17,6 +21,10 @@ databaseChangeLog:
       id: 2
       author: markitect
       runInTransaction: false
+      preConditions:
+        - not:
+            - catalogExists:
+                catalogName: AdventureWorks2022
       changes:
         - createDatabase:
             databaseName: AdventureWorks2022
@@ -25,6 +33,9 @@ databaseChangeLog:
       id: 3
       author: markitect
       runInTransaction: false
+      preConditions:
+        - catalogExists:
+            catalogName: AdventureWorks2019
       changes:
         - dropDatabase:
             databaseName: AdventureWorks2019
@@ -36,6 +47,10 @@ databaseChangeLog:
       id: 4
       author: markitect
       runInTransaction: false
+      preConditions:
+        - not:
+            - catalogExists:
+                catalogName: Northwind
       changes:
         - createDatabase:
             databaseName: Northwind

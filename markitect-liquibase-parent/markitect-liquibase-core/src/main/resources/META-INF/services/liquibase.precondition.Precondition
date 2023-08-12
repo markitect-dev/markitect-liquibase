@@ -1,1 +1,3 @@
+dev.markitect.liquibase.precondition.CatalogExistsPrecondition
 dev.markitect.liquibase.precondition.ConnectionCatalogPrecondition
+dev.markitect.liquibase.precondition.SchemaExistsPrecondition

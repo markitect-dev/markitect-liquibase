@@ -12,6 +12,11 @@
   </preConditions>
 
   <changeSet id="1" author="markitect" runInTransaction="false">
+    <preConditions>
+      <not>
+        <ext:catalogExists catalogName="Northwind"/>
+      </not>
+    </preConditions>
     <ext:createDatabase databaseName="Northwind"/>
   </changeSet>
 </databaseChangeLog>
