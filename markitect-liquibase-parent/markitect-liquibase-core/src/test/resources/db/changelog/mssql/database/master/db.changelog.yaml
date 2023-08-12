@@ -8,6 +8,7 @@ databaseChangeLog:
   - changeSet:
       id: 1
       author: markitect
+      runInTransaction: false
       changes:
         - createDatabase:
             databaseName: AdventureWorks2019
@@ -15,6 +16,7 @@ databaseChangeLog:
   - changeSet:
       id: 2
       author: markitect
+      runInTransaction: false
       changes:
         - createDatabase:
             databaseName: AdventureWorks2022
@@ -22,6 +24,7 @@ databaseChangeLog:
   - changeSet:
       id: 3
       author: markitect
+      runInTransaction: false
       changes:
         - dropDatabase:
             databaseName: AdventureWorks2019
@@ -32,6 +35,7 @@ databaseChangeLog:
   - changeSet:
       id: 4
       author: markitect
+      runInTransaction: false
       changes:
         - createDatabase:
             databaseName: Northwind
