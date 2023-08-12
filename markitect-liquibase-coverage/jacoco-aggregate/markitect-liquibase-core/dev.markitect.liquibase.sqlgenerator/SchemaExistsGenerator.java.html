@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>SchemaExistsGenerator.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">markitect-liquibase-coverage</a> &gt; <a href="../index.html" class="el_bundle">markitect-liquibase-core</a> &gt; <a href="index.source.html" class="el_package">dev.markitect.liquibase.sqlgenerator</a> &gt; <span class="el_source">SchemaExistsGenerator.java</span></div><h1>SchemaExistsGenerator.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2023 Markitect
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.markitect.liquibase.sqlgenerator;
+
+import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
+
+import dev.markitect.liquibase.statement.SchemaExistsStatement;
+import liquibase.database.Database;
+import liquibase.database.core.H2Database;
+import liquibase.database.core.HsqlDatabase;
+import liquibase.database.core.MSSQLDatabase;
+import liquibase.database.core.PostgresDatabase;
+import liquibase.exception.ValidationErrors;
+import liquibase.sql.Sql;
+import liquibase.sql.UnparsedSql;
+import liquibase.sqlgenerator.SqlGeneratorChain;
+import liquibase.sqlgenerator.core.AbstractSqlGenerator;
+import liquibase.structure.core.Column;
+import liquibase.structure.core.Schema;
+
+<span class="fc" id="L35">public class SchemaExistsGenerator extends AbstractSqlGenerator&lt;SchemaExistsStatement&gt; {</span>
+  @Override
+  public boolean supports(SchemaExistsStatement statement, Database database) {
+<span class="fc" id="L38">    checkNotNull(statement);</span>
+<span class="fc" id="L39">    checkNotNull(database);</span>
+<span class="fc bfc" id="L40" title="All 8 branches covered.">    return database instanceof H2Database</span>
+        || database instanceof HsqlDatabase
+        || database instanceof MSSQLDatabase
+        || database instanceof PostgresDatabase;
+  }
+
+  @Override
+  public ValidationErrors validate(
+      SchemaExistsStatement statement,
+      Database database,
+      SqlGeneratorChain&lt;SchemaExistsStatement&gt; sqlGeneratorChain) {
+<span class="fc" id="L51">    checkNotNull(statement);</span>
+<span class="fc" id="L52">    checkNotNull(database);</span>
+<span class="fc" id="L53">    checkNotNull(sqlGeneratorChain);</span>
+<span class="fc" id="L54">    var errors = new ValidationErrors();</span>
+<span class="fc" id="L55">    errors.checkRequiredField(&quot;schemaName&quot;, statement.getSchemaName());</span>
+<span class="fc" id="L56">    return errors;</span>
+  }
+
+  @Override
+  @SuppressWarnings(&quot;squid:S1192&quot;)
+  public Sql[] generateSql(
+      SchemaExistsStatement statement,
+      Database database,
+      SqlGeneratorChain&lt;SchemaExistsStatement&gt; sqlGeneratorChain) {
+<span class="fc" id="L65">    checkNotNull(statement);</span>
+<span class="fc" id="L66">    checkNotNull(database);</span>
+<span class="fc" id="L67">    checkNotNull(sqlGeneratorChain);</span>
+    String sql;
+<span class="fc bfc" id="L69" title="All 4 branches covered.">    if (database instanceof H2Database || database instanceof HsqlDatabase) {</span>
+<span class="fc" id="L70">      sql =</span>
+          &quot;SELECT EXISTS(SELECT 1 FROM &quot;
+<span class="fc" id="L72">              + database.escapeViewName(</span>
+<span class="fc" id="L73">                  statement.getCatalogName(), &quot;INFORMATION_SCHEMA&quot;, &quot;SCHEMATA&quot;)</span>
+              + &quot; WHERE &quot;
+<span class="fc" id="L75">              + database.escapeObjectName(&quot;SCHEMA_NAME&quot;, Column.class)</span>
+              + &quot; = '&quot;
+<span class="fc" id="L77">              + database.escapeStringForDatabase(</span>
+<span class="fc" id="L78">                  database.correctObjectName(statement.getSchemaName(), Schema.class))</span>
+              + &quot;')&quot;;
+<span class="fc bfc" id="L80" title="All 2 branches covered.">      if (database instanceof HsqlDatabase) {</span>
+<span class="fc" id="L81">        sql +=</span>
+            &quot; FROM &quot;
+<span class="fc" id="L83">                + database.escapeViewName(</span>
+<span class="fc" id="L84">                    statement.getCatalogName(), &quot;INFORMATION_SCHEMA&quot;, &quot;SYSTEM_USERS&quot;);</span>
+      }
+<span class="fc bfc" id="L86" title="All 2 branches covered.">    } else if (database instanceof MSSQLDatabase) {</span>
+<span class="fc" id="L87">      sql =</span>
+          &quot;SELECT CAST(CASE WHEN EXISTS (SELECT 1 FROM &quot;
+<span class="fc" id="L89">              + database.escapeViewName(statement.getCatalogName(), &quot;sys&quot;, &quot;schemas&quot;)</span>
+              + &quot; WHERE &quot;
+<span class="fc" id="L91">              + database.escapeObjectName(&quot;name&quot;, Column.class)</span>
+              + &quot; = N'&quot;
+<span class="fc" id="L93">              + database.escapeStringForDatabase(</span>
+<span class="fc" id="L94">                  database.correctObjectName(statement.getSchemaName(), Schema.class))</span>
+              + &quot;') THEN 1 ELSE 0 END AS &quot;
+<span class="fc" id="L96">              + database.escapeDataTypeName(&quot;bit&quot;)</span>
+              + &quot;)&quot;;
+    } else {
+<span class="fc" id="L99">      sql =</span>
+          &quot;SELECT EXISTS(SELECT 1 FROM &quot;
+<span class="fc" id="L101">              + database.escapeTableName(statement.getCatalogName(), &quot;pg_catalog&quot;, &quot;pg_namespace&quot;)</span>
+              + &quot; WHERE &quot;
+<span class="fc" id="L103">              + database.escapeObjectName(&quot;nspname&quot;, Column.class)</span>
+              + &quot; = '&quot;
+<span class="fc" id="L105">              + database.escapeStringForDatabase(</span>
+<span class="fc" id="L106">                  database.correctObjectName(statement.getSchemaName(), Schema.class))</span>
+              + &quot;')&quot;;
+    }
+<span class="fc" id="L109">    return new Sql[] {new UnparsedSql(sql)};</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

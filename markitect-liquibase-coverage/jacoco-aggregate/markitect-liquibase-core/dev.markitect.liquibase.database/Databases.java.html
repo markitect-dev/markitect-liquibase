@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>Databases.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">markitect-liquibase-coverage</a> &gt; <a href="../index.html" class="el_bundle">markitect-liquibase-core</a> &gt; <a href="index.source.html" class="el_package">dev.markitect.liquibase.database</a> &gt; <span class="el_source">Databases.java</span></div><h1>Databases.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2023 Markitect
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.markitect.liquibase.database;
+
+import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
+import static liquibase.util.BooleanUtil.isTrue;
+
+import dev.markitect.liquibase.statement.CatalogExistsStatement;
+import dev.markitect.liquibase.statement.SchemaExistsStatement;
+import liquibase.Scope;
+import liquibase.database.Database;
+import liquibase.database.core.H2Database;
+import liquibase.database.core.HsqlDatabase;
+import liquibase.exception.DatabaseException;
+import liquibase.executor.ExecutorService;
+import liquibase.snapshot.InvalidExampleException;
+import liquibase.snapshot.SnapshotGeneratorFactory;
+import liquibase.structure.core.Schema;
+import org.checkerframework.checker.nullness.qual.Nullable;
+
+public final class Databases {
+  @SuppressWarnings(&quot;BooleanMethodIsAlwaysInverted&quot;)
+  public static boolean catalogExists(Database database, @Nullable String catalogName)
+      throws DatabaseException {
+<span class="fc" id="L39">    checkNotNull(database);</span>
+<span class="fc bfc" id="L40" title="All 2 branches covered.">    if (database.isDefaultCatalog(catalogName)) {</span>
+<span class="fc" id="L41">      return true;</span>
+    }
+<span class="fc bfc" id="L43" title="All 4 branches covered.">    if (database instanceof H2Database || database instanceof HsqlDatabase) {</span>
+<span class="fc" id="L44">      return false;</span>
+    }
+<span class="fc" id="L46">    var statement = new CatalogExistsStatement();</span>
+<span class="fc" id="L47">    statement.setCatalogName(catalogName);</span>
+<span class="fc" id="L48">    return isTrue(</span>
+<span class="fc" id="L49">        Scope.getCurrentScope()</span>
+<span class="fc" id="L50">            .getSingleton(ExecutorService.class)</span>
+<span class="fc" id="L51">            .getExecutor(&quot;jdbc&quot;, database)</span>
+<span class="fc" id="L52">            .queryForObject(statement, Boolean.class));</span>
+  }
+
+  public static boolean schemaExists(
+      Database database, @Nullable String catalogName, @Nullable String schemaName)
+      throws DatabaseException, InvalidExampleException {
+<span class="fc" id="L58">    checkNotNull(database);</span>
+<span class="fc bfc" id="L59" title="All 2 branches covered.">    if (database.isDefaultSchema(catalogName, schemaName)) {</span>
+<span class="fc" id="L60">      return true;</span>
+    }
+<span class="fc bfc" id="L62" title="All 2 branches covered.">    if (database.isDefaultCatalog(catalogName)) {</span>
+<span class="fc" id="L63">      return SnapshotGeneratorFactory.getInstance()</span>
+<span class="fc" id="L64">          .has(new Schema(catalogName, schemaName), database);</span>
+    }
+<span class="fc bfc" id="L66" title="All 2 branches covered.">    if (!catalogExists(database, catalogName)) {</span>
+<span class="fc" id="L67">      return false;</span>
+    }
+<span class="fc" id="L69">    var statement = new SchemaExistsStatement();</span>
+<span class="fc" id="L70">    statement.setCatalogName(catalogName);</span>
+<span class="fc" id="L71">    statement.setSchemaName(schemaName);</span>
+<span class="fc" id="L72">    return isTrue(</span>
+<span class="fc" id="L73">        Scope.getCurrentScope()</span>
+<span class="fc" id="L74">            .getSingleton(ExecutorService.class)</span>
+<span class="fc" id="L75">            .getExecutor(&quot;jdbc&quot;, database)</span>
+<span class="fc" id="L76">            .queryForObject(statement, Boolean.class));</span>
+  }
+
+  private Databases() {}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>
