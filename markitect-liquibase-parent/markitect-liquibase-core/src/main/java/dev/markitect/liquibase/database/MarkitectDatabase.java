@@ -26,6 +26,9 @@ import liquibase.GlobalConfiguration;
 import liquibase.database.Database;
 import liquibase.database.ObjectQuotingStrategy;
 import liquibase.structure.DatabaseObject;
+import liquibase.structure.core.Catalog;
+import liquibase.structure.core.Index;
+import liquibase.structure.core.Schema;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
 public interface MarkitectDatabase extends Database {
@@ -47,6 +50,24 @@ public interface MarkitectDatabase extends Database {
       return objectName.toUpperCase(Locale.US);
     }
     return objectName.toLowerCase(Locale.US);
+  }
+
+  @Override
+  default @Nullable String escapeObjectName(
+      @Nullable String catalogName,
+      @Nullable String schemaName,
+      @Nullable String objectName,
+      Class<? extends DatabaseObject> objectType) {
+    checkNotNull(objectType);
+    if (Index.class.isAssignableFrom(objectType)) {
+      return escapeObjectName(objectName, objectType);
+    }
+    @Nullable String catalogNameToUse = toCatalogNameToUse(catalogName);
+    @Nullable String schemaNameToUse = toSchemaNameToUse(catalogName, schemaName);
+    return (catalogNameToUse != null ? escapeObjectName(catalogNameToUse, Catalog.class) + "." : "")
+        + (schemaNameToUse != null ? escapeObjectName(schemaNameToUse, Schema.class) : "")
+        + (catalogNameToUse != null || schemaNameToUse != null ? "." : "")
+        + escapeObjectName(objectName, objectType);
   }
 
   @Override
@@ -82,4 +103,37 @@ public interface MarkitectDatabase extends Database {
       @Nullable String objectName, Class<? extends DatabaseObject> objectType);
 
   @Nullable Boolean getUnquotedObjectsAreUppercased();
+
+  default @Nullable String toCatalogNameToUse(@Nullable String catalogName) {
+    if ((isTrue(GlobalConfiguration.INCLUDE_CATALOG_IN_SPECIFICATION.getCurrentValue())
+            && getOutputDefaultCatalog())
+        || !isDefaultCatalog(catalogName)) {
+      if (catalogName != null) {
+        return catalogName;
+      }
+      return getDefaultCatalogName();
+    }
+    return null;
+  }
+
+  default @Nullable String toSchemaNameToUse(
+      @Nullable String catalogName, @Nullable String schemaName) {
+    if ((isTrue(GlobalConfiguration.INCLUDE_CATALOG_IN_SPECIFICATION.getCurrentValue())
+            && getOutputDefaultCatalog()
+            && !supportsOmittedInnerSchemaName())
+        || getOutputDefaultSchema()
+        || !isDefaultSchema(catalogName, schemaName)) {
+      if (schemaName != null) {
+        return schemaName;
+      }
+      if (isDefaultCatalog(catalogName)) {
+        return getDefaultSchemaName();
+      }
+    }
+    return null;
+  }
+
+  default boolean supportsOmittedInnerSchemaName() {
+    return false;
+  }
 }

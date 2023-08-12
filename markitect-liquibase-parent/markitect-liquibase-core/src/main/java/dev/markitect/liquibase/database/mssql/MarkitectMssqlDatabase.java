@@ -16,16 +16,9 @@
 
 package dev.markitect.liquibase.database.mssql;
 
-import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
-import static liquibase.util.BooleanUtil.isTrue;
-
 import dev.markitect.liquibase.database.MarkitectDatabase;
-import liquibase.GlobalConfiguration;
 import liquibase.database.core.MSSQLDatabase;
 import liquibase.structure.DatabaseObject;
-import liquibase.structure.core.Catalog;
-import liquibase.structure.core.Index;
-import liquibase.structure.core.Schema;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
 public class MarkitectMssqlDatabase extends MSSQLDatabase implements MarkitectDatabase {
@@ -46,16 +39,8 @@ public class MarkitectMssqlDatabase extends MSSQLDatabase implements MarkitectDa
       @Nullable String schemaName,
       @Nullable String objectName,
       Class<? extends DatabaseObject> objectType) {
-    checkNotNull(objectType);
-    if (Index.class.isAssignableFrom(objectType)) {
-      return escapeObjectName(objectName, objectType);
-    }
-    @Nullable String catalogNameToUse = toCatalogNameToUse(catalogName);
-    @Nullable String schemaNameToUse = toSchemaNameToUse(catalogName, schemaName);
-    return (catalogNameToUse != null ? escapeObjectName(catalogNameToUse, Catalog.class) + "." : "")
-        + (schemaNameToUse != null ? escapeObjectName(schemaNameToUse, Schema.class) : "")
-        + (catalogNameToUse != null || schemaNameToUse != null ? "." : "")
-        + escapeObjectName(objectName, objectType);
+    return MarkitectDatabase.super.escapeObjectName(
+        catalogName, schemaName, objectName, objectType);
   }
 
   @Override
@@ -82,28 +67,8 @@ public class MarkitectMssqlDatabase extends MSSQLDatabase implements MarkitectDa
     return unquotedObjectsAreUppercased;
   }
 
-  private @Nullable String toCatalogNameToUse(@Nullable String catalogName) {
-    if ((isTrue(GlobalConfiguration.INCLUDE_CATALOG_IN_SPECIFICATION.getCurrentValue())
-            && getOutputDefaultCatalog())
-        || !isDefaultCatalog(catalogName)) {
-      if (catalogName != null) {
-        return catalogName;
-      }
-      return getDefaultCatalogName();
-    }
-    return null;
-  }
-
-  private @Nullable String toSchemaNameToUse(
-      @Nullable String catalogName, @Nullable String schemaName) {
-    if (getOutputDefaultSchema() || !isDefaultSchema(catalogName, schemaName)) {
-      if (schemaName != null) {
-        return schemaName;
-      }
-      if (isDefaultCatalog(catalogName)) {
-        return getDefaultSchemaName();
-      }
-    }
-    return null;
+  @Override
+  public boolean supportsOmittedInnerSchemaName() {
+    return true;
   }
 }

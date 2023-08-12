@@ -28,7 +28,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import javax.sql.DataSource;
 import liquibase.Scope;
-import liquibase.exception.DatabaseException;
 import liquibase.integration.commandline.LiquibaseCommandLineConfiguration;
 import liquibase.resource.ClassLoaderResourceAccessor;
 import org.junit.jupiter.api.BeforeEach;
@@ -109,7 +108,7 @@ class MarkitectSpringLiquibaseTests {
       delimiter = '|')
   @SuppressWarnings("ConstantValue")
   void shouldCreateDatabase(boolean outputDefaultCatalog, boolean outputDefaultSchema)
-      throws DatabaseException {
+      throws Exception {
     // given
     liquibase.setOutputDefaultCatalog(outputDefaultCatalog);
     liquibase.setOutputDefaultSchema(outputDefaultSchema);

@@ -12,6 +12,11 @@
   </preConditions>
 
   <changeSet id="1" author="markitect">
+    <preConditions>
+      <not>
+        <ext:schemaExists schemaName="Person"/>
+      </not>
+    </preConditions>
     <ext:createSchema schemaName="Person"/>
     <modifySql>
       <append value=" AUTHORIZATION dbo"/>

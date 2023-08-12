@@ -97,7 +97,6 @@ class MarkitectMssqlDatabaseTests {
       scopeValues.put(
           GlobalConfiguration.INCLUDE_CATALOG_IN_SPECIFICATION.getKey(), includeCatalog);
     }
-
     try (var database =
         databaseBuilder
             .withOutputDefaultCatalog(outputDefaultCatalog)
@@ -185,6 +184,7 @@ class MarkitectMssqlDatabaseTests {
       @Nullable String tableName,
       @Nullable String expected)
       throws Exception {
+    // given
     var scopeValues = new LinkedHashMap<String, Object>();
     if (includeCatalog != null) {
       scopeValues.put(

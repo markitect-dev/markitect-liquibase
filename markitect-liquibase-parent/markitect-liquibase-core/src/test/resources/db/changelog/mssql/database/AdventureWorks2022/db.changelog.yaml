@@ -8,6 +8,10 @@ databaseChangeLog:
   - changeSet:
       id: 1
       author: markitect
+      preConditions:
+        - not:
+            - schemaExists:
+                schemaName: Person
       changes:
         - createSchema:
             schemaName: Person

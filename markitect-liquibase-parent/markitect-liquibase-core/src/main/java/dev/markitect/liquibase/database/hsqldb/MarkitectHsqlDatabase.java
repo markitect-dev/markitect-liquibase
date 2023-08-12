@@ -35,6 +35,16 @@ public class MarkitectHsqlDatabase extends HsqlDatabase implements MarkitectData
 
   @Override
   public @Nullable String escapeObjectName(
+      @Nullable String catalogName,
+      @Nullable String schemaName,
+      @Nullable String objectName,
+      Class<? extends DatabaseObject> objectType) {
+    return MarkitectDatabase.super.escapeObjectName(
+        catalogName, schemaName, objectName, objectType);
+  }
+
+  @Override
+  public @Nullable String escapeObjectName(
       @Nullable String objectName, Class<? extends DatabaseObject> objectType) {
     return MarkitectDatabase.super.escapeObjectName(objectName, objectType);
   }

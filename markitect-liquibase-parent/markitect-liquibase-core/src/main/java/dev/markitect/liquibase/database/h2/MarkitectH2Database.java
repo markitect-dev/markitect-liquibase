@@ -35,6 +35,16 @@ public class MarkitectH2Database extends H2Database implements MarkitectDatabase
 
   @Override
   public @Nullable String escapeObjectName(
+      @Nullable String catalogName,
+      @Nullable String schemaName,
+      @Nullable String objectName,
+      Class<? extends DatabaseObject> objectType) {
+    return MarkitectDatabase.super.escapeObjectName(
+        catalogName, schemaName, objectName, objectType);
+  }
+
+  @Override
+  public @Nullable String escapeObjectName(
       @Nullable String objectName, Class<? extends DatabaseObject> objectType) {
     return MarkitectDatabase.super.escapeObjectName(objectName, objectType);
   }
