@@ -21,10 +21,13 @@ import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.assertj.core.api.InstanceOfAssertFactories.type;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.verify;
 
 import dev.markitect.liquibase.spring.MarkitectSpringLiquibase;
+import dev.markitect.liquibase.spring.boot.autoconfigure.MarkitectLiquibaseAutoConfiguration.LiquibaseAutoConfigurationRuntimeHints;
 import dev.markitect.liquibase.spring.boot.autoconfigure.MarkitectLiquibaseAutoConfiguration.LiquibaseDataSourceCondition;
 import dev.markitect.liquibase.spring.boot.autoconfigure.MarkitectLiquibaseAutoConfiguration.MarkitectLiquibaseConfiguration;
+import dev.markitect.liquibase.spring.boot.autoconfigure.MarkitectLiquibaseAutoConfiguration.PropertiesLiquibaseConnectionDetails;
 import java.util.Optional;
 import java.util.UUID;
 import javax.sql.DataSource;
@@ -35,7 +38,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.aot.hint.ResourceHints;
+import org.springframework.aot.hint.RuntimeHints;
 import org.springframework.beans.factory.ObjectProvider;
+import org.springframework.boot.autoconfigure.liquibase.LiquibaseConnectionDetails;
 import org.springframework.boot.autoconfigure.liquibase.LiquibaseProperties;
 import org.springframework.context.annotation.ConfigurationCondition.ConfigurationPhase;
 import org.springframework.core.io.ResourceLoader;
@@ -65,11 +71,12 @@ class MarkitectLiquibaseAutoConfigurationTests {
     private final MarkitectLiquibaseProperties markitectLiquibaseProperties =
         new MarkitectLiquibaseProperties();
     private final MarkitectLiquibaseConfiguration markitectLiquibaseConfiguration =
-        new MarkitectLiquibaseConfiguration(liquibaseProperties, markitectLiquibaseProperties);
-    @Mock private ObjectProvider<DataSource> liquibaseDataSourceProvider;
-    @Mock private DataSource liquibaseDataSource;
+        new MarkitectLiquibaseConfiguration();
     @Mock private ObjectProvider<DataSource> dataSourceProvider;
     @Mock private DataSource dataSource;
+    @Mock private ObjectProvider<DataSource> liquibaseDataSourceProvider;
+    @Mock private DataSource liquibaseDataSource;
+    @Mock private LiquibaseConnectionDetails connectionDetails;
     @Mock private ResourceLoader resourceLoader;
 
     @Test
@@ -79,7 +86,11 @@ class MarkitectLiquibaseAutoConfigurationTests {
           catchThrowable(
               () ->
                   markitectLiquibaseConfiguration.liquibase(
-                      liquibaseDataSourceProvider, dataSourceProvider));
+                      dataSourceProvider,
+                      liquibaseDataSourceProvider,
+                      liquibaseProperties,
+                      connectionDetails,
+                      markitectLiquibaseProperties));
 
       // then
       assertThat(thrown)
@@ -96,7 +107,11 @@ class MarkitectLiquibaseAutoConfigurationTests {
       // when
       var liquibase =
           markitectLiquibaseConfiguration.liquibase(
-              liquibaseDataSourceProvider, dataSourceProvider);
+              dataSourceProvider,
+              liquibaseDataSourceProvider,
+              liquibaseProperties,
+              connectionDetails,
+              markitectLiquibaseProperties);
       liquibase.setBeanName("liquibase");
       liquibase.setResourceLoader(resourceLoader);
 
@@ -121,7 +136,11 @@ class MarkitectLiquibaseAutoConfigurationTests {
       // when
       var liquibase =
           markitectLiquibaseConfiguration.liquibase(
-              liquibaseDataSourceProvider, dataSourceProvider);
+              dataSourceProvider,
+              liquibaseDataSourceProvider,
+              liquibaseProperties,
+              connectionDetails,
+              markitectLiquibaseProperties);
       liquibase.setBeanName("liquibase");
       liquibase.setResourceLoader(resourceLoader);
 
@@ -146,11 +165,22 @@ class MarkitectLiquibaseAutoConfigurationTests {
       liquibaseProperties.setUrl(url);
       liquibaseProperties.setUser("dbuser");
       liquibaseProperties.setPassword("letmein");
+      given(connectionDetails.getJdbcUrl()).willAnswer(invocation -> liquibaseProperties.getUrl());
+      given(connectionDetails.getUsername())
+          .willAnswer(invocation -> liquibaseProperties.getUser());
+      given(connectionDetails.getPassword())
+          .willAnswer(invocation -> liquibaseProperties.getPassword());
+      given(connectionDetails.getDriverClassName())
+          .willAnswer(invocation -> liquibaseProperties.getDriverClassName());
 
       // when
       var liquibase =
           markitectLiquibaseConfiguration.liquibase(
-              liquibaseDataSourceProvider, dataSourceProvider);
+              dataSourceProvider,
+              liquibaseDataSourceProvider,
+              liquibaseProperties,
+              connectionDetails,
+              markitectLiquibaseProperties);
       liquibase.setBeanName("liquibase");
       liquibase.setResourceLoader(resourceLoader);
 
@@ -189,11 +219,20 @@ class MarkitectLiquibaseAutoConfigurationTests {
       given(dataSourceProvider.getIfUnique()).willReturn(dataSource);
       liquibaseProperties.setUser("dbuser");
       liquibaseProperties.setPassword("letmein");
+      given(connectionDetails.getUsername())
+          .willAnswer(invocation -> liquibaseProperties.getUser());
+      given(connectionDetails.getPassword())
+          .willAnswer(invocation -> liquibaseProperties.getPassword());
+      given(connectionDetails.getDriverClassName()).willReturn("org.h2.Driver");
 
       // when
       var liquibase =
           markitectLiquibaseConfiguration.liquibase(
-              liquibaseDataSourceProvider, dataSourceProvider);
+              dataSourceProvider,
+              liquibaseDataSourceProvider,
+              liquibaseProperties,
+              connectionDetails,
+              markitectLiquibaseProperties);
       liquibase.setBeanName("liquibase");
       liquibase.setResourceLoader(resourceLoader);
 
@@ -232,6 +271,53 @@ class MarkitectLiquibaseAutoConfigurationTests {
 
       // then
       assertThat(configurationPhase).isEqualTo(ConfigurationPhase.REGISTER_BEAN);
+    }
+  }
+
+  @Nested
+  class LiquibaseAutoConfigurationRuntimeHintsTests {
+    private final LiquibaseAutoConfigurationRuntimeHints liquibaseAutoConfigurationRuntimeHints =
+        new LiquibaseAutoConfigurationRuntimeHints();
+    @Mock private RuntimeHints runtimeHints;
+    @Mock private ResourceHints resourceHints;
+
+    @Test
+    void shouldRegisterHints() {
+      // given
+      given(runtimeHints.resources()).willReturn(resourceHints);
+
+      // when
+      liquibaseAutoConfigurationRuntimeHints.registerHints(runtimeHints, null);
+
+      // then
+      verify(resourceHints).registerPattern("db/changelog/*");
+    }
+  }
+
+  @Nested
+  class PropertiesLiquibaseConnectionDetailsTests {
+    private final LiquibaseProperties liquibaseProperties = new LiquibaseProperties();
+
+    @Test
+    void shouldResolveProperties() {
+      // given
+      String url =
+          "jdbc:h2:mem:%s;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false".formatted(UUID.randomUUID());
+      liquibaseProperties.setUrl(url);
+      liquibaseProperties.setUser("dbuser");
+      liquibaseProperties.setPassword("letmein");
+
+      // when
+      var connectionDetails = new PropertiesLiquibaseConnectionDetails(liquibaseProperties);
+
+      // then
+      assertThat(connectionDetails)
+          .extracting(
+              PropertiesLiquibaseConnectionDetails::getUsername,
+              PropertiesLiquibaseConnectionDetails::getPassword,
+              PropertiesLiquibaseConnectionDetails::getJdbcUrl,
+              PropertiesLiquibaseConnectionDetails::getDriverClassName)
+          .containsExactly("dbuser", "letmein", url, "org.h2.Driver");
     }
   }
 }
