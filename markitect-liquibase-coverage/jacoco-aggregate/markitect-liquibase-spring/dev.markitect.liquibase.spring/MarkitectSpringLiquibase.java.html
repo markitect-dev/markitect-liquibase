@@ -17,35 +17,60 @@
 package dev.markitect.liquibase.spring;
 
 import java.sql.Connection;
+import java.util.Optional;
 import liquibase.database.Database;
 import liquibase.exception.DatabaseException;
+import liquibase.exception.LiquibaseException;
+import liquibase.integration.spring.SpringLiquibase;
 import liquibase.resource.ResourceAccessor;
 import org.checkerframework.checker.nullness.qual.Nullable;
-import org.springframework.boot.autoconfigure.liquibase.DataSourceClosingSpringLiquibase;
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.util.ReflectionUtils;
 
-public class MarkitectSpringLiquibase extends DataSourceClosingSpringLiquibase {
+<span class="fc" id="L30">public class MarkitectSpringLiquibase extends SpringLiquibase implements DisposableBean {</span>
+  private boolean closeDataSourceOnceMigrated;
   protected boolean outputDefaultCatalog;
   protected boolean outputDefaultSchema;
-
-<span class="fc" id="L30">  public MarkitectSpringLiquibase() {</span>
-<span class="fc" id="L31">    setCloseDataSourceOnceMigrated(false);</span>
-<span class="fc" id="L32">  }</span>
 
   @Override
   protected Database createDatabase(@Nullable Connection c, ResourceAccessor resourceAccessor)
       throws DatabaseException {
-<span class="fc" id="L37">    var database = super.createDatabase(c, resourceAccessor);</span>
-<span class="fc" id="L38">    database.setOutputDefaultCatalog(outputDefaultCatalog);</span>
-<span class="fc" id="L39">    database.setOutputDefaultSchema(outputDefaultSchema);</span>
-<span class="fc" id="L40">    return database;</span>
+<span class="fc" id="L38">    var database = super.createDatabase(c, resourceAccessor);</span>
+<span class="fc" id="L39">    database.setOutputDefaultCatalog(outputDefaultCatalog);</span>
+<span class="fc" id="L40">    database.setOutputDefaultSchema(outputDefaultSchema);</span>
+<span class="fc" id="L41">    return database;</span>
   }
 
+  @Override
+  public void afterPropertiesSet() throws LiquibaseException {
+<span class="fc" id="L46">    super.afterPropertiesSet();</span>
+<span class="fc bfc" id="L47" title="All 2 branches covered.">    if (closeDataSourceOnceMigrated) {</span>
+<span class="fc" id="L48">      closeDataSource();</span>
+    }
+<span class="fc" id="L50">  }</span>
+
+  private void closeDataSource() {
+<span class="fc" id="L53">    Optional.ofNullable(ReflectionUtils.findMethod(getDataSource().getClass(), &quot;close&quot;))</span>
+<span class="fc" id="L54">        .ifPresent(closeMethod -&gt; ReflectionUtils.invokeMethod(closeMethod, getDataSource()));</span>
+<span class="fc" id="L55">  }</span>
+
+  @Override
+  public void destroy() {
+<span class="fc bfc" id="L59" title="All 2 branches covered.">    if (!closeDataSourceOnceMigrated) {</span>
+<span class="fc" id="L60">      closeDataSource();</span>
+    }
+<span class="fc" id="L62">  }</span>
+
+  public void setCloseDataSourceOnceMigrated(boolean closeDataSourceOnceMigrated) {
+<span class="fc" id="L65">    this.closeDataSourceOnceMigrated = closeDataSourceOnceMigrated;</span>
+<span class="fc" id="L66">  }</span>
+
   public void setOutputDefaultCatalog(boolean outputDefaultCatalog) {
-<span class="fc" id="L44">    this.outputDefaultCatalog = outputDefaultCatalog;</span>
-<span class="fc" id="L45">  }</span>
+<span class="fc" id="L69">    this.outputDefaultCatalog = outputDefaultCatalog;</span>
+<span class="fc" id="L70">  }</span>
 
   public void setOutputDefaultSchema(boolean outputDefaultSchema) {
-<span class="fc" id="L48">    this.outputDefaultSchema = outputDefaultSchema;</span>
-<span class="fc" id="L49">  }</span>
+<span class="fc" id="L73">    this.outputDefaultSchema = outputDefaultSchema;</span>
+<span class="fc" id="L74">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>
