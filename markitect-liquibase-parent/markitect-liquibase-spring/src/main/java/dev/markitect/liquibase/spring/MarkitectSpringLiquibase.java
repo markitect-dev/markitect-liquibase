@@ -17,20 +17,19 @@
 package dev.markitect.liquibase.spring;
 
 import java.sql.Connection;
-import java.util.Optional;
 import liquibase.database.Database;
 import liquibase.exception.DatabaseException;
-import liquibase.exception.LiquibaseException;
-import liquibase.integration.spring.SpringLiquibase;
 import liquibase.resource.ResourceAccessor;
 import org.checkerframework.checker.nullness.qual.Nullable;
-import org.springframework.beans.factory.DisposableBean;
-import org.springframework.util.ReflectionUtils;
+import org.springframework.boot.autoconfigure.liquibase.DataSourceClosingSpringLiquibase;
 
-public class MarkitectSpringLiquibase extends SpringLiquibase implements DisposableBean {
-  private boolean closeDataSourceOnceMigrated;
+public class MarkitectSpringLiquibase extends DataSourceClosingSpringLiquibase {
   protected boolean outputDefaultCatalog;
   protected boolean outputDefaultSchema;
+
+  public MarkitectSpringLiquibase() {
+    setCloseDataSourceOnceMigrated(false);
+  }
 
   @Override
   protected Database createDatabase(@Nullable Connection c, ResourceAccessor resourceAccessor)
@@ -39,30 +38,6 @@ public class MarkitectSpringLiquibase extends SpringLiquibase implements Disposa
     database.setOutputDefaultCatalog(outputDefaultCatalog);
     database.setOutputDefaultSchema(outputDefaultSchema);
     return database;
-  }
-
-  @Override
-  public void afterPropertiesSet() throws LiquibaseException {
-    super.afterPropertiesSet();
-    if (closeDataSourceOnceMigrated) {
-      closeDataSource();
-    }
-  }
-
-  private void closeDataSource() {
-    Optional.ofNullable(ReflectionUtils.findMethod(getDataSource().getClass(), "close"))
-        .ifPresent(closeMethod -> ReflectionUtils.invokeMethod(closeMethod, getDataSource()));
-  }
-
-  @Override
-  public void destroy() {
-    if (!this.closeDataSourceOnceMigrated) {
-      closeDataSource();
-    }
-  }
-
-  public void setCloseDataSourceOnceMigrated(boolean closeDataSourceOnceMigrated) {
-    this.closeDataSourceOnceMigrated = closeDataSourceOnceMigrated;
   }
 
   public void setOutputDefaultCatalog(boolean outputDefaultCatalog) {

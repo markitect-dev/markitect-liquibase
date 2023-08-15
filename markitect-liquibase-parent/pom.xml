@@ -489,6 +489,10 @@
             <artifactId>json-path</artifactId>
           </exclusion>
           <exclusion>
+            <groupId>net.minidev</groupId>
+            <artifactId>json-smart</artifactId>
+          </exclusion>
+          <exclusion>
             <groupId>org.skyscreamer</groupId>
             <artifactId>jsonassert</artifactId>
           </exclusion>

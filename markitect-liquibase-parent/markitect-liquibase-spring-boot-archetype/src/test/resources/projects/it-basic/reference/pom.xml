@@ -6,7 +6,7 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>@spring-boot-3.1.version@</version>
+    <version>@spring-boot.version@</version>
     <relativePath/>
   </parent>
 
@@ -22,7 +22,7 @@
     <liquibase.version>@liquibase.version@</liquibase.version>
     <markitect-liquibase.version>@project.version@</markitect-liquibase.version>
     <snakeyaml.version>@snakeyaml.version@</snakeyaml.version>
-    <spring-boot.version>@spring-boot-3.1.version@</spring-boot.version>
+    <spring-boot.version>@spring-boot.version@</spring-boot.version>
   </properties>
 
   <dependencyManagement>
