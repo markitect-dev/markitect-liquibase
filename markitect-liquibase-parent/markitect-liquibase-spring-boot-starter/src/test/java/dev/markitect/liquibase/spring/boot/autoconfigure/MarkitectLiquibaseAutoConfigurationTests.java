@@ -32,7 +32,6 @@ import java.util.Optional;
 import java.util.UUID;
 import javax.sql.DataSource;
 import liquibase.integration.spring.SpringLiquibase;
-import org.assertj.core.api.InstanceOfAssertFactories;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -47,7 +46,6 @@ import org.springframework.context.annotation.ConfigurationCondition.Configurati
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 import org.springframework.mock.env.MockEnvironment;
-import org.springframework.test.util.ReflectionTestUtils;
 
 @ExtendWith(MockitoExtension.class)
 class MarkitectLiquibaseAutoConfigurationTests {
@@ -122,9 +120,6 @@ class MarkitectLiquibaseAutoConfigurationTests {
           .asInstanceOf(type(MarkitectSpringLiquibase.class))
           .extracting(SpringLiquibase::getDataSource)
           .isSameAs(liquibaseDataSource);
-      assertThat(ReflectionTestUtils.getField(liquibase, "closeDataSourceOnceMigrated"))
-          .asInstanceOf(InstanceOfAssertFactories.BOOLEAN)
-          .isFalse();
     }
 
     @Test
@@ -151,9 +146,6 @@ class MarkitectLiquibaseAutoConfigurationTests {
           .asInstanceOf(type(MarkitectSpringLiquibase.class))
           .extracting(SpringLiquibase::getDataSource)
           .isSameAs(dataSource);
-      assertThat(ReflectionTestUtils.getField(liquibase, "closeDataSourceOnceMigrated"))
-          .asInstanceOf(InstanceOfAssertFactories.BOOLEAN)
-          .isFalse();
     }
 
     @Test
@@ -200,9 +192,6 @@ class MarkitectLiquibaseAutoConfigurationTests {
               SimpleDriverDataSource::getUsername,
               SimpleDriverDataSource::getPassword)
           .containsExactly(org.h2.Driver.class, url, "dbuser", "letmein");
-      assertThat(ReflectionTestUtils.getField(liquibase, "closeDataSourceOnceMigrated"))
-          .asInstanceOf(InstanceOfAssertFactories.BOOLEAN)
-          .isTrue();
     }
 
     @Test
@@ -253,9 +242,6 @@ class MarkitectLiquibaseAutoConfigurationTests {
               SimpleDriverDataSource::getUsername,
               SimpleDriverDataSource::getPassword)
           .containsExactly(org.h2.Driver.class, url, "dbuser", "letmein");
-      assertThat(ReflectionTestUtils.getField(liquibase, "closeDataSourceOnceMigrated"))
-          .asInstanceOf(InstanceOfAssertFactories.BOOLEAN)
-          .isTrue();
     }
   }
 

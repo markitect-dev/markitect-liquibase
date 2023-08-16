@@ -18,20 +18,11 @@ package dev.markitect.liquibase.spring;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatNoException;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoInteractions;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
 
-import java.io.Closeable;
 import java.sql.Connection;
-import java.util.LinkedHashMap;
-import java.util.Map;
 import javax.sql.DataSource;
-import liquibase.Scope;
-import liquibase.integration.commandline.LiquibaseCommandLineConfiguration;
-import liquibase.resource.ClassLoaderResourceAccessor;
+import liquibase.integration.spring.SpringResourceAccessor;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -42,7 +33,9 @@ import org.springframework.core.io.ResourceLoader;
 
 @ExtendWith(MockitoExtension.class)
 class MarkitectSpringLiquibaseTests {
-  @Mock private CloseableDataSource dataSource;
+  @Mock
+  @SuppressWarnings("unused")
+  private DataSource dataSource;
 
   @Mock
   @SuppressWarnings("unused")
@@ -50,49 +43,12 @@ class MarkitectSpringLiquibaseTests {
 
   @InjectMocks private final MarkitectSpringLiquibase liquibase = new MarkitectSpringLiquibase();
 
-  private final Map<String, Object> scopeValues =
-      new LinkedHashMap<>(Map.of(LiquibaseCommandLineConfiguration.SHOULD_RUN.getKey(), false));
-
   @BeforeEach
   @SuppressWarnings("ResultOfMethodCallIgnored")
   void setUp() {
     liquibase.setBeanName("liquibase");
     assertThat(liquibase.getBeanName()).isNotNull();
     assertThatNoException().isThrownBy(liquibase::toString);
-  }
-
-  @Test
-  void shouldCloseDataSourceOnceMigratedOnly() throws Exception {
-    // given
-    liquibase.setCloseDataSourceOnceMigrated(true);
-
-    // when
-    Scope.child(scopeValues, liquibase::afterPropertiesSet);
-
-    // then
-    verify(dataSource).close();
-
-    // when
-    liquibase.destroy();
-
-    // then
-    verifyNoMoreInteractions(dataSource);
-  }
-
-  @Test
-  void shouldCloseDataSourceOnDestroyOnly() throws Exception {
-    // when
-    Scope.child(scopeValues, liquibase::afterPropertiesSet);
-
-    // then
-    verifyNoInteractions(dataSource);
-
-    // when
-    liquibase.destroy();
-
-    // then
-    verify(dataSource).close();
-    verifyNoMoreInteractions(dataSource);
   }
 
   @ParameterizedTest
@@ -113,7 +69,7 @@ class MarkitectSpringLiquibaseTests {
     liquibase.setOutputDefaultCatalog(outputDefaultCatalog);
     liquibase.setOutputDefaultSchema(outputDefaultSchema);
     Connection connection = null;
-    var resourceAccessor = new ClassLoaderResourceAccessor();
+    var resourceAccessor = new SpringResourceAccessor(resourceLoader);
 
     // when
     var database = liquibase.createDatabase(connection, resourceAccessor);
@@ -122,7 +78,4 @@ class MarkitectSpringLiquibaseTests {
     assertThat(database.getOutputDefaultCatalog()).isEqualTo(outputDefaultCatalog);
     assertThat(database.getOutputDefaultSchema()).isEqualTo(outputDefaultSchema);
   }
-
-  @SuppressWarnings("unused")
-  interface CloseableDataSource extends DataSource, Closeable {}
 }
