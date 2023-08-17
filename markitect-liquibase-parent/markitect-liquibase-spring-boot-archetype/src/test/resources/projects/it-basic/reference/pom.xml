@@ -85,7 +85,7 @@
           <password/>
           <includeArtifact>false</includeArtifact>
           <includeTestOutputDirectory>false</includeTestOutputDirectory>
-          <searchPath>src/main/resources</searchPath>
+          <searchPath>${project.basedir}/src/main/resources</searchPath>
           <changeLogFile>db/changelog/db.changelog-master.yaml</changeLogFile>
         </configuration>
         <executions>
