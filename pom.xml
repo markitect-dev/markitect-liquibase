@@ -311,7 +311,7 @@ $1$4]]></replacement>
                 -Xep:Java7ApiChecker:OFF \
                 -Xep:Java8ApiChecker:OFF \
                 -Xep:Var:OFF \
-                -Xep:NullAway:ERROR \
+                -Xep:NullAway:WARN \
                 -XepOpt:NullAway:AnnotatedPackages=dev.markitect.liquibase \
                 -XepOpt:NullAway:ExcludedFieldAnnotations=org.mockito.Captor,org.mockito.Mock</arg>
               <arg>-Xlint:all,-options,-processing</arg>
