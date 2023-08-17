@@ -132,7 +132,6 @@
     <maven-release-plugin.version>3.0.1</maven-release-plugin.version>
     <maven-resources-plugin.version>3.3.1</maven-resources-plugin.version>
     <maven-scm-publish-plugin.version>3.2.1</maven-scm-publish-plugin.version>
-    <maven-shade-plugin.version>3.5.0</maven-shade-plugin.version>
     <maven-site-plugin.version>4.0.0-M9</maven-site-plugin.version>
     <maven-source-plugin.version>3.3.0</maven-source-plugin.version>
     <maven-surefire.version>3.1.2</maven-surefire.version>
@@ -567,11 +566,6 @@ $1$4]]></replacement>
           <configuration>
             <scmBranch>gh-pages</scmBranch>
           </configuration>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-shade-plugin</artifactId>
-          <version>${maven-shade-plugin.version}</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
