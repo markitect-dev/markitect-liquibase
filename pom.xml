@@ -89,7 +89,7 @@
     <commons-compress.version>1.23.0</commons-compress.version>
     <commons-lang3.version>3.13.0</commons-lang3.version>
     <commons-text.version>1.10.0</commons-text.version>
-    <docker-java.version>3.3.2</docker-java.version>
+    <docker-java.version>3.3.3</docker-java.version>
     <duct-tape.version>1.0.8</duct-tape.version>
     <error-prone.version>2.21.1</error-prone.version>
     <extra-enforcer-rules.version>1.7.0</extra-enforcer-rules.version>
