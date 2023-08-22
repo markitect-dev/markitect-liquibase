@@ -10,6 +10,7 @@ on:
       - '.gitattributes'
       - '.gitignore'
       - '.sdkmanrc'
+      - 'renovate.json'
       - '*.md'
       - '*.txt'
   schedule:
