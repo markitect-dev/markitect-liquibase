@@ -382,7 +382,6 @@ $1$4]]></replacement>
                   <banDuplicatePomDependencyVersions/>
                   <banDynamicVersions>
                     <allowSnapshots>true</allowSnapshots>
-                    <excludedScopes/>
                   </banDynamicVersions>
                   <bannedDependencies>
                     <excludes>
