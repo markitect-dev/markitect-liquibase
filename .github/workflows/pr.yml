@@ -1,5 +1,8 @@
 name: PR
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+
 on:
   pull_request:
     types:
