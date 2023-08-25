@@ -23,8 +23,8 @@ import liquibase.Scope;
 import liquibase.changelog.visitor.UpdateVisitor;
 import liquibase.changelog.visitor.ValidatingVisitor;
 import liquibase.logging.LogService;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
@@ -35,17 +35,17 @@ import org.springframework.boot.test.system.OutputCaptureExtension;
 @ExtendWith(OutputCaptureExtension.class)
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class LogServiceTests {
-  @BeforeAll
-  static void setUpClass() throws Exception {
+  @BeforeEach
+  void setUp() throws Exception {
     try (var ins =
         LogServiceTests.class.getClassLoader().getResourceAsStream("logging.properties")) {
       LogManager.getLogManager().readConfiguration(ins);
     }
   }
 
-  @AfterAll
-  static void tearDownClass() {
-    LogManager.getLogManager().reset();
+  @AfterEach
+  void tearDown() throws Exception {
+    LogManager.getLogManager().readConfiguration();
   }
 
   @Test
