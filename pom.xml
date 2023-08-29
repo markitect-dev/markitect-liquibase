@@ -84,7 +84,7 @@
     <assertj.version>3.24.2</assertj.version>
     <byte-buddy.version>1.14.7</byte-buddy.version>
     <checker-framework.version>3.37.0</checker-framework.version>
-    <checkstyle.version>10.12.2</checkstyle.version>
+    <checkstyle.version>10.12.3</checkstyle.version>
     <commons-collections4.version>4.4</commons-collections4.version>
     <commons-compress.version>1.23.0</commons-compress.version>
     <commons-lang3.version>3.13.0</commons-lang3.version>
