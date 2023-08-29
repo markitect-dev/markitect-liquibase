@@ -147,7 +147,7 @@
     <reactive-streams.version>1.0.4</reactive-streams.version>
     <slf4j.version>2.0.7</slf4j.version>
     <snakeyaml.version>2.2</snakeyaml.version>
-    <sortpom.version>3.2.1</sortpom.version>
+    <sortpom.version>3.3.0</sortpom.version>
     <spotless.version>2.39.0</spotless.version>
     <spring-boot.version>3.1.3</spring-boot.version>
     <spring-framework.version>6.0.11</spring-framework.version>
