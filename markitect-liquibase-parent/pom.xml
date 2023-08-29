@@ -73,6 +73,11 @@
         <version>${docker-java.version}</version>
       </dependency>
       <dependency>
+        <groupId>com.github.ekryd.sortpom</groupId>
+        <artifactId>sortpom-sorter</artifactId>
+        <version>${sortpom.version}</version>
+      </dependency>
+      <dependency>
         <groupId>com.google.errorprone</groupId>
         <artifactId>error_prone_annotations</artifactId>
         <version>${error-prone.version}</version>
@@ -81,6 +86,11 @@
         <groupId>com.google.errorprone</groupId>
         <artifactId>error_prone_core</artifactId>
         <version>${error-prone.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.google.googlejavaformat</groupId>
+        <artifactId>google-java-format</artifactId>
+        <version>${google-java-format.version}</version>
       </dependency>
       <dependency>
         <groupId>com.h2database</groupId>
