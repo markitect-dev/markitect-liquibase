@@ -34,6 +34,7 @@ jobs:
         uses: actions/checkout@3df4ab11eba7bda6032a0b82a6bb43b11571feac # v4.0.0
         with:
           fetch-depth: 0
+          show-progress: false
 
       - name: Set up Java
         uses: actions/setup-java@cd89f46ac9d01407894225f350157564c9c7cee2 # v3.12.0
@@ -44,7 +45,7 @@ jobs:
 
       - name: Build and test, with coverage
         run: |
-          ./mvnw -B -P coverage,release install \
+          ./mvnw -B -ntp -P coverage,release install \
               -Dgpg.skip=true
 
       - name: Update dependency graph
@@ -59,7 +60,7 @@ jobs:
 
       - name: Analyze
         run: |
-          ./mvnw -B org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+          ./mvnw -B -ntp org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
               -Dsonar.host.url="$SONAR_HOST_URL" \
               -Dsonar.organization="$SONAR_ORGANIZATION" \
               -Dsonar.projectKey="$SONAR_PROJECTKEY"
@@ -81,6 +82,9 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@3df4ab11eba7bda6032a0b82a6bb43b11571feac # v4.0.0
+        with:
+          fetch-depth: 0
+          show-progress: false
 
       - name: Set up Java
         uses: actions/setup-java@cd89f46ac9d01407894225f350157564c9c7cee2 # v3.12.0
@@ -96,7 +100,7 @@ jobs:
 
       - name: Publish artifacts
         run: |
-          ./mvnw -B -P release deploy \
+          ./mvnw -B -ntp -P release deploy \
               -Dspotless.check.skip=true \
               -Dcheckstyle.skip=true \
               -Dmaven.test.skip=true \
@@ -123,6 +127,9 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@3df4ab11eba7bda6032a0b82a6bb43b11571feac # v4.0.0
+        with:
+          fetch-depth: 0
+          show-progress: false
 
       - name: Set up Java
         uses: actions/setup-java@cd89f46ac9d01407894225f350157564c9c7cee2 # v3.12.0
@@ -141,17 +148,17 @@ jobs:
 
       - name: Build and test, with coverage
         run: |
-          ./mvnw -B -P coverage install \
+          ./mvnw -B -ntp -P coverage install \
               -Dspotless.check.skip=true \
               -Dcheckstyle.skip=true \
               -Darchetype.test.skip=true
 
       - name: Stage site
-        run: ./mvnw -B -P coverage,release site site:stage
+        run: ./mvnw -B -ntp -P coverage,release site site:stage
 
       - name: Publish site
         run: |
-          ./mvnw -B scm-publish:publish-scm \
+          ./mvnw -B -ntp scm-publish:publish-scm \
               -Dusername="$GITHUB_ACTOR" \
               -Dpassword="$GITHUB_TOKEN"
         env:
