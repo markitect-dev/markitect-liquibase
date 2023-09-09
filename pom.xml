@@ -86,7 +86,7 @@
     <checker-framework.version>3.38.0</checker-framework.version>
     <checkstyle.version>10.12.3</checkstyle.version>
     <commons-collections4.version>4.4</commons-collections4.version>
-    <commons-compress.version>1.23.0</commons-compress.version>
+    <commons-compress.version>1.24.0</commons-compress.version>
     <commons-lang3.version>3.13.0</commons-lang3.version>
     <commons-text.version>1.10.0</commons-text.version>
     <docker-java.version>3.3.3</docker-java.version>
