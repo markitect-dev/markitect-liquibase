@@ -9,7 +9,7 @@ on:
       - opened
       - synchronize
       - reopened
-  merge_request:
+  merge_queue:
 
 jobs:
   build:
