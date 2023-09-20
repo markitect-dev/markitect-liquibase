@@ -9,6 +9,7 @@ on:
       - opened
       - synchronize
       - reopened
+  merge_request:
 
 jobs:
   build:
