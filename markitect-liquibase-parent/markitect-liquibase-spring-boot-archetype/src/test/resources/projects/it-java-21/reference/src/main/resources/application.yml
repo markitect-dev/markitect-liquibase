@@ -1,0 +1,11 @@
+logging:
+  level:
+    dev.markitect.liquibase: info
+    liquibase: info
+    liquibase.executor.jvm.[JdbcExecutor$ExecuteStatementCallback]: info
+
+markitect:
+  liquibase:
+    use-thread-local-scope-manager: true
+    properties:
+      liquibase.sql.logLevel: info
