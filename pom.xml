@@ -334,6 +334,7 @@ $1$4]]></replacement>
             <execution>
               <id>default-testCompile</id>
               <configuration>
+                <enablePreview>true</enablePreview>
                 <useModulePath>false</useModulePath>
               </configuration>
             </execution>
@@ -585,6 +586,7 @@ $1$4]]></replacement>
           <version>${maven-surefire.version}</version>
           <configuration>
             <argLine>@{argLine}
+              --enable-preview
               -XX:+EnableDynamicAgentLoading</argLine>
             <useModulePath>false</useModulePath>
           </configuration>
