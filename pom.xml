@@ -62,6 +62,7 @@
   </distributionManagement>
 
   <properties>
+    <argLine/>
     <changelist>-SNAPSHOT</changelist>
     <java.version>21</java.version>
     <maven.compiler.release>${java.version}</maven.compiler.release>
@@ -583,6 +584,8 @@ $1$4]]></replacement>
           <artifactId>maven-surefire-plugin</artifactId>
           <version>${maven-surefire.version}</version>
           <configuration>
+            <argLine>@{argLine}
+              -XX:+EnableDynamicAgentLoading</argLine>
             <useModulePath>false</useModulePath>
           </configuration>
         </plugin>
