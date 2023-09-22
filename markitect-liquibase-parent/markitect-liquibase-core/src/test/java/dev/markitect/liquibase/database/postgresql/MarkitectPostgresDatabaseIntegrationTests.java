@@ -16,7 +16,6 @@
 
 package dev.markitect.liquibase.database.postgresql;
 
-import static org.apache.commons.collections4.IterableUtils.reversedIterable;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
 
@@ -254,7 +253,7 @@ class MarkitectPostgresDatabaseIntegrationTests {
                               .execute());
                 }
               }
-              for (var databaseRecord : reversedIterable(databaseRecords)) {
+              for (var databaseRecord : databaseRecords.reversed()) {
                 try (var database =
                     databaseBuilder
                         .withDatabaseConnection(
