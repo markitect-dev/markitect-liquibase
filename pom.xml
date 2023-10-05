@@ -166,7 +166,8 @@
           <configuration>
             <java>
               <licenseHeader>
-                <file>src/spotless/license-header-java</file>
+                <!--suppress UnresolvedMavenProperty -->
+                <file>${maven.multiModuleProjectDirectory}/src/spotless/license-header-java</file>
               </licenseHeader>
               <googleJavaFormat>
                 <version>${google-java-format.version}</version>
