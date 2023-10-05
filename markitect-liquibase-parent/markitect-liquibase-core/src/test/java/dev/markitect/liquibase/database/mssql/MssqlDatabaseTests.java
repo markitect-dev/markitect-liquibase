@@ -185,6 +185,7 @@ class MssqlDatabaseTests {
       @Nullable String tableName,
       @Nullable String expected)
       throws Exception {
+    // given
     var scopeValues = new LinkedHashMap<String, Object>();
     if (includeCatalog != null) {
       scopeValues.put(
