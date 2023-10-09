@@ -83,7 +83,7 @@
 
     <apiguardian.version>1.1.2</apiguardian.version>
     <assertj.version>3.24.2</assertj.version>
-    <byte-buddy.version>1.14.8</byte-buddy.version>
+    <byte-buddy.version>1.14.9</byte-buddy.version>
     <checker-framework.version>3.39.0</checker-framework.version>
     <checkstyle.version>10.12.4</checkstyle.version>
     <commons-collections4.version>4.4</commons-collections4.version>
