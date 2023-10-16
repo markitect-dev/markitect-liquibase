@@ -9,7 +9,7 @@ markitect-liquibase-coverage/markitect-liquibase-base,dev.markitect.liquibase.ba
 markitect-liquibase-coverage/markitect-liquibase-core,dev.markitect.liquibase.database.hsqldb,MarkitectHsqlDatabase,0,38,0,0,0,8,0,8,0,8
 markitect-liquibase-coverage/markitect-liquibase-core,dev.markitect.liquibase,ScopeManagerHelper,0,24,0,0,0,8,0,5,0,5
 markitect-liquibase-coverage/markitect-liquibase-core,dev.markitect.liquibase.structure,Structures,0,13,0,4,0,2,0,3,0,1
-markitect-liquibase-coverage/markitect-liquibase-core,dev.markitect.liquibase.database.h2,MarkitectH2Database,0,38,0,0,0,8,0,8,0,8
+markitect-liquibase-coverage/markitect-liquibase-core,dev.markitect.liquibase.database.h2,MarkitectH2Database,0,48,0,2,0,10,0,10,0,9
 markitect-liquibase-coverage/markitect-liquibase-core,dev.markitect.liquibase.precondition,SchemaExistsPrecondition,0,95,0,2,0,26,0,11,0,10
 markitect-liquibase-coverage/markitect-liquibase-core,dev.markitect.liquibase.precondition,ConnectionCatalogPrecondition,0,80,0,2,0,22,0,9,0,8
 markitect-liquibase-coverage/markitect-liquibase-core,dev.markitect.liquibase.precondition,CatalogExistsPrecondition,0,69,0,2,0,20,0,9,0,8
@@ -34,7 +34,7 @@ markitect-liquibase-coverage/markitect-liquibase-core,dev.markitect.liquibase.da
 markitect-liquibase-coverage/markitect-liquibase-core,dev.markitect.liquibase.database,Databases,0,89,0,12,0,28,0,8,0,2
 markitect-liquibase-coverage/markitect-liquibase-core,dev.markitect.liquibase.database,OfflineConnectionBuilder,0,251,0,10,0,38,0,17,0,12
 markitect-liquibase-coverage/markitect-liquibase-core,dev.markitect.liquibase.database,DatabaseConnectionBuilder,0,99,0,2,0,18,0,9,0,8
-markitect-liquibase-coverage/markitect-liquibase-core,dev.markitect.liquibase.database,MarkitectDatabase,0,212,0,64,0,56,0,39,0,7
+markitect-liquibase-coverage/markitect-liquibase-core,dev.markitect.liquibase.database,MarkitectDatabase,0,225,0,68,0,60,0,42,0,8
 markitect-liquibase-coverage/markitect-liquibase-core,dev.markitect.liquibase.util,Strings,0,16,0,2,0,3,0,3,0,2
 markitect-liquibase-coverage/markitect-liquibase-core,dev.markitect.liquibase.database.postgresql,MarkitectPostgresDatabase,0,38,0,0,0,8,0,8,0,8
 markitect-liquibase-coverage/markitect-liquibase-core,dev.markitect.liquibase.database.mssql,MarkitectMssqlDatabase,0,40,0,0,0,9,0,9,0,9

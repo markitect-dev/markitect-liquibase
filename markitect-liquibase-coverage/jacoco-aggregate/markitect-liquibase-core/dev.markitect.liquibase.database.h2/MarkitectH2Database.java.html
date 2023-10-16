@@ -16,21 +16,24 @@
 
 package dev.markitect.liquibase.database.h2;
 
+import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
+
 import dev.markitect.liquibase.database.MarkitectDatabase;
 import liquibase.database.core.H2Database;
 import liquibase.structure.DatabaseObject;
+import liquibase.structure.core.Catalog;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
-<span class="fc" id="L24">public class MarkitectH2Database extends H2Database implements MarkitectDatabase {</span>
+<span class="fc" id="L27">public class MarkitectH2Database extends H2Database implements MarkitectDatabase {</span>
   @Override
   public int getPriority() {
-<span class="fc" id="L27">    return super.getPriority() + 5;</span>
+<span class="fc" id="L30">    return super.getPriority() + 5;</span>
   }
 
   @Override
   public @Nullable String correctObjectName(
       @Nullable String objectName, Class&lt;? extends DatabaseObject&gt; objectType) {
-<span class="fc" id="L33">    return MarkitectDatabase.super.correctObjectName(objectName, objectType);</span>
+<span class="fc" id="L36">    return MarkitectDatabase.super.correctObjectName(objectName, objectType);</span>
   }
 
   @Override
@@ -39,32 +42,38 @@ import org.checkerframework.checker.nullness.qual.Nullable;
       @Nullable String schemaName,
       @Nullable String objectName,
       Class&lt;? extends DatabaseObject&gt; objectType) {
-<span class="fc" id="L42">    return MarkitectDatabase.super.escapeObjectName(</span>
+<span class="fc" id="L45">    return MarkitectDatabase.super.escapeObjectName(</span>
         catalogName, schemaName, objectName, objectType);
   }
 
   @Override
   public @Nullable String escapeObjectName(
       @Nullable String objectName, Class&lt;? extends DatabaseObject&gt; objectType) {
-<span class="fc" id="L49">    return MarkitectDatabase.super.escapeObjectName(objectName, objectType);</span>
+<span class="fc" id="L52">    return MarkitectDatabase.super.escapeObjectName(objectName, objectType);</span>
   }
 
   @Override
   public boolean mustQuoteObjectName(
       String objectName, Class&lt;? extends DatabaseObject&gt; objectType) {
-<span class="fc" id="L55">    return MarkitectDatabase.super.mustQuoteObjectName(objectName, objectType);</span>
+<span class="fc" id="L58">    return MarkitectDatabase.super.mustQuoteObjectName(objectName, objectType);</span>
   }
 
   @Override
   @SuppressWarnings(&quot;squid:S1185&quot;)
   public String quoteObject(
       @Nullable String objectName, Class&lt;? extends DatabaseObject&gt; objectType) {
-<span class="fc" id="L62">    return super.quoteObject(objectName, objectType);</span>
+<span class="fc" id="L65">    return super.quoteObject(objectName, objectType);</span>
   }
 
   @Override
   public @Nullable Boolean getUnquotedObjectsAreUppercased() {
-<span class="fc" id="L67">    return unquotedObjectsAreUppercased;</span>
+<span class="fc" id="L70">    return unquotedObjectsAreUppercased;</span>
+  }
+
+  @Override
+  public boolean supportsPreservingIdentifierCase(Class&lt;? extends DatabaseObject&gt; objectType) {
+<span class="fc" id="L75">    checkNotNull(objectType);</span>
+<span class="fc bfc" id="L76" title="All 2 branches covered.">    return objectType != Catalog.class;</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>
