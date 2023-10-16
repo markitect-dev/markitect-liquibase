@@ -256,7 +256,7 @@
       </dependency>
       <dependency>
         <groupId>org.apache.logging.log4j</groupId>
-        <artifactId>log4j-slf4j-impl</artifactId>
+        <artifactId>log4j-slf4j2-impl</artifactId>
         <version>${log4j2.version}</version>
       </dependency>
       <dependency>
@@ -373,6 +373,16 @@
         <groupId>org.opentest4j</groupId>
         <artifactId>opentest4j</artifactId>
         <version>${opentest4j.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.osgi</groupId>
+        <artifactId>org.osgi.annotation.bundle</artifactId>
+        <version>${osgi-annotation-bundle.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.osgi</groupId>
+        <artifactId>org.osgi.annotation.versioning</artifactId>
+        <version>${osgi-annotation-versioning.version}</version>
       </dependency>
       <dependency>
         <groupId>org.postgresql</groupId>
