@@ -16,9 +16,12 @@
 
 package dev.markitect.liquibase.database.h2;
 
+import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
+
 import dev.markitect.liquibase.database.MarkitectDatabase;
 import liquibase.database.core.H2Database;
 import liquibase.structure.DatabaseObject;
+import liquibase.structure.core.Catalog;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
 public class MarkitectH2Database extends H2Database implements MarkitectDatabase {
@@ -65,5 +68,11 @@ public class MarkitectH2Database extends H2Database implements MarkitectDatabase
   @Override
   public @Nullable Boolean getUnquotedObjectsAreUppercased() {
     return unquotedObjectsAreUppercased;
+  }
+
+  @Override
+  public boolean supportsPreservingIdentifierCase(Class<? extends DatabaseObject> objectType) {
+    checkNotNull(objectType);
+    return objectType != Catalog.class;
   }
 }
