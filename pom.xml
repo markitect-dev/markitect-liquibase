@@ -113,7 +113,7 @@
     <junit-platform.version>1.10.0</junit-platform.version>
     <junit.version>4.13.2</junit.version>
     <liquibase.version>4.24.0</liquibase.version>
-    <log4j2.version>2.20.0</log4j2.version>
+    <log4j2.version>2.21.0</log4j2.version>
     <logback.version>1.4.11</logback.version>
     <maven-antrun-plugin.version>3.1.0</maven-antrun-plugin.version>
     <maven-archetype.version>3.2.1</maven-archetype.version>
