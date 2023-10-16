@@ -23,8 +23,12 @@ import static org.assertj.core.api.InstanceOfAssertFactories.list;
 import static org.assertj.core.api.InstanceOfAssertFactories.type;
 
 import dev.markitect.liquibase.database.DatabaseBuilder;
+import java.util.LinkedHashMap;
 import java.util.List;
+import liquibase.GlobalConfiguration;
+import liquibase.Scope;
 import liquibase.database.Database;
+import liquibase.database.ObjectQuotingStrategy;
 import liquibase.exception.PreconditionErrorException;
 import liquibase.exception.PreconditionFailedException;
 import liquibase.precondition.FailedPrecondition;
@@ -114,21 +118,31 @@ class ConnectionCatalogPreconditionTests {
   @CsvSource(
       textBlock =
           """
-          # databaseClass                                                | connectionCatalogName | connectionSchemaName | catalogName
-          dev.markitect.liquibase.database.mssql.MarkitectMssqlDatabase  | Cat1                  | dbo                  | Cat1
+          # databaseClass                                               | connectionCatalogName | connectionSchemaName | preserveSchemaCase | quotingStrategy   | catalogName
+          dev.markitect.liquibase.database.h2.MarkitectH2Database       | CAT1                  | PUBLIC               |                    |                   | Cat1
+          dev.markitect.liquibase.database.h2.MarkitectH2Database       | CAT1                  | PUBLIC               |                    | QUOTE_ALL_OBJECTS | Cat1
+          dev.markitect.liquibase.database.h2.MarkitectH2Database       | CAT1                  | PUBLIC               | true               |                   | Cat1
+          dev.markitect.liquibase.database.mssql.MarkitectMssqlDatabase | Cat1                  | dbo                  |                    |                   | Cat1
           """,
       delimiter = '|')
   void check(
       Class<? extends Database> databaseClass,
       @Nullable String connectionCatalogName,
       @Nullable String connectionSchemaName,
+      @Nullable Boolean preserveSchemaCase,
+      @Nullable ObjectQuotingStrategy quotingStrategy,
       @Nullable String catalogName)
       throws Exception {
     // given
+    var scopeValues = new LinkedHashMap<String, Object>();
+    if (preserveSchemaCase != null) {
+      scopeValues.put(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getKey(), preserveSchemaCase);
+    }
     var precondition = new ConnectionCatalogPrecondition();
     precondition.setCatalogName(catalogName);
     try (var database =
         DatabaseBuilder.of(databaseClass)
+            .withObjectQuotingStrategy(quotingStrategy)
             .withOfflineConnection(
                 ocb -> ocb.withCatalog(connectionCatalogName).withSchema(connectionSchemaName))
             .build()) {
@@ -138,7 +152,9 @@ class ConnectionCatalogPreconditionTests {
       assertThat(precondition.validate(database).hasErrors()).isFalse();
 
       // when
-      var thrown = catchThrowable(() -> precondition.check(database, null, null, null));
+      var thrown =
+          catchThrowable(
+              () -> Scope.child(scopeValues, () -> precondition.check(database, null, null, null)));
 
       // then
       assertThat(thrown).isNull();

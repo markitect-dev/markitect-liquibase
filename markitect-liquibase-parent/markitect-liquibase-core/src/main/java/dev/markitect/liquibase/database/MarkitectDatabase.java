@@ -41,9 +41,10 @@ public interface MarkitectDatabase extends Database {
     }
     @Nullable Boolean unquotedObjectsAreUppercased;
     if ((unquotedObjectsAreUppercased = getUnquotedObjectsAreUppercased()) == null
-        || getObjectQuotingStrategy() == ObjectQuotingStrategy.QUOTE_ALL_OBJECTS
-        || (isCatalogOrSchemaType(objectType)
-            && isTrue(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getCurrentValue()))) {
+        || (supportsPreservingIdentifierCase(objectType)
+            && (getObjectQuotingStrategy() == ObjectQuotingStrategy.QUOTE_ALL_OBJECTS
+                || (isCatalogOrSchemaType(objectType)
+                    && isTrue(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getCurrentValue()))))) {
       return objectName;
     }
     if (isTrue(unquotedObjectsAreUppercased)) {
@@ -91,6 +92,7 @@ public interface MarkitectDatabase extends Database {
         || isIllegalIdentifier(objectName)
         || isReservedWord(objectName)
         || ((unquotedObjectsAreUppercased = getUnquotedObjectsAreUppercased()) != null
+            && supportsPreservingIdentifierCase(objectType)
             && isCatalogOrSchemaType(objectType)
             && isTrue(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getCurrentValue())
             && !objectName.equals(
@@ -135,5 +137,10 @@ public interface MarkitectDatabase extends Database {
 
   default boolean supportsOmittedInnerSchemaName() {
     return false;
+  }
+
+  default boolean supportsPreservingIdentifierCase(Class<? extends DatabaseObject> objectType) {
+    checkNotNull(objectType);
+    return true;
   }
 }
