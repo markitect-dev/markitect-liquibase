@@ -92,7 +92,7 @@
     <commons-text.version>1.10.0</commons-text.version>
     <docker-java.version>3.3.3</docker-java.version>
     <duct-tape.version>1.0.8</duct-tape.version>
-    <error-prone.version>2.22.0</error-prone.version>
+    <error-prone.version>2.23.0</error-prone.version>
     <extra-enforcer-rules.version>1.7.0</extra-enforcer-rules.version>
     <flatten-maven-plugin.version>1.5.0</flatten-maven-plugin.version>
     <google-java-format.version>1.18.1</google-java-format.version>
