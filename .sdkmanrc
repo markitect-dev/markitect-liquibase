@@ -2,4 +2,4 @@
 # Add key=value pairs of SDKs to use below
 java=21.0.1-zulu
 maven=3.9.5
-springboot=3.1.4
+springboot=3.1.5
