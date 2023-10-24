@@ -638,6 +638,15 @@ $1$4]]></replacement>
                   </ignoreVersions>
                 </rule>
                 <rule>
+                  <groupId>com.fasterxml.jackson.core</groupId>
+                  <ignoreVersions>
+                    <ignoreVersion>
+                      <type>regex</type>
+                      <version>.+[-.](?:pr|RC|rc)\d+\b.*</version>
+                    </ignoreVersion>
+                  </ignoreVersions>
+                </rule>
+                <rule>
                   <groupId>com.microsoft.sqlserver</groupId>
                   <ignoreVersions>
                     <ignoreVersion>
