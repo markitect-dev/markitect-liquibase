@@ -660,6 +660,33 @@ $1$4]]></replacement>
                   </ignoreVersions>
                 </rule>
                 <rule>
+                  <groupId>jakarta.activation</groupId>
+                  <ignoreVersions>
+                    <ignoreVersion>
+                      <type>regex</type>
+                      <version>.+-(?:M|RC|rc)\d+\b.*</version>
+                    </ignoreVersion>
+                  </ignoreVersions>
+                </rule>
+                <rule>
+                  <groupId>jakarta.annotation</groupId>
+                  <ignoreVersions>
+                    <ignoreVersion>
+                      <type>regex</type>
+                      <version>.+-(?:B|M|RC)\d+\b.*</version>
+                    </ignoreVersion>
+                  </ignoreVersions>
+                </rule>
+                <rule>
+                  <groupId>jakarta.xml.bind</groupId>
+                  <ignoreVersions>
+                    <ignoreVersion>
+                      <type>regex</type>
+                      <version>.+-(?:M|RC)\d+\b.*</version>
+                    </ignoreVersion>
+                  </ignoreVersions>
+                </rule>
+                <rule>
                   <groupId>org.apache.logging.log4j</groupId>
                   <ignoreVersions>
                     <ignoreVersion>
