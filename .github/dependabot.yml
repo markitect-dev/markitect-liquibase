@@ -18,7 +18,3 @@ updates:
         patterns:
           - "org.junit.platform:*"
           - "org.junit.jupiter:*"
-    ignore:
-      - dependency-name: "com.microsoft.sqlserver:mssql-jdbc"
-        versions:
-          - "12.4.0.jre11-preview"
