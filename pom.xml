@@ -714,14 +714,6 @@ $1$4]]></replacement>
                   </ignoreVersions>
                 </rule>
                 <rule>
-                  <groupId>org.liquibase</groupId>
-                  <ignoreVersions>
-                    <ignoreVersion>
-                      <version>4.22.0</version>
-                    </ignoreVersion>
-                  </ignoreVersions>
-                </rule>
-                <rule>
                   <groupId>org.opentest4j</groupId>
                   <ignoreVersions>
                     <ignoreVersion>
