@@ -18,3 +18,9 @@ updates:
         patterns:
           - "org.junit.platform:*"
           - "org.junit.jupiter:*"
+    ignore:
+      - dependency-name: "com.microsoft.sqlserver:mssql-jdbc"
+        versions:
+          - "12.5.0.jre11-preview"
+      - dependency-name: "org.springframework:*"
+        update-types: [ "version-update:semver-major" ]
