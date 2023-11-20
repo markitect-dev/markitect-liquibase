@@ -817,6 +817,7 @@ $1$4]]></replacement>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>versions-maven-plugin</artifactId>
         <version>${versions-maven-plugin.version}</version>
+        <inherited>false</inherited>
         <reportSets>
           <reportSet>
             <reports>
@@ -824,7 +825,6 @@ $1$4]]></replacement>
               <report>plugin-updates-aggregate-report</report>
               <report>property-updates-aggregate-report</report>
             </reports>
-            <inherited>false</inherited>
           </reportSet>
         </reportSets>
       </plugin>
