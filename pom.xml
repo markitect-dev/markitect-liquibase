@@ -83,6 +83,7 @@
 
     <apiguardian.version>1.1.2</apiguardian.version>
     <assertj.version>3.24.2</assertj.version>
+    <bnd-annotation.version>7.0.0</bnd-annotation.version>
     <byte-buddy.version>1.14.10</byte-buddy.version>
     <checker-framework.version>3.40.0</checker-framework.version>
     <checkstyle.version>10.12.5</checkstyle.version>
@@ -113,7 +114,7 @@
     <junit-platform.version>1.10.1</junit-platform.version>
     <junit.version>4.13.2</junit.version>
     <liquibase.version>4.25.0</liquibase.version>
-    <log4j2.version>2.21.1</log4j2.version>
+    <log4j2.version>2.22.0</log4j2.version>
     <logback.version>1.4.11</logback.version>
     <maven-antrun-plugin.version>3.1.0</maven-antrun-plugin.version>
     <maven-archetype.version>3.2.1</maven-archetype.version>
