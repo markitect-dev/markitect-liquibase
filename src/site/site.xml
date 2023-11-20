@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/DECORATION/1.8.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/DECORATION/1.8.0 https://maven.apache.org/xsd/decoration-1.8.0.xsd"
+<site xmlns="http://maven.apache.org/SITE/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/SITE/2.0.0 https://maven.apache.org/xsd/site-2.0.0.xsd"
     name="${project.name}">
   <skin>
     <groupId>org.apache.maven.skins</groupId>
@@ -16,9 +16,7 @@
       <skipGenerationDate>true</skipGenerationDate>
     </fluidoSkin>
   </custom>
-  <bannerLeft>
-    <name>${project.name}</name>
-  </bannerLeft>
+  <bannerLeft name="${project.name}"/>
   <body>
     <links>
       <item name="${project.name}" href="${this.url}"/>
@@ -27,4 +25,4 @@
     <menu ref="modules" inherit="top"/>
     <menu ref="reports" inherit="top"/>
   </body>
-</project>
+</site>
