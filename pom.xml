@@ -404,7 +404,6 @@ $1$4]]></replacement>
                   <requireMavenVersion>
                     <version>${maven.enforcer.requireMavenVersion}</version>
                   </requireMavenVersion>
-                  <requireNoRepositories/>
                   <requirePluginVersions/>
                   <requireSameVersions>
                     <dependencies>
