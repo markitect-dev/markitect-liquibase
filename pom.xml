@@ -156,7 +156,7 @@
     <sortpom.version>3.3.0</sortpom.version>
     <spotless.version>2.40.0</spotless.version>
     <spring-boot.version>3.1.5</spring-boot.version>
-    <spring-framework.version>6.0.14</spring-framework.version>
+    <spring-framework.version>6.1.0</spring-framework.version>
     <testcontainers.version>1.19.2</testcontainers.version>
     <versions-maven-plugin.version>2.16.2</versions-maven-plugin.version>
   </properties>
