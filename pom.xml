@@ -10,7 +10,7 @@
 
   <name>${project.artifactId}</name>
   <description>Markitect Liquibase Extensions &amp; Integrations</description>
-  <url>https://github.com/markitect-dev/markitect-liquibase</url>
+  <url>https://markitect-dev.github.io/markitect-liquibase/</url>
   <inceptionYear>2023</inceptionYear>
   <organization>
     <name>Markitect</name>
@@ -64,12 +64,12 @@
   <properties>
     <argLine/>
     <changelist>-SNAPSHOT</changelist>
+    <gitHub.projectId>markitect-dev/markitect-liquibase</gitHub.projectId>
     <java.version>21</java.version>
     <maven.compiler.release>${java.version}</maven.compiler.release>
     <maven.compiler.testRelease>${java.version}</maven.compiler.testRelease>
     <maven.deploy.skip>false</maven.deploy.skip>
     <maven.enforcer.requireMavenVersion>3.9.5</maven.enforcer.requireMavenVersion>
-    <maven.site.fluidoSkin.gitHub.projectId>markitect-dev/markitect-liquibase</maven.site.fluidoSkin.gitHub.projectId>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <resource.delimiter>@</resource.delimiter>

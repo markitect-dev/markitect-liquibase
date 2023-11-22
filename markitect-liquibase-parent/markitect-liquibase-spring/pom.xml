@@ -13,7 +13,7 @@
 
   <name>${project.artifactId}</name>
   <description>Markitect Liquibase Spring Integration</description>
-  <url>https://github.com/markitect-dev/markitect-liquibase</url>
+  <url>https://markitect-dev.github.io/markitect-liquibase/${project.artifactId}/</url>
 
   <distributionManagement>
     <site>

@@ -9,7 +9,7 @@
   <custom>
     <fluidoSkin>
       <gitHub>
-        <projectId>${maven.site.fluidoSkin.gitHub.projectId}</projectId>
+        <projectId>${gitHub.projectId}</projectId>
         <ribbonOrientation>right</ribbonOrientation>
         <ribbonColor>gray</ribbonColor>
       </gitHub>
@@ -18,9 +18,9 @@
   </custom>
   <bannerLeft name="${project.name}"/>
   <body>
-    <links>
-      <item name="${project.name}" href="${this.url}"/>
-    </links>
+    <breadcrumbs>
+      <item name="${this.name}" href="${this.url}"/>
+    </breadcrumbs>
     <menu ref="parent" inherit="top"/>
     <menu ref="modules" inherit="top"/>
     <menu ref="reports" inherit="top"/>
