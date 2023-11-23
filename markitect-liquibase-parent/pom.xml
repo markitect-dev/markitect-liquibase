@@ -178,6 +178,16 @@
         <version>${project.version}</version>
       </dependency>
       <dependency>
+        <groupId>io.micrometer</groupId>
+        <artifactId>micrometer-commons</artifactId>
+        <version>${micrometer.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.micrometer</groupId>
+        <artifactId>micrometer-observation</artifactId>
+        <version>${micrometer.version}</version>
+      </dependency>
+      <dependency>
         <groupId>io.r2dbc</groupId>
         <artifactId>r2dbc-spi</artifactId>
         <version>${r2dbc-spi.version}</version>
@@ -277,6 +287,11 @@
         <groupId>org.assertj</groupId>
         <artifactId>assertj-core</artifactId>
         <version>${assertj.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.awaitility</groupId>
+        <artifactId>awaitility</artifactId>
+        <version>${awaitility.version}</version>
       </dependency>
       <dependency>
         <groupId>org.checkerframework</groupId>
