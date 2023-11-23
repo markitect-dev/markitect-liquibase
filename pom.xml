@@ -83,6 +83,7 @@
 
     <apiguardian.version>1.1.2</apiguardian.version>
     <assertj.version>3.24.2</assertj.version>
+    <awaitility.version>4.2.0</awaitility.version>
     <bnd-annotation.version>7.0.0</bnd-annotation.version>
     <byte-buddy.version>1.14.10</byte-buddy.version>
     <checker-framework.version>3.40.0</checker-framework.version>
@@ -137,6 +138,7 @@
     <maven-site-plugin.version>4.0.0-M11</maven-site-plugin.version>
     <maven-source-plugin.version>3.3.0</maven-source-plugin.version>
     <maven-surefire.version>3.2.2</maven-surefire.version>
+    <micrometer.version>1.12.0</micrometer.version>
     <mockito.version>5.7.0</mockito.version>
     <mssql-jdbc.version>12.4.2.jre11</mssql-jdbc.version>
     <nexus-staging-maven-plugin.version>1.6.13</nexus-staging-maven-plugin.version>
@@ -155,8 +157,8 @@
     <snakeyaml.version>2.2</snakeyaml.version>
     <sortpom.version>3.3.0</sortpom.version>
     <spotless.version>2.40.0</spotless.version>
-    <spring-boot.version>3.1.6</spring-boot.version>
-    <spring-framework.version>6.0.14</spring-framework.version>
+    <spring-boot.version>3.2.0</spring-boot.version>
+    <spring-framework.version>6.1.1</spring-framework.version>
     <testcontainers.version>1.19.3</testcontainers.version>
     <versions-maven-plugin.version>2.16.2</versions-maven-plugin.version>
   </properties>
@@ -426,6 +428,11 @@ $1$4]]></replacement>
                   <requireSameVersions>
                     <dependencies>
                       <dependency>dev.markitect.liquibase</dependency>
+                    </dependencies>
+                  </requireSameVersions>
+                  <requireSameVersions>
+                    <dependencies>
+                      <dependency>io.micrometer</dependency>
                     </dependencies>
                   </requireSameVersions>
                   <requireSameVersions>

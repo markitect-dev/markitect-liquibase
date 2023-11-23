@@ -126,6 +126,8 @@ public class MarkitectLiquibaseAutoConfiguration {
       liquibase.setTestRollbackOnUpdate(properties.isTestRollbackOnUpdate());
       liquibase.setChangeLogParameters(properties.getParameters());
       liquibase.setRollbackFile(properties.getRollbackFile());
+      liquibase.setShowSummary(properties.getShowSummary());
+      liquibase.setShowSummaryOutput(properties.getShowSummaryOutput());
       liquibase.setOutputDefaultCatalog(markitectProperties.isOutputDefaultCatalog());
       liquibase.setOutputDefaultSchema(markitectProperties.isOutputDefaultSchema());
       return liquibase;
