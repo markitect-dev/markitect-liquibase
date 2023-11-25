@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>InsertOrUpdateExecutablePreparedStatement.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">markitect-liquibase-coverage</a> &gt; <a href="../index.html" class="el_bundle">markitect-liquibase-core</a> &gt; <a href="index.source.html" class="el_package">dev.markitect.liquibase.statement</a> &gt; <span class="el_source">InsertOrUpdateExecutablePreparedStatement.java</span></div><h1>InsertOrUpdateExecutablePreparedStatement.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2023 Markitect
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.markitect.liquibase.statement;
+
+import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
+import static java.util.Collections.unmodifiableList;
+
+import java.util.ArrayList;
+import java.util.List;
+import liquibase.change.ColumnConfig;
+import liquibase.changelog.ChangeSet;
+import liquibase.database.Database;
+import liquibase.resource.ResourceAccessor;
+import liquibase.sql.UnparsedSql;
+import liquibase.statement.ExecutablePreparedStatementBase;
+import liquibase.structure.DatabaseObject;
+import org.checkerframework.checker.nullness.qual.Nullable;
+
+public class InsertOrUpdateExecutablePreparedStatement extends ExecutablePreparedStatementBase {
+  private final PreparedSql preparedSql;
+
+  @SuppressWarnings(&quot;squid:S107&quot;)
+  public InsertOrUpdateExecutablePreparedStatement(
+      Database database,
+      @Nullable String catalogName,
+      @Nullable String schemaName,
+      @Nullable String tableName,
+      List&lt;? extends ColumnConfig&gt; columns,
+      @Nullable ChangeSet changeSet,
+      ResourceAccessor resourceAccessor,
+      PreparedSql preparedSql) {
+<span class="fc" id="L46">    super(</span>
+<span class="fc" id="L47">        checkNotNull(database),</span>
+        catalogName,
+        schemaName,
+        tableName,
+<span class="fc" id="L51">        checkNotNull(columns),</span>
+        changeSet,
+<span class="fc" id="L53">        checkNotNull(resourceAccessor));</span>
+<span class="fc" id="L54">    this.preparedSql = checkNotNull(preparedSql);</span>
+<span class="fc" id="L55">  }</span>
+
+  @Override
+  public boolean continueOnError() {
+<span class="fc" id="L59">    return false;</span>
+  }
+
+  @Override
+  protected String generateSql(List&lt;ColumnConfig&gt; cols) {
+<span class="fc" id="L64">    checkNotNull(cols);</span>
+<span class="fc" id="L65">    cols.addAll(preparedSql.getBindColumns());</span>
+<span class="fc" id="L66">    return preparedSql.toSql();</span>
+  }
+
+  @Override
+  public List&lt;? extends ColumnConfig&gt; getColumns() {
+<span class="fc" id="L71">    return preparedSql.getBindColumns();</span>
+  }
+
+  public static class PreparedSql extends UnparsedSql {
+    private final List&lt;ColumnConfig&gt; bindColumns;
+
+    public PreparedSql(
+        String sql,
+        List&lt;? extends ColumnConfig&gt; bindColumns,
+        DatabaseObject... affectedDatabaseObjects) {
+<span class="fc" id="L81">      this(sql, bindColumns, &quot;;&quot;, affectedDatabaseObjects);</span>
+<span class="fc" id="L82">    }</span>
+
+    @SuppressWarnings(&quot;Java9CollectionFactory&quot;)
+    public PreparedSql(
+        String sql,
+        List&lt;? extends ColumnConfig&gt; bindColumns,
+        String endDelimiter,
+        DatabaseObject... affectedDatabaseObjects) {
+<span class="fc" id="L90">      super(checkNotNull(sql), checkNotNull(endDelimiter), checkNotNull(affectedDatabaseObjects));</span>
+<span class="fc" id="L91">      this.bindColumns = unmodifiableList(new ArrayList&lt;&gt;(checkNotNull(bindColumns)));</span>
+<span class="fc" id="L92">    }</span>
+
+    public List&lt;ColumnConfig&gt; getBindColumns() {
+<span class="fc" id="L95">      return bindColumns;</span>
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

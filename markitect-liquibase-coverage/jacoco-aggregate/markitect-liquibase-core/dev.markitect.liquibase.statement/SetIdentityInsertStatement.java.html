@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>SetIdentityInsertStatement.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">markitect-liquibase-coverage</a> &gt; <a href="../index.html" class="el_bundle">markitect-liquibase-core</a> &gt; <a href="index.source.html" class="el_package">dev.markitect.liquibase.statement</a> &gt; <span class="el_source">SetIdentityInsertStatement.java</span></div><h1>SetIdentityInsertStatement.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2023 Markitect
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package dev.markitect.liquibase.statement;
+
+import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
+
+import liquibase.statement.AbstractSqlStatement;
+import org.checkerframework.checker.nullness.qual.Nullable;
+
+public class SetIdentityInsertStatement extends AbstractSqlStatement {
+  private final @Nullable String catalogName;
+  private final @Nullable String schemaName;
+  private final @Nullable String tableName;
+  private final @Nullable IdentityInsert value;
+
+  public SetIdentityInsertStatement(
+      @Nullable String catalogName,
+      @Nullable String schemaName,
+      @Nullable String tableName,
+<span class="fc" id="L34">      @Nullable IdentityInsert value) {</span>
+<span class="fc" id="L35">    this.catalogName = catalogName;</span>
+<span class="fc" id="L36">    this.schemaName = schemaName;</span>
+<span class="fc" id="L37">    this.tableName = tableName;</span>
+<span class="fc" id="L38">    this.value = checkNotNull(value);</span>
+<span class="fc" id="L39">  }</span>
+
+  public @Nullable String getCatalogName() {
+<span class="fc" id="L42">    return catalogName;</span>
+  }
+
+  public @Nullable String getSchemaName() {
+<span class="fc" id="L46">    return schemaName;</span>
+  }
+
+  public @Nullable String getTableName() {
+<span class="fc" id="L50">    return tableName;</span>
+  }
+
+  public @Nullable IdentityInsert getValue() {
+<span class="fc" id="L54">    return value;</span>
+  }
+
+  @Override
+  public boolean skipOnUnsupported() {
+<span class="fc" id="L59">    return true;</span>
+  }
+
+<span class="fc" id="L62">  public enum IdentityInsert {</span>
+<span class="fc" id="L63">    ON,</span>
+<span class="fc" id="L64">    OFF</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
