@@ -7,12 +7,13 @@
     <groupId>dev.markitect.liquibase</groupId>
     <artifactId>markitect-liquibase-parent</artifactId>
     <version>${revision}${sha1}${changelist}</version>
+    <relativePath>../markitect-liquibase-parent</relativePath>
   </parent>
 
-  <artifactId>markitect-liquibase-core</artifactId>
+  <artifactId>markitect-liquibase-logging</artifactId>
 
   <name>${project.artifactId}</name>
-  <description>Markitect Liquibase Core</description>
+  <description>Markitect Liquibase Logging</description>
   <url>https://markitect-dev.github.io/markitect-liquibase/${project.artifactId}/</url>
 
   <distributionManagement>
@@ -23,23 +24,16 @@
   </distributionManagement>
 
   <properties>
-    <automatic.module.name>dev.markitect.liquibase.core</automatic.module.name>
+    <automatic.module.name>dev.markitect.liquibase.logging</automatic.module.name>
     <maven.compiler.release>17</maven.compiler.release>
-    <sonar.cpd.exclusions>
-      src/main/java/dev/markitect/liquibase/change/CreateSchemaChange.java,
-      src/main/java/dev/markitect/liquibase/change/DropSchemaChange.java,
-      src/main/java/dev/markitect/liquibase/database/h2/MarkitectH2Database.java,
-      src/main/java/dev/markitect/liquibase/database/hsqldb/MarkitectHsqlDatabase.java,
-      src/main/java/dev/markitect/liquibase/database/mssql/MarkitectMssqlDatabase.java,
-      src/main/java/dev/markitect/liquibase/database/postgresql/MarkitectPostgresDatabase.java,
-      src/main/java/dev/markitect/liquibase/precondition/CatalogExistsPrecondition.java,
-      src/main/java/dev/markitect/liquibase/precondition/SchemaExistsPrecondition.java,
-      src/main/java/dev/markitect/liquibase/statement/CreateSchemaStatement.java,
-      src/main/java/dev/markitect/liquibase/statement/DropSchemaStatement.java,
-      src/main/java/dev/markitect/liquibase/statement/SchemaExistsStatement.java
-    </sonar.cpd.exclusions>
   </properties>
+
   <dependencies>
+    <dependency>
+      <groupId>biz.aQute.bnd</groupId>
+      <artifactId>biz.aQute.bnd.annotation</artifactId>
+      <scope>provided</scope>
+    </dependency>
     <dependency>
       <groupId>com.google.errorprone</groupId>
       <artifactId>error_prone_annotations</artifactId>
@@ -50,8 +44,9 @@
       <artifactId>markitect-liquibase-base</artifactId>
     </dependency>
     <dependency>
-      <groupId>dev.markitect.liquibase</groupId>
-      <artifactId>markitect-liquibase-logging</artifactId>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-api</artifactId>
+      <optional>true</optional>
     </dependency>
     <dependency>
       <groupId>org.checkerframework</groupId>
@@ -62,60 +57,25 @@
       <groupId>org.liquibase</groupId>
       <artifactId>liquibase-core</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.annotation.bundle</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.annotation.versioning</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <optional>true</optional>
+    </dependency>
 
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-databind</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.h2database</groupId>
-      <artifactId>h2</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.microsoft.sqlserver</groupId>
-      <artifactId>mssql-jdbc</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.hsqldb</groupId>
-      <artifactId>hsqldb</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.junit-pioneer</groupId>
-      <artifactId>junit-pioneer</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.postgresql</groupId>
-      <artifactId>postgresql</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-jdbc</artifactId>
-      <scope>test</scope>
-    </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.testcontainers</groupId>
-      <artifactId>junit-jupiter</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.testcontainers</groupId>
-      <artifactId>mssqlserver</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.testcontainers</groupId>
-      <artifactId>postgresql</artifactId>
       <scope>test</scope>
     </dependency>
   </dependencies>

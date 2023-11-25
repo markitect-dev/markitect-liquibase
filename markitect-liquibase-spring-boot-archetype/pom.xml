@@ -7,6 +7,7 @@
     <groupId>dev.markitect.liquibase</groupId>
     <artifactId>markitect-liquibase-parent</artifactId>
     <version>${revision}${sha1}${changelist}</version>
+    <relativePath>../markitect-liquibase-parent</relativePath>
   </parent>
 
   <artifactId>markitect-liquibase-spring-boot-archetype</artifactId>
@@ -131,8 +132,8 @@
             </goals>
             <phase>pre-integration-test</phase>
             <configuration>
-              <file>${project.basedir}/../../markitect-liquibase-bom/.flattened-pom.xml</file>
-              <pomFile>${project.basedir}/../../markitect-liquibase-bom/.flattened-pom.xml</pomFile>
+              <file>${project.basedir}/../markitect-liquibase-bom/.flattened-pom.xml</file>
+              <pomFile>${project.basedir}/../markitect-liquibase-bom/.flattened-pom.xml</pomFile>
             </configuration>
           </execution>
           <execution>

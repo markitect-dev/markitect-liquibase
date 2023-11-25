@@ -7,12 +7,13 @@
     <groupId>dev.markitect.liquibase</groupId>
     <artifactId>markitect-liquibase-parent</artifactId>
     <version>${revision}${sha1}${changelist}</version>
+    <relativePath>../markitect-liquibase-parent</relativePath>
   </parent>
 
-  <artifactId>markitect-liquibase-spring-boot-starter</artifactId>
+  <artifactId>markitect-liquibase-core</artifactId>
 
   <name>${project.artifactId}</name>
-  <description>Markitect Liquibase Spring Boot Starter</description>
+  <description>Markitect Liquibase Core</description>
   <url>https://markitect-dev.github.io/markitect-liquibase/${project.artifactId}/</url>
 
   <distributionManagement>
@@ -23,10 +24,22 @@
   </distributionManagement>
 
   <properties>
-    <automatic.module.name>dev.markitect.liquibase.spring.boot.starter</automatic.module.name>
+    <automatic.module.name>dev.markitect.liquibase.core</automatic.module.name>
     <maven.compiler.release>17</maven.compiler.release>
+    <sonar.cpd.exclusions>
+      src/main/java/dev/markitect/liquibase/change/CreateSchemaChange.java,
+      src/main/java/dev/markitect/liquibase/change/DropSchemaChange.java,
+      src/main/java/dev/markitect/liquibase/database/h2/MarkitectH2Database.java,
+      src/main/java/dev/markitect/liquibase/database/hsqldb/MarkitectHsqlDatabase.java,
+      src/main/java/dev/markitect/liquibase/database/mssql/MarkitectMssqlDatabase.java,
+      src/main/java/dev/markitect/liquibase/database/postgresql/MarkitectPostgresDatabase.java,
+      src/main/java/dev/markitect/liquibase/precondition/CatalogExistsPrecondition.java,
+      src/main/java/dev/markitect/liquibase/precondition/SchemaExistsPrecondition.java,
+      src/main/java/dev/markitect/liquibase/statement/CreateSchemaStatement.java,
+      src/main/java/dev/markitect/liquibase/statement/DropSchemaStatement.java,
+      src/main/java/dev/markitect/liquibase/statement/SchemaExistsStatement.java
+    </sonar.cpd.exclusions>
   </properties>
-
   <dependencies>
     <dependency>
       <groupId>com.google.errorprone</groupId>
@@ -35,7 +48,11 @@
     </dependency>
     <dependency>
       <groupId>dev.markitect.liquibase</groupId>
-      <artifactId>markitect-liquibase-spring</artifactId>
+      <artifactId>markitect-liquibase-base</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>dev.markitect.liquibase</groupId>
+      <artifactId>markitect-liquibase-logging</artifactId>
     </dependency>
     <dependency>
       <groupId>org.checkerframework</groupId>
@@ -43,22 +60,63 @@
       <optional>true</optional>
     </dependency>
     <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-jdbc</artifactId>
+      <groupId>org.liquibase</groupId>
+      <artifactId>liquibase-core</artifactId>
     </dependency>
 
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <scope>test</scope>
+    </dependency>
     <dependency>
       <groupId>com.h2database</groupId>
       <artifactId>h2</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
+      <groupId>com.microsoft.sqlserver</groupId>
+      <artifactId>mssql-jdbc</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.hsqldb</groupId>
+      <artifactId>hsqldb</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit-pioneer</groupId>
+      <artifactId>junit-pioneer</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-jdbc</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>mssqlserver</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>postgresql</artifactId>
       <scope>test</scope>
     </dependency>
   </dependencies>

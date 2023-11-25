@@ -7,12 +7,13 @@
     <groupId>dev.markitect.liquibase</groupId>
     <artifactId>markitect-liquibase-parent</artifactId>
     <version>${revision}${sha1}${changelist}</version>
+    <relativePath>../markitect-liquibase-parent</relativePath>
   </parent>
 
-  <artifactId>markitect-liquibase-logging</artifactId>
+  <artifactId>markitect-liquibase-base</artifactId>
 
   <name>${project.artifactId}</name>
-  <description>Markitect Liquibase Logging</description>
+  <description>Markitect Liquibase Base</description>
   <url>https://markitect-dev.github.io/markitect-liquibase/${project.artifactId}/</url>
 
   <distributionManagement>
@@ -23,28 +24,14 @@
   </distributionManagement>
 
   <properties>
-    <automatic.module.name>dev.markitect.liquibase.logging</automatic.module.name>
+    <automatic.module.name>dev.markitect.liquibase.base</automatic.module.name>
     <maven.compiler.release>17</maven.compiler.release>
   </properties>
 
   <dependencies>
     <dependency>
-      <groupId>biz.aQute.bnd</groupId>
-      <artifactId>biz.aQute.bnd.annotation</artifactId>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
       <groupId>com.google.errorprone</groupId>
       <artifactId>error_prone_annotations</artifactId>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>dev.markitect.liquibase</groupId>
-      <artifactId>markitect-liquibase-base</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.logging.log4j</groupId>
-      <artifactId>log4j-api</artifactId>
       <optional>true</optional>
     </dependency>
     <dependency>
@@ -52,29 +39,25 @@
       <artifactId>checker-qual</artifactId>
       <optional>true</optional>
     </dependency>
-    <dependency>
-      <groupId>org.liquibase</groupId>
-      <artifactId>liquibase-core</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.osgi</groupId>
-      <artifactId>org.osgi.annotation.bundle</artifactId>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.osgi</groupId>
-      <artifactId>org.osgi.annotation.versioning</artifactId>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-api</artifactId>
-      <optional>true</optional>
-    </dependency>
 
     <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-test</artifactId>
+      <groupId>org.assertj</groupId>
+      <artifactId>assertj-core</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-junit-jupiter</artifactId>
       <scope>test</scope>
     </dependency>
   </dependencies>

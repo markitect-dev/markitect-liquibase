@@ -78,7 +78,7 @@
     <skipNexusStagingDeployMojo>${maven.deploy.skip}</skipNexusStagingDeployMojo>
     <!--suppress UnresolvedMavenProperty -->
     <sonar.coverage.jacoco.xmlReportPaths>
-      ${maven.multiModuleProjectDirectory}/markitect-liquibase-parent/markitect-liquibase-coverage/target/site/jacoco-aggregate/jacoco.xml
+      ${maven.multiModuleProjectDirectory}/markitect-liquibase-coverage/target/site/jacoco-aggregate/jacoco.xml
     </sonar.coverage.jacoco.xmlReportPaths>
 
     <apiguardian.version>1.1.2</apiguardian.version>
