@@ -120,4 +120,101 @@
         remarks="Date and time the record was last updated."/>
     <rollback/>
   </changeSet>
+
+  <changeSet id="14" author="markitect">
+    <createTable schemaName="Person" tableName="CountryRegion" tablespace="PRIMARY">
+      <column name="CountryRegionCode" type="nvarchar(3)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="Name" type="nvarchar(50)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="ModifiedDate" type="datetime"
+          defaultValueConstraintName="DF_CountryRegion_ModifiedDate" defaultValueComputed="GETDATE()">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <modifySql>
+      <regExpReplace replace="(ON )(PRIMARY)" with="$1[$2]"/>
+    </modifySql>
+  </changeSet>
+
+  <changeSet id="15" author="markitect">
+    <addPrimaryKey schemaName="Person" tableName="CountryRegion" constraintName="PK_CountryRegion_CountryRegionCode"
+        columnNames="CountryRegionCode" tablespace="PRIMARY"/>
+    <modifySql>
+      <regExpReplace replace="(ON )(PRIMARY)" with="$1[$2]"/>
+    </modifySql>
+  </changeSet>
+
+  <changeSet id="15.1" author="markitect">
+    <preConditions>
+      <rowCount schemaName="Person" tableName="CountryRegion" expectedRows="0"/>
+    </preConditions>
+  </changeSet>
+
+  <changeSet id="16" author="markitect">
+    <ext:loadData schemaName="Person" tableName="CountryRegion" file="data/CountryRegion.csv"
+        relativeToChangelogFile="true">
+      <column name="CountryRegionCode" type="STRING"/>
+      <column name="Name" type="STRING"/>
+      <column name="ModifiedDate" type="COMPUTED" defaultValueComputed="getdate()"/>
+    </ext:loadData>
+    <rollback/>
+  </changeSet>
+
+  <changeSet id="16.1" author="markitect">
+    <preConditions>
+      <rowCount schemaName="Person" tableName="CountryRegion" expectedRows="238"/>
+    </preConditions>
+  </changeSet>
+
+  <changeSet id="17" author="markitect">
+    <delete schemaName="Person" tableName="CountryRegion">
+      <where>:name IN (:value, :value)</where>
+      <whereParams>
+        <param name="CountryRegionCode" value="AG"/>
+        <param value="AI"/>
+      </whereParams>
+    </delete>
+    <rollback/>
+  </changeSet>
+
+  <changeSet id="17.1" author="markitect">
+    <preConditions>
+      <rowCount schemaName="Person" tableName="CountryRegion" expectedRows="236"/>
+    </preConditions>
+  </changeSet>
+
+  <changeSet id="18" author="markitect">
+    <ext:loadUpdateData schemaName="Person" tableName="CountryRegion" file="data/CountryRegion.csv"
+        relativeToChangelogFile="true" primaryKey="CountryRegionCode" onlyUpdate="true">
+      <column name="CountryRegionCode" type="STRING"/>
+      <column name="Name" type="STRING"/>
+      <column name="ModifiedDate" type="COMPUTED" defaultValueComputed="getdate()"/>
+    </ext:loadUpdateData>
+    <rollback/>
+  </changeSet>
+
+  <changeSet id="18.1" author="markitect">
+    <preConditions>
+      <rowCount schemaName="Person" tableName="CountryRegion" expectedRows="236"/>
+    </preConditions>
+  </changeSet>
+
+  <changeSet id="19" author="markitect">
+    <ext:loadUpdateData schemaName="Person" tableName="CountryRegion" file="data/CountryRegion.csv"
+        relativeToChangelogFile="true" primaryKey="CountryRegionCode">
+      <column name="CountryRegionCode" type="STRING"/>
+      <column name="Name" type="STRING"/>
+      <column name="ModifiedDate" type="COMPUTED" defaultValueComputed="getdate()"/>
+    </ext:loadUpdateData>
+    <rollback/>
+  </changeSet>
+
+  <changeSet id="19.1" author="markitect">
+    <preConditions>
+      <rowCount schemaName="Person" tableName="CountryRegion" expectedRows="238"/>
+    </preConditions>
+  </changeSet>
 </databaseChangeLog>

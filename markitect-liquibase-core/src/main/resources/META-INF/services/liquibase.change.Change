@@ -2,3 +2,8 @@ dev.markitect.liquibase.change.CreateDatabaseChange
 dev.markitect.liquibase.change.CreateSchemaChange
 dev.markitect.liquibase.change.DropDatabaseChange
 dev.markitect.liquibase.change.DropSchemaChange
+dev.markitect.liquibase.change.MarkitectInsertDataChangeMssql
+dev.markitect.liquibase.change.MarkitectLoadDataChange
+dev.markitect.liquibase.change.MarkitectLoadDataChangeMssql
+dev.markitect.liquibase.change.MarkitectLoadUpdateDataChange
+dev.markitect.liquibase.change.MarkitectLoadUpdateDataChangeMssql
