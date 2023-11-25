@@ -205,3 +205,155 @@ databaseChangeLog:
             columnName: ModifiedDate
             remarks: Date and time the record was last updated.
       rollback:
+
+  - changeSet:
+      id: 14
+      author: markitect
+      changes:
+        - createTable:
+            schemaName: Person
+            tableName: CountryRegion
+            tablespace: PRIMARY
+            columns:
+              - column:
+                  name: CountryRegionCode
+                  type: nvarchar(3)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: Name
+                  type: nvarchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: ModifiedDate
+                  type: datetime
+                  defaultValueConstraintName: DF_CountryRegion_ModifiedDate
+                  defaultValueComputed: GETDATE()
+                  constraints:
+                    nullable: false
+        - modifySql:
+            regExpReplace:
+              replace: (ON )(PRIMARY)
+              with: $1[$2]
+
+  - changeSet:
+      id: 15
+      author: markitect
+      changes:
+        - addPrimaryKey:
+            schemaName: Person
+            tableName: CountryRegion
+            constraintName: PK_CountryRegion_CountryRegionCode
+            columnNames: CountryRegionCode
+            tablespace: PRIMARY
+        - modifySql:
+            regExpReplace:
+              replace: (ON )(PRIMARY)
+              with: $1[$2]
+
+  - changeSet:
+      id: 15.1
+      author: markitect
+      preConditions:
+        - rowCount:
+            schemaName: Person
+            tableName: CountryRegion
+            expectedRows: 0
+
+  - changeSet:
+      id: 16
+      author: markitect
+      changes:
+        - loadData:
+            schemaName: Person
+            tableName: CountryRegion
+            file: data/CountryRegion.csv
+            relativeToChangelogFile: true
+            columns:
+              - column: { name: CountryRegionCode, type: STRING }
+              - column: { name: Name, type: STRING }
+              - column: { name: ModifiedDate, type: COMPUTED, defaultValueComputed: getdate() }
+      rollback:
+
+  - changeSet:
+      id: 16.1
+      author: markitect
+      preConditions:
+        - rowCount:
+            schemaName: Person
+            tableName: CountryRegion
+            expectedRows: 238
+
+  - changeSet:
+      id: 17
+      author: markitect
+      changes:
+        - delete:
+            schemaName: Person
+            tableName: CountryRegion
+            where: :name IN (:value, :value)
+            whereParams:
+              - param: { name: CountryRegionCode, value: AG }
+              - param: { value: AI }
+      rollback:
+
+  - changeSet:
+      id: 17.1
+      author: markitect
+      preConditions:
+        - rowCount:
+            schemaName: Person
+            tableName: CountryRegion
+            expectedRows: 236
+
+  - changeSet:
+      id: 18
+      author: markitect
+      changes:
+        - loadUpdateData:
+            schemaName: Person
+            tableName: CountryRegion
+            file: data/CountryRegion.csv
+            relativeToChangelogFile: true
+            primaryKey: CountryRegionCode
+            onlyUpdate: true
+            columns:
+              - column: { name: CountryRegionCode, type: STRING }
+              - column: { name: Name, type: STRING }
+              - column: { name: ModifiedDate, type: COMPUTED, defaultValueComputed: getdate() }
+      rollback:
+
+  - changeSet:
+      id: 18.1
+      author: markitect
+      preConditions:
+        - rowCount:
+            schemaName: Person
+            tableName: CountryRegion
+            expectedRows: 236
+
+  - changeSet:
+      id: 19
+      author: markitect
+      changes:
+        - loadUpdateData:
+            schemaName: Person
+            tableName: CountryRegion
+            file: data/CountryRegion.csv
+            relativeToChangelogFile: true
+            primaryKey: CountryRegionCode
+            columns:
+              - column: { name: CountryRegionCode, type: STRING }
+              - column: { name: Name, type: STRING }
+              - column: { name: ModifiedDate, type: COMPUTED, defaultValueComputed: getdate() }
+      rollback:
+
+  - changeSet:
+      id: 19.1
+      author: markitect
+      preConditions:
+        - rowCount:
+            schemaName: Person
+            tableName: CountryRegion
+            expectedRows: 238

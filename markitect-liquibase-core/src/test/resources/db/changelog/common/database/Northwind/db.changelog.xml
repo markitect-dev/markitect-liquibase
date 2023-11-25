@@ -30,10 +30,10 @@
       <column name="TitleOfCourtesy" type="nvarchar(25)">
         <constraints nullable="true"/>
       </column>
-      <column name="BirthDate" type="datetime">
+      <column name="BirthDate" type="date">
         <constraints nullable="true"/>
       </column>
-      <column name="HireDate" type="datetime">
+      <column name="HireDate" type="date">
         <constraints nullable="true"/>
       </column>
       <column name="Address" type="nvarchar(60)">
@@ -57,15 +57,14 @@
       <column name="Extension" type="nvarchar(4)">
         <constraints nullable="true"/>
       </column>
-      <column name="Photo" type="image">
+      <column name="Photo" type="blob">
         <constraints nullable="true"/>
       </column>
-      <column name="Notes" type="ntext">
+      <column name="Notes" type="nclob">
         <constraints nullable="true"/>
       </column>
       <column name="ReportsTo" type="int">
-        <constraints nullable="true" foreignKeyName="FK_Employees_Employees" referencedTableName="Employees"
-            referencedColumnNames="EmployeeID"/>
+        <constraints nullable="true"/>
       </column>
       <column name="PhotoPath" type="nvarchar(255)">
         <constraints nullable="true"/>
@@ -77,5 +76,245 @@
     <modifySql dbms="h2,hsqldb,postgresql">
       <regExpReplace replace="(\)$)" with=", CONSTRAINT CK_Birthdate CHECK (BirthDate &lt; LOCALTIMESTAMP)$1"/>
     </modifySql>
+  </changeSet>
+
+  <changeSet id="2" author="markitect">
+    <ext:loadData tableName="Employees" file="data/Employees.csv" relativeToChangelogFile="true"
+        usePreparedStatements="true" identityInsert="true">
+      <column name="EmployeeID" type="NUMERIC"/>
+      <column name="LastName" type="STRING"/>
+      <column name="FirstName" type="STRING"/>
+      <column name="Title" type="STRING"/>
+      <column name="TitleOfCourtesy" type="STRING"/>
+      <column name="BirthDate" type="DATE"/>
+      <column name="HireDate" type="DATE"/>
+      <column name="Address" type="STRING"/>
+      <column name="City" type="STRING"/>
+      <column name="Region" type="STRING"/>
+      <column name="PostalCode" type="STRING"/>
+      <column name="Country" type="STRING"/>
+      <column name="HomePhone" type="STRING"/>
+      <column name="Extension" type="STRING"/>
+      <column name="Photo" type="BLOB"/>
+      <column name="Notes" type="STRING"/>
+      <column name="ReportsTo" type="NUMERIC"/>
+      <column name="PhotoPath" type="STRING"/>
+    </ext:loadData>
+    <rollback/>
+  </changeSet>
+
+  <changeSet id="2.1" author="markitect">
+    <preConditions>
+      <rowCount tableName="Employees" expectedRows="9"/>
+    </preConditions>
+  </changeSet>
+
+  <changeSet id="3" author="markitect">
+    <delete tableName="Employees">
+      <where>:name = :value</where>
+      <whereParams>
+        <param name="EmployeeID" valueNumeric="3"/>
+      </whereParams>
+    </delete>
+    <rollback/>
+  </changeSet>
+
+  <changeSet id="3.1" author="markitect">
+    <preConditions>
+      <rowCount tableName="Employees" expectedRows="8"/>
+    </preConditions>
+  </changeSet>
+
+  <changeSet id="4" author="markitect">
+    <ext:insert tableName="Employees" identityInsert="true">
+      <column name="EmployeeID" valueNumeric="3"/>
+      <column name="LastName" value="Leverling"/>
+      <column name="FirstName" value="Janet"/>
+      <column name="Title" value="Sales Representative"/>
+      <column name="TitleOfCourtesy" value="Ms."/>
+      <column name="BirthDate" valueDate="1963-08-30"/>
+      <column name="HireDate" valueDate="1992-04-01"/>
+      <column name="Address" value="722 Moss Bay Blvd."/>
+      <column name="City" value="Kirkland"/>
+      <column name="Region" value="WA"/>
+      <column name="PostalCode" value="98033"/>
+      <column name="Country" value="USA"/>
+      <column name="HomePhone" value="(206) 555-3412"/>
+      <column name="Extension" value="3355"/>
+      <column name="Photo" valueBlobFile="data/employees/leverling.bmp"/>
+      <column name="Notes" value="Janet has a BS degree in chemistry from Boston College (1984).  She has also completed a certificate program in food retailing management.  Janet was hired as a sales associate in 1991 and promoted to sales representative in February 1992."/>
+      <column name="ReportsTo" valueNumeric="2"/>
+      <column name="PhotoPath" value="http://accweb/emmployees/leverling.bmp"/>
+    </ext:insert>
+    <rollback/>
+  </changeSet>
+
+  <changeSet id="4.1" author="markitect">
+    <preConditions>
+      <rowCount tableName="Employees" expectedRows="9"/>
+    </preConditions>
+  </changeSet>
+
+  <changeSet id="5" author="markitect">
+    <delete tableName="Employees">
+      <where>:name IN (:value, :value)</where>
+      <whereParams>
+        <param name="EmployeeID" valueNumeric="4"/>
+        <param valueNumeric="5"/>
+      </whereParams>
+    </delete>
+    <rollback/>
+  </changeSet>
+
+  <changeSet id="5.1" author="markitect">
+    <preConditions>
+      <rowCount tableName="Employees" expectedRows="7"/>
+    </preConditions>
+  </changeSet>
+
+  <changeSet id="6" author="markitect">
+    <ext:loadUpdateData tableName="Employees" file="data/Employees.csv" relativeToChangelogFile="true"
+        primaryKey="EmployeeID" onlyUpdate="true" usePreparedStatements="false" identityInsert="true">
+      <column name="EmployeeID" type="NUMERIC"/>
+      <column name="LastName" type="STRING"/>
+      <column name="FirstName" type="STRING"/>
+      <column name="Title" type="STRING"/>
+      <column name="TitleOfCourtesy" type="STRING"/>
+      <column name="BirthDate" type="DATE"/>
+      <column name="HireDate" type="DATE"/>
+      <column name="Address" type="STRING"/>
+      <column name="City" type="STRING"/>
+      <column name="Region" type="STRING"/>
+      <column name="PostalCode" type="STRING"/>
+      <column name="Country" type="STRING"/>
+      <column name="HomePhone" type="STRING"/>
+      <column name="Extension" type="STRING"/>
+      <column name="Photo" type="SKIP"/>
+      <column name="Notes" type="STRING"/>
+      <column name="ReportsTo" type="NUMERIC"/>
+      <ext:column name="PhotoPath" type="STRING" allowUpdate="false"/>
+    </ext:loadUpdateData>
+    <rollback/>
+  </changeSet>
+
+  <changeSet id="6.1" author="markitect">
+    <preConditions>
+      <rowCount tableName="Employees" expectedRows="7"/>
+    </preConditions>
+  </changeSet>
+
+  <changeSet id="7" author="markitect">
+    <ext:loadUpdateData tableName="Employees" file="data/Employees.csv" relativeToChangelogFile="true"
+        primaryKey="EmployeeID" usePreparedStatements="false" identityInsert="true">
+      <column name="EmployeeID" type="NUMERIC"/>
+      <column name="LastName" type="STRING"/>
+      <column name="FirstName" type="STRING"/>
+      <column name="Title" type="STRING"/>
+      <column name="TitleOfCourtesy" type="STRING"/>
+      <column name="BirthDate" type="DATE"/>
+      <column name="HireDate" type="DATE"/>
+      <column name="Address" type="STRING"/>
+      <column name="City" type="STRING"/>
+      <column name="Region" type="STRING"/>
+      <column name="PostalCode" type="STRING"/>
+      <column name="Country" type="STRING"/>
+      <column name="HomePhone" type="STRING"/>
+      <column name="Extension" type="STRING"/>
+      <column name="Photo" type="SKIP"/>
+      <column name="Notes" type="STRING"/>
+      <column name="ReportsTo" type="NUMERIC"/>
+      <ext:column name="PhotoPath" type="STRING" allowUpdate="false"/>
+    </ext:loadUpdateData>
+    <rollback/>
+  </changeSet>
+
+  <changeSet id="7.1" author="markitect">
+    <preConditions>
+      <rowCount tableName="Employees" expectedRows="9"/>
+    </preConditions>
+  </changeSet>
+
+  <changeSet id="8" author="markitect">
+    <delete tableName="Employees">
+      <where>:name IN (:value, :value)</where>
+      <whereParams>
+        <param name="EmployeeID" valueNumeric="4"/>
+        <param valueNumeric="5"/>
+      </whereParams>
+    </delete>
+    <rollback/>
+  </changeSet>
+
+  <changeSet id="8.1" author="markitect">
+    <preConditions>
+      <rowCount tableName="Employees" expectedRows="7"/>
+    </preConditions>
+  </changeSet>
+
+  <changeSet id="9" author="markitect">
+    <ext:loadUpdateData tableName="Employees" file="data/Employees.csv" relativeToChangelogFile="true"
+        primaryKey="EmployeeID" onlyUpdate="true" usePreparedStatements="true" identityInsert="true">
+      <column name="EmployeeID" type="NUMERIC"/>
+      <column name="LastName" type="STRING"/>
+      <column name="FirstName" type="STRING"/>
+      <column name="Title" type="STRING"/>
+      <column name="TitleOfCourtesy" type="STRING"/>
+      <column name="BirthDate" type="DATE"/>
+      <column name="HireDate" type="DATE"/>
+      <column name="Address" type="STRING"/>
+      <column name="City" type="STRING"/>
+      <column name="Region" type="STRING"/>
+      <column name="PostalCode" type="STRING"/>
+      <column name="Country" type="STRING"/>
+      <column name="HomePhone" type="STRING"/>
+      <column name="Extension" type="STRING"/>
+      <column name="Photo" type="BLOB"/>
+      <column name="Notes" type="STRING"/>
+      <column name="ReportsTo" type="NUMERIC"/>
+      <column name="PhotoPath" type="STRING"/>
+    </ext:loadUpdateData>
+    <rollback/>
+  </changeSet>
+
+  <changeSet id="9.1" author="markitect">
+    <preConditions>
+      <rowCount tableName="Employees" expectedRows="7"/>
+    </preConditions>
+  </changeSet>
+
+  <changeSet id="10" author="markitect">
+    <ext:loadUpdateData tableName="Employees" file="data/Employees.csv" relativeToChangelogFile="true"
+        primaryKey="EmployeeID" usePreparedStatements="true" identityInsert="true">
+      <column name="EmployeeID" type="NUMERIC"/>
+      <column name="LastName" type="STRING"/>
+      <column name="FirstName" type="STRING"/>
+      <column name="Title" type="STRING"/>
+      <column name="TitleOfCourtesy" type="STRING"/>
+      <column name="BirthDate" type="DATE"/>
+      <column name="HireDate" type="DATE"/>
+      <column name="Address" type="STRING"/>
+      <column name="City" type="STRING"/>
+      <column name="Region" type="STRING"/>
+      <column name="PostalCode" type="STRING"/>
+      <column name="Country" type="STRING"/>
+      <column name="HomePhone" type="STRING"/>
+      <column name="Extension" type="STRING"/>
+      <column name="Photo" type="BLOB"/>
+      <column name="Notes" type="STRING"/>
+      <column name="ReportsTo" type="NUMERIC"/>
+      <column name="PhotoPath" type="STRING"/>
+    </ext:loadUpdateData>
+    <rollback/>
+  </changeSet>
+
+  <changeSet id="10.1" author="markitect">
+    <preConditions>
+      <rowCount tableName="Employees" expectedRows="9"/>
+    </preConditions>
+  </changeSet>
+
+  <changeSet id="11" author="markitect">
+    <addForeignKeyConstraint baseTableName="Employees" constraintName="FK_Employees_Employees"
+        baseColumnNames="EmployeeID" referencedTableName="Employees" referencedColumnNames="EmployeeID"/>
   </changeSet>
 </databaseChangeLog>
