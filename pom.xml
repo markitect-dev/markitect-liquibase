@@ -4,12 +4,12 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>dev.markitect.liquibase</groupId>
-  <artifactId>markitect-liquibase</artifactId>
+  <artifactId>markitect-liquibase-build</artifactId>
   <version>${revision}${sha1}${changelist}</version>
   <packaging>pom</packaging>
 
   <name>${project.artifactId}</name>
-  <description>Markitect Liquibase Extensions &amp; Integrations</description>
+  <description>Markitect Liquibase Build</description>
   <url>https://markitect-dev.github.io/markitect-liquibase/</url>
   <inceptionYear>2023</inceptionYear>
   <organization>
