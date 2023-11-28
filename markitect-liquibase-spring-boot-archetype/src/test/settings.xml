@@ -10,7 +10,7 @@
       <repositories>
         <repository>
           <id>local.central</id>
-          <url>@localRepositoryUrl@</url>>
+          <url>@localRepositoryUrl@</url>
         </repository>
       </repositories>
       <pluginRepositories>
