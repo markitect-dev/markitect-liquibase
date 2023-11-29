@@ -50,14 +50,12 @@ import org.springframework.mock.env.MockEnvironment;
 @ExtendWith(MockitoExtension.class)
 class MarkitectLiquibaseAutoConfigurationTests {
   private final MockEnvironment environment = new MockEnvironment();
-  private final MarkitectLiquibaseAutoConfiguration markitectLiquibaseAutoConfiguration =
-      new MarkitectLiquibaseAutoConfiguration();
 
   @Test
   void shouldCreateSpringLiquibaseBeanPostProcessor() {
     // when
     var springLiquibaseBeanPostProcessor =
-        markitectLiquibaseAutoConfiguration.springLiquibaseBeanPostProcessor(environment);
+        MarkitectLiquibaseAutoConfiguration.springLiquibaseBeanPostProcessor(environment);
 
     // then
     assertThat(springLiquibaseBeanPostProcessor).isNotNull();

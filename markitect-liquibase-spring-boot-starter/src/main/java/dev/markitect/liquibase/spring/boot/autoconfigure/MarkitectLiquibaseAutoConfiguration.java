@@ -68,10 +68,12 @@ import org.springframework.util.StringUtils;
 @ImportRuntimeHints(LiquibaseAutoConfigurationRuntimeHints.class)
 public class MarkitectLiquibaseAutoConfiguration {
   @Bean
-  public SpringLiquibaseBeanPostProcessor springLiquibaseBeanPostProcessor(
+  public static SpringLiquibaseBeanPostProcessor springLiquibaseBeanPostProcessor(
       Environment environment) {
     return new SpringLiquibaseBeanPostProcessor(environment);
   }
+
+  private MarkitectLiquibaseAutoConfiguration() {}
 
   @Configuration(proxyBeanMethods = false)
   @ConditionalOnClass(ConnectionCallback.class)
