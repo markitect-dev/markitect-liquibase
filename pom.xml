@@ -157,7 +157,7 @@
     <slf4j.version>2.0.9</slf4j.version>
     <snakeyaml.version>2.2</snakeyaml.version>
     <sortpom.version>3.3.0</sortpom.version>
-    <spotless.version>2.41.0</spotless.version>
+    <spotless.version>2.41.1</spotless.version>
     <spring-boot.version>3.2.0</spring-boot.version>
     <spring-framework.version>6.1.1</spring-framework.version>
     <testcontainers.version>1.19.3</testcontainers.version>
