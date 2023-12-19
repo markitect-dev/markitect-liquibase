@@ -32,7 +32,7 @@ import liquibase.command.CommandScope;
 import liquibase.command.core.RollbackToDateCommandStep;
 import liquibase.command.core.UpdateCommandStep;
 import liquibase.command.core.helpers.DatabaseChangelogCommandStep;
-import liquibase.command.core.helpers.DbUrlConnectionCommandStep;
+import liquibase.command.core.helpers.DbUrlConnectionArgumentsCommandStep;
 import liquibase.database.ObjectQuotingStrategy;
 import liquibase.structure.DatabaseObject;
 import org.checkerframework.checker.nullness.qual.Nullable;
@@ -204,7 +204,8 @@ class MarkitectHsqlDatabaseIntegrationTests {
                     scopeValues,
                     () ->
                         new CommandScope(UpdateCommandStep.COMMAND_NAME)
-                            .addArgumentValue(DbUrlConnectionCommandStep.DATABASE_ARG, database)
+                            .addArgumentValue(
+                                DbUrlConnectionArgumentsCommandStep.DATABASE_ARG, database)
                             .addArgumentValue(
                                 UpdateCommandStep.CHANGELOG_FILE_ARG, changeLogFileName)
                             .execute());
@@ -212,7 +213,8 @@ class MarkitectHsqlDatabaseIntegrationTests {
                     scopeValues,
                     () ->
                         new CommandScope(RollbackToDateCommandStep.COMMAND_NAME)
-                            .addArgumentValue(DbUrlConnectionCommandStep.DATABASE_ARG, database)
+                            .addArgumentValue(
+                                DbUrlConnectionArgumentsCommandStep.DATABASE_ARG, database)
                             .addArgumentValue(
                                 DatabaseChangelogCommandStep.CHANGELOG_FILE_ARG, changeLogFileName)
                             .addArgumentValue(
