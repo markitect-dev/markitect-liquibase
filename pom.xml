@@ -97,7 +97,7 @@
     <error-prone.version>2.23.0</error-prone.version>
     <extra-enforcer-rules.version>1.7.0</extra-enforcer-rules.version>
     <flatten-maven-plugin.version>1.5.0</flatten-maven-plugin.version>
-    <google-java-format.version>1.18.1</google-java-format.version>
+    <google-java-format.version>1.19.0</google-java-format.version>
     <h2.version>2.2.224</h2.version>
     <hamcrest.version>2.2</hamcrest.version>
     <hikaricp.version>5.1.0</hikaricp.version>
