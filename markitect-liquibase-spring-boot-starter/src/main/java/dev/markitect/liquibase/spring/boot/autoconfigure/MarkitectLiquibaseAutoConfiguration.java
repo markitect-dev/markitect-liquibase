@@ -25,6 +25,8 @@ import dev.markitect.liquibase.spring.boot.autoconfigure.MarkitectLiquibaseAutoC
 import dev.markitect.liquibase.spring.boot.autoconfigure.MarkitectLiquibaseAutoConfiguration.LiquibaseDataSourceCondition;
 import java.util.Optional;
 import javax.sql.DataSource;
+import liquibase.UpdateSummaryEnum;
+import liquibase.UpdateSummaryOutputEnum;
 import liquibase.change.DatabaseChange;
 import liquibase.integration.spring.SpringLiquibase;
 import org.checkerframework.checker.nullness.qual.Nullable;
@@ -128,8 +130,13 @@ public class MarkitectLiquibaseAutoConfiguration {
       liquibase.setTestRollbackOnUpdate(properties.isTestRollbackOnUpdate());
       liquibase.setChangeLogParameters(properties.getParameters());
       liquibase.setRollbackFile(properties.getRollbackFile());
-      liquibase.setShowSummary(properties.getShowSummary());
-      liquibase.setShowSummaryOutput(properties.getShowSummaryOutput());
+      if (properties.getShowSummary() != null) {
+        liquibase.setShowSummary(UpdateSummaryEnum.valueOf(properties.getShowSummary().name()));
+      }
+      if (properties.getShowSummaryOutput() != null) {
+        liquibase.setShowSummaryOutput(
+            UpdateSummaryOutputEnum.valueOf(properties.getShowSummaryOutput().name()));
+      }
       liquibase.setOutputDefaultCatalog(markitectProperties.isOutputDefaultCatalog());
       liquibase.setOutputDefaultSchema(markitectProperties.isOutputDefaultSchema());
       return liquibase;
