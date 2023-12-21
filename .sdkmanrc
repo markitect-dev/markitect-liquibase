@@ -3,4 +3,4 @@
 java=21.0.1-zulu
 maven=3.9.6
 mvnd=1.0-m8-m39
-springboot=3.2.0
+springboot=3.2.1
