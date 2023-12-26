@@ -130,13 +130,14 @@ public class MarkitectLiquibaseAutoConfiguration {
       liquibase.setTestRollbackOnUpdate(properties.isTestRollbackOnUpdate());
       liquibase.setChangeLogParameters(properties.getParameters());
       liquibase.setRollbackFile(properties.getRollbackFile());
-      if (properties.getShowSummary() != null) {
-        liquibase.setShowSummary(UpdateSummaryEnum.valueOf(properties.getShowSummary().name()));
-      }
-      if (properties.getShowSummaryOutput() != null) {
-        liquibase.setShowSummaryOutput(
-            UpdateSummaryOutputEnum.valueOf(properties.getShowSummaryOutput().name()));
-      }
+      Optional.ofNullable(properties.getShowSummary())
+          .map(Enum::name)
+          .map(UpdateSummaryEnum::valueOf)
+          .ifPresent(liquibase::setShowSummary);
+      Optional.ofNullable(properties.getShowSummaryOutput())
+          .map(Enum::name)
+          .map(UpdateSummaryOutputEnum::valueOf)
+          .ifPresent(liquibase::setShowSummaryOutput);
       liquibase.setOutputDefaultCatalog(markitectProperties.isOutputDefaultCatalog());
       liquibase.setOutputDefaultSchema(markitectProperties.isOutputDefaultSchema());
       return liquibase;
