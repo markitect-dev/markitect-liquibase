@@ -137,7 +137,7 @@
     <maven-scm-publish-plugin.version>3.2.1</maven-scm-publish-plugin.version>
     <maven-site-plugin.version>4.0.0-M13</maven-site-plugin.version>
     <maven-source-plugin.version>3.3.0</maven-source-plugin.version>
-    <maven-surefire.version>3.2.3</maven-surefire.version>
+    <maven-surefire.version>3.2.5</maven-surefire.version>
     <maven-wrapper.version>3.2.0</maven-wrapper.version>
     <micrometer.version>1.12.2</micrometer.version>
     <mockito.version>5.8.0</mockito.version>
