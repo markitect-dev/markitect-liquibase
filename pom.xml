@@ -281,8 +281,8 @@ $1$4]]></replacement>
           <artifactId>maven-checkstyle-plugin</artifactId>
           <version>${maven-checkstyle-plugin.version}</version>
           <configuration>
-            <configLocation>src/checkstyle/checkstyle.xml</configLocation>
-            <suppressionsLocation>src/checkstyle/checkstyle-suppressions.xml</suppressionsLocation>
+            <configLocation>${maven.multiModuleProjectDirectory}/src/checkstyle/checkstyle.xml</configLocation>
+            <propertyExpansion>config_loc=${maven.multiModuleProjectDirectory}/src/checkstyle</propertyExpansion>
             <consoleOutput>true</consoleOutput>
             <failOnViolation>true</failOnViolation>
             <sourceDirectories>
@@ -299,6 +299,7 @@ $1$4]]></replacement>
           </dependencies>
           <executions>
             <execution>
+              <id>check</id>
               <goals>
                 <goal>check</goal>
               </goals>
@@ -811,6 +812,13 @@ $1$4]]></replacement>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
         <version>${maven-checkstyle-plugin.version}</version>
+        <executions>
+          <execution>
+            <id>check</id>
+            <phase>none</phase>
+            <inherited>false</inherited>
+          </execution>
+        </executions>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
