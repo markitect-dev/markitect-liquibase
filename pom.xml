@@ -619,6 +619,7 @@ $1$4]]></replacement>
           <version>${maven-surefire.version}</version>
           <configuration>
             <argLine>@{argLine}
+              -Djdk.attach.allowAttachSelf=true
               -XX:+EnableDynamicAgentLoading</argLine>
             <useModulePath>false</useModulePath>
           </configuration>

@@ -158,6 +158,7 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <configuration>
           <argLine>@{argLine}
+            -Djdk.attach.allowAttachSelf=true
             -XX:+EnableDynamicAgentLoading</argLine>
         </configuration>
       </plugin>
