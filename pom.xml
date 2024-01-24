@@ -140,7 +140,7 @@
     <maven-surefire.version>3.2.5</maven-surefire.version>
     <maven-wrapper.version>3.2.0</maven-wrapper.version>
     <micrometer.version>1.12.2</micrometer.version>
-    <mockito.version>5.9.0</mockito.version>
+    <mockito.version>5.10.0</mockito.version>
     <mssql-jdbc.version>12.4.2.jre11</mssql-jdbc.version>
     <nexus-staging-maven-plugin.version>1.6.13</nexus-staging-maven-plugin.version>
     <nullaway.version>0.10.21</nullaway.version>
