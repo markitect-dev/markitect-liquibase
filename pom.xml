@@ -157,7 +157,7 @@
     <slf4j.version>2.0.11</slf4j.version>
     <snakeyaml.version>2.2</snakeyaml.version>
     <sortpom.version>3.3.0</sortpom.version>
-    <spotless.version>2.43.0</spotless.version>
+    <spotless-maven-plugin.version>2.43.0</spotless-maven-plugin.version>
     <spring-boot.version>3.2.2</spring-boot.version>
     <spring-framework.version>6.1.3</spring-framework.version>
     <testcontainers.version>1.19.3</testcontainers.version>
@@ -183,7 +183,7 @@
         <plugin>
           <groupId>com.diffplug.spotless</groupId>
           <artifactId>spotless-maven-plugin</artifactId>
-          <version>${spotless.version}</version>
+          <version>${spotless-maven-plugin.version}</version>
           <configuration>
             <ratchetFrom>origin/main</ratchetFrom>
             <java>
@@ -806,7 +806,7 @@ $1$4]]></replacement>
       <plugin>
         <groupId>com.diffplug.spotless</groupId>
         <artifactId>spotless-maven-plugin</artifactId>
-        <version>${spotless.version}</version>
+        <version>${spotless-maven-plugin.version}</version>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
