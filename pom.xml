@@ -64,6 +64,7 @@
   <properties>
     <argLine/>
     <changelist>-SNAPSHOT</changelist>
+    <checkstyle.config.directory>${maven.multiModuleProjectDirectory}/config/checkstyle</checkstyle.config.directory>
     <gitHub.projectId>markitect-dev/markitect-liquibase</gitHub.projectId>
     <java.version>21</java.version>
     <maven.compiler.release>${java.version}</maven.compiler.release>
@@ -80,6 +81,7 @@
     <sonar.coverage.jacoco.xmlReportPaths>
       ${maven.multiModuleProjectDirectory}/markitect-liquibase-coverage/target/site/jacoco-aggregate/jacoco.xml
     </sonar.coverage.jacoco.xmlReportPaths>
+    <spotless.config.directory>${maven.multiModuleProjectDirectory}/config/spotless</spotless.config.directory>
 
     <apiguardian.version>1.1.2</apiguardian.version>
     <assertj.version>3.25.2</assertj.version>
@@ -188,8 +190,7 @@
             <ratchetFrom>origin/main</ratchetFrom>
             <java>
               <licenseHeader>
-                <!--suppress UnresolvedMavenProperty -->
-                <file>${maven.multiModuleProjectDirectory}/src/spotless/license-header-java</file>
+                <file>${spotless.config.directory}/license-header-java</file>
               </licenseHeader>
               <googleJavaFormat>
                 <version>${google-java-format.version}</version>
@@ -281,8 +282,8 @@ $1$4]]></replacement>
           <artifactId>maven-checkstyle-plugin</artifactId>
           <version>${maven-checkstyle-plugin.version}</version>
           <configuration>
-            <configLocation>${maven.multiModuleProjectDirectory}/src/checkstyle/checkstyle.xml</configLocation>
-            <propertyExpansion>config_loc=${maven.multiModuleProjectDirectory}/src/checkstyle</propertyExpansion>
+            <configLocation>${checkstyle.config.directory}/checkstyle.xml</configLocation>
+            <propertyExpansion>config_loc=${checkstyle.config.directory}</propertyExpansion>
             <consoleOutput>true</consoleOutput>
             <failOnViolation>true</failOnViolation>
             <sourceDirectories>
