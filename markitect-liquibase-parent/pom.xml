@@ -611,6 +611,18 @@
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-failsafe-plugin</artifactId>
+        <version>${maven-surefire.version}</version>
+        <executions>
+          <execution>
+            <id>default</id>
+            <phase>none</phase>
+            <inherited>false</inherited>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-install-plugin</artifactId>
         <version>${maven-install-plugin.version}</version>
         <executions>
