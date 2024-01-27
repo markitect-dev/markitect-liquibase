@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Markitect
+ * Copyright 2023-2024 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -56,9 +56,9 @@ class LogServiceTests {
     // then
     assertThat(output)
         .contains(
-            " [main] DEBUG liquibase.changelog.visitor.UpdateVisitor - "
+            "] DEBUG liquibase.changelog.visitor.UpdateVisitor - "
                 + "Running Changeset: filePath::id::author",
-            " [main] DEBUG liquibase.changelog.visitor.ValidatingVisitor - "
+            "] DEBUG liquibase.changelog.visitor.ValidatingVisitor - "
                 + "Precondition failed: Preconditions Failed",
             "java.lang.Exception: Preconditions Failed");
   }
