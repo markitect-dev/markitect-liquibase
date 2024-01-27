@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Markitect
+ * Copyright 2023-2024 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,7 +32,8 @@ public class LoggerAdapter {
     if (isPresent("org.apache.logging.log4j.spi.ExtendedLogger")
         && !isPresent("org.apache.logging.slf4j.SLF4JProvider")) {
       LOGGING_API = LoggingApi.LOG4J;
-    } else if (isPresent("org.slf4j.spi.LocationAwareLogger")) {
+    } else if (isPresent("org.slf4j.spi.LocationAwareLogger")
+        && !isPresent("org.slf4j.jul.JULServiceProvider")) {
       LOGGING_API = LoggingApi.SLF4J;
     } else {
       LOGGING_API = LoggingApi.JUL;
