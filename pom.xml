@@ -158,7 +158,7 @@
     <postgresql.version>42.7.1</postgresql.version>
     <r2dbc-spi.version>1.0.0.RELEASE</r2dbc-spi.version>
     <reactive-streams.version>1.0.4</reactive-streams.version>
-    <slf4j.version>2.0.11</slf4j.version>
+    <slf4j.version>2.0.12</slf4j.version>
     <snakeyaml.version>2.2</snakeyaml.version>
     <sortpom.version>3.3.0</sortpom.version>
     <spotless-maven-plugin.version>2.43.0</spotless-maven-plugin.version>
