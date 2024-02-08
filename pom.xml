@@ -532,6 +532,8 @@ $1$4]]></replacement>
                     </ignoredScopes>
                   </enforceBytecodeVersion>
                   <requireEncoding>
+                    <includes>.github/**,.mvn/**,build-logic/src/**,build-logic/*,config/**,gradle/**,src/**,*</includes>
+                    <excludes>**/*.bmp,**/*.jar</excludes>
                     <acceptAsciiSubset>true</acceptAsciiSubset>
                   </requireEncoding>
                 </rules>
