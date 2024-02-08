@@ -1,0 +1,33 @@
+@file:Suppress("UnstableApiUsage")
+
+plugins {
+    base
+    `jacoco-report-aggregation`
+    id("buildlogic.common-conventions")
+}
+
+dependencies {
+    jacocoAggregation(project(":markitect-liquibase-base"))
+    jacocoAggregation(project(":markitect-liquibase-core"))
+    jacocoAggregation(project(":markitect-liquibase-logging"))
+    jacocoAggregation(project(":markitect-liquibase-logging-jul-tests"))
+    jacocoAggregation(project(":markitect-liquibase-logging-log4j-tests"))
+    jacocoAggregation(project(":markitect-liquibase-logging-slf4j-api-tests"))
+    jacocoAggregation(project(":markitect-liquibase-logging-slf4j-spi-tests"))
+    jacocoAggregation(project(":markitect-liquibase-spring"))
+    jacocoAggregation(project(":markitect-liquibase-spring-boot-starter"))
+}
+
+reporting {
+    reports {
+        val testCodeCoverageReport by creating(JacocoCoverageReport::class) {
+            testType = TestSuiteType.UNIT_TEST
+        }
+    }
+}
+
+tasks.check {
+    dependsOn(tasks.named<JacocoReport>("testCodeCoverageReport"))
+}
+
+description = "Markitect Liquibase Coverage"

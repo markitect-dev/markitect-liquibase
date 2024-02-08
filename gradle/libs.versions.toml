@@ -1,0 +1,158 @@
+# https://docs.gradle.org/current/userguide/platforms.html#sub::toml-dependencies-format
+
+[versions]
+apiguardian = "1.1.2"
+assertj = "3.25.3"
+awaitility = "4.2.0"
+bnd-annotation = "7.0.0"
+byte-buddy = "1.14.11"
+checker-framework = "3.42.0"
+checkstyle = "10.13.0"
+commons-collections4 = "4.4"
+commons-compress = "1.25.0"
+commons-lang3 = "3.14.0"
+commons-text = "1.11.0"
+docker-java = "3.3.4"
+duct-tape = "1.0.8"
+error-prone = "2.24.1"
+errorprone-plugin = "3.1.0"
+gradle-nexus-publish-plugin = "2.0.0-rc-2"
+google-java-format = "1.19.2"
+guava = "33.0.0-jre"
+h2 = "2.2.224"
+hamcrest = "2.2"
+hikaricp = "5.1.0"
+hsqldb = "2.7.2"
+jackson = "2.16.1"
+jacoco = "0.8.11"
+jakarta-activation = "2.1.2"
+jakarta-annotation = "2.1.1"
+jakarta-xml-bind = "4.0.1"
+jetbrains-annotations = "24.1.0"
+jna = "5.14.0"
+jooq = "3.19.3"
+jooq-plugin = "9.0"
+junit-jupiter = "5.10.2"
+junit-pioneer = "2.2.0"
+ktlint = "1.1.1"
+liquibase = "4.26.0"
+log4j2 = "2.22.1"
+logback = "1.4.14"
+micrometer = "1.12.2"
+mockito = "5.10.0"
+mssql-jdbc = "12.6.0.jre11"
+nullaway = "0.10.22"
+nullaway-plugin = "1.6.0"
+objenesis = "3.3"
+opencsv = "5.9"
+opentest4j = "1.3.0"
+osgi-annotation-bundle = "2.0.0"
+osgi-annotation-versioning = "1.1.2"
+osgi-resource = "1.0.1"
+osgi-service-serviceloader = "1.0.0"
+postgresql = "42.7.1"
+r2dbc-spi = "1.0.0.RELEASE"
+reactive-streams = "1.0.4"
+slf4j = "2.0.12"
+snakeyaml = "2.2"
+sonarqube-plugin = "4.4.1.3373"
+spotless-plugin = "6.25.0"
+spring-boot = "3.2.2"
+spring-framework = "6.1.3"
+testcontainers = "1.19.4"
+
+[libraries]
+biz-aqute-bnd-biz-aqute-bnd-annotation = { module = "biz.aQute.bnd:biz.aQute.bnd.annotation", version.ref = "bnd-annotation" }
+ch-qos-logback-logback-classic = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
+ch-qos-logback-logback-core = { module = "ch.qos.logback:logback-core", version.ref = "logback" }
+com-fasterxml-jackson-core-jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jackson" }
+com-fasterxml-jackson-jackson-bom = { module = "com.fasterxml.jackson:jackson-bom", version.ref = "jackson" }
+com-github-docker-java-docker-java-api = { module = "com.github.docker-java:docker-java-api", version.ref = "docker-java" }
+com-github-docker-java-docker-java-transport = { module = "com.github.docker-java:docker-java-transport", version.ref = "docker-java" }
+com-github-docker-java-docker-java-transport-zerodep = { module = "com.github.docker-java:docker-java-transport-zerodep", version.ref = "docker-java" }
+com-google-errorprone-error-prone-annotations = { module = "com.google.errorprone:error_prone_annotations", version.ref = "error-prone" }
+com-google-errorprone-error-prone-core = { module = "com.google.errorprone:error_prone_core", version.ref = "error-prone" }
+com-google-googlejavaformat-google-java-format = { module = "com.google.googlejavaformat:google-java-format", version.ref = "google-java-format" }
+com-google-guava-guava = { module = "com.google.guava:guava", version.ref = "guava" }
+com-h2database-h2 = { module = "com.h2database:h2", version.ref = "h2" }
+com-microsoft-sqlserver-mssql-jdbc = { module = "com.microsoft.sqlserver:mssql-jdbc", version.ref = "mssql-jdbc" }
+com-opencsv-opencsv = { module = "com.opencsv:opencsv", version.ref = "opencsv" }
+com-pinterest-ktlint-ktlint-cli = { module = "com.pinterest.ktlint:ktlint-cli", version.ref = "ktlint" }
+com-puppycrawl-tools-checkstyle = { module = "com.puppycrawl.tools:checkstyle", version.ref = "checkstyle" }
+com-uber-nullaway-nullaway = { module = "com.uber.nullaway:nullaway", version.ref = "nullaway" }
+com-zaxxer-hikaricp = { module = "com.zaxxer:HikariCP", version.ref = "hikaricp" }
+io-micrometer-micrometer-bom = { module = "io.micrometer:micrometer-bom", version.ref = "micrometer" }
+io-r2dbc-r2dbc-spi = { module = "io.r2dbc:r2dbc-spi", version.ref = "r2dbc-spi" }
+jakarta-activation-jakarta-activation-api = { module = "jakarta.activation:jakarta.activation-api", version.ref = "jakarta-activation" }
+jakarta-annotation-jakarta-annotation-api = { module = "jakarta.annotation:jakarta.annotation-api", version.ref = "jakarta-annotation" }
+jakarta-xml-bind-jakarta-xml-bind-api = { module = "jakarta.xml.bind:jakarta.xml.bind-api", version.ref = "jakarta-xml-bind" }
+net-bytebuddy-byte-buddy = { module = "net.bytebuddy:byte-buddy", version.ref = "byte-buddy" }
+net-bytebuddy-byte-buddy-agent = { module = "net.bytebuddy:byte-buddy-agent", version.ref = "byte-buddy" }
+net-java-dev-jna-jna = { module = "net.java.dev.jna:jna", version.ref = "jna" }
+org-apache-commons-commons-collections4 = { module = "org.apache.commons:commons-collections4", version.ref = "commons-collections4" }
+org-apache-commons-commons-compress = { module = "org.apache.commons:commons-compress", version.ref = "commons-compress" }
+org-apache-commons-commons-lang3 = { module = "org.apache.commons:commons-lang3", version.ref = "commons-lang3" }
+org-apache-commons-commons-text = { module = "org.apache.commons:commons-text", version.ref = "commons-text" }
+org-apache-logging-log4j-log4j-api = { module = "org.apache.logging.log4j:log4j-api", version.ref = "log4j2" }
+org-apache-logging-log4j-log4j-core = { module = "org.apache.logging.log4j:log4j-core", version.ref = "log4j2" }
+org-apache-logging-log4j-log4j-jul = { module = "org.apache.logging.log4j:log4j-jul", version.ref = "log4j2" }
+org-apache-logging-log4j-log4j-slf4j2-impl = { module = "org.apache.logging.log4j:log4j-slf4j2-impl", version.ref = "log4j2" }
+org-apache-logging-log4j-log4j-to-slf4j = { module = "org.apache.logging.log4j:log4j-to-slf4j", version.ref = "log4j2" }
+org-apiguardian-apiguardian-api = { module = "org.apiguardian:apiguardian-api", version.ref = "apiguardian" }
+org-assertj-assertj-bom = { module = "org.assertj:assertj-bom", version.ref = "assertj" }
+org-assertj-assertj-core = { module = "org.assertj:assertj-core", version.ref = "assertj" }
+org-awaitility-awaitility = { module = "org.awaitility:awaitility", version.ref = "awaitility" }
+org-checkerframework-checker-qual = { module = "org.checkerframework:checker-qual", version.ref = "checker-framework" }
+org-hamcrest-hamcrest = { module = "org.hamcrest:hamcrest", version.ref = "hamcrest" }
+org-hsqldb-hsqldb = { module = "org.hsqldb:hsqldb", version.ref = "hsqldb" }
+org-jacoco-org-jacoco-agent = { module = "org.jacoco:org.jacoco.agent", version.ref = "jacoco" }
+org-jetbrains-annotations = { module = "org.jetbrains:annotations", version.ref = "jetbrains-annotations" }
+org-jooq-jooq = { module = "org.jooq:jooq", version.ref = "jooq" }
+org-jooq-jooq-meta-extensions-liquibase = { module = "org.jooq:jooq-meta-extensions-liquibase", version.ref = "jooq" }
+org-junit-junit-bom = { module = "org.junit:junit-bom", version.ref = "junit-jupiter" }
+org-junit-jupiter-junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit-jupiter" }
+org-junit-pioneer-junit-pioneer = { module = "org.junit-pioneer:junit-pioneer", version.ref = "junit-pioneer" }
+org-liquibase-liquibase-core = { module = "org.liquibase:liquibase-core", version.ref = "liquibase" }
+org-mockito-mockito-bom = { module = "org.mockito:mockito-bom", version.ref = "mockito" }
+org-mockito-mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockito" }
+org-mockito-mockito-junit-jupiter = { module = "org.mockito:mockito-junit-jupiter", version.ref = "mockito" }
+org-objenesis-objenesis = { module = "org.objenesis:objenesis", version.ref = "objenesis" }
+org-opentest4j-opentest4j = { module = "org.opentest4j:opentest4j", version.ref = "opentest4j" }
+org-osgi-org-osgi-annotation-bundle = { module = "org.osgi:org.osgi.annotation.bundle", version.ref = "osgi-annotation-bundle" }
+org-osgi-org-osgi-annotation-versioning = { module = "org.osgi:org.osgi.annotation.versioning", version.ref = "osgi-annotation-versioning" }
+org-osgi-org-osgi-resource = { module = "org.osgi:org.osgi.resource", version.ref = "osgi-resource" }
+org-osgi-org-osgi-service-serviceloader = { module = "org.osgi:org.osgi.service.serviceloader", version.ref = "osgi-service-serviceloader" }
+org-postgresql-postgresql = { module = "org.postgresql:postgresql", version.ref = "postgresql" }
+org-reactivestreams-reactive-streams = { module = "org.reactivestreams:reactive-streams", version.ref = "reactive-streams" }
+org-rnorth-duct-tape-duct-tape = { module = "org.rnorth.duct-tape:duct-tape", version.ref = "duct-tape" }
+org-slf4j-jul-to-slf4j = { module = "org.slf4j:jul-to-slf4j", version.ref = "slf4j" }
+org-slf4j-slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
+org-slf4j-slf4j-jdk14 = { module = "org.slf4j:slf4j-jdk14", version.ref = "slf4j" }
+org-slf4j-slf4j-simple = { module = "org.slf4j:slf4j-simple", version.ref = "slf4j" }
+org-springframework-boot-spring-boot = { module = "org.springframework.boot:spring-boot", version.ref = "spring-boot" }
+org-springframework-boot-spring-boot-autoconfigure = { module = "org.springframework.boot:spring-boot-autoconfigure", version.ref = "spring-boot" }
+org-springframework-boot-spring-boot-configuration-processor = { module = "org.springframework.boot:spring-boot-configuration-processor", version.ref = "spring-boot" }
+org-springframework-boot-spring-boot-starter = { module = "org.springframework.boot:spring-boot-starter", version.ref = "spring-boot" }
+org-springframework-boot-spring-boot-starter-jdbc = { module = "org.springframework.boot:spring-boot-starter-jdbc", version.ref = "spring-boot" }
+org-springframework-boot-spring-boot-starter-jooq = { module = "org.springframework.boot:spring-boot-starter-jooq", version.ref = "spring-boot" }
+org-springframework-boot-spring-boot-starter-log4j2 = { module = "org.springframework.boot:spring-boot-starter-log4j2", version.ref = "spring-boot" }
+org-springframework-boot-spring-boot-starter-logging = { module = "org.springframework.boot:spring-boot-starter-logging", version.ref = "spring-boot" }
+org-springframework-boot-spring-boot-starter-test = { module = "org.springframework.boot:spring-boot-starter-test", version.ref = "spring-boot" }
+org-springframework-boot-spring-boot-test = { module = "org.springframework.boot:spring-boot-test", version.ref = "spring-boot" }
+org-springframework-boot-spring-boot-test-autoconfigure = { module = "org.springframework.boot:spring-boot-test-autoconfigure", version.ref = "spring-boot" }
+org-springframework-spring-context = { module = "org.springframework:spring-context", version.ref = "spring-framework" }
+org-springframework-spring-framework-bom = { module = "org.springframework:spring-framework-bom", version.ref = "spring-framework" }
+org-springframework-spring-jdbc = { module = "org.springframework:spring-jdbc", version.ref = "spring-framework" }
+org-testcontainers-junit-jupiter = { module = "org.testcontainers:junit-jupiter", version.ref = "testcontainers" }
+org-testcontainers-mssqlserver = { module = "org.testcontainers:mssqlserver", version.ref = "testcontainers" }
+org-testcontainers-postgresql = { module = "org.testcontainers:postgresql", version.ref = "testcontainers" }
+org-testcontainers-testcontainers-bom = { module = "org.testcontainers:testcontainers-bom", version.ref = "testcontainers" }
+org-yaml-snakeyaml = { module = "org.yaml:snakeyaml", version.ref = "snakeyaml" }
+
+[plugins]
+com-diffplug-spotless = { id = "com.diffplug.spotless", version.ref = "spotless-plugin" }
+io-github-gradle-nexus-publish-plugin = { id = "io.github.gradle-nexus.publish-plugin", version.ref = "gradle-nexus-publish-plugin" }
+net-ltgt-errorprone = { id = "net.ltgt.errorprone", version.ref = "errorprone-plugin" }
+net-ltgt-nullaway = { id = "net.ltgt.nullaway", version.ref = "nullaway-plugin" }
+nu-studer-jooq = { id = "nu.studer.jooq", version.ref = "jooq-plugin" }
+org-sonarqube = { id = "org.sonarqube", version.ref = "sonarqube-plugin" }

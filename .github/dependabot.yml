@@ -7,6 +7,22 @@ updates:
       interval: "daily"
       time: "11:00"
 
+  - package-ecosystem: "gradle"
+    directory: "/"
+    schedule:
+      interval: "daily"
+      time: "11:00"
+    open-pull-requests-limit: 100
+    groups:
+      junit:
+        patterns:
+          - "org.junit.platform:*"
+          - "org.junit.jupiter:*"
+    ignore:
+      - dependency-name: "com.microsoft.sqlserver:mssql-jdbc"
+        versions:
+          - "12.5.0.jre11-preview"
+
   - package-ecosystem: "maven"
     directory: "/"
     schedule:

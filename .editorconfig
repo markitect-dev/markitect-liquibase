@@ -20,8 +20,11 @@ ij_java_class_count_to_use_import_on_demand = 999
 ij_java_imports_layout = $*, |, *
 ij_java_line_comment_at_first_column = false
 ij_java_names_count_to_use_import_on_demand = 999
-ij_java_packages_to_use_import_on_demand =
+ij_java_packages_to_use_import_on_demand = unset
 ij_java_ternary_operation_signs_on_next_line = true
+
+[{*.kt,*.kts}]
+indent_size = 4
 
 [*.xml]
 ij_xml_align_attributes = false

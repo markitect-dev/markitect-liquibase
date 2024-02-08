@@ -1,0 +1,155 @@
+@file:Suppress("UnstableApiUsage")
+
+plugins {
+    id("buildlogic.common-conventions")
+    id("buildlogic.checkstyle-conventions")
+    id("buildlogic.errorprone-conventions")
+    id("buildlogic.jacoco-conventions")
+    `java-library`
+}
+
+configurations.testImplementation {
+    resolutionStrategy.dependencySubstitution {
+        substitute(module("org.hamcrest:hamcrest-core"))
+            .using(module(libs.org.hamcrest.hamcrest.get().toString()))
+    }
+    exclude(group = "com.jayway.jsonpath", module = "json-path")
+    exclude(group = "javax.xml.bind", module = "jaxb-api")
+    exclude(group = "net.minidev", module = "json-smart")
+    exclude(group = "org.skyscreamer", module = "jsonassert")
+    exclude(group = "org.xmlunit", module = "xmlunit-core")
+}
+
+dependencies {
+    testImplementation(platform(libs.com.fasterxml.jackson.jackson.bom))
+    testImplementation(platform(libs.io.micrometer.micrometer.bom))
+    testImplementation(platform(libs.org.assertj.assertj.bom))
+    testImplementation(platform(libs.org.junit.junit.bom))
+    testImplementation(platform(libs.org.mockito.mockito.bom))
+    testImplementation(platform(libs.org.springframework.spring.framework.bom))
+    testImplementation(platform(libs.org.testcontainers.testcontainers.bom))
+    constraints {
+        testImplementation(libs.biz.aqute.bnd.biz.aqute.bnd.annotation)
+        testImplementation(libs.ch.qos.logback.logback.classic)
+        testImplementation(libs.ch.qos.logback.logback.core)
+        testImplementation(libs.com.github.docker.java.docker.java.api)
+        testImplementation(libs.com.github.docker.java.docker.java.transport)
+        testImplementation(libs.com.github.docker.java.docker.java.transport.zerodep)
+        testImplementation(libs.com.google.errorprone.error.prone.annotations)
+        testImplementation(libs.com.h2database.h2)
+        testImplementation(libs.com.microsoft.sqlserver.mssql.jdbc)
+        testImplementation(libs.com.opencsv.opencsv)
+        testImplementation(libs.com.zaxxer.hikaricp)
+        testImplementation(libs.io.r2dbc.r2dbc.spi)
+        testImplementation(libs.jakarta.activation.jakarta.activation.api)
+        testImplementation(libs.jakarta.annotation.jakarta.annotation.api)
+        testImplementation(libs.jakarta.xml.bind.jakarta.xml.bind.api)
+        testImplementation(libs.net.bytebuddy.byte.buddy)
+        testImplementation(libs.net.bytebuddy.byte.buddy.agent)
+        testImplementation(libs.net.java.dev.jna.jna)
+        testImplementation(libs.org.apache.commons.commons.collections4)
+        testImplementation(libs.org.apache.commons.commons.compress)
+        testImplementation(libs.org.apache.commons.commons.lang3)
+        testImplementation(libs.org.apache.commons.commons.text)
+        testImplementation(libs.org.apache.logging.log4j.log4j.api)
+        testImplementation(libs.org.apache.logging.log4j.log4j.core)
+        testImplementation(libs.org.apache.logging.log4j.log4j.jul)
+        testImplementation(libs.org.apache.logging.log4j.log4j.slf4j2.impl)
+        testImplementation(libs.org.apache.logging.log4j.log4j.to.slf4j)
+        testImplementation(libs.org.apiguardian.apiguardian.api)
+        testImplementation(libs.org.awaitility.awaitility)
+        testImplementation(libs.org.checkerframework.checker.qual)
+        testImplementation(libs.org.hamcrest.hamcrest)
+        testImplementation(libs.org.hsqldb.hsqldb)
+        testImplementation(libs.org.jetbrains.annotations)
+        testImplementation(libs.org.jooq.jooq)
+        testImplementation(libs.org.junit.pioneer.junit.pioneer)
+        testImplementation(libs.org.liquibase.liquibase.core)
+        testImplementation(libs.org.objenesis.objenesis)
+        testImplementation(libs.org.opentest4j.opentest4j)
+        testImplementation(libs.org.osgi.org.osgi.annotation.bundle)
+        testImplementation(libs.org.osgi.org.osgi.annotation.versioning)
+        testImplementation(libs.org.osgi.org.osgi.resource)
+        testImplementation(libs.org.osgi.org.osgi.service.serviceloader)
+        testImplementation(libs.org.postgresql.postgresql)
+        testImplementation(libs.org.reactivestreams.reactive.streams)
+        testImplementation(libs.org.rnorth.duct.tape.duct.tape)
+        testImplementation(libs.org.slf4j.jul.to.slf4j)
+        testImplementation(libs.org.slf4j.slf4j.api)
+        testImplementation(libs.org.slf4j.slf4j.jdk14)
+        testImplementation(libs.org.slf4j.slf4j.simple)
+        testImplementation(libs.org.springframework.boot.spring.boot)
+        testImplementation(libs.org.springframework.boot.spring.boot.autoconfigure)
+        testImplementation(libs.org.springframework.boot.spring.boot.starter)
+        testImplementation(libs.org.springframework.boot.spring.boot.starter.jdbc)
+        testImplementation(libs.org.springframework.boot.spring.boot.starter.jooq)
+        testImplementation(libs.org.springframework.boot.spring.boot.starter.log4j2)
+        testImplementation(libs.org.springframework.boot.spring.boot.starter.logging)
+        testImplementation(libs.org.springframework.boot.spring.boot.starter.test)
+        testImplementation(libs.org.springframework.boot.spring.boot.test)
+        testImplementation(libs.org.springframework.boot.spring.boot.test.autoconfigure)
+        testImplementation(libs.org.yaml.snakeyaml)
+    }
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+        vendor = JvmVendorSpec.AZUL
+    }
+    withJavadocJar()
+    withSourcesJar()
+}
+
+tasks.compileJava {
+    options.release = 17
+}
+
+tasks.withType<JavaCompile>().configureEach {
+    options.compilerArgs.add("-parameters")
+    options.compilerArgs.add("-Werror")
+    options.compilerArgs.add("-Xlint:all,-options,-processing,-serial")
+}
+
+testing.suites.withType<JvmTestSuite>().configureEach {
+    useJUnitJupiter(libs.versions.junit.jupiter.get())
+    targets.all {
+        testTask.configure {
+            onlyIf { !providers.systemProperty("skipTests").isPresent }
+            jvmArgs("-Djdk.attach.allowAttachSelf=true")
+            jvmArgs("-XX:+EnableDynamicAgentLoading")
+        }
+    }
+}
+
+tasks.jar {
+    onlyIf { !project.name.endsWith("-tests") }
+    if (project.hasProperty("automaticModuleName")) {
+        manifest {
+            attributes("Automatic-Module-Name" to project.property("automaticModuleName"))
+        }
+    }
+    metaInf {
+        from(rootProject.file("LICENSE.txt"))
+        from(rootProject.file("NOTICE.txt"))
+    }
+}
+
+tasks.javadoc {
+    options {
+        this as StandardJavadocDocletOptions
+        addBooleanOption("Xdoclint:all,-missing", true)
+    }
+}
+
+tasks.named<Jar>("javadocJar") {
+    onlyIf { !project.name.endsWith("-tests") }
+}
+
+tasks.named<Jar>("sourcesJar") {
+    onlyIf { !project.name.endsWith("-tests") }
+    metaInf {
+        from(rootProject.file("LICENSE.txt"))
+        from(rootProject.file("NOTICE.txt"))
+    }
+}
