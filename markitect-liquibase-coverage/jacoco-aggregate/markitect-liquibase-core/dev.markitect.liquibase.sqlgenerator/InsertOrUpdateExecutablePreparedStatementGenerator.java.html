@@ -32,10 +32,10 @@ import liquibase.sqlgenerator.core.AbstractSqlGenerator;
       InsertOrUpdateExecutablePreparedStatement statement,
       Database database,
       SqlGeneratorChain&lt;InsertOrUpdateExecutablePreparedStatement&gt; sqlGeneratorChain) {
-<span class="fc" id="L35">    checkNotNull(statement);</span>
-<span class="fc" id="L36">    checkNotNull(database);</span>
-<span class="fc" id="L37">    checkNotNull(sqlGeneratorChain);</span>
-<span class="fc" id="L38">    return new ValidationErrors();</span>
+<span class="nc" id="L35">    checkNotNull(statement);</span>
+<span class="nc" id="L36">    checkNotNull(database);</span>
+<span class="nc" id="L37">    checkNotNull(sqlGeneratorChain);</span>
+<span class="nc" id="L38">    return new ValidationErrors();</span>
   }
 
   @Override
@@ -43,10 +43,10 @@ import liquibase.sqlgenerator.core.AbstractSqlGenerator;
       InsertOrUpdateExecutablePreparedStatement statement,
       Database database,
       SqlGeneratorChain&lt;InsertOrUpdateExecutablePreparedStatement&gt; sqlGeneratorChain) {
-<span class="fc" id="L46">    checkNotNull(statement);</span>
-<span class="fc" id="L47">    checkNotNull(database);</span>
-<span class="fc" id="L48">    checkNotNull(sqlGeneratorChain);</span>
-<span class="fc" id="L49">    return EMPTY_SQL;</span>
+<span class="nc" id="L46">    checkNotNull(statement);</span>
+<span class="nc" id="L47">    checkNotNull(database);</span>
+<span class="nc" id="L48">    checkNotNull(sqlGeneratorChain);</span>
+<span class="nc" id="L49">    return EMPTY_SQL;</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

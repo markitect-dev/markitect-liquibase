@@ -45,11 +45,11 @@ public final class Databases {
     }
 <span class="fc" id="L46">    var statement = new CatalogExistsStatement();</span>
 <span class="fc" id="L47">    statement.setCatalogName(catalogName);</span>
-<span class="fc" id="L48">    return isTrue(</span>
+<span class="nc" id="L48">    return isTrue(</span>
 <span class="fc" id="L49">        Scope.getCurrentScope()</span>
 <span class="fc" id="L50">            .getSingleton(ExecutorService.class)</span>
 <span class="fc" id="L51">            .getExecutor(&quot;jdbc&quot;, database)</span>
-<span class="fc" id="L52">            .queryForObject(statement, Boolean.class));</span>
+<span class="nc" id="L52">            .queryForObject(statement, Boolean.class));</span>
   }
 
   public static boolean schemaExists(
@@ -63,17 +63,17 @@ public final class Databases {
 <span class="fc" id="L63">      return SnapshotGeneratorFactory.getInstance()</span>
 <span class="fc" id="L64">          .has(new Schema(catalogName, schemaName), database);</span>
     }
-<span class="fc bfc" id="L66" title="All 2 branches covered.">    if (!catalogExists(database, catalogName)) {</span>
+<span class="pc bpc" id="L66" title="1 of 2 branches missed.">    if (!catalogExists(database, catalogName)) {</span>
 <span class="fc" id="L67">      return false;</span>
     }
-<span class="fc" id="L69">    var statement = new SchemaExistsStatement();</span>
-<span class="fc" id="L70">    statement.setCatalogName(catalogName);</span>
-<span class="fc" id="L71">    statement.setSchemaName(schemaName);</span>
-<span class="fc" id="L72">    return isTrue(</span>
-<span class="fc" id="L73">        Scope.getCurrentScope()</span>
-<span class="fc" id="L74">            .getSingleton(ExecutorService.class)</span>
-<span class="fc" id="L75">            .getExecutor(&quot;jdbc&quot;, database)</span>
-<span class="fc" id="L76">            .queryForObject(statement, Boolean.class));</span>
+<span class="nc" id="L69">    var statement = new SchemaExistsStatement();</span>
+<span class="nc" id="L70">    statement.setCatalogName(catalogName);</span>
+<span class="nc" id="L71">    statement.setSchemaName(schemaName);</span>
+<span class="nc" id="L72">    return isTrue(</span>
+<span class="nc" id="L73">        Scope.getCurrentScope()</span>
+<span class="nc" id="L74">            .getSingleton(ExecutorService.class)</span>
+<span class="nc" id="L75">            .getExecutor(&quot;jdbc&quot;, database)</span>
+<span class="nc" id="L76">            .queryForObject(statement, Boolean.class));</span>
   }
 
   private Databases() {}

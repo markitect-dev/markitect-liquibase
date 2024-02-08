@@ -31,37 +31,37 @@ public class SetIdentityInsertStatement extends AbstractSqlStatement {
       @Nullable String catalogName,
       @Nullable String schemaName,
       @Nullable String tableName,
-<span class="fc" id="L34">      @Nullable IdentityInsert value) {</span>
-<span class="fc" id="L35">    this.catalogName = catalogName;</span>
-<span class="fc" id="L36">    this.schemaName = schemaName;</span>
-<span class="fc" id="L37">    this.tableName = tableName;</span>
-<span class="fc" id="L38">    this.value = checkNotNull(value);</span>
-<span class="fc" id="L39">  }</span>
+<span class="nc" id="L34">      @Nullable IdentityInsert value) {</span>
+<span class="nc" id="L35">    this.catalogName = catalogName;</span>
+<span class="nc" id="L36">    this.schemaName = schemaName;</span>
+<span class="nc" id="L37">    this.tableName = tableName;</span>
+<span class="nc" id="L38">    this.value = checkNotNull(value);</span>
+<span class="nc" id="L39">  }</span>
 
   public @Nullable String getCatalogName() {
-<span class="fc" id="L42">    return catalogName;</span>
+<span class="nc" id="L42">    return catalogName;</span>
   }
 
   public @Nullable String getSchemaName() {
-<span class="fc" id="L46">    return schemaName;</span>
+<span class="nc" id="L46">    return schemaName;</span>
   }
 
   public @Nullable String getTableName() {
-<span class="fc" id="L50">    return tableName;</span>
+<span class="nc" id="L50">    return tableName;</span>
   }
 
   public @Nullable IdentityInsert getValue() {
-<span class="fc" id="L54">    return value;</span>
+<span class="nc" id="L54">    return value;</span>
   }
 
   @Override
   public boolean skipOnUnsupported() {
-<span class="fc" id="L59">    return true;</span>
+<span class="nc" id="L59">    return true;</span>
   }
 
-<span class="fc" id="L62">  public enum IdentityInsert {</span>
-<span class="fc" id="L63">    ON,</span>
-<span class="fc" id="L64">    OFF</span>
+<span class="nc" id="L62">  public enum IdentityInsert {</span>
+<span class="nc" id="L63">    ON,</span>
+<span class="nc" id="L64">    OFF</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

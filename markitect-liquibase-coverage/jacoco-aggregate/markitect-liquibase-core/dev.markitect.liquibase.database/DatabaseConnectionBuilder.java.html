@@ -53,22 +53,22 @@ public final class DatabaseConnectionBuilder {
   }
 
   public DatabaseConnectionBuilder withUsername(@Nullable String username) {
-<span class="fc" id="L56">    return new DatabaseConnectionBuilder(url, username, password, driver);</span>
+<span class="nc" id="L56">    return new DatabaseConnectionBuilder(url, username, password, driver);</span>
   }
 
   public DatabaseConnectionBuilder withPassword(@Nullable String password) {
-<span class="fc" id="L60">    return new DatabaseConnectionBuilder(url, username, password, driver);</span>
+<span class="nc" id="L60">    return new DatabaseConnectionBuilder(url, username, password, driver);</span>
   }
 
   public DatabaseConnectionBuilder withDriver(@Nullable String driver) {
-<span class="fc" id="L64">    return new DatabaseConnectionBuilder(url, username, password, driver);</span>
+<span class="nc" id="L64">    return new DatabaseConnectionBuilder(url, username, password, driver);</span>
   }
 
   public DatabaseConnection build() {
 <span class="fc bfc" id="L68" title="All 2 branches covered.">    checkState(url != null);</span>
     try {
-<span class="fc" id="L70">      return DatabaseFactory.getInstance()</span>
-<span class="fc" id="L71">          .openConnection(</span>
+<span class="pc" id="L70">      return DatabaseFactory.getInstance()</span>
+<span class="nc" id="L71">          .openConnection(</span>
               url,
               username,
               password,

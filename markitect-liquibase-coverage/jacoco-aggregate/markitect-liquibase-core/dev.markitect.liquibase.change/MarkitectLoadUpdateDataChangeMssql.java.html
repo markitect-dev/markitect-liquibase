@@ -51,13 +51,13 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 
   @DatabaseChangeProperty(description = &quot;Whether to set IDENTITY_INSERT&quot;)
   public @Nullable Boolean getIdentityInsert() {
-<span class="fc" id="L54">    return identityInsert;</span>
+<span class="nc" id="L54">    return identityInsert;</span>
   }
 
   @SuppressWarnings(&quot;unused&quot;)
   public void setIdentityInsert(@Nullable Boolean identityInsert) {
-<span class="fc" id="L59">    this.identityInsert = identityInsert;</span>
-<span class="fc" id="L60">  }</span>
+<span class="nc" id="L59">    this.identityInsert = identityInsert;</span>
+<span class="nc" id="L60">  }</span>
 
   @Override
   public boolean supports(Database database) {
@@ -68,19 +68,19 @@ import org.checkerframework.checker.nullness.qual.Nullable;
   @Override
   @SuppressWarnings(&quot;DuplicatedCode&quot;)
   public SqlStatement[] generateStatements(Database database) {
-<span class="fc bfc" id="L71" title="All 2 branches covered.">    if (isTrue(getIdentityInsert())) {</span>
-<span class="fc" id="L72">      return Stream.of(</span>
-<span class="fc" id="L73">              Stream.of(</span>
+<span class="nc bnc" id="L71" title="All 2 branches missed.">    if (isTrue(getIdentityInsert())) {</span>
+<span class="nc" id="L72">      return Stream.of(</span>
+<span class="nc" id="L73">              Stream.of(</span>
                   new SetIdentityInsertStatement(
-<span class="fc" id="L75">                      getCatalogName(), getSchemaName(), getTableName(), IdentityInsert.ON)),</span>
-<span class="fc" id="L76">              Arrays.stream(super.generateStatements(database)),</span>
-<span class="fc" id="L77">              Stream.of(</span>
+<span class="nc" id="L75">                      getCatalogName(), getSchemaName(), getTableName(), IdentityInsert.ON)),</span>
+<span class="nc" id="L76">              Arrays.stream(super.generateStatements(database)),</span>
+<span class="nc" id="L77">              Stream.of(</span>
                   new SetIdentityInsertStatement(
-<span class="fc" id="L79">                      getCatalogName(), getSchemaName(), getTableName(), IdentityInsert.OFF)))</span>
-<span class="fc" id="L80">          .flatMap(Function.identity())</span>
-<span class="fc" id="L81">          .toArray(SqlStatement[]::new);</span>
+<span class="nc" id="L79">                      getCatalogName(), getSchemaName(), getTableName(), IdentityInsert.OFF)))</span>
+<span class="nc" id="L80">          .flatMap(Function.identity())</span>
+<span class="nc" id="L81">          .toArray(SqlStatement[]::new);</span>
     }
-<span class="fc" id="L83">    return super.generateStatements(database);</span>
+<span class="nc" id="L83">    return super.generateStatements(database);</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
