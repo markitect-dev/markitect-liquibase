@@ -62,9 +62,12 @@
   </distributionManagement>
 
   <properties>
+    <archetype.test.skip>${skipTests}</archetype.test.skip>
     <argLine/>
     <changelist>-SNAPSHOT</changelist>
     <checkstyle.config.directory>${maven.multiModuleProjectDirectory}/config/checkstyle</checkstyle.config.directory>
+    <checkstyle.skip>${skipChecks}</checkstyle.skip>
+    <enforcer.skip>${skipChecks}</enforcer.skip>
     <gitHub.projectId>markitect-dev/markitect-liquibase</gitHub.projectId>
     <java.version>21</java.version>
     <maven.compiler.release>${java.version}</maven.compiler.release>
@@ -76,13 +79,15 @@
     <resource.delimiter>@</resource.delimiter>
     <revision>0.1.0</revision>
     <sha1/>
+    <skipChecks>false</skipChecks>
     <skipITs>${skipTests}</skipITs>
     <skipNexusStagingDeployMojo>${maven.deploy.skip}</skipNexusStagingDeployMojo>
-    <skipTests>false</skipTests>
+    <skipTests>${skipChecks}</skipTests>
     <skipUTs>${skipTests}</skipUTs>
     <sonar.coverage.jacoco.xmlReportPaths>
       ${maven.multiModuleProjectDirectory}/markitect-liquibase-coverage/target/site/jacoco-aggregate/jacoco.xml
     </sonar.coverage.jacoco.xmlReportPaths>
+    <spotless.check.skip>${skipChecks}</spotless.check.skip>
     <spotless.config.directory>${maven.multiModuleProjectDirectory}/config/spotless</spotless.config.directory>
 
     <apiguardian.version>1.1.2</apiguardian.version>
@@ -951,6 +956,10 @@ $1$4]]></replacement>
     </profile>
     <profile>
       <id>coverage</id>
+      <properties>
+        <skipITs>false</skipITs>
+        <skipUTs>false</skipUTs>
+      </properties>
       <build>
         <pluginManagement>
           <plugins>
