@@ -63,7 +63,7 @@ jobs:
         uses: gradle/actions/setup-gradle@ec92e829475ac0c2315ea8f9eced72db85bb337a # v3.0.0
 
       - name: Build and test, with coverage
-        run: ./gradlew :build-logic:build build
+        run: ./gradlew build
 
       - name: Analyze
         run: ./gradlew sonar --info -Dsonar.host.url="$SONAR_HOST_URL" -Dsonar.organization="$SONAR_ORGANIZATION" -Dsonar.projectKey="$SONAR_PROJECTKEY"

@@ -3,6 +3,12 @@ plugins {
     alias(libs.plugins.io.github.gradle.nexus.publish.plugin)
 }
 
+listOf("clean", "assemble", "check", "build", "spotlessApply", "spotlessCheck").forEach {
+    tasks.named(it) {
+        dependsOn(gradle.includedBuild("build-logic").task(":$it"))
+    }
+}
+
 nexusPublishing {
     repositories {
         val sonatypeUsername = providers.gradleProperty("sonatypeUsername")
