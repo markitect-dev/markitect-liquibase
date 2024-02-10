@@ -256,14 +256,6 @@ $1$4]]></replacement>
               </format>
             </formats>
           </configuration>
-          <executions>
-            <execution>
-              <goals>
-                <goal>check</goal>
-              </goals>
-              <phase>test-compile</phase>
-            </execution>
-          </executions>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -1034,6 +1026,61 @@ $1$4]]></replacement>
                   <goals>
                     <goal>jar-no-fork</goal>
                   </goals>
+                </execution>
+              </executions>
+            </plugin>
+          </plugins>
+        </pluginManagement>
+      </build>
+    </profile>
+    <profile>
+      <id>ci</id>
+      <activation>
+        <property>
+          <name>env.CI</name>
+        </property>
+      </activation>
+      <build>
+        <pluginManagement>
+          <plugins>
+            <plugin>
+              <groupId>com.diffplug.spotless</groupId>
+              <artifactId>spotless-maven-plugin</artifactId>
+              <version>${spotless-maven-plugin.version}</version>
+              <executions>
+                <execution>
+                  <goals>
+                    <goal>check</goal>
+                  </goals>
+                  <phase>test-compile</phase>
+                </execution>
+              </executions>
+            </plugin>
+          </plugins>
+        </pluginManagement>
+      </build>
+    </profile>
+    <profile>
+      <id>non-ci</id>
+      <activation>
+        <property>
+          <name>!env.CI</name>
+        </property>
+      </activation>
+      <build>
+        <pluginManagement>
+          <plugins>
+            <plugin>
+              <groupId>com.diffplug.spotless</groupId>
+              <artifactId>spotless-maven-plugin</artifactId>
+              <version>${spotless-maven-plugin.version}</version>
+              <executions>
+                <execution>
+                  <goals>
+                    <goal>apply</goal>
+                    <goal>check</goal>
+                  </goals>
+                  <phase>test-compile</phase>
                 </execution>
               </executions>
             </plugin>

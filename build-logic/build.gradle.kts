@@ -22,6 +22,12 @@ spotless {
     }
 }
 
+tasks.spotlessCheck {
+    if (!providers.environmentVariable("CI").isPresent) {
+        dependsOn(tasks.spotlessApply)
+    }
+}
+
 @Suppress("UnusedReceiverParameter")
 fun DependencyHandlerScope.plugin(plugin: Provider<PluginDependency>) =
     plugin.map { it.run { "$pluginId:$pluginId.gradle.plugin:$version" } }

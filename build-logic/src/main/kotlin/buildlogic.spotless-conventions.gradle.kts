@@ -34,3 +34,9 @@ spotless {
         indentWithSpaces(2)
     }
 }
+
+tasks.spotlessCheck {
+    if (!providers.environmentVariable("CI").isPresent) {
+        dependsOn(tasks.spotlessApply)
+    }
+}
