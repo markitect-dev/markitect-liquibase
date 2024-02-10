@@ -161,6 +161,8 @@
     <osgi-resource.version>1.0.1</osgi-resource.version>
     <osgi-service-serviceloader.version>1.0.0</osgi-service-serviceloader.version>
     <postgresql.version>42.7.1</postgresql.version>
+    <prettier.version>3.2.5</prettier.version>
+    <prettier-plugin-properties.version>0.3.0</prettier-plugin-properties.version>
     <r2dbc-spi.version>1.0.0.RELEASE</r2dbc-spi.version>
     <reactive-streams.version>1.0.4</reactive-streams.version>
     <slf4j.version>2.0.12</slf4j.version>
@@ -238,12 +240,28 @@ $1$4]]></replacement>
             <formats>
               <format>
                 <includes>
+                  <include>src/**/*.properties</include>
+                </includes>
+                <prettier>
+                  <devDependencies>
+                    <prettier>${prettier.version}</prettier>
+                    <prettier-plugin-properties>${prettier-plugin-properties.version}</prettier-plugin-properties>
+                  </devDependencies>
+                  <config>
+                    <parser>dot-properties</parser>
+                    <plugins>prettier-plugin-properties</plugins>
+                    <keySeparator>=</keySeparator>
+                    <printWidth>0</printWidth>
+                  </config>
+                </prettier>
+              </format>
+              <format>
+                <includes>
                   <include>.editorconfig</include>
                   <include>.gitattributes</include>
                   <include>.gitignore</include>
                   <include>.java-version</include>
                   <include>.sdkmanrc</include>
-                  <include>src/**/*.properties</include>
                   <include>src/**/*.txt</include>
                   <include>src/**/*.xml</include>
                 </includes>

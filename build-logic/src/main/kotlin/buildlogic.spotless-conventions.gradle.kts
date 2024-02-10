@@ -17,6 +17,38 @@ spotless {
         trimTrailingWhitespace()
         endWithNewline()
     }
+    format("properties") {
+        target("gradle.properties", "src/**/*.properties")
+        prettier(
+            mapOf(
+                "prettier" to libs.versions.prettier.asProvider().get(),
+                "prettier-plugin-properties" to libs.versions.prettier.plugin.properties.get(),
+            ),
+        )
+            .config(
+                mapOf(
+                    "parser" to "dot-properties",
+                    "plugins" to listOf("prettier-plugin-properties"),
+                    "keySeparator" to "=",
+                    "printWidth" to 0,
+                ),
+            )
+    }
+    format("toml") {
+        target("gradle/**/*.toml")
+        prettier(
+            mapOf(
+                "prettier" to libs.versions.prettier.asProvider().get(),
+                "prettier-plugin-toml" to libs.versions.prettier.plugin.toml.get(),
+            ),
+        )
+            .config(
+                mapOf(
+                    "parser" to "toml",
+                    "plugins" to listOf("prettier-plugin-toml"),
+                ),
+            )
+    }
     format("misc") {
         target(
             ".editorconfig",
@@ -24,9 +56,6 @@ spotless {
             ".gitignore",
             ".java-version",
             ".sdkmanrc",
-            "gradle.properties",
-            "gradle/**/*.toml",
-            "src/**/*.properties",
             "src/**/*.xml",
         )
         trimTrailingWhitespace()

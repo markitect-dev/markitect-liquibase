@@ -20,6 +20,23 @@ spotless {
         target("*.gradle.kts", "src/main/kotlin/*.gradle.kts")
         ktlint(libs.versions.ktlint.get())
     }
+    format("properties") {
+        target("gradle.properties")
+        prettier(
+            mapOf(
+                "prettier" to libs.versions.prettier.asProvider().get(),
+                "prettier-plugin-properties" to libs.versions.prettier.plugin.properties.get(),
+            ),
+        )
+            .config(
+                mapOf(
+                    "parser" to "dot-properties",
+                    "plugins" to listOf("prettier-plugin-properties"),
+                    "keySeparator" to "=",
+                    "printWidth" to 0,
+                ),
+            )
+    }
 }
 
 tasks.spotlessCheck {
