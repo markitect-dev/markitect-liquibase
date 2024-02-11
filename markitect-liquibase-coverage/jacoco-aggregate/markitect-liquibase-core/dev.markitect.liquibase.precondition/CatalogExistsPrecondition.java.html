@@ -65,9 +65,9 @@ import org.checkerframework.checker.nullness.qual.Nullable;
       throws PreconditionFailedException, PreconditionErrorException {
 <span class="fc" id="L66">    checkNotNull(database);</span>
     try {
-<span class="pc bpc" id="L68" title="1 of 2 branches missed.">      if (!catalogExists(database, catalogName)) {</span>
-<span class="nc" id="L69">        throw new PreconditionFailedException(</span>
-<span class="nc" id="L70">            &quot;Catalog %s does not exist&quot;.formatted(catalogName), changeLog, this);</span>
+<span class="fc bfc" id="L68" title="All 2 branches covered.">      if (!catalogExists(database, catalogName)) {</span>
+<span class="fc" id="L69">        throw new PreconditionFailedException(</span>
+<span class="fc" id="L70">            &quot;Catalog %s does not exist&quot;.formatted(catalogName), changeLog, this);</span>
       }
 <span class="fc" id="L72">    } catch (DatabaseException | RuntimeException e) {</span>
 <span class="fc" id="L73">      throw new PreconditionErrorException(e, changeLog, this);</span>

@@ -54,7 +54,7 @@ public final class DatabaseBuilder&lt;D extends Database&gt; {
 
   public DatabaseBuilder&lt;D&gt; withDatabaseConnection(
       @Nullable DatabaseConnectionBuilder databaseConnectionBuilder) {
-<span class="nc" id="L57">    return new DatabaseBuilder&lt;&gt;(</span>
+<span class="fc" id="L57">    return new DatabaseBuilder&lt;&gt;(</span>
         databaseClass,
         databaseConnectionBuilder,
         null,
@@ -116,10 +116,10 @@ public final class DatabaseBuilder&lt;D extends Database&gt; {
 <span class="fc" id="L116">    } catch (ReflectiveOperationException | RuntimeException e) {</span>
 <span class="fc" id="L117">      throw new IllegalStateException(e);</span>
 <span class="fc" id="L118">    }</span>
-<span class="pc bpc" id="L119" title="1 of 2 branches missed.">    if (databaseConnectionBuilder != null) {</span>
-<span class="nc" id="L120">      var databaseConnection = databaseConnectionBuilder.build();</span>
-<span class="nc" id="L121">      database.setConnection(databaseConnection);</span>
-<span class="pc bfc" id="L122" title="All 2 branches covered.">    } else if (offlineConnectionCustomizer != null) {</span>
+<span class="fc bfc" id="L119" title="All 2 branches covered.">    if (databaseConnectionBuilder != null) {</span>
+<span class="fc" id="L120">      var databaseConnection = databaseConnectionBuilder.build();</span>
+<span class="fc" id="L121">      database.setConnection(databaseConnection);</span>
+<span class="fc bfc" id="L122" title="All 2 branches covered.">    } else if (offlineConnectionCustomizer != null) {</span>
 <span class="fc" id="L123">      var offlineConnection =</span>
           offlineConnectionCustomizer
 <span class="fc" id="L125">              .andThen(Verify::verifyNotNull)</span>

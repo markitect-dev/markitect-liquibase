@@ -61,14 +61,14 @@ public class InsertOrUpdateExecutablePreparedStatement extends ExecutablePrepare
 
   @Override
   protected String generateSql(List&lt;ColumnConfig&gt; cols) {
-<span class="nc" id="L64">    checkNotNull(cols);</span>
-<span class="nc" id="L65">    cols.addAll(preparedSql.getBindColumns());</span>
-<span class="nc" id="L66">    return preparedSql.toSql();</span>
+<span class="fc" id="L64">    checkNotNull(cols);</span>
+<span class="fc" id="L65">    cols.addAll(preparedSql.getBindColumns());</span>
+<span class="fc" id="L66">    return preparedSql.toSql();</span>
   }
 
   @Override
   public List&lt;? extends ColumnConfig&gt; getColumns() {
-<span class="nc" id="L71">    return preparedSql.getBindColumns();</span>
+<span class="fc" id="L71">    return preparedSql.getBindColumns();</span>
   }
 
   public static class PreparedSql extends UnparsedSql {
@@ -92,7 +92,7 @@ public class InsertOrUpdateExecutablePreparedStatement extends ExecutablePrepare
 <span class="fc" id="L92">    }</span>
 
     public List&lt;ColumnConfig&gt; getBindColumns() {
-<span class="nc" id="L95">      return bindColumns;</span>
+<span class="fc" id="L95">      return bindColumns;</span>
     }
   }
 }

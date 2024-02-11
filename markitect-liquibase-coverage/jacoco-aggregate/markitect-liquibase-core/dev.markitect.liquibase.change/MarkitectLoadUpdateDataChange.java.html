@@ -62,7 +62,7 @@ import liquibase.statement.core.InsertOrUpdateStatement;
 
   @Override
   protected boolean hasPreparedStatementsImplemented() {
-<span class="nc" id="L65">    return true;</span>
+<span class="fc" id="L65">    return true;</span>
   }
 
   @Override
@@ -81,15 +81,15 @@ import liquibase.statement.core.InsertOrUpdateStatement;
       List&lt;LoadDataColumnConfig&gt; columns,
       ChangeSet changeSet,
       ResourceAccessor resourceAccessor) {
-<span class="nc" id="L84">    var statement = createStatement(catalogName, schemaName, tableName);</span>
+<span class="fc" id="L84">    var statement = createStatement(catalogName, schemaName, tableName);</span>
     var generator =
-<span class="nc" id="L86">        SqlGeneratorFactory.getInstance().getGenerators(statement, database).stream()</span>
-<span class="nc" id="L87">            .filter(MarkitectInsertOrUpdateGenerator.class::isInstance)</span>
-<span class="nc" id="L88">            .map(MarkitectInsertOrUpdateGenerator.class::cast)</span>
-<span class="nc" id="L89">            .findFirst()</span>
-<span class="nc" id="L90">            .orElseThrow();</span>
-<span class="nc" id="L91">    var preparedSql = generator.prepareSql(database, statement, columns);</span>
-<span class="nc" id="L92">    return new InsertOrUpdateExecutablePreparedStatement(</span>
+<span class="fc" id="L86">        SqlGeneratorFactory.getInstance().getGenerators(statement, database).stream()</span>
+<span class="fc" id="L87">            .filter(MarkitectInsertOrUpdateGenerator.class::isInstance)</span>
+<span class="fc" id="L88">            .map(MarkitectInsertOrUpdateGenerator.class::cast)</span>
+<span class="fc" id="L89">            .findFirst()</span>
+<span class="fc" id="L90">            .orElseThrow();</span>
+<span class="fc" id="L91">    var preparedSql = generator.prepareSql(database, statement, columns);</span>
+<span class="fc" id="L92">    return new InsertOrUpdateExecutablePreparedStatement(</span>
         database,
         catalogName,
         schemaName,
