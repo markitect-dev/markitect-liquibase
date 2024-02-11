@@ -93,6 +93,83 @@
         </excludes>
       </testResource>
     </testResources>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-install-plugin</artifactId>
+          <version>${maven-install-plugin.version}</version>
+          <executions>
+            <execution>
+              <id>install-markitect-liquibase-base</id>
+              <goals>
+                <goal>install-file</goal>
+              </goals>
+              <phase>none</phase>
+              <configuration>
+                <file>${project.basedir}/../markitect-liquibase-base/target/markitect-liquibase-base-${project.version}.jar</file>
+                <pomFile>${project.basedir}/../markitect-liquibase-base/.flattened-pom.xml</pomFile>
+              </configuration>
+            </execution>
+            <execution>
+              <id>install-markitect-liquibase-bom</id>
+              <goals>
+                <goal>install-file</goal>
+              </goals>
+              <phase>none</phase>
+              <configuration>
+                <file>${project.basedir}/../markitect-liquibase-bom/.flattened-pom.xml</file>
+                <pomFile>${project.basedir}/../markitect-liquibase-bom/.flattened-pom.xml</pomFile>
+              </configuration>
+            </execution>
+            <execution>
+              <id>install-markitect-liquibase-core</id>
+              <goals>
+                <goal>install-file</goal>
+              </goals>
+              <phase>none</phase>
+              <configuration>
+                <file>${project.basedir}/../markitect-liquibase-core/target/markitect-liquibase-core-${project.version}.jar</file>
+                <pomFile>${project.basedir}/../markitect-liquibase-core/.flattened-pom.xml</pomFile>
+              </configuration>
+            </execution>
+            <execution>
+              <id>install-markitect-liquibase-logging</id>
+              <goals>
+                <goal>install-file</goal>
+              </goals>
+              <phase>none</phase>
+              <configuration>
+                <file>${project.basedir}/../markitect-liquibase-logging/target/markitect-liquibase-logging-${project.version}.jar</file>
+                <pomFile>${project.basedir}/../markitect-liquibase-logging/.flattened-pom.xml</pomFile>
+              </configuration>
+            </execution>
+            <execution>
+              <id>install-markitect-liquibase-spring</id>
+              <goals>
+                <goal>install-file</goal>
+              </goals>
+              <phase>none</phase>
+              <configuration>
+                <file>${project.basedir}/../markitect-liquibase-spring/target/markitect-liquibase-spring-${project.version}.jar</file>
+                <pomFile>${project.basedir}/../markitect-liquibase-spring/.flattened-pom.xml</pomFile>
+              </configuration>
+            </execution>
+            <execution>
+              <id>install-markitect-liquibase-spring-boot-starter</id>
+              <goals>
+                <goal>install-file</goal>
+              </goals>
+              <phase>none</phase>
+              <configuration>
+                <file>${project.basedir}/../markitect-liquibase-spring-boot-starter/target/markitect-liquibase-spring-boot-starter-${project.version}.jar</file>
+                <pomFile>${project.basedir}/../markitect-liquibase-spring-boot-starter/.flattened-pom.xml</pomFile>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+      </plugins>
+    </pluginManagement>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -127,81 +204,12 @@
         <version>${maven-surefire.version}</version>
         <executions>
           <execution>
-            <id>default</id>
+            <id>integration-test</id>
             <phase>none</phase>
           </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-install-plugin</artifactId>
-        <version>${maven-install-plugin.version}</version>
-        <executions>
           <execution>
-            <id>install-markitect-liquibase-base</id>
-            <goals>
-              <goal>install-file</goal>
-            </goals>
-            <phase>pre-integration-test</phase>
-            <configuration>
-              <file>${project.basedir}/../markitect-liquibase-base/target/markitect-liquibase-base-${project.version}.jar</file>
-              <pomFile>${project.basedir}/../markitect-liquibase-base/.flattened-pom.xml</pomFile>
-            </configuration>
-          </execution>
-          <execution>
-            <id>install-markitect-liquibase-bom</id>
-            <goals>
-              <goal>install-file</goal>
-            </goals>
-            <phase>pre-integration-test</phase>
-            <configuration>
-              <file>${project.basedir}/../markitect-liquibase-bom/.flattened-pom.xml</file>
-              <pomFile>${project.basedir}/../markitect-liquibase-bom/.flattened-pom.xml</pomFile>
-            </configuration>
-          </execution>
-          <execution>
-            <id>install-markitect-liquibase-core</id>
-            <goals>
-              <goal>install-file</goal>
-            </goals>
-            <phase>pre-integration-test</phase>
-            <configuration>
-              <file>${project.basedir}/../markitect-liquibase-core/target/markitect-liquibase-core-${project.version}.jar</file>
-              <pomFile>${project.basedir}/../markitect-liquibase-core/.flattened-pom.xml</pomFile>
-            </configuration>
-          </execution>
-          <execution>
-            <id>install-markitect-liquibase-logging</id>
-            <goals>
-              <goal>install-file</goal>
-            </goals>
-            <phase>pre-integration-test</phase>
-            <configuration>
-              <file>${project.basedir}/../markitect-liquibase-logging/target/markitect-liquibase-logging-${project.version}.jar</file>
-              <pomFile>${project.basedir}/../markitect-liquibase-logging/.flattened-pom.xml</pomFile>
-            </configuration>
-          </execution>
-          <execution>
-            <id>install-markitect-liquibase-spring</id>
-            <goals>
-              <goal>install-file</goal>
-            </goals>
-            <phase>pre-integration-test</phase>
-            <configuration>
-              <file>${project.basedir}/../markitect-liquibase-spring/target/markitect-liquibase-spring-${project.version}.jar</file>
-              <pomFile>${project.basedir}/../markitect-liquibase-spring/.flattened-pom.xml</pomFile>
-            </configuration>
-          </execution>
-          <execution>
-            <id>install-markitect-liquibase-spring-boot-starter</id>
-            <goals>
-              <goal>install-file</goal>
-            </goals>
-            <phase>pre-integration-test</phase>
-            <configuration>
-              <file>${project.basedir}/../markitect-liquibase-spring-boot-starter/target/markitect-liquibase-spring-boot-starter-${project.version}.jar</file>
-              <pomFile>${project.basedir}/../markitect-liquibase-spring-boot-starter/.flattened-pom.xml</pomFile>
-            </configuration>
+            <id>verify</id>
+            <phase>none</phase>
           </execution>
         </executions>
       </plugin>
@@ -221,6 +229,73 @@
   </build>
 
   <profiles>
+    <profile>
+      <id>archetype-tests</id>
+      <activation>
+        <property>
+          <name>!quickly</name>
+        </property>
+      </activation>
+      <build>
+        <pluginManagement>
+          <plugins>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-archetype-plugin</artifactId>
+              <version>${maven-archetype.version}</version>
+              <executions>
+                <execution>
+                  <id>default-integration-test</id>
+                  <phase>integration-test</phase>
+                </execution>
+              </executions>
+            </plugin>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-install-plugin</artifactId>
+              <version>${maven-install-plugin.version}</version>
+              <executions>
+                <execution>
+                  <id>install-markitect-liquibase-base</id>
+                  <phase>pre-integration-test</phase>
+                </execution>
+                <execution>
+                  <id>install-markitect-liquibase-bom</id>
+                  <phase>pre-integration-test</phase>
+                </execution>
+                <execution>
+                  <id>install-markitect-liquibase-core</id>
+                  <phase>pre-integration-test</phase>
+                </execution>
+                <execution>
+                  <id>install-markitect-liquibase-logging</id>
+                  <phase>pre-integration-test</phase>
+                </execution>
+                <execution>
+                  <id>install-markitect-liquibase-spring</id>
+                  <phase>pre-integration-test</phase>
+                </execution>
+                <execution>
+                  <id>install-markitect-liquibase-spring-boot-starter</id>
+                  <phase>pre-integration-test</phase>
+                </execution>
+              </executions>
+            </plugin>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-resources-plugin</artifactId>
+              <version>${maven-resources-plugin.version}</version>
+              <executions>
+                <execution>
+                  <id>default-testResources</id>
+                  <phase>process-test-resources</phase>
+                </execution>
+              </executions>
+            </plugin>
+          </plugins>
+        </pluginManagement>
+      </build>
+    </profile>
     <profile>
       <id>release</id>
       <build>

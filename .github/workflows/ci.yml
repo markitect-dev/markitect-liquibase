@@ -128,7 +128,7 @@ jobs:
             ${{ runner.os }}-maven-
 
       - name: Publish artifacts
-        run: ./mvnw -B -ntp -P release deploy -DskipChecks=true -Dmaven.test.skip=true -Dgpg.keyname="$MAVEN_GPG_KEYNAME"
+        run: ./mvnw -B -ntp -P release deploy -Dquickly -Dgpg.keyname="$MAVEN_GPG_KEYNAME"
         env:
           MAVEN_GPG_KEYNAME: ${{ vars.MAVEN_GPG_KEYNAME }}
           MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
@@ -191,7 +191,8 @@ jobs:
             ${{ runner.os }}-maven-
 
       - name: Build and test, with coverage
-        run: ./mvnw -B -ntp -P coverage install -DskipChecks=true
+        run: ./mvnw -B -ntp -P coverage install -Dquickly
+
       - name: Stage site
         run: ./mvnw -B -ntp -P coverage,release site site:stage
 

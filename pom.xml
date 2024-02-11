@@ -62,12 +62,9 @@
   </distributionManagement>
 
   <properties>
-    <archetype.test.skip>${skipTests}</archetype.test.skip>
     <argLine/>
     <changelist>-SNAPSHOT</changelist>
     <checkstyle.config.directory>${maven.multiModuleProjectDirectory}/config/checkstyle</checkstyle.config.directory>
-    <checkstyle.skip>${skipChecks}</checkstyle.skip>
-    <enforcer.skip>${skipChecks}</enforcer.skip>
     <gitHub.projectId>markitect-dev/markitect-liquibase</gitHub.projectId>
     <java.version>21</java.version>
     <maven.compiler.release>${java.version}</maven.compiler.release>
@@ -79,15 +76,13 @@
     <resource.delimiter>@</resource.delimiter>
     <revision>0.1.0</revision>
     <sha1/>
-    <skipChecks>false</skipChecks>
     <skipITs>${skipTests}</skipITs>
     <skipNexusStagingDeployMojo>${maven.deploy.skip}</skipNexusStagingDeployMojo>
-    <skipTests>${skipChecks}</skipTests>
+    <skipTests>false</skipTests>
     <skipUTs>${skipTests}</skipUTs>
     <sonar.coverage.jacoco.xmlReportPaths>
       ${maven.multiModuleProjectDirectory}/markitect-liquibase-coverage/target/site/jacoco-aggregate/jacoco.xml
     </sonar.coverage.jacoco.xmlReportPaths>
-    <spotless.check.skip>${skipChecks}</spotless.check.skip>
     <spotless.config.directory>${maven.multiModuleProjectDirectory}/config/spotless</spotless.config.directory>
 
     <apiguardian.version>1.1.2</apiguardian.version>
@@ -274,6 +269,22 @@ $1$4]]></replacement>
               </format>
             </formats>
           </configuration>
+          <executions>
+            <execution>
+              <id>apply</id>
+              <goals>
+                <goal>apply</goal>
+              </goals>
+              <phase>none</phase>
+            </execution>
+            <execution>
+              <id>check</id>
+              <goals>
+                <goal>check</goal>
+              </goals>
+              <phase>none</phase>
+            </execution>
+          </executions>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -289,6 +300,12 @@ $1$4]]></replacement>
             <settingsFile>${project.basedir}/src/test/settings.xml</settingsFile>
             <ignoreEOLStyle>true</ignoreEOLStyle>
           </configuration>
+          <executions>
+            <execution>
+              <id>default-integration-test</id>
+              <phase>none</phase>
+            </execution>
+          </executions>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -316,15 +333,6 @@ $1$4]]></replacement>
               <version>${checkstyle.version}</version>
             </dependency>
           </dependencies>
-          <executions>
-            <execution>
-              <id>check</id>
-              <goals>
-                <goal>check</goal>
-              </goals>
-              <phase>test-compile</phase>
-            </execution>
-          </executions>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -376,6 +384,7 @@ $1$4]]></replacement>
           <executions>
             <execution>
               <id>default-testCompile</id>
+              <phase>none</phase>
               <configuration>
                 <useModulePath>false</useModulePath>
               </configuration>
@@ -411,10 +420,11 @@ $1$4]]></replacement>
           </dependencies>
           <executions>
             <execution>
-              <id>enforce-maven</id>
+              <id>enforce</id>
               <goals>
                 <goal>enforce</goal>
               </goals>
+              <phase>none</phase>
               <configuration>
                 <rules>
                   <banDependencyManagementScope/>
@@ -575,10 +585,18 @@ $1$4]]></replacement>
           </configuration>
           <executions>
             <execution>
+              <id>integration-test</id>
               <goals>
                 <goal>integration-test</goal>
-                <goal>verify</goal>
               </goals>
+              <phase>none</phase>
+            </execution>
+            <execution>
+              <id>verify</id>
+              <goals>
+                <goal>integration-test</goal>
+              </goals>
+              <phase>none</phase>
             </execution>
           </executions>
         </plugin>
@@ -636,6 +654,12 @@ $1$4]]></replacement>
           <configuration>
             <propertiesEncoding>${project.build.sourceEncoding}</propertiesEncoding>
           </configuration>
+          <executions>
+            <execution>
+              <id>default-testResources</id>
+              <phase>none</phase>
+            </execution>
+          </executions>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -680,6 +704,12 @@ $1$4]]></replacement>
             <skipTests>${skipUTs}</skipTests>
             <useModulePath>false</useModulePath>
           </configuration>
+          <executions>
+            <execution>
+              <id>default-test</id>
+              <phase>none</phase>
+            </execution>
+          </executions>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -889,7 +919,12 @@ $1$4]]></replacement>
         <version>${maven-surefire.version}</version>
         <executions>
           <execution>
-            <id>default</id>
+            <id>integration-test</id>
+            <phase>none</phase>
+            <inherited>false</inherited>
+          </execution>
+          <execution>
+            <id>verify</id>
             <phase>none</phase>
             <inherited>false</inherited>
           </execution>
@@ -974,14 +1009,137 @@ $1$4]]></replacement>
       </build>
     </profile>
     <profile>
-      <id>coverage</id>
-      <properties>
-        <skipITs>false</skipITs>
-        <skipUTs>false</skipUTs>
-      </properties>
+      <id>checks</id>
+      <activation>
+        <property>
+          <name>!quickly</name>
+        </property>
+      </activation>
       <build>
         <pluginManagement>
           <plugins>
+            <plugin>
+              <groupId>com.diffplug.spotless</groupId>
+              <artifactId>spotless-maven-plugin</artifactId>
+              <version>${spotless-maven-plugin.version}</version>
+              <executions>
+                <execution>
+                  <id>apply</id>
+                  <phase>test-compile</phase>
+                </execution>
+                <execution>
+                  <id>check</id>
+                  <phase>test-compile</phase>
+                </execution>
+              </executions>
+            </plugin>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-checkstyle-plugin</artifactId>
+              <version>${maven-checkstyle-plugin.version}</version>
+              <executions>
+                <execution>
+                  <id>check</id>
+                  <goals>
+                    <goal>check</goal>
+                  </goals>
+                  <phase>test-compile</phase>
+                </execution>
+              </executions>
+            </plugin>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-enforcer-plugin</artifactId>
+              <version>${maven-enforcer-plugin.version}</version>
+              <executions>
+                <execution>
+                  <id>enforce</id>
+                  <phase>validate</phase>
+                </execution>
+              </executions>
+            </plugin>
+          </plugins>
+        </pluginManagement>
+      </build>
+    </profile>
+    <profile>
+      <id>ci-only</id>
+      <activation>
+        <property>
+          <name>env.CI</name>
+        </property>
+      </activation>
+      <build>
+        <pluginManagement>
+          <plugins>
+            <plugin>
+              <groupId>com.diffplug.spotless</groupId>
+              <artifactId>spotless-maven-plugin</artifactId>
+              <version>${spotless-maven-plugin.version}</version>
+              <executions>
+                <execution>
+                  <id>apply</id>
+                  <phase>none</phase>
+                </execution>
+              </executions>
+            </plugin>
+          </plugins>
+        </pluginManagement>
+      </build>
+    </profile>
+    <profile>
+      <id>coverage</id>
+      <build>
+        <pluginManagement>
+          <plugins>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-compiler-plugin</artifactId>
+              <version>${maven-compiler-plugin.version}</version>
+              <executions>
+                <execution>
+                  <id>default-testCompile</id>
+                  <phase>test-compile</phase>
+                </execution>
+              </executions>
+            </plugin>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-failsafe-plugin</artifactId>
+              <version>${maven-surefire.version}</version>
+              <executions>
+                <execution>
+                  <id>integration-test</id>
+                  <phase>integration-test</phase>
+                </execution>
+                <execution>
+                  <id>verify</id>
+                  <phase>verify</phase>
+                </execution>
+              </executions>
+            </plugin>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-resources-plugin</artifactId>
+              <version>${maven-resources-plugin.version}</version>
+              <executions>
+                <execution>
+                  <id>default-testResources</id>
+                  <phase>process-test-resources</phase>
+                </execution>
+              </executions>
+            </plugin>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-surefire-plugin</artifactId>
+              <version>${maven-surefire.version}</version>
+              <executions>
+                <execution>
+                  <id>default-test</id>
+                  <phase>test</phase>
+                </execution>
+              </executions>
+            </plugin>
             <plugin>
               <groupId>org.jacoco</groupId>
               <artifactId>jacoco-maven-plugin</artifactId>
@@ -1055,53 +1213,60 @@ $1$4]]></replacement>
       </build>
     </profile>
     <profile>
-      <id>ci</id>
+      <id>tests</id>
       <activation>
         <property>
-          <name>env.CI</name>
+          <name>!quickly</name>
         </property>
       </activation>
       <build>
         <pluginManagement>
           <plugins>
             <plugin>
-              <groupId>com.diffplug.spotless</groupId>
-              <artifactId>spotless-maven-plugin</artifactId>
-              <version>${spotless-maven-plugin.version}</version>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-compiler-plugin</artifactId>
+              <version>${maven-compiler-plugin.version}</version>
               <executions>
                 <execution>
-                  <goals>
-                    <goal>check</goal>
-                  </goals>
+                  <id>default-testCompile</id>
                   <phase>test-compile</phase>
                 </execution>
               </executions>
             </plugin>
-          </plugins>
-        </pluginManagement>
-      </build>
-    </profile>
-    <profile>
-      <id>non-ci</id>
-      <activation>
-        <property>
-          <name>!env.CI</name>
-        </property>
-      </activation>
-      <build>
-        <pluginManagement>
-          <plugins>
             <plugin>
-              <groupId>com.diffplug.spotless</groupId>
-              <artifactId>spotless-maven-plugin</artifactId>
-              <version>${spotless-maven-plugin.version}</version>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-failsafe-plugin</artifactId>
+              <version>${maven-surefire.version}</version>
               <executions>
                 <execution>
-                  <goals>
-                    <goal>apply</goal>
-                    <goal>check</goal>
-                  </goals>
-                  <phase>test-compile</phase>
+                  <id>integration-test</id>
+                  <phase>integration-test</phase>
+                </execution>
+                <execution>
+                  <id>verify</id>
+                  <phase>verify</phase>
+                </execution>
+              </executions>
+            </plugin>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-resources-plugin</artifactId>
+              <version>${maven-resources-plugin.version}</version>
+              <executions>
+                <execution>
+                  <id>default-testResources</id>
+                  <phase>process-test-resources</phase>
+                </execution>
+              </executions>
+            </plugin>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-surefire-plugin</artifactId>
+              <version>${maven-surefire.version}</version>
+              <executions>
+                <execution>
+                  <id>default-test</id>
+                  <phase>test</phase>
                 </execution>
               </executions>
             </plugin>

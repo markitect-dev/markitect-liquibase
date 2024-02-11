@@ -76,7 +76,11 @@
         <version>${maven-surefire.version}</version>
         <executions>
           <execution>
-            <id>default</id>
+            <id>integration-test</id>
+            <phase>none</phase>
+          </execution>
+          <execution>
+            <id>verify</id>
             <phase>none</phase>
           </execution>
         </executions>
