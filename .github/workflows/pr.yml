@@ -41,7 +41,7 @@ jobs:
             ${{ runner.os }}-maven-
 
       - name: Build and test, with coverage
-        run: ./mvnw -B -ntp -P coverage,release install -Dgpg.skip=true
+        run: ./mvnw -B -ntp -P coverage install
 
       - name: Cache SonarCloud packages
         uses: actions/cache@13aacd865c20de90d75de3b17ebe84f7a17d57d2 # v4.0.0

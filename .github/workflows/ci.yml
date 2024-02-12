@@ -53,7 +53,7 @@ jobs:
             ${{ runner.os }}-maven-
 
       - name: Build and test, with coverage
-        run: ./mvnw -B -ntp -P coverage,release install -Dgpg.skip=true
+        run: ./mvnw -B -ntp -P coverage install
 
       - name: Update dependency graph
         uses: advanced-security/maven-dependency-submission-action@ed72a3242c5331913886b41ca9ea66c9195ebdaa # v4.0.0
@@ -128,7 +128,7 @@ jobs:
             ${{ runner.os }}-maven-
 
       - name: Publish artifacts
-        run: ./mvnw -B -ntp -P release deploy -Dquickly -Dgpg.keyname="$MAVEN_GPG_KEYNAME"
+        run: ./mvnw -B -ntp -P release deploy -Dquickly -Dmaven.install.skip=true -Dgpg.keyname="$MAVEN_GPG_KEYNAME"
         env:
           MAVEN_GPG_KEYNAME: ${{ vars.MAVEN_GPG_KEYNAME }}
           MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
