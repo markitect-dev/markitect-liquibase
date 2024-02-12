@@ -26,6 +26,7 @@
   <properties>
     <automatic.module.name>dev.markitect.liquibase.base</automatic.module.name>
     <maven.compiler.release>17</maven.compiler.release>
+    <project.build.outputTimestamp>2024-01-01T00:00:00Z</project.build.outputTimestamp>
   </properties>
 
   <dependencies>
