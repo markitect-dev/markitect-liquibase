@@ -594,7 +594,7 @@ $1$4]]></replacement>
             <execution>
               <id>verify</id>
               <goals>
-                <goal>integration-test</goal>
+                <goal>verify</goal>
               </goals>
               <phase>none</phase>
             </execution>
