@@ -13,7 +13,7 @@ on:
 
 jobs:
   build:
-    name: Build and test
+    name: Build and test (Maven)
 
     runs-on: ubuntu-latest
 
@@ -64,6 +64,46 @@ jobs:
 
       - name: Build and test, with coverage
         run: ./gradlew build
+
+      - name: Analyze
+        run: ./gradlew sonar --info -Dsonar.host.url="$SONAR_HOST_URL" -Dsonar.organization="$SONAR_ORGANIZATION" -Dsonar.projectKey="$SONAR_PROJECTKEY"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
+          SONAR_ORGANIZATION: ${{ vars.SONAR_ORGANIZATION }}
+          SONAR_PROJECTKEY: ${{ vars.SONAR_PROJECTKEY }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+  build-gradle:
+    name: Build and test (Gradle)
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+        with:
+          fetch-depth: 0
+          show-progress: false
+
+      - name: Set up Java
+        uses: actions/setup-java@387ac29b308b003ca37ba93a6cab5eb57c8f5f93 # v4.0.0
+        with:
+          distribution: 'zulu'
+          java-version-file: '.java-version'
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@ec92e829475ac0c2315ea8f9eced72db85bb337a # v3.0.0
+
+      - name: Build and test, with coverage
+        run: ./gradlew build
+
+      - name: Cache SonarCloud packages
+        uses: actions/cache@13aacd865c20de90d75de3b17ebe84f7a17d57d2 # v4.0.0
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
 
       - name: Analyze
         run: ./gradlew sonar --info -Dsonar.host.url="$SONAR_HOST_URL" -Dsonar.organization="$SONAR_ORGANIZATION" -Dsonar.projectKey="$SONAR_PROJECTKEY"
