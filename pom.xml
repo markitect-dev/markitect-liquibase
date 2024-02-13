@@ -452,9 +452,6 @@ $1$4]]></replacement>
                     <version>${maven.enforcer.requireMavenVersion}</version>
                   </requireMavenVersion>
                   <requirePluginVersions/>
-                  <requirePluginVersions>
-                    <banSnapshots>false</banSnapshots>
-                  </requirePluginVersions>
                   <requireSameVersions>
                     <dependencies>
                       <dependency>ch.qos.logback</dependency>
