@@ -44,6 +44,7 @@ dependencies {
         testImplementation(libs.jakarta.activation.jakarta.activation.api)
         testImplementation(libs.jakarta.annotation.jakarta.annotation.api)
         testImplementation(libs.jakarta.xml.bind.jakarta.xml.bind.api)
+        testImplementation(libs.junit.junit)
         testImplementation(libs.net.bytebuddy.byte.buddy)
         testImplementation(libs.net.bytebuddy.byte.buddy.agent)
         testImplementation(libs.net.java.dev.jna.jna)

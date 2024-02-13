@@ -32,6 +32,7 @@ jetbrains-annotations = "24.1.0"
 jna = "5.14.0"
 jooq = "3.19.3"
 jooq-plugin = "9.0"
+junit = "4.13.2"
 junit-jupiter = "5.10.2"
 junit-pioneer = "2.2.0"
 ktlint = "1.1.1"
@@ -89,6 +90,7 @@ io-r2dbc-r2dbc-spi = { module = "io.r2dbc:r2dbc-spi", version.ref = "r2dbc-spi" 
 jakarta-activation-jakarta-activation-api = { module = "jakarta.activation:jakarta.activation-api", version.ref = "jakarta-activation" }
 jakarta-annotation-jakarta-annotation-api = { module = "jakarta.annotation:jakarta.annotation-api", version.ref = "jakarta-annotation" }
 jakarta-xml-bind-jakarta-xml-bind-api = { module = "jakarta.xml.bind:jakarta.xml.bind-api", version.ref = "jakarta-xml-bind" }
+junit-junit = { module = "junit:junit", version.ref = "junit" }
 net-bytebuddy-byte-buddy = { module = "net.bytebuddy:byte-buddy", version.ref = "byte-buddy" }
 net-bytebuddy-byte-buddy-agent = { module = "net.bytebuddy:byte-buddy-agent", version.ref = "byte-buddy" }
 net-java-dev-jna-jna = { module = "net.java.dev.jna:jna", version.ref = "jna" }

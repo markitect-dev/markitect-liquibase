@@ -117,7 +117,6 @@
     <jooq.version>3.19.3</jooq.version>
     <junit-jupiter.version>5.10.2</junit-jupiter.version>
     <junit-pioneer.version>2.2.0</junit-pioneer.version>
-    <junit-platform.version>1.10.2</junit-platform.version>
     <junit.version>4.13.2</junit.version>
     <liquibase.version>4.26.0</liquibase.version>
     <log4j2.version>2.22.1</log4j2.version>
