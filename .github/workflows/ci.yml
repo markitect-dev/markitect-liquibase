@@ -101,6 +101,14 @@ jobs:
       - name: Stage site
         run: ./mvnw -B -ntp -P coverage,release site site:stage
 
+      - name: Upload site
+        uses: actions/upload-artifact@5d5d22a31266ced268874388b861e4b58bb5c2f3 # v4.3.1
+        if: always()
+        with:
+          name: maven-site
+          path: target/staging
+          retention-days: 15
+
       - name: Configure Git
         run: |
           git config --global user.name "$GIT_USER_NAME"
