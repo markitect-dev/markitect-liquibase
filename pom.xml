@@ -582,6 +582,7 @@ $1$4]]></replacement>
               <include>**/*IntegrationTests.java</include>
             </includes>
             <useModulePath>false</useModulePath>
+            <useSystemClassLoader>false</useSystemClassLoader>
           </configuration>
           <executions>
             <execution>
@@ -703,6 +704,7 @@ $1$4]]></replacement>
             </includes>
             <skipTests>${skipUTs}</skipTests>
             <useModulePath>false</useModulePath>
+            <useSystemClassLoader>false</useSystemClassLoader>
           </configuration>
           <executions>
             <execution>
