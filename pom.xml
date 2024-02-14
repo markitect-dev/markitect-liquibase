@@ -62,6 +62,7 @@
   </distributionManagement>
 
   <properties>
+    <archetype.test.streamLogs>false</archetype.test.streamLogs>
     <argLine/>
     <changelist>-SNAPSHOT</changelist>
     <checkstyle.config.directory>${maven.multiModuleProjectDirectory}/config/checkstyle</checkstyle.config.directory>
