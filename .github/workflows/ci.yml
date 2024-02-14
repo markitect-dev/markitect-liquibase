@@ -19,82 +19,12 @@ on:
 
 jobs:
   build:
-    name: Build and test
+    name: Build and test (Maven)
 
     runs-on: ubuntu-latest
 
     permissions:
       contents: write
-
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
-        with:
-          fetch-depth: 0
-          show-progress: false
-
-      - name: Set up Java
-        uses: actions/setup-java@387ac29b308b003ca37ba93a6cab5eb57c8f5f93 # v4.0.0
-        with:
-          distribution: 'zulu'
-          java-version-file: '.java-version'
-
-      - name: Cache local Maven repository
-        uses: actions/cache@13aacd865c20de90d75de3b17ebe84f7a17d57d2 # v4.0.0
-        with:
-          path: |
-            ~/.m2/repository
-            ~/.m2/wrapper
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml', '.mvn/wrapper/maven-wrapper.properties') }}
-          restore-keys: |
-            ${{ runner.os }}-maven-
-
-      - name: Build and test, with coverage
-        run: ./mvnw -B -ntp -P coverage install
-
-      - name: Update dependency graph
-        uses: advanced-security/maven-dependency-submission-action@ed72a3242c5331913886b41ca9ea66c9195ebdaa # v4.0.0
-
-      - name: Cache SonarCloud packages
-        uses: actions/cache@13aacd865c20de90d75de3b17ebe84f7a17d57d2 # v4.0.0
-        with:
-          path: ~/.sonar/cache
-          key: ${{ runner.os }}-sonar
-          restore-keys: ${{ runner.os }}-sonar
-
-      - name: Analyze
-        run: ./mvnw -B -ntp sonar:sonar -Dsonar.host.url="$SONAR_HOST_URL" -Dsonar.organization="$SONAR_ORGANIZATION" -Dsonar.projectKey="$SONAR_PROJECTKEY"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
-          SONAR_ORGANIZATION: ${{ vars.SONAR_ORGANIZATION }}
-          SONAR_PROJECTKEY: ${{ vars.SONAR_PROJECTKEY }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
-      - name: Set up Gradle
-        uses: gradle/actions/setup-gradle@417ae3ccd767c252f5661f1ace9f835f9654f2b5 # v3.1.0
-        with:
-          dependency-graph: generate-and-submit
-
-      - name: Build and test, with coverage
-        run: ./gradlew build
-
-      - name: Analyze
-        run: ./gradlew sonar --info -Dsonar.host.url="$SONAR_HOST_URL" -Dsonar.organization="$SONAR_ORGANIZATION" -Dsonar.projectKey="$SONAR_PROJECTKEY"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
-          SONAR_ORGANIZATION: ${{ vars.SONAR_ORGANIZATION }}
-          SONAR_PROJECTKEY: ${{ vars.SONAR_PROJECTKEY }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
-  publish-artifacts:
-    name: Publish artifacts
-
-    runs-on: ubuntu-latest
-
-    needs:
-      - build
 
     steps:
       - name: Check out repository
@@ -124,6 +54,25 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
+      - name: Build and test, with coverage
+        run: ./mvnw -B -ntp -P coverage install
+
+      - name: Cache SonarCloud packages
+        uses: actions/cache@13aacd865c20de90d75de3b17ebe84f7a17d57d2 # v4.0.0
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+
+      - name: Analyze
+        run: ./mvnw -B -ntp sonar:sonar -Dsonar.host.url="$SONAR_HOST_URL" -Dsonar.organization="$SONAR_ORGANIZATION" -Dsonar.projectKey="$SONAR_PROJECTKEY"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
+          SONAR_ORGANIZATION: ${{ vars.SONAR_ORGANIZATION }}
+          SONAR_PROJECTKEY: ${{ vars.SONAR_PROJECTKEY }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
       - name: Publish artifacts
         run: ./mvnw -B -ntp -P release deploy -Dquickly -Dmaven.install.skip=true -Dgpg.keyname="$MAVEN_GPG_KEYNAME"
         env:
@@ -132,31 +81,9 @@ jobs:
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           OSSRH_TOKEN: ${{ secrets.OSSRH_TOKEN }}
 
-      - name: Set up Gradle
-        uses: gradle/actions/setup-gradle@417ae3ccd767c252f5661f1ace9f835f9654f2b5 # v3.1.0
+      - name: Stage site
+        run: ./mvnw -B -ntp -P coverage,release site site:stage
 
-      - name: Publish artifacts
-        run: ./gradlew publishToSonatype
-        env:
-          ORG_GRADLE_PROJECT_signingKeyId: ${{ vars.GPG_KEY_ID }}
-          ORG_GRADLE_PROJECT_signingKey: ${{ secrets.GPG_PRIVATE_KEY }}
-          ORG_GRADLE_PROJECT_signingPassword: ${{ secrets.GPG_PASSPHRASE }}
-          ORG_GRADLE_PROJECT_sonatypeUsername: ${{ secrets.OSSRH_USERNAME }}
-          ORG_GRADLE_PROJECT_sonatypePassword: ${{ secrets.OSSRH_TOKEN }}
-
-  publish-site:
-    name: Publish site
-
-    runs-on: ubuntu-latest
-
-    permissions:
-      contents: write
-
-    needs:
-      - build
-      - publish-artifacts
-
-    steps:
       - name: Configure Git
         run: |
           git config --global user.name "$GIT_USER_NAME"
@@ -165,6 +92,23 @@ jobs:
           GIT_USER_NAME: ${{ vars.GIT_USER_NAME }}
           GIT_USER_EMAIL: ${{ vars.GIT_USER_EMAIL }}
 
+      - name: Publish site
+        run: ./mvnw -B -ntp scm-publish:publish-scm -Dusername="$GITHUB_ACTOR" -Dpassword="$GITHUB_TOKEN"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Update dependency graph
+        uses: advanced-security/maven-dependency-submission-action@ed72a3242c5331913886b41ca9ea66c9195ebdaa # v4.0.0
+
+  build-gradle:
+    name: Build and test (Gradle)
+
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
       - name: Check out repository
         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
         with:
@@ -177,23 +121,35 @@ jobs:
           distribution: 'zulu'
           java-version-file: '.java-version'
 
-      - name: Cache local Maven repository
-        uses: actions/cache@13aacd865c20de90d75de3b17ebe84f7a17d57d2 # v4.0.0
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@417ae3ccd767c252f5661f1ace9f835f9654f2b5 # v3.1.0
         with:
-          path: |
-            ~/.m2/repository
-            ~/.m2/wrapper
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml', '.mvn/wrapper/maven-wrapper.properties') }}
-          restore-keys: |
-            ${{ runner.os }}-maven-
+          dependency-graph: generate-and-submit
 
       - name: Build and test, with coverage
-        run: ./mvnw -B -ntp -P coverage install -Dquickly
+        run: ./gradlew build
 
-      - name: Stage site
-        run: ./mvnw -B -ntp -P coverage,release site site:stage
+      - name: Cache SonarCloud packages
+        uses: actions/cache@13aacd865c20de90d75de3b17ebe84f7a17d57d2 # v4.0.0
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
 
-      - name: Publish site
-        run: ./mvnw -B -ntp scm-publish:publish-scm -Dusername="$GITHUB_ACTOR" -Dpassword="$GITHUB_TOKEN"
+      - name: Analyze
+        run: ./gradlew sonar --info -Dsonar.host.url="$SONAR_HOST_URL" -Dsonar.organization="$SONAR_ORGANIZATION" -Dsonar.projectKey="$SONAR_PROJECTKEY"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
+          SONAR_ORGANIZATION: ${{ vars.SONAR_ORGANIZATION }}
+          SONAR_PROJECTKEY: ${{ vars.SONAR_PROJECTKEY }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+      - name: Publish artifacts
+        run: ./gradlew publishToSonatype
+        env:
+          ORG_GRADLE_PROJECT_signingKeyId: ${{ vars.GPG_KEY_ID }}
+          ORG_GRADLE_PROJECT_signingKey: ${{ secrets.GPG_PRIVATE_KEY }}
+          ORG_GRADLE_PROJECT_signingPassword: ${{ secrets.GPG_PASSPHRASE }}
+          ORG_GRADLE_PROJECT_sonatypeUsername: ${{ secrets.OSSRH_USERNAME }}
+          ORG_GRADLE_PROJECT_sonatypePassword: ${{ secrets.OSSRH_TOKEN }}
