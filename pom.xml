@@ -92,7 +92,7 @@
     <assertj.version>3.25.3</assertj.version>
     <awaitility.version>4.2.0</awaitility.version>
     <bnd-annotation.version>7.0.0</bnd-annotation.version>
-    <byte-buddy.version>1.14.11</byte-buddy.version>
+    <byte-buddy.version>1.14.12</byte-buddy.version>
     <checker-framework.version>3.42.0</checker-framework.version>
     <checkstyle.version>10.13.0</checkstyle.version>
     <commons-collections4.version>4.4</commons-collections4.version>
