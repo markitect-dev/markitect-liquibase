@@ -41,7 +41,7 @@ jobs:
           server-id: ossrh
           server-username: OSSRH_USERNAME
           server-password: OSSRH_TOKEN
-          gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
+          gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
           gpg-passphrase: MAVEN_GPG_PASSPHRASE
 
       - name: Cache local Maven repository
@@ -92,8 +92,8 @@ jobs:
       - name: Publish artifacts
         run: ./mvnw -B -ntp -P release deploy -Dquickly -Dmaven.install.skip=true -Dgpg.keyname="$MAVEN_GPG_KEYNAME"
         env:
-          MAVEN_GPG_KEYNAME: ${{ vars.MAVEN_GPG_KEYNAME }}
-          MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
+          MAVEN_GPG_KEYNAME: 0x${{ vars.GPG_KEY_ID }}
+          MAVEN_GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           OSSRH_TOKEN: ${{ secrets.OSSRH_TOKEN }}
 
