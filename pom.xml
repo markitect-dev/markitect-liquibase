@@ -167,7 +167,7 @@
     <sonar-maven-plugin.version>3.10.0.2594</sonar-maven-plugin.version>
     <sortpom.version>3.3.0</sortpom.version>
     <spotless-maven-plugin.version>2.43.0</spotless-maven-plugin.version>
-    <spring-boot.version>3.2.2</spring-boot.version>
+    <spring-boot.version>3.2.3</spring-boot.version>
     <spring-framework.version>6.1.4</spring-framework.version>
     <testcontainers.version>1.19.6</testcontainers.version>
     <versions-maven-plugin.version>2.16.2</versions-maven-plugin.version>
