@@ -259,6 +259,8 @@ $1$4]]></replacement>
                   <include>.gitignore</include>
                   <include>.java-version</include>
                   <include>.sdkmanrc</include>
+                  <include>config/**/*.xml</include>
+                  <include>src/*/resources/**/*.java</include>
                   <include>src/**/*.txt</include>
                   <include>src/**/*.xml</include>
                 </includes>

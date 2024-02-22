@@ -14,10 +14,10 @@ dependencies {
 spotless {
     ratchetFrom = "origin/main"
     kotlin {
+        targetExclude("build/**")
         ktlint(libs.versions.ktlint.get())
     }
     kotlinGradle {
-        target("*.gradle.kts", "src/main/kotlin/*.gradle.kts")
         ktlint(libs.versions.ktlint.get())
     }
     format("properties") {

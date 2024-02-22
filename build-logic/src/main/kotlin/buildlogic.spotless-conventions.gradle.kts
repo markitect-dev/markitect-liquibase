@@ -4,10 +4,12 @@ plugins {
 
 spotless {
     ratchetFrom = "origin/main"
-    java {
-        target("src/main/java/**/*.java", "src/test/java/**/*.java")
-        licenseHeaderFile(rootProject.file("config/spotless/license-header-java"))
-        googleJavaFormat(libs.versions.google.java.format.get())
+    plugins.withId("java") {
+        java {
+            targetExclude("build/**")
+            licenseHeaderFile(rootProject.file("config/spotless/license-header-java"))
+            googleJavaFormat(libs.versions.google.java.format.get())
+        }
     }
     kotlinGradle {
         ktlint(libs.versions.ktlint.get())
@@ -56,6 +58,7 @@ spotless {
             ".gitignore",
             ".java-version",
             ".sdkmanrc",
+            "config/**/*.xml",
             "src/**/*.xml",
         )
         trimTrailingWhitespace()
