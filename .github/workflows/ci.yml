@@ -63,7 +63,6 @@ jobs:
         with:
           name: maven-build-output
           path: |
-            **/target/failsafe-reports/
             **/target/site/jacoco-aggregate/
             **/target/surefire-reports/
             **/target/test-classes/projects/*/project/*/src/

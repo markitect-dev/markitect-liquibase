@@ -126,21 +126,6 @@
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-failsafe-plugin</artifactId>
-        <version>${maven-surefire.version}</version>
-        <executions>
-          <execution>
-            <id>integration-test</id>
-            <phase>none</phase>
-          </execution>
-          <execution>
-            <id>verify</id>
-            <phase>none</phase>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
         <version>${maven-jar-plugin.version}</version>
         <executions>
@@ -184,10 +169,6 @@
             <executions>
               <execution>
                 <id>prepare-agent</id>
-                <phase>none</phase>
-              </execution>
-              <execution>
-                <id>prepare-agent-integration</id>
                 <phase>none</phase>
               </execution>
               <execution>

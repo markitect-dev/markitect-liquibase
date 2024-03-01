@@ -79,10 +79,7 @@
     <resource.delimiter>@</resource.delimiter>
     <revision>0.1.0</revision>
     <sha1/>
-    <skipITs>${skipTests}</skipITs>
     <skipNexusStagingDeployMojo>${maven.deploy.skip}</skipNexusStagingDeployMojo>
-    <skipTests>false</skipTests>
-    <skipUTs>${skipTests}</skipUTs>
     <sonar.coverage.jacoco.xmlReportPaths>
       ${maven.multiModuleProjectDirectory}/markitect-liquibase-coverage/target/site/jacoco-aggregate/jacoco.xml
     </sonar.coverage.jacoco.xmlReportPaths>
@@ -547,40 +544,6 @@ $1$4]]></replacement>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-failsafe-plugin</artifactId>
-          <version>${maven-surefire.version}</version>
-          <configuration>
-            <argLine>@{argLine}
-              -Djdk.attach.allowAttachSelf=true
-              -XX:+EnableDynamicAgentLoading</argLine>
-            <excludes>
-              <exclude>**/*$*</exclude>
-            </excludes>
-            <includes>
-              <include>**/*IntegrationTests.java</include>
-            </includes>
-            <useModulePath>false</useModulePath>
-            <useSystemClassLoader>false</useSystemClassLoader>
-          </configuration>
-          <executions>
-            <execution>
-              <id>integration-test</id>
-              <goals>
-                <goal>integration-test</goal>
-              </goals>
-              <phase>none</phase>
-            </execution>
-            <execution>
-              <id>verify</id>
-              <goals>
-                <goal>verify</goal>
-              </goals>
-              <phase>none</phase>
-            </execution>
-          </executions>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-gpg-plugin</artifactId>
           <version>${maven-gpg-plugin.version}</version>
         </plugin>
@@ -675,12 +638,10 @@ $1$4]]></replacement>
               -XX:+EnableDynamicAgentLoading</argLine>
             <excludes>
               <exclude>**/*$*</exclude>
-              <exclude>**/*IntegrationTests.java</exclude>
             </excludes>
             <includes>
               <include>**/*Tests.java</include>
             </includes>
-            <skipTests>${skipUTs}</skipTests>
             <useModulePath>false</useModulePath>
             <useSystemClassLoader>false</useSystemClassLoader>
           </configuration>
@@ -895,23 +856,6 @@ $1$4]]></replacement>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-failsafe-plugin</artifactId>
-        <version>${maven-surefire.version}</version>
-        <executions>
-          <execution>
-            <id>integration-test</id>
-            <phase>none</phase>
-            <inherited>false</inherited>
-          </execution>
-          <execution>
-            <id>verify</id>
-            <phase>none</phase>
-            <inherited>false</inherited>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-install-plugin</artifactId>
         <version>${maven-install-plugin.version}</version>
         <executions>
@@ -1085,21 +1029,6 @@ $1$4]]></replacement>
             </plugin>
             <plugin>
               <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-failsafe-plugin</artifactId>
-              <version>${maven-surefire.version}</version>
-              <executions>
-                <execution>
-                  <id>integration-test</id>
-                  <phase>integration-test</phase>
-                </execution>
-                <execution>
-                  <id>verify</id>
-                  <phase>verify</phase>
-                </execution>
-              </executions>
-            </plugin>
-            <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
               <artifactId>maven-resources-plugin</artifactId>
               <version>${maven-resources-plugin.version}</version>
               <executions>
@@ -1129,12 +1058,6 @@ $1$4]]></replacement>
                   <id>prepare-agent</id>
                   <goals>
                     <goal>prepare-agent</goal>
-                  </goals>
-                </execution>
-                <execution>
-                  <id>prepare-agent-integration</id>
-                  <goals>
-                    <goal>prepare-agent-integration</goal>
                   </goals>
                 </execution>
               </executions>
@@ -1210,21 +1133,6 @@ $1$4]]></replacement>
                 <execution>
                   <id>default-testCompile</id>
                   <phase>test-compile</phase>
-                </execution>
-              </executions>
-            </plugin>
-            <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-failsafe-plugin</artifactId>
-              <version>${maven-surefire.version}</version>
-              <executions>
-                <execution>
-                  <id>integration-test</id>
-                  <phase>integration-test</phase>
-                </execution>
-                <execution>
-                  <id>verify</id>
-                  <phase>verify</phase>
                 </execution>
               </executions>
             </plugin>
