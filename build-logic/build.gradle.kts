@@ -12,7 +12,6 @@ dependencies {
 }
 
 spotless {
-    ratchetFrom = "origin/main"
     kotlin {
         targetExclude("build/**")
         ktlint(libs.versions.ktlint.get())
@@ -20,22 +19,11 @@ spotless {
     kotlinGradle {
         ktlint(libs.versions.ktlint.get())
     }
-    format("properties") {
+    format("misc") {
         target("gradle.properties")
-        prettier(
-            mapOf(
-                "prettier" to libs.versions.prettier.asProvider().get(),
-                "prettier-plugin-properties" to libs.versions.prettier.plugin.properties.get(),
-            ),
-        )
-            .config(
-                mapOf(
-                    "parser" to "dot-properties",
-                    "plugins" to listOf("prettier-plugin-properties"),
-                    "keySeparator" to "=",
-                    "printWidth" to 0,
-                ),
-            )
+        trimTrailingWhitespace()
+        endWithNewline()
+        indentWithSpaces(2)
     }
 }
 
