@@ -546,6 +546,15 @@ $1$4]]></replacement>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-gpg-plugin</artifactId>
           <version>${maven-gpg-plugin.version}</version>
+          <executions>
+            <execution>
+              <id>sign-artifacts</id>
+              <goals>
+                <goal>sign</goal>
+              </goals>
+              <phase>none</phase>
+            </execution>
+          </executions>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -554,6 +563,13 @@ $1$4]]></replacement>
           <configuration>
             <localRepositoryPath>${project.build.directory}/local-repo</localRepositoryPath>
           </configuration>
+          <executions>
+            <execution>
+              <id>default-install</id>
+              <phase>none</phase>
+              <inherited>false</inherited>
+            </execution>
+          </executions>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -575,6 +591,15 @@ $1$4]]></replacement>
           <configuration>
             <doclint>all,-missing</doclint>
           </configuration>
+          <executions>
+            <execution>
+              <id>attach-javadocs</id>
+              <goals>
+                <goal>jar</goal>
+              </goals>
+              <phase>none</phase>
+            </execution>
+          </executions>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -627,6 +652,15 @@ $1$4]]></replacement>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-source-plugin</artifactId>
           <version>${maven-source-plugin.version}</version>
+          <executions>
+            <execution>
+              <id>attach-sources</id>
+              <goals>
+                <goal>jar-no-fork</goal>
+              </goals>
+              <phase>none</phase>
+            </execution>
+          </executions>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -804,6 +838,15 @@ $1$4]]></replacement>
           <groupId>org.jacoco</groupId>
           <artifactId>jacoco-maven-plugin</artifactId>
           <version>${jacoco.version}</version>
+          <executions>
+            <execution>
+              <id>prepare-agent</id>
+              <goals>
+                <goal>prepare-agent</goal>
+              </goals>
+              <phase>none</phase>
+            </execution>
+          </executions>
         </plugin>
         <plugin>
           <groupId>org.jooq</groupId>
@@ -841,30 +884,6 @@ $1$4]]></replacement>
         <groupId>com.diffplug.spotless</groupId>
         <artifactId>spotless-maven-plugin</artifactId>
         <version>${spotless-maven-plugin.version}</version>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-checkstyle-plugin</artifactId>
-        <version>${maven-checkstyle-plugin.version}</version>
-        <executions>
-          <execution>
-            <id>check</id>
-            <phase>none</phase>
-            <inherited>false</inherited>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-install-plugin</artifactId>
-        <version>${maven-install-plugin.version}</version>
-        <executions>
-          <execution>
-            <id>default-install</id>
-            <phase>none</phase>
-            <inherited>false</inherited>
-          </execution>
-        </executions>
       </plugin>
       <plugin>
         <groupId>org.sonatype.plugins</groupId>
@@ -987,7 +1006,7 @@ $1$4]]></replacement>
       </build>
     </profile>
     <profile>
-      <id>ci-only</id>
+      <id>ci</id>
       <activation>
         <property>
           <name>env.CI</name>
@@ -1056,9 +1075,7 @@ $1$4]]></replacement>
               <executions>
                 <execution>
                   <id>prepare-agent</id>
-                  <goals>
-                    <goal>prepare-agent</goal>
-                  </goals>
+                  <phase>initialize</phase>
                 </execution>
               </executions>
             </plugin>
@@ -1078,9 +1095,6 @@ $1$4]]></replacement>
               <executions>
                 <execution>
                   <id>sign-artifacts</id>
-                  <goals>
-                    <goal>sign</goal>
-                  </goals>
                   <phase>verify</phase>
                 </execution>
               </executions>
@@ -1092,9 +1106,7 @@ $1$4]]></replacement>
               <executions>
                 <execution>
                   <id>attach-javadocs</id>
-                  <goals>
-                    <goal>jar</goal>
-                  </goals>
+                  <phase>package</phase>
                 </execution>
               </executions>
             </plugin>
@@ -1104,10 +1116,8 @@ $1$4]]></replacement>
               <version>${maven-source-plugin.version}</version>
               <executions>
                 <execution>
-                  <id>attach-sources</id>
-                  <goals>
-                    <goal>jar-no-fork</goal>
-                  </goals>
+                  <id>attach-javadocs</id>
+                  <phase>package</phase>
                 </execution>
               </executions>
             </plugin>
