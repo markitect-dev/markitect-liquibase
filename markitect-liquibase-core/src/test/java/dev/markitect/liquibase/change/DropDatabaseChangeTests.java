@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Markitect
+ * Copyright 2023-2024 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -129,10 +129,13 @@ class DropDatabaseChangeTests {
   }
 
   @ParameterizedTest
-  @CsvSource(textBlock = """
+  @CsvSource(
+      textBlock =
+          """
           # databaseName
           cat1
-          """, delimiter = '|')
+          """,
+      delimiter = '|')
   void createInverses(String databaseName) {
     // given
     var change = new DropDatabaseChange();
