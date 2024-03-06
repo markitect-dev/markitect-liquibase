@@ -189,6 +189,7 @@
           <artifactId>spotless-maven-plugin</artifactId>
           <version>${spotless-maven-plugin.version}</version>
           <configuration>
+            <ratchetFrom>origin/main</ratchetFrom>
             <java>
               <excludes>
                 <exclude>target/**</exclude>

@@ -12,6 +12,7 @@ dependencies {
 }
 
 spotless {
+    ratchetFrom("origin/main")
     kotlin {
         targetExclude("build/**")
         ktlint(libs.versions.ktlint.get())

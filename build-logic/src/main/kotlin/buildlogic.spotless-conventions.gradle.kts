@@ -3,6 +3,7 @@ plugins {
 }
 
 spotless {
+    ratchetFrom("origin/main")
     plugins.withId("java") {
         java {
             targetExclude("build/**")
