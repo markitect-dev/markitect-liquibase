@@ -207,11 +207,12 @@
                 <include>pom.xml</include>
               </includes>
               <sortPom>
-                <expandEmptyElements>false</expandEmptyElements>
                 <version>${sortpom.version}</version>
+                <lineSeparator>\n</lineSeparator>
+                <expandEmptyElements>false</expandEmptyElements>
               </sortPom>
               <replaceRegex>
-                <name>wrap-project-element</name>
+                <name>indent-schema-location</name>
                 <searchRegex><![CDATA[(<project.*) (xsi:schemaLocation=.*>)]]></searchRegex>
                 <replacement><![CDATA[$1
     $2]]></replacement>
