@@ -3,7 +3,7 @@
 [versions]
 apiguardian = "1.1.2"
 assertj = "3.25.3"
-awaitility = "4.2.0"
+awaitility = "4.2.1"
 bnd-annotation = "7.0.0"
 byte-buddy = "1.14.12"
 checker-framework = "3.42.0"
