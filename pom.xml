@@ -122,7 +122,7 @@
     <logback.version>1.5.3</logback.version>
     <maven-antrun-plugin.version>3.1.0</maven-antrun-plugin.version>
     <maven-archetype.version>3.2.1</maven-archetype.version>
-    <maven-assembly-plugin.version>3.7.0</maven-assembly-plugin.version>
+    <maven-assembly-plugin.version>3.7.1</maven-assembly-plugin.version>
     <maven-checkstyle-plugin.version>3.3.1</maven-checkstyle-plugin.version>
     <maven-clean-plugin.version>3.3.2</maven-clean-plugin.version>
     <maven-compiler-plugin.version>3.12.1</maven-compiler-plugin.version>
