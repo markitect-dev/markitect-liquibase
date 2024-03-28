@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Markitect
+ * Copyright 2023-2024 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,11 +30,13 @@ public final class ScopeManagerHelper {
     return instance.get();
   }
 
-  private final Runnable useThreadLocalScopeManager =
-      Runnables.runOnce(() -> Scope.setScopeManager(new ThreadLocalScopeManager()));
+  @SuppressWarnings("squid:S5164")
+  private final ThreadLocal<Runnable> useThreadLocalScopeManager =
+      ThreadLocal.withInitial(
+          () -> Runnables.runOnce(() -> Scope.setScopeManager(new ThreadLocalScopeManager())));
 
   public void useThreadLocalScopeManager() {
-    useThreadLocalScopeManager.run();
+    useThreadLocalScopeManager.get().run();
   }
 
   private ScopeManagerHelper() {}

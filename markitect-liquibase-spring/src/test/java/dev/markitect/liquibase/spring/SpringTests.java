@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Markitect
+ * Copyright 2023-2024 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,10 +20,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import javax.sql.DataSource;
 import liquibase.Scope;
+import liquibase.ScopeManager;
 import liquibase.ThreadLocalScopeManager;
 import liquibase.integration.spring.SpringLiquibase;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Answers;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
+import org.mockito.Mock;
+import org.mockito.MockedStatic;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.runner.ApplicationContextRunner;
 import org.springframework.boot.test.system.CapturedOutput;
 import org.springframework.boot.test.system.OutputCaptureExtension;
@@ -32,11 +39,18 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
-import org.springframework.test.util.ReflectionTestUtils;
 
-@ExtendWith(OutputCaptureExtension.class)
+@ExtendWith({
+  OutputCaptureExtension.class,
+  MockitoExtension.class,
+})
 class SpringTests {
   private final ApplicationContextRunner contextRunner = new ApplicationContextRunner();
+
+  @Mock(answer = Answers.CALLS_REAL_METHODS)
+  private MockedStatic<Scope> mockedScope;
+
+  @Captor private ArgumentCaptor<ScopeManager> scopeManagerCaptor;
 
   @Test
   void runsLiquibaseUpdate(CapturedOutput output) {
@@ -49,7 +63,9 @@ class SpringTests {
                     .hasSingleBean(SpringLiquibaseBeanPostProcessor.class)
                     .hasSingleBean(SpringLiquibase.class)
                     .hasSingleBean(MarkitectSpringLiquibase.class));
-    assertThat(ReflectionTestUtils.getField(Scope.class, "scopeManager"))
+    mockedScope.verify(() -> Scope.setScopeManager(scopeManagerCaptor.capture()));
+    assertThat(scopeManagerCaptor.getAllValues())
+        .singleElement()
         .isInstanceOf(ThreadLocalScopeManager.class);
     assertThat(output)
         .contains(

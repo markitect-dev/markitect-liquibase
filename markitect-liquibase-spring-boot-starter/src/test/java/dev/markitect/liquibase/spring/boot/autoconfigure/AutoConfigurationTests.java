@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Markitect
+ * Copyright 2023-2024 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,19 +21,28 @@ import static org.assertj.core.api.Assertions.assertThat;
 import dev.markitect.liquibase.spring.MarkitectSpringLiquibase;
 import dev.markitect.liquibase.spring.SpringLiquibaseBeanPostProcessor;
 import liquibase.Scope;
+import liquibase.ScopeManager;
 import liquibase.ThreadLocalScopeManager;
 import liquibase.integration.spring.SpringLiquibase;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Answers;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
+import org.mockito.Mock;
+import org.mockito.MockedStatic;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.autoconfigure.AutoConfigurations;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.liquibase.LiquibaseAutoConfiguration;
 import org.springframework.boot.test.context.runner.ApplicationContextRunner;
 import org.springframework.boot.test.system.CapturedOutput;
 import org.springframework.boot.test.system.OutputCaptureExtension;
-import org.springframework.test.util.ReflectionTestUtils;
 
-@ExtendWith(OutputCaptureExtension.class)
+@ExtendWith({
+  OutputCaptureExtension.class,
+  MockitoExtension.class,
+})
 class AutoConfigurationTests {
   private final ApplicationContextRunner contextRunner =
       new ApplicationContextRunner()
@@ -43,6 +52,11 @@ class AutoConfigurationTests {
           .withPropertyValues(
               "markitect.liquibase.use-thread-local-scope-manager=true",
               "markitect.liquibase.properties.liquibase.sql.logLevel=info");
+
+  @Mock(answer = Answers.CALLS_REAL_METHODS)
+  private MockedStatic<Scope> mockedScope;
+
+  @Captor private ArgumentCaptor<ScopeManager> scopeManagerCaptor;
 
   @Test
   void backsOffWithNoDataSourceBean() {
@@ -63,7 +77,9 @@ class AutoConfigurationTests {
                     .hasSingleBean(SpringLiquibaseBeanPostProcessor.class)
                     .hasSingleBean(SpringLiquibase.class)
                     .hasSingleBean(MarkitectSpringLiquibase.class));
-    assertThat(ReflectionTestUtils.getField(Scope.class, "scopeManager"))
+    mockedScope.verify(() -> Scope.setScopeManager(scopeManagerCaptor.capture()));
+    assertThat(scopeManagerCaptor.getAllValues())
+        .singleElement()
         .isInstanceOf(ThreadLocalScopeManager.class);
     assertThat(output)
         .contains(
