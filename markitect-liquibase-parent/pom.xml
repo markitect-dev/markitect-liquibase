@@ -15,20 +15,6 @@
   <name>${project.artifactId}</name>
   <description>Markitect Liquibase Parent</description>
 
-  <modules>
-    <module>../markitect-liquibase-base</module>
-    <module>../markitect-liquibase-core</module>
-    <module>../markitect-liquibase-coverage</module>
-    <module>../markitect-liquibase-logging</module>
-    <module>../markitect-liquibase-logging-jul-tests</module>
-    <module>../markitect-liquibase-logging-log4j-tests</module>
-    <module>../markitect-liquibase-logging-slf4j-api-tests</module>
-    <module>../markitect-liquibase-logging-slf4j-spi-tests</module>
-    <module>../markitect-liquibase-spring</module>
-    <module>../markitect-liquibase-spring-boot-archetype</module>
-    <module>../markitect-liquibase-spring-boot-starter</module>
-  </modules>
-
   <properties>
     <project.build.outputTimestamp>2024-01-01T00:00:00Z</project.build.outputTimestamp>
   </properties>
