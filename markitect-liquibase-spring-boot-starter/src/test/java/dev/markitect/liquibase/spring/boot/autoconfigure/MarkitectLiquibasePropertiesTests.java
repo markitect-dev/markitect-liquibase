@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Markitect
+ * Copyright 2023-2024 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,9 +31,8 @@ class MarkitectLiquibasePropertiesTests {
         .extracting(
             MarkitectLiquibaseProperties::isOutputDefaultCatalog,
             MarkitectLiquibaseProperties::isOutputDefaultSchema,
-            MarkitectLiquibaseProperties::isUseThreadLocalScopeManager,
             MarkitectLiquibaseProperties::getProperties)
-        .containsExactly(false, false, false, Map.of());
+        .containsExactly(false, false, Map.of());
   }
 
   @Test
@@ -41,7 +40,6 @@ class MarkitectLiquibasePropertiesTests {
     // when
     markitectLiquibaseProperties.setOutputDefaultCatalog(true);
     markitectLiquibaseProperties.setOutputDefaultSchema(true);
-    markitectLiquibaseProperties.setUseThreadLocalScopeManager(true);
     markitectLiquibaseProperties.getProperties().put("liquibase.sql.logLevel", "info");
 
     // then
@@ -49,8 +47,7 @@ class MarkitectLiquibasePropertiesTests {
         .extracting(
             MarkitectLiquibaseProperties::isOutputDefaultCatalog,
             MarkitectLiquibaseProperties::isOutputDefaultSchema,
-            MarkitectLiquibaseProperties::isUseThreadLocalScopeManager,
             MarkitectLiquibaseProperties::getProperties)
-        .containsExactly(true, true, true, Map.of("liquibase.sql.logLevel", "info"));
+        .containsExactly(true, true, Map.of("liquibase.sql.logLevel", "info"));
   }
 }

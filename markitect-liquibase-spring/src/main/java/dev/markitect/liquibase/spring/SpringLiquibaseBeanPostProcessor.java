@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Markitect
+ * Copyright 2023-2024 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,16 +16,15 @@
 
 package dev.markitect.liquibase.spring;
 
-import dev.markitect.liquibase.ScopeManagerHelper;
 import liquibase.integration.spring.SpringLiquibase;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.checkerframework.checker.nullness.qual.Nullable;
-import org.springframework.beans.factory.config.InstantiationAwareBeanPostProcessor;
+import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.core.env.Environment;
 import org.springframework.util.Assert;
 
-public class SpringLiquibaseBeanPostProcessor implements InstantiationAwareBeanPostProcessor {
+public class SpringLiquibaseBeanPostProcessor implements BeanPostProcessor {
   private static final Log log = LogFactory.getLog(SpringLiquibaseBeanPostProcessor.class);
 
   private final Environment environment;
@@ -33,19 +32,6 @@ public class SpringLiquibaseBeanPostProcessor implements InstantiationAwareBeanP
   public SpringLiquibaseBeanPostProcessor(Environment environment) {
     Assert.notNull(environment, "Environment must not be null");
     this.environment = environment;
-  }
-
-  @Override
-  @SuppressWarnings("NullableProblems")
-  public @Nullable Object postProcessBeforeInstantiation(Class<?> beanClass, String beanName) {
-    if (SpringLiquibase.class.isAssignableFrom(beanClass)
-        && Boolean.TRUE.equals(
-            environment.getProperty(
-                "markitect.liquibase.use-thread-local-scope-manager", Boolean.class))) {
-      log.debug("Initializing Liquibase scope manager");
-      ScopeManagerHelper.getInstance().useThreadLocalScopeManager();
-    }
-    return null;
   }
 
   @Override

@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Markitect
+ * Copyright 2023-2024 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,9 +29,6 @@ public class MarkitectLiquibaseProperties {
   /** Whether to qualify the names of objects in the default schema. */
   private boolean outputDefaultSchema;
 
-  /** Whether to use ThreadLocalScopeManager instead of SingletonScopeManager. */
-  private boolean useThreadLocalScopeManager;
-
   /** Additional properties used to configure Liquibase. */
   private final Map<String, String> properties = new HashMap<>();
 
@@ -52,17 +49,6 @@ public class MarkitectLiquibaseProperties {
   @CanIgnoreReturnValue
   public MarkitectLiquibaseProperties setOutputDefaultSchema(boolean outputDefaultSchema) {
     this.outputDefaultSchema = outputDefaultSchema;
-    return this;
-  }
-
-  public boolean isUseThreadLocalScopeManager() {
-    return useThreadLocalScopeManager;
-  }
-
-  @CanIgnoreReturnValue
-  public MarkitectLiquibaseProperties setUseThreadLocalScopeManager(
-      boolean useThreadLocalScopeManager) {
-    this.useThreadLocalScopeManager = useThreadLocalScopeManager;
     return this;
   }
 

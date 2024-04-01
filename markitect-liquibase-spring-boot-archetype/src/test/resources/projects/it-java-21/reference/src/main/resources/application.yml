@@ -6,6 +6,5 @@ logging:
 
 markitect:
   liquibase:
-    use-thread-local-scope-manager: true
     properties:
       liquibase.sql.logLevel: info

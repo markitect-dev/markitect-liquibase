@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Markitect
+ * Copyright 2023-2024 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,10 +18,7 @@ package dev.markitect.liquibase.spring;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
 
-import dev.markitect.liquibase.ScopeManagerHelper;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -32,81 +29,10 @@ import org.springframework.mock.env.MockEnvironment;
 
 @ExtendWith(MockitoExtension.class)
 class SpringLiquibaseBeanPostProcessorTests {
-  @Mock private ScopeManagerHelper scopeManagerHelper;
-  @Mock private MockedStatic<ScopeManagerHelper> mockedScopeManagerHelper;
   @Mock private MockedStatic<SpringEnvironmentHolder> mockedSpringEnvironmentHolder;
   private final MockEnvironment environment = new MockEnvironment();
   private final SpringLiquibaseBeanPostProcessor springLiquibaseBeanPostProcessor =
       new SpringLiquibaseBeanPostProcessor(environment);
-
-  @ParameterizedTest
-  @CsvSource(
-      textBlock =
-          """
-          # beanClass                                             | beanName
-          dev.markitect.liquibase.spring.MarkitectSpringLiquibase | liquibase
-          liquibase.integration.spring.SpringLiquibase            | liquibase
-          """,
-      delimiter = '|')
-  @SuppressWarnings({"DirectInvocationOnMock", "ResultOfMethodCallIgnored", "RedundantSuppression"})
-  void postProcessBeforeInstantiation(Class<?> beanClass, String beanName) {
-    // given
-    environment.setProperty("markitect.liquibase.use-thread-local-scope-manager", "true");
-    mockedScopeManagerHelper.when(ScopeManagerHelper::getInstance).thenReturn(scopeManagerHelper);
-
-    // when
-    Object actual =
-        springLiquibaseBeanPostProcessor.postProcessBeforeInstantiation(beanClass, beanName);
-
-    // then
-    verify(scopeManagerHelper).useThreadLocalScopeManager();
-    verifyNoMoreInteractions(scopeManagerHelper);
-    assertThat(actual).isNull();
-  }
-
-  @ParameterizedTest
-  @CsvSource(
-      textBlock =
-          """
-          # beanClass          | beanName
-          javax.sql.DataSource | dataSource
-          """,
-      delimiter = '|')
-  @SuppressWarnings("DirectInvocationOnMock")
-  void shouldNotUseThreadLocalScopeManagerBeforeInstantiationForNonLiquibaseBean(
-      Class<?> beanClass, String beanName) {
-    // given
-    environment.setProperty("markitect.liquibase.use-thread-local-scope-manager", "true");
-
-    // when
-    Object actual =
-        springLiquibaseBeanPostProcessor.postProcessBeforeInstantiation(beanClass, beanName);
-
-    // then
-    mockedScopeManagerHelper.verifyNoInteractions();
-    assertThat(actual).isNull();
-  }
-
-  @ParameterizedTest
-  @CsvSource(
-      textBlock =
-          """
-          # beanClass                                             | beanName
-          dev.markitect.liquibase.spring.MarkitectSpringLiquibase | liquibase
-          liquibase.integration.spring.SpringLiquibase            | liquibase
-          """,
-      delimiter = '|')
-  @SuppressWarnings("DirectInvocationOnMock")
-  void shouldNotUseThreadLocalScopeManagerBeforeInstantiationWithoutEnvironmentProperty(
-      Class<?> beanClass, String beanName) {
-    // when
-    Object actual =
-        springLiquibaseBeanPostProcessor.postProcessBeforeInstantiation(beanClass, beanName);
-
-    // then
-    mockedScopeManagerHelper.verifyNoInteractions();
-    assertThat(actual).isNull();
-  }
 
   @ParameterizedTest
   @CsvSource(
