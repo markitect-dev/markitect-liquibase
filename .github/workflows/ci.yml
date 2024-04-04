@@ -145,7 +145,7 @@ jobs:
           java-version-file: '.java-version'
 
       - name: Set up Gradle
-        uses: gradle/actions/setup-gradle@eb261d5636abba2cf3f7179d1361cb2354ec870e # v3.2.0
+        uses: gradle/actions/setup-gradle@e24011a3b5db78bd5ab798036042d9312002f252 # v3.2.0
         with:
           dependency-graph: generate-and-submit
 
