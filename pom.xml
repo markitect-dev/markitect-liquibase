@@ -120,7 +120,7 @@
     <jackson.version>2.17.0</jackson.version>
     <jacoco.version>0.8.12</jacoco.version>
     <jakarta-activation.version>2.1.3</jakarta-activation.version>
-    <jakarta-annotation.version>2.1.1</jakarta-annotation.version>
+    <jakarta-annotation.version>3.0.0</jakarta-annotation.version>
     <jakarta-xml-bind.version>4.0.2</jakarta-xml-bind.version>
     <jetbrains-annotations.version>24.1.0</jetbrains-annotations.version>
     <jna.version>5.14.0</jna.version>
