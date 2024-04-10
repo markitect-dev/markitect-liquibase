@@ -21,7 +21,7 @@ updates:
     ignore:
       - dependency-name: "com.microsoft.sqlserver:mssql-jdbc"
         versions:
-          - "12.5.0.jre11-preview"
+          - "12.7.0.jre11-preview"
 
   - package-ecosystem: "maven"
     directory: "/"
@@ -37,4 +37,4 @@ updates:
     ignore:
       - dependency-name: "com.microsoft.sqlserver:mssql-jdbc"
         versions:
-          - "12.5.0.jre11-preview"
+          - "12.7.0.jre11-preview"
