@@ -20,8 +20,8 @@ dependencyResolutionManagement {
 develocity {
     buildScan {
         if (providers.environmentVariable("CI").isPresent) {
-            termsOfUseUrl.set("https://gradle.com/help/legal-terms-of-use")
-            termsOfUseAgree.set("yes")
+            termsOfUseUrl = "https://gradle.com/help/legal-terms-of-use"
+            termsOfUseAgree = "yes"
         }
         publishing.onlyIf { false }
     }
