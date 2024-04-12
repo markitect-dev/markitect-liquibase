@@ -168,7 +168,7 @@
     <postgresql.version>42.7.3</postgresql.version>
     <r2dbc-spi.version>1.0.0.RELEASE</r2dbc-spi.version>
     <reactive-streams.version>1.0.4</reactive-streams.version>
-    <slf4j.version>2.0.12</slf4j.version>
+    <slf4j.version>2.0.13</slf4j.version>
     <snakeyaml.version>2.2</snakeyaml.version>
     <sonar-maven-plugin.version>3.11.0.3922</sonar-maven-plugin.version>
     <sortpom.version>3.3.0</sortpom.version>
