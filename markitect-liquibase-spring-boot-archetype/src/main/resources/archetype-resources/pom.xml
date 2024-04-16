@@ -92,7 +92,7 @@
             <argLine>@{argLine}
               -Djdk.attach.allowAttachSelf=true
               -XX:+EnableDynamicAgentLoading</argLine>
-            <useSystemClassLoader>false</useSystemClassLoader>
+            <useManifestOnlyJar>false</useManifestOnlyJar>
           </configuration>
         </plugin>
       </plugins>

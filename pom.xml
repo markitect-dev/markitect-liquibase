@@ -689,8 +689,8 @@ $1$4]]></replacement>
             <includes>
               <include>**/*Tests.java</include>
             </includes>
+            <useManifestOnlyJar>false</useManifestOnlyJar>
             <useModulePath>false</useModulePath>
-            <useSystemClassLoader>false</useSystemClassLoader>
           </configuration>
           <executions>
             <execution>
