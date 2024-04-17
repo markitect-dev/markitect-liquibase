@@ -8,6 +8,8 @@ plugins {
     `java-library`
 }
 
+val byteBuddyAgent: Configuration by configurations.creating
+
 configurations.testImplementation {
     resolutionStrategy.dependencySubstitution {
         substitute(module("org.hamcrest:hamcrest-core"))
@@ -21,6 +23,7 @@ configurations.testImplementation {
 }
 
 dependencies {
+    byteBuddyAgent(libs.net.bytebuddy.byte.buddy.agent)
     testImplementation(platform(libs.com.fasterxml.jackson.jackson.bom))
     testImplementation(platform(libs.io.micrometer.micrometer.bom))
     testImplementation(platform(libs.org.assertj.assertj.bom))
@@ -117,8 +120,8 @@ testing.suites.withType<JvmTestSuite>().configureEach {
     targets.all {
         testTask.configure {
             onlyIf { !providers.systemProperty("skipTests").isPresent }
-            jvmArgs("-Djdk.attach.allowAttachSelf=true")
-            jvmArgs("-XX:+EnableDynamicAgentLoading")
+            jvmArgs("-XX:-EnableDynamicAgentLoading")
+            jvmArgs("-javaagent:${byteBuddyAgent.singleFile}")
         }
     }
 }

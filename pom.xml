@@ -681,8 +681,8 @@ $1$4]]></replacement>
           <version>${maven-surefire.version}</version>
           <configuration>
             <argLine>@{argLine}
-              -Djdk.attach.allowAttachSelf=true
-              -XX:+EnableDynamicAgentLoading</argLine>
+              -XX:-EnableDynamicAgentLoading
+              -javaagent:${settings.localRepository}${file.separator}net${file.separator}bytebuddy${file.separator}byte-buddy-agent${file.separator}${byte-buddy.version}${file.separator}byte-buddy-agent-${byte-buddy.version}.jar</argLine>
             <excludes>
               <exclude>**/*$*</exclude>
             </excludes>
