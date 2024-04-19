@@ -5,4 +5,4 @@ java=21.0.2-zulu
 liquibase=4.27.0
 maven=3.9.6
 mvnd=1.0-m8-m39
-springboot=3.2.4
+springboot=3.2.5
