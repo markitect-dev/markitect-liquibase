@@ -83,19 +83,19 @@
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" /></td>
 <td># of properties using the latest version available</td>
-<td>79</td></tr>
+<td>77</td></tr>
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" /></td>
 <td># of properties where the next version available is smaller than an incremental version update</td>
 <td>0</td></tr>
 <tr class="b">
-<td><img src="images/icon_success_sml.gif" /></td>
+<td><img src="images/icon_warning_sml.gif" /></td>
 <td># of properties where the next version available is an incremental version update</td>
-<td>0</td></tr>
+<td>1</td></tr>
 <tr class="a">
 <td><img src="images/icon_warning_sml.gif" /></td>
 <td># of properties where the next version available is a minor version update</td>
-<td>2</td></tr>
+<td>3</td></tr>
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" /></td>
 <td># of properties where the next version available is a major version update</td>
@@ -487,11 +487,11 @@
 <td></td>
 <td></td></tr>
 <tr class="a">
-<td><img src="images/icon_success_sml.gif" /></td>
+<td><img src="images/icon_warning_sml.gif" /></td>
 <td>${maven-jar-plugin.version}</td>
 <td>3.4.0</td>
 <td></td>
-<td></td>
+<td><b>3.4.1</b></td>
 <td></td>
 <td></td></tr>
 <tr class="b">
@@ -559,12 +559,12 @@
 <td></td>
 <td></td></tr>
 <tr class="b">
-<td><img src="images/icon_success_sml.gif" /></td>
+<td><img src="images/icon_warning_sml.gif" /></td>
 <td>${maven-wrapper.version}</td>
 <td>3.2.0</td>
 <td></td>
 <td></td>
-<td></td>
+<td><b>3.3.0</b></td>
 <td></td></tr>
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" /></td>
@@ -2138,7 +2138,7 @@
 <table class="table table-striped">
 <tr class="a">
 <th>Status</th>
-<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
+<td style="text-align: left;"><img src="images/icon_warning_sml.gif" />&#160;There is at least one newer incremental version available. Incremental updates are typically passive.</td></tr>
 <tr class="b">
 <th>Property</th>
 <td style="text-align: left;">${maven-jar-plugin.version}</td></tr>
@@ -2149,18 +2149,21 @@
 <th>Current Version</th>
 <td style="text-align: left;">3.4.0</td></tr>
 <tr class="a">
+<th>Newer versions</th>
+<td style="text-align: left;"><b>3.4.1</b>&#160;<i>Latest Incremental</i></td></tr>
+<tr class="b">
 <th>Allowed version range</th>
 <td style="text-align: left;">3.4.0</td></tr>
-<tr class="b">
+<tr class="a">
 <th>Infer associations from project</th>
 <td style="text-align: left;">Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <th>Only use release versions</th>
 <td style="text-align: left;">No</td></tr>
-<tr class="b">
+<tr class="a">
 <th>Include projects from reactor</th>
 <td style="text-align: left;">Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <th>Always use reactor projects (even if older or -SNAPSHOT)</th>
 <td style="text-align: left;">Yes</td></tr></table></section><section>
 <h2>${maven-javadoc-plugin.version}</h2>
@@ -2399,7 +2402,7 @@
 <table class="table table-striped">
 <tr class="a">
 <th>Status</th>
-<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
+<td style="text-align: left;"><img src="images/icon_warning_sml.gif" />&#160;There is at least one newer minor version available. Minor updates are sometimes passive.</td></tr>
 <tr class="b">
 <th>Property</th>
 <td style="text-align: left;">${maven-wrapper.version}</td></tr>
@@ -2410,18 +2413,21 @@
 <th>Current Version</th>
 <td style="text-align: left;">3.2.0</td></tr>
 <tr class="a">
+<th>Newer versions</th>
+<td style="text-align: left;"><b>3.3.0</b>&#160;<i>Latest Minor</i></td></tr>
+<tr class="b">
 <th>Allowed version range</th>
 <td style="text-align: left;">3.2.0</td></tr>
-<tr class="b">
+<tr class="a">
 <th>Infer associations from project</th>
 <td style="text-align: left;">Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <th>Only use release versions</th>
 <td style="text-align: left;">No</td></tr>
-<tr class="b">
+<tr class="a">
 <th>Include projects from reactor</th>
 <td style="text-align: left;">Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <th>Always use reactor projects (even if older or -SNAPSHOT)</th>
 <td style="text-align: left;">Yes</td></tr></table></section><section>
 <h2>${micrometer.version}</h2>
