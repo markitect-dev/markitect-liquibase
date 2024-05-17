@@ -173,7 +173,7 @@
     <slf4j.version>2.0.13</slf4j.version>
     <snakeyaml.version>2.2</snakeyaml.version>
     <sonar-maven-plugin.version>3.11.0.3922</sonar-maven-plugin.version>
-    <sortpom.version>3.3.0</sortpom.version>
+    <sortpom.version>3.4.1</sortpom.version>
     <spotless-maven-plugin.version>2.43.0</spotless-maven-plugin.version>
     <spring-boot.version>3.2.5</spring-boot.version>
     <spring-framework.version>6.1.7</spring-framework.version>
