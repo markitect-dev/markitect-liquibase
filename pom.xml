@@ -254,7 +254,6 @@ $1$4]]></replacement>
               <format>
                 <includes>
                   <include>src/**/*.properties</include>
-                  <include>gradle.properties</include>
                 </includes>
                 <prettier>
                   <devDependencies>
