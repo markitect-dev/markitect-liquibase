@@ -11,7 +11,7 @@ on:
       - '.github/**'
       - '!.github/workflows/ci.yml'
       - '.sdkmanrc'
-      - 'renovate.json'
+      - 'renovate.json5'
       - '*.md'
   schedule:
     - cron: '0 11,23 * * *'
