@@ -20,11 +20,22 @@ spotless {
     kotlinGradle {
         ktlint(libs.versions.ktlint.get())
     }
-    format("misc") {
+    format("properties") {
         target("gradle.properties")
-        trimTrailingWhitespace()
-        endWithNewline()
-        indentWithSpaces(2)
+        prettier(
+            mapOf(
+                "prettier" to libs.versions.prettier.asProvider().get(),
+                "prettier-plugin-properties" to libs.versions.prettier.plugin.properties.get(),
+            ),
+        )
+            .config(
+                mapOf(
+                    "parser" to "dot-properties",
+                    "plugins" to listOf("prettier-plugin-properties"),
+                    "keySeparator" to "=",
+                    "printWidth" to 0,
+                ),
+            )
     }
 }
 

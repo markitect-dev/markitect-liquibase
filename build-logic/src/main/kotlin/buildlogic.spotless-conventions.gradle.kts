@@ -14,18 +14,57 @@ spotless {
     kotlinGradle {
         ktlint(libs.versions.ktlint.get())
     }
+    format("json5") {
+        target("renovate.json5")
+        prettier(libs.versions.prettier.asProvider().get())
+            .config(
+                mapOf(
+                    "parser" to "json5",
+                    "singleQuote" to true,
+                ),
+            )
+    }
+    format("properties") {
+        target("src/**/*.properties", "gradle.properties")
+        prettier(
+            mapOf(
+                "prettier" to libs.versions.prettier.asProvider().get(),
+                "prettier-plugin-properties" to libs.versions.prettier.plugin.properties.get(),
+            ),
+        )
+            .config(
+                mapOf(
+                    "parser" to "dot-properties",
+                    "plugins" to listOf("prettier-plugin-properties"),
+                    "keySeparator" to "=",
+                    "printWidth" to 0,
+                ),
+            )
+    }
+    format("toml") {
+        target("gradle/**/*.toml")
+        prettier(
+            mapOf(
+                "prettier" to libs.versions.prettier.asProvider().get(),
+                "prettier-plugin-toml" to libs.versions.prettier.plugin.toml.get(),
+            ),
+        )
+            .config(
+                mapOf(
+                    "parser" to "toml",
+                    "plugins" to listOf("prettier-plugin-toml"),
+                ),
+            )
+    }
     format("misc") {
         target(
             "config/**/*.xml",
-            "gradle/**/*.toml",
-            "src/**/*.properties",
             "src/**/*.xml",
             "src/**/*.yaml",
             "src/**/*.yml",
             ".editorconfig",
             ".java-version",
             ".sdkmanrc",
-            "gradle.properties",
         )
         trimTrailingWhitespace()
         endWithNewline()
