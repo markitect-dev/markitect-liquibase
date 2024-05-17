@@ -5,7 +5,6 @@
     ':automergeAll',
     ':automergePr',
     ':automergeRequireAllStatusChecks',
-    ':maintainLockFilesWeekly',
     ':semanticCommits',
     ':separateMajorReleases',
     ':separatePatchReleases',
