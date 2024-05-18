@@ -8,6 +8,6 @@
     ':semanticCommits',
     ':separateMultipleMajorReleases',
     ':separateMultipleMinorReleases',
-    ':separatePatchReleases'
+    ':separatePatchReleases',
   ],
 }
