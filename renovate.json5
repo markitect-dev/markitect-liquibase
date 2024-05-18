@@ -6,7 +6,8 @@
     ':automergePr',
     ':automergeRequireAllStatusChecks',
     ':semanticCommits',
-    ':separateMajorReleases',
-    ':separatePatchReleases',
+    ':separateMultipleMajorReleases',
+    ':separateMultipleMinorReleases',
+    ':separatePatchReleases'
   ],
 }
