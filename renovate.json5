@@ -5,7 +5,7 @@
     ':automergeAll',
     ':automergePr',
     ':automergeRequireAllStatusChecks',
-    ':semanticCommits',
+    ':semanticCommitsDisabled',
     ':separateMultipleMajorReleases',
     ':separateMultipleMinorReleases',
     ':separatePatchReleases',
