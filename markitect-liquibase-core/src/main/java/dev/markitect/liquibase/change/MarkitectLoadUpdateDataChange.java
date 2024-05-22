@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Markitect
+ * Copyright 2023-2024 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,7 +17,7 @@
 package dev.markitect.liquibase.change;
 
 import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
-import static liquibase.util.BooleanUtil.isTrue;
+import static org.apache.commons.lang3.BooleanUtils.isTrue;
 
 import dev.markitect.liquibase.sqlgenerator.MarkitectInsertOrUpdateGenerator;
 import dev.markitect.liquibase.statement.InsertOrUpdateExecutablePreparedStatement;
