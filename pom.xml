@@ -152,7 +152,7 @@
     <maven-site-plugin.version>4.0.0-M14</maven-site-plugin.version>
     <maven-source-plugin.version>3.3.1</maven-source-plugin.version>
     <maven-surefire.version>3.2.5</maven-surefire.version>
-    <maven-wrapper.version>3.3.1</maven-wrapper.version>
+    <maven-wrapper.version>3.3.2</maven-wrapper.version>
     <micrometer.version>1.13.0</micrometer.version>
     <mockito.version>5.12.0</mockito.version>
     <mssql-jdbc.version>12.6.2.jre11</mssql-jdbc.version>
