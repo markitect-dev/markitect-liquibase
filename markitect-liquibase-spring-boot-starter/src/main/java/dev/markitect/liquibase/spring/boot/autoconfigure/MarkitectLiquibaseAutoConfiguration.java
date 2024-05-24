@@ -29,6 +29,7 @@ import liquibase.UpdateSummaryEnum;
 import liquibase.UpdateSummaryOutputEnum;
 import liquibase.change.DatabaseChange;
 import liquibase.integration.spring.SpringLiquibase;
+import liquibase.ui.UIServiceEnum;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.springframework.aot.hint.RuntimeHints;
 import org.springframework.aot.hint.RuntimeHintsRegistrar;
@@ -138,6 +139,10 @@ public class MarkitectLiquibaseAutoConfiguration {
           .map(Enum::name)
           .map(UpdateSummaryOutputEnum::valueOf)
           .ifPresent(liquibase::setShowSummaryOutput);
+      Optional.ofNullable(properties.getUiService())
+          .map(Enum::name)
+          .map(UIServiceEnum::valueOf)
+          .ifPresent(liquibase::setUiService);
       liquibase.setOutputDefaultCatalog(markitectProperties.isOutputDefaultCatalog());
       liquibase.setOutputDefaultSchema(markitectProperties.isOutputDefaultSchema());
       return liquibase;
