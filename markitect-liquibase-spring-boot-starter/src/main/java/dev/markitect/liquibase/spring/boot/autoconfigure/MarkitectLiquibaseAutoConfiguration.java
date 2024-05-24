@@ -139,10 +139,14 @@ public class MarkitectLiquibaseAutoConfiguration {
           .map(Enum::name)
           .map(UpdateSummaryOutputEnum::valueOf)
           .ifPresent(liquibase::setShowSummaryOutput);
-      Optional.ofNullable(properties.getUiService())
-          .map(Enum::name)
-          .map(UIServiceEnum::valueOf)
-          .ifPresent(liquibase::setUiService);
+      try {
+        Optional.ofNullable(properties.getUiService())
+            .map(Enum::name)
+            .map(UIServiceEnum::valueOf)
+            .ifPresent(liquibase::setUiService);
+      } catch (NoSuchMethodError ignore) {
+        // Not supported on Spring Boot 3.2
+      }
       liquibase.setOutputDefaultCatalog(markitectProperties.isOutputDefaultCatalog());
       liquibase.setOutputDefaultSchema(markitectProperties.isOutputDefaultSchema());
       return liquibase;
