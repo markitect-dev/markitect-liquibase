@@ -156,7 +156,7 @@
     <micrometer.version>1.13.0</micrometer.version>
     <mockito.version>5.12.0</mockito.version>
     <mssql-jdbc.version>12.6.2.jre11</mssql-jdbc.version>
-    <nexus-staging-maven-plugin.version>1.6.14</nexus-staging-maven-plugin.version>
+    <nexus-staging-maven-plugin.version>1.7.0</nexus-staging-maven-plugin.version>
     <nullaway.version>0.10.26</nullaway.version>
     <objenesis.version>3.4</objenesis.version>
     <opencsv.version>5.9</opencsv.version>
