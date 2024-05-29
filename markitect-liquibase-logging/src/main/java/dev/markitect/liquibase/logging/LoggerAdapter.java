@@ -41,10 +41,10 @@ public class LoggerAdapter {
   private static boolean isPresent(String className) {
     try {
       Class.forName(className);
+      return true;
     } catch (ClassNotFoundException e) {
       return false;
     }
-    return true;
   }
 
   public static Logger getLogger(@Nullable String name) {
