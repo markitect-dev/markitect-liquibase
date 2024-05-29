@@ -10,4 +10,10 @@
     ':separateMultipleMinorReleases',
     ':separatePatchReleases',
   ],
+  packageRules: [
+    {
+      matchPackagePatterns: ['com.github.ekryd.sortpom:sortpom-sorter'],
+      rebaseWhen: 'conflicted',
+    },
+  ],
 }
