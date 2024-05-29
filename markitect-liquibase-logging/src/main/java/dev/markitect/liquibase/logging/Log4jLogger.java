@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Markitect
+ * Copyright 2023-2024 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,7 +32,6 @@ public class Log4jLogger extends AbstractLogger {
   private static final int ERROR_THRESHOLD = Level.SEVERE.intValue();
 
   private static org.apache.logging.log4j.Level toLog4jLevel(Level level) {
-    checkNotNull(level);
     int value = level.intValue();
     if (value < DEBUG_THRESHOLD) {
       return org.apache.logging.log4j.Level.TRACE;

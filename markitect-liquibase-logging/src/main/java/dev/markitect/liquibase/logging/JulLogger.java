@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Markitect
+ * Copyright 2023-2024 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -52,7 +52,6 @@ public class JulLogger extends AbstractLogger {
   }
 
   private LogRecord toLogRecord(Level level, @Nullable String message, @Nullable Throwable e) {
-    checkNotNull(level);
     var logRecord = new LogRecord(level, message);
     logRecord.setLoggerName(name);
     logRecord.setThrown(e);

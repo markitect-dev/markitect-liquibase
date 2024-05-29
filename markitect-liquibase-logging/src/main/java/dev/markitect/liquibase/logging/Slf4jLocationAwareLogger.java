@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Markitect
+ * Copyright 2023-2024 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,7 +26,6 @@ public class Slf4jLocationAwareLogger extends Slf4jLogger<LocationAwareLogger> {
   private static final String FQCN = Slf4jLocationAwareLogger.class.getName();
 
   private static int toSlf4jLevel(Level level) {
-    checkNotNull(level);
     int value = level.intValue();
     if (value < DEBUG_THRESHOLD) {
       return LocationAwareLogger.TRACE_INT;

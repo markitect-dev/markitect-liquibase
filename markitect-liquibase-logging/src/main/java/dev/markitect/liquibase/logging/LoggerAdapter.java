@@ -16,8 +16,6 @@
 
 package dev.markitect.liquibase.logging;
 
-import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
-
 import liquibase.logging.Logger;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.spi.LoggerContext;
@@ -41,7 +39,6 @@ public class LoggerAdapter {
   }
 
   private static boolean isPresent(String className) {
-    checkNotNull(className);
     try {
       Class.forName(className);
     } catch (ClassNotFoundException e) {
