@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>Slf4jLocationAwareLogger.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">markitect-liquibase-coverage</a> &gt; <a href="../index.html" class="el_bundle">markitect-liquibase-logging</a> &gt; <a href="index.source.html" class="el_package">dev.markitect.liquibase.logging</a> &gt; <span class="el_source">Slf4jLocationAwareLogger.java</span></div><h1>Slf4jLocationAwareLogger.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2023 Markitect
+ * Copyright 2023-2024 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -26,91 +26,90 @@ public class Slf4jLocationAwareLogger extends Slf4jLogger&lt;LocationAwareLogger
 <span class="fc" id="L26">  private static final String FQCN = Slf4jLocationAwareLogger.class.getName();</span>
 
   private static int toSlf4jLevel(Level level) {
-<span class="fc" id="L29">    checkNotNull(level);</span>
-<span class="fc" id="L30">    int value = level.intValue();</span>
-<span class="fc bfc" id="L31" title="All 2 branches covered.">    if (value &lt; DEBUG_THRESHOLD) {</span>
-<span class="fc" id="L32">      return LocationAwareLogger.TRACE_INT;</span>
+<span class="fc" id="L29">    int value = level.intValue();</span>
+<span class="fc bfc" id="L30" title="All 2 branches covered.">    if (value &lt; DEBUG_THRESHOLD) {</span>
+<span class="fc" id="L31">      return LocationAwareLogger.TRACE_INT;</span>
     }
-<span class="fc bfc" id="L34" title="All 2 branches covered.">    if (value &lt; INFO_THRESHOLD) {</span>
-<span class="fc" id="L35">      return LocationAwareLogger.DEBUG_INT;</span>
+<span class="fc bfc" id="L33" title="All 2 branches covered.">    if (value &lt; INFO_THRESHOLD) {</span>
+<span class="fc" id="L34">      return LocationAwareLogger.DEBUG_INT;</span>
     }
-<span class="fc bfc" id="L37" title="All 2 branches covered.">    if (value &lt; WARN_THRESHOLD) {</span>
-<span class="fc" id="L38">      return LocationAwareLogger.INFO_INT;</span>
+<span class="fc bfc" id="L36" title="All 2 branches covered.">    if (value &lt; WARN_THRESHOLD) {</span>
+<span class="fc" id="L37">      return LocationAwareLogger.INFO_INT;</span>
     }
-<span class="fc bfc" id="L40" title="All 2 branches covered.">    if (value &lt; ERROR_THRESHOLD) {</span>
-<span class="fc" id="L41">      return LocationAwareLogger.WARN_INT;</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">    if (value &lt; ERROR_THRESHOLD) {</span>
+<span class="fc" id="L40">      return LocationAwareLogger.WARN_INT;</span>
     }
-<span class="fc" id="L43">    return LocationAwareLogger.ERROR_INT;</span>
+<span class="fc" id="L42">    return LocationAwareLogger.ERROR_INT;</span>
   }
 
   public Slf4jLocationAwareLogger(LocationAwareLogger logger) {
-<span class="fc" id="L47">    super(logger);</span>
-<span class="fc" id="L48">  }</span>
+<span class="fc" id="L46">    super(logger);</span>
+<span class="fc" id="L47">  }</span>
 
   @Override
   public void severe(@Nullable String message) {
-<span class="fc" id="L52">    logger.log(null, FQCN, LocationAwareLogger.ERROR_INT, message, null, null);</span>
-<span class="fc" id="L53">  }</span>
+<span class="fc" id="L51">    logger.log(null, FQCN, LocationAwareLogger.ERROR_INT, message, null, null);</span>
+<span class="fc" id="L52">  }</span>
 
   @Override
   public void severe(@Nullable String message, @Nullable Throwable e) {
-<span class="fc" id="L57">    logger.log(null, FQCN, LocationAwareLogger.ERROR_INT, message, null, e);</span>
-<span class="fc" id="L58">  }</span>
+<span class="fc" id="L56">    logger.log(null, FQCN, LocationAwareLogger.ERROR_INT, message, null, e);</span>
+<span class="fc" id="L57">  }</span>
 
   @Override
   public void warning(@Nullable String message) {
-<span class="fc" id="L62">    logger.log(null, FQCN, LocationAwareLogger.WARN_INT, message, null, null);</span>
-<span class="fc" id="L63">  }</span>
+<span class="fc" id="L61">    logger.log(null, FQCN, LocationAwareLogger.WARN_INT, message, null, null);</span>
+<span class="fc" id="L62">  }</span>
 
   @Override
   public void warning(@Nullable String message, @Nullable Throwable e) {
-<span class="fc" id="L67">    logger.log(null, FQCN, LocationAwareLogger.WARN_INT, message, null, e);</span>
-<span class="fc" id="L68">  }</span>
+<span class="fc" id="L66">    logger.log(null, FQCN, LocationAwareLogger.WARN_INT, message, null, e);</span>
+<span class="fc" id="L67">  }</span>
 
   @Override
   public void info(@Nullable String message) {
-<span class="fc" id="L72">    logger.log(null, FQCN, LocationAwareLogger.INFO_INT, message, null, null);</span>
-<span class="fc" id="L73">  }</span>
+<span class="fc" id="L71">    logger.log(null, FQCN, LocationAwareLogger.INFO_INT, message, null, null);</span>
+<span class="fc" id="L72">  }</span>
 
   @Override
   public void info(@Nullable String message, @Nullable Throwable e) {
-<span class="fc" id="L77">    logger.log(null, FQCN, LocationAwareLogger.INFO_INT, message, null, e);</span>
-<span class="fc" id="L78">  }</span>
+<span class="fc" id="L76">    logger.log(null, FQCN, LocationAwareLogger.INFO_INT, message, null, e);</span>
+<span class="fc" id="L77">  }</span>
 
   @Override
   public void config(@Nullable String message) {
-<span class="fc" id="L82">    logger.log(null, FQCN, LocationAwareLogger.DEBUG_INT, message, null, null);</span>
-<span class="fc" id="L83">  }</span>
+<span class="fc" id="L81">    logger.log(null, FQCN, LocationAwareLogger.DEBUG_INT, message, null, null);</span>
+<span class="fc" id="L82">  }</span>
 
   @Override
   public void config(@Nullable String message, @Nullable Throwable e) {
-<span class="fc" id="L87">    logger.log(null, FQCN, LocationAwareLogger.DEBUG_INT, message, null, e);</span>
-<span class="fc" id="L88">  }</span>
+<span class="fc" id="L86">    logger.log(null, FQCN, LocationAwareLogger.DEBUG_INT, message, null, e);</span>
+<span class="fc" id="L87">  }</span>
 
   @Override
   public void fine(@Nullable String message) {
-<span class="fc" id="L92">    logger.log(null, FQCN, LocationAwareLogger.DEBUG_INT, message, null, null);</span>
-<span class="fc" id="L93">  }</span>
+<span class="fc" id="L91">    logger.log(null, FQCN, LocationAwareLogger.DEBUG_INT, message, null, null);</span>
+<span class="fc" id="L92">  }</span>
 
   @Override
   public void fine(@Nullable String message, @Nullable Throwable e) {
-<span class="fc" id="L97">    logger.log(null, FQCN, LocationAwareLogger.DEBUG_INT, message, null, e);</span>
-<span class="fc" id="L98">  }</span>
+<span class="fc" id="L96">    logger.log(null, FQCN, LocationAwareLogger.DEBUG_INT, message, null, e);</span>
+<span class="fc" id="L97">  }</span>
 
   @Override
   public void debug(@Nullable String message) {
-<span class="fc" id="L102">    logger.log(null, FQCN, LocationAwareLogger.DEBUG_INT, message, null, null);</span>
-<span class="fc" id="L103">  }</span>
+<span class="fc" id="L101">    logger.log(null, FQCN, LocationAwareLogger.DEBUG_INT, message, null, null);</span>
+<span class="fc" id="L102">  }</span>
 
   @Override
   public void debug(@Nullable String message, @Nullable Throwable e) {
-<span class="fc" id="L107">    logger.log(null, FQCN, LocationAwareLogger.DEBUG_INT, message, null, e);</span>
-<span class="fc" id="L108">  }</span>
+<span class="fc" id="L106">    logger.log(null, FQCN, LocationAwareLogger.DEBUG_INT, message, null, e);</span>
+<span class="fc" id="L107">  }</span>
 
   @Override
   public void log(Level level, @Nullable String message, @Nullable Throwable e) {
-<span class="fc" id="L112">    checkNotNull(level);</span>
-<span class="fc" id="L113">    logger.log(null, FQCN, toSlf4jLevel(level), message, null, e);</span>
-<span class="fc" id="L114">  }</span>
+<span class="fc" id="L111">    checkNotNull(level);</span>
+<span class="fc" id="L112">    logger.log(null, FQCN, toSlf4jLevel(level), message, null, e);</span>
+<span class="fc" id="L113">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

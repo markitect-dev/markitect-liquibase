@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>JulLogger.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">markitect-liquibase-coverage</a> &gt; <a href="../index.html" class="el_bundle">markitect-liquibase-logging</a> &gt; <a href="index.source.html" class="el_package">dev.markitect.liquibase.logging</a> &gt; <span class="el_source">JulLogger.java</span></div><h1>JulLogger.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2023 Markitect
+ * Copyright 2023-2024 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -52,33 +52,32 @@ public class JulLogger extends AbstractLogger {
 <span class="fc" id="L52">  }</span>
 
   private LogRecord toLogRecord(Level level, @Nullable String message, @Nullable Throwable e) {
-<span class="fc" id="L55">    checkNotNull(level);</span>
-<span class="fc" id="L56">    var logRecord = new LogRecord(level, message);</span>
-<span class="fc" id="L57">    logRecord.setLoggerName(name);</span>
-<span class="fc" id="L58">    logRecord.setThrown(e);</span>
-<span class="fc" id="L59">    var found = new AtomicBoolean();</span>
-<span class="fc" id="L60">    stackWalker</span>
-<span class="fc" id="L61">        .walk(</span>
+<span class="fc" id="L55">    var logRecord = new LogRecord(level, message);</span>
+<span class="fc" id="L56">    logRecord.setLoggerName(name);</span>
+<span class="fc" id="L57">    logRecord.setThrown(e);</span>
+<span class="fc" id="L58">    var found = new AtomicBoolean();</span>
+<span class="fc" id="L59">    stackWalker</span>
+<span class="fc" id="L60">        .walk(</span>
             stream -&gt;
-<span class="fc" id="L63">                stream</span>
-<span class="fc" id="L64">                    .filter(</span>
+<span class="fc" id="L62">                stream</span>
+<span class="fc" id="L63">                    .filter(</span>
                         stackFrame -&gt; {
-<span class="fc bfc" id="L66" title="All 2 branches covered.">                          if (liquibase.logging.Logger.class.isAssignableFrom(</span>
-<span class="fc" id="L67">                              stackFrame.getDeclaringClass())) {</span>
-<span class="fc" id="L68">                            found.set(true);</span>
-<span class="fc" id="L69">                            return false;</span>
+<span class="fc bfc" id="L65" title="All 2 branches covered.">                          if (liquibase.logging.Logger.class.isAssignableFrom(</span>
+<span class="fc" id="L66">                              stackFrame.getDeclaringClass())) {</span>
+<span class="fc" id="L67">                            found.set(true);</span>
+<span class="fc" id="L68">                            return false;</span>
                           }
-<span class="fc" id="L71">                          return found.get();</span>
+<span class="fc" id="L70">                          return found.get();</span>
                         })
-<span class="fc" id="L73">                    .findFirst())</span>
-<span class="fc" id="L74">        .ifPresent(</span>
+<span class="fc" id="L72">                    .findFirst())</span>
+<span class="fc" id="L73">        .ifPresent(</span>
             stackFrame -&gt; {
-<span class="fc" id="L76">              logRecord.setSourceClassName(stackFrame.getClassName());</span>
-<span class="fc" id="L77">              logRecord.setSourceMethodName(stackFrame.getMethodName());</span>
-<span class="fc" id="L78">            });</span>
-<span class="fc" id="L79">    logRecord.setResourceBundleName(logger.getResourceBundleName());</span>
-<span class="fc" id="L80">    logRecord.setResourceBundle(logger.getResourceBundle());</span>
-<span class="fc" id="L81">    return logRecord;</span>
+<span class="fc" id="L75">              logRecord.setSourceClassName(stackFrame.getClassName());</span>
+<span class="fc" id="L76">              logRecord.setSourceMethodName(stackFrame.getMethodName());</span>
+<span class="fc" id="L77">            });</span>
+<span class="fc" id="L78">    logRecord.setResourceBundleName(logger.getResourceBundleName());</span>
+<span class="fc" id="L79">    logRecord.setResourceBundle(logger.getResourceBundle());</span>
+<span class="fc" id="L80">    return logRecord;</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
