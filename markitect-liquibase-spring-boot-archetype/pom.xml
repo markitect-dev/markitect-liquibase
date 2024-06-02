@@ -111,8 +111,8 @@
               </goals>
               <phase>none</phase>
               <configuration>
-                <file>${project.basedir}/../markitect-liquibase-base/target/markitect-liquibase-base-${project.version}.jar</file>
-                <pomFile>${project.basedir}/../markitect-liquibase-base/.flattened-pom.xml</pomFile>
+                <file>../markitect-liquibase-base/target/markitect-liquibase-base-${project.version}.jar</file>
+                <pomFile>../markitect-liquibase-base/.flattened-pom.xml</pomFile>
               </configuration>
             </execution>
             <execution>
@@ -122,8 +122,8 @@
               </goals>
               <phase>none</phase>
               <configuration>
-                <file>${project.basedir}/../markitect-liquibase-bom/.flattened-pom.xml</file>
-                <pomFile>${project.basedir}/../markitect-liquibase-bom/.flattened-pom.xml</pomFile>
+                <file>../markitect-liquibase-bom/.flattened-pom.xml</file>
+                <pomFile>../markitect-liquibase-bom/.flattened-pom.xml</pomFile>
               </configuration>
             </execution>
             <execution>
@@ -133,8 +133,8 @@
               </goals>
               <phase>none</phase>
               <configuration>
-                <file>${project.basedir}/../markitect-liquibase-core/target/markitect-liquibase-core-${project.version}.jar</file>
-                <pomFile>${project.basedir}/../markitect-liquibase-core/.flattened-pom.xml</pomFile>
+                <file>../markitect-liquibase-core/target/markitect-liquibase-core-${project.version}.jar</file>
+                <pomFile>../markitect-liquibase-core/.flattened-pom.xml</pomFile>
               </configuration>
             </execution>
             <execution>
@@ -144,8 +144,8 @@
               </goals>
               <phase>none</phase>
               <configuration>
-                <file>${project.basedir}/../markitect-liquibase-logging/target/markitect-liquibase-logging-${project.version}.jar</file>
-                <pomFile>${project.basedir}/../markitect-liquibase-logging/.flattened-pom.xml</pomFile>
+                <file>../markitect-liquibase-logging/target/markitect-liquibase-logging-${project.version}.jar</file>
+                <pomFile>../markitect-liquibase-logging/.flattened-pom.xml</pomFile>
               </configuration>
             </execution>
             <execution>
@@ -155,8 +155,8 @@
               </goals>
               <phase>none</phase>
               <configuration>
-                <file>${project.basedir}/../markitect-liquibase-spring/target/markitect-liquibase-spring-${project.version}.jar</file>
-                <pomFile>${project.basedir}/../markitect-liquibase-spring/.flattened-pom.xml</pomFile>
+                <file>../markitect-liquibase-spring/target/markitect-liquibase-spring-${project.version}.jar</file>
+                <pomFile>../markitect-liquibase-spring/.flattened-pom.xml</pomFile>
               </configuration>
             </execution>
             <execution>
@@ -166,8 +166,8 @@
               </goals>
               <phase>none</phase>
               <configuration>
-                <file>${project.basedir}/../markitect-liquibase-spring-boot-starter/target/markitect-liquibase-spring-boot-starter-${project.version}.jar</file>
-                <pomFile>${project.basedir}/../markitect-liquibase-spring-boot-starter/.flattened-pom.xml</pomFile>
+                <file>../markitect-liquibase-spring-boot-starter/target/markitect-liquibase-spring-boot-starter-${project.version}.jar</file>
+                <pomFile>../markitect-liquibase-spring-boot-starter/.flattened-pom.xml</pomFile>
               </configuration>
             </execution>
           </executions>

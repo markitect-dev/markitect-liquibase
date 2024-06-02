@@ -280,6 +280,9 @@ $1$4]]></replacement>
                   <include>.java-version</include>
                   <include>.sdkmanrc</include>
                 </includes>
+                <excludes>
+                  <exclude>src/test/resources/projects/*/reference/**/pom.xml</exclude>
+                </excludes>
                 <trimTrailingWhitespace/>
                 <endWithNewline/>
                 <indent>
@@ -316,9 +319,9 @@ $1$4]]></replacement>
           <artifactId>maven-archetype-plugin</artifactId>
           <version>${maven-archetype.version}</version>
           <configuration>
-            <localRepositoryPath>${project.build.directory}/local-repo</localRepositoryPath>
-            <settingsFile>${project.basedir}/src/test/settings.xml</settingsFile>
             <ignoreEOLStyle>true</ignoreEOLStyle>
+            <localRepositoryPath>target/local-repo</localRepositoryPath>
+            <settingsFile>src/test/settings.xml</settingsFile>
           </configuration>
           <executions>
             <execution>
@@ -604,7 +607,7 @@ $1$4]]></replacement>
           <artifactId>maven-install-plugin</artifactId>
           <version>${maven-install-plugin.version}</version>
           <configuration>
-            <localRepositoryPath>${project.build.directory}/local-repo</localRepositoryPath>
+            <localRepositoryPath>target/local-repo</localRepositoryPath>
           </configuration>
           <executions>
             <execution>
