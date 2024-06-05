@@ -143,6 +143,7 @@
     <maven-fluido-skin.version>2.0.0-M9</maven-fluido-skin.version>
     <maven-gpg-plugin.version>3.2.4</maven-gpg-plugin.version>
     <maven-install-plugin.version>3.1.2</maven-install-plugin.version>
+    <maven-invoker-plugin.version>3.7.0</maven-invoker-plugin.version>
     <maven-jar-plugin.version>3.4.1</maven-jar-plugin.version>
     <maven-javadoc-plugin.version>3.7.0</maven-javadoc-plugin.version>
     <maven-project-info-reports-plugin.version>3.5.0</maven-project-info-reports-plugin.version>
@@ -216,6 +217,7 @@
             </java>
             <pom>
               <includes>
+                <include>src/it/**/pom.xml</include>
                 <include>src/test/resources/projects/*/reference/**/pom.xml</include>
                 <include>pom.xml</include>
               </includes>
@@ -269,6 +271,7 @@
                   <include>.sdkmanrc</include>
                 </includes>
                 <excludes>
+                  <exclude>src/it/**/pom.xml</exclude>
                   <exclude>src/test/resources/projects/*/reference/**/pom.xml</exclude>
                 </excludes>
                 <trimTrailingWhitespace/>
@@ -604,6 +607,16 @@
               <inherited>false</inherited>
             </execution>
           </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-invoker-plugin</artifactId>
+          <version>${maven-invoker-plugin.version}</version>
+          <configuration>
+            <cloneProjectsTo>target/it</cloneProjectsTo>
+            <localRepositoryPath>target/local-repo</localRepositoryPath>
+            <settingsFile>src/it/settings.xml</settingsFile>
+          </configuration>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>

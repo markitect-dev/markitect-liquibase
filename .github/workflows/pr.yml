@@ -50,6 +50,9 @@ jobs:
         with:
           name: maven-build-output
           path: |
+            **/target/it/*/src/
+            **/target/it/*/build.log
+            **/target/it/*/pom.xml
             **/target/site/jacoco-aggregate/
             **/target/surefire-reports/
             **/target/test-classes/projects/*/project/*/src/
