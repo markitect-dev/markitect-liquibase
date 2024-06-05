@@ -127,7 +127,7 @@ testing.suites.withType<JvmTestSuite>().configureEach {
 }
 
 tasks.jar {
-    onlyIf { !project.name.endsWith("-tests") }
+    onlyIf { !project.name.endsWith("-test") }
     if (project.hasProperty("automaticModuleName")) {
         manifest {
             attributes("Automatic-Module-Name" to project.property("automaticModuleName"))
@@ -147,11 +147,11 @@ tasks.javadoc {
 }
 
 tasks.named<Jar>("javadocJar") {
-    onlyIf { !project.name.endsWith("-tests") }
+    onlyIf { !project.name.endsWith("-test") }
 }
 
 tasks.named<Jar>("sourcesJar") {
-    onlyIf { !project.name.endsWith("-tests") }
+    onlyIf { !project.name.endsWith("-test") }
     metaInf {
         from(rootProject.file("LICENSE.txt"))
         from(rootProject.file("NOTICE.txt"))

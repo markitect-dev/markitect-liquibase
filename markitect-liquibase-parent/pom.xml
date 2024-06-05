@@ -168,22 +168,22 @@
       </dependency>
       <dependency>
         <groupId>dev.markitect.liquibase</groupId>
-        <artifactId>markitect-liquibase-logging-jul-tests</artifactId>
+        <artifactId>markitect-liquibase-logging-jul-test</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>dev.markitect.liquibase</groupId>
-        <artifactId>markitect-liquibase-logging-log4j-tests</artifactId>
+        <artifactId>markitect-liquibase-logging-log4j-test</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>dev.markitect.liquibase</groupId>
-        <artifactId>markitect-liquibase-logging-slf4j-api-tests</artifactId>
+        <artifactId>markitect-liquibase-logging-slf4j-api-test</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>dev.markitect.liquibase</groupId>
-        <artifactId>markitect-liquibase-logging-slf4j-spi-tests</artifactId>
+        <artifactId>markitect-liquibase-logging-slf4j-spi-test</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>

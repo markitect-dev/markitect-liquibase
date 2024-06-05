@@ -42,22 +42,22 @@
     </dependency>
     <dependency>
       <groupId>dev.markitect.liquibase</groupId>
-      <artifactId>markitect-liquibase-logging-jul-tests</artifactId>
+      <artifactId>markitect-liquibase-logging-jul-test</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>dev.markitect.liquibase</groupId>
-      <artifactId>markitect-liquibase-logging-log4j-tests</artifactId>
+      <artifactId>markitect-liquibase-logging-log4j-test</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>dev.markitect.liquibase</groupId>
-      <artifactId>markitect-liquibase-logging-slf4j-api-tests</artifactId>
+      <artifactId>markitect-liquibase-logging-slf4j-api-test</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>dev.markitect.liquibase</groupId>
-      <artifactId>markitect-liquibase-logging-slf4j-spi-tests</artifactId>
+      <artifactId>markitect-liquibase-logging-slf4j-spi-test</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>

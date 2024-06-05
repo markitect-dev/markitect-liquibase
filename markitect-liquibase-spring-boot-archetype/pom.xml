@@ -203,7 +203,7 @@
 
   <profiles>
     <profile>
-      <id>archetype-tests</id>
+      <id>archetype-test</id>
       <activation>
         <property>
           <name>!quickly</name>
