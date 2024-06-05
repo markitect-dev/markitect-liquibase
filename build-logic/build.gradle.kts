@@ -16,9 +16,19 @@ spotless {
     kotlin {
         targetExclude("build/**")
         ktlint(libs.versions.ktlint.get())
+            .editorConfigOverride(
+                mapOf(
+                    "ktlint_code_style" to "ktlint_official",
+                ),
+            )
     }
     kotlinGradle {
         ktlint(libs.versions.ktlint.get())
+            .editorConfigOverride(
+                mapOf(
+                    "ktlint_code_style" to "ktlint_official",
+                ),
+            )
     }
     format("properties") {
         target("gradle.properties")
