@@ -47,10 +47,10 @@
     <li><a href="markitect-liquibase-core/index.html">markitect-liquibase-core</a></li>
     <li><a href="markitect-liquibase-coverage/index.html">markitect-liquibase-coverage</a></li>
     <li><a href="markitect-liquibase-logging/index.html">markitect-liquibase-logging</a></li>
-    <li><a href="markitect-liquibase-logging-jul-tests/index.html">markitect-liquibase-logging-jul-tests</a></li>
-    <li><a href="markitect-liquibase-logging-log4j-tests/index.html">markitect-liquibase-logging-log4j-tests</a></li>
-    <li><a href="markitect-liquibase-logging-slf4j-api-tests/index.html">markitect-liquibase-logging-slf4j-api-tests</a></li>
-    <li><a href="markitect-liquibase-logging-slf4j-spi-tests/index.html">markitect-liquibase-logging-slf4j-spi-tests</a></li>
+    <li><a href="markitect-liquibase-logging-jul-test/index.html">markitect-liquibase-logging-jul-test</a></li>
+    <li><a href="markitect-liquibase-logging-log4j-test/index.html">markitect-liquibase-logging-log4j-test</a></li>
+    <li><a href="markitect-liquibase-logging-slf4j-api-test/index.html">markitect-liquibase-logging-slf4j-api-test</a></li>
+    <li><a href="markitect-liquibase-logging-slf4j-spi-test/index.html">markitect-liquibase-logging-slf4j-spi-test</a></li>
     <li><a href="markitect-liquibase-parent/index.html">markitect-liquibase-parent</a></li>
     <li><a href="markitect-liquibase-spring/index.html">markitect-liquibase-spring</a></li>
     <li><a href="markitect-liquibase-spring-boot-archetype/index.html">markitect-liquibase-spring-boot-archetype</a></li>
@@ -82,7 +82,7 @@
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" /></td>
 <td># of plugins using the latest version available</td>
-<td>29</td></tr>
+<td>30</td></tr>
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" /></td>
 <td># of plugins where the next version available is smaller than an incremental version update</td>
@@ -238,6 +238,16 @@
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" /></td>
 <td>org.apache.maven.plugins</td>
+<td>maven-invoker-plugin</td>
+<td><b>3.7.0</b></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><img src="images/icon_success_sml.gif" /></td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td>org.apache.maven.plugins</td>
 <td>maven-jar-plugin</td>
 <td><b>3.4.1</b></td>
 <td></td>
@@ -245,7 +255,7 @@
 <td></td>
 <td></td>
 <td><img src="images/icon_success_sml.gif" /></td></tr>
-<tr class="a">
+<tr class="b">
 <td><img src="images/icon_success_sml.gif" /></td>
 <td>org.apache.maven.plugins</td>
 <td>maven-javadoc-plugin</td>
@@ -255,7 +265,7 @@
 <td></td>
 <td></td>
 <td><img src="images/icon_success_sml.gif" /></td></tr>
-<tr class="b">
+<tr class="a">
 <td><img src="images/icon_success_sml.gif" /></td>
 <td>org.apache.maven.plugins</td>
 <td>maven-project-info-reports-plugin</td>
@@ -265,7 +275,7 @@
 <td></td>
 <td></td>
 <td><img src="images/icon_success_sml.gif" /></td></tr>
-<tr class="a">
+<tr class="b">
 <td><img src="images/icon_success_sml.gif" /></td>
 <td>org.apache.maven.plugins</td>
 <td>maven-release-plugin</td>
@@ -275,7 +285,7 @@
 <td></td>
 <td></td>
 <td><img src="images/icon_success_sml.gif" /></td></tr>
-<tr class="b">
+<tr class="a">
 <td><img src="images/icon_success_sml.gif" /></td>
 <td>org.apache.maven.plugins</td>
 <td>maven-resources-plugin</td>
@@ -285,7 +295,7 @@
 <td></td>
 <td></td>
 <td><img src="images/icon_success_sml.gif" /></td></tr>
-<tr class="a">
+<tr class="b">
 <td><img src="images/icon_success_sml.gif" /></td>
 <td>org.apache.maven.plugins</td>
 <td>maven-scm-publish-plugin</td>
@@ -295,7 +305,7 @@
 <td></td>
 <td></td>
 <td><img src="images/icon_success_sml.gif" /></td></tr>
-<tr class="b">
+<tr class="a">
 <td><img src="images/icon_success_sml.gif" /></td>
 <td>org.apache.maven.plugins</td>
 <td>maven-site-plugin</td>
@@ -305,7 +315,7 @@
 <td></td>
 <td></td>
 <td><img src="images/icon_success_sml.gif" /></td></tr>
-<tr class="a">
+<tr class="b">
 <td><img src="images/icon_success_sml.gif" /></td>
 <td>org.apache.maven.plugins</td>
 <td>maven-source-plugin</td>
@@ -315,7 +325,7 @@
 <td></td>
 <td></td>
 <td><img src="images/icon_success_sml.gif" /></td></tr>
-<tr class="b">
+<tr class="a">
 <td><img src="images/icon_success_sml.gif" /></td>
 <td>org.apache.maven.plugins</td>
 <td>maven-surefire-plugin</td>
@@ -325,7 +335,7 @@
 <td></td>
 <td></td>
 <td><img src="images/icon_success_sml.gif" /></td></tr>
-<tr class="a">
+<tr class="b">
 <td><img src="images/icon_success_sml.gif" /></td>
 <td>org.apache.maven.plugins</td>
 <td>maven-wrapper-plugin</td>
@@ -335,7 +345,7 @@
 <td></td>
 <td></td>
 <td><img src="images/icon_success_sml.gif" /></td></tr>
-<tr class="b">
+<tr class="a">
 <td><img src="images/icon_success_sml.gif" /></td>
 <td>org.codehaus.mojo</td>
 <td>flatten-maven-plugin</td>
@@ -345,7 +355,7 @@
 <td></td>
 <td></td>
 <td><img src="images/icon_success_sml.gif" /></td></tr>
-<tr class="a">
+<tr class="b">
 <td><img src="images/icon_success_sml.gif" /></td>
 <td>org.codehaus.mojo</td>
 <td>versions-maven-plugin</td>
@@ -355,7 +365,7 @@
 <td></td>
 <td></td>
 <td><img src="images/icon_success_sml.gif" /></td></tr>
-<tr class="b">
+<tr class="a">
 <td><img src="images/icon_success_sml.gif" /></td>
 <td>org.jacoco</td>
 <td>jacoco-maven-plugin</td>
@@ -365,7 +375,7 @@
 <td></td>
 <td></td>
 <td><img src="images/icon_success_sml.gif" /></td></tr>
-<tr class="a">
+<tr class="b">
 <td><img src="images/icon_success_sml.gif" /></td>
 <td>org.jooq</td>
 <td>jooq-codegen-maven</td>
@@ -375,7 +385,7 @@
 <td></td>
 <td></td>
 <td><img src="images/icon_success_sml.gif" /></td></tr>
-<tr class="b">
+<tr class="a">
 <td><img src="images/icon_success_sml.gif" /></td>
 <td>org.liquibase</td>
 <td>liquibase-maven-plugin</td>
@@ -385,7 +395,7 @@
 <td></td>
 <td></td>
 <td><img src="images/icon_success_sml.gif" /></td></tr>
-<tr class="a">
+<tr class="b">
 <td><img src="images/icon_success_sml.gif" /></td>
 <td>org.sonarsource.scanner.maven</td>
 <td>sonar-maven-plugin</td>
@@ -395,7 +405,7 @@
 <td></td>
 <td></td>
 <td><img src="images/icon_success_sml.gif" /></td></tr>
-<tr class="b">
+<tr class="a">
 <td><img src="images/icon_success_sml.gif" /></td>
 <td>org.sonatype.plugins</td>
 <td>nexus-staging-maven-plugin</td>
@@ -405,7 +415,7 @@
 <td></td>
 <td></td>
 <td><img src="images/icon_success_sml.gif" /></td></tr>
-<tr class="a">
+<tr class="b">
 <th>Status</th>
 <th>Group Id</th>
 <th>Artifact Id</th>
@@ -701,6 +711,20 @@
 <tr class="b">
 <th>Current Version</th>
 <td style="text-align: left;">3.1.2</td></tr></table></section><section>
+<h2>Plugin org.apache.maven.plugins:maven-invoker-plugin</h2>
+<table class="table table-striped">
+<tr class="a">
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
+<tr class="b">
+<th>Group Id</th>
+<td style="text-align: left;">org.apache.maven.plugins</td></tr>
+<tr class="a">
+<th>Artifact Id</th>
+<td style="text-align: left;">maven-invoker-plugin</td></tr>
+<tr class="b">
+<th>Current Version</th>
+<td style="text-align: left;">3.7.0</td></tr></table></section><section>
 <h2>Plugin org.apache.maven.plugins:maven-jar-plugin</h2>
 <table class="table table-striped">
 <tr class="a">
