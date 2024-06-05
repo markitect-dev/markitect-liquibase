@@ -13,11 +13,6 @@ spotless {
     }
     kotlinGradle {
         ktlint(libs.versions.ktlint.get())
-            .editorConfigOverride(
-                mapOf(
-                    "ktlint_code_style" to "ktlint_official",
-                ),
-            )
     }
     format("json5") {
         target("renovate.json5")
