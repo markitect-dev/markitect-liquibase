@@ -10,4 +10,11 @@
     ':separateMultipleMinorReleases',
     ':separatePatchReleases',
   ],
+  packageRules: [
+    {
+      matchPackagePatterns: ['org.springframework.boot:*'],
+      matchPaths: ['markitect-liquibase-spring-boot-starter/target/it/spring-boot-3.2/pom.xml'],
+      updateTypes: ['patch'],
+    },
+  ],
 }
