@@ -12,8 +12,8 @@
   ],
   packageRules: [
     {
-      extends: ['group:springBoot'],
       matchFileNames: ['**/src/it/spring-boot-3.2/pom.xml'],
+      matchPackagePrefixes: ['org.springframework.boot:'],
       matchUpdateTypes: ['major', 'minor'],
       enabled: false,
     },
