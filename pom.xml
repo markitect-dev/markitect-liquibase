@@ -374,7 +374,7 @@
                 -Xep:Var:OFF \
                 -Xep:NullAway:WARN \
                 -XepOpt:NullAway:AnnotatedPackages=dev.markitect.liquibase \
-                -XepOpt:NullAway:ExcludedFieldAnnotations=org.mockito.Captor,org.mockito.Mock</arg>
+                -XepOpt:NullAway:ExcludedFieldAnnotations=org.mockito.Captor,org.mockito.InjectMocks,org.mockito.Mock</arg>
               <arg>-Xlint:all,-options,-processing</arg>
             </compilerArgs>
             <annotationProcessorPaths>

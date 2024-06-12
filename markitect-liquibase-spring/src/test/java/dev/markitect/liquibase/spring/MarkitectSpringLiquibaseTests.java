@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Markitect
+ * Copyright 2023-2024 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,11 +37,9 @@ class MarkitectSpringLiquibaseTests {
   @SuppressWarnings("unused")
   private DataSource dataSource;
 
-  @Mock
-  @SuppressWarnings("unused")
-  private ResourceLoader resourceLoader;
+  @Mock private ResourceLoader resourceLoader;
 
-  @InjectMocks private final MarkitectSpringLiquibase liquibase = new MarkitectSpringLiquibase();
+  @InjectMocks private MarkitectSpringLiquibase liquibase;
 
   @BeforeEach
   @SuppressWarnings("ResultOfMethodCallIgnored")

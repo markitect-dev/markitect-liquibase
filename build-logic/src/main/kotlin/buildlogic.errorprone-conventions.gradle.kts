@@ -24,6 +24,7 @@ tasks.withType<JavaCompile>().configureEach {
         errorproneArgs.add("-XepAllSuggestionsAsWarnings")
         nullaway {
             excludedFieldAnnotations.add("org.mockito.Captor")
+            excludedFieldAnnotations.add("org.mockito.InjectMocks")
             excludedFieldAnnotations.add("org.mockito.Mock")
             warn()
         }
