@@ -362,18 +362,18 @@
             <parameters>true</parameters>
             <compilerArgs>
               <arg>-XDcompilePolicy=simple</arg>
-              <arg>-Xplugin:ErrorProne \
-                -XepAllSuggestionsAsWarnings \
-                -XepAllDisabledChecksAsWarnings \
-                -Xep:AndroidJdkLibsChecker:OFF \
-                -Xep:BooleanParameter:OFF \
-                -Xep:BuilderReturnThis:OFF \
-                -Xep:CanIgnoreReturnValueSuggester:OFF \
-                -Xep:Java7ApiChecker:OFF \
-                -Xep:Java8ApiChecker:OFF \
-                -Xep:Var:OFF \
-                -Xep:NullAway:WARN \
-                -XepOpt:NullAway:AnnotatedPackages=dev.markitect.liquibase \
+              <arg>-Xplugin:ErrorProne
+                -XepAllSuggestionsAsWarnings
+                -XepAllDisabledChecksAsWarnings
+                -Xep:AndroidJdkLibsChecker:OFF
+                -Xep:BooleanParameter:OFF
+                -Xep:BuilderReturnThis:OFF
+                -Xep:CanIgnoreReturnValueSuggester:OFF
+                -Xep:Java7ApiChecker:OFF
+                -Xep:Java8ApiChecker:OFF
+                -Xep:Var:OFF
+                -Xep:NullAway:WARN
+                -XepOpt:NullAway:AnnotatedPackages=dev.markitect.liquibase
                 -XepOpt:NullAway:ExcludedFieldAnnotations=org.mockito.Captor,org.mockito.InjectMocks,org.mockito.Mock</arg>
               <arg>-Xlint:all,-options,-processing</arg>
             </compilerArgs>
