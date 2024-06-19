@@ -22,6 +22,7 @@ import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.assertj.core.api.InstanceOfAssertFactories.type;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
+import static org.mockito.Mockito.mock;
 
 import dev.markitect.liquibase.spring.MarkitectSpringLiquibase;
 import dev.markitect.liquibase.spring.boot.autoconfigure.MarkitectLiquibaseAutoConfiguration.LiquibaseAutoConfigurationRuntimeHints;
@@ -69,7 +70,6 @@ class MarkitectLiquibaseAutoConfigurationTests {
     private final MarkitectLiquibaseConfiguration markitectLiquibaseConfiguration =
         new MarkitectLiquibaseConfiguration();
     @Mock private ObjectProvider<DataSource> dataSourceProvider;
-    @Mock private DataSource dataSource;
     @Mock private ObjectProvider<DataSource> liquibaseDataSourceProvider;
     @Mock private DataSource liquibaseDataSource;
     @Mock private LiquibaseConnectionDetails connectionDetails;
@@ -124,6 +124,7 @@ class MarkitectLiquibaseAutoConfigurationTests {
     @SuppressWarnings("ResultOfMethodCallIgnored")
     void shouldCreateLiquibaseBeanUsingDataSource() {
       // given
+      var dataSource = mock(DataSource.class);
       given(dataSourceProvider.getIfUnique()).willReturn(dataSource);
 
       // when
