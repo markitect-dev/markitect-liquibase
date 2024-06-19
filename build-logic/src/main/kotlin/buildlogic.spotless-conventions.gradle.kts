@@ -8,7 +8,7 @@ spotless {
         java {
             targetExclude("build/**")
             licenseHeaderFile(rootProject.file("config/spotless/license-header-java"))
-            googleJavaFormat(libs.versions.google.java.format.get())
+            googleJavaFormat(libs.versions.google.java.format.get()).reflowLongStrings()
         }
     }
     kotlinGradle {

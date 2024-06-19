@@ -213,6 +213,7 @@
               </licenseHeader>
               <googleJavaFormat>
                 <version>${google-java-format.version}</version>
+                <reflowLongStrings>true</reflowLongStrings>
               </googleJavaFormat>
             </java>
             <pom>
