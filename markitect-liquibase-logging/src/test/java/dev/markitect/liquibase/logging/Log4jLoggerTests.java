@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Markitect
+ * Copyright 2023-2024 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
 
 package dev.markitect.liquibase.logging;
 
+import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.inOrder;
 
 import org.apache.logging.log4j.Level;
@@ -64,26 +65,26 @@ class Log4jLoggerTests {
 
     // then
     var inOrder = inOrder(logger);
-    inOrder.verify(logger).logIfEnabled(fqcn, Level.ERROR, null, "s");
-    inOrder.verify(logger).logIfEnabled(fqcn, Level.ERROR, null, "s", thrown);
-    inOrder.verify(logger).logIfEnabled(fqcn, Level.WARN, null, "w");
-    inOrder.verify(logger).logIfEnabled(fqcn, Level.WARN, null, "w", thrown);
-    inOrder.verify(logger).logIfEnabled(fqcn, Level.INFO, null, "i");
-    inOrder.verify(logger).logIfEnabled(fqcn, Level.INFO, null, "i", thrown);
-    inOrder.verify(logger).logIfEnabled(fqcn, Level.DEBUG, null, "c");
-    inOrder.verify(logger).logIfEnabled(fqcn, Level.DEBUG, null, "c", thrown);
-    inOrder.verify(logger).logIfEnabled(fqcn, Level.DEBUG, null, "f");
-    inOrder.verify(logger).logIfEnabled(fqcn, Level.DEBUG, null, "f", thrown);
-    inOrder.verify(logger).logIfEnabled(fqcn, Level.DEBUG, null, "d");
-    inOrder.verify(logger).logIfEnabled(fqcn, Level.DEBUG, null, "d", thrown);
-    inOrder.verify(logger).logIfEnabled(fqcn, Level.ERROR, null, "s", (Throwable) null);
-    inOrder.verify(logger).logIfEnabled(fqcn, Level.ERROR, null, "s", thrown);
-    inOrder.verify(logger).logIfEnabled(fqcn, Level.WARN, null, "w", (Throwable) null);
-    inOrder.verify(logger).logIfEnabled(fqcn, Level.INFO, null, "i", (Throwable) null);
-    inOrder.verify(logger).logIfEnabled(fqcn, Level.DEBUG, null, "c", (Throwable) null);
-    inOrder.verify(logger).logIfEnabled(fqcn, Level.DEBUG, null, "f", (Throwable) null);
-    inOrder.verify(logger).logIfEnabled(fqcn, Level.DEBUG, null, "fr", (Throwable) null);
-    inOrder.verify(logger).logIfEnabled(fqcn, Level.TRACE, null, "ft", (Throwable) null);
-    inOrder.verifyNoMoreInteractions();
+    then(logger).should(inOrder).logIfEnabled(fqcn, Level.ERROR, null, "s");
+    then(logger).should(inOrder).logIfEnabled(fqcn, Level.ERROR, null, "s", thrown);
+    then(logger).should(inOrder).logIfEnabled(fqcn, Level.WARN, null, "w");
+    then(logger).should(inOrder).logIfEnabled(fqcn, Level.WARN, null, "w", thrown);
+    then(logger).should(inOrder).logIfEnabled(fqcn, Level.INFO, null, "i");
+    then(logger).should(inOrder).logIfEnabled(fqcn, Level.INFO, null, "i", thrown);
+    then(logger).should(inOrder).logIfEnabled(fqcn, Level.DEBUG, null, "c");
+    then(logger).should(inOrder).logIfEnabled(fqcn, Level.DEBUG, null, "c", thrown);
+    then(logger).should(inOrder).logIfEnabled(fqcn, Level.DEBUG, null, "f");
+    then(logger).should(inOrder).logIfEnabled(fqcn, Level.DEBUG, null, "f", thrown);
+    then(logger).should(inOrder).logIfEnabled(fqcn, Level.DEBUG, null, "d");
+    then(logger).should(inOrder).logIfEnabled(fqcn, Level.DEBUG, null, "d", thrown);
+    then(logger).should(inOrder).logIfEnabled(fqcn, Level.ERROR, null, "s", (Throwable) null);
+    then(logger).should(inOrder).logIfEnabled(fqcn, Level.ERROR, null, "s", thrown);
+    then(logger).should(inOrder).logIfEnabled(fqcn, Level.WARN, null, "w", (Throwable) null);
+    then(logger).should(inOrder).logIfEnabled(fqcn, Level.INFO, null, "i", (Throwable) null);
+    then(logger).should(inOrder).logIfEnabled(fqcn, Level.DEBUG, null, "c", (Throwable) null);
+    then(logger).should(inOrder).logIfEnabled(fqcn, Level.DEBUG, null, "f", (Throwable) null);
+    then(logger).should(inOrder).logIfEnabled(fqcn, Level.DEBUG, null, "fr", (Throwable) null);
+    then(logger).should(inOrder).logIfEnabled(fqcn, Level.TRACE, null, "ft", (Throwable) null);
+    then(logger).shouldHaveNoMoreInteractions();
   }
 }

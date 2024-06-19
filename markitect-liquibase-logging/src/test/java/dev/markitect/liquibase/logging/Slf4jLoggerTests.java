@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Markitect
+ * Copyright 2023-2024 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
 
 package dev.markitect.liquibase.logging;
 
+import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.inOrder;
 
 import java.util.logging.Level;
@@ -63,26 +64,26 @@ class Slf4jLoggerTests {
 
     // then
     var inOrder = inOrder(logger);
-    inOrder.verify(logger).error("s");
-    inOrder.verify(logger).error("s", thrown);
-    inOrder.verify(logger).warn("w");
-    inOrder.verify(logger).warn("w", thrown);
-    inOrder.verify(logger).info("i");
-    inOrder.verify(logger).info("i", thrown);
-    inOrder.verify(logger).debug("c");
-    inOrder.verify(logger).debug("c", thrown);
-    inOrder.verify(logger).debug("f");
-    inOrder.verify(logger).debug("f", thrown);
-    inOrder.verify(logger).debug("d");
-    inOrder.verify(logger).debug("d", thrown);
-    inOrder.verify(logger).error("s", (Throwable) null);
-    inOrder.verify(logger).error("s", thrown);
-    inOrder.verify(logger).warn("w", (Throwable) null);
-    inOrder.verify(logger).info("i", (Throwable) null);
-    inOrder.verify(logger).debug("c", (Throwable) null);
-    inOrder.verify(logger).debug("f", (Throwable) null);
-    inOrder.verify(logger).debug("fr", (Throwable) null);
-    inOrder.verify(logger).trace("ft", (Throwable) null);
-    inOrder.verifyNoMoreInteractions();
+    then(logger).should(inOrder).error("s");
+    then(logger).should(inOrder).error("s", thrown);
+    then(logger).should(inOrder).warn("w");
+    then(logger).should(inOrder).warn("w", thrown);
+    then(logger).should(inOrder).info("i");
+    then(logger).should(inOrder).info("i", thrown);
+    then(logger).should(inOrder).debug("c");
+    then(logger).should(inOrder).debug("c", thrown);
+    then(logger).should(inOrder).debug("f");
+    then(logger).should(inOrder).debug("f", thrown);
+    then(logger).should(inOrder).debug("d");
+    then(logger).should(inOrder).debug("d", thrown);
+    then(logger).should(inOrder).error("s", (Throwable) null);
+    then(logger).should(inOrder).error("s", thrown);
+    then(logger).should(inOrder).warn("w", (Throwable) null);
+    then(logger).should(inOrder).info("i", (Throwable) null);
+    then(logger).should(inOrder).debug("c", (Throwable) null);
+    then(logger).should(inOrder).debug("f", (Throwable) null);
+    then(logger).should(inOrder).debug("fr", (Throwable) null);
+    then(logger).should(inOrder).trace("ft", (Throwable) null);
+    then(logger).shouldHaveNoMoreInteractions();
   }
 }

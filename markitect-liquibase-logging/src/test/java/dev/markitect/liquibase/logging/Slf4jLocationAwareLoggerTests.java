@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Markitect
+ * Copyright 2023-2024 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
 
 package dev.markitect.liquibase.logging;
 
+import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.inOrder;
 
 import java.util.logging.Level;
@@ -64,26 +65,26 @@ class Slf4jLocationAwareLoggerTests {
 
     // then
     var inOrder = inOrder(logger);
-    inOrder.verify(logger).log(null, fqcn, LocationAwareLogger.ERROR_INT, "s", null, null);
-    inOrder.verify(logger).log(null, fqcn, LocationAwareLogger.ERROR_INT, "s", null, thrown);
-    inOrder.verify(logger).log(null, fqcn, LocationAwareLogger.WARN_INT, "w", null, null);
-    inOrder.verify(logger).log(null, fqcn, LocationAwareLogger.WARN_INT, "w", null, thrown);
-    inOrder.verify(logger).log(null, fqcn, LocationAwareLogger.INFO_INT, "i", null, null);
-    inOrder.verify(logger).log(null, fqcn, LocationAwareLogger.INFO_INT, "i", null, thrown);
-    inOrder.verify(logger).log(null, fqcn, LocationAwareLogger.DEBUG_INT, "c", null, null);
-    inOrder.verify(logger).log(null, fqcn, LocationAwareLogger.DEBUG_INT, "c", null, thrown);
-    inOrder.verify(logger).log(null, fqcn, LocationAwareLogger.DEBUG_INT, "f", null, null);
-    inOrder.verify(logger).log(null, fqcn, LocationAwareLogger.DEBUG_INT, "f", null, thrown);
-    inOrder.verify(logger).log(null, fqcn, LocationAwareLogger.DEBUG_INT, "d", null, null);
-    inOrder.verify(logger).log(null, fqcn, LocationAwareLogger.DEBUG_INT, "d", null, thrown);
-    inOrder.verify(logger).log(null, fqcn, LocationAwareLogger.ERROR_INT, "s", null, null);
-    inOrder.verify(logger).log(null, fqcn, LocationAwareLogger.ERROR_INT, "s", null, thrown);
-    inOrder.verify(logger).log(null, fqcn, LocationAwareLogger.WARN_INT, "w", null, null);
-    inOrder.verify(logger).log(null, fqcn, LocationAwareLogger.INFO_INT, "i", null, null);
-    inOrder.verify(logger).log(null, fqcn, LocationAwareLogger.DEBUG_INT, "c", null, null);
-    inOrder.verify(logger).log(null, fqcn, LocationAwareLogger.DEBUG_INT, "f", null, null);
-    inOrder.verify(logger).log(null, fqcn, LocationAwareLogger.DEBUG_INT, "fr", null, null);
-    inOrder.verify(logger).log(null, fqcn, LocationAwareLogger.TRACE_INT, "ft", null, null);
-    inOrder.verifyNoMoreInteractions();
+    then(logger).should(inOrder).log(null, fqcn, LocationAwareLogger.ERROR_INT, "s", null, null);
+    then(logger).should(inOrder).log(null, fqcn, LocationAwareLogger.ERROR_INT, "s", null, thrown);
+    then(logger).should(inOrder).log(null, fqcn, LocationAwareLogger.WARN_INT, "w", null, null);
+    then(logger).should(inOrder).log(null, fqcn, LocationAwareLogger.WARN_INT, "w", null, thrown);
+    then(logger).should(inOrder).log(null, fqcn, LocationAwareLogger.INFO_INT, "i", null, null);
+    then(logger).should(inOrder).log(null, fqcn, LocationAwareLogger.INFO_INT, "i", null, thrown);
+    then(logger).should(inOrder).log(null, fqcn, LocationAwareLogger.DEBUG_INT, "c", null, null);
+    then(logger).should(inOrder).log(null, fqcn, LocationAwareLogger.DEBUG_INT, "c", null, thrown);
+    then(logger).should(inOrder).log(null, fqcn, LocationAwareLogger.DEBUG_INT, "f", null, null);
+    then(logger).should(inOrder).log(null, fqcn, LocationAwareLogger.DEBUG_INT, "f", null, thrown);
+    then(logger).should(inOrder).log(null, fqcn, LocationAwareLogger.DEBUG_INT, "d", null, null);
+    then(logger).should(inOrder).log(null, fqcn, LocationAwareLogger.DEBUG_INT, "d", null, thrown);
+    then(logger).should(inOrder).log(null, fqcn, LocationAwareLogger.ERROR_INT, "s", null, null);
+    then(logger).should(inOrder).log(null, fqcn, LocationAwareLogger.ERROR_INT, "s", null, thrown);
+    then(logger).should(inOrder).log(null, fqcn, LocationAwareLogger.WARN_INT, "w", null, null);
+    then(logger).should(inOrder).log(null, fqcn, LocationAwareLogger.INFO_INT, "i", null, null);
+    then(logger).should(inOrder).log(null, fqcn, LocationAwareLogger.DEBUG_INT, "c", null, null);
+    then(logger).should(inOrder).log(null, fqcn, LocationAwareLogger.DEBUG_INT, "f", null, null);
+    then(logger).should(inOrder).log(null, fqcn, LocationAwareLogger.DEBUG_INT, "fr", null, null);
+    then(logger).should(inOrder).log(null, fqcn, LocationAwareLogger.TRACE_INT, "ft", null, null);
+    then(logger).shouldHaveNoMoreInteractions();
   }
 }

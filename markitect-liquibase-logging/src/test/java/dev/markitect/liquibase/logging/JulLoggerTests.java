@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Markitect
+ * Copyright 2023-2024 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,8 +20,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.tuple;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 import java.util.ResourceBundle;
@@ -76,8 +76,8 @@ class JulLoggerTests {
     julLogger.close();
 
     // then
-    verify(logger, times(14)).isLoggable(levelCaptor.capture());
-    verify(logger, times(13)).log(logRecordCaptor.capture());
+    then(logger).should(times(14)).isLoggable(levelCaptor.capture());
+    then(logger).should(times(13)).log(logRecordCaptor.capture());
     verifyNoMoreInteractions(logger);
     assertThat(levelCaptor.getAllValues())
         .containsExactly(
