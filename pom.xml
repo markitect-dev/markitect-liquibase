@@ -513,7 +513,9 @@
                   </requireSameVersions>
                   <requireSameVersions>
                     <dependencies>
+                      <dependency>org.junit</dependency>
                       <dependency>org.junit.jupiter</dependency>
+                      <dependency>org.junit.vintage</dependency>
                     </dependencies>
                   </requireSameVersions>
                   <requireSameVersions>
@@ -834,11 +836,29 @@
                   </ignoreVersions>
                 </rule>
                 <rule>
+                  <groupId>org.apache.commons</groupId>
+                  <ignoreVersions>
+                    <ignoreVersion>
+                      <type>regex</type>
+                      <version>.+-(?:M|RC)\d+\b.*</version>
+                    </ignoreVersion>
+                  </ignoreVersions>
+                </rule>
+                <rule>
                   <groupId>org.apache.logging.log4j</groupId>
                   <ignoreVersions>
                     <ignoreVersion>
                       <type>regex</type>
                       <version>.+-(?:alpha|beta)\d+\b.*</version>
+                    </ignoreVersion>
+                  </ignoreVersions>
+                </rule>
+                <rule>
+                  <groupId>org.junit</groupId>
+                  <ignoreVersions>
+                    <ignoreVersion>
+                      <type>regex</type>
+                      <version>.+-(?:M|RC)\d+\b.*</version>
                     </ignoreVersion>
                   </ignoreVersions>
                 </rule>
@@ -853,6 +873,15 @@
                 </rule>
                 <rule>
                   <groupId>org.junit.platform</groupId>
+                  <ignoreVersions>
+                    <ignoreVersion>
+                      <type>regex</type>
+                      <version>.+-(?:M|RC)\d+\b.*</version>
+                    </ignoreVersion>
+                  </ignoreVersions>
+                </rule>
+                <rule>
+                  <groupId>org.junit.vintage</groupId>
                   <ignoreVersions>
                     <ignoreVersion>
                       <type>regex</type>
