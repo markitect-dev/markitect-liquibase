@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Markitect
+ * Copyright 2023-2024 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -118,12 +118,12 @@ class ConnectionCatalogPreconditionTests {
   @CsvSource(
       textBlock =
           """
-          # databaseClass                                               | connectionCatalogName | connectionSchemaName | preserveSchemaCase | quotingStrategy   | catalogName
-          dev.markitect.liquibase.database.h2.MarkitectH2Database       | CAT1                  | PUBLIC               |                    |                   | Cat1
-          dev.markitect.liquibase.database.h2.MarkitectH2Database       | CAT1                  | PUBLIC               |                    | QUOTE_ALL_OBJECTS | Cat1
-          dev.markitect.liquibase.database.h2.MarkitectH2Database       | CAT1                  | PUBLIC               | true               |                   | Cat1
-          dev.markitect.liquibase.database.mssql.MarkitectMssqlDatabase | Cat1                  | dbo                  |                    |                   | Cat1
-          """,
+# databaseClass                                               | connectionCatalogName | connectionSchemaName | preserveSchemaCase | quotingStrategy   | catalogName
+dev.markitect.liquibase.database.h2.MarkitectH2Database       | CAT1                  | PUBLIC               |                    |                   | Cat1
+dev.markitect.liquibase.database.h2.MarkitectH2Database       | CAT1                  | PUBLIC               |                    | QUOTE_ALL_OBJECTS | Cat1
+dev.markitect.liquibase.database.h2.MarkitectH2Database       | CAT1                  | PUBLIC               | true               |                   | Cat1
+dev.markitect.liquibase.database.mssql.MarkitectMssqlDatabase | Cat1                  | dbo                  |                    |                   | Cat1
+""",
       delimiter = '|')
   void check(
       Class<? extends Database> databaseClass,
@@ -190,10 +190,10 @@ class ConnectionCatalogPreconditionTests {
   @CsvSource(
       textBlock =
           """
-          # databaseClass                                                | connectionCatalogName | connectionSchemaName | catalogName | expectedMessage
-          dev.markitect.liquibase.database.mssql.MarkitectMssqlDatabase  | Cat1                  | dbo                  | master      | Connection catalog precondition failed: expected master, was Cat1
-          dev.markitect.liquibase.database.mssql.MarkitectMssqlDatabase  | Cat1                  | dbo                  | Cat2        | Connection catalog precondition failed: expected Cat2, was Cat1
-          """,
+# databaseClass                                                | connectionCatalogName | connectionSchemaName | catalogName | expectedMessage
+dev.markitect.liquibase.database.mssql.MarkitectMssqlDatabase  | Cat1                  | dbo                  | master      | Connection catalog precondition failed: expected master, was Cat1
+dev.markitect.liquibase.database.mssql.MarkitectMssqlDatabase  | Cat1                  | dbo                  | Cat2        | Connection catalog precondition failed: expected Cat2, was Cat1
+""",
       delimiter = '|')
   void checkThrowsPreconditionFailedException(
       Class<? extends Database> databaseClass,

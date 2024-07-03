@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Markitect
+ * Copyright 2023-2024 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,13 +32,13 @@ class SchemaExistsGeneratorTests {
   @CsvSource(
       textBlock =
           """
-          # databaseClass                                                       | connectionCatalogName | connectionSchemaName | catalogName | schemaName | expectedSql
-          dev.markitect.liquibase.database.h2.MarkitectH2Database               | DEFAULT               | PUBLIC               |             | Sch1       | SELECT EXISTS(SELECT 1 FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = 'SCH1')
-          dev.markitect.liquibase.database.hsqldb.MarkitectHsqlDatabase         | PUBLIC                | PUBLIC               |             | Sch1       | SELECT EXISTS(SELECT 1 FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = 'SCH1') FROM INFORMATION_SCHEMA.SYSTEM_USERS
-          dev.markitect.liquibase.database.mssql.MarkitectMssqlDatabase         | Cat1                  | dbo                  |             | Sch1       | SELECT CAST(CASE WHEN EXISTS (SELECT 1 FROM sys.schemas WHERE name = N'Sch1') THEN 1 ELSE 0 END AS bit)
-          dev.markitect.liquibase.database.mssql.MarkitectMssqlDatabase         | Cat1                  | dbo                  | Cat2        | Sch1       | SELECT CAST(CASE WHEN EXISTS (SELECT 1 FROM Cat2.sys.schemas WHERE name = N'Sch1') THEN 1 ELSE 0 END AS bit)
-          dev.markitect.liquibase.database.postgresql.MarkitectPostgresDatabase | Cat1                  | PUBLIC               |             | Sch1       | SELECT EXISTS(SELECT 1 FROM pg_catalog.pg_namespace WHERE nspname = 'sch1')
-          """,
+# databaseClass                                                       | connectionCatalogName | connectionSchemaName | catalogName | schemaName | expectedSql
+dev.markitect.liquibase.database.h2.MarkitectH2Database               | DEFAULT               | PUBLIC               |             | Sch1       | SELECT EXISTS(SELECT 1 FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = 'SCH1')
+dev.markitect.liquibase.database.hsqldb.MarkitectHsqlDatabase         | PUBLIC                | PUBLIC               |             | Sch1       | SELECT EXISTS(SELECT 1 FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = 'SCH1') FROM INFORMATION_SCHEMA.SYSTEM_USERS
+dev.markitect.liquibase.database.mssql.MarkitectMssqlDatabase         | Cat1                  | dbo                  |             | Sch1       | SELECT CAST(CASE WHEN EXISTS (SELECT 1 FROM sys.schemas WHERE name = N'Sch1') THEN 1 ELSE 0 END AS bit)
+dev.markitect.liquibase.database.mssql.MarkitectMssqlDatabase         | Cat1                  | dbo                  | Cat2        | Sch1       | SELECT CAST(CASE WHEN EXISTS (SELECT 1 FROM Cat2.sys.schemas WHERE name = N'Sch1') THEN 1 ELSE 0 END AS bit)
+dev.markitect.liquibase.database.postgresql.MarkitectPostgresDatabase | Cat1                  | PUBLIC               |             | Sch1       | SELECT EXISTS(SELECT 1 FROM pg_catalog.pg_namespace WHERE nspname = 'sch1')
+""",
       delimiter = '|')
   void generateSql(
       Class<? extends Database> databaseClass,

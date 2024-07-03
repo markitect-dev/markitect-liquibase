@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Markitect
+ * Copyright 2023-2024 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -143,16 +143,16 @@ class SchemaExistsPreconditionTests {
   @CsvSource(
       textBlock =
           """
-          # databaseClass                                                       | connectionCatalogName | connectionSchemaName | catalogName | schemaName
-          dev.markitect.liquibase.database.h2.MarkitectH2Database               | PUBLIC                | PUBLIC               |             | PUBLIC
-          dev.markitect.liquibase.database.h2.MarkitectH2Database               | PUBLIC                | PUBLIC               | PUBLIC      | PUBLIC
-          dev.markitect.liquibase.database.hsqldb.MarkitectHsqlDatabase         | PUBLIC                | PUBLIC               |             | PUBLIC
-          dev.markitect.liquibase.database.hsqldb.MarkitectHsqlDatabase         | PUBLIC                | PUBLIC               | PUBLIC      | PUBLIC
-          dev.markitect.liquibase.database.mssql.MarkitectMssqlDatabase         | Cat1                  | dbo                  |             | dbo
-          dev.markitect.liquibase.database.mssql.MarkitectMssqlDatabase         | Cat1                  | dbo                  | Cat1        | dbo
-          dev.markitect.liquibase.database.postgresql.MarkitectPostgresDatabase | Cat1                  | public               |             | public
-          dev.markitect.liquibase.database.postgresql.MarkitectPostgresDatabase | Cat1                  | public               | Cat1        | public
-          """,
+# databaseClass                                                       | connectionCatalogName | connectionSchemaName | catalogName | schemaName
+dev.markitect.liquibase.database.h2.MarkitectH2Database               | PUBLIC                | PUBLIC               |             | PUBLIC
+dev.markitect.liquibase.database.h2.MarkitectH2Database               | PUBLIC                | PUBLIC               | PUBLIC      | PUBLIC
+dev.markitect.liquibase.database.hsqldb.MarkitectHsqlDatabase         | PUBLIC                | PUBLIC               |             | PUBLIC
+dev.markitect.liquibase.database.hsqldb.MarkitectHsqlDatabase         | PUBLIC                | PUBLIC               | PUBLIC      | PUBLIC
+dev.markitect.liquibase.database.mssql.MarkitectMssqlDatabase         | Cat1                  | dbo                  |             | dbo
+dev.markitect.liquibase.database.mssql.MarkitectMssqlDatabase         | Cat1                  | dbo                  | Cat1        | dbo
+dev.markitect.liquibase.database.postgresql.MarkitectPostgresDatabase | Cat1                  | public               |             | public
+dev.markitect.liquibase.database.postgresql.MarkitectPostgresDatabase | Cat1                  | public               | Cat1        | public
+""",
       delimiter = '|')
   void check(
       Class<? extends Database> databaseClass,
@@ -187,14 +187,14 @@ class SchemaExistsPreconditionTests {
   @CsvSource(
       textBlock =
           """
-          # databaseClass                                                       | connectionCatalogName | connectionSchemaName | catalogName | schemaName
-          dev.markitect.liquibase.database.h2.MarkitectH2Database               | PUBLIC                | PUBLIC               |             | Sch1
-          dev.markitect.liquibase.database.h2.MarkitectH2Database               | PUBLIC                | PUBLIC               | Cat1        | PUBLIC
-          dev.markitect.liquibase.database.hsqldb.MarkitectHsqlDatabase         | PUBLIC                | PUBLIC               |             | Sch1
-          dev.markitect.liquibase.database.hsqldb.MarkitectHsqlDatabase         | PUBLIC                | PUBLIC               | Cat1        | PUBLIC
-          dev.markitect.liquibase.database.mssql.MarkitectMssqlDatabase         | Cat1                  | dbo                  |             | Sch1
-          dev.markitect.liquibase.database.postgresql.MarkitectPostgresDatabase | Cat1                  | public               |             | Sch1
-          """,
+# databaseClass                                                       | connectionCatalogName | connectionSchemaName | catalogName | schemaName
+dev.markitect.liquibase.database.h2.MarkitectH2Database               | PUBLIC                | PUBLIC               |             | Sch1
+dev.markitect.liquibase.database.h2.MarkitectH2Database               | PUBLIC                | PUBLIC               | Cat1        | PUBLIC
+dev.markitect.liquibase.database.hsqldb.MarkitectHsqlDatabase         | PUBLIC                | PUBLIC               |             | Sch1
+dev.markitect.liquibase.database.hsqldb.MarkitectHsqlDatabase         | PUBLIC                | PUBLIC               | Cat1        | PUBLIC
+dev.markitect.liquibase.database.mssql.MarkitectMssqlDatabase         | Cat1                  | dbo                  |             | Sch1
+dev.markitect.liquibase.database.postgresql.MarkitectPostgresDatabase | Cat1                  | public               |             | Sch1
+""",
       delimiter = '|')
   void checkThrowsPreconditionFailedException(
       Class<? extends Database> databaseClass,
@@ -229,10 +229,10 @@ class SchemaExistsPreconditionTests {
   @CsvSource(
       textBlock =
           """
-          # databaseClass                                                       | connectionCatalogName | connectionSchemaName | catalogName | schemaName
-          dev.markitect.liquibase.database.mssql.MarkitectMssqlDatabase         | Cat1                  | dbo                  | Cat2        | dbo
-          dev.markitect.liquibase.database.postgresql.MarkitectPostgresDatabase | Cat1                  | public               | Cat2        | public
-          """,
+# databaseClass                                                       | connectionCatalogName | connectionSchemaName | catalogName | schemaName
+dev.markitect.liquibase.database.mssql.MarkitectMssqlDatabase         | Cat1                  | dbo                  | Cat2        | dbo
+dev.markitect.liquibase.database.postgresql.MarkitectPostgresDatabase | Cat1                  | public               | Cat2        | public
+""",
       delimiter = '|')
   void checkThrowsPreconditionErrorException(
       Class<? extends Database> databaseClass,
