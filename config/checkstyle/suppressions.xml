@@ -3,7 +3,8 @@
     "-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN"
     "https://checkstyle.org/dtds/suppressions_1_2.dtd">
 <suppressions>
-  <suppress checks="LineLength" files="^(?:Test.+|.+(?:Test|Tests|TestCase))\.java$"/>
+  <suppress checks="Indentation" files="[\\/]src[\\/]test[\\/]"/>
+  <suppress checks="LineLength" files="[\\/]src[\\/]test[\\/]"/>
   <suppress checks="MissingJavadocMethod|MissingJavadocType"/>
-  <suppress checks="VariableDeclarationUsageDistance" files="^(?:Test.+|.+(?:Test|Tests|TestCase))\.java$"/>
+  <suppress checks="VariableDeclarationUsageDistance" files="[\\/]src[\\/]test[\\/]"/>
 </suppressions>
