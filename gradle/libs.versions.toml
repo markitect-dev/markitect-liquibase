@@ -61,7 +61,7 @@ slf4j = "2.0.13"
 snakeyaml = "2.2"
 sonarqube-plugin = "5.1.0.4882"
 spotless-plugin = "7.0.0.BETA1"
-spring-boot = "3.3.1"
+spring-boot = "3.3.2"
 spring-framework = "6.1.11"
 testcontainers = "1.20.0"
 
