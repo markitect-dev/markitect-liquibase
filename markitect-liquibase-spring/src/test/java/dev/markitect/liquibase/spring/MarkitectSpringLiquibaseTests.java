@@ -19,7 +19,6 @@ package dev.markitect.liquibase.spring;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 
-import java.sql.Connection;
 import javax.sql.DataSource;
 import liquibase.integration.spring.SpringResourceAccessor;
 import org.junit.jupiter.api.BeforeEach;
@@ -60,17 +59,15 @@ class MarkitectSpringLiquibaseTests {
           true                   | true
           """,
       delimiter = '|')
-  @SuppressWarnings("ConstantValue")
   void shouldCreateDatabase(boolean outputDefaultCatalog, boolean outputDefaultSchema)
       throws Exception {
     // given
     liquibase.setOutputDefaultCatalog(outputDefaultCatalog);
     liquibase.setOutputDefaultSchema(outputDefaultSchema);
-    Connection connection = null;
     var resourceAccessor = new SpringResourceAccessor(resourceLoader);
 
     // when
-    var database = liquibase.createDatabase(connection, resourceAccessor);
+    var database = liquibase.createDatabase(null, resourceAccessor);
 
     // then
     assertThat(database.getOutputDefaultCatalog()).isEqualTo(outputDefaultCatalog);

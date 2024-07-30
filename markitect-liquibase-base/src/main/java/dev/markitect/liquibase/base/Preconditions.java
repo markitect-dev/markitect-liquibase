@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Markitect
+ * Copyright 2023-2024 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,7 +40,7 @@ public final class Preconditions {
   }
 
   @CanIgnoreReturnValue
-  public static <T> T checkNotNull(@Nullable T reference) {
+  public static <T> T checkNotNull(T reference) {
     if (reference == null) {
       throw new NullPointerException();
     }
@@ -48,7 +48,7 @@ public final class Preconditions {
   }
 
   @CanIgnoreReturnValue
-  public static <T> T checkNotNull(@Nullable T reference, @Nullable String errorMessage) {
+  public static <T> T checkNotNull(T reference, @Nullable String errorMessage) {
     if (reference == null) {
       throw new NullPointerException(String.valueOf(errorMessage));
     }

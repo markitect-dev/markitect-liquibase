@@ -30,11 +30,11 @@ public class JulLogger extends AbstractLogger {
   private static final StackWalker stackWalker =
       StackWalker.getInstance(StackWalker.Option.RETAIN_CLASS_REFERENCE);
 
-  private final @Nullable String name;
+  private final String name;
   private final Logger logger;
 
-  JulLogger(@Nullable String name) {
-    this.name = name;
+  JulLogger(String name) {
+    this.name = checkNotNull(name);
     this.logger = Logger.getLogger(name);
   }
 

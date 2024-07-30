@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Markitect
+ * Copyright 2023-2024 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,8 +15,6 @@
  */
 
 package dev.markitect.liquibase.statement;
-
-import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
 
 import liquibase.statement.AbstractSqlStatement;
 import org.checkerframework.checker.nullness.qual.Nullable;
@@ -35,7 +33,7 @@ public class SetIdentityInsertStatement extends AbstractSqlStatement {
     this.catalogName = catalogName;
     this.schemaName = schemaName;
     this.tableName = tableName;
-    this.value = checkNotNull(value);
+    this.value = value;
   }
 
   public @Nullable String getCatalogName() {
