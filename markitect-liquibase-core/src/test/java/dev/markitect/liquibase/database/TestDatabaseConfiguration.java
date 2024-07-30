@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Markitect
+ * Copyright 2023-2024 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,7 +17,7 @@
 package dev.markitect.liquibase.database;
 
 import dev.markitect.liquibase.database.h2.H2TestDatabaseConfiguration;
-import dev.markitect.liquibase.database.hsqldb.HsqlDatabaseConfiguration;
+import dev.markitect.liquibase.database.hsqldb.HsqlTestDatabaseConfiguration;
 import dev.markitect.liquibase.database.mssql.MssqlTestDatabaseConfiguration;
 import dev.markitect.liquibase.database.postgresql.PostgresTestDatabaseConfiguration;
 import org.springframework.context.annotation.Bean;
@@ -28,7 +28,7 @@ import org.springframework.context.annotation.Primary;
 @Configuration
 @Import({
   H2TestDatabaseConfiguration.class,
-  HsqlDatabaseConfiguration.class,
+  HsqlTestDatabaseConfiguration.class,
   MssqlTestDatabaseConfiguration.class,
   PostgresTestDatabaseConfiguration.class,
 })

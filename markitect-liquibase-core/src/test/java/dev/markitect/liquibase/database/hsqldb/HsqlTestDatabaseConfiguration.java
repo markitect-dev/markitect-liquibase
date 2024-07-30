@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Markitect
+ * Copyright 2023-2024 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 @Configuration
-public class HsqlDatabaseConfiguration {
+public class HsqlTestDatabaseConfiguration {
   @Bean
   @Lazy
   @SuppressWarnings({"resource", "SqlSourceToSinkFlow"})
