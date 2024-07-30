@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Markitect
+ * Copyright 2023-2024 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -93,8 +93,7 @@ public class MarkitectLiquibaseAutoConfiguration {
     @Bean
     SpringLiquibase liquibase(
         ObjectProvider<DataSource> dataSource,
-        @LiquibaseDataSource @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
-            ObjectProvider<DataSource> liquibaseDataSource,
+        @LiquibaseDataSource ObjectProvider<DataSource> liquibaseDataSource,
         LiquibaseProperties properties,
         LiquibaseConnectionDetails connectionDetails,
         MarkitectLiquibaseProperties markitectProperties) {
