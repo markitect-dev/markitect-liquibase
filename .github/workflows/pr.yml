@@ -59,6 +59,9 @@ jobs:
             **/target/test-classes/projects/*/project/*/build.log
             **/target/test-classes/projects/*/project/*/pom.xml
             **/target/checkstyle-result.xml
+            **/target/spotbugs.html
+            **/target/spotbugs.xml
+            **/target/spotbugsXml.xml
             **/.flattened-pom.xml
           retention-days: 15
 
