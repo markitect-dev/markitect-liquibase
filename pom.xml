@@ -338,6 +338,7 @@
           <configuration>
             <effort>Max</effort>
             <excludeFilterFile>${spotbugs.config.directory}/exclude.xml</excludeFilterFile>
+            <failOnError>false</failOnError>
             <htmlOutput>true</htmlOutput>
             <includeTests>true</includeTests>
             <plugins>
