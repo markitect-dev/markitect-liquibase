@@ -2,7 +2,7 @@
 # Add key=value pairs of SDKs to use below
 gradle=8.9
 java=21.0.4-zulu
-liquibase=4.29.0
+liquibase=4.29.1
 maven=3.9.8
 mvnd=1.0.1
 springboot=3.3.2
