@@ -3,4 +3,9 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="https://github.com/spotbugs/filter/4.8.4
         https://raw.githubusercontent.com/spotbugs/spotbugs/4.8.4/spotbugs/etc/findbugsfilter.xsd">
+  <Match>
+    <Class name="dev.markitect.liquibase.base.PreconditionsTests"/>
+    <Method name="~lambda\$checkNotNullThrowsNullPointerException\$\d++"/>
+    <Bug pattern="NP_NONNULL_PARAM_VIOLATION"/>
+  </Match>
 </FindBugsFilter>

@@ -17,6 +17,7 @@
 package dev.markitect.liquibase.spring.boot.autoconfigure;
 
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.HashMap;
 import java.util.Map;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -52,6 +53,7 @@ public class MarkitectLiquibaseProperties {
     return this;
   }
 
+  @SuppressFBWarnings("EI_EXPOSE_REP")
   public Map<String, String> getProperties() {
     return properties;
   }

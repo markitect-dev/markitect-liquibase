@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Markitect
+ * Copyright 2023-2024 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,6 +23,7 @@ import com.zaxxer.hikari.HikariDataSource;
 import dev.markitect.liquibase.database.DatabaseBuilder;
 import dev.markitect.liquibase.database.DatabaseConnectionBuilder;
 import dev.markitect.liquibase.database.TestDatabaseSpecs;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.List;
 import liquibase.structure.DatabaseObject;
 import liquibase.structure.core.Catalog;
@@ -52,6 +53,7 @@ public class MssqlTestDatabaseConfiguration {
 
   @Bean
   @Lazy
+  @SuppressFBWarnings("SQL_INJECTION_SPRING_JDBC")
   @SuppressWarnings({"resource", "SqlSourceToSinkFlow"})
   public MSSQLServerContainer<?> mssqlTestDatabaseContainer(TestDatabaseSpecs specs) {
     var database = new MarkitectMssqlDatabase();

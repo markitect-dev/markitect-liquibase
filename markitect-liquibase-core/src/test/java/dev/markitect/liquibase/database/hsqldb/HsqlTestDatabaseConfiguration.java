@@ -21,6 +21,7 @@ import com.zaxxer.hikari.HikariDataSource;
 import dev.markitect.liquibase.database.DatabaseBuilder;
 import dev.markitect.liquibase.database.DatabaseConnectionBuilder;
 import dev.markitect.liquibase.database.TestDatabaseSpecs;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import liquibase.structure.core.Schema;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,6 +32,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 public class HsqlTestDatabaseConfiguration {
   @Bean
   @Lazy
+  @SuppressFBWarnings("SQL_INJECTION_SPRING_JDBC")
   @SuppressWarnings({"resource", "SqlSourceToSinkFlow"})
   public DatabaseBuilder<MarkitectHsqlDatabase> hsqlTestDatabaseBuilder(TestDatabaseSpecs specs) {
     var database = new MarkitectHsqlDatabase();

@@ -21,6 +21,7 @@ import static dev.markitect.liquibase.structure.Structures.isCatalogOrSchemaType
 import static dev.markitect.liquibase.util.Strings.isIllegalIdentifier;
 import static org.apache.commons.lang3.BooleanUtils.isTrue;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.Locale;
 import liquibase.GlobalConfiguration;
 import liquibase.database.Database;
@@ -83,6 +84,7 @@ public interface MarkitectDatabase extends Database {
         : objectName;
   }
 
+  @SuppressFBWarnings("IMPROPER_UNICODE")
   default boolean mustQuoteObjectName(
       String objectName, Class<? extends DatabaseObject> objectType) {
     checkNotNull(objectName);

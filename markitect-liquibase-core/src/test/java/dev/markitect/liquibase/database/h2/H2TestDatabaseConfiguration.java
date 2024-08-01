@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Markitect
+ * Copyright 2023-2024 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,6 +21,7 @@ import com.zaxxer.hikari.HikariDataSource;
 import dev.markitect.liquibase.database.DatabaseBuilder;
 import dev.markitect.liquibase.database.DatabaseConnectionBuilder;
 import dev.markitect.liquibase.database.TestDatabaseSpecs;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import liquibase.structure.core.Schema;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,6 +32,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 public class H2TestDatabaseConfiguration {
   @Bean
   @Lazy
+  @SuppressFBWarnings("SQL_INJECTION_SPRING_JDBC")
   @SuppressWarnings({"resource", "SqlSourceToSinkFlow"})
   public DatabaseBuilder<MarkitectH2Database> h2TestDatabaseBuilder(TestDatabaseSpecs specs) {
     var database = new MarkitectH2Database();

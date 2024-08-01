@@ -22,6 +22,7 @@ import static java.util.stream.Collectors.toCollection;
 import static org.apache.commons.lang3.BooleanUtils.isTrue;
 
 import dev.markitect.liquibase.statement.InsertOrUpdateExecutablePreparedStatement.PreparedSql;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedHashSet;
@@ -125,6 +126,7 @@ public interface MarkitectInsertOrUpdateGenerator extends SqlGenerator<InsertOrU
     private final boolean primaryKeyColumn;
     private final boolean bindValue;
 
+    @SuppressFBWarnings("EI_EXPOSE_REP2")
     public ColumnValue(
         @Nullable ColumnConfig column,
         String name,
@@ -140,6 +142,7 @@ public interface MarkitectInsertOrUpdateGenerator extends SqlGenerator<InsertOrU
       this.bindValue = bindValue;
     }
 
+    @SuppressFBWarnings("EI_EXPOSE_REP")
     public @Nullable ColumnConfig getColumn() {
       return column;
     }

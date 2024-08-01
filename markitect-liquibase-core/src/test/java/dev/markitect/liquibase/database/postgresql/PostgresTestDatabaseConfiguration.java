@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Markitect
+ * Copyright 2023-2024 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,6 +23,7 @@ import com.zaxxer.hikari.HikariDataSource;
 import dev.markitect.liquibase.database.DatabaseBuilder;
 import dev.markitect.liquibase.database.DatabaseConnectionBuilder;
 import dev.markitect.liquibase.database.TestDatabaseSpecs;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import liquibase.structure.DatabaseObject;
 import liquibase.structure.core.Catalog;
 import liquibase.structure.core.Schema;
@@ -51,6 +52,7 @@ public class PostgresTestDatabaseConfiguration {
 
   @Bean
   @Lazy
+  @SuppressFBWarnings("SQL_INJECTION_SPRING_JDBC")
   @SuppressWarnings("resource")
   public PostgreSQLContainer<?> postgresTestDatabaseContainer(TestDatabaseSpecs specs) {
     var database = new MarkitectPostgresDatabase();
