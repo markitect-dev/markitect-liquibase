@@ -21,6 +21,7 @@ import static dev.markitect.liquibase.structure.Structures.isCatalogOrSchemaType
 import static dev.markitect.liquibase.util.Strings.isIllegalIdentifier;
 import static org.apache.commons.lang3.BooleanUtils.isTrue;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.Locale;
 import liquibase.GlobalConfiguration;
 import liquibase.database.Database;
@@ -35,22 +36,22 @@ public interface MarkitectDatabase extends Database {
   @Override
   default @Nullable String correctObjectName(
       @Nullable String objectName, Class&lt;? extends DatabaseObject&gt; objectType) {
-<span class="fc" id="L38">    checkNotNull(objectType);</span>
-<span class="fc bfc" id="L39" title="All 2 branches covered.">    if (objectName == null) {</span>
-<span class="fc" id="L40">      return null;</span>
+<span class="fc" id="L39">    checkNotNull(objectType);</span>
+<span class="fc bfc" id="L40" title="All 2 branches covered.">    if (objectName == null) {</span>
+<span class="fc" id="L41">      return null;</span>
     }
     @Nullable Boolean unquotedObjectsAreUppercased;
-<span class="fc bfc" id="L43" title="All 2 branches covered.">    if ((unquotedObjectsAreUppercased = getUnquotedObjectsAreUppercased()) == null</span>
-<span class="fc bfc" id="L44" title="All 2 branches covered.">        || (supportsPreservingIdentifierCase(objectType)</span>
-<span class="fc bfc" id="L45" title="All 2 branches covered.">            &amp;&amp; (getObjectQuotingStrategy() == ObjectQuotingStrategy.QUOTE_ALL_OBJECTS</span>
-<span class="fc bfc" id="L46" title="All 2 branches covered.">                || (isCatalogOrSchemaType(objectType)</span>
-<span class="fc bfc" id="L47" title="All 2 branches covered.">                    &amp;&amp; isTrue(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getCurrentValue()))))) {</span>
-<span class="fc" id="L48">      return objectName;</span>
+<span class="fc bfc" id="L44" title="All 2 branches covered.">    if ((unquotedObjectsAreUppercased = getUnquotedObjectsAreUppercased()) == null</span>
+<span class="fc bfc" id="L45" title="All 2 branches covered.">        || (supportsPreservingIdentifierCase(objectType)</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">            &amp;&amp; (getObjectQuotingStrategy() == ObjectQuotingStrategy.QUOTE_ALL_OBJECTS</span>
+<span class="fc bfc" id="L47" title="All 2 branches covered.">                || (isCatalogOrSchemaType(objectType)</span>
+<span class="fc bfc" id="L48" title="All 2 branches covered.">                    &amp;&amp; isTrue(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getCurrentValue()))))) {</span>
+<span class="fc" id="L49">      return objectName;</span>
     }
-<span class="fc bfc" id="L50" title="All 2 branches covered.">    if (isTrue(unquotedObjectsAreUppercased)) {</span>
-<span class="fc" id="L51">      return objectName.toUpperCase(Locale.US);</span>
+<span class="fc bfc" id="L51" title="All 2 branches covered.">    if (isTrue(unquotedObjectsAreUppercased)) {</span>
+<span class="fc" id="L52">      return objectName.toUpperCase(Locale.US);</span>
     }
-<span class="fc" id="L53">    return objectName.toLowerCase(Locale.US);</span>
+<span class="fc" id="L54">    return objectName.toLowerCase(Locale.US);</span>
   }
 
   @Override
@@ -59,46 +60,47 @@ public interface MarkitectDatabase extends Database {
       @Nullable String schemaName,
       @Nullable String objectName,
       Class&lt;? extends DatabaseObject&gt; objectType) {
-<span class="fc" id="L62">    checkNotNull(objectType);</span>
-<span class="fc bfc" id="L63" title="All 2 branches covered.">    if (Index.class.isAssignableFrom(objectType)) {</span>
-<span class="fc" id="L64">      return escapeObjectName(objectName, objectType);</span>
+<span class="fc" id="L63">    checkNotNull(objectType);</span>
+<span class="fc bfc" id="L64" title="All 2 branches covered.">    if (Index.class.isAssignableFrom(objectType)) {</span>
+<span class="fc" id="L65">      return escapeObjectName(objectName, objectType);</span>
     }
-<span class="fc" id="L66">    @Nullable String catalogNameToUse = toCatalogNameToUse(catalogName);</span>
-<span class="fc" id="L67">    @Nullable String schemaNameToUse = toSchemaNameToUse(catalogName, schemaName);</span>
-<span class="fc bfc" id="L68" title="All 2 branches covered.">    return (catalogNameToUse != null ? escapeObjectName(catalogNameToUse, Catalog.class) + &quot;.&quot; : &quot;&quot;)</span>
-<span class="fc bfc" id="L69" title="All 2 branches covered.">        + (schemaNameToUse != null ? escapeObjectName(schemaNameToUse, Schema.class) : &quot;&quot;)</span>
-<span class="fc bfc" id="L70" title="All 4 branches covered.">        + (catalogNameToUse != null || schemaNameToUse != null ? &quot;.&quot; : &quot;&quot;)</span>
-<span class="fc" id="L71">        + escapeObjectName(objectName, objectType);</span>
+<span class="fc" id="L67">    @Nullable String catalogNameToUse = toCatalogNameToUse(catalogName);</span>
+<span class="fc" id="L68">    @Nullable String schemaNameToUse = toSchemaNameToUse(catalogName, schemaName);</span>
+<span class="fc bfc" id="L69" title="All 2 branches covered.">    return (catalogNameToUse != null ? escapeObjectName(catalogNameToUse, Catalog.class) + &quot;.&quot; : &quot;&quot;)</span>
+<span class="fc bfc" id="L70" title="All 2 branches covered.">        + (schemaNameToUse != null ? escapeObjectName(schemaNameToUse, Schema.class) : &quot;&quot;)</span>
+<span class="fc bfc" id="L71" title="All 4 branches covered.">        + (catalogNameToUse != null || schemaNameToUse != null ? &quot;.&quot; : &quot;&quot;)</span>
+<span class="fc" id="L72">        + escapeObjectName(objectName, objectType);</span>
   }
 
   @Override
   default @Nullable String escapeObjectName(
       @Nullable String objectName, Class&lt;? extends DatabaseObject&gt; objectType) {
-<span class="fc" id="L77">    checkNotNull(objectType);</span>
-<span class="fc bfc" id="L78" title="All 2 branches covered.">    if (objectName == null) {</span>
-<span class="fc" id="L79">      return null;</span>
+<span class="fc" id="L78">    checkNotNull(objectType);</span>
+<span class="fc bfc" id="L79" title="All 2 branches covered.">    if (objectName == null) {</span>
+<span class="fc" id="L80">      return null;</span>
     }
-<span class="fc bfc" id="L81" title="All 2 branches covered.">    return mustQuoteObjectName(objectName, objectType)</span>
-<span class="fc" id="L82">        ? quoteObject(correctObjectName(objectName, objectType), objectType)</span>
-<span class="fc" id="L83">        : objectName;</span>
+<span class="fc bfc" id="L82" title="All 2 branches covered.">    return mustQuoteObjectName(objectName, objectType)</span>
+<span class="fc" id="L83">        ? quoteObject(correctObjectName(objectName, objectType), objectType)</span>
+<span class="fc" id="L84">        : objectName;</span>
   }
 
+  @SuppressFBWarnings(&quot;IMPROPER_UNICODE&quot;)
   default boolean mustQuoteObjectName(
       String objectName, Class&lt;? extends DatabaseObject&gt; objectType) {
-<span class="fc" id="L88">    checkNotNull(objectName);</span>
-<span class="fc" id="L89">    checkNotNull(objectType);</span>
+<span class="fc" id="L90">    checkNotNull(objectName);</span>
+<span class="fc" id="L91">    checkNotNull(objectType);</span>
     @Nullable Boolean unquotedObjectsAreUppercased;
-<span class="fc bfc" id="L91" title="All 2 branches covered.">    return getObjectQuotingStrategy() == ObjectQuotingStrategy.QUOTE_ALL_OBJECTS</span>
-<span class="fc bfc" id="L92" title="All 2 branches covered.">        || isIllegalIdentifier(objectName)</span>
-<span class="fc bfc" id="L93" title="All 2 branches covered.">        || isReservedWord(objectName)</span>
-<span class="fc bfc" id="L94" title="All 2 branches covered.">        || ((unquotedObjectsAreUppercased = getUnquotedObjectsAreUppercased()) != null</span>
-<span class="fc bfc" id="L95" title="All 2 branches covered.">            &amp;&amp; supportsPreservingIdentifierCase(objectType)</span>
-<span class="fc bfc" id="L96" title="All 2 branches covered.">            &amp;&amp; isCatalogOrSchemaType(objectType)</span>
-<span class="fc bfc" id="L97" title="All 2 branches covered.">            &amp;&amp; isTrue(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getCurrentValue())</span>
-<span class="fc bfc" id="L98" title="All 2 branches covered.">            &amp;&amp; !objectName.equals(</span>
-<span class="fc bfc" id="L99" title="All 2 branches covered.">                isTrue(unquotedObjectsAreUppercased)</span>
-<span class="fc" id="L100">                    ? objectName.toUpperCase(Locale.US)</span>
-<span class="fc" id="L101">                    : objectName.toLowerCase(Locale.US)));</span>
+<span class="fc bfc" id="L93" title="All 2 branches covered.">    return getObjectQuotingStrategy() == ObjectQuotingStrategy.QUOTE_ALL_OBJECTS</span>
+<span class="fc bfc" id="L94" title="All 2 branches covered.">        || isIllegalIdentifier(objectName)</span>
+<span class="fc bfc" id="L95" title="All 2 branches covered.">        || isReservedWord(objectName)</span>
+<span class="fc bfc" id="L96" title="All 2 branches covered.">        || ((unquotedObjectsAreUppercased = getUnquotedObjectsAreUppercased()) != null</span>
+<span class="fc bfc" id="L97" title="All 2 branches covered.">            &amp;&amp; supportsPreservingIdentifierCase(objectType)</span>
+<span class="fc bfc" id="L98" title="All 2 branches covered.">            &amp;&amp; isCatalogOrSchemaType(objectType)</span>
+<span class="fc bfc" id="L99" title="All 2 branches covered.">            &amp;&amp; isTrue(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getCurrentValue())</span>
+<span class="fc bfc" id="L100" title="All 2 branches covered.">            &amp;&amp; !objectName.equals(</span>
+<span class="fc bfc" id="L101" title="All 2 branches covered.">                isTrue(unquotedObjectsAreUppercased)</span>
+<span class="fc" id="L102">                    ? objectName.toUpperCase(Locale.US)</span>
+<span class="fc" id="L103">                    : objectName.toLowerCase(Locale.US)));</span>
   }
 
   @Nullable String quoteObject(
@@ -107,41 +109,41 @@ public interface MarkitectDatabase extends Database {
   @Nullable Boolean getUnquotedObjectsAreUppercased();
 
   default @Nullable String toCatalogNameToUse(@Nullable String catalogName) {
-<span class="fc bfc" id="L110" title="All 2 branches covered.">    if ((isTrue(GlobalConfiguration.INCLUDE_CATALOG_IN_SPECIFICATION.getCurrentValue())</span>
-<span class="fc bfc" id="L111" title="All 2 branches covered.">            &amp;&amp; getOutputDefaultCatalog())</span>
-<span class="fc bfc" id="L112" title="All 2 branches covered.">        || !isDefaultCatalog(catalogName)) {</span>
-<span class="fc bfc" id="L113" title="All 2 branches covered.">      if (catalogName != null) {</span>
-<span class="fc" id="L114">        return catalogName;</span>
+<span class="fc bfc" id="L112" title="All 2 branches covered.">    if ((isTrue(GlobalConfiguration.INCLUDE_CATALOG_IN_SPECIFICATION.getCurrentValue())</span>
+<span class="fc bfc" id="L113" title="All 2 branches covered.">            &amp;&amp; getOutputDefaultCatalog())</span>
+<span class="fc bfc" id="L114" title="All 2 branches covered.">        || !isDefaultCatalog(catalogName)) {</span>
+<span class="fc bfc" id="L115" title="All 2 branches covered.">      if (catalogName != null) {</span>
+<span class="fc" id="L116">        return catalogName;</span>
       }
-<span class="fc" id="L116">      return getDefaultCatalogName();</span>
+<span class="fc" id="L118">      return getDefaultCatalogName();</span>
     }
-<span class="fc" id="L118">    return null;</span>
+<span class="fc" id="L120">    return null;</span>
   }
 
   default @Nullable String toSchemaNameToUse(
       @Nullable String catalogName, @Nullable String schemaName) {
-<span class="fc bfc" id="L123" title="All 2 branches covered.">    if ((isTrue(GlobalConfiguration.INCLUDE_CATALOG_IN_SPECIFICATION.getCurrentValue())</span>
-<span class="fc bfc" id="L124" title="All 2 branches covered.">            &amp;&amp; getOutputDefaultCatalog()</span>
-<span class="fc bfc" id="L125" title="All 2 branches covered.">            &amp;&amp; !supportsOmittedInnerSchemaName())</span>
-<span class="fc bfc" id="L126" title="All 2 branches covered.">        || getOutputDefaultSchema()</span>
-<span class="fc bfc" id="L127" title="All 2 branches covered.">        || !isDefaultSchema(catalogName, schemaName)) {</span>
-<span class="fc bfc" id="L128" title="All 2 branches covered.">      if (schemaName != null) {</span>
-<span class="fc" id="L129">        return schemaName;</span>
+<span class="fc bfc" id="L125" title="All 2 branches covered.">    if ((isTrue(GlobalConfiguration.INCLUDE_CATALOG_IN_SPECIFICATION.getCurrentValue())</span>
+<span class="fc bfc" id="L126" title="All 2 branches covered.">            &amp;&amp; getOutputDefaultCatalog()</span>
+<span class="fc bfc" id="L127" title="All 2 branches covered.">            &amp;&amp; !supportsOmittedInnerSchemaName())</span>
+<span class="fc bfc" id="L128" title="All 2 branches covered.">        || getOutputDefaultSchema()</span>
+<span class="fc bfc" id="L129" title="All 2 branches covered.">        || !isDefaultSchema(catalogName, schemaName)) {</span>
+<span class="fc bfc" id="L130" title="All 2 branches covered.">      if (schemaName != null) {</span>
+<span class="fc" id="L131">        return schemaName;</span>
       }
-<span class="fc bfc" id="L131" title="All 2 branches covered.">      if (isDefaultCatalog(catalogName)) {</span>
-<span class="fc" id="L132">        return getDefaultSchemaName();</span>
+<span class="fc bfc" id="L133" title="All 2 branches covered.">      if (isDefaultCatalog(catalogName)) {</span>
+<span class="fc" id="L134">        return getDefaultSchemaName();</span>
       }
     }
-<span class="fc" id="L135">    return null;</span>
+<span class="fc" id="L137">    return null;</span>
   }
 
   default boolean supportsOmittedInnerSchemaName() {
-<span class="fc" id="L139">    return false;</span>
+<span class="fc" id="L141">    return false;</span>
   }
 
   default boolean supportsPreservingIdentifierCase(Class&lt;? extends DatabaseObject&gt; objectType) {
-<span class="fc" id="L143">    checkNotNull(objectType);</span>
-<span class="fc" id="L144">    return true;</span>
+<span class="fc" id="L145">    checkNotNull(objectType);</span>
+<span class="fc" id="L146">    return true;</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

@@ -17,12 +17,13 @@
 package dev.markitect.liquibase.spring.boot.autoconfigure;
 
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.HashMap;
 import java.util.Map;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @ConfigurationProperties(prefix = &quot;markitect.liquibase&quot;)
-<span class="fc" id="L25">public class MarkitectLiquibaseProperties {</span>
+<span class="fc" id="L26">public class MarkitectLiquibaseProperties {</span>
   /** Whether to qualify the names of objects in the default catalog. */
   private boolean outputDefaultCatalog;
 
@@ -30,30 +31,31 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
   private boolean outputDefaultSchema;
 
   /** Additional properties used to configure Liquibase. */
-<span class="fc" id="L33">  private final Map&lt;String, String&gt; properties = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L34">  private final Map&lt;String, String&gt; properties = new HashMap&lt;&gt;();</span>
 
   public boolean isOutputDefaultCatalog() {
-<span class="fc" id="L36">    return outputDefaultCatalog;</span>
+<span class="fc" id="L37">    return outputDefaultCatalog;</span>
   }
 
   @CanIgnoreReturnValue
   public MarkitectLiquibaseProperties setOutputDefaultCatalog(boolean outputDefaultCatalog) {
-<span class="fc" id="L41">    this.outputDefaultCatalog = outputDefaultCatalog;</span>
-<span class="fc" id="L42">    return this;</span>
+<span class="fc" id="L42">    this.outputDefaultCatalog = outputDefaultCatalog;</span>
+<span class="fc" id="L43">    return this;</span>
   }
 
   public boolean isOutputDefaultSchema() {
-<span class="fc" id="L46">    return outputDefaultSchema;</span>
+<span class="fc" id="L47">    return outputDefaultSchema;</span>
   }
 
   @CanIgnoreReturnValue
   public MarkitectLiquibaseProperties setOutputDefaultSchema(boolean outputDefaultSchema) {
-<span class="fc" id="L51">    this.outputDefaultSchema = outputDefaultSchema;</span>
-<span class="fc" id="L52">    return this;</span>
+<span class="fc" id="L52">    this.outputDefaultSchema = outputDefaultSchema;</span>
+<span class="fc" id="L53">    return this;</span>
   }
 
+  @SuppressFBWarnings(&quot;EI_EXPOSE_REP&quot;)
   public Map&lt;String, String&gt; getProperties() {
-<span class="fc" id="L56">    return properties;</span>
+<span class="fc" id="L58">    return properties;</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

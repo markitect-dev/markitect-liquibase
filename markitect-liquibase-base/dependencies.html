@@ -85,13 +85,20 @@
 <th>Licenses</th>
 <th>Optional</th></tr>
 <tr class="b">
+<td style="text-align: left;">com.github.spotbugs</td>
+<td><a class="externalLink" href="https://spotbugs.github.io/">spotbugs-annotations</a></td>
+<td>4.8.6</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.gnu.org/licenses/old-licenses/lgpl-2.1.en.html">GNU LESSER GENERAL PUBLIC LICENSE, Version 2.1</a></td>
+<td>Yes</td></tr>
+<tr class="a">
 <td style="text-align: left;">com.google.errorprone</td>
 <td><a class="externalLink" href="https://errorprone.info/error_prone_annotations">error_prone_annotations</a></td>
 <td>2.29.2</td>
 <td>jar</td>
 <td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache 2.0</a></td>
 <td>Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <td style="text-align: left;">org.checkerframework</td>
 <td><a class="externalLink" href="https://checkerframework.org/">checker-qual</a></td>
 <td>3.45.0</td>
@@ -132,7 +139,24 @@
 <td>jar</td>
 <td><a class="externalLink" href="https://opensource.org/licenses/MIT">MIT</a></td></tr></table></section></section><a id="Project_Transitive_Dependencies"></a><section>
 <h1>Project Transitive Dependencies</h1>
-<p>The following is a list of transitive dependencies for this project. Transitive dependencies are the dependencies of the project dependencies.</p><a id="Project_Transitive_Dependencies_test"></a><section>
+<p>The following is a list of transitive dependencies for this project. Transitive dependencies are the dependencies of the project dependencies.</p><a id="Project_Transitive_Dependencies_compile"></a><section>
+<h2>compile</h2>
+<p>The following is a list of compile dependencies for this project. These dependencies are required to compile and run the application:</p>
+<table class="table table-striped">
+<tr class="a">
+<th>GroupId</th>
+<th>ArtifactId</th>
+<th>Version</th>
+<th>Type</th>
+<th>Licenses</th>
+<th>Optional</th></tr>
+<tr class="b">
+<td style="text-align: left;">com.google.code.findbugs</td>
+<td><a class="externalLink" href="http://findbugs.sourceforge.net/">jsr305</a></td>
+<td>3.0.2</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td>
+<td>Yes</td></tr></table></section><a id="Project_Transitive_Dependencies_test"></a><section>
 <h2>test</h2>
 <p>The following is a list of test dependencies for this project. These dependencies are only required to compile and run unit tests for the application:</p>
 <table class="table table-striped">
@@ -233,7 +257,26 @@
 <p><b>URL: </b><a class="externalLink" href="https://markitect-dev.github.io/markitect-liquibase/markitect-liquibase-base/">https://markitect-dev.github.io/markitect-liquibase/markitect-liquibase-base/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a></p></td></tr></table></div>
 <ul>
-<li>com.google.errorprone:error_prone_annotations:jar:2.29.2 (compile) <img id="_img3" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep2', '_img3' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep2" style="display:none">
+<li>com.github.spotbugs:spotbugs-annotations:jar:4.8.6 (compile) <img id="_img3" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep2', '_img3' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep2" style="display:none">
+<table class="table table-striped">
+<tr class="a">
+<th>SpotBugs Annotations</th></tr>
+<tr class="b">
+<td style="text-align: left;">
+<p><b>Description: </b>Annotations the SpotBugs tool supports</p>
+<p><b>URL: </b><a class="externalLink" href="https://spotbugs.github.io/">https://spotbugs.github.io/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.gnu.org/licenses/old-licenses/lgpl-2.1.en.html">GNU LESSER GENERAL PUBLIC LICENSE, Version 2.1</a></p></td></tr></table></div>
+<ul>
+<li>com.google.code.findbugs:jsr305:jar:3.0.2 (compile) <img id="_img5" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep4', '_img5' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep4" style="display:none">
+<table class="table table-striped">
+<tr class="a">
+<th>FindBugs-jsr305</th></tr>
+<tr class="b">
+<td style="text-align: left;">
+<p><b>Description: </b>JSR305 Annotations for Findbugs</p>
+<p><b>URL: </b><a class="externalLink" href="http://findbugs.sourceforge.net/">http://findbugs.sourceforge.net/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li></ul></li>
+<li>com.google.errorprone:error_prone_annotations:jar:2.29.2 (compile) <img id="_img7" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep6', '_img7' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep6" style="display:none">
 <table class="table table-striped">
 <tr class="a">
 <th>error-prone annotations</th></tr>
@@ -242,7 +285,7 @@
 <p><b>Description: </b>Error Prone is a static analysis tool for Java that catches common programming mistakes at compile-time.</p>
 <p><b>URL: </b><a class="externalLink" href="https://errorprone.info/error_prone_annotations">https://errorprone.info/error_prone_annotations</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache 2.0</a></p></td></tr></table></div></li>
-<li>org.checkerframework:checker-qual:jar:3.45.0 (compile) <img id="_img5" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep4', '_img5' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep4" style="display:none">
+<li>org.checkerframework:checker-qual:jar:3.45.0 (compile) <img id="_img9" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep8', '_img9' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep8" style="display:none">
 <table class="table table-striped">
 <tr class="a">
 <th>Checker Qual</th></tr>
@@ -251,7 +294,7 @@
 <p><b>Description: </b>checker-qual contains annotations (type qualifiers) that a programmerwrites to specify Java code for type-checking by the Checker Framework.</p>
 <p><b>URL: </b><a class="externalLink" href="https://checkerframework.org/">https://checkerframework.org/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://opensource.org/licenses/MIT">The MIT License</a></p></td></tr></table></div></li>
-<li>org.assertj:assertj-core:jar:3.26.3 (test) <img id="_img7" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep6', '_img7' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep6" style="display:none">
+<li>org.assertj:assertj-core:jar:3.26.3 (test) <img id="_img11" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep10', '_img11' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep10" style="display:none">
 <table class="table table-striped">
 <tr class="a">
 <th>AssertJ Core</th></tr>
@@ -261,7 +304,7 @@
 <p><b>URL: </b><a class="externalLink" href="https://assertj.github.io/doc/#assertj-core">https://assertj.github.io/doc/#assertj-core</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div>
 <ul>
-<li>net.bytebuddy:byte-buddy:jar:1.14.18 (test) <img id="_img9" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep8', '_img9' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep8" style="display:none">
+<li>net.bytebuddy:byte-buddy:jar:1.14.18 (test) <img id="_img13" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep12', '_img13' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep12" style="display:none">
 <table class="table table-striped">
 <tr class="a">
 <th>Byte Buddy (without dependencies)</th></tr>
@@ -271,7 +314,7 @@
         This artifact is a build of Byte Buddy with all ASM dependencies repackaged into its own name space.</p>
 <p><b>URL: </b><a class="externalLink" href="https://bytebuddy.net/byte-buddy">https://bytebuddy.net/byte-buddy</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></li></ul></li>
-<li>org.junit.jupiter:junit-jupiter:jar:5.10.3 (test) <img id="_img11" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep10', '_img11' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep10" style="display:none">
+<li>org.junit.jupiter:junit-jupiter:jar:5.10.3 (test) <img id="_img15" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep14', '_img15' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep14" style="display:none">
 <table class="table table-striped">
 <tr class="a">
 <th>JUnit Jupiter (Aggregator)</th></tr>
@@ -281,7 +324,7 @@
 <p><b>URL: </b><a class="externalLink" href="https://junit.org/junit5/">https://junit.org/junit5/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.eclipse.org/legal/epl-v20.html">Eclipse Public License v2.0</a></p></td></tr></table></div>
 <ul>
-<li>org.junit.jupiter:junit-jupiter-api:jar:5.10.3 (test) <img id="_img13" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep12', '_img13' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep12" style="display:none">
+<li>org.junit.jupiter:junit-jupiter-api:jar:5.10.3 (test) <img id="_img17" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep16', '_img17' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep16" style="display:none">
 <table class="table table-striped">
 <tr class="a">
 <th>JUnit Jupiter API</th></tr>
@@ -291,7 +334,7 @@
 <p><b>URL: </b><a class="externalLink" href="https://junit.org/junit5/">https://junit.org/junit5/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.eclipse.org/legal/epl-v20.html">Eclipse Public License v2.0</a></p></td></tr></table></div>
 <ul>
-<li>org.opentest4j:opentest4j:jar:1.3.0 (test) <img id="_img15" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep14', '_img15' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep14" style="display:none">
+<li>org.opentest4j:opentest4j:jar:1.3.0 (test) <img id="_img19" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep18', '_img19' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep18" style="display:none">
 <table class="table table-striped">
 <tr class="a">
 <th>org.opentest4j:opentest4j</th></tr>
@@ -300,7 +343,7 @@
 <p><b>Description: </b>Open Test Alliance for the JVM</p>
 <p><b>URL: </b><a class="externalLink" href="https://github.com/ota4j-team/opentest4j">https://github.com/ota4j-team/opentest4j</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">The Apache License, Version 2.0</a></p></td></tr></table></div></li>
-<li>org.junit.platform:junit-platform-commons:jar:1.10.3 (test) <img id="_img17" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep16', '_img17' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep16" style="display:none">
+<li>org.junit.platform:junit-platform-commons:jar:1.10.3 (test) <img id="_img21" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep20', '_img21' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep20" style="display:none">
 <table class="table table-striped">
 <tr class="a">
 <th>JUnit Platform Commons</th></tr>
@@ -309,7 +352,7 @@
 <p><b>Description: </b>Module &quot;junit-platform-commons&quot; of JUnit 5.</p>
 <p><b>URL: </b><a class="externalLink" href="https://junit.org/junit5/">https://junit.org/junit5/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.eclipse.org/legal/epl-v20.html">Eclipse Public License v2.0</a></p></td></tr></table></div></li>
-<li>org.apiguardian:apiguardian-api:jar:1.1.2 (test) <img id="_img19" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep18', '_img19' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep18" style="display:none">
+<li>org.apiguardian:apiguardian-api:jar:1.1.2 (test) <img id="_img23" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep22', '_img23' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep22" style="display:none">
 <table class="table table-striped">
 <tr class="a">
 <th>org.apiguardian:apiguardian-api</th></tr>
@@ -318,7 +361,7 @@
 <p><b>Description: </b>@API Guardian</p>
 <p><b>URL: </b><a class="externalLink" href="https://github.com/apiguardian-team/apiguardian">https://github.com/apiguardian-team/apiguardian</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache License, Version 2.0</a></p></td></tr></table></div></li></ul></li>
-<li>org.junit.jupiter:junit-jupiter-params:jar:5.10.3 (test) <img id="_img21" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep20', '_img21' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep20" style="display:none">
+<li>org.junit.jupiter:junit-jupiter-params:jar:5.10.3 (test) <img id="_img25" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep24', '_img25' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep24" style="display:none">
 <table class="table table-striped">
 <tr class="a">
 <th>JUnit Jupiter Params</th></tr>
@@ -327,7 +370,7 @@
 <p><b>Description: </b>Module &quot;junit-jupiter-params&quot; of JUnit 5.</p>
 <p><b>URL: </b><a class="externalLink" href="https://junit.org/junit5/">https://junit.org/junit5/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.eclipse.org/legal/epl-v20.html">Eclipse Public License v2.0</a></p></td></tr></table></div></li>
-<li>org.junit.jupiter:junit-jupiter-engine:jar:5.10.3 (test) <img id="_img23" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep22', '_img23' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep22" style="display:none">
+<li>org.junit.jupiter:junit-jupiter-engine:jar:5.10.3 (test) <img id="_img27" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep26', '_img27' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep26" style="display:none">
 <table class="table table-striped">
 <tr class="a">
 <th>JUnit Jupiter Engine</th></tr>
@@ -337,7 +380,7 @@
 <p><b>URL: </b><a class="externalLink" href="https://junit.org/junit5/">https://junit.org/junit5/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.eclipse.org/legal/epl-v20.html">Eclipse Public License v2.0</a></p></td></tr></table></div>
 <ul>
-<li>org.junit.platform:junit-platform-engine:jar:1.10.3 (test) <img id="_img25" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep24', '_img25' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep24" style="display:none">
+<li>org.junit.platform:junit-platform-engine:jar:1.10.3 (test) <img id="_img29" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep28', '_img29' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep28" style="display:none">
 <table class="table table-striped">
 <tr class="a">
 <th>JUnit Platform Engine API</th></tr>
@@ -346,7 +389,7 @@
 <p><b>Description: </b>Module &quot;junit-platform-engine&quot; of JUnit 5.</p>
 <p><b>URL: </b><a class="externalLink" href="https://junit.org/junit5/">https://junit.org/junit5/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.eclipse.org/legal/epl-v20.html">Eclipse Public License v2.0</a></p></td></tr></table></div></li></ul></li></ul></li>
-<li>org.mockito:mockito-core:jar:5.12.0 (test) <img id="_img27" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep26', '_img27' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep26" style="display:none">
+<li>org.mockito:mockito-core:jar:5.12.0 (test) <img id="_img31" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep30', '_img31' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep30" style="display:none">
 <table class="table table-striped">
 <tr class="a">
 <th>mockito-core</th></tr>
@@ -356,7 +399,7 @@
 <p><b>URL: </b><a class="externalLink" href="https://github.com/mockito/mockito">https://github.com/mockito/mockito</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://opensource.org/licenses/MIT">MIT</a></p></td></tr></table></div>
 <ul>
-<li>net.bytebuddy:byte-buddy-agent:jar:1.14.18 (test) <img id="_img29" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep28', '_img29' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep28" style="display:none">
+<li>net.bytebuddy:byte-buddy-agent:jar:1.14.18 (test) <img id="_img33" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep32', '_img33' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep32" style="display:none">
 <table class="table table-striped">
 <tr class="a">
 <th>Byte Buddy agent</th></tr>
@@ -365,7 +408,7 @@
 <p><b>Description: </b>The Byte Buddy agent offers convenience for attaching an agent to the local or a remote VM.</p>
 <p><b>URL: </b><a class="externalLink" href="https://bytebuddy.net/byte-buddy-agent">https://bytebuddy.net/byte-buddy-agent</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></li>
-<li>org.objenesis:objenesis:jar:3.4 (test) <img id="_img31" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep30', '_img31' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep30" style="display:none">
+<li>org.objenesis:objenesis:jar:3.4 (test) <img id="_img35" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep34', '_img35' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep34" style="display:none">
 <table class="table table-striped">
 <tr class="a">
 <th>Objenesis</th></tr>
@@ -374,7 +417,7 @@
 <p><b>Description: </b>A library for instantiating Java objects</p>
 <p><b>URL: </b><a class="externalLink" href="https://objenesis.org/objenesis">https://objenesis.org/objenesis</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></li></ul></li>
-<li>org.mockito:mockito-junit-jupiter:jar:5.12.0 (test) <img id="_img33" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep32', '_img33' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep32" style="display:none">
+<li>org.mockito:mockito-junit-jupiter:jar:5.12.0 (test) <img id="_img37" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep36', '_img37' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep36" style="display:none">
 <table class="table table-striped">
 <tr class="a">
 <th>mockito-junit-jupiter</th></tr>
@@ -389,7 +432,9 @@
 <p><b>The MIT License: </b>Checker Qual</p>
 <p><b>Apache License, Version 2.0: </b>AssertJ Core, Byte Buddy (without dependencies), Byte Buddy agent, Objenesis, markitect-liquibase-base</p>
 <p><b>Eclipse Public License v2.0: </b>JUnit Jupiter (Aggregator), JUnit Jupiter API, JUnit Jupiter Engine, JUnit Jupiter Params, JUnit Platform Commons, JUnit Platform Engine API</p>
-<p><b>MIT: </b>mockito-core, mockito-junit-jupiter</p></section><a id="Dependency_File_Details"></a><section>
+<p><b>MIT: </b>mockito-core, mockito-junit-jupiter</p>
+<p><b>GNU LESSER GENERAL PUBLIC LICENSE, Version 2.1: </b>SpotBugs Annotations</p>
+<p><b>The Apache Software License, Version 2.0: </b>FindBugs-jsr305</p></section><a id="Dependency_File_Details"></a><section>
 <h1>Dependency File Details</h1>
 <table class="table table-striped">
 <tr class="a">
@@ -577,6 +622,22 @@
 <td style="text-align: center;">1.6</td>
 <td style="text-align: center;">Yes</td></tr>
 <tr class="b">
+<td style="text-align: left;">spotbugs-annotations-4.8.6.jar</td>
+<td style="text-align: right;">15.3 kB</td>
+<td style="text-align: right;">31</td>
+<td style="text-align: right;">24</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: center;">1.8</td>
+<td style="text-align: center;">Yes</td></tr>
+<tr class="a">
+<td style="text-align: left;">jsr305-3.0.2.jar</td>
+<td style="text-align: right;">19.9 kB</td>
+<td style="text-align: right;">46</td>
+<td style="text-align: right;">35</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: center;">1.5</td>
+<td style="text-align: center;">Yes</td></tr>
+<tr class="b">
 <td style="text-align: left;">error_prone_annotations-2.29.2.jar</td>
 <td style="text-align: right;">19.4 kB</td>
 <td style="text-align: right;">47</td>
@@ -617,21 +678,21 @@
 <th>Java Version</th>
 <th>Debug Information</th></tr>
 <tr class="a">
-<td style="text-align: right;">16</td>
+<td style="text-align: right;">18</td>
 <td style="text-align: right;">8.3 MB</td>
-<td style="text-align: right;">6092</td>
-<td style="text-align: right;">5666</td>
-<td style="text-align: right;">238</td>
+<td style="text-align: right;">6169</td>
+<td style="text-align: right;">5725</td>
+<td style="text-align: right;">242</td>
 <td style="text-align: center;">11</td>
-<td style="text-align: right;">15</td></tr>
+<td style="text-align: right;">17</td></tr>
 <tr class="b">
-<td style="text-align: right;">compile: 2</td>
-<td style="text-align: right;">compile: 255.8 kB</td>
-<td style="text-align: right;">compile: 496</td>
-<td style="text-align: right;">compile: 405</td>
-<td style="text-align: right;">compile: 34</td>
+<td style="text-align: right;">compile: 4</td>
+<td style="text-align: right;">compile: 291.1 kB</td>
+<td style="text-align: right;">compile: 573</td>
+<td style="text-align: right;">compile: 464</td>
+<td style="text-align: right;">compile: 38</td>
 <td style="text-align: center;">1.8</td>
-<td style="text-align: right;">compile: 2</td></tr>
+<td style="text-align: right;">compile: 4</td></tr>
 <tr class="a">
 <td style="text-align: right;">test: 14</td>
 <td style="text-align: right;">test: 8 MB</td>
