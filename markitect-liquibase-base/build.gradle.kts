@@ -4,9 +4,11 @@ plugins {
 }
 
 dependencies {
+    compileOnly(libs.com.github.spotbugs.spotbugs.annotations)
     compileOnly(libs.com.google.errorprone.error.prone.annotations)
     compileOnly(libs.org.checkerframework.checker.qual)
 
+    testCompileOnly(libs.com.github.spotbugs.spotbugs.annotations)
     testCompileOnly(libs.com.google.errorprone.error.prone.annotations)
     testCompileOnly(libs.org.checkerframework.checker.qual)
     testImplementation(libs.org.assertj.assertj.core)

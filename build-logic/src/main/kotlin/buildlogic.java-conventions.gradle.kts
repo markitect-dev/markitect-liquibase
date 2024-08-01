@@ -5,6 +5,7 @@ plugins {
     id("buildlogic.checkstyle-conventions")
     id("buildlogic.errorprone-conventions")
     id("buildlogic.jacoco-conventions")
+    id("buildlogic.spotbugs-conventions")
     `java-library`
 }
 
@@ -38,6 +39,7 @@ dependencies {
         testImplementation(libs.com.github.docker.java.docker.java.api)
         testImplementation(libs.com.github.docker.java.docker.java.transport)
         testImplementation(libs.com.github.docker.java.docker.java.transport.zerodep)
+        testImplementation(libs.com.github.spotbugs.spotbugs.annotations)
         testImplementation(libs.com.google.errorprone.error.prone.annotations)
         testImplementation(libs.com.h2database.h2)
         testImplementation(libs.com.microsoft.sqlserver.mssql.jdbc)

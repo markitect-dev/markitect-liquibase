@@ -6,6 +6,7 @@ plugins {
 dependencies {
     implementation(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
     implementation(plugin(libs.plugins.com.diffplug.spotless))
+    implementation(plugin(libs.plugins.com.github.spotbugs))
     implementation(plugin(libs.plugins.net.ltgt.errorprone))
     implementation(plugin(libs.plugins.net.ltgt.nullaway))
     implementation(plugin(libs.plugins.org.sonarqube))

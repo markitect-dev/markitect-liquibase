@@ -7,6 +7,7 @@ configurations.testImplementation {
 }
 
 dependencies {
+    testCompileOnly(libs.com.github.spotbugs.spotbugs.annotations)
     testCompileOnly(libs.com.google.errorprone.error.prone.annotations)
     testCompileOnly(libs.org.checkerframework.checker.qual)
     testImplementation(project(":markitect-liquibase-logging"))
