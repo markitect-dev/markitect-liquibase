@@ -15,6 +15,8 @@ dependencies {
     compileOnly(libs.org.slf4j.slf4j.api)
 
     testCompileOnly(libs.biz.aqute.bnd.biz.aqute.bnd.annotation)
+    testCompileOnly(libs.com.google.errorprone.error.prone.annotations)
+    testCompileOnly(libs.org.checkerframework.checker.qual)
     testCompileOnly(libs.org.osgi.org.osgi.annotation.bundle)
     testCompileOnly(libs.org.osgi.org.osgi.annotation.versioning)
     testImplementation(libs.org.springframework.boot.spring.boot.starter.test)

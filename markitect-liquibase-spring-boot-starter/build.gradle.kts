@@ -11,6 +11,8 @@ dependencies {
     compileOnly(libs.com.google.errorprone.error.prone.annotations)
     compileOnly(libs.org.checkerframework.checker.qual)
 
+    testCompileOnly(libs.com.google.errorprone.error.prone.annotations)
+    testCompileOnly(libs.org.checkerframework.checker.qual)
     testImplementation(libs.com.h2database.h2)
     testImplementation(libs.org.springframework.boot.spring.boot.starter.test)
 }

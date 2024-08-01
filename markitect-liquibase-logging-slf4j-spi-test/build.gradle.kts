@@ -3,6 +3,8 @@ plugins {
 }
 
 dependencies {
+    testCompileOnly(libs.com.google.errorprone.error.prone.annotations)
+    testCompileOnly(libs.org.checkerframework.checker.qual)
     testImplementation(project(":markitect-liquibase-logging"))
     testImplementation(libs.org.springframework.boot.spring.boot.starter.test)
 }
