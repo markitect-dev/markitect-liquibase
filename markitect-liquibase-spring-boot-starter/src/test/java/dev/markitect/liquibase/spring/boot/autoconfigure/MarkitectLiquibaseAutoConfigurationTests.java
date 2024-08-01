@@ -29,6 +29,7 @@ import dev.markitect.liquibase.spring.boot.autoconfigure.MarkitectLiquibaseAutoC
 import dev.markitect.liquibase.spring.boot.autoconfigure.MarkitectLiquibaseAutoConfiguration.LiquibaseDataSourceCondition;
 import dev.markitect.liquibase.spring.boot.autoconfigure.MarkitectLiquibaseAutoConfiguration.MarkitectLiquibaseConfiguration;
 import dev.markitect.liquibase.spring.boot.autoconfigure.MarkitectLiquibaseAutoConfiguration.PropertiesLiquibaseConnectionDetails;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.Optional;
 import java.util.UUID;
 import javax.sql.DataSource;
@@ -148,6 +149,7 @@ class MarkitectLiquibaseAutoConfigurationTests {
     }
 
     @Test
+    @SuppressFBWarnings("HARD_CODE_PASSWORD")
     @SuppressWarnings({"ResultOfMethodCallIgnored", "UnnecessarilyFullyQualified"})
     void shouldCreateLiquibaseBeanUsingLiquibaseUrl() {
       // given
@@ -194,6 +196,7 @@ class MarkitectLiquibaseAutoConfigurationTests {
     }
 
     @Test
+    @SuppressFBWarnings("HARD_CODE_PASSWORD")
     @SuppressWarnings({"ResultOfMethodCallIgnored", "UnnecessarilyFullyQualified"})
     void shouldCreateLiquibaseBeanUsingDataSourceUrl() {
       // given
@@ -284,6 +287,7 @@ class MarkitectLiquibaseAutoConfigurationTests {
     private final LiquibaseProperties liquibaseProperties = new LiquibaseProperties();
 
     @Test
+    @SuppressFBWarnings("HARD_CODE_PASSWORD")
     void shouldResolveProperties() {
       // given
       String url =

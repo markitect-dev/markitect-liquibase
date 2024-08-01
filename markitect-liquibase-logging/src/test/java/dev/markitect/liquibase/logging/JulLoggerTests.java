@@ -24,6 +24,7 @@ import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.LogRecord;
@@ -43,6 +44,7 @@ class JulLoggerTests {
   @Captor private ArgumentCaptor<LogRecord> logRecordCaptor;
 
   @Test
+  @SuppressFBWarnings("RV_RETURN_VALUE_IGNORED_NO_SIDE_EFFECT")
   void test() throws Exception {
     // given
     String name = JulLoggerTests.class.getName();

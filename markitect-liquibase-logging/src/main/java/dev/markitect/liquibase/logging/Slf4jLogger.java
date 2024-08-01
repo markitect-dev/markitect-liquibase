@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Markitect
+ * Copyright 2023-2024 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,11 +18,13 @@ package dev.markitect.liquibase.logging;
 
 import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.logging.Level;
 import liquibase.logging.core.AbstractLogger;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.slf4j.Logger;
 
+@SuppressFBWarnings("CRLF_INJECTION_LOGS")
 @SuppressWarnings("squid:S2160")
 public class Slf4jLogger<L extends Logger> extends AbstractLogger {
   protected static final int DEBUG_THRESHOLD = Level.FINER.intValue();

@@ -20,6 +20,7 @@ import dev.markitect.liquibase.database.h2.H2TestDatabaseConfiguration;
 import dev.markitect.liquibase.database.hsqldb.HsqlTestDatabaseConfiguration;
 import dev.markitect.liquibase.database.mssql.MssqlTestDatabaseConfiguration;
 import dev.markitect.liquibase.database.postgresql.PostgresTestDatabaseConfiguration;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -35,6 +36,7 @@ import org.springframework.context.annotation.Primary;
 public class TestDatabaseConfiguration {
   @Bean
   @Primary
+  @SuppressFBWarnings("HARD_CODE_PASSWORD")
   TestDatabaseSpecs defaultTestDatabaseSpecs() {
     return TestDatabaseSpecs.builder()
         .setUsername("lbuser")
