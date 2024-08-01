@@ -16,6 +16,7 @@ docker-java = "3.4.0"
 duct-tape = "1.0.8"
 error-prone = "2.29.2"
 errorprone-plugin = "4.0.1"
+findsecbugs-plugin = "1.12.0"
 google-java-format = "1.23.0"
 gradle-nexus-publish-plugin = "2.0.0"
 guava = "33.2.1-jre"
@@ -60,6 +61,8 @@ reactive-streams = "1.0.4"
 slf4j = "2.0.13"
 snakeyaml = "2.2"
 sonarqube-plugin = "5.1.0.4882"
+spotbugs = "4.8.6"
+spotbugs-plugin = "6.0.19"
 spotless-plugin = "7.0.0.BETA1"
 spring-boot = "3.3.2"
 spring-framework = "6.1.11"
@@ -74,11 +77,14 @@ com-fasterxml-jackson-jackson-bom = { module = "com.fasterxml.jackson:jackson-bo
 com-github-docker-java-docker-java-api = { module = "com.github.docker-java:docker-java-api", version.ref = "docker-java" }
 com-github-docker-java-docker-java-transport = { module = "com.github.docker-java:docker-java-transport", version.ref = "docker-java" }
 com-github-docker-java-docker-java-transport-zerodep = { module = "com.github.docker-java:docker-java-transport-zerodep", version.ref = "docker-java" }
+com-github-spotbugs-spotbugs = { module = "com.github.spotbugs:spotbugs", version.ref = "spotbugs" }
+com-github-spotbugs-spotbugs-annotations = { module = "com.github.spotbugs:spotbugs-annotations", version.ref = "spotbugs" }
 com-google-errorprone-error-prone-annotations = { module = "com.google.errorprone:error_prone_annotations", version.ref = "error-prone" }
 com-google-errorprone-error-prone-core = { module = "com.google.errorprone:error_prone_core", version.ref = "error-prone" }
 com-google-googlejavaformat-google-java-format = { module = "com.google.googlejavaformat:google-java-format", version.ref = "google-java-format" }
 com-google-guava-guava = { module = "com.google.guava:guava", version.ref = "guava" }
 com-h2database-h2 = { module = "com.h2database:h2", version.ref = "h2" }
+com-h3xstream-findsecbugs-findsecbugs-plugin = { module = "com.h3xstream.findsecbugs:findsecbugs-plugin", version.ref = "findsecbugs-plugin" }
 com-microsoft-sqlserver-mssql-jdbc = { module = "com.microsoft.sqlserver:mssql-jdbc", version.ref = "mssql-jdbc" }
 com-opencsv-opencsv = { module = "com.opencsv:opencsv", version.ref = "opencsv" }
 com-pinterest-ktlint-ktlint-cli = { module = "com.pinterest.ktlint:ktlint-cli", version.ref = "ktlint" }
@@ -156,6 +162,7 @@ org-yaml-snakeyaml = { module = "org.yaml:snakeyaml", version.ref = "snakeyaml" 
 
 [plugins]
 com-diffplug-spotless = { id = "com.diffplug.spotless", version.ref = "spotless-plugin" }
+com-github-spotbugs = { id = "com.github.spotbugs", version.ref = "spotbugs-plugin" }
 io-github-gradle-nexus-publish-plugin = { id = "io.github.gradle-nexus.publish-plugin", version.ref = "gradle-nexus-publish-plugin" }
 net-ltgt-errorprone = { id = "net.ltgt.errorprone", version.ref = "errorprone-plugin" }
 net-ltgt-nullaway = { id = "net.ltgt.nullaway", version.ref = "nullaway-plugin" }

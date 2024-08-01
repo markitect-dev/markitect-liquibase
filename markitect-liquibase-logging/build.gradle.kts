@@ -7,6 +7,7 @@ dependencies {
     api(project(":markitect-liquibase-base"))
     api(libs.org.liquibase.liquibase.core)
     compileOnly(libs.biz.aqute.bnd.biz.aqute.bnd.annotation)
+    compileOnly(libs.com.github.spotbugs.spotbugs.annotations)
     compileOnly(libs.com.google.errorprone.error.prone.annotations)
     compileOnly(libs.org.apache.logging.log4j.log4j.api)
     compileOnly(libs.org.checkerframework.checker.qual)
@@ -15,6 +16,7 @@ dependencies {
     compileOnly(libs.org.slf4j.slf4j.api)
 
     testCompileOnly(libs.biz.aqute.bnd.biz.aqute.bnd.annotation)
+    testCompileOnly(libs.com.github.spotbugs.spotbugs.annotations)
     testCompileOnly(libs.com.google.errorprone.error.prone.annotations)
     testCompileOnly(libs.org.checkerframework.checker.qual)
     testCompileOnly(libs.org.osgi.org.osgi.annotation.bundle)

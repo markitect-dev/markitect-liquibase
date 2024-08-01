@@ -94,6 +94,7 @@
     <sonar.coverage.jacoco.xmlReportPaths xml:space="preserve">
       ${maven.multiModuleProjectDirectory}/markitect-liquibase-coverage/target/site/jacoco-aggregate/jacoco.xml
     </sonar.coverage.jacoco.xmlReportPaths>
+    <spotbugs.config.directory>${maven.multiModuleProjectDirectory}/config/spotbugs</spotbugs.config.directory>
     <spotless.config.directory>${maven.multiModuleProjectDirectory}/config/spotless</spotless.config.directory>
 
     <apiguardian.version>1.1.2</apiguardian.version>
@@ -111,6 +112,7 @@
     <duct-tape.version>1.0.8</duct-tape.version>
     <error-prone.version>2.29.2</error-prone.version>
     <extra-enforcer-rules.version>1.8.0</extra-enforcer-rules.version>
+    <findsecbugs-plugin.version>1.12.0</findsecbugs-plugin.version>
     <flatten-maven-plugin.version>1.6.0</flatten-maven-plugin.version>
     <google-java-format.version>1.23.0</google-java-format.version>
     <h2.version>2.3.230</h2.version>
@@ -175,6 +177,8 @@
     <snakeyaml.version>2.2</snakeyaml.version>
     <sonar-maven-plugin.version>4.0.0.4121</sonar-maven-plugin.version>
     <sortpom.version>4.0.0</sortpom.version>
+    <spotbugs-maven-plugin.version>4.8.6.2</spotbugs-maven-plugin.version>
+    <spotbugs.version>4.8.6</spotbugs.version>
     <spotless-maven-plugin.version>2.44.0.BETA1</spotless-maven-plugin.version>
     <spring-boot.version>3.3.2</spring-boot.version>
     <spring-framework.version>6.1.11</spring-framework.version>
@@ -326,6 +330,33 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-assembly-plugin</artifactId>
           <version>${maven-assembly-plugin.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>com.github.spotbugs</groupId>
+          <artifactId>spotbugs-maven-plugin</artifactId>
+          <version>${spotbugs-maven-plugin.version}</version>
+          <configuration>
+            <effort>Max</effort>
+            <excludeFilterFile>${spotbugs.config.directory}/exclude.xml</excludeFilterFile>
+            <htmlOutput>true</htmlOutput>
+            <includeTests>true</includeTests>
+            <plugins>
+              <plugin>
+                <groupId>com.h3xstream.findsecbugs</groupId>
+                <artifactId>findsecbugs-plugin</artifactId>
+                <version>${findsecbugs-plugin.version}</version>
+              </plugin>
+            </plugins>
+            <threshold>Low</threshold>
+            <xmlOutput>true</xmlOutput>
+          </configuration>
+          <dependencies>
+            <dependency>
+              <groupId>com.github.spotbugs</groupId>
+              <artifactId>spotbugs</artifactId>
+              <version>${spotbugs.version}</version>
+            </dependency>
+          </dependencies>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -1055,6 +1086,20 @@
                 </execution>
                 <execution>
                   <id>check</id>
+                  <phase>test-compile</phase>
+                </execution>
+              </executions>
+            </plugin>
+            <plugin>
+              <groupId>com.github.spotbugs</groupId>
+              <artifactId>spotbugs-maven-plugin</artifactId>
+              <version>${spotbugs-maven-plugin.version}</version>
+              <executions>
+                <execution>
+                  <id>check</id>
+                  <goals>
+                    <goal>check</goal>
+                  </goals>
                   <phase>test-compile</phase>
                 </execution>
               </executions>
