@@ -111,7 +111,7 @@ jobs:
           java-version-file: '.java-version'
 
       - name: Set up Gradle
-        uses: gradle/actions/setup-gradle@af1da67850ed9a4cedd57bfd976089dd991e2582 # v4.0.0-rc.1
+        uses: gradle/actions/setup-gradle@af1da67850ed9a4cedd57bfd976089dd991e2582 # v4.0.0
 
       - name: Build and test, with coverage
         run: ./gradlew build
