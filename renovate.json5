@@ -12,6 +12,10 @@
   ],
   packageRules: [
     {
+      matchPackageNames: ['com.google.errorprone:**'],
+      groupName: 'error-prone',
+    },
+    {
       matchFileNames: ['**/src/it/spring-boot-3.2/pom.xml'],
       matchPackageNames: ['org.springframework.boot:**'],
       matchUpdateTypes: ['major', 'minor'],
