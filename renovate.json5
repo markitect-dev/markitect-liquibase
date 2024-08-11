@@ -39,5 +39,28 @@
       depNameTemplate: 'prettier',
       datasourceTemplate: 'npm',
     },
+    {
+      customType: 'regex',
+      fileMatch: ['^gradle/libs\\.versions\\.toml$'],
+      matchStrings: ['prettier-plugin-properties = "(?<currentValue>.+?)"\\n'],
+      depNameTemplate: 'prettier-plugin-properties',
+      datasourceTemplate: 'npm',
+    },
+    {
+      customType: 'regex',
+      fileMatch: ['^pom\\.xml$'],
+      matchStrings: [
+        '<prettier-plugin-properties\\.version>(?<currentValue>.+)<\\/prettier-plugin-properties\\.version>',
+      ],
+      depNameTemplate: 'prettier-plugin-properties',
+      datasourceTemplate: 'npm',
+    },
+    {
+      customType: 'regex',
+      fileMatch: ['^gradle/libs\\.versions\\.toml$'],
+      matchStrings: ['prettier-plugin-toml = "(?<currentValue>.+?)"\\n'],
+      depNameTemplate: 'prettier-plugin-toml',
+      datasourceTemplate: 'npm',
+    },
   ],
 }
