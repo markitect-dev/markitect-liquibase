@@ -22,4 +22,22 @@
       enabled: false,
     },
   ],
+  customManagers: [
+    {
+      customType: 'regex',
+      fileMatch: ['^gradle/libs\\.versions\\.toml$'],
+      matchStrings: ['prettier = "(?<currentValue>.+?)"\\n'],
+      depNameTemplate: 'prettier',
+      datasourceTemplate: 'npm',
+    },
+    {
+      customType: 'regex',
+      fileMatch: ['^pom\\.xml$'],
+      matchStrings: [
+        '<prettier\\.version>(?<currentValue>.+)<\\/prettier\\.version>',
+      ],
+      depNameTemplate: 'prettier',
+      datasourceTemplate: 'npm',
+    },
+  ],
 }
