@@ -10,7 +10,59 @@
     ':separateMultipleMinorReleases',
     ':separatePatchReleases',
   ],
+  customDatasources: {
+    mvnd: {
+      defaultRegistryUrlTemplate: 'https://downloads.apache.org/maven/mvnd/',
+      format: 'html',
+    },
+  },
+  customManagers: [
+    {
+      customType: 'regex',
+      fileMatch: ['^\\.sdkmanrc$'],
+      matchStrings: ['mvnd=(?<currentValue>.+)\\n'],
+      depNameTemplate: 'mvnd',
+      datasourceTemplate: 'custom.mvnd',
+    },
+    {
+      customType: 'regex',
+      fileMatch: ['^\\.sdkmanrc$'],
+      matchStrings: ['gradle=(?<currentValue>.+)\\n'],
+      datasourceTemplate: 'gradle-version',
+      depNameTemplate: 'gradle',
+    },
+    {
+      customType: 'regex',
+      fileMatch: ['^\\.sdkmanrc$'],
+      matchStrings: ['maven=(?<currentValue>.+)\\n'],
+      depNameTemplate: 'maven',
+      packageNameTemplate: 'org.apache.maven:apache-maven',
+      datasourceTemplate: 'maven',
+    },
+    {
+      customType: 'regex',
+      fileMatch: ['^gradle/libs\\.versions\\.toml$'],
+      matchStrings: [
+        '(?<depName>prettier(?:|-plugin-(?:properties|toml))?) = "(?<currentValue>.+)"\\n',
+      ],
+      datasourceTemplate: 'npm',
+    },
+    {
+      customType: 'regex',
+      fileMatch: ['^pom\\.xml$'],
+      matchStrings: [
+        '<(?<depName>prettier(?:|-plugin-properties)?)\\.version>(?<currentValue>.+)<\\/',
+      ],
+      depNameTemplate: 'prettier',
+      datasourceTemplate: 'npm',
+    },
+  ],
   packageRules: [
+    {
+      matchDatasources: ['custom.mvnd'],
+      extractVersion: '^(?<version>.+)/$',
+      sourceUrl: 'https://github.com/apache/maven-mvnd',
+    },
     {
       matchPackageNames: ['com.google.errorprone:**'],
       groupName: 'error-prone',
@@ -20,47 +72,6 @@
       matchPackageNames: ['org.springframework.boot:**'],
       matchUpdateTypes: ['major', 'minor'],
       enabled: false,
-    },
-  ],
-  customManagers: [
-    {
-      customType: 'regex',
-      fileMatch: ['^gradle/libs\\.versions\\.toml$'],
-      matchStrings: ['prettier = "(?<currentValue>.+?)"\\n'],
-      depNameTemplate: 'prettier',
-      datasourceTemplate: 'npm',
-    },
-    {
-      customType: 'regex',
-      fileMatch: ['^pom\\.xml$'],
-      matchStrings: [
-        '<prettier\\.version>(?<currentValue>.+)<\\/prettier\\.version>',
-      ],
-      depNameTemplate: 'prettier',
-      datasourceTemplate: 'npm',
-    },
-    {
-      customType: 'regex',
-      fileMatch: ['^gradle/libs\\.versions\\.toml$'],
-      matchStrings: ['prettier-plugin-properties = "(?<currentValue>.+?)"\\n'],
-      depNameTemplate: 'prettier-plugin-properties',
-      datasourceTemplate: 'npm',
-    },
-    {
-      customType: 'regex',
-      fileMatch: ['^pom\\.xml$'],
-      matchStrings: [
-        '<prettier-plugin-properties\\.version>(?<currentValue>.+)<\\/prettier-plugin-properties\\.version>',
-      ],
-      depNameTemplate: 'prettier-plugin-properties',
-      datasourceTemplate: 'npm',
-    },
-    {
-      customType: 'regex',
-      fileMatch: ['^gradle/libs\\.versions\\.toml$'],
-      matchStrings: ['prettier-plugin-toml = "(?<currentValue>.+?)"\\n'],
-      depNameTemplate: 'prettier-plugin-toml',
-      datasourceTemplate: 'npm',
     },
   ],
 }
