@@ -53,7 +53,6 @@
       matchStrings: [
         '<(?<depName>prettier(?:|-plugin-properties)?)\\.version>(?<currentValue>.+)<\\/',
       ],
-      depNameTemplate: 'prettier',
       datasourceTemplate: 'npm',
     },
   ],
