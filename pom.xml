@@ -115,7 +115,7 @@
     <findsecbugs-plugin.version>1.13.0</findsecbugs-plugin.version>
     <flatten-maven-plugin.version>1.6.0</flatten-maven-plugin.version>
     <google-java-format.version>1.23.0</google-java-format.version>
-    <h2.version>2.3.230</h2.version>
+    <h2.version>2.3.232</h2.version>
     <hamcrest.version>3.0</hamcrest.version>
     <hikaricp.version>5.1.0</hikaricp.version>
     <hsqldb.version>2.7.3</hsqldb.version>
