@@ -71,6 +71,10 @@
       groupName: 'h2',
     },
     {
+      matchPackageNames: ['io.micrometer:**'],
+      groupName: 'micrometer',
+    },
+    {
       matchFileNames: ['**/src/it/spring-boot-3.2/pom.xml'],
       matchPackageNames: ['org.springframework.boot:**'],
       matchUpdateTypes: ['major', 'minor'],
