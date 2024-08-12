@@ -67,6 +67,10 @@
       groupName: 'error-prone',
     },
     {
+      matchPackageNames: ['com.h2database:**'],
+      groupName: 'h2',
+    },
+    {
       matchFileNames: ['**/src/it/spring-boot-3.2/pom.xml'],
       matchPackageNames: ['org.springframework.boot:**'],
       matchUpdateTypes: ['major', 'minor'],
