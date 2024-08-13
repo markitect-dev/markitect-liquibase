@@ -126,7 +126,7 @@
     <jakarta-xml-bind.version>4.0.2</jakarta-xml-bind.version>
     <jetbrains-annotations.version>24.1.0</jetbrains-annotations.version>
     <jna.version>5.14.0</jna.version>
-    <jooq.version>3.19.10</jooq.version>
+    <jooq.version>3.19.11</jooq.version>
     <junit-jupiter.version>5.10.3</junit-jupiter.version>
     <junit-pioneer.version>2.2.0</junit-pioneer.version>
     <junit.version>4.13.2</junit.version>
