@@ -71,6 +71,10 @@
       groupName: 'h2',
     },
     {
+      matchPackageNames: ['org.jooq:**'],
+      groupName: 'jooq',
+    },
+    {
       matchPackageNames: ['io.micrometer:**'],
       groupName: 'micrometer',
     },
