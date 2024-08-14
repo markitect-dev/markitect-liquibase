@@ -11,33 +11,66 @@
     ':separatePatchReleases',
   ],
   customDatasources: {
-    mvnd: {
-      defaultRegistryUrlTemplate: 'https://downloads.apache.org/maven/mvnd/',
-      format: 'html',
+    sdkmanJavaVersion: {
+      defaultRegistryUrlTemplate: 'https://api.sdkman.io/2/candidates/java/linuxx64/versions/all',
+      format: 'plain',
+      transformTemplates: [
+        '{ "releases": $map($filter($split(releases.version, ","), function($v) { $match($v, /(?<!\\.(?:crac|fx))-zulu/) }), function($v) { { "version": $replace($v, /-zulu/, "") } }) }',
+      ],
+    },
+    sdkmanGradleVersion: {
+      defaultRegistryUrlTemplate: 'https://api.sdkman.io/2/candidates/gradle/linuxx64/versions/all',
+      format: 'plain',
+      transformTemplates: [
+        '{ "releases": $map($split(releases.version, ","), function($v) { { "version": $v } }) }',
+      ],
+    },
+    sdkmanMavenVersion: {
+      defaultRegistryUrlTemplate: 'https://api.sdkman.io/2/candidates/maven/linuxx64/versions/all',
+      format: 'plain',
+      transformTemplates: [
+        '{ "releases": $map($split(releases.version, ","), function($v) { { "version": $v } }) }',
+      ],
+    },
+    sdkmanMvndVersion: {
+      defaultRegistryUrlTemplate: 'https://api.sdkman.io/2/candidates/mvnd/linuxx64/versions/list?installed=',
+      format: 'plain',
+      transformTemplates: [
+        '{ "releases": $map($reduce($map(releases[version ~> /^\\d/].version, function($v) { $split($v, /\\s+/) }), $append), function($v) { { "version": $v } }) }',
+      ],
     },
   },
   customManagers: [
     {
       customType: 'regex',
       fileMatch: ['^\\.sdkmanrc$'],
-      matchStrings: ['mvnd=(?<currentValue>.+)\\n'],
-      depNameTemplate: 'mvnd',
-      datasourceTemplate: 'custom.mvnd',
+      matchStrings: ['java=(?<currentValue>.+)-zulu\\n'],
+      depNameTemplate: 'java',
+      datasourceTemplate: 'custom.sdkmanJavaVersion',
     },
     {
       customType: 'regex',
       fileMatch: ['^\\.sdkmanrc$'],
       matchStrings: ['gradle=(?<currentValue>.+)\\n'],
-      datasourceTemplate: 'gradle-version',
       depNameTemplate: 'gradle',
+      datasourceTemplate: 'custom.sdkmanGradleVersion',
+      versioningTemplate: 'gradle',
     },
     {
       customType: 'regex',
       fileMatch: ['^\\.sdkmanrc$'],
       matchStrings: ['maven=(?<currentValue>.+)\\n'],
       depNameTemplate: 'maven',
-      packageNameTemplate: 'org.apache.maven:apache-maven',
-      datasourceTemplate: 'maven',
+      datasourceTemplate: 'custom.sdkmanMavenVersion',
+      versioningTemplate: 'maven',
+    },
+    {
+      customType: 'regex',
+      fileMatch: ['^\\.sdkmanrc$'],
+      matchStrings: ['mvnd=(?<currentValue>.+)\\n'],
+      depNameTemplate: 'mvnd',
+      datasourceTemplate: 'custom.sdkmanMvndVersion',
+      versioningTemplate: 'maven',
     },
     {
       customType: 'regex',
@@ -56,10 +89,34 @@
       datasourceTemplate: 'npm',
     },
   ],
+  logLevelRemap: [
+    {
+      matchMessage: '/^Custom manager fetcher/',
+      newLogLevel: 'debug',
+    },
+    {
+      matchMessage: '/^Response that has failed validation/',
+      newLogLevel: 'debug',
+    },
+  ],
   packageRules: [
     {
-      matchDatasources: ['custom.mvnd'],
-      extractVersion: '^(?<version>.+)/$',
+      matchPackageNames: ['java'],
+      matchUpdateTypes: ['major', 'minor'],
+      enabled: false,
+    },
+    {
+      matchPackageNames: ['maven'],
+      matchUpdateTypes: ['major'],
+      enabled: false,
+    },
+    {
+      matchPackageNames: ['mvnd'],
+      matchUpdateTypes: ['major'],
+      enabled: false,
+    },
+    {
+      matchDatasources: ['custom.sdkmanMvndVersion'],
       sourceUrl: 'https://github.com/apache/maven-mvnd',
     },
     {
