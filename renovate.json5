@@ -120,6 +120,10 @@
       sourceUrl: 'https://github.com/apache/maven-mvnd',
     },
     {
+      matchPackageNames: ['net.bytebuddy:**'],
+      groupName: 'byte-buddy',
+    },
+    {
       matchPackageNames: ['com.google.errorprone:**'],
       groupName: 'error-prone',
     },
@@ -130,6 +134,10 @@
     {
       matchPackageNames: ['org.jooq:**'],
       groupName: 'jooq',
+    },
+    {
+      matchPackageNames: ['ch.qos.logback:**'],
+      groupName: 'logback',
     },
     {
       matchPackageNames: ['io.micrometer:**'],
