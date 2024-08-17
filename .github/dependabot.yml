@@ -14,15 +14,6 @@ updates:
       interval: "daily"
       time: "11:00"
     open-pull-requests-limit: 0
-    groups:
-      junit:
-        patterns:
-          - "org.junit.platform:*"
-          - "org.junit.jupiter:*"
-    ignore:
-      - dependency-name: "com.microsoft.sqlserver:mssql-jdbc"
-        versions:
-          - "12.7.0.jre11-preview"
 
   - package-ecosystem: "maven"
     directory: "/"
@@ -30,12 +21,3 @@ updates:
       interval: "daily"
       time: "11:00"
     open-pull-requests-limit: 0
-    groups:
-      junit:
-        patterns:
-          - "org.junit.platform:*"
-          - "org.junit.jupiter:*"
-    ignore:
-      - dependency-name: "com.microsoft.sqlserver:mssql-jdbc"
-        versions:
-          - "12.7.0.jre11-preview"
