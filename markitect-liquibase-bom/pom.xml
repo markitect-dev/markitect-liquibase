@@ -16,7 +16,6 @@
   <description>Markitect Liquibase BOM</description>
 
   <properties>
-    <main.basedir>${project.parent.basedir}</main.basedir>
     <project.build.outputTimestamp>2024-01-01T00:00:00Z</project.build.outputTimestamp>
   </properties>
 
