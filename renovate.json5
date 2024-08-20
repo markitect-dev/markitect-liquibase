@@ -144,6 +144,10 @@
       groupName: 'micrometer',
     },
     {
+      matchPackageNames: ['com.uber.nullaway:**'],
+      groupName: 'nullaway',
+    },
+    {
       matchFileNames: ['**/src/it/spring-boot-3.2/pom.xml'],
       matchPackageNames: ['org.springframework.boot:**'],
       matchUpdateTypes: ['major', 'minor'],
