@@ -124,6 +124,22 @@
       groupName: 'byte-buddy',
     },
     {
+      matchPackageNames: ['org.apache.commons:commons-collections4'],
+      groupName: 'commons-collections4',
+    },
+    {
+      matchPackageNames: ['org.apache.commons:commons-compress'],
+      groupName: 'commons-compress',
+    },
+    {
+      matchPackageNames: ['org.apache.commons:commons-lang3'],
+      groupName: 'commons-lang3',
+    },
+    {
+      matchPackageNames: ['org.apache.commons:commons-text'],
+      groupName: 'commons-text',
+    },
+    {
       matchPackageNames: ['com.google.errorprone:**'],
       groupName: 'error-prone',
     },
