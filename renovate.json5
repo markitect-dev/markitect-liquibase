@@ -160,8 +160,16 @@
       groupName: 'micrometer',
     },
     {
+      matchPackageNames: ['com.microsoft.sqlserver:mssql-jdbc'],
+      groupName: 'mssql-jdbc',
+    },
+    {
       matchPackageNames: ['com.uber.nullaway:**'],
       groupName: 'nullaway',
+    },
+    {
+      matchPackageNames: ['org.postgresql:postgresql'],
+      groupName: 'postgresql',
     },
     {
       matchFileNames: ['**/src/it/spring-boot-3.2/pom.xml'],
