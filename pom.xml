@@ -82,7 +82,7 @@
     <maven.compiler.release>${java.version}</maven.compiler.release>
     <maven.compiler.testRelease>${java.version}</maven.compiler.testRelease>
     <maven.deploy.skip>false</maven.deploy.skip>
-    <maven.enforcer.requireMavenVersion>3.9.8</maven.enforcer.requireMavenVersion>
+    <maven.enforcer.requireMavenVersion>3.9.9</maven.enforcer.requireMavenVersion>
     <maven.test.redirectTestOutputToFile>true</maven.test.redirectTestOutputToFile>
     <project.build.outputTimestamp>2024-01-01T00:00:00Z</project.build.outputTimestamp>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
