@@ -231,6 +231,7 @@
                 <lineSeparator>\n</lineSeparator>
                 <expandEmptyElements>false</expandEmptyElements>
                 <indentAttribute>schemaLocation</indentAttribute>
+                <quiet>true</quiet>
               </sortPom>
             </pom>
             <formats>
@@ -365,7 +366,6 @@
           <version>${maven-checkstyle-plugin.version}</version>
           <configuration>
             <configLocation>${checkstyle.config.directory}/checkstyle.xml</configLocation>
-            <consoleOutput>true</consoleOutput>
             <excludeGeneratedSources>true</excludeGeneratedSources>
             <includeTestSourceDirectory>true</includeTestSourceDirectory>
             <propertyExpansion xml:space="preserve">
