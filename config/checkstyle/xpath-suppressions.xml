@@ -3,4 +3,8 @@
     "-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2//EN"
     "https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd">
 <suppressions>
+  <suppress-xpath
+      checks="MethodName"
+      query="//METHOD_DEF[.//ANNOTATION/IDENT[@text='ParameterizedTest']]//*"
+      message="'[a-z][a-z0-9][_a-zA-Z0-9]*'.*"/>
 </suppressions>
