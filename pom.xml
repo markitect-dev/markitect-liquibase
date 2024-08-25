@@ -365,13 +365,14 @@
           <version>${maven-checkstyle-plugin.version}</version>
           <configuration>
             <configLocation>${checkstyle.config.directory}/checkstyle.xml</configLocation>
-            <propertyExpansion>config_loc=${checkstyle.config.directory}</propertyExpansion>
             <consoleOutput>true</consoleOutput>
-            <failOnViolation>true</failOnViolation>
-            <sourceDirectories>
-              <sourceDirectory>${project.build.sourceDirectory}</sourceDirectory>
-              <sourceDirectory>${project.build.testSourceDirectory}</sourceDirectory>
-            </sourceDirectories>
+            <excludeGeneratedSources>true</excludeGeneratedSources>
+            <includeTestSourceDirectory>true</includeTestSourceDirectory>
+            <propertyExpansion xml:space="preserve">
+              org.checkstyle.google.suppressionfilter.config=${checkstyle.config.directory}/suppressions.xml
+              org.checkstyle.google.suppressionxpathfilter.config=${checkstyle.config.directory}/xpath-suppressions.xml
+            </propertyExpansion>
+            <violationSeverity>warning</violationSeverity>
           </configuration>
           <dependencies>
             <dependency>
