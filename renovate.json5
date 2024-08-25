@@ -124,6 +124,10 @@
       groupName: 'byte-buddy',
     },
     {
+      matchPackageNames: ['com.puppycrawl.tools:checkstyle'],
+      groupName: 'checkstyle',
+    },
+    {
       matchPackageNames: ['org.apache.commons:commons-collections4'],
       groupName: 'commons-collections4',
     },
