@@ -14,6 +14,7 @@ dependencies {
     testCompileOnly(libs.com.github.spotbugs.spotbugs.annotations)
     testCompileOnly(libs.com.google.errorprone.error.prone.annotations)
     testCompileOnly(libs.org.checkerframework.checker.qual)
+    testImplementation(libs.com.google.guava.guava)
     testImplementation(libs.org.junit.pioneer.junit.pioneer)
     testImplementation(libs.org.springframework.boot.spring.boot.starter.jdbc)
     testImplementation(libs.org.springframework.boot.spring.boot.starter.test)

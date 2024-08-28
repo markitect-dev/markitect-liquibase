@@ -16,6 +16,7 @@ configurations.testImplementation {
         substitute(module("org.hamcrest:hamcrest-core"))
             .using(module(libs.org.hamcrest.hamcrest.get().toString()))
     }
+    exclude(group = "com.google.code.findbugs", module = "jsr305")
     exclude(group = "com.jayway.jsonpath", module = "json-path")
     exclude(group = "javax.xml.bind", module = "jaxb-api")
     exclude(group = "net.minidev", module = "json-smart")
@@ -107,14 +108,11 @@ java {
     withSourcesJar()
 }
 
-tasks.compileJava {
-    options.release = 17
-}
-
 tasks.withType<JavaCompile>().configureEach {
     options.compilerArgs.add("-parameters")
     options.compilerArgs.add("-Werror")
     options.compilerArgs.add("-Xlint:all,-options,-processing,-serial")
+    options.release = 17
 }
 
 testing.suites.withType<JvmTestSuite>().configureEach {

@@ -19,6 +19,7 @@ package dev.markitect.liquibase.database.postgresql;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
 
+import com.google.common.collect.Lists;
 import dev.markitect.liquibase.database.DatabaseBuilder;
 import dev.markitect.liquibase.database.DatabaseConnectionBuilder;
 import dev.markitect.liquibase.database.TestDatabaseConfiguration;
@@ -254,7 +255,7 @@ true             | false                | false               |             | pu
                               .execute());
                 }
               }
-              for (var databaseRecord : databaseRecords.reversed()) {
+              for (var databaseRecord : Lists.reverse(databaseRecords)) {
                 try (var database =
                     databaseBuilder
                         .withDatabaseConnection(

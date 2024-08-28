@@ -148,6 +148,10 @@
       groupName: 'error-prone',
     },
     {
+      matchPackageNames: ['com.google.guava:guava'],
+      groupName: 'guava',
+    },
+    {
       matchPackageNames: ['com.h2database:**'],
       groupName: 'h2',
     },
