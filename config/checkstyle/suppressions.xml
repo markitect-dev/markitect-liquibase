@@ -6,5 +6,6 @@
   <suppress checks="Indentation" files="[\\/]src[\\/]test[\\/]"/>
   <suppress checks="LineLength" files="[\\/]src[\\/]test[\\/]"/>
   <suppress checks="MissingJavadocMethod|MissingJavadocType"/>
+  <suppress checks="PackageName" files="[\\/]src[\\/][^\\/]+[\\/]resources[\\/]"/>
   <suppress checks="VariableDeclarationUsageDistance" files="[\\/]src[\\/]test[\\/]"/>
 </suppressions>
