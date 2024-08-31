@@ -180,6 +180,10 @@
       groupName: 'postgresql',
     },
     {
+      matchPackageNames: ['org.yaml:snakeyaml'],
+      groupName: 'snakeyaml',
+    },
+    {
       matchFileNames: ['**/src/it/spring-boot-3.2/pom.xml'],
       matchPackageNames: ['org.springframework.boot:**'],
       matchUpdateTypes: ['major', 'minor'],
