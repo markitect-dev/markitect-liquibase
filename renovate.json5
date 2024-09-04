@@ -160,6 +160,10 @@
       groupName: 'jooq',
     },
     {
+      matchPackageNames: ['org.liquibase:**'],
+      groupName: 'liquibase',
+    },
+    {
       matchPackageNames: ['ch.qos.logback:**'],
       groupName: 'logback',
     },
