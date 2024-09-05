@@ -1,0 +1,259 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta charset="UTF-8"/>
+      <title>SpotBugs Report</title>
+      <style type="text/css">
+		.tablerow0 {
+			background: #EEEEEE;
+		}
+
+		.tablerow1 {
+			background: white;
+		}
+
+		.detailrow0 {
+			background: #EEEEEE;
+		}
+
+		.detailrow1 {
+			background: white;
+		}
+
+		.tableheader {
+			background: #b9b9fe;
+			font-size: larger;
+		}
+
+		.tablerow0:hover, .tablerow1:hover {
+			background: #aaffaa;
+		}
+
+		.priority-1 {
+				color: red;
+				font-weight: bold;
+		}
+		.priority-2 {
+				color: orange;
+				font-weight: bold;
+		}
+		.priority-3 {
+				color: green;
+				font-weight: bold;
+		}
+		.priority-4 {
+				color: blue;
+				font-weight: bold;
+		}
+		</style>
+      <script type="text/javascript">
+			function toggleRow(elid) {
+				if (document.getElementById) {
+					element = document.getElementById(elid);
+					if (element) {
+						if (element.style.display == 'none') {
+							element.style.display = 'block';
+							//window.status = 'Toggle on!';
+						} else {
+							element.style.display = 'none';
+							//window.status = 'Toggle off!';
+						}
+					}
+				}
+			}
+		</script>
+   </head>
+   <body>
+      <h1>
+         <a href="https://spotbugs.github.io/">SpotBugs</a> Report</h1>
+      <h2>Project Information</h2>
+      <p>Project: 
+		markitect-liquibase-core</p>
+      <p>SpotBugs version: 4.8.6</p>
+      <p>Code analyzed:</p>
+      <ul>
+         <li>/home/runner/work/markitect-liquibase/markitect-liquibase/markitect-liquibase-core/target/classes</li>
+         <li>/home/runner/work/markitect-liquibase/markitect-liquibase/markitect-liquibase-core/target/test-classes</li>
+      </ul>
+      <p>
+         <br/>
+         <br/>
+      </p>
+      <h2>Metrics</h2>
+      <p>3201 lines of code analyzed,
+	in 101 classes, 
+	in 12 packages.</p>
+      <table width="500" cellpadding="5" cellspacing="2">
+         <tr class="tableheader">
+            <th align="left">Metric</th>
+            <th align="right">Total</th>
+            <th align="right">Density*</th>
+         </tr>
+         <tr class="tablerow0">
+            <td>High Priority Warnings</td>
+            <td align="right"/>
+            <td align="right">0.00</td>
+         </tr>
+         <tr class="tablerow1">
+            <td>Medium Priority Warnings</td>
+            <td align="right"/>
+            <td align="right">0.00</td>
+         </tr>
+         <tr class="tablerow1">
+            <td>Low Priority Warnings</td>
+            <td align="right">4</td>
+            <td align="right">1.25</td>
+         </tr>
+         <tr class="$totalClass">
+            <td>
+               <b>Total Warnings</b>
+            </td>
+            <td align="right">
+               <b>4</b>
+            </td>
+            <td align="right">
+               <b>1.25</b>
+            </td>
+         </tr>
+      </table>
+      <p>
+         <i>(* Defects per Thousand lines of non-commenting source statements)</i>
+      </p>
+      <p>
+         <br/>
+         <br/>
+      </p>
+      <h2>Contents</h2>
+      <ul>
+         <li>
+            <a href="#Warnings_CORRECTNESS">Correctness Warnings</a>
+         </li>
+         <li>
+            <a href="#Details">Details</a>
+         </li>
+      </ul>
+      <h1>Summary</h1>
+      <table width="500" cellpadding="5" cellspacing="2">
+         <tr class="tableheader">
+            <th align="left">Warning Type</th>
+            <th align="right">Number</th>
+         </tr>
+         <tr class="tablerow0">
+            <td>
+               <a href="#Warnings_CORRECTNESS">Correctness Warnings</a>
+            </td>
+            <td align="right">4</td>
+         </tr>
+         <tr class="tablerow1">
+            <td>
+               <b>Total</b>
+            </td>
+            <td align="right">
+               <b>4</b>
+            </td>
+         </tr>
+      </table>
+      <h1>Warnings</h1>
+      <p>Click on a warning row to see full context information.</p>
+      <h2>
+         <a name="Warnings_CORRECTNESS">Correctness Warnings</a>
+      </h2>
+      <table class="warningtable" width="100%" cellspacing="0">
+         <tr class="tableheader">
+            <th align="left">Code</th>
+            <th align="left">Warning</th>
+         </tr>
+         <tr class="tablerow1" onclick="toggleRow('d1e101');">
+            <td>
+               <span class="priority-3">NP</span>
+            </td>
+            <td>Non-virtual method call in dev.markitect.liquibase.structure.StructuresTests.lambda$isCatalogOrSchemaTypeThrowsNullPointerException$0() passes null for non-null parameter of Structures.isCatalogOrSchemaType(Class)</td>
+         </tr>
+         <tr class="detailrow1">
+            <td/>
+            <td>
+               <p id="d1e101" style="display: none;">
+                  <a href="#NP_NULL_PARAM_DEREF_NONVIRTUAL">Bug type NP_NULL_PARAM_DEREF_NONVIRTUAL (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.structure.StructuresTests<br/>In method dev.markitect.liquibase.structure.StructuresTests.lambda$isCatalogOrSchemaTypeThrowsNullPointerException$0()<br/>Called method dev.markitect.liquibase.structure.Structures.isCatalogOrSchemaType(Class)<br/>At StructuresTests.java:[line 59]<br/>Argument 1 is definitely null but must not be null</p>
+            </td>
+         </tr>
+         <tr class="tablerow0" onclick="toggleRow('d1e139');">
+            <td>
+               <span class="priority-3">NP</span>
+            </td>
+            <td>Non-virtual method call in dev.markitect.liquibase.util.StringsTests.lambda$isIllegalIdentifierThrowsNullPointerException$0() passes null for non-null parameter of Strings.isIllegalIdentifier(String)</td>
+         </tr>
+         <tr class="detailrow0">
+            <td/>
+            <td>
+               <p id="d1e139" style="display: none;">
+                  <a href="#NP_NULL_PARAM_DEREF_NONVIRTUAL">Bug type NP_NULL_PARAM_DEREF_NONVIRTUAL (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.util.StringsTests<br/>In method dev.markitect.liquibase.util.StringsTests.lambda$isIllegalIdentifierThrowsNullPointerException$0()<br/>Called method dev.markitect.liquibase.util.Strings.isIllegalIdentifier(String)<br/>At StringsTests.java:[line 52]<br/>Argument 1 is definitely null but must not be null</p>
+            </td>
+         </tr>
+         <tr class="tablerow1" onclick="toggleRow('d1e124');">
+            <td>
+               <span class="priority-3">RV</span>
+            </td>
+            <td>Return value of Structures.isCatalogOrSchemaType(Class) ignored in dev.markitect.liquibase.structure.StructuresTests.lambda$isCatalogOrSchemaTypeThrowsNullPointerException$0()</td>
+         </tr>
+         <tr class="detailrow1">
+            <td/>
+            <td>
+               <p id="d1e124" style="display: none;">
+                  <a href="#RV_RETURN_VALUE_IGNORED">Bug type RV_RETURN_VALUE_IGNORED (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.structure.StructuresTests<br/>In method dev.markitect.liquibase.structure.StructuresTests.lambda$isCatalogOrSchemaTypeThrowsNullPointerException$0()<br/>Called method dev.markitect.liquibase.structure.Structures.isCatalogOrSchemaType(Class)<br/>At StructuresTests.java:[line 59]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0" onclick="toggleRow('d1e162');">
+            <td>
+               <span class="priority-3">RV</span>
+            </td>
+            <td>Return value of Strings.isIllegalIdentifier(String) ignored in dev.markitect.liquibase.util.StringsTests.lambda$isIllegalIdentifierThrowsNullPointerException$0()</td>
+         </tr>
+         <tr class="detailrow0">
+            <td/>
+            <td>
+               <p id="d1e162" style="display: none;">
+                  <a href="#RV_RETURN_VALUE_IGNORED">Bug type RV_RETURN_VALUE_IGNORED (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.util.StringsTests<br/>In method dev.markitect.liquibase.util.StringsTests.lambda$isIllegalIdentifierThrowsNullPointerException$0()<br/>Called method dev.markitect.liquibase.util.Strings.isIllegalIdentifier(String)<br/>At StringsTests.java:[line 52]</p>
+            </td>
+         </tr>
+      </table>
+      <h1>
+         <a name="Details">Details</a>
+      </h1>
+      <h2>
+         <a name="NP_NULL_PARAM_DEREF_NONVIRTUAL">NP_NULL_PARAM_DEREF_NONVIRTUAL: Non-virtual method call passes null for non-null parameter</a>
+      </h2>
+      
+      <p>
+      A possibly-null value is passed to a non-null method parameter.
+    Either the parameter is annotated as a parameter that should
+    always be non-null, or analysis has shown that it will always be
+    dereferenced.
+      </p>
+      
+   <h2>
+         <a name="RV_RETURN_VALUE_IGNORED">RV_RETURN_VALUE_IGNORED: Method ignores return value</a>
+      </h2>
+
+   <p> The return value of this method should be checked. One common
+cause of this warning is to invoke a method on an immutable object,
+thinking that it updates the object. For example, in the following code
+fragment,</p>
+<pre><code>String dateString = getHeaderField(name);
+dateString.trim();
+</code></pre>
+<p>the programmer seems to be thinking that the trim() method will update
+the String referenced by dateString. But since Strings are immutable, the trim()
+function returns a new String value, which is being ignored here. The code
+should be corrected to: </p>
+<pre><code>String dateString = getHeaderField(name);
+dateString = dateString.trim();
+</code></pre>
+
+    </body>
+</html>
