@@ -124,6 +124,10 @@
       groupName: 'byte-buddy',
     },
     {
+      matchPackageNames: ['org.checkerframework:**'],
+      groupName: 'checker-framework',
+    },
+    {
       matchPackageNames: ['com.puppycrawl.tools:checkstyle'],
       groupName: 'checkstyle',
     },
