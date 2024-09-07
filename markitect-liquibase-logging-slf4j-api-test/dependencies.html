@@ -246,13 +246,13 @@
 <tr class="b">
 <td>org.apache.logging.log4j</td>
 <td><a class="externalLink" href="https://logging.apache.org/log4j/2.x/log4j/log4j-api/">log4j-api</a></td>
-<td>2.23.1</td>
+<td>2.24.0</td>
 <td>jar</td>
 <td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></td></tr>
 <tr class="a">
 <td>org.apache.logging.log4j</td>
 <td><a class="externalLink" href="https://logging.apache.org/log4j/2.x/log4j/log4j-to-slf4j/">log4j-to-slf4j</a></td>
-<td>2.23.1</td>
+<td>2.24.0</td>
 <td>jar</td>
 <td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></td></tr>
 <tr class="b">
@@ -729,23 +729,27 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>URL: </b><a class="externalLink" href="https://spring.io/projects/spring-boot">https://spring.io/projects/spring-boot</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a></p></td></tr></table></div>
 <ul>
-<li>org.apache.logging.log4j:log4j-to-slf4j:jar:2.23.1 (test) <img id="_img55" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep54', '_img55' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep54" style="display:none">
+<li>org.apache.logging.log4j:log4j-to-slf4j:jar:2.24.0 (test) <img id="_img55" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep54', '_img55' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep54" style="display:none">
 <table class="table table-striped">
 <tr class="a">
-<th>Apache Log4j to SLF4J Adapter</th></tr>
+<th>Log4j API to SLF4J Adapter</th></tr>
 <tr class="b">
 <td>
-<p><b>Description: </b>The Apache Log4j binding between Log4j 2 API and SLF4J.</p>
+<p><b>Description: </b>Forwards the Log4j API calls to SLF4J.
+    (Refer to the `log4j-slf4j[2]-impl` artifacts for forwarding SLF4J to the Log4j API.)</p>
 <p><b>URL: </b><a class="externalLink" href="https://logging.apache.org/log4j/2.x/log4j/log4j-to-slf4j/">https://logging.apache.org/log4j/2.x/log4j/log4j-to-slf4j/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></p></td></tr></table></div>
 <ul>
-<li>org.apache.logging.log4j:log4j-api:jar:2.23.1 (test) <img id="_img57" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep56', '_img57' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep56" style="display:none">
+<li>org.apache.logging.log4j:log4j-api:jar:2.24.0 (test) <img id="_img57" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep56', '_img57' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep56" style="display:none">
 <table class="table table-striped">
 <tr class="a">
 <th>Apache Log4j API</th></tr>
 <tr class="b">
 <td>
-<p><b>Description: </b>The Apache Log4j API</p>
+<p><b>Description: </b>The logging API of the Log4j project.
+    Library and application code can log through this API.
+    It contains a simple built-in implementation (`SimpleLogger`) for trivial use cases.
+    Production applications are recommended to use Log4j API in combination with a fully-fledged implementation, such as Log4j Core.</p>
 <p><b>URL: </b><a class="externalLink" href="https://logging.apache.org/log4j/2.x/log4j/log4j-api/">https://logging.apache.org/log4j/2.x/log4j/log4j-api/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></p></td></tr></table></div></li></ul></li>
 <li>org.slf4j:jul-to-slf4j:jar:2.0.16 (test) <img id="_img59" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep58', '_img59' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep58" style="display:none">
@@ -993,7 +997,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>EDL 1.0: </b>Jakarta Activation API</p>
 <p><b>The MIT License: </b>Checker Qual</p>
 <p><b>Apache License, Version 2.0: </b>Apache Commons Collections, AssertJ Core, Byte Buddy (without dependencies), Byte Buddy agent, Liquibase, Objenesis, SnakeYAML, Spring AOP, Spring Beans, Spring Commons Logging Bridge, Spring Context, Spring Core, Spring Expression Language (SpEL), Spring TestContext Framework, markitect-liquibase-base, markitect-liquibase-logging, markitect-liquibase-logging-slf4j-api-test, spring-boot, spring-boot-autoconfigure, spring-boot-starter, spring-boot-starter-logging, spring-boot-starter-test, spring-boot-test, spring-boot-test-autoconfigure</p>
-<p><b>Apache-2.0: </b>Apache Commons IO, Apache Commons Lang, Apache Commons Text, Apache Log4j API, Apache Log4j to SLF4J Adapter</p>
+<p><b>Apache-2.0: </b>Apache Commons IO, Apache Commons Lang, Apache Commons Text, Apache Log4j API, Log4j API to SLF4J Adapter</p>
 <p><b>Eclipse Distribution License - v 1.0: </b>Jakarta XML Binding API</p>
 <p><b>MIT: </b>mockito-core, mockito-junit-jupiter</p>
 <p><b>EPL 2.0: </b>Jakarta Annotations API</p>
@@ -1201,9 +1205,9 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: center;">9</td>
 <td style="text-align: center;">No</td></tr>
 <tr class="b">
-<td style="text-align: left;">log4j-api-2.23.1.jar</td>
-<td style="text-align: right;">342.5 kB</td>
-<td style="text-align: right;">241</td>
+<td style="text-align: left;">log4j-api-2.24.0.jar</td>
+<td style="text-align: right;">346.6 kB</td>
+<td style="text-align: right;">247</td>
 <td style="text-align: right;">-</td>
 <td style="text-align: right;">-</td>
 <td style="text-align: center;">-</td>
@@ -1211,9 +1215,9 @@ file comparators, endian transformation classes, and much more.</p>
 <tr class="a">
 <td style="text-align: left;">&#160;&#160;&#160;&#x2022; Root</td>
 <td style="text-align: right;">-</td>
-<td style="text-align: right;">230</td>
-<td style="text-align: right;">205</td>
-<td style="text-align: right;">9</td>
+<td style="text-align: right;">236</td>
+<td style="text-align: right;">209</td>
+<td style="text-align: right;">11</td>
 <td style="text-align: center;">1.8</td>
 <td style="text-align: center;">Yes</td></tr>
 <tr class="b">
@@ -1225,8 +1229,8 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: center;">9</td>
 <td style="text-align: center;">Yes</td></tr>
 <tr class="a">
-<td style="text-align: left;">log4j-to-slf4j-2.23.1.jar</td>
-<td style="text-align: right;">23.1 kB</td>
+<td style="text-align: left;">log4j-to-slf4j-2.24.0.jar</td>
+<td style="text-align: right;">23.5 kB</td>
 <td style="text-align: right;">26</td>
 <td style="text-align: right;">10</td>
 <td style="text-align: right;">2</td>
@@ -1667,9 +1671,9 @@ file comparators, endian transformation classes, and much more.</p>
 <tr class="b">
 <td style="text-align: right;">53</td>
 <td style="text-align: right;">24.8 MB</td>
-<td style="text-align: right;">17588</td>
-<td style="text-align: right;">15751</td>
-<td style="text-align: right;">927</td>
+<td style="text-align: right;">17594</td>
+<td style="text-align: right;">15755</td>
+<td style="text-align: right;">929</td>
 <td style="text-align: center;">17</td>
 <td style="text-align: right;">49</td></tr>
 <tr class="a">
@@ -1683,9 +1687,9 @@ file comparators, endian transformation classes, and much more.</p>
 <tr class="b">
 <td style="text-align: right;">test: 51</td>
 <td style="text-align: right;">test: 24.8 MB</td>
-<td style="text-align: right;">test: 17511</td>
-<td style="text-align: right;">test: 15692</td>
-<td style="text-align: right;">test: 923</td>
+<td style="text-align: right;">test: 17517</td>
+<td style="text-align: right;">test: 15696</td>
+<td style="text-align: right;">test: 925</td>
 <td style="text-align: center;">17</td>
 <td style="text-align: right;">test: 47</td></tr></table></section>        </main>
       </div>
