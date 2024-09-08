@@ -17,3 +17,8 @@ checkstyle {
 tasks.withType<Checkstyle>().configureEach {
     group = "verification"
 }
+
+tasks.register("checkstyleAll") {
+    group = "verification"
+    dependsOn(tasks.withType<Checkstyle>())
+}
