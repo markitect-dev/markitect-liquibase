@@ -103,18 +103,18 @@
          </tr>
          <tr class="tablerow1">
             <td>Low Priority Warnings</td>
-            <td align="right">3</td>
-            <td align="right">17.86</td>
+            <td align="right">1</td>
+            <td align="right">5.95</td>
          </tr>
          <tr class="$totalClass">
             <td>
                <b>Total Warnings</b>
             </td>
             <td align="right">
-               <b>3</b>
+               <b>1</b>
             </td>
             <td align="right">
-               <b>17.86</b>
+               <b>5.95</b>
             </td>
          </tr>
       </table>
@@ -144,14 +144,14 @@
             <td>
                <a href="#Warnings_CORRECTNESS">Correctness Warnings</a>
             </td>
-            <td align="right">3</td>
+            <td align="right">1</td>
          </tr>
          <tr class="tablerow1">
             <td>
                <b>Total</b>
             </td>
             <td align="right">
-               <b>3</b>
+               <b>1</b>
             </td>
          </tr>
       </table>
@@ -169,40 +169,12 @@
             <td>
                <span class="priority-3">NP</span>
             </td>
-            <td>Null passed for non-null parameter of Preconditions.checkNotNull(Object) in dev.markitect.liquibase.base.PreconditionsTests.lambda$checkNotNull_throwsNullPointerException$2()</td>
-         </tr>
-         <tr class="detailrow1">
-            <td/>
-            <td>
-               <p id="d1e26" style="display: none;">
-                  <a href="#NP_NONNULL_PARAM_VIOLATION">Bug type NP_NONNULL_PARAM_VIOLATION (click for details)</a>
-                  <br/>In class dev.markitect.liquibase.base.PreconditionsTests<br/>In method dev.markitect.liquibase.base.PreconditionsTests.lambda$checkNotNull_throwsNullPointerException$2()<br/>Called method dev.markitect.liquibase.base.Preconditions.checkNotNull(Object)<br/>Argument 1 is definitely null but must not be null<br/>At PreconditionsTests.java:[line 98]</p>
-            </td>
-         </tr>
-         <tr class="tablerow0" onclick="toggleRow('d1e44');">
-            <td>
-               <span class="priority-3">NP</span>
-            </td>
-            <td>Null passed for non-null parameter of Preconditions.checkNotNull(Object, String) in dev.markitect.liquibase.base.PreconditionsTests.lambda$checkNotNull_throwsNullPointerException$3()</td>
-         </tr>
-         <tr class="detailrow0">
-            <td/>
-            <td>
-               <p id="d1e44" style="display: none;">
-                  <a href="#NP_NONNULL_PARAM_VIOLATION">Bug type NP_NONNULL_PARAM_VIOLATION (click for details)</a>
-                  <br/>In class dev.markitect.liquibase.base.PreconditionsTests<br/>In method dev.markitect.liquibase.base.PreconditionsTests.lambda$checkNotNull_throwsNullPointerException$3()<br/>Called method dev.markitect.liquibase.base.Preconditions.checkNotNull(Object, String)<br/>Argument 1 is definitely null but must not be null<br/>At PreconditionsTests.java:[line 104]</p>
-            </td>
-         </tr>
-         <tr class="tablerow1" onclick="toggleRow('d1e62');">
-            <td>
-               <span class="priority-3">NP</span>
-            </td>
             <td>Non-virtual method call in dev.markitect.liquibase.base.PreconditionsTests.lambda$checkNotNull_throwsNullPointerException$2() passes null for non-null parameter of Preconditions.checkNotNull(Object)</td>
          </tr>
          <tr class="detailrow1">
             <td/>
             <td>
-               <p id="d1e62" style="display: none;">
+               <p id="d1e26" style="display: none;">
                   <a href="#NP_NULL_PARAM_DEREF_NONVIRTUAL">Bug type NP_NULL_PARAM_DEREF_NONVIRTUAL (click for details)</a>
                   <br/>In class dev.markitect.liquibase.base.PreconditionsTests<br/>In method dev.markitect.liquibase.base.PreconditionsTests.lambda$checkNotNull_throwsNullPointerException$2()<br/>Called method dev.markitect.liquibase.base.Preconditions.checkNotNull(Object)<br/>At PreconditionsTests.java:[line 98]<br/>Argument 1 is definitely null but must not be null</p>
             </td>
@@ -212,17 +184,6 @@
          <a name="Details">Details</a>
       </h1>
       <h2>
-         <a name="NP_NONNULL_PARAM_VIOLATION">NP_NONNULL_PARAM_VIOLATION: Method call passes null to a non-null parameter</a>
-      </h2>
-      
-      <p>
-      This method passes a null value as the parameter of a method which
-    must be non-null. Either this parameter has been explicitly marked
-    as @Nonnull, or analysis has determined that this parameter is
-    always dereferenced.
-      </p>
-      
-   <h2>
          <a name="NP_NULL_PARAM_DEREF_NONVIRTUAL">NP_NULL_PARAM_DEREF_NONVIRTUAL: Non-virtual method call passes null for non-null parameter</a>
       </h2>
       
