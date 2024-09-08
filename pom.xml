@@ -1079,11 +1079,11 @@
               <executions>
                 <execution>
                   <id>apply</id>
-                  <phase>test-compile</phase>
+                  <phase>verify</phase>
                 </execution>
                 <execution>
                   <id>check</id>
-                  <phase>test-compile</phase>
+                  <phase>verify</phase>
                 </execution>
               </executions>
             </plugin>
@@ -1097,7 +1097,7 @@
                   <goals>
                     <goal>check</goal>
                   </goals>
-                  <phase>test-compile</phase>
+                  <phase>verify</phase>
                 </execution>
               </executions>
             </plugin>
@@ -1111,7 +1111,7 @@
                   <goals>
                     <goal>check</goal>
                   </goals>
-                  <phase>test-compile</phase>
+                  <phase>verify</phase>
                 </execution>
               </executions>
             </plugin>
