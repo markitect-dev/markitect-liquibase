@@ -7,13 +7,7 @@ dependencies {
     api(project(":markitect-liquibase-base"))
     api(project(":markitect-liquibase-logging"))
     api(libs.org.liquibase.liquibase.core)
-    compileOnly(libs.com.github.spotbugs.spotbugs.annotations)
-    compileOnly(libs.com.google.errorprone.error.prone.annotations)
-    compileOnly(libs.org.checkerframework.checker.qual)
 
-    testCompileOnly(libs.com.github.spotbugs.spotbugs.annotations)
-    testCompileOnly(libs.com.google.errorprone.error.prone.annotations)
-    testCompileOnly(libs.org.checkerframework.checker.qual)
     testImplementation(libs.com.google.guava.guava)
     testImplementation(libs.org.junit.pioneer.junit.pioneer)
     testImplementation(libs.org.springframework.boot.spring.boot.starter.jdbc)

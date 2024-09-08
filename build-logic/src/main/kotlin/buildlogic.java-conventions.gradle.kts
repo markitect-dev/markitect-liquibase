@@ -26,6 +26,14 @@ configurations.testImplementation {
 
 dependencies {
     byteBuddyAgent(libs.net.bytebuddy.byte.buddy.agent)
+
+    compileOnly(libs.com.github.spotbugs.spotbugs.annotations)
+    compileOnly(libs.com.google.errorprone.error.prone.annotations)
+    compileOnly(libs.org.checkerframework.checker.qual)
+
+    testCompileOnly(libs.com.github.spotbugs.spotbugs.annotations)
+    testCompileOnly(libs.com.google.errorprone.error.prone.annotations)
+    testCompileOnly(libs.org.checkerframework.checker.qual)
     testImplementation(platform(libs.com.fasterxml.jackson.jackson.bom))
     testImplementation(platform(libs.io.micrometer.micrometer.bom))
     testImplementation(platform(libs.org.assertj.assertj.bom))
@@ -33,6 +41,7 @@ dependencies {
     testImplementation(platform(libs.org.mockito.mockito.bom))
     testImplementation(platform(libs.org.springframework.spring.framework.bom))
     testImplementation(platform(libs.org.testcontainers.testcontainers.bom))
+
     constraints {
         testImplementation(libs.biz.aqute.bnd.biz.aqute.bnd.annotation)
         testImplementation(libs.ch.qos.logback.logback.classic)
