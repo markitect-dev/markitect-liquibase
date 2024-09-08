@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Markitect
+ * Copyright 2023-2024 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -203,7 +203,8 @@ class DatabaseBuilderTests {
         AbstractDb2Database.class,
         MarkitectDatabase.class,
       })
-  void buildWithInvalidDatabaseClassFails(Class<? extends Database> databaseClass) {
+  void build_withInvalidDatabaseClass_throwsIllegalStateException(
+      Class<? extends Database> databaseClass) {
     // given
     var invalidBuilder = DatabaseBuilder.of(databaseClass);
 
@@ -215,7 +216,7 @@ class DatabaseBuilderTests {
   }
 
   @Test
-  void buildWithInvalidOfflineConnectionCustomizerFails() {
+  void build_withInvalidOfflineConnectionCustomizer_throwsVerifyException() {
     // given
     var invalidBuilder = DatabaseBuilder.of(H2Database.class).withOfflineConnection(ocb -> null);
 

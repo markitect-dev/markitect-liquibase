@@ -159,7 +159,7 @@ dev.markitect.liquibase.database.postgresql.MarkitectPostgresDatabase | Cat1    
 dev.markitect.liquibase.database.postgresql.MarkitectPostgresDatabase | Cat1                  | public               | postgres
 """,
       delimiter = '|')
-  void checkThrowsPreconditionErrorException(
+  void check_throwsPreconditionErrorException(
       Class<? extends Database> databaseClass,
       @Nullable String connectionCatalogName,
       @Nullable String connectionSchemaName,

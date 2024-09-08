@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Markitect
+ * Copyright 2023-2024 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -142,7 +142,7 @@ class OfflineConnectionBuilderTests {
   }
 
   @Test
-  void buildWithoutShortNameFails() {
+  void build_withoutShortName_throwsIllegalStateException() {
     // given
     var builder = OfflineConnectionBuilder.of();
 

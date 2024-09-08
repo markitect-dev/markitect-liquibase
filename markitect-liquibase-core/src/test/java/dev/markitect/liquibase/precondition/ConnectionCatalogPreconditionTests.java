@@ -169,7 +169,7 @@ dev.markitect.liquibase.database.mssql.MarkitectMssqlDatabase | Cat1            
           dev.markitect.liquibase.database.mssql.MarkitectMssqlDatabase | Cat2
           """,
       delimiter = '|')
-  void checkThrowsPreconditionErrorException(
+  void check_throwsPreconditionErrorException(
       Class<? extends Database> databaseClass, @Nullable String catalogName) throws Exception {
     // given
     var precondition = new ConnectionCatalogPrecondition();
@@ -195,7 +195,7 @@ dev.markitect.liquibase.database.mssql.MarkitectMssqlDatabase  | Cat1           
 dev.markitect.liquibase.database.mssql.MarkitectMssqlDatabase  | Cat1                  | dbo                  | Cat2        | Connection catalog precondition failed: expected Cat2, was Cat1
 """,
       delimiter = '|')
-  void checkThrowsPreconditionFailedException(
+  void check_throwsPreconditionFailedException(
       Class<? extends Database> databaseClass,
       @Nullable String connectionCatalogName,
       @Nullable String connectionSchemaName,

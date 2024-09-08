@@ -5,7 +5,7 @@
         https://raw.githubusercontent.com/spotbugs/spotbugs/4.8.4/spotbugs/etc/findbugsfilter.xsd">
   <Match>
     <Class name="dev.markitect.liquibase.base.PreconditionsTests"/>
-    <Method name="~lambda\$checkNotNullThrowsNullPointerException\$\d++"/>
+    <Method name="~lambda\$checkNotNull_throwsNullPointerException\$\d++"/>
     <Bug pattern="NP_NONNULL_PARAM_VIOLATION"/>
   </Match>
 </FindBugsFilter>

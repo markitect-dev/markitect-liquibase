@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Markitect
+ * Copyright 2023-2024 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@ import org.junit.jupiter.api.Test;
 
 class DatabaseConnectionBuilderTests {
   @Test
-  void buildWithoutUrlFails() {
+  void build_withoutUrl_throwsIllegalStateException() {
     // given
     var builder = DatabaseConnectionBuilder.of();
 
@@ -35,7 +35,7 @@ class DatabaseConnectionBuilderTests {
   }
 
   @Test
-  void buildWithInvalidUrlFails() {
+  void build_withInvalidUrl_throwsIllegalStateException() {
     // given
     var builder = DatabaseConnectionBuilder.of().withUrl("jdbc:");
 

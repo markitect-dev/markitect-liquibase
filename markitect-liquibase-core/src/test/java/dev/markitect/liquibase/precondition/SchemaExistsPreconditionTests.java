@@ -196,7 +196,7 @@ dev.markitect.liquibase.database.mssql.MarkitectMssqlDatabase         | Cat1    
 dev.markitect.liquibase.database.postgresql.MarkitectPostgresDatabase | Cat1                  | public               |             | Sch1
 """,
       delimiter = '|')
-  void checkThrowsPreconditionFailedException(
+  void check_throwsPreconditionFailedException(
       Class<? extends Database> databaseClass,
       @Nullable String connectionCatalogName,
       @Nullable String connectionSchemaName,
@@ -234,7 +234,7 @@ dev.markitect.liquibase.database.mssql.MarkitectMssqlDatabase         | Cat1    
 dev.markitect.liquibase.database.postgresql.MarkitectPostgresDatabase | Cat1                  | public               | Cat2        | public
 """,
       delimiter = '|')
-  void checkThrowsPreconditionErrorException(
+  void check_throwsPreconditionErrorException(
       Class<? extends Database> databaseClass,
       @Nullable String connectionCatalogName,
       @Nullable String connectionSchemaName,

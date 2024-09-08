@@ -106,7 +106,7 @@ dev.markitect.liquibase.database.postgresql.MarkitectPostgresDatabase | lbcat   
 dev.markitect.liquibase.database.postgresql.MarkitectPostgresDatabase | lbcat3      | public
 """,
       delimiter = '|')
-  void checkThrowsPreconditionFailedException(
+  void check_throwsPreconditionFailedException(
       Class<? extends Database> databaseClass,
       @Nullable String catalogName,
       @Nullable String schemaName)
@@ -139,7 +139,7 @@ dev.markitect.liquibase.database.postgresql.MarkitectPostgresDatabase | postgres
 dev.markitect.liquibase.database.postgresql.MarkitectPostgresDatabase | postgres    | lbschem2
 """,
       delimiter = '|')
-  void checkThrowsPreconditionErrorException(
+  void check_throwsPreconditionErrorException(
       Class<? extends Database> databaseClass,
       @Nullable String catalogName,
       @Nullable String schemaName)

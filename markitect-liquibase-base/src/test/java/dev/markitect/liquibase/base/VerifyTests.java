@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Markitect
+ * Copyright 2023-2024 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,7 +40,7 @@ class VerifyTests {
 
   @Test
   @SuppressWarnings("DataFlowIssue")
-  void verifyThrowsVerifyException() {
+  void verify_throwsVerifyException() {
     // when
     var thrown = catchThrowable(() -> Verify.verify(false));
 
@@ -75,7 +75,7 @@ class VerifyTests {
 
   @Test
   @SuppressWarnings("DataFlowIssue")
-  void verifyNotNullThrowsVerifyException() {
+  void verifyNotNull_throwsVerifyException() {
     // when
     var thrown = catchThrowable(() -> Verify.verifyNotNull(null));
 

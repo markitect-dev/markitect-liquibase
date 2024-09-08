@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Markitect
+ * Copyright 2023-2024 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -78,7 +78,7 @@ class CatalogExistsPreconditionIntegrationTests {
           dev.markitect.liquibase.database.postgresql.MarkitectPostgresDatabase | lbcat3
           """,
       delimiter = '|')
-  void checkThrowsPreconditionFailedException(
+  void check_throwsPreconditionFailedException(
       Class<? extends Database> databaseClass, @Nullable String catalogName) throws Exception {
     // given
     var precondition = new CatalogExistsPrecondition();

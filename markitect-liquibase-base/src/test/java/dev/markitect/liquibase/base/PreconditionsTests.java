@@ -58,7 +58,7 @@ class PreconditionsTests {
                 1 |    1
           """,
       delimiter = '|')
-  void checkIndexThrowsIndexOutOfBoundsException(int index, int size) {
+  void checkIndex_throwsIndexOutOfBoundsException(int index, int size) {
     // when
     var thrown = catchThrowable(() -> Preconditions.checkIndex(index, size));
 
@@ -93,7 +93,7 @@ class PreconditionsTests {
 
   @Test
   @SuppressWarnings({"DataFlowIssue", "NullAway"})
-  void checkNotNullThrowsNullPointerException() {
+  void checkNotNull_throwsNullPointerException() {
     // when
     var thrown = catchThrowable(() -> Preconditions.checkNotNull(null));
 
@@ -123,7 +123,7 @@ class PreconditionsTests {
 
   @Test
   @SuppressWarnings("DataFlowIssue")
-  void checkStateThrowsIllegalStateException() {
+  void checkState_throwsIllegalStateException() {
     // when
     var thrown = catchThrowable(() -> Preconditions.checkState(false));
 
