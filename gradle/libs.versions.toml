@@ -117,6 +117,7 @@ org-checkerframework-checker-qual = { module = "org.checkerframework:checker-qua
 org-hamcrest-hamcrest = { module = "org.hamcrest:hamcrest", version.ref = "hamcrest" }
 org-hsqldb-hsqldb = { module = "org.hsqldb:hsqldb", version.ref = "hsqldb" }
 org-jacoco-org-jacoco-agent = { module = "org.jacoco:org.jacoco.agent", version.ref = "jacoco" }
+org-jacoco-org-jacoco-ant = { module = "org.jacoco:org.jacoco.ant", version.ref = "jacoco" }
 org-jetbrains-annotations = { module = "org.jetbrains:annotations", version.ref = "jetbrains-annotations" }
 org-jooq-jooq = { module = "org.jooq:jooq", version.ref = "jooq" }
 org-jooq-jooq-meta-extensions-liquibase = { module = "org.jooq:jooq-meta-extensions-liquibase", version.ref = "jooq" }

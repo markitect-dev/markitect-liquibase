@@ -7,6 +7,7 @@ plugins {
 }
 
 dependencies {
+    spotbugs(libs.com.github.spotbugs.spotbugs)
     spotbugsPlugins(libs.com.h3xstream.findsecbugs.findsecbugs.plugin)
 }
 

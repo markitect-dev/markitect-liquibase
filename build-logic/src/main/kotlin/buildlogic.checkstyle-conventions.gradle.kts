@@ -2,6 +2,10 @@ plugins {
     checkstyle
 }
 
+dependencies {
+    checkstyle(libs.com.puppycrawl.tools.checkstyle)
+}
+
 checkstyle {
     toolVersion = libs.versions.checkstyle.get()
     configProperties =
