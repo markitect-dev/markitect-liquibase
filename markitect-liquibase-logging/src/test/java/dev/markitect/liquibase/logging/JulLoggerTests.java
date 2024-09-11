@@ -34,10 +34,12 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.Mock;
+import org.mockito.MockedStatic;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
 class JulLoggerTests {
+  @Mock private MockedStatic<Logger> mockedLogger;
   @Mock private Logger logger;
   @Mock private ResourceBundle rb;
   @Captor private ArgumentCaptor<Level> levelCaptor;
@@ -45,19 +47,18 @@ class JulLoggerTests {
 
   @Test
   @SuppressFBWarnings("RV_RETURN_VALUE_IGNORED_NO_SIDE_EFFECT")
-  void test() throws Exception {
+  @SuppressWarnings("DirectInvocationOnMock")
+  void test() {
     // given
     String name = JulLoggerTests.class.getName();
     String sourceClassName = JulLoggerTests.class.getName();
+    mockedLogger.when(() -> Logger.getLogger(name)).thenReturn(logger);
     given(logger.isLoggable(any()))
         .willAnswer(
             invocation -> invocation.<Level>getArgument(0).intValue() >= Level.FINER.intValue());
     given(logger.getResourceBundleName()).willReturn("rb");
     given(logger.getResourceBundle()).willReturn(rb);
-    var loggerField = JulLogger.class.getDeclaredField("logger");
-    loggerField.setAccessible(true);
     var julLogger = new JulLogger(name);
-    loggerField.set(julLogger, logger);
 
     // when
     var thrown = new Exception();
@@ -78,6 +79,7 @@ class JulLoggerTests {
     julLogger.close();
 
     // then
+    mockedLogger.verify(() -> Logger.getLogger(name));
     then(logger).should(times(14)).isLoggable(levelCaptor.capture());
     then(logger).should(times(13)).log(logRecordCaptor.capture());
     verifyNoMoreInteractions(logger);

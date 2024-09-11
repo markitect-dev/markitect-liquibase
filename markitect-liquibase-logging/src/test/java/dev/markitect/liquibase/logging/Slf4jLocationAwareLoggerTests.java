@@ -31,13 +31,10 @@ class Slf4jLocationAwareLoggerTests {
   @Mock private LocationAwareLogger logger;
 
   @Test
-  void test() throws Exception {
+  void test() {
     // given
     String fqcn = Slf4jLocationAwareLogger.class.getName();
-    var loggerField = Slf4jLogger.class.getDeclaredField("logger");
-    loggerField.setAccessible(true);
     var slf4jLogger = new Slf4jLocationAwareLogger(logger);
-    loggerField.set(slf4jLogger, logger);
 
     // when
     var thrown = new Exception();

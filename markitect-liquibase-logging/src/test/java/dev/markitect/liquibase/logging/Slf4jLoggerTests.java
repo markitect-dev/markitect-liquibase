@@ -31,12 +31,9 @@ class Slf4jLoggerTests {
   @Mock private Logger logger;
 
   @Test
-  void test() throws Exception {
+  void test() {
     // given
-    var loggerField = Slf4jLogger.class.getDeclaredField("logger");
-    loggerField.setAccessible(true);
     var slf4jLogger = new Slf4jLogger<>(logger);
-    loggerField.set(slf4jLogger, logger);
 
     // when
     var thrown = new Exception();
