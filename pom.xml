@@ -338,6 +338,26 @@
           </dependencies>
         </plugin>
         <plugin>
+          <groupId>de.thetaphi</groupId>
+          <artifactId>forbiddenapis</artifactId>
+          <version>${forbiddenapis.version}</version>
+          <configuration>
+            <bundledSignatures>
+              <bundledSignature>commons-io-unsafe-2.15.1</bundledSignature>
+              <bundledSignature>jdk-deprecated</bundledSignature>
+              <bundledSignature>jdk-internal</bundledSignature>
+              <bundledSignature>jdk-non-portable</bundledSignature>
+              <bundledSignature>jdk-reflection</bundledSignature>
+              <bundledSignature>jdk-system-out</bundledSignature>
+              <bundledSignature>jdk-unsafe</bundledSignature>
+            </bundledSignatures>
+            <ignoreSignaturesOfMissingClasses>true</ignoreSignaturesOfMissingClasses>
+            <signaturesFiles>
+              <signaturesFile>${forbiddenapis.config.directory}/signatures.txt</signaturesFile>
+            </signaturesFiles>
+          </configuration>
+        </plugin>
+        <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-antrun-plugin</artifactId>
           <version>${maven-antrun-plugin.version}</version>
@@ -384,26 +404,6 @@
               <version>${checkstyle.version}</version>
             </dependency>
           </dependencies>
-        </plugin>
-        <plugin>
-          <groupId>de.thetaphi</groupId>
-          <artifactId>forbiddenapis</artifactId>
-          <version>${forbiddenapis.version}</version>
-          <configuration>
-            <bundledSignatures>
-              <bundledSignature>commons-io-unsafe-2.15.1</bundledSignature>
-              <bundledSignature>jdk-deprecated</bundledSignature>
-              <bundledSignature>jdk-internal</bundledSignature>
-              <bundledSignature>jdk-non-portable</bundledSignature>
-              <bundledSignature>jdk-reflection</bundledSignature>
-              <bundledSignature>jdk-system-out</bundledSignature>
-              <bundledSignature>jdk-unsafe</bundledSignature>
-            </bundledSignatures>
-            <ignoreSignaturesOfMissingClasses>true</ignoreSignaturesOfMissingClasses>
-            <signaturesFiles>
-              <signaturesFile>${forbiddenapis.config.directory}/signatures.txt</signaturesFile>
-            </signaturesFiles>
-          </configuration>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
