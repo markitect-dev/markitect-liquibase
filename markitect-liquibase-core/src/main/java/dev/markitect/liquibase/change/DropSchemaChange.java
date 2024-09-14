@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Markitect
+ * Copyright 2023-2024 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,11 +17,8 @@
 package dev.markitect.liquibase.change;
 
 import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
-import static java.util.stream.Collectors.joining;
 
 import dev.markitect.liquibase.statement.DropSchemaStatement;
-import java.util.Objects;
-import java.util.stream.Stream;
 import liquibase.change.AbstractChange;
 import liquibase.change.Change;
 import liquibase.change.ChangeMetaData;
@@ -75,11 +72,7 @@ public class DropSchemaChange extends AbstractChange {
 
   @Override
   public String getConfirmationMessage() {
-    return "Schema %s dropped"
-        .formatted(
-            Stream.of(catalogName, String.valueOf(schemaName))
-                .filter(Objects::nonNull)
-                .collect(joining(".")));
+    return "Schema " + (catalogName != null ? catalogName + "." : "") + schemaName + " dropped";
   }
 
   @Override

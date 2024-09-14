@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Markitect
+ * Copyright 2023-2024 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -67,7 +67,7 @@ public class CatalogExistsPrecondition extends AbstractPrecondition {
     try {
       if (!catalogExists(database, catalogName)) {
         throw new PreconditionFailedException(
-            "Catalog %s does not exist".formatted(catalogName), changeLog, this);
+            "Catalog " + catalogName + " does not exist", changeLog, this);
       }
     } catch (DatabaseException | RuntimeException e) {
       throw new PreconditionErrorException(e, changeLog, this);

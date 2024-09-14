@@ -43,7 +43,7 @@ public class MssqlTestDatabaseConfiguration {
       TestDatabaseSpecs specs, MSSQLServerContainer<?> container) {
     var databaseConnectionBuilder =
         DatabaseConnectionBuilder.of()
-            .withUrl("%s;databaseName=%s".formatted(container.getJdbcUrl(), specs.getCatalogName()))
+            .withUrl(container.getJdbcUrl() + ";databaseName=" + specs.getCatalogName())
             .withUsername(specs.getUsername())
             .withPassword(specs.getPassword())
             .withDriver(container.getDriverClassName());
@@ -75,43 +75,44 @@ public class MssqlTestDatabaseConfiguration {
                   "SELECT CAST(SERVERPROPERTY('InstanceDefaultDataPath') AS nvarchar(128))",
                   String.class));
       masterJdbcTemplate.execute(
-          "CREATE LOGIN %s WITH PASSWORD = N'%s'"
-              .formatted(
-                  database.escapeObjectName(specs.getUsername(), DatabaseObject.class),
-                  database.escapeStringForDatabase(specs.getPassword())));
+          "CREATE LOGIN "
+              + database.escapeObjectName(specs.getUsername(), DatabaseObject.class)
+              + " WITH PASSWORD = N'"
+              + database.escapeStringForDatabase(specs.getPassword())
+              + "'");
       masterJdbcTemplate.execute(
-          "ALTER SERVER ROLE sysadmin ADD MEMBER %s"
-              .formatted(database.escapeObjectName(specs.getUsername(), DatabaseObject.class)));
+          "ALTER SERVER ROLE sysadmin ADD MEMBER "
+              + database.escapeObjectName(specs.getUsername(), DatabaseObject.class));
       for (String catalogName : List.of(specs.getCatalogName(), specs.getAlternateCatalogName())) {
         masterJdbcTemplate.execute(
-            "CREATE DATABASE %s".formatted(database.escapeObjectName(catalogName, Catalog.class)));
+            "CREATE DATABASE " + database.escapeObjectName(catalogName, Catalog.class));
         masterJdbcTemplate.execute(
-            "ALTER DATABASE %s ADD FILEGROUP %s"
-                .formatted(
-                    database.escapeObjectName(catalogName, Catalog.class),
-                    database.escapeObjectName(
-                        specs.getAlternateTablespaceName(), DatabaseObject.class)));
+            "ALTER DATABASE "
+                + database.escapeObjectName(catalogName, Catalog.class)
+                + " ADD FILEGROUP "
+                + database.escapeObjectName(
+                    specs.getAlternateTablespaceName(), DatabaseObject.class));
         masterJdbcTemplate.execute(
-            "ALTER DATABASE %s ADD FILE (NAME = N'%s', FILENAME = N'%s') TO FILEGROUP %s"
-                .formatted(
-                    database.escapeObjectName(catalogName, Catalog.class),
-                    database.escapeStringForDatabase(specs.getAlternateTablespaceName()),
-                    database.escapeStringForDatabase(
-                        dataPath + catalogName + "_" + specs.getAlternateTablespaceName() + ".ndf"),
-                    database.escapeObjectName(
-                        specs.getAlternateTablespaceName(), DatabaseObject.class)));
+            "ALTER DATABASE "
+                + database.escapeObjectName(catalogName, Catalog.class)
+                + " ADD FILE (NAME = N'"
+                + database.escapeStringForDatabase(specs.getAlternateTablespaceName())
+                + "', FILENAME = N'"
+                + database.escapeStringForDatabase(
+                    dataPath + catalogName + "_" + specs.getAlternateTablespaceName() + ".ndf")
+                + "') TO FILEGROUP "
+                + database.escapeObjectName(
+                    specs.getAlternateTablespaceName(), DatabaseObject.class));
         var hikariConfig = new HikariConfig();
-        hikariConfig.setJdbcUrl(
-            "%s;databaseName=%s".formatted(container.getJdbcUrl(), catalogName));
+        hikariConfig.setJdbcUrl(container.getJdbcUrl() + ";databaseName=" + catalogName);
         hikariConfig.setUsername(container.getUsername());
         hikariConfig.setPassword(container.getPassword());
         hikariConfig.setDriverClassName(container.getDriverClassName());
         try (var dataSource = new HikariDataSource(hikariConfig)) {
           var jdbcTemplate = new JdbcTemplate(dataSource);
           jdbcTemplate.execute(
-              "CREATE SCHEMA %s"
-                  .formatted(
-                      database.escapeObjectName(specs.getAlternateSchemaName(), Schema.class)));
+              "CREATE SCHEMA "
+                  + database.escapeObjectName(specs.getAlternateSchemaName(), Schema.class));
         }
       }
     }

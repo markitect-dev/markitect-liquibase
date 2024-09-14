@@ -228,6 +228,6 @@ true                 |                   | Sch 1      | liquibase.structure.core
   }
 
   private static String toJdbcUrl(String databaseName) {
-    return "jdbc:hsqldb:mem:%s".formatted(databaseName);
+    return "jdbc:hsqldb:mem:" + databaseName;
   }
 }

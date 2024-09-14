@@ -200,8 +200,7 @@ class MarkitectLiquibaseAutoConfigurationTests {
     @SuppressWarnings({"ResultOfMethodCallIgnored", "UnnecessarilyFullyQualified"})
     void shouldCreateLiquibaseBeanUsingDataSourceUrl() {
       // given
-      String url =
-          "jdbc:h2:mem:%s;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false".formatted(UUID.randomUUID());
+      String url = "jdbc:h2:mem:" + UUID.randomUUID() + ";DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false";
       var dataSource = new SimpleDriverDataSource();
       dataSource.setDriverClass(org.h2.Driver.class);
       dataSource.setUrl(url);
@@ -290,8 +289,7 @@ class MarkitectLiquibaseAutoConfigurationTests {
     @SuppressFBWarnings("HARD_CODE_PASSWORD")
     void shouldResolveProperties() {
       // given
-      String url =
-          "jdbc:h2:mem:%s;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false".formatted(UUID.randomUUID());
+      String url = "jdbc:h2:mem:" + UUID.randomUUID() + ";DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false";
       liquibaseProperties.setUrl(url);
       liquibaseProperties.setUser("dbuser");
       liquibaseProperties.setPassword("letmein");

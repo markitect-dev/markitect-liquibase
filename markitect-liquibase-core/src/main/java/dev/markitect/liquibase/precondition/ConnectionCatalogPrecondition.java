@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Markitect
+ * Copyright 2023-2024 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -70,8 +70,10 @@ public class ConnectionCatalogPrecondition extends AbstractPrecondition {
       if (!Objects.equals(
           connectionCatalogName, database.correctObjectName(catalogName, Catalog.class))) {
         throw new PreconditionFailedException(
-            "Connection catalog precondition failed: expected %s, was %s"
-                .formatted(catalogName, connectionCatalogName),
+            "Connection catalog precondition failed: expected "
+                + catalogName
+                + ", was "
+                + connectionCatalogName,
             changeLog,
             this);
       }

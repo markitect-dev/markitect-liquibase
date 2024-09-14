@@ -246,6 +246,6 @@ true                 |                   | Cat 1      | liquibase.structure.core
   }
 
   private static String toJdbcUrl(String databaseName) {
-    return "jdbc:h2:mem:%s;DB_CLOSE_DELAY=-1".formatted(databaseName);
+    return "jdbc:h2:mem:" + databaseName + ";DB_CLOSE_DELAY=-1";
   }
 }

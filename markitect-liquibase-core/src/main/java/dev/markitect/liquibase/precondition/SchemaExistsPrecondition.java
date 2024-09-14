@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Markitect
+ * Copyright 2023-2024 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,10 +18,7 @@ package dev.markitect.liquibase.precondition;
 
 import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
 import static dev.markitect.liquibase.database.Databases.schemaExists;
-import static java.util.stream.Collectors.joining;
 
-import java.util.Objects;
-import java.util.stream.Stream;
 import liquibase.changelog.ChangeSet;
 import liquibase.changelog.DatabaseChangeLog;
 import liquibase.changelog.visitor.ChangeExecListener;
@@ -80,11 +77,10 @@ public class SchemaExistsPrecondition extends AbstractPrecondition {
     try {
       if (!schemaExists(database, catalogName, schemaName)) {
         throw new PreconditionFailedException(
-            "Schema %s does not exist"
-                .formatted(
-                    Stream.of(catalogName, String.valueOf(schemaName))
-                        .filter(Objects::nonNull)
-                        .collect(joining("."))),
+            "Schema "
+                + (catalogName != null ? catalogName + "." : "")
+                + schemaName
+                + " does not exist",
             changeLog,
             this);
       }

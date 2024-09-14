@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Markitect
+ * Copyright 2023-2024 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -56,7 +56,7 @@ public class CreateDatabaseChange extends AbstractChange {
 
   @Override
   public String getConfirmationMessage() {
-    return "Database %s created".formatted(databaseName);
+    return "Database " + databaseName + " created";
   }
 
   @Override

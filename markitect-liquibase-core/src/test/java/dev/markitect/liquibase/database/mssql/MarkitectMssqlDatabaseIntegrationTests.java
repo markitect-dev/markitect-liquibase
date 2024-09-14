@@ -324,7 +324,7 @@ true             | false                | false               |             | db
   }
 
   private String toJdbcUrl(DatabaseRecord databaseRecord) {
-    return "%s;databaseName=%s".formatted(container.getJdbcUrl(), databaseRecord.databaseName());
+    return container.getJdbcUrl() + ";databaseName=" + databaseRecord.databaseName();
   }
 
   @SuppressWarnings("unused")

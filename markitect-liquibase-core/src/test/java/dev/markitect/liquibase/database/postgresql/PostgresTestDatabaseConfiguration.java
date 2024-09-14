@@ -72,24 +72,23 @@ public class PostgresTestDatabaseConfiguration {
       String dataDirectory =
           verifyNotNull(jdbcTemplate.queryForObject("SHOW data_directory", String.class));
       jdbcTemplate.execute(
-          "COPY (SELECT 1) TO PROGRAM 'mkdir -p %s'"
-              .formatted(
-                  database.escapeStringForDatabase(
-                      dataDirectory + "/" + specs.getAlternateTablespaceName())));
+          "COPY (SELECT 1) TO PROGRAM 'mkdir -p "
+              + database.escapeStringForDatabase(
+                  dataDirectory + "/" + specs.getAlternateTablespaceName())
+              + "'");
       jdbcTemplate.execute(
-          "CREATE TABLESPACE %s LOCATION '%s'"
-              .formatted(
-                  database.escapeObjectName(
-                      specs.getAlternateTablespaceName(), DatabaseObject.class),
-                  database.escapeStringForDatabase(
-                      dataDirectory + "/" + specs.getAlternateTablespaceName())));
+          "CREATE TABLESPACE "
+              + database.escapeObjectName(specs.getAlternateTablespaceName(), DatabaseObject.class)
+              + " LOCATION '"
+              + database.escapeStringForDatabase(
+                  dataDirectory + "/" + specs.getAlternateTablespaceName())
+              + "'");
       jdbcTemplate.execute(
-          "CREATE SCHEMA %s"
-              .formatted(database.escapeObjectName(specs.getAlternateSchemaName(), Schema.class)));
+          "CREATE SCHEMA "
+              + database.escapeObjectName(specs.getAlternateSchemaName(), Schema.class));
       jdbcTemplate.execute(
-          "CREATE DATABASE %s"
-              .formatted(
-                  database.escapeObjectName(specs.getAlternateCatalogName(), Catalog.class)));
+          "CREATE DATABASE "
+              + database.escapeObjectName(specs.getAlternateCatalogName(), Catalog.class));
     }
     container.withDatabaseName(specs.getAlternateCatalogName());
     String alternateJdbcUrl = container.getJdbcUrl();
@@ -102,8 +101,8 @@ public class PostgresTestDatabaseConfiguration {
     try (var alternateDataSource = new HikariDataSource(alternateHikariConfig)) {
       var alternateJdbcTemplate = new JdbcTemplate(alternateDataSource);
       alternateJdbcTemplate.execute(
-          "CREATE SCHEMA %s"
-              .formatted(database.escapeObjectName(specs.getAlternateSchemaName(), Schema.class)));
+          "CREATE SCHEMA "
+              + database.escapeObjectName(specs.getAlternateSchemaName(), Schema.class));
     }
     return container;
   }

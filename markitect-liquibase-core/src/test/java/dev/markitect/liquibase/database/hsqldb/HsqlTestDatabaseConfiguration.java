@@ -36,7 +36,7 @@ public class HsqlTestDatabaseConfiguration {
   @SuppressWarnings({"resource", "SqlSourceToSinkFlow"})
   public DatabaseBuilder<MarkitectHsqlDatabase> hsqlTestDatabaseBuilder(TestDatabaseSpecs specs) {
     var database = new MarkitectHsqlDatabase();
-    String jdbcUrl = "jdbc:hsqldb:mem:%s".formatted(specs.getCatalogName());
+    String jdbcUrl = "jdbc:hsqldb:mem:" + specs.getCatalogName();
     var hikariConfig = new HikariConfig();
     hikariConfig.setJdbcUrl(jdbcUrl);
     hikariConfig.setUsername(specs.getUsername());
@@ -45,8 +45,8 @@ public class HsqlTestDatabaseConfiguration {
     try (var dataSource = new HikariDataSource(hikariConfig)) {
       var jdbcTemplate = new JdbcTemplate(dataSource);
       jdbcTemplate.execute(
-          "CREATE SCHEMA %s"
-              .formatted(database.escapeObjectName(specs.getAlternateSchemaName(), Schema.class)));
+          "CREATE SCHEMA "
+              + database.escapeObjectName(specs.getAlternateSchemaName(), Schema.class));
     }
     var databaseConnectionBuilder =
         DatabaseConnectionBuilder.of()

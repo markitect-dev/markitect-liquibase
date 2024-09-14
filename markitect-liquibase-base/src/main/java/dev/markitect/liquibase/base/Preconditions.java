@@ -25,8 +25,8 @@ public final class Preconditions {
     if (index < 0 || index >= size) {
       throw new IndexOutOfBoundsException(
           index < 0
-              ? "index (%s) must be non-negative".formatted(index)
-              : "index (%s) must be less than size (%s)".formatted(index, size));
+              ? "index (" + index + ") must be non-negative"
+              : "index (" + index + ") must be less than size (" + size + ")");
     }
     return index;
   }
