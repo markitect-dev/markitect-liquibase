@@ -29,7 +29,7 @@ tasks.withType<SpotBugsTask>().configureEach {
     }
 }
 
-tasks.register("spotbugsAll") {
+tasks.register("spotbugs") {
     group = "verification"
     dependsOn(tasks.withType<SpotBugsTask>())
 }

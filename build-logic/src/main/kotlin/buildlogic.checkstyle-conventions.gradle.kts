@@ -22,7 +22,7 @@ tasks.withType<Checkstyle>().configureEach {
     group = "verification"
 }
 
-tasks.register("checkstyleAll") {
+tasks.register("checkstyle") {
     group = "verification"
     dependsOn(tasks.withType<Checkstyle>())
 }
