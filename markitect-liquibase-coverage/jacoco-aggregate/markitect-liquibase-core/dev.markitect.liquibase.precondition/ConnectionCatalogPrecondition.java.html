@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>ConnectionCatalogPrecondition.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">markitect-liquibase-coverage</a> &gt; <a href="../index.html" class="el_bundle">markitect-liquibase-core</a> &gt; <a href="index.source.html" class="el_package">dev.markitect.liquibase.precondition</a> &gt; <span class="el_source">ConnectionCatalogPrecondition.java</span></div><h1>ConnectionCatalogPrecondition.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2023 Markitect
+ * Copyright 2023-2024 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -70,24 +70,26 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 <span class="fc bfc" id="L70" title="All 2 branches covered.">      if (!Objects.equals(</span>
 <span class="fc" id="L71">          connectionCatalogName, database.correctObjectName(catalogName, Catalog.class))) {</span>
 <span class="fc" id="L72">        throw new PreconditionFailedException(</span>
-            &quot;Connection catalog precondition failed: expected %s, was %s&quot;
-<span class="fc" id="L74">                .formatted(catalogName, connectionCatalogName),</span>
+            &quot;Connection catalog precondition failed: expected &quot;
+                + catalogName
+                + &quot;, was &quot;
+                + connectionCatalogName,
             changeLog,
             this);
       }
-<span class="fc" id="L78">    } catch (DatabaseException | RuntimeException e) {</span>
-<span class="fc" id="L79">      throw new PreconditionErrorException(e, changeLog, this);</span>
-<span class="fc" id="L80">    }</span>
-<span class="fc" id="L81">  }</span>
+<span class="fc" id="L80">    } catch (DatabaseException | RuntimeException e) {</span>
+<span class="fc" id="L81">      throw new PreconditionErrorException(e, changeLog, this);</span>
+<span class="fc" id="L82">    }</span>
+<span class="fc" id="L83">  }</span>
 
   @Override
   public String getSerializedObjectNamespace() {
-<span class="fc" id="L85">    return GENERIC_CHANGELOG_EXTENSION_NAMESPACE;</span>
+<span class="fc" id="L87">    return GENERIC_CHANGELOG_EXTENSION_NAMESPACE;</span>
   }
 
   @Override
   public String getName() {
-<span class="fc" id="L90">    return &quot;connectionCatalog&quot;;</span>
+<span class="fc" id="L92">    return &quot;connectionCatalog&quot;;</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
