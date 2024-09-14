@@ -4,6 +4,7 @@ plugins {
     id("buildlogic.common-conventions")
     id("buildlogic.checkstyle-conventions")
     id("buildlogic.errorprone-conventions")
+    id("buildlogic.forbiddenapis-conventions")
     id("buildlogic.jacoco-conventions")
     id("buildlogic.spotbugs-conventions")
     `java-library`
@@ -28,11 +29,13 @@ dependencies {
     byteBuddyAgent(libs.net.bytebuddy.byte.buddy.agent)
 
     compileOnly(libs.com.github.spotbugs.spotbugs.annotations)
+    compileOnly(libs.de.thetaphi.forbiddenapis)
     compileOnly(libs.com.google.errorprone.error.prone.annotations)
     compileOnly(libs.org.checkerframework.checker.qual)
 
     testCompileOnly(libs.com.github.spotbugs.spotbugs.annotations)
     testCompileOnly(libs.com.google.errorprone.error.prone.annotations)
+    testCompileOnly(libs.de.thetaphi.forbiddenapis)
     testCompileOnly(libs.org.checkerframework.checker.qual)
     testImplementation(platform(libs.com.fasterxml.jackson.jackson.bom))
     testImplementation(platform(libs.io.micrometer.micrometer.bom))

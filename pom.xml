@@ -77,6 +77,7 @@
     <argLine/>
     <changelist>-SNAPSHOT</changelist>
     <checkstyle.config.directory>${maven.multiModuleProjectDirectory}/config/checkstyle</checkstyle.config.directory>
+    <forbiddenapis.config.directory>${maven.multiModuleProjectDirectory}/config/forbiddenapis</forbiddenapis.config.directory>
     <gitHub.projectId>markitect-dev/markitect-liquibase</gitHub.projectId>
     <java.version>17</java.version>
     <maven.compiler.release>${java.version}</maven.compiler.release>
@@ -114,6 +115,7 @@
     <extra-enforcer-rules.version>1.8.0</extra-enforcer-rules.version>
     <findsecbugs-plugin.version>1.13.0</findsecbugs-plugin.version>
     <flatten-maven-plugin.version>1.6.0</flatten-maven-plugin.version>
+    <forbiddenapis.version>3.7</forbiddenapis.version>
     <google-java-format.version>1.23.0</google-java-format.version>
     <guava.version>33.3.0-jre</guava.version>
     <h2.version>2.3.232</h2.version>
@@ -382,6 +384,26 @@
               <version>${checkstyle.version}</version>
             </dependency>
           </dependencies>
+        </plugin>
+        <plugin>
+          <groupId>de.thetaphi</groupId>
+          <artifactId>forbiddenapis</artifactId>
+          <version>${forbiddenapis.version}</version>
+          <configuration>
+            <bundledSignatures>
+              <bundledSignature>commons-io-unsafe-2.15.1</bundledSignature>
+              <bundledSignature>jdk-deprecated</bundledSignature>
+              <bundledSignature>jdk-internal</bundledSignature>
+              <bundledSignature>jdk-non-portable</bundledSignature>
+              <bundledSignature>jdk-reflection</bundledSignature>
+              <bundledSignature>jdk-system-out</bundledSignature>
+              <bundledSignature>jdk-unsafe</bundledSignature>
+            </bundledSignatures>
+            <ignoreSignaturesOfMissingClasses>true</ignoreSignaturesOfMissingClasses>
+            <signaturesFiles>
+              <signaturesFile>${forbiddenapis.config.directory}/signatures.txt</signaturesFile>
+            </signaturesFiles>
+          </configuration>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -1096,6 +1118,27 @@
                   <id>check</id>
                   <goals>
                     <goal>check</goal>
+                  </goals>
+                  <phase>verify</phase>
+                </execution>
+              </executions>
+            </plugin>
+            <plugin>
+              <groupId>de.thetaphi</groupId>
+              <artifactId>forbiddenapis</artifactId>
+              <version>${forbiddenapis.version}</version>
+              <executions>
+                <execution>
+                  <id>check</id>
+                  <goals>
+                    <goal>check</goal>
+                  </goals>
+                  <phase>verify</phase>
+                </execution>
+                <execution>
+                  <id>testCheck</id>
+                  <goals>
+                    <goal>testCheck</goal>
                   </goals>
                   <phase>verify</phase>
                 </execution>

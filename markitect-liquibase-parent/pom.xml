@@ -162,6 +162,11 @@
         <version>${hikaricp.version}</version>
       </dependency>
       <dependency>
+        <groupId>de.thetaphi</groupId>
+        <artifactId>forbiddenapis</artifactId>
+        <version>${forbiddenapis.version}</version>
+      </dependency>
+      <dependency>
         <groupId>dev.markitect.liquibase</groupId>
         <artifactId>markitect-liquibase-base</artifactId>
         <version>${project.version}</version>
@@ -513,6 +518,11 @@
     <dependency>
       <groupId>com.google.errorprone</groupId>
       <artifactId>error_prone_annotations</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>de.thetaphi</groupId>
+      <artifactId>forbiddenapis</artifactId>
       <optional>true</optional>
     </dependency>
     <dependency>
