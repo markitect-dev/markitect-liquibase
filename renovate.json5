@@ -75,6 +75,12 @@
     {
       customType: 'regex',
       fileMatch: ['^gradle/libs\\.versions\\.toml$'],
+      matchStrings: ['(?<depName>node) = "(?<currentValue>.+)"\\n'],
+      datasourceTemplate: 'node-version',
+    },
+    {
+      customType: 'regex',
+      fileMatch: ['^gradle/libs\\.versions\\.toml$'],
       matchStrings: [
         '(?<depName>prettier(?:|-plugin-(?:properties|toml))?) = "(?<currentValue>.+)"\\n',
       ],

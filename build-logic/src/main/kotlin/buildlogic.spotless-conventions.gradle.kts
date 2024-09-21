@@ -1,4 +1,10 @@
+import com.diffplug.gradle.spotless.SpotlessTask
+import com.github.gradle.node.task.NodeSetupTask
+import com.github.gradle.node.variant.computeNodeDir
+import com.github.gradle.node.variant.computeNodeExec
+
 plugins {
+    id("buildlogic.node-conventions")
     id("com.diffplug.spotless")
 }
 
@@ -17,6 +23,8 @@ spotless {
     format("json5") {
         target("renovate.json5")
         prettier(libs.versions.prettier.asProvider().get())
+            .nodeExecutable(computeNodeExec(node, computeNodeDir(node)))
+            .npmInstallCache()
             .config(
                 mapOf(
                     "parser" to "json5",
@@ -32,6 +40,8 @@ spotless {
                 "prettier-plugin-properties" to libs.versions.prettier.plugin.properties.get(),
             ),
         )
+            .nodeExecutable(computeNodeExec(node, computeNodeDir(node)))
+            .npmInstallCache()
             .config(
                 mapOf(
                     "parser" to "dot-properties",
@@ -49,6 +59,8 @@ spotless {
                 "prettier-plugin-toml" to libs.versions.prettier.plugin.toml.get(),
             ),
         )
+            .nodeExecutable(computeNodeExec(node, computeNodeDir(node)))
+            .npmInstallCache()
             .config(
                 mapOf(
                     "parser" to "toml",
@@ -69,6 +81,12 @@ spotless {
         trimTrailingWhitespace()
         endWithNewline()
         indentWithSpaces(2)
+    }
+}
+
+listOf("spotlessJson5", "spotlessProperties", "spotlessToml").forEach {
+    tasks.named<SpotlessTask>(it) {
+        dependsOn(rootProject.tasks.named<NodeSetupTask>("nodeSetup"))
     }
 }
 
