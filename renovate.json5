@@ -89,6 +89,12 @@
     {
       customType: 'regex',
       fileMatch: ['^pom\\.xml$'],
+      matchStrings: ['<(?<depName>node)\\.version>(?<currentValue>.+)<\\/'],
+      datasourceTemplate: 'node-version',
+    },
+    {
+      customType: 'regex',
+      fileMatch: ['^pom\\.xml$'],
       matchStrings: [
         '<(?<depName>prettier(?:|-plugin-properties)?)\\.version>(?<currentValue>.+)<\\/',
       ],

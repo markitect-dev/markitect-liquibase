@@ -85,6 +85,8 @@
     <maven.deploy.skip>false</maven.deploy.skip>
     <maven.enforcer.requireMavenVersion>3.9.9</maven.enforcer.requireMavenVersion>
     <maven.test.redirectTestOutputToFile>true</maven.test.redirectTestOutputToFile>
+    <node.install.directory>${maven.multiModuleProjectDirectory}/target</node.install.directory>
+    <node.executable>${node.install.directory}/node/node</node.executable>
     <project.build.outputTimestamp>2024-01-01T00:00:00Z</project.build.outputTimestamp>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -116,6 +118,7 @@
     <findsecbugs-plugin.version>1.13.0</findsecbugs-plugin.version>
     <flatten-maven-plugin.version>1.6.0</flatten-maven-plugin.version>
     <forbiddenapis.version>3.7</forbiddenapis.version>
+    <frontend-maven-plugin.version>1.15.1</frontend-maven-plugin.version>
     <google-java-format.version>1.23.0</google-java-format.version>
     <guava.version>33.3.0-jre</guava.version>
     <h2.version>2.3.232</h2.version>
@@ -163,6 +166,7 @@
     <mockito.version>5.13.0</mockito.version>
     <mssql-jdbc.version>12.8.1.jre11</mssql-jdbc.version>
     <nexus-staging-maven-plugin.version>1.7.0</nexus-staging-maven-plugin.version>
+    <node.version>20.17.0</node.version>
     <nullaway.version>0.11.3</nullaway.version>
     <objenesis.version>3.4</objenesis.version>
     <opencsv.version>5.9</opencsv.version>
@@ -206,6 +210,24 @@
     <pluginManagement>
       <plugins>
         <plugin>
+          <groupId>com.github.eirslett</groupId>
+          <artifactId>frontend-maven-plugin</artifactId>
+          <version>${frontend-maven-plugin.version}</version>
+          <configuration>
+            <installDirectory>${node.install.directory}</installDirectory>
+            <nodeVersion>v${node.version}</nodeVersion>
+          </configuration>
+          <executions>
+            <execution>
+              <id>install-node-and-npm</id>
+              <goals>
+                <goal>install-node-and-npm</goal>
+              </goals>
+              <phase>none</phase>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
           <groupId>com.diffplug.spotless</groupId>
           <artifactId>spotless-maven-plugin</artifactId>
           <version>${spotless-maven-plugin.version}</version>
@@ -243,6 +265,8 @@
                   <include>renovate.json5</include>
                 </includes>
                 <prettier>
+                  <nodeExecutable>${node.executable}</nodeExecutable>
+                  <npmInstallCache>true</npmInstallCache>
                   <prettierVersion>${prettier.version}</prettierVersion>
                   <config>
                     <parser>json5</parser>
@@ -255,6 +279,8 @@
                   <include>src/**/*.properties</include>
                 </includes>
                 <prettier>
+                  <nodeExecutable>${node.executable}</nodeExecutable>
+                  <npmInstallCache>true</npmInstallCache>
                   <devDependencies>
                     <prettier>${prettier.version}</prettier>
                     <prettier-plugin-properties>${prettier-plugin-properties.version}</prettier-plugin-properties>
@@ -1014,6 +1040,12 @@
         <version>${maven-enforcer-plugin.version}</version>
       </plugin>
       <plugin>
+        <groupId>com.github.eirslett</groupId>
+        <artifactId>frontend-maven-plugin</artifactId>
+        <version>${frontend-maven-plugin.version}</version>
+        <inherited>false</inherited>
+      </plugin>
+      <plugin>
         <groupId>com.diffplug.spotless</groupId>
         <artifactId>spotless-maven-plugin</artifactId>
         <version>${spotless-maven-plugin.version}</version>
@@ -1106,6 +1138,18 @@
                 <execution>
                   <id>check</id>
                   <phase>verify</phase>
+                </execution>
+              </executions>
+            </plugin>
+            <plugin>
+              <groupId>com.github.eirslett</groupId>
+              <artifactId>frontend-maven-plugin</artifactId>
+              <version>${frontend-maven-plugin.version}</version>
+              <inherited>false</inherited>
+              <executions>
+                <execution>
+                  <id>install-node-and-npm</id>
+                  <phase>generate-resources</phase>
                 </execution>
               </executions>
             </plugin>
@@ -1339,6 +1383,17 @@
           </plugins>
         </pluginManagement>
       </build>
+    </profile>
+    <profile>
+      <id>windows</id>
+      <activation>
+        <os>
+          <family>windows</family>
+        </os>
+      </activation>
+      <properties>
+        <node.executable>${node.install.directory}/node/node.exe</node.executable>
+      </properties>
     </profile>
   </profiles>
 </project>
