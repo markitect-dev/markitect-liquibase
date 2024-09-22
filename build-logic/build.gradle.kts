@@ -1,5 +1,3 @@
-import com.diffplug.gradle.spotless.SpotlessTask
-import com.github.gradle.node.task.NodeSetupTask
 import com.github.gradle.node.variant.computeNodeDir
 import com.github.gradle.node.variant.computeNodeExec
 
@@ -21,9 +19,21 @@ dependencies {
 }
 
 node {
+    workDir = rootProject.layout.projectDirectory.dir(".gradle/nodejs")
     version = libs.versions.node.get()
     distBaseUrl = null
     download = true
+    enableTaskRules = false
+}
+
+tasks.nodeSetup {
+    enabled = project == rootProject
+}
+
+listOf("npmInstall", "npmSetup", "pnpmInstall", "pnpmSetup", "yarn", "yarnSetup").forEach {
+    tasks.named(it) {
+        enabled = false
+    }
 }
 
 spotless {
@@ -56,8 +66,8 @@ spotless {
     }
 }
 
-tasks.named<SpotlessTask>("spotlessProperties") {
-    dependsOn(tasks.named<NodeSetupTask>("nodeSetup"))
+tasks.named("spotlessProperties") {
+    dependsOn(rootProject.tasks.nodeSetup)
 }
 
 tasks.spotlessCheck {

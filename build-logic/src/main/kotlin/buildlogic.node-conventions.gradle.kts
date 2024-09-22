@@ -7,4 +7,15 @@ node {
     version = libs.versions.node.get()
     distBaseUrl = null
     download = true
+    enableTaskRules = false
+}
+
+tasks.nodeSetup {
+    enabled = project == rootProject
+}
+
+listOf("npmInstall", "npmSetup", "pnpmInstall", "pnpmSetup", "yarn", "yarnSetup").forEach {
+    tasks.named(it) {
+        enabled = false
+    }
 }

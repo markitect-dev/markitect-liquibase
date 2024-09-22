@@ -1,5 +1,3 @@
-import com.diffplug.gradle.spotless.SpotlessTask
-import com.github.gradle.node.task.NodeSetupTask
 import com.github.gradle.node.variant.computeNodeDir
 import com.github.gradle.node.variant.computeNodeExec
 
@@ -85,8 +83,8 @@ spotless {
 }
 
 listOf("spotlessJson5", "spotlessProperties", "spotlessToml").forEach {
-    tasks.named<SpotlessTask>(it) {
-        dependsOn(rootProject.tasks.named<NodeSetupTask>("nodeSetup"))
+    tasks.named(it) {
+        dependsOn(rootProject.tasks.nodeSetup)
     }
 }
 
