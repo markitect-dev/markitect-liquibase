@@ -172,6 +172,10 @@
       groupName: 'h2',
     },
     {
+      matchPackageNames: ['com.zaxxer:HikariCP'],
+      groupName: 'hikaricp',
+    },
+    {
       matchPackageNames: ['org.jooq:**'],
       groupName: 'jooq',
     },
