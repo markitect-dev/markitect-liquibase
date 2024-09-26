@@ -104,7 +104,7 @@
     <assertj.version>3.26.3</assertj.version>
     <awaitility.version>4.2.2</awaitility.version>
     <bnd-annotation.version>7.0.0</bnd-annotation.version>
-    <byte-buddy.version>1.15.2</byte-buddy.version>
+    <byte-buddy.version>1.15.3</byte-buddy.version>
     <checker-framework.version>3.47.0</checker-framework.version>
     <checkstyle.version>10.18.1</checkstyle.version>
     <commons-collections4.version>4.4</commons-collections4.version>
