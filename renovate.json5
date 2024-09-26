@@ -176,6 +176,10 @@
       groupName: 'hikaricp',
     },
     {
+      matchPackageNames: ['org.jetbrains:annotations'],
+      groupName: 'jetbrains-annotations',
+    },
+    {
       matchPackageNames: ['org.jooq:**'],
       groupName: 'jooq',
     },
