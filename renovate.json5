@@ -176,6 +176,10 @@
       groupName: 'hikaricp',
     },
     {
+      matchPackageNames: ['com.fasterxml.jackson:jackson-bom'],
+      groupName: 'jackson',
+    },
+    {
       matchPackageNames: ['org.jetbrains:annotations'],
       groupName: 'jetbrains-annotations',
     },
