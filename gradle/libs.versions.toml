@@ -75,7 +75,7 @@ testcontainers = "1.20.1"
 biz-aqute-bnd-biz-aqute-bnd-annotation = { module = "biz.aQute.bnd:biz.aQute.bnd.annotation", version.ref = "bnd-annotation" }
 ch-qos-logback-logback-classic = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
 ch-qos-logback-logback-core = { module = "ch.qos.logback:logback-core", version.ref = "logback" }
-com-fasterxml-jackson-core-jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jackson" }
+com-fasterxml-jackson-core-jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind" }
 com-fasterxml-jackson-jackson-bom = { module = "com.fasterxml.jackson:jackson-bom", version.ref = "jackson" }
 com-github-docker-java-docker-java-api = { module = "com.github.docker-java:docker-java-api", version.ref = "docker-java" }
 com-github-docker-java-docker-java-transport = { module = "com.github.docker-java:docker-java-transport", version.ref = "docker-java" }
@@ -115,7 +115,7 @@ org-apache-logging-log4j-log4j-slf4j2-impl = { module = "org.apache.logging.log4
 org-apache-logging-log4j-log4j-to-slf4j = { module = "org.apache.logging.log4j:log4j-to-slf4j", version.ref = "log4j2" }
 org-apiguardian-apiguardian-api = { module = "org.apiguardian:apiguardian-api", version.ref = "apiguardian" }
 org-assertj-assertj-bom = { module = "org.assertj:assertj-bom", version.ref = "assertj" }
-org-assertj-assertj-core = { module = "org.assertj:assertj-core", version.ref = "assertj" }
+org-assertj-assertj-core = { module = "org.assertj:assertj-core" }
 org-awaitility-awaitility = { module = "org.awaitility:awaitility", version.ref = "awaitility" }
 org-checkerframework-checker-qual = { module = "org.checkerframework:checker-qual", version.ref = "checker-framework" }
 org-hamcrest-hamcrest = { module = "org.hamcrest:hamcrest", version.ref = "hamcrest" }
@@ -126,12 +126,12 @@ org-jetbrains-annotations = { module = "org.jetbrains:annotations", version.ref 
 org-jooq-jooq = { module = "org.jooq:jooq", version.ref = "jooq" }
 org-jooq-jooq-meta-extensions-liquibase = { module = "org.jooq:jooq-meta-extensions-liquibase", version.ref = "jooq" }
 org-junit-junit-bom = { module = "org.junit:junit-bom", version.ref = "junit-jupiter" }
-org-junit-jupiter-junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit-jupiter" }
+org-junit-jupiter-junit-jupiter = { module = "org.junit.jupiter:junit-jupiter" }
 org-junit-pioneer-junit-pioneer = { module = "org.junit-pioneer:junit-pioneer", version.ref = "junit-pioneer" }
 org-liquibase-liquibase-core = { module = "org.liquibase:liquibase-core", version.ref = "liquibase" }
 org-mockito-mockito-bom = { module = "org.mockito:mockito-bom", version.ref = "mockito" }
-org-mockito-mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockito" }
-org-mockito-mockito-junit-jupiter = { module = "org.mockito:mockito-junit-jupiter", version.ref = "mockito" }
+org-mockito-mockito-core = { module = "org.mockito:mockito-core" }
+org-mockito-mockito-junit-jupiter = { module = "org.mockito:mockito-junit-jupiter" }
 org-objenesis-objenesis = { module = "org.objenesis:objenesis", version.ref = "objenesis" }
 org-opentest4j-opentest4j = { module = "org.opentest4j:opentest4j", version.ref = "opentest4j" }
 org-osgi-org-osgi-annotation-bundle = { module = "org.osgi:org.osgi.annotation.bundle", version.ref = "osgi-annotation-bundle" }
@@ -158,10 +158,10 @@ org-springframework-boot-spring-boot-test = { module = "org.springframework.boot
 org-springframework-boot-spring-boot-test-autoconfigure = { module = "org.springframework.boot:spring-boot-test-autoconfigure", version.ref = "spring-boot" }
 org-springframework-spring-context = { module = "org.springframework:spring-context", version.ref = "spring-framework" }
 org-springframework-spring-framework-bom = { module = "org.springframework:spring-framework-bom", version.ref = "spring-framework" }
-org-springframework-spring-jdbc = { module = "org.springframework:spring-jdbc", version.ref = "spring-framework" }
-org-testcontainers-junit-jupiter = { module = "org.testcontainers:junit-jupiter", version.ref = "testcontainers" }
-org-testcontainers-mssqlserver = { module = "org.testcontainers:mssqlserver", version.ref = "testcontainers" }
-org-testcontainers-postgresql = { module = "org.testcontainers:postgresql", version.ref = "testcontainers" }
+org-springframework-spring-jdbc = { module = "org.springframework:spring-jdbc" }
+org-testcontainers-junit-jupiter = { module = "org.testcontainers:junit-jupiter" }
+org-testcontainers-mssqlserver = { module = "org.testcontainers:mssqlserver" }
+org-testcontainers-postgresql = { module = "org.testcontainers:postgresql" }
 org-testcontainers-testcontainers-bom = { module = "org.testcontainers:testcontainers-bom", version.ref = "testcontainers" }
 org-yaml-snakeyaml = { module = "org.yaml:snakeyaml", version.ref = "snakeyaml" }
 
