@@ -106,7 +106,7 @@
     <bnd-annotation.version>7.0.0</bnd-annotation.version>
     <byte-buddy.version>1.15.3</byte-buddy.version>
     <checker-framework.version>3.47.0</checker-framework.version>
-    <checkstyle.version>10.18.1</checkstyle.version>
+    <checkstyle.version>10.18.2</checkstyle.version>
     <commons-collections4.version>4.4</commons-collections4.version>
     <commons-compress.version>1.27.1</commons-compress.version>
     <commons-lang3.version>3.17.0</commons-lang3.version>
