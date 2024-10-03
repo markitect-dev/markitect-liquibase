@@ -324,11 +324,6 @@
         <version>${awaitility.version}</version>
       </dependency>
       <dependency>
-        <groupId>org.checkerframework</groupId>
-        <artifactId>checker-qual</artifactId>
-        <version>${checker-framework.version}</version>
-      </dependency>
-      <dependency>
         <groupId>org.hamcrest</groupId>
         <artifactId>hamcrest</artifactId>
         <version>${hamcrest.version}</version>
@@ -347,6 +342,11 @@
         <groupId>org.jooq</groupId>
         <artifactId>jooq</artifactId>
         <version>${jooq.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jspecify</groupId>
+        <artifactId>jspecify</artifactId>
+        <version>${jspecify.version}</version>
       </dependency>
       <dependency>
         <groupId>org.junit-pioneer</groupId>
@@ -526,8 +526,8 @@
       <optional>true</optional>
     </dependency>
     <dependency>
-      <groupId>org.checkerframework</groupId>
-      <artifactId>checker-qual</artifactId>
+      <groupId>org.jspecify</groupId>
+      <artifactId>jspecify</artifactId>
       <optional>true</optional>
     </dependency>
   </dependencies>

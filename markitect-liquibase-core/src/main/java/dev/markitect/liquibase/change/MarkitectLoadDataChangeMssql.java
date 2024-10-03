@@ -31,7 +31,7 @@ import liquibase.change.core.LoadDataChange;
 import liquibase.database.Database;
 import liquibase.database.core.MSSQLDatabase;
 import liquibase.statement.SqlStatement;
-import org.checkerframework.checker.nullness.qual.Nullable;
+import org.jspecify.annotations.Nullable;
 
 @DatabaseChange(
     name = "loadData",

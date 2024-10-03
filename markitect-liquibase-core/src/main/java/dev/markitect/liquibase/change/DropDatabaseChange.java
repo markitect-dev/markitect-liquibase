@@ -26,7 +26,7 @@ import liquibase.change.DatabaseChange;
 import liquibase.change.DatabaseChangeProperty;
 import liquibase.database.Database;
 import liquibase.statement.SqlStatement;
-import org.checkerframework.checker.nullness.qual.Nullable;
+import org.jspecify.annotations.Nullable;
 
 @DatabaseChange(
     name = "dropDatabase",

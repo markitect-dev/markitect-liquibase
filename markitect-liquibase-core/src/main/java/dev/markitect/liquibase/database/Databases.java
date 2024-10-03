@@ -30,7 +30,7 @@ import liquibase.executor.ExecutorService;
 import liquibase.snapshot.InvalidExampleException;
 import liquibase.snapshot.SnapshotGeneratorFactory;
 import liquibase.structure.core.Schema;
-import org.checkerframework.checker.nullness.qual.Nullable;
+import org.jspecify.annotations.Nullable;
 
 public final class Databases {
   @SuppressWarnings("BooleanMethodIsAlwaysInverted")

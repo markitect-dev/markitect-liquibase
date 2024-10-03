@@ -37,7 +37,7 @@ import liquibase.statement.DatabaseFunction;
 import liquibase.statement.core.InsertOrUpdateStatement;
 import liquibase.structure.core.Column;
 import liquibase.structure.core.Table;
-import org.checkerframework.checker.nullness.qual.Nullable;
+import org.jspecify.annotations.Nullable;
 
 public interface MarkitectInsertOrUpdateGenerator extends SqlGenerator<InsertOrUpdateStatement> {
   default PreparedSql prepareSql(

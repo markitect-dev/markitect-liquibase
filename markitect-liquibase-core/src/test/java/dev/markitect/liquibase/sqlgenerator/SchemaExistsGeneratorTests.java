@@ -23,7 +23,7 @@ import dev.markitect.liquibase.statement.SchemaExistsStatement;
 import liquibase.database.Database;
 import liquibase.sql.UnparsedSql;
 import liquibase.sqlgenerator.SqlGeneratorFactory;
-import org.checkerframework.checker.nullness.qual.Nullable;
+import org.jspecify.annotations.Nullable;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 

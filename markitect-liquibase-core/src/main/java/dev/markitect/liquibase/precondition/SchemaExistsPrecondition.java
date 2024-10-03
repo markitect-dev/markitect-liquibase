@@ -30,7 +30,7 @@ import liquibase.exception.ValidationErrors;
 import liquibase.exception.Warnings;
 import liquibase.precondition.AbstractPrecondition;
 import liquibase.snapshot.InvalidExampleException;
-import org.checkerframework.checker.nullness.qual.Nullable;
+import org.jspecify.annotations.Nullable;
 
 public class SchemaExistsPrecondition extends AbstractPrecondition {
   private @Nullable String catalogName;

@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Markitect
+ * Copyright 2023-2024 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@ import dev.markitect.liquibase.database.DatabaseBuilder;
 import liquibase.change.core.LoadDataChange.LOAD_DATA_TYPE;
 import liquibase.change.core.LoadDataColumnConfig;
 import liquibase.database.core.H2Database;
-import org.checkerframework.checker.nullness.qual.Nullable;
+import org.jspecify.annotations.Nullable;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 

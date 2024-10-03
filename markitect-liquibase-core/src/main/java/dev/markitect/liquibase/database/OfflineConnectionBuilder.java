@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Markitect
+ * Copyright 2023-2024 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.StringJoiner;
 import liquibase.Scope;
-import org.checkerframework.checker.nullness.qual.Nullable;
+import org.jspecify.annotations.Nullable;
 
 public final class OfflineConnectionBuilder {
   private static final OfflineConnectionBuilder SINGLETON =

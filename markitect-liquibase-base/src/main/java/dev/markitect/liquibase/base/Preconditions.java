@@ -17,7 +17,7 @@
 package dev.markitect.liquibase.base;
 
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
-import org.checkerframework.checker.nullness.qual.Nullable;
+import org.jspecify.annotations.Nullable;
 
 public final class Preconditions {
   @CanIgnoreReturnValue

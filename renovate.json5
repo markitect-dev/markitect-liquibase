@@ -136,10 +136,6 @@
       groupName: 'byte-buddy',
     },
     {
-      matchPackageNames: ['org.checkerframework:**'],
-      groupName: 'checker-framework',
-    },
-    {
       matchPackageNames: ['com.puppycrawl.tools:checkstyle'],
       groupName: 'checkstyle',
     },
@@ -186,6 +182,10 @@
     {
       matchPackageNames: ['org.jooq:**'],
       groupName: 'jooq',
+    },
+    {
+      matchPackageNames: ['org.jspecify:**'],
+      groupName: 'jspecify',
     },
     {
       matchPackageNames: ['org.liquibase:**'],

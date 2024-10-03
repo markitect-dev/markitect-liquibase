@@ -30,7 +30,7 @@ import liquibase.UpdateSummaryOutputEnum;
 import liquibase.change.DatabaseChange;
 import liquibase.integration.spring.SpringLiquibase;
 import liquibase.ui.UIServiceEnum;
-import org.checkerframework.checker.nullness.qual.Nullable;
+import org.jspecify.annotations.Nullable;
 import org.springframework.aot.hint.RuntimeHints;
 import org.springframework.aot.hint.RuntimeHintsRegistrar;
 import org.springframework.beans.factory.ObjectProvider;

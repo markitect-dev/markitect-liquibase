@@ -6,7 +6,6 @@ assertj = "3.26.3"
 awaitility = "4.2.2"
 bnd-annotation = "7.0.0"
 byte-buddy = "1.15.3"
-checker-framework = "3.48.0"
 checkstyle = "10.18.2"
 commons-collections4 = "4.4"
 commons-compress = "1.27.1"
@@ -35,6 +34,7 @@ jetbrains-annotations = "25.0.0"
 jna = "5.15.0"
 jooq = "3.19.13"
 jooq-plugin = "9.0"
+jspecify = "1.0.0"
 junit = "4.13.2"
 junit-jupiter = "5.11.1"
 junit-pioneer = "2.2.0"
@@ -117,7 +117,6 @@ org-apiguardian-apiguardian-api = { module = "org.apiguardian:apiguardian-api", 
 org-assertj-assertj-bom = { module = "org.assertj:assertj-bom", version.ref = "assertj" }
 org-assertj-assertj-core = { module = "org.assertj:assertj-core" }
 org-awaitility-awaitility = { module = "org.awaitility:awaitility", version.ref = "awaitility" }
-org-checkerframework-checker-qual = { module = "org.checkerframework:checker-qual", version.ref = "checker-framework" }
 org-hamcrest-hamcrest = { module = "org.hamcrest:hamcrest", version.ref = "hamcrest" }
 org-hsqldb-hsqldb = { module = "org.hsqldb:hsqldb", version.ref = "hsqldb" }
 org-jacoco-org-jacoco-agent = { module = "org.jacoco:org.jacoco.agent", version.ref = "jacoco" }
@@ -125,6 +124,7 @@ org-jacoco-org-jacoco-ant = { module = "org.jacoco:org.jacoco.ant", version.ref 
 org-jetbrains-annotations = { module = "org.jetbrains:annotations", version.ref = "jetbrains-annotations" }
 org-jooq-jooq = { module = "org.jooq:jooq", version.ref = "jooq" }
 org-jooq-jooq-meta-extensions-liquibase = { module = "org.jooq:jooq-meta-extensions-liquibase", version.ref = "jooq" }
+org-jspecify-jspecify = { module = "org.jspecify:jspecify", version.ref = "jspecify" }
 org-junit-junit-bom = { module = "org.junit:junit-bom", version.ref = "junit-jupiter" }
 org-junit-jupiter-junit-jupiter = { module = "org.junit.jupiter:junit-jupiter" }
 org-junit-pioneer-junit-pioneer = { module = "org.junit-pioneer:junit-pioneer", version.ref = "junit-pioneer" }

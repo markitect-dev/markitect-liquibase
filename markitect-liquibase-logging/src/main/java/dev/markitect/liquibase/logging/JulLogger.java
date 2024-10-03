@@ -23,7 +23,7 @@ import java.util.logging.Level;
 import java.util.logging.LogRecord;
 import java.util.logging.Logger;
 import liquibase.logging.core.AbstractLogger;
-import org.checkerframework.checker.nullness.qual.Nullable;
+import org.jspecify.annotations.Nullable;
 
 @SuppressWarnings("squid:S2160")
 public class JulLogger extends AbstractLogger {

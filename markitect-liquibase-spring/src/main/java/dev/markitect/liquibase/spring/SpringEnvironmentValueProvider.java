@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Markitect
+ * Copyright 2023-2024 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ import java.util.Objects;
 import java.util.Optional;
 import liquibase.configuration.AbstractConfigurationValueProvider;
 import liquibase.configuration.ProvidedValue;
-import org.checkerframework.checker.nullness.qual.Nullable;
+import org.jspecify.annotations.Nullable;
 
 public class SpringEnvironmentValueProvider extends AbstractConfigurationValueProvider {
   private static final String PROPERTY_PREFIX = "markitect.liquibase.properties.";

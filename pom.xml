@@ -108,7 +108,6 @@
     <awaitility.version>4.2.2</awaitility.version>
     <bnd-annotation.version>7.0.0</bnd-annotation.version>
     <byte-buddy.version>1.15.3</byte-buddy.version>
-    <checker-framework.version>3.48.0</checker-framework.version>
     <checkstyle.version>10.18.2</checkstyle.version>
     <commons-collections4.version>4.4</commons-collections4.version>
     <commons-compress.version>1.27.1</commons-compress.version>
@@ -136,6 +135,7 @@
     <jetbrains-annotations.version>25.0.0</jetbrains-annotations.version>
     <jna.version>5.15.0</jna.version>
     <jooq.version>3.19.13</jooq.version>
+    <jspecify.version>1.0.0</jspecify.version>
     <junit-jupiter.version>5.11.1</junit-jupiter.version>
     <junit-pioneer.version>2.2.0</junit-pioneer.version>
     <junit.version>4.13.2</junit.version>

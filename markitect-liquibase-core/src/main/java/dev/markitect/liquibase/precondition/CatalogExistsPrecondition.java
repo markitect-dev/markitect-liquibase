@@ -29,7 +29,7 @@ import liquibase.exception.PreconditionFailedException;
 import liquibase.exception.ValidationErrors;
 import liquibase.exception.Warnings;
 import liquibase.precondition.AbstractPrecondition;
-import org.checkerframework.checker.nullness.qual.Nullable;
+import org.jspecify.annotations.Nullable;
 
 public class CatalogExistsPrecondition extends AbstractPrecondition {
   private @Nullable String catalogName;
