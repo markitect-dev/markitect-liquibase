@@ -12,6 +12,7 @@ spotless {
         java {
             targetExclude("build/**")
             licenseHeaderFile(rootProject.file("config/spotless/license-header-java"))
+            removeUnusedImports("cleanthat-javaparser-unnecessaryimport")
             googleJavaFormat(libs.versions.google.java.format.get()).reflowLongStrings()
         }
     }
@@ -22,7 +23,7 @@ spotless {
         target("renovate.json5")
         prettier(libs.versions.prettier.asProvider().get())
             .nodeExecutable(computeNodeExec(node, computeNodeDir(node)))
-            .npmInstallCache()
+            .npmInstallCache(rootProject.layout.projectDirectory.dir(".gradle/spotless-npm-install-cache"))
             .config(
                 mapOf(
                     "parser" to "json5",
@@ -39,7 +40,7 @@ spotless {
             ),
         )
             .nodeExecutable(computeNodeExec(node, computeNodeDir(node)))
-            .npmInstallCache()
+            .npmInstallCache(rootProject.layout.projectDirectory.dir(".gradle/spotless-npm-install-cache"))
             .config(
                 mapOf(
                     "parser" to "dot-properties",
@@ -58,7 +59,7 @@ spotless {
             ),
         )
             .nodeExecutable(computeNodeExec(node, computeNodeDir(node)))
-            .npmInstallCache()
+            .npmInstallCache(rootProject.layout.projectDirectory.dir(".gradle/spotless-npm-install-cache"))
             .config(
                 mapOf(
                     "parser" to "toml",

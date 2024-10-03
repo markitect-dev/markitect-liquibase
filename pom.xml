@@ -99,6 +99,9 @@
     </sonar.coverage.jacoco.xmlReportPaths>
     <spotbugs.config.directory>${maven.multiModuleProjectDirectory}/config/spotbugs</spotbugs.config.directory>
     <spotless.config.directory>${maven.multiModuleProjectDirectory}/config/spotless</spotless.config.directory>
+    <spotless.npm.install.cache xml:space="preserve">
+      ${maven.multiModuleProjectDirectory}/target/spotless-npm-install-cache
+    </spotless.npm.install.cache>
 
     <apiguardian.version>1.1.2</apiguardian.version>
     <assertj.version>3.26.3</assertj.version>
@@ -240,6 +243,9 @@
               <licenseHeader>
                 <file>${spotless.config.directory}/license-header-java</file>
               </licenseHeader>
+              <removeUnusedImports>
+                <engine>cleanthat-javaparser-unnecessaryimport</engine>
+              </removeUnusedImports>
               <googleJavaFormat>
                 <version>${google-java-format.version}</version>
                 <reflowLongStrings>true</reflowLongStrings>
@@ -266,7 +272,7 @@
                 </includes>
                 <prettier>
                   <nodeExecutable>${node.executable}</nodeExecutable>
-                  <npmInstallCache>true</npmInstallCache>
+                  <npmInstallCache>${spotless.npm.install.cache}</npmInstallCache>
                   <prettierVersion>${prettier.version}</prettierVersion>
                   <config>
                     <parser>json5</parser>
@@ -280,7 +286,7 @@
                 </includes>
                 <prettier>
                   <nodeExecutable>${node.executable}</nodeExecutable>
-                  <npmInstallCache>true</npmInstallCache>
+                  <npmInstallCache>${spotless.npm.install.cache}</npmInstallCache>
                   <devDependencies>
                     <prettier>${prettier.version}</prettier>
                     <prettier-plugin-properties>${prettier-plugin-properties.version}</prettier-plugin-properties>

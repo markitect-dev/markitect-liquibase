@@ -54,7 +54,7 @@ spotless {
             ),
         )
             .nodeExecutable(computeNodeExec(node, computeNodeDir(node)))
-            .npmInstallCache()
+            .npmInstallCache(rootProject.layout.projectDirectory.dir(".gradle/spotless-npm-install-cache"))
             .config(
                 mapOf(
                     "parser" to "dot-properties",
