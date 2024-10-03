@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>DatabaseConnectionBuilder.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">markitect-liquibase-coverage</a> &gt; <a href="../index.html" class="el_bundle">markitect-liquibase-core</a> &gt; <a href="index.source.html" class="el_package">dev.markitect.liquibase.database</a> &gt; <span class="el_source">DatabaseConnectionBuilder.java</span></div><h1>DatabaseConnectionBuilder.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2023 Markitect
+ * Copyright 2023-2024 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -22,53 +22,43 @@ import liquibase.Scope;
 import liquibase.database.DatabaseConnection;
 import liquibase.database.DatabaseFactory;
 import liquibase.exception.DatabaseException;
-import org.checkerframework.checker.nullness.qual.Nullable;
+import org.jspecify.annotations.Nullable;
 
-public final class DatabaseConnectionBuilder {
-<span class="fc" id="L28">  private static final DatabaseConnectionBuilder SINGLETON =</span>
-      new DatabaseConnectionBuilder(null, null, null, null);
-
-  public static DatabaseConnectionBuilder of() {
-<span class="fc" id="L32">    return SINGLETON;</span>
+<span class="fc" id="L27">public final class DatabaseConnectionBuilder {</span>
+  public static DatabaseConnectionBuilder newBuilder() {
+<span class="fc" id="L29">    return new DatabaseConnectionBuilder();</span>
   }
 
-  private final @Nullable String url;
-  private final @Nullable String username;
-  private final @Nullable String password;
-  private final @Nullable String driver;
+  private @Nullable String url;
+  private @Nullable String username;
+  private @Nullable String password;
+  private @Nullable String driver;
 
-  private DatabaseConnectionBuilder(
-      @Nullable String url,
-      @Nullable String username,
-      @Nullable String password,
-<span class="fc" id="L44">      @Nullable String driver) {</span>
-<span class="fc" id="L45">    this.url = url;</span>
-<span class="fc" id="L46">    this.username = username;</span>
-<span class="fc" id="L47">    this.password = password;</span>
-<span class="fc" id="L48">    this.driver = driver;</span>
-<span class="fc" id="L49">  }</span>
-
-  public DatabaseConnectionBuilder withUrl(@Nullable String url) {
-<span class="fc" id="L52">    return new DatabaseConnectionBuilder(url, username, password, driver);</span>
+  public DatabaseConnectionBuilder url(@Nullable String url) {
+<span class="fc" id="L38">    this.url = url;</span>
+<span class="fc" id="L39">    return this;</span>
   }
 
-  public DatabaseConnectionBuilder withUsername(@Nullable String username) {
-<span class="fc" id="L56">    return new DatabaseConnectionBuilder(url, username, password, driver);</span>
+  public DatabaseConnectionBuilder username(@Nullable String username) {
+<span class="fc" id="L43">    this.username = username;</span>
+<span class="fc" id="L44">    return this;</span>
   }
 
-  public DatabaseConnectionBuilder withPassword(@Nullable String password) {
-<span class="fc" id="L60">    return new DatabaseConnectionBuilder(url, username, password, driver);</span>
+  public DatabaseConnectionBuilder password(@Nullable String password) {
+<span class="fc" id="L48">    this.password = password;</span>
+<span class="fc" id="L49">    return this;</span>
   }
 
-  public DatabaseConnectionBuilder withDriver(@Nullable String driver) {
-<span class="fc" id="L64">    return new DatabaseConnectionBuilder(url, username, password, driver);</span>
+  public DatabaseConnectionBuilder driver(@Nullable String driver) {
+<span class="fc" id="L53">    this.driver = driver;</span>
+<span class="fc" id="L54">    return this;</span>
   }
 
   public DatabaseConnection build() {
-<span class="fc bfc" id="L68" title="All 2 branches covered.">    checkState(url != null);</span>
+<span class="fc bfc" id="L58" title="All 2 branches covered.">    checkState(url != null);</span>
     try {
-<span class="fc" id="L70">      return DatabaseFactory.getInstance()</span>
-<span class="fc" id="L71">          .openConnection(</span>
+<span class="fc" id="L60">      return DatabaseFactory.getInstance()</span>
+<span class="fc" id="L61">          .openConnection(</span>
               url,
               username,
               password,
@@ -76,9 +66,9 @@ public final class DatabaseConnectionBuilder {
               null,
               null,
               null,
-<span class="fc" id="L79">              Scope.getCurrentScope().getResourceAccessor());</span>
-<span class="fc" id="L80">    } catch (DatabaseException | RuntimeException e) {</span>
-<span class="fc" id="L81">      throw new IllegalStateException(e);</span>
+<span class="fc" id="L69">              Scope.getCurrentScope().getResourceAccessor());</span>
+<span class="fc" id="L70">    } catch (DatabaseException | RuntimeException e) {</span>
+<span class="fc" id="L71">      throw new IllegalStateException(e);</span>
     }
   }
 }

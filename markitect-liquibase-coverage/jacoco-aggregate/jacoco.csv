@@ -41,11 +41,11 @@ markitect-liquibase-coverage/markitect-liquibase-core,dev.markitect.liquibase.sq
 markitect-liquibase-coverage/markitect-liquibase-core,dev.markitect.liquibase.sqlgenerator,MarkitectInsertOrUpdateGeneratorPostgres,0,156,1,3,0,37,1,9,0,8
 markitect-liquibase-coverage/markitect-liquibase-core,dev.markitect.liquibase.sqlgenerator,SetIdentityInsertGenerator,0,85,0,0,0,20,0,4,0,4
 markitect-liquibase-coverage/markitect-liquibase-core,dev.markitect.liquibase.sqlgenerator,DropSchemaGenerator,0,97,0,8,0,19,0,8,0,4
-markitect-liquibase-coverage/markitect-liquibase-core,dev.markitect.liquibase.database,DatabaseBuilder,0,184,0,10,0,36,0,14,0,9
+markitect-liquibase-coverage/markitect-liquibase-core,dev.markitect.liquibase.database,DatabaseBuilder,0,121,0,10,0,38,0,14,0,9
 markitect-liquibase-coverage/markitect-liquibase-core,dev.markitect.liquibase.database,MarkitectOfflineConnection,0,31,0,4,0,8,0,7,0,5
 markitect-liquibase-coverage/markitect-liquibase-core,dev.markitect.liquibase.database,Databases,0,89,0,12,0,28,0,8,0,2
-markitect-liquibase-coverage/markitect-liquibase-core,dev.markitect.liquibase.database,OfflineConnectionBuilder,0,251,0,10,0,38,0,17,0,12
-markitect-liquibase-coverage/markitect-liquibase-core,dev.markitect.liquibase.database,DatabaseConnectionBuilder,0,99,0,2,0,18,0,9,0,8
+markitect-liquibase-coverage/markitect-liquibase-core,dev.markitect.liquibase.database,OfflineConnectionBuilder,0,128,0,8,0,33,0,14,0,10
+markitect-liquibase-coverage/markitect-liquibase-core,dev.markitect.liquibase.database,DatabaseConnectionBuilder,0,56,0,2,0,16,0,8,0,7
 markitect-liquibase-coverage/markitect-liquibase-core,dev.markitect.liquibase.database,MarkitectDatabase,0,225,0,68,0,60,0,42,0,8
 markitect-liquibase-coverage/markitect-liquibase-core,dev.markitect.liquibase.util,Strings,0,16,0,2,0,3,0,3,0,2
 markitect-liquibase-coverage/markitect-liquibase-core,dev.markitect.liquibase.database.postgresql,MarkitectPostgresDatabase,0,38,0,0,0,8,0,8,0,8

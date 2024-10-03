@@ -106,11 +106,11 @@
 <td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td>
 <td>Yes</td></tr>
 <tr class="a">
-<td>org.checkerframework</td>
-<td><a class="externalLink" href="https://checkerframework.org/">checker-qual</a></td>
-<td>3.48.0</td>
+<td>org.jspecify</td>
+<td><a class="externalLink" href="http://jspecify.org/">jspecify</a></td>
+<td>1.0.0</td>
 <td>jar</td>
-<td><a class="externalLink" href="http://opensource.org/licenses/MIT">The MIT License</a></td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache License, Version 2.0</a></td>
 <td>Yes</td></tr></table></section><section><a id="Project_Dependencies_test"></a>
 <h2>test</h2>
 <p>The following is a list of test dependencies for this project. These dependencies are only required to compile and run unit tests for the application:</p>
@@ -436,19 +436,18 @@
 <p><b>Description: </b>Allows to parse Java byte code to find invocations of method/class/field signatures and fail build (Apache Ant, Apache Maven, Gradle, or CLI)</p>
 <p><b>URL: </b><a class="externalLink" href="https://github.com/policeman-tools/forbidden-apis">https://github.com/policeman-tools/forbidden-apis</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
-<li>org.checkerframework:checker-qual:jar:3.48.0 (compile) <img id="_img39" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep38', '_img39' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep38" style="display:none">
+<li>org.jspecify:jspecify:jar:1.0.0 (compile) <img id="_img39" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep38', '_img39' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep38" style="display:none">
 <table class="table table-striped">
 <tr class="a">
-<th>Checker Qual</th></tr>
+<th>JSpecify annotations</th></tr>
 <tr class="b">
 <td>
-<p><b>Description: </b>checker-qual contains annotations (type qualifiers) that a programmerwrites to specify Java code for type-checking by the Checker Framework.</p>
-<p><b>URL: </b><a class="externalLink" href="https://checkerframework.org/">https://checkerframework.org/</a></p>
-<p><b>Project Licenses: </b><a class="externalLink" href="http://opensource.org/licenses/MIT">The MIT License</a></p></td></tr></table></div></li></ul></li></ul></section></section><section><a id="Licenses"></a>
+<p><b>Description: </b>An artifact of well-named and well-specified annotations to power static analysis checks</p>
+<p><b>URL: </b><a class="externalLink" href="http://jspecify.org/">http://jspecify.org/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache License, Version 2.0</a></p></td></tr></table></div></li></ul></li></ul></section></section><section><a id="Licenses"></a>
 <h1>Licenses</h1>
-<p><b>The Apache License, Version 2.0: </b>org.apiguardian:apiguardian-api, org.opentest4j:opentest4j</p>
+<p><b>The Apache License, Version 2.0: </b>JSpecify annotations, org.apiguardian:apiguardian-api, org.opentest4j:opentest4j</p>
 <p><b>Apache 2.0: </b>error-prone annotations</p>
-<p><b>The MIT License: </b>Checker Qual</p>
 <p><b>Apache License, Version 2.0: </b>AssertJ Core, Byte Buddy (without dependencies), Byte Buddy agent, Objenesis, markitect-liquibase-base</p>
 <p><b>Eclipse Public License v2.0: </b>JUnit Jupiter (Aggregator), JUnit Jupiter API, JUnit Jupiter Engine, JUnit Jupiter Params, JUnit Platform Commons, JUnit Platform Engine API</p>
 <p><b>MIT: </b>mockito-core, mockito-junit-jupiter</p>
@@ -689,13 +688,29 @@
 <td style="text-align: center;">1.7</td>
 <td style="text-align: center;">Yes</td></tr>
 <tr class="b">
-<td style="text-align: left;">checker-qual-3.48.0.jar</td>
-<td style="text-align: right;">238.6 kB</td>
-<td style="text-align: right;">454</td>
-<td style="text-align: right;">381</td>
-<td style="text-align: right;">33</td>
+<td style="text-align: left;">jspecify-1.0.0.jar</td>
+<td style="text-align: right;">3.8 kB</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td></tr>
+<tr class="a">
+<td style="text-align: left;">&#160;&#160;&#160;&#x2022; Root</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: center;">1.8</td>
-<td style="text-align: center;">Yes</td></tr>
+<td style="text-align: center;">No</td></tr>
+<tr class="b">
+<td style="text-align: left;">&#160;&#160;&#160;&#x2022; Versioned</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">No</td></tr>
 <tr class="a">
 <th>Total</th>
 <th>Size</th>
@@ -706,20 +721,20 @@
 <th>Debug Information</th></tr>
 <tr class="b">
 <td style="text-align: right;">19</td>
-<td style="text-align: right;">8.9 MB</td>
-<td style="text-align: right;">6478</td>
-<td style="text-align: right;">5922</td>
-<td style="text-align: right;">253</td>
+<td style="text-align: right;">8.6 MB</td>
+<td style="text-align: right;">6038</td>
+<td style="text-align: right;">5545</td>
+<td style="text-align: right;">221</td>
 <td style="text-align: center;">11</td>
-<td style="text-align: right;">18</td></tr>
+<td style="text-align: right;">17</td></tr>
 <tr class="a">
 <td style="text-align: right;">compile: 5</td>
-<td style="text-align: right;">compile: 736.5 kB</td>
-<td style="text-align: right;">compile: 802</td>
-<td style="text-align: right;">compile: 585</td>
-<td style="text-align: right;">compile: 48</td>
+<td style="text-align: right;">compile: 501.7 kB</td>
+<td style="text-align: right;">compile: 362</td>
+<td style="text-align: right;">compile: 208</td>
+<td style="text-align: right;">compile: 16</td>
 <td style="text-align: center;">1.8</td>
-<td style="text-align: right;">compile: 5</td></tr>
+<td style="text-align: right;">compile: 4</td></tr>
 <tr class="b">
 <td style="text-align: right;">test: 14</td>
 <td style="text-align: right;">test: 8.1 MB</td>

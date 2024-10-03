@@ -17,7 +17,7 @@
 package dev.markitect.liquibase.statement;
 
 import liquibase.statement.AbstractSqlStatement;
-import org.checkerframework.checker.nullness.qual.Nullable;
+import org.jspecify.annotations.Nullable;
 
 public class SetIdentityInsertStatement extends AbstractSqlStatement {
   private final @Nullable String catalogName;
