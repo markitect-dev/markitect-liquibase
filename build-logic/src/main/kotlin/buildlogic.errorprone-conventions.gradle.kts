@@ -21,6 +21,7 @@ tasks.withType<JavaCompile>().configureEach {
         disable("Java7ApiChecker")
         disable("Java8ApiChecker")
         disable("Var")
+        disable("Varifier")
         errorproneArgs.add("-XepAllSuggestionsAsWarnings")
         nullaway {
             excludedFieldAnnotations.add("org.mockito.Captor")

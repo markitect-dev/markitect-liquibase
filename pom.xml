@@ -455,6 +455,7 @@
                 -Xep:Java7ApiChecker:OFF
                 -Xep:Java8ApiChecker:OFF
                 -Xep:Var:OFF
+                -Xep:Varifier:OFF
                 -Xep:NullAway:WARN
                 -XepOpt:NullAway:AnnotatedPackages=dev.markitect.liquibase
                 -XepOpt:NullAway:ExcludedFieldAnnotations=org.mockito.Captor,org.mockito.InjectMocks,org.mockito.Mock</arg>
