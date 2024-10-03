@@ -25,88 +25,54 @@ import liquibase.database.ObjectQuotingStrategy;
 import org.jspecify.annotations.Nullable;
 
 public final class DatabaseBuilder<D extends Database> {
-  public static <T extends Database> DatabaseBuilder<T> of(Class<T> databaseClass) {
+  public static <T extends Database> DatabaseBuilder<T> newBuilder(Class<T> databaseClass) {
     checkNotNull(databaseClass);
-    return new DatabaseBuilder<>(databaseClass, null, null, null, null, null);
+    return new DatabaseBuilder<>(databaseClass);
   }
 
   private final Class<D> databaseClass;
-  private final @Nullable DatabaseConnectionBuilder databaseConnectionBuilder;
-  private final @Nullable UnaryOperator<OfflineConnectionBuilder> offlineConnectionCustomizer;
-  private final @Nullable ObjectQuotingStrategy objectQuotingStrategy;
-  private final @Nullable Boolean outputDefaultCatalog;
-  private final @Nullable Boolean outputDefaultSchema;
+  private @Nullable DatabaseConnectionBuilder databaseConnectionBuilder;
+  private @Nullable UnaryOperator<OfflineConnectionBuilder> offlineConnectionCustomizer;
+  private @Nullable ObjectQuotingStrategy objectQuotingStrategy;
+  private @Nullable Boolean outputDefaultCatalog;
+  private @Nullable Boolean outputDefaultSchema;
 
-  private DatabaseBuilder(
-      Class<D> databaseClass,
-      @Nullable DatabaseConnectionBuilder databaseConnectionBuilder,
-      @Nullable UnaryOperator<OfflineConnectionBuilder> offlineConnectionCustomizer,
-      @Nullable ObjectQuotingStrategy objectQuotingStrategy,
-      @Nullable Boolean outputDefaultCatalog,
-      @Nullable Boolean outputDefaultSchema) {
+  private DatabaseBuilder(Class<D> databaseClass) {
     this.databaseClass = checkNotNull(databaseClass);
-    this.databaseConnectionBuilder = databaseConnectionBuilder;
-    this.offlineConnectionCustomizer = offlineConnectionCustomizer;
-    this.objectQuotingStrategy = objectQuotingStrategy;
-    this.outputDefaultCatalog = outputDefaultCatalog;
-    this.outputDefaultSchema = outputDefaultSchema;
   }
 
-  public DatabaseBuilder<D> withDatabaseConnection(
+  public DatabaseBuilder<D> databaseConnection(
       @Nullable DatabaseConnectionBuilder databaseConnectionBuilder) {
-    return new DatabaseBuilder<>(
-        databaseClass,
-        databaseConnectionBuilder,
-        null,
-        objectQuotingStrategy,
-        outputDefaultCatalog,
-        outputDefaultSchema);
+    this.databaseConnectionBuilder = databaseConnectionBuilder;
+    this.offlineConnectionCustomizer = null;
+    return this;
   }
 
-  public DatabaseBuilder<D> withOfflineConnection() {
-    return withOfflineConnection(UnaryOperator.identity());
+  public DatabaseBuilder<D> offlineConnection() {
+    return offlineConnection(UnaryOperator.identity());
   }
 
-  public DatabaseBuilder<D> withOfflineConnection(
+  public DatabaseBuilder<D> offlineConnection(
       @Nullable UnaryOperator<OfflineConnectionBuilder> offlineConnectionCustomizer) {
-    return new DatabaseBuilder<>(
-        databaseClass,
-        null,
-        offlineConnectionCustomizer,
-        objectQuotingStrategy,
-        outputDefaultCatalog,
-        outputDefaultSchema);
+    this.databaseConnectionBuilder = null;
+    this.offlineConnectionCustomizer = offlineConnectionCustomizer;
+    return this;
   }
 
-  public DatabaseBuilder<D> withObjectQuotingStrategy(
+  public DatabaseBuilder<D> objectQuotingStrategy(
       @Nullable ObjectQuotingStrategy objectQuotingStrategy) {
-    return new DatabaseBuilder<>(
-        databaseClass,
-        databaseConnectionBuilder,
-        offlineConnectionCustomizer,
-        objectQuotingStrategy,
-        outputDefaultCatalog,
-        outputDefaultSchema);
+    this.objectQuotingStrategy = objectQuotingStrategy;
+    return this;
   }
 
-  public DatabaseBuilder<D> withOutputDefaultCatalog(@Nullable Boolean outputDefaultCatalog) {
-    return new DatabaseBuilder<>(
-        databaseClass,
-        databaseConnectionBuilder,
-        offlineConnectionCustomizer,
-        objectQuotingStrategy,
-        outputDefaultCatalog,
-        outputDefaultSchema);
+  public DatabaseBuilder<D> outputDefaultCatalog(@Nullable Boolean outputDefaultCatalog) {
+    this.outputDefaultCatalog = outputDefaultCatalog;
+    return this;
   }
 
-  public DatabaseBuilder<D> withOutputDefaultSchema(@Nullable Boolean outputDefaultSchema) {
-    return new DatabaseBuilder<>(
-        databaseClass,
-        databaseConnectionBuilder,
-        offlineConnectionCustomizer,
-        objectQuotingStrategy,
-        outputDefaultCatalog,
-        outputDefaultSchema);
+  public DatabaseBuilder<D> outputDefaultSchema(@Nullable Boolean outputDefaultSchema) {
+    this.outputDefaultSchema = outputDefaultSchema;
+    return this;
   }
 
   public D build() {
@@ -123,7 +89,7 @@ public final class DatabaseBuilder<D extends Database> {
       var offlineConnection =
           offlineConnectionCustomizer
               .andThen(Verify::verifyNotNull)
-              .apply(OfflineConnectionBuilder.of().withShortName(database.getShortName()))
+              .apply(OfflineConnectionBuilder.newBuilder(database.getShortName()))
               .build();
       database.setConnection(offlineConnection);
     }

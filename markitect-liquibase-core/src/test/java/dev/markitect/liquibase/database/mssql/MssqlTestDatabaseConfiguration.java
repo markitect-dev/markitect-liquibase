@@ -31,6 +31,7 @@ import liquibase.structure.core.Schema;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.context.annotation.Scope;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.testcontainers.containers.MSSQLServerContainer;
 import org.testcontainers.utility.DockerImageName;
@@ -38,17 +39,17 @@ import org.testcontainers.utility.DockerImageName;
 @Configuration
 public class MssqlTestDatabaseConfiguration {
   @Bean
-  @Lazy
+  @Scope("prototype")
   public DatabaseBuilder<MarkitectMssqlDatabase> mssqlTestDatabaseBuilder(
       TestDatabaseSpecs specs, MSSQLServerContainer<?> container) {
     var databaseConnectionBuilder =
-        DatabaseConnectionBuilder.of()
-            .withUrl(container.getJdbcUrl() + ";databaseName=" + specs.getCatalogName())
-            .withUsername(specs.getUsername())
-            .withPassword(specs.getPassword())
-            .withDriver(container.getDriverClassName());
-    return DatabaseBuilder.of(MarkitectMssqlDatabase.class)
-        .withDatabaseConnection(databaseConnectionBuilder);
+        DatabaseConnectionBuilder.newBuilder()
+            .url(container.getJdbcUrl() + ";databaseName=" + specs.getCatalogName())
+            .username(specs.getUsername())
+            .password(specs.getPassword())
+            .driver(container.getDriverClassName());
+    return DatabaseBuilder.newBuilder(MarkitectMssqlDatabase.class)
+        .databaseConnection(databaseConnectionBuilder);
   }
 
   @Bean

@@ -72,7 +72,7 @@ class SchemaExistsPreconditionTests {
   void warn(Class<? extends Database> databaseClass, List<String> expectedMessages) {
     // given
     var precondition = new SchemaExistsPrecondition();
-    var database = DatabaseBuilder.of(databaseClass).build();
+    var database = DatabaseBuilder.newBuilder(databaseClass).build();
 
     // when
     var warnings = precondition.warn(database);
@@ -128,7 +128,7 @@ class SchemaExistsPreconditionTests {
     var precondition = new SchemaExistsPrecondition();
     precondition.setCatalogName(catalogName);
     precondition.setSchemaName(schemaName);
-    var database = DatabaseBuilder.of(databaseClass).build();
+    var database = DatabaseBuilder.newBuilder(databaseClass).build();
 
     // when
     var errors = precondition.validate(database);
@@ -166,9 +166,9 @@ dev.markitect.liquibase.database.postgresql.MarkitectPostgresDatabase | Cat1    
     precondition.setCatalogName(catalogName);
     precondition.setSchemaName(schemaName);
     try (var database =
-        DatabaseBuilder.of(databaseClass)
-            .withOfflineConnection(
-                ocb -> ocb.withCatalog(connectionCatalogName).withSchema(connectionSchemaName))
+        DatabaseBuilder.newBuilder(databaseClass)
+            .offlineConnection(
+                ocb -> ocb.catalog(connectionCatalogName).schema(connectionSchemaName))
             .build()) {
       assertThat(database.getDefaultCatalogName()).isEqualTo(connectionCatalogName);
       assertThat(database.getDefaultSchemaName()).isEqualTo(connectionSchemaName);
@@ -208,9 +208,9 @@ dev.markitect.liquibase.database.postgresql.MarkitectPostgresDatabase | Cat1    
     precondition.setCatalogName(catalogName);
     precondition.setSchemaName(schemaName);
     try (var database =
-        DatabaseBuilder.of(databaseClass)
-            .withOfflineConnection(
-                ocb -> ocb.withCatalog(connectionCatalogName).withSchema(connectionSchemaName))
+        DatabaseBuilder.newBuilder(databaseClass)
+            .offlineConnection(
+                ocb -> ocb.catalog(connectionCatalogName).schema(connectionSchemaName))
             .build()) {
       assertThat(database.getDefaultCatalogName()).isEqualTo(connectionCatalogName);
       assertThat(database.getDefaultSchemaName()).isEqualTo(connectionSchemaName);
@@ -246,9 +246,9 @@ dev.markitect.liquibase.database.postgresql.MarkitectPostgresDatabase | Cat1    
     precondition.setCatalogName(catalogName);
     precondition.setSchemaName(schemaName);
     try (var database =
-        DatabaseBuilder.of(databaseClass)
-            .withOfflineConnection(
-                ocb -> ocb.withCatalog(connectionCatalogName).withSchema(connectionSchemaName))
+        DatabaseBuilder.newBuilder(databaseClass)
+            .offlineConnection(
+                ocb -> ocb.catalog(connectionCatalogName).schema(connectionSchemaName))
             .build()) {
       assertThat(database.getDefaultCatalogName()).isEqualTo(connectionCatalogName);
       assertThat(database.getDefaultSchemaName()).isEqualTo(connectionSchemaName);

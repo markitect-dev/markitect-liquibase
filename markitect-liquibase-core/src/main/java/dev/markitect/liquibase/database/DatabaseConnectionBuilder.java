@@ -25,43 +25,33 @@ import liquibase.exception.DatabaseException;
 import org.jspecify.annotations.Nullable;
 
 public final class DatabaseConnectionBuilder {
-  private static final DatabaseConnectionBuilder SINGLETON =
-      new DatabaseConnectionBuilder(null, null, null, null);
-
-  public static DatabaseConnectionBuilder of() {
-    return SINGLETON;
+  public static DatabaseConnectionBuilder newBuilder() {
+    return new DatabaseConnectionBuilder();
   }
 
-  private final @Nullable String url;
-  private final @Nullable String username;
-  private final @Nullable String password;
-  private final @Nullable String driver;
+  private @Nullable String url;
+  private @Nullable String username;
+  private @Nullable String password;
+  private @Nullable String driver;
 
-  private DatabaseConnectionBuilder(
-      @Nullable String url,
-      @Nullable String username,
-      @Nullable String password,
-      @Nullable String driver) {
+  public DatabaseConnectionBuilder url(@Nullable String url) {
     this.url = url;
+    return this;
+  }
+
+  public DatabaseConnectionBuilder username(@Nullable String username) {
     this.username = username;
+    return this;
+  }
+
+  public DatabaseConnectionBuilder password(@Nullable String password) {
     this.password = password;
+    return this;
+  }
+
+  public DatabaseConnectionBuilder driver(@Nullable String driver) {
     this.driver = driver;
-  }
-
-  public DatabaseConnectionBuilder withUrl(@Nullable String url) {
-    return new DatabaseConnectionBuilder(url, username, password, driver);
-  }
-
-  public DatabaseConnectionBuilder withUsername(@Nullable String username) {
-    return new DatabaseConnectionBuilder(url, username, password, driver);
-  }
-
-  public DatabaseConnectionBuilder withPassword(@Nullable String password) {
-    return new DatabaseConnectionBuilder(url, username, password, driver);
-  }
-
-  public DatabaseConnectionBuilder withDriver(@Nullable String driver) {
-    return new DatabaseConnectionBuilder(url, username, password, driver);
+    return this;
   }
 
   public DatabaseConnection build() {

@@ -30,6 +30,7 @@ import liquibase.structure.core.Schema;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.context.annotation.Scope;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.utility.DockerImageName;
@@ -37,17 +38,17 @@ import org.testcontainers.utility.DockerImageName;
 @Configuration
 public class PostgresTestDatabaseConfiguration {
   @Bean
-  @Lazy
+  @Scope("prototype")
   public DatabaseBuilder<MarkitectPostgresDatabase> postgresTestDatabaseBuilder(
       TestDatabaseSpecs specs, PostgreSQLContainer<?> container) {
     var databaseConnectionBuilder =
-        DatabaseConnectionBuilder.of()
-            .withUrl(container.getJdbcUrl())
-            .withUsername(specs.getUsername())
-            .withPassword(specs.getPassword())
-            .withDriver(container.getDriverClassName());
-    return DatabaseBuilder.of(MarkitectPostgresDatabase.class)
-        .withDatabaseConnection(databaseConnectionBuilder);
+        DatabaseConnectionBuilder.newBuilder()
+            .url(container.getJdbcUrl())
+            .username(specs.getUsername())
+            .password(specs.getPassword())
+            .driver(container.getDriverClassName());
+    return DatabaseBuilder.newBuilder(MarkitectPostgresDatabase.class)
+        .databaseConnection(databaseConnectionBuilder);
   }
 
   @Bean

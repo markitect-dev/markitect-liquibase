@@ -17,93 +17,61 @@
 package dev.markitect.liquibase.database;
 
 import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
-import static dev.markitect.liquibase.base.Preconditions.checkState;
 import static java.util.Collections.emptyMap;
-import static java.util.Collections.unmodifiableMap;
 
-import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.StringJoiner;
 import liquibase.Scope;
 import org.jspecify.annotations.Nullable;
 
 public final class OfflineConnectionBuilder {
-  private static final OfflineConnectionBuilder SINGLETON =
-      new OfflineConnectionBuilder(null, null, null, null, null, null, emptyMap());
-
-  public static OfflineConnectionBuilder of() {
-    return SINGLETON;
+  public static OfflineConnectionBuilder newBuilder(String shortName) {
+    return new OfflineConnectionBuilder(checkNotNull(shortName));
   }
 
-  private final @Nullable String shortName;
-  private final @Nullable String productName;
-  private final @Nullable String version;
-  private final @Nullable String snapshot;
-  private final @Nullable String catalog;
-  private final @Nullable String schema;
-  private final Map<String, String> databaseParams;
+  private final String shortName;
+  private @Nullable String productName;
+  private @Nullable String version;
+  private @Nullable String snapshot;
+  private @Nullable String catalog;
+  private @Nullable String schema;
+  private Map<String, String> databaseParams = emptyMap();
 
-  private OfflineConnectionBuilder(
-      @Nullable String shortName,
-      @Nullable String productName,
-      @Nullable String version,
-      @Nullable String snapshot,
-      @Nullable String catalog,
-      @Nullable String schema,
-      Map<String, String> databaseParams) {
-    this.shortName = shortName;
+  private OfflineConnectionBuilder(String shortName) {
+    this.shortName = checkNotNull(shortName);
+  }
+
+  public OfflineConnectionBuilder productName(@Nullable String productName) {
     this.productName = productName;
+    return this;
+  }
+
+  public OfflineConnectionBuilder version(@Nullable String version) {
     this.version = version;
+    return this;
+  }
+
+  public OfflineConnectionBuilder snapshot(@Nullable String snapshot) {
     this.snapshot = snapshot;
+    return this;
+  }
+
+  public OfflineConnectionBuilder catalog(@Nullable String catalog) {
     this.catalog = catalog;
+    return this;
+  }
+
+  public OfflineConnectionBuilder schema(@Nullable String schema) {
     this.schema = schema;
+    return this;
+  }
+
+  public OfflineConnectionBuilder databaseParams(Map<String, String> databaseParams) {
     this.databaseParams = checkNotNull(databaseParams);
-  }
-
-  public OfflineConnectionBuilder withShortName(@Nullable String shortName) {
-    return new OfflineConnectionBuilder(
-        shortName, productName, version, snapshot, catalog, schema, databaseParams);
-  }
-
-  public OfflineConnectionBuilder withProductName(@Nullable String productName) {
-    return new OfflineConnectionBuilder(
-        shortName, productName, version, snapshot, catalog, schema, databaseParams);
-  }
-
-  public OfflineConnectionBuilder withVersion(@Nullable String version) {
-    return new OfflineConnectionBuilder(
-        shortName, productName, version, snapshot, catalog, schema, databaseParams);
-  }
-
-  public OfflineConnectionBuilder withSnapshot(@Nullable String snapshot) {
-    return new OfflineConnectionBuilder(
-        shortName, productName, version, snapshot, catalog, schema, databaseParams);
-  }
-
-  public OfflineConnectionBuilder withCatalog(@Nullable String catalog) {
-    return new OfflineConnectionBuilder(
-        shortName, productName, version, snapshot, catalog, schema, databaseParams);
-  }
-
-  public OfflineConnectionBuilder withSchema(@Nullable String schema) {
-    return new OfflineConnectionBuilder(
-        shortName, productName, version, snapshot, catalog, schema, databaseParams);
-  }
-
-  public OfflineConnectionBuilder withDatabaseParams(Map<String, String> databaseParams) {
-    checkNotNull(databaseParams);
-    return new OfflineConnectionBuilder(
-        shortName,
-        productName,
-        version,
-        snapshot,
-        catalog,
-        schema,
-        unmodifiableMap(new LinkedHashMap<>(databaseParams)));
+    return this;
   }
 
   public MarkitectOfflineConnection build() {
-    checkState(shortName != null);
     var params = new StringJoiner("&", "?", "");
     if (productName != null) {
       params.add("productName=" + productName);

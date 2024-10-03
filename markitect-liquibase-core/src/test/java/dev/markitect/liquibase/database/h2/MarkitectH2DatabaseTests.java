@@ -29,9 +29,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 class MarkitectH2DatabaseTests {
-  private final DatabaseBuilder<MarkitectH2Database> databaseBuilder =
-      DatabaseBuilder.of(MarkitectH2Database.class).withOfflineConnection();
-
   @ParameterizedTest
   @CsvSource(
       textBlock =
@@ -76,7 +73,11 @@ true                 |                   | Cat 1      | liquibase.structure.core
     if (preserveSchemaCase != null) {
       scopeValues.put(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getKey(), preserveSchemaCase);
     }
-    try (var database = databaseBuilder.withObjectQuotingStrategy(quotingStrategy).build()) {
+    try (var database =
+        DatabaseBuilder.newBuilder(MarkitectH2Database.class)
+            .offlineConnection()
+            .objectQuotingStrategy(quotingStrategy)
+            .build()) {
 
       // when
       String actual =
@@ -131,7 +132,11 @@ true                 |                   | Cat 1      | liquibase.structure.core
     if (preserveSchemaCase != null) {
       scopeValues.put(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getKey(), preserveSchemaCase);
     }
-    try (var database = databaseBuilder.withObjectQuotingStrategy(quotingStrategy).build()) {
+    try (var database =
+        DatabaseBuilder.newBuilder(MarkitectH2Database.class)
+            .offlineConnection()
+            .objectQuotingStrategy(quotingStrategy)
+            .build()) {
 
       // when
       String actual =
@@ -162,7 +167,11 @@ true                 |                   | Cat 1      | liquibase.structure.core
       @Nullable String expected)
       throws Exception {
     // given
-    try (var database = databaseBuilder.withOutputDefaultSchema(outputDefaultSchema).build()) {
+    try (var database =
+        DatabaseBuilder.newBuilder(MarkitectH2Database.class)
+            .offlineConnection()
+            .outputDefaultSchema(outputDefaultSchema)
+            .build()) {
       assertThat(database.getDefaultSchemaName()).isEqualTo("PUBLIC");
 
       // when

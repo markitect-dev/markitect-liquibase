@@ -91,7 +91,7 @@ true                 |                   | Cat 1      | liquibase.structure.core
     if (preserveSchemaCase != null) {
       scopeValues.put(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getKey(), preserveSchemaCase);
     }
-    try (var database = databaseBuilder.withObjectQuotingStrategy(quotingStrategy).build()) {
+    try (var database = databaseBuilder.objectQuotingStrategy(quotingStrategy).build()) {
 
       // when
       String actual =
@@ -146,7 +146,7 @@ true                 |                   | Cat 1      | liquibase.structure.core
     if (preserveSchemaCase != null) {
       scopeValues.put(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getKey(), preserveSchemaCase);
     }
-    try (var database = databaseBuilder.withObjectQuotingStrategy(quotingStrategy).build()) {
+    try (var database = databaseBuilder.objectQuotingStrategy(quotingStrategy).build()) {
 
       // when
       String actual =
@@ -177,7 +177,7 @@ true                 |                   | Cat 1      | liquibase.structure.core
       @Nullable String expected)
       throws Exception {
     // given
-    try (var database = databaseBuilder.withOutputDefaultSchema(outputDefaultSchema).build()) {
+    try (var database = databaseBuilder.outputDefaultSchema(outputDefaultSchema).build()) {
       assertThat(database.getDefaultSchemaName()).isEqualTo("PUBLIC");
 
       // when
@@ -209,12 +209,12 @@ true                 |                   | Cat 1      | liquibase.structure.core
             () -> {
               try (var database =
                   databaseBuilder
-                      .withDatabaseConnection(
-                          DatabaseConnectionBuilder.of()
-                              .withUrl(toJdbcUrl(databaseName))
-                              .withUsername(specs.getUsername())
-                              .withPassword(specs.getPassword())
-                              .withDriver("org.h2.Driver"))
+                      .databaseConnection(
+                          DatabaseConnectionBuilder.newBuilder()
+                              .url(toJdbcUrl(databaseName))
+                              .username(specs.getUsername())
+                              .password(specs.getPassword())
+                              .driver("org.h2.Driver"))
                       .build()) {
                 var scopeValues = new LinkedHashMap<String, Object>();
                 scopeValues.put(Scope.Attr.database.name(), database);

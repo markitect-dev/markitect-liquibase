@@ -29,10 +29,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 class MarkitectPostgresDatabaseTests {
-  private final DatabaseBuilder<MarkitectPostgresDatabase> databaseBuilder =
-      DatabaseBuilder.of(MarkitectPostgresDatabase.class)
-          .withOfflineConnection(ocb -> ocb.withCatalog("lbcat").withSchema("public"));
-
   @ParameterizedTest
   @CsvSource(
       textBlock =
@@ -68,7 +64,11 @@ true                 |                   | Sch 1      | liquibase.structure.core
     if (preserveSchemaCase != null) {
       scopeValues.put(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getKey(), preserveSchemaCase);
     }
-    try (var database = databaseBuilder.withObjectQuotingStrategy(quotingStrategy).build()) {
+    try (var database =
+        DatabaseBuilder.newBuilder(MarkitectPostgresDatabase.class)
+            .offlineConnection(ocb -> ocb.catalog("lbcat").schema("public"))
+            .objectQuotingStrategy(quotingStrategy)
+            .build()) {
 
       // when
       String actual =
@@ -114,7 +114,11 @@ true                 |                   | Sch 1      | liquibase.structure.core
     if (preserveSchemaCase != null) {
       scopeValues.put(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getKey(), preserveSchemaCase);
     }
-    try (var database = databaseBuilder.withObjectQuotingStrategy(quotingStrategy).build()) {
+    try (var database =
+        DatabaseBuilder.newBuilder(MarkitectPostgresDatabase.class)
+            .offlineConnection(ocb -> ocb.catalog("lbcat").schema("public"))
+            .objectQuotingStrategy(quotingStrategy)
+            .build()) {
 
       // when
       String actual =
@@ -161,9 +165,10 @@ true             | false                | false               |             | pu
           GlobalConfiguration.INCLUDE_CATALOG_IN_SPECIFICATION.getKey(), includeCatalog);
     }
     try (var database =
-        databaseBuilder
-            .withOutputDefaultCatalog(outputDefaultCatalog)
-            .withOutputDefaultSchema(outputDefaultSchema)
+        DatabaseBuilder.newBuilder(MarkitectPostgresDatabase.class)
+            .offlineConnection(ocb -> ocb.catalog("lbcat").schema("public"))
+            .outputDefaultCatalog(outputDefaultCatalog)
+            .outputDefaultSchema(outputDefaultSchema)
             .build()) {
       assertThat(database.getDefaultCatalogName()).isEqualTo("lbcat");
       assertThat(database.getDefaultSchemaName()).isEqualTo("public");

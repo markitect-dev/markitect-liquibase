@@ -156,18 +156,18 @@ class DatabaseBuilderTests {
       throws Exception {
     // given
     var builder =
-        DatabaseBuilder.of(databaseClass)
-            .withObjectQuotingStrategy(quotingStrategy)
-            .withOutputDefaultCatalog(outputDefaultCatalog)
-            .withOutputDefaultSchema(outputDefaultSchema);
+        DatabaseBuilder.newBuilder(databaseClass)
+            .objectQuotingStrategy(quotingStrategy)
+            .outputDefaultCatalog(outputDefaultCatalog)
+            .outputDefaultSchema(outputDefaultSchema);
     if (useOfflineConnection) {
       builder =
-          builder.withOfflineConnection(
+          builder.offlineConnection(
               ocb ->
-                  ocb.withVersion(version)
-                      .withCatalog(catalog)
-                      .withSchema(schema)
-                      .withDatabaseParams(databaseParams));
+                  ocb.version(version)
+                      .catalog(catalog)
+                      .schema(schema)
+                      .databaseParams(databaseParams));
     }
 
     // when
@@ -206,7 +206,7 @@ class DatabaseBuilderTests {
   void build_withInvalidDatabaseClass_throwsIllegalStateException(
       Class<? extends Database> databaseClass) {
     // given
-    var invalidBuilder = DatabaseBuilder.of(databaseClass);
+    var invalidBuilder = DatabaseBuilder.newBuilder(databaseClass);
 
     // when
     var thrown = catchThrowable(invalidBuilder::build);
@@ -218,7 +218,8 @@ class DatabaseBuilderTests {
   @Test
   void build_withInvalidOfflineConnectionCustomizer_throwsVerifyException() {
     // given
-    var invalidBuilder = DatabaseBuilder.of(H2Database.class).withOfflineConnection(ocb -> null);
+    var invalidBuilder =
+        DatabaseBuilder.newBuilder(H2Database.class).offlineConnection(ocb -> null);
 
     // when
     var thrown = catchThrowable(invalidBuilder::build);

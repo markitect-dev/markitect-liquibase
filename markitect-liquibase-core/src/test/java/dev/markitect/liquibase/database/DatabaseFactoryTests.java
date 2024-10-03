@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Markitect
+ * Copyright 2023-2024 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -41,7 +41,7 @@ class DatabaseFactoryTests {
   void findCorrectDatabaseImplementation(String shortName, Class<? extends Database> databaseClass)
       throws Exception {
     // given
-    var connection = OfflineConnectionBuilder.of().withShortName(shortName).build();
+    var connection = OfflineConnectionBuilder.newBuilder(shortName).build();
 
     // when
     var database = DatabaseFactory.getInstance().findCorrectDatabaseImplementation(connection);

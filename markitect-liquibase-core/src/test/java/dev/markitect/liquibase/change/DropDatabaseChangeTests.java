@@ -45,7 +45,7 @@ class DropDatabaseChangeTests {
   void supports(Class<? extends Database> databaseClass, boolean expected) throws Exception {
     // given
     var change = new DropDatabaseChange();
-    try (var database = DatabaseBuilder.of(databaseClass).build()) {
+    try (var database = DatabaseBuilder.newBuilder(databaseClass).build()) {
 
       // when
       var supports = change.supports(database);
@@ -73,7 +73,7 @@ class DropDatabaseChangeTests {
       throws Exception {
     // given
     var change = new DropDatabaseChange();
-    try (var database = DatabaseBuilder.of(databaseClass).build()) {
+    try (var database = DatabaseBuilder.newBuilder(databaseClass).build()) {
       assertThat(change.supports(database)).isTrue();
 
       // when
@@ -115,7 +115,7 @@ class DropDatabaseChangeTests {
     // given
     var change = new DropDatabaseChange();
     change.setDatabaseName(databaseName);
-    try (var database = DatabaseBuilder.of(databaseClass).build()) {
+    try (var database = DatabaseBuilder.newBuilder(databaseClass).build()) {
       assertThat(change.supports(database)).isTrue();
 
       // when
@@ -186,7 +186,7 @@ class DropDatabaseChangeTests {
     change.setDatabaseName(databaseName);
     var statement = new DropDatabaseStatement();
     statement.setDatabaseName(databaseName);
-    try (var database = DatabaseBuilder.of(databaseClass).build()) {
+    try (var database = DatabaseBuilder.newBuilder(databaseClass).build()) {
       assertThat(change.supports(database)).isTrue();
       assertThat(change.warn(database).hasWarnings()).isFalse();
       assertThat(change.validate(database).hasErrors()).isFalse();
@@ -215,7 +215,7 @@ class DropDatabaseChangeTests {
     // given
     var change = new DropDatabaseChange();
     change.setDatabaseName(databaseName);
-    try (var database = DatabaseBuilder.of(databaseClass).build()) {
+    try (var database = DatabaseBuilder.newBuilder(databaseClass).build()) {
       assertThat(change.supports(database)).isTrue();
       assertThat(change.warn(database).hasWarnings()).isFalse();
       assertThat(change.validate(database).hasErrors()).isFalse();
@@ -245,7 +245,7 @@ class DropDatabaseChangeTests {
     // given
     var change = new DropDatabaseChange();
     change.setDatabaseName(databaseName);
-    try (var database = DatabaseBuilder.of(databaseClass).build()) {
+    try (var database = DatabaseBuilder.newBuilder(databaseClass).build()) {
       assertThat(change.supports(database)).isTrue();
       assertThat(change.warn(database).hasWarnings()).isFalse();
       assertThat(change.validate(database).hasErrors()).isFalse();

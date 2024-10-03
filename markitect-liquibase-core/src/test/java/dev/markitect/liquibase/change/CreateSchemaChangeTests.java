@@ -46,7 +46,7 @@ class CreateSchemaChangeTests {
   void supports(Class<? extends Database> databaseClass, boolean expected) throws Exception {
     // given
     var change = new CreateSchemaChange();
-    try (var database = DatabaseBuilder.of(databaseClass).build()) {
+    try (var database = DatabaseBuilder.newBuilder(databaseClass).build()) {
 
       // when
       var supports = change.supports(database);
@@ -82,7 +82,7 @@ class CreateSchemaChangeTests {
       throws Exception {
     // given
     var change = new CreateSchemaChange();
-    try (var database = DatabaseBuilder.of(databaseClass).build()) {
+    try (var database = DatabaseBuilder.newBuilder(databaseClass).build()) {
       assertThat(change.supports(database)).isTrue();
 
       // when
@@ -158,7 +158,7 @@ class CreateSchemaChangeTests {
     var change = new CreateSchemaChange();
     change.setCatalogName(catalogName);
     change.setSchemaName(schemaName);
-    try (var database = DatabaseBuilder.of(databaseClass).build()) {
+    try (var database = DatabaseBuilder.newBuilder(databaseClass).build()) {
       assertThat(change.supports(database)).isTrue();
 
       // when
@@ -239,7 +239,7 @@ class CreateSchemaChangeTests {
     var statement = new CreateSchemaStatement();
     statement.setCatalogName(catalogName);
     statement.setSchemaName(schemaName);
-    try (var database = DatabaseBuilder.of(databaseClass).build()) {
+    try (var database = DatabaseBuilder.newBuilder(databaseClass).build()) {
       assertThat(change.supports(database)).isTrue();
       assertThat(change.warn(database).hasWarnings()).isFalse();
       assertThat(change.validate(database).hasErrors()).isFalse();
@@ -275,7 +275,7 @@ class CreateSchemaChangeTests {
     var change = new CreateSchemaChange();
     change.setCatalogName(catalogName);
     change.setSchemaName(schemaName);
-    try (var database = DatabaseBuilder.of(databaseClass).build()) {
+    try (var database = DatabaseBuilder.newBuilder(databaseClass).build()) {
       assertThat(change.supports(database)).isTrue();
       assertThat(change.warn(database).hasWarnings()).isFalse();
       assertThat(change.validate(database).hasErrors()).isFalse();
@@ -311,7 +311,7 @@ class CreateSchemaChangeTests {
     var change = new CreateSchemaChange();
     change.setCatalogName(catalogName);
     change.setSchemaName(schemaName);
-    try (var database = DatabaseBuilder.of(databaseClass).build()) {
+    try (var database = DatabaseBuilder.newBuilder(databaseClass).build()) {
       assertThat(change.supports(database)).isTrue();
       assertThat(change.warn(database).hasWarnings()).isFalse();
       assertThat(change.validate(database).hasErrors()).isFalse();

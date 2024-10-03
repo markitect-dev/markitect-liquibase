@@ -62,7 +62,7 @@ class CatalogExistsPreconditionTests {
   void warn(Class<? extends Database> databaseClass, List<String> expectedMessages) {
     // given
     var precondition = new CatalogExistsPrecondition();
-    var database = DatabaseBuilder.of(databaseClass).build();
+    var database = DatabaseBuilder.newBuilder(databaseClass).build();
 
     // when
     var warnings = precondition.warn(database);
@@ -101,7 +101,7 @@ class CatalogExistsPreconditionTests {
     // given
     var precondition = new CatalogExistsPrecondition();
     precondition.setCatalogName(catalogName);
-    var database = DatabaseBuilder.of(databaseClass).build();
+    var database = DatabaseBuilder.newBuilder(databaseClass).build();
 
     // when
     var errors = precondition.validate(database);
@@ -131,9 +131,9 @@ dev.markitect.liquibase.database.postgresql.MarkitectPostgresDatabase | Cat1    
     var precondition = new CatalogExistsPrecondition();
     precondition.setCatalogName(catalogName);
     try (var database =
-        DatabaseBuilder.of(databaseClass)
-            .withOfflineConnection(
-                ocb -> ocb.withCatalog(connectionCatalogName).withSchema(connectionSchemaName))
+        DatabaseBuilder.newBuilder(databaseClass)
+            .offlineConnection(
+                ocb -> ocb.catalog(connectionCatalogName).schema(connectionSchemaName))
             .build()) {
       assertThat(database.getDefaultCatalogName()).isEqualTo(connectionCatalogName);
       assertThat(database.getDefaultSchemaName()).isEqualTo(connectionSchemaName);
@@ -169,9 +169,9 @@ dev.markitect.liquibase.database.postgresql.MarkitectPostgresDatabase | Cat1    
     var precondition = new CatalogExistsPrecondition();
     precondition.setCatalogName(catalogName);
     try (var database =
-        DatabaseBuilder.of(databaseClass)
-            .withOfflineConnection(
-                ocb -> ocb.withCatalog(connectionCatalogName).withSchema(connectionSchemaName))
+        DatabaseBuilder.newBuilder(databaseClass)
+            .offlineConnection(
+                ocb -> ocb.catalog(connectionCatalogName).schema(connectionSchemaName))
             .build()) {
       assertThat(database.getDefaultCatalogName()).isEqualTo(connectionCatalogName);
       assertThat(database.getDefaultSchemaName()).isEqualTo(connectionSchemaName);

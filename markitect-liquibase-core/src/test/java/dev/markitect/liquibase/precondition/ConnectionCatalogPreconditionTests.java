@@ -66,7 +66,7 @@ class ConnectionCatalogPreconditionTests {
       throws Exception {
     // given
     var precondition = new ConnectionCatalogPrecondition();
-    try (var database = DatabaseBuilder.of(databaseClass).build()) {
+    try (var database = DatabaseBuilder.newBuilder(databaseClass).build()) {
 
       // when
       var warnings = precondition.warn(database);
@@ -102,7 +102,7 @@ class ConnectionCatalogPreconditionTests {
     // given
     var precondition = new ConnectionCatalogPrecondition();
     precondition.setCatalogName(catalogName);
-    try (var database = DatabaseBuilder.of(databaseClass).build()) {
+    try (var database = DatabaseBuilder.newBuilder(databaseClass).build()) {
 
       // when
       var errors = precondition.validate(database);
@@ -141,10 +141,10 @@ dev.markitect.liquibase.database.mssql.MarkitectMssqlDatabase | Cat1            
     var precondition = new ConnectionCatalogPrecondition();
     precondition.setCatalogName(catalogName);
     try (var database =
-        DatabaseBuilder.of(databaseClass)
-            .withObjectQuotingStrategy(quotingStrategy)
-            .withOfflineConnection(
-                ocb -> ocb.withCatalog(connectionCatalogName).withSchema(connectionSchemaName))
+        DatabaseBuilder.newBuilder(databaseClass)
+            .objectQuotingStrategy(quotingStrategy)
+            .offlineConnection(
+                ocb -> ocb.catalog(connectionCatalogName).schema(connectionSchemaName))
             .build()) {
       assertThat(database.getDefaultCatalogName()).isEqualTo(connectionCatalogName);
       assertThat(database.getDefaultSchemaName()).isEqualTo(connectionSchemaName);
@@ -174,7 +174,7 @@ dev.markitect.liquibase.database.mssql.MarkitectMssqlDatabase | Cat1            
     // given
     var precondition = new ConnectionCatalogPrecondition();
     precondition.setCatalogName(catalogName);
-    try (var database = DatabaseBuilder.of(databaseClass).build()) {
+    try (var database = DatabaseBuilder.newBuilder(databaseClass).build()) {
       assertThat(precondition.warn(database).hasWarnings()).isFalse();
       assertThat(precondition.validate(database).hasErrors()).isFalse();
 
@@ -206,9 +206,9 @@ dev.markitect.liquibase.database.mssql.MarkitectMssqlDatabase  | Cat1           
     var precondition = new ConnectionCatalogPrecondition();
     precondition.setCatalogName(catalogName);
     try (var database =
-        DatabaseBuilder.of(databaseClass)
-            .withOfflineConnection(
-                ocb -> ocb.withCatalog(connectionCatalogName).withSchema(connectionSchemaName))
+        DatabaseBuilder.newBuilder(databaseClass)
+            .offlineConnection(
+                ocb -> ocb.catalog(connectionCatalogName).schema(connectionSchemaName))
             .build()) {
       assertThat(database.getDefaultCatalogName()).isEqualTo(connectionCatalogName);
       assertThat(database.getDefaultSchemaName()).isEqualTo(connectionSchemaName);

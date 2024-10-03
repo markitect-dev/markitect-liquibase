@@ -81,7 +81,7 @@ true                 |                   | Sch 1      | liquibase.structure.core
     if (preserveSchemaCase != null) {
       scopeValues.put(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getKey(), preserveSchemaCase);
     }
-    try (var database = databaseBuilder.withObjectQuotingStrategy(quotingStrategy).build()) {
+    try (var database = databaseBuilder.objectQuotingStrategy(quotingStrategy).build()) {
 
       // when
       String actual =
@@ -119,8 +119,8 @@ true                 |                   | Sch 1      | liquibase.structure.core
     }
     try (var database =
         databaseBuilder
-            .withOutputDefaultCatalog(outputDefaultCatalog)
-            .withOutputDefaultSchema(outputDefaultSchema)
+            .outputDefaultCatalog(outputDefaultCatalog)
+            .outputDefaultSchema(outputDefaultSchema)
             .build()) {
       assertThat(database.getDefaultCatalogName()).isEqualTo("lbcat");
       assertThat(database.getDefaultSchemaName()).isEqualTo("dbo");
@@ -164,7 +164,7 @@ true                 |                   | Sch 1      | liquibase.structure.core
     if (preserveSchemaCase != null) {
       scopeValues.put(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getKey(), preserveSchemaCase);
     }
-    try (var database = databaseBuilder.withObjectQuotingStrategy(quotingStrategy).build()) {
+    try (var database = databaseBuilder.objectQuotingStrategy(quotingStrategy).build()) {
 
       // when
       String actual =
@@ -212,8 +212,8 @@ true             | false                | false               |             | db
     }
     try (var database =
         databaseBuilder
-            .withOutputDefaultCatalog(outputDefaultCatalog)
-            .withOutputDefaultSchema(outputDefaultSchema)
+            .outputDefaultCatalog(outputDefaultCatalog)
+            .outputDefaultSchema(outputDefaultSchema)
             .build()) {
       assertThat(database.getDefaultCatalogName()).isEqualTo("lbcat");
       assertThat(database.getDefaultSchemaName()).isEqualTo("dbo");
@@ -270,12 +270,12 @@ true             | false                | false               |             | db
               for (var databaseRecord : databaseRecords) {
                 try (var database =
                     databaseBuilder
-                        .withDatabaseConnection(
-                            DatabaseConnectionBuilder.of()
-                                .withUrl(toJdbcUrl(databaseRecord))
-                                .withUsername(specs.getUsername())
-                                .withPassword(specs.getPassword())
-                                .withDriver(container.getDriverClassName()))
+                        .databaseConnection(
+                            DatabaseConnectionBuilder.newBuilder()
+                                .url(toJdbcUrl(databaseRecord))
+                                .username(specs.getUsername())
+                                .password(specs.getPassword())
+                                .driver(container.getDriverClassName()))
                         .build()) {
                   var scopeValues = new LinkedHashMap<String, Object>();
                   scopeValues.put(Scope.Attr.database.name(), database);
@@ -294,12 +294,12 @@ true             | false                | false               |             | db
               for (var databaseRecord : Lists.reverse(databaseRecords)) {
                 try (var database =
                     databaseBuilder
-                        .withDatabaseConnection(
-                            DatabaseConnectionBuilder.of()
-                                .withUrl(toJdbcUrl(databaseRecord))
-                                .withUsername(specs.getUsername())
-                                .withPassword(specs.getPassword())
-                                .withDriver(container.getDriverClassName()))
+                        .databaseConnection(
+                            DatabaseConnectionBuilder.newBuilder()
+                                .url(toJdbcUrl(databaseRecord))
+                                .username(specs.getUsername())
+                                .password(specs.getPassword())
+                                .driver(container.getDriverClassName()))
                         .build()) {
                   var scopeValues = new LinkedHashMap<String, Object>();
                   scopeValues.put(Scope.Attr.database.name(), database);

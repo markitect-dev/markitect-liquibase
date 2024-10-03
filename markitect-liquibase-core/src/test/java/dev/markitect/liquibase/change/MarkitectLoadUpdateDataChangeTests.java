@@ -50,7 +50,7 @@ class MarkitectLoadUpdateDataChangeTests {
       }
       change.addColumn(column);
     }
-    try (var database = DatabaseBuilder.of(H2Database.class).build()) {
+    try (var database = DatabaseBuilder.newBuilder(H2Database.class).build()) {
 
       // when
       var actual = change.generateStatementsVolatile(database);

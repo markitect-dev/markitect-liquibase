@@ -48,9 +48,9 @@ dev.markitect.liquibase.database.postgresql.MarkitectPostgresDatabase | Cat1    
     var statement = new CatalogExistsStatement();
     statement.setCatalogName(catalogName);
     try (var database =
-        DatabaseBuilder.of(databaseClass)
-            .withOfflineConnection(
-                ocb -> ocb.withCatalog(connectionCatalogName).withSchema(connectionSchemaName))
+        DatabaseBuilder.newBuilder(databaseClass)
+            .offlineConnection(
+                ocb -> ocb.catalog(connectionCatalogName).schema(connectionSchemaName))
             .build()) {
       assertThat(database.getDefaultCatalogName()).isEqualTo(connectionCatalogName);
       assertThat(database.getDefaultSchemaName()).isEqualTo(connectionSchemaName);
@@ -83,7 +83,7 @@ dev.markitect.liquibase.database.postgresql.MarkitectPostgresDatabase | Cat1    
     // given
     var statement = new CatalogExistsStatement();
     var generator = new CatalogExistsGenerator();
-    try (var database = DatabaseBuilder.of(databaseClass).build()) {
+    try (var database = DatabaseBuilder.newBuilder(databaseClass).build()) {
 
       // when
       boolean actual = generator.supports(statement, database);

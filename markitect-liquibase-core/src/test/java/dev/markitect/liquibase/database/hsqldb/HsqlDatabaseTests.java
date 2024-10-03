@@ -30,9 +30,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 class HsqlDatabaseTests {
-  private final DatabaseBuilder<HsqlDatabase> databaseBuilder =
-      DatabaseBuilder.of(HsqlDatabase.class).withOfflineConnection();
-
   @ParameterizedTest
   @CsvSource(
       textBlock =
@@ -68,7 +65,11 @@ true                 |                   | Sch 1      | liquibase.structure.core
     if (preserveSchemaCase != null) {
       scopeValues.put(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getKey(), preserveSchemaCase);
     }
-    try (var database = databaseBuilder.withObjectQuotingStrategy(quotingStrategy).build()) {
+    try (var database =
+        DatabaseBuilder.newBuilder(HsqlDatabase.class)
+            .offlineConnection()
+            .objectQuotingStrategy(quotingStrategy)
+            .build()) {
 
       // when
       String actual =
@@ -114,7 +115,11 @@ true                 |                   | Sch 1      | liquibase.structure.core
     if (preserveSchemaCase != null) {
       scopeValues.put(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getKey(), preserveSchemaCase);
     }
-    try (var database = databaseBuilder.withObjectQuotingStrategy(quotingStrategy).build()) {
+    try (var database =
+        DatabaseBuilder.newBuilder(HsqlDatabase.class)
+            .offlineConnection()
+            .objectQuotingStrategy(quotingStrategy)
+            .build()) {
 
       // when
       String actual =
@@ -145,7 +150,11 @@ true                 |                   | Sch 1      | liquibase.structure.core
       @Nullable String expected)
       throws Exception {
     // given
-    try (var database = databaseBuilder.withOutputDefaultSchema(outputDefaultSchema).build()) {
+    try (var database =
+        DatabaseBuilder.newBuilder(HsqlDatabase.class)
+            .offlineConnection()
+            .outputDefaultSchema(outputDefaultSchema)
+            .build()) {
       assertThat(database.getDefaultSchemaName()).isEqualTo("PUBLIC");
 
       // when

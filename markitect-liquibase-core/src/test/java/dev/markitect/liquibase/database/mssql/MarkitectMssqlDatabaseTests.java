@@ -29,10 +29,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 class MarkitectMssqlDatabaseTests {
-  private final DatabaseBuilder<MarkitectMssqlDatabase> databaseBuilder =
-      DatabaseBuilder.of(MarkitectMssqlDatabase.class)
-          .withOfflineConnection(ocb -> ocb.withCatalog("lbcat").withSchema("dbo"));
-
   @ParameterizedTest
   @CsvSource(
       textBlock =
@@ -61,7 +57,11 @@ true                 |                   | Sch 1      | liquibase.structure.core
     if (preserveSchemaCase != null) {
       scopeValues.put(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getKey(), preserveSchemaCase);
     }
-    try (var database = databaseBuilder.withObjectQuotingStrategy(quotingStrategy).build()) {
+    try (var database =
+        DatabaseBuilder.newBuilder(MarkitectMssqlDatabase.class)
+            .offlineConnection(ocb -> ocb.catalog("lbcat").schema("dbo"))
+            .objectQuotingStrategy(quotingStrategy)
+            .build()) {
 
       // when
       String actual =
@@ -98,9 +98,10 @@ true                 |                   | Sch 1      | liquibase.structure.core
           GlobalConfiguration.INCLUDE_CATALOG_IN_SPECIFICATION.getKey(), includeCatalog);
     }
     try (var database =
-        databaseBuilder
-            .withOutputDefaultCatalog(outputDefaultCatalog)
-            .withOutputDefaultSchema(outputDefaultSchema)
+        DatabaseBuilder.newBuilder(MarkitectMssqlDatabase.class)
+            .offlineConnection(ocb -> ocb.catalog("lbcat").schema("dbo"))
+            .outputDefaultCatalog(outputDefaultCatalog)
+            .outputDefaultSchema(outputDefaultSchema)
             .build()) {
       assertThat(database.getDefaultCatalogName()).isEqualTo("lbcat");
       assertThat(database.getDefaultSchemaName()).isEqualTo("dbo");
@@ -144,7 +145,11 @@ true                 |                   | Sch 1      | liquibase.structure.core
     if (preserveSchemaCase != null) {
       scopeValues.put(GlobalConfiguration.PRESERVE_SCHEMA_CASE.getKey(), preserveSchemaCase);
     }
-    try (var database = databaseBuilder.withObjectQuotingStrategy(quotingStrategy).build()) {
+    try (var database =
+        DatabaseBuilder.newBuilder(MarkitectMssqlDatabase.class)
+            .offlineConnection(ocb -> ocb.catalog("lbcat").schema("dbo"))
+            .objectQuotingStrategy(quotingStrategy)
+            .build()) {
 
       // when
       String actual =
@@ -191,9 +196,10 @@ true             | false                | false               |             | db
           GlobalConfiguration.INCLUDE_CATALOG_IN_SPECIFICATION.getKey(), includeCatalog);
     }
     try (var database =
-        databaseBuilder
-            .withOutputDefaultCatalog(outputDefaultCatalog)
-            .withOutputDefaultSchema(outputDefaultSchema)
+        DatabaseBuilder.newBuilder(MarkitectMssqlDatabase.class)
+            .offlineConnection(ocb -> ocb.catalog("lbcat").schema("dbo"))
+            .outputDefaultCatalog(outputDefaultCatalog)
+            .outputDefaultSchema(outputDefaultSchema)
             .build()) {
       assertThat(database.getDefaultCatalogName()).isEqualTo("lbcat");
       assertThat(database.getDefaultSchemaName()).isEqualTo("dbo");

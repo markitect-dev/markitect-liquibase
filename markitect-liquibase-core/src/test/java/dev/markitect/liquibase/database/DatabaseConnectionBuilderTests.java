@@ -25,7 +25,7 @@ class DatabaseConnectionBuilderTests {
   @Test
   void build_withoutUrl_throwsIllegalStateException() {
     // given
-    var builder = DatabaseConnectionBuilder.of();
+    var builder = DatabaseConnectionBuilder.newBuilder();
 
     // when
     var thrown = catchThrowable(builder::build);
@@ -37,7 +37,7 @@ class DatabaseConnectionBuilderTests {
   @Test
   void build_withInvalidUrl_throwsIllegalStateException() {
     // given
-    var builder = DatabaseConnectionBuilder.of().withUrl("jdbc:");
+    var builder = DatabaseConnectionBuilder.newBuilder().url("jdbc:");
 
     // when
     var thrown = catchThrowable(builder::build);

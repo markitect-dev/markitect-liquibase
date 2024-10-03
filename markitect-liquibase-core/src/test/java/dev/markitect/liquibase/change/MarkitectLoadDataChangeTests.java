@@ -43,7 +43,7 @@ class MarkitectLoadDataChangeTests {
   void supports(Class<? extends Database> databaseClass, boolean expected) throws Exception {
     // given
     var change = new MarkitectLoadDataChange();
-    try (var database = DatabaseBuilder.of(databaseClass).build()) {
+    try (var database = DatabaseBuilder.newBuilder(databaseClass).build()) {
 
       // when
       var actual = change.supports(database);
@@ -76,7 +76,7 @@ class MarkitectLoadDataChangeTests {
       }
       change.addColumn(column);
     }
-    try (var database = DatabaseBuilder.of(H2Database.class).build()) {
+    try (var database = DatabaseBuilder.newBuilder(H2Database.class).build()) {
 
       // when
       var actual = change.generateStatementsVolatile(database);

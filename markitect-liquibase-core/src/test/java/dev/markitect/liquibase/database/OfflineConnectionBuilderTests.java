@@ -17,11 +17,9 @@
 package dev.markitect.liquibase.database;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.catchThrowable;
 
 import java.util.Map;
 import org.jspecify.annotations.Nullable;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junitpioneer.jupiter.json.JsonSource;
 
@@ -114,14 +112,13 @@ class OfflineConnectionBuilderTests {
       throws Exception {
     // given
     var builder =
-        OfflineConnectionBuilder.of()
-            .withShortName(shortName)
-            .withProductName(productName)
-            .withVersion(version)
-            .withSnapshot(snapshot)
-            .withCatalog(catalog)
-            .withSchema(schema)
-            .withDatabaseParams(databaseParams);
+        OfflineConnectionBuilder.newBuilder(shortName)
+            .productName(productName)
+            .version(version)
+            .snapshot(snapshot)
+            .catalog(catalog)
+            .schema(schema)
+            .databaseParams(databaseParams);
 
     // when
     var connection = builder.build();
@@ -139,17 +136,5 @@ class OfflineConnectionBuilderTests {
     assertThat(connection.getCatalog()).isEqualTo(expectedCatalog);
     assertThat(connection.getSchema()).isEqualTo(expectedSchema);
     assertThat(connection).extracting("databaseParams").isEqualTo(databaseParams);
-  }
-
-  @Test
-  void build_withoutShortName_throwsIllegalStateException() {
-    // given
-    var builder = OfflineConnectionBuilder.of();
-
-    // when
-    var thrown = catchThrowable(builder::build);
-
-    // then
-    assertThat(thrown).isInstanceOf(IllegalStateException.class);
   }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Markitect
+ * Copyright 2023-2024 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ class InsertOrUpdateExecutablePreparedStatementTests {
   @Test
   void test() throws Exception {
     // given
-    try (var database = DatabaseBuilder.of(MarkitectH2Database.class).build()) {
+    try (var database = DatabaseBuilder.newBuilder(MarkitectH2Database.class).build()) {
 
       // when
       var statement =
