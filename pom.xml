@@ -121,7 +121,7 @@
     <flatten-maven-plugin.version>1.6.0</flatten-maven-plugin.version>
     <forbiddenapis.version>3.7</forbiddenapis.version>
     <frontend-maven-plugin.version>1.15.1</frontend-maven-plugin.version>
-    <google-java-format.version>1.23.0</google-java-format.version>
+    <google-java-format.version>1.24.0</google-java-format.version>
     <guava.version>33.3.1-jre</guava.version>
     <h2.version>2.3.232</h2.version>
     <hamcrest.version>3.0</hamcrest.version>
