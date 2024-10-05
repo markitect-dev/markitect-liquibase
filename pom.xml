@@ -76,8 +76,8 @@
     <archetype.test.streamLogs>false</archetype.test.streamLogs>
     <argLine/>
     <changelist>-SNAPSHOT</changelist>
-    <checkstyle.config.directory>${maven.multiModuleProjectDirectory}/config/checkstyle</checkstyle.config.directory>
-    <forbiddenapis.config.directory>${maven.multiModuleProjectDirectory}/config/forbiddenapis</forbiddenapis.config.directory>
+    <checkstyle.configDirectory>${maven.multiModuleProjectDirectory}/config/checkstyle</checkstyle.configDirectory>
+    <forbiddenapis.configDirectory>${maven.multiModuleProjectDirectory}/config/forbiddenapis</forbiddenapis.configDirectory>
     <gitHub.projectId>markitect-dev/markitect-liquibase</gitHub.projectId>
     <java.version>17</java.version>
     <maven.compiler.release>${java.version}</maven.compiler.release>
@@ -85,8 +85,8 @@
     <maven.deploy.skip>false</maven.deploy.skip>
     <maven.enforcer.requireMavenVersion>3.9.9</maven.enforcer.requireMavenVersion>
     <maven.test.redirectTestOutputToFile>true</maven.test.redirectTestOutputToFile>
-    <node.install.directory>${maven.multiModuleProjectDirectory}/target</node.install.directory>
-    <node.executable>${node.install.directory}/node/node</node.executable>
+    <node.installDirectory>${maven.multiModuleProjectDirectory}/target</node.installDirectory>
+    <node.executable>${node.installDirectory}/node/node</node.executable>
     <project.build.outputTimestamp>2024-01-01T00:00:00Z</project.build.outputTimestamp>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -97,11 +97,11 @@
     <sonar.coverage.jacoco.xmlReportPaths xml:space="preserve">
       ${maven.multiModuleProjectDirectory}/markitect-liquibase-coverage/target/site/jacoco-aggregate/jacoco.xml
     </sonar.coverage.jacoco.xmlReportPaths>
-    <spotbugs.config.directory>${maven.multiModuleProjectDirectory}/config/spotbugs</spotbugs.config.directory>
-    <spotless.config.directory>${maven.multiModuleProjectDirectory}/config/spotless</spotless.config.directory>
-    <spotless.npm.install.cache xml:space="preserve">
+    <spotbugs.configDirectory>${maven.multiModuleProjectDirectory}/config/spotbugs</spotbugs.configDirectory>
+    <spotless.configDirectory>${maven.multiModuleProjectDirectory}/config/spotless</spotless.configDirectory>
+    <spotless.npmInstallCache xml:space="preserve">
       ${maven.multiModuleProjectDirectory}/target/spotless-npm-install-cache
-    </spotless.npm.install.cache>
+    </spotless.npmInstallCache>
 
     <apiguardian.version>1.1.2</apiguardian.version>
     <assertj.version>3.26.3</assertj.version>
@@ -217,7 +217,7 @@
           <artifactId>frontend-maven-plugin</artifactId>
           <version>${frontend-maven-plugin.version}</version>
           <configuration>
-            <installDirectory>${node.install.directory}</installDirectory>
+            <installDirectory>${node.installDirectory}</installDirectory>
             <nodeVersion>v${node.version}</nodeVersion>
           </configuration>
           <executions>
@@ -241,7 +241,7 @@
                 <exclude>target/**</exclude>
               </excludes>
               <licenseHeader>
-                <file>${spotless.config.directory}/license-header-java</file>
+                <file>${spotless.configDirectory}/license-header-java</file>
               </licenseHeader>
               <removeUnusedImports>
                 <engine>cleanthat-javaparser-unnecessaryimport</engine>
@@ -272,7 +272,7 @@
                 </includes>
                 <prettier>
                   <nodeExecutable>${node.executable}</nodeExecutable>
-                  <npmInstallCache>${spotless.npm.install.cache}</npmInstallCache>
+                  <npmInstallCache>${spotless.npmInstallCache}</npmInstallCache>
                   <prettierVersion>${prettier.version}</prettierVersion>
                   <config>
                     <parser>json5</parser>
@@ -286,7 +286,7 @@
                 </includes>
                 <prettier>
                   <nodeExecutable>${node.executable}</nodeExecutable>
-                  <npmInstallCache>${spotless.npm.install.cache}</npmInstallCache>
+                  <npmInstallCache>${spotless.npmInstallCache}</npmInstallCache>
                   <devDependencies>
                     <prettier>${prettier.version}</prettier>
                     <prettier-plugin-properties>${prettier-plugin-properties.version}</prettier-plugin-properties>
@@ -347,7 +347,7 @@
           <version>${spotbugs-maven-plugin.version}</version>
           <configuration>
             <effort>Max</effort>
-            <excludeFilterFile>${spotbugs.config.directory}/exclude.xml</excludeFilterFile>
+            <excludeFilterFile>${spotbugs.configDirectory}/exclude.xml</excludeFilterFile>
             <failOnError>false</failOnError>
             <htmlOutput>true</htmlOutput>
             <includeTests>true</includeTests>
@@ -385,7 +385,7 @@
             </bundledSignatures>
             <ignoreSignaturesOfMissingClasses>true</ignoreSignaturesOfMissingClasses>
             <signaturesFiles>
-              <signaturesFile>${forbiddenapis.config.directory}/signatures.txt</signaturesFile>
+              <signaturesFile>${forbiddenapis.configDirectory}/signatures.txt</signaturesFile>
             </signaturesFiles>
           </configuration>
         </plugin>
@@ -420,12 +420,12 @@
           <artifactId>maven-checkstyle-plugin</artifactId>
           <version>${maven-checkstyle-plugin.version}</version>
           <configuration>
-            <configLocation>${checkstyle.config.directory}/checkstyle.xml</configLocation>
+            <configLocation>${checkstyle.configDirectory}/checkstyle.xml</configLocation>
             <excludeGeneratedSources>true</excludeGeneratedSources>
             <includeTestSourceDirectory>true</includeTestSourceDirectory>
             <propertyExpansion xml:space="preserve">
-              org.checkstyle.google.suppressionfilter.config=${checkstyle.config.directory}/suppressions.xml
-              org.checkstyle.google.suppressionxpathfilter.config=${checkstyle.config.directory}/xpath-suppressions.xml
+              org.checkstyle.google.suppressionfilter.config=${checkstyle.configDirectory}/suppressions.xml
+              org.checkstyle.google.suppressionxpathfilter.config=${checkstyle.configDirectory}/xpath-suppressions.xml
             </propertyExpansion>
             <violationSeverity>warning</violationSeverity>
           </configuration>
@@ -1399,7 +1399,7 @@
         </os>
       </activation>
       <properties>
-        <node.executable>${node.install.directory}/node/node.exe</node.executable>
+        <node.executable>${node.installDirectory}/node/node.exe</node.executable>
       </properties>
     </profile>
   </profiles>
