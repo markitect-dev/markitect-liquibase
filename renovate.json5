@@ -160,6 +160,10 @@
       groupName: 'error-prone',
     },
     {
+      matchPackageNames: ['com.google.googlejavaformat:google-java-format'],
+      groupName: 'google-java-format',
+    },
+    {
       matchPackageNames: ['com.google.guava:guava'],
       groupName: 'guava',
     },
