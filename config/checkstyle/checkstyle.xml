@@ -46,7 +46,7 @@
     <property name="fileExtensions" value="java"/>
     <property name="max" value="100"/>
     <property name="ignorePattern"
-             value="^package.*|^import.*|href\s*=\s*&quot;[^&quot;]*&quot;|http://|https://|ftp://"/>
+             value="^package.*|^import.*|href\s*=\s*&quot;[^&quot;]*&quot;|(?:https?|ftp)://| \|"/>
   </module>
 
   <module name="TreeWalker">
@@ -100,7 +100,7 @@
                     COMPACT_CTOR_DEF, LITERAL_SWITCH, LITERAL_CASE"/>
     </module>
     <module name="SuppressionXpathSingleFilter">
-      <!-- suppresion is required till https://github.com/checkstyle/checkstyle/issues/7541 -->
+      <!-- suppression is required till https://github.com/checkstyle/checkstyle/issues/7541 -->
       <property name="id" value="RightCurlyAlone"/>
       <property name="query" value="//RCURLY[parent::SLIST[count(./*)=1]
                                      or preceding-sibling::*[last()][self::LCURLY]]"/>
@@ -337,6 +337,7 @@
       <property name="tokens" value="METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF"/>
     </module>
     <module name="MissingJavadocMethod">
+      <property name="severity" value="${checkstyle.missingjavadoc.severity}" default="info"/>
       <property name="scope" value="public"/>
       <property name="minLineCount" value="2"/>
       <property name="allowedAnnotations" value="Override, Test"/>
@@ -344,6 +345,7 @@
                                    COMPACT_CTOR_DEF"/>
     </module>
     <module name="MissingJavadocType">
+      <property name="severity" value="${checkstyle.missingjavadoc.severity}" default="info"/>
       <property name="scope" value="protected"/>
       <property name="tokens"
                 value="CLASS_DEF, INTERFACE_DEF, ENUM_DEF,
@@ -389,7 +391,7 @@
       <property name="influenceFormat" value="1"/>
     </module>
     <module name="IllegalImport">
-      <property name="severity" value="error"/>
+      <property name="severity" value="${checkstyle.illegalimport.severity}" default="error"/>
       <property name="regexp" value="true"/>
       <property name="illegalPkgs"
                value="junit,

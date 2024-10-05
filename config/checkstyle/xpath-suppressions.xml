@@ -3,6 +3,7 @@
     "-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2//EN"
     "https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd">
 <suppressions>
+  <suppress-xpath checks="Indentation" query="//TEXT_BLOCK_LITERAL_END"/>
   <suppress-xpath
       checks="MethodName"
       query="
@@ -24,5 +25,9 @@
           ]/IDENT
       "
       message="'[a-z][a-z0-9][a-zA-Z0-9]*(?:_[a-z][a-z0-9][a-zA-Z0-9]*)*'"
+  />
+  <suppress-xpath
+      checks="VariableDeclarationUsageDistance"
+      query="//VARIABLE_DEF[not(./MODIFIERS[./ANNOTATION//IDENT[@text = 'Var']])]"
   />
 </suppressions>
