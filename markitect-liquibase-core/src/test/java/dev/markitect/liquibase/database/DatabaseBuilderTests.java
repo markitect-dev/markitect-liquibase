@@ -161,13 +161,9 @@ class DatabaseBuilderTests {
             .outputDefaultCatalog(outputDefaultCatalog)
             .outputDefaultSchema(outputDefaultSchema);
     if (useOfflineConnection) {
-      builder =
-          builder.offlineConnection(
-              ocb ->
-                  ocb.version(version)
-                      .catalog(catalog)
-                      .schema(schema)
-                      .databaseParams(databaseParams));
+      builder.offlineConnection(
+          ocb ->
+              ocb.version(version).catalog(catalog).schema(schema).databaseParams(databaseParams));
     }
 
     // when

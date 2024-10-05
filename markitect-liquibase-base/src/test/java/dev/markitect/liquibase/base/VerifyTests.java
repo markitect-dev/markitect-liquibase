@@ -19,6 +19,7 @@ package dev.markitect.liquibase.base;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
 
+import com.google.errorprone.annotations.Var;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -26,13 +27,13 @@ class VerifyTests {
   @Test
   void verify() {
     // when
-    var thrown = Assertions.catchThrowable(() -> Verify.verify(true));
+    @Var var thrown = Assertions.catchThrowable(() -> Verify.verify(true));
 
     // then
     assertThat(thrown).isNull();
 
     // when
-    thrown = Assertions.catchThrowable(() -> Verify.verify(true, "errorMessage"));
+    thrown = Assertions.catchThrowable(() -> Verify.verify(/* expression= */ true, "errorMessage"));
 
     // then
     assertThat(thrown).isNull();
@@ -42,13 +43,13 @@ class VerifyTests {
   @SuppressWarnings("DataFlowIssue")
   void verify_throwsVerifyException() {
     // when
-    var thrown = catchThrowable(() -> Verify.verify(false));
+    @Var var thrown = catchThrowable(() -> Verify.verify(false));
 
     // then
     assertThat(thrown).isInstanceOf(VerifyException.class);
 
     // when
-    thrown = catchThrowable(() -> Verify.verify(false, "errorMessage"));
+    thrown = catchThrowable(() -> Verify.verify(/* expression= */ false, "errorMessage"));
 
     // then
     assertThat(thrown).isInstanceOf(VerifyException.class).hasMessage("errorMessage");
@@ -61,7 +62,7 @@ class VerifyTests {
     var reference = new Object();
 
     // when
-    var result = Verify.verifyNotNull(reference);
+    @Var var result = Verify.verifyNotNull(reference);
 
     // then
     assertThat(result).isSameAs(reference);
@@ -77,7 +78,7 @@ class VerifyTests {
   @SuppressWarnings("DataFlowIssue")
   void verifyNotNull_throwsVerifyException() {
     // when
-    var thrown = catchThrowable(() -> Verify.verifyNotNull(null));
+    @Var var thrown = catchThrowable(() -> Verify.verifyNotNull(null));
 
     // then
     assertThat(thrown).isInstanceOf(VerifyException.class);

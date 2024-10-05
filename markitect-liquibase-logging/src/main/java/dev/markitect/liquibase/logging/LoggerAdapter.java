@@ -72,7 +72,7 @@ public class LoggerAdapter {
 
   private static class Log4jAdapter {
     private static final LoggerContext context =
-        LogManager.getContext(Log4jAdapter.class.getClassLoader(), false);
+        LogManager.getContext(Log4jAdapter.class.getClassLoader(), /* currentContext= */ false);
 
     public static Logger getLogger(String name) {
       checkNotNull(name);

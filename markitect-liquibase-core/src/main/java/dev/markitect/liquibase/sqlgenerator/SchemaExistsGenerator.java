@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Markitect
+ * Copyright 2023-2024 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,6 +18,7 @@ package dev.markitect.liquibase.sqlgenerator;
 
 import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
 
+import com.google.errorprone.annotations.Var;
 import dev.markitect.liquibase.statement.SchemaExistsStatement;
 import liquibase.database.Database;
 import liquibase.database.core.H2Database;
@@ -65,7 +66,7 @@ public class SchemaExistsGenerator extends AbstractSqlGenerator<SchemaExistsStat
     checkNotNull(statement);
     checkNotNull(database);
     checkNotNull(sqlGeneratorChain);
-    String sql;
+    @Var String sql;
     if (database instanceof H2Database || database instanceof HsqlDatabase) {
       sql =
           "SELECT EXISTS(SELECT 1 FROM "

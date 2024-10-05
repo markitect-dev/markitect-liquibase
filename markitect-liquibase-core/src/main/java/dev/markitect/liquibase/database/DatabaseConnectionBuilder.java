@@ -18,6 +18,7 @@ package dev.markitect.liquibase.database;
 
 import static dev.markitect.liquibase.base.Preconditions.checkState;
 
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import liquibase.Scope;
 import liquibase.database.DatabaseConnection;
 import liquibase.database.DatabaseFactory;
@@ -34,21 +35,25 @@ public final class DatabaseConnectionBuilder {
   private @Nullable String password;
   private @Nullable String driver;
 
+  @CanIgnoreReturnValue
   public DatabaseConnectionBuilder url(@Nullable String url) {
     this.url = url;
     return this;
   }
 
+  @CanIgnoreReturnValue
   public DatabaseConnectionBuilder username(@Nullable String username) {
     this.username = username;
     return this;
   }
 
+  @CanIgnoreReturnValue
   public DatabaseConnectionBuilder password(@Nullable String password) {
     this.password = password;
     return this;
   }
 
+  @CanIgnoreReturnValue
   public DatabaseConnectionBuilder driver(@Nullable String driver) {
     this.driver = driver;
     return this;

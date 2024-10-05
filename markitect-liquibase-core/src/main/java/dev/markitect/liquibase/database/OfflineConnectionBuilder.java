@@ -19,6 +19,7 @@ package dev.markitect.liquibase.database;
 import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
 import static java.util.Collections.emptyMap;
 
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.util.Map;
 import java.util.StringJoiner;
 import liquibase.Scope;
@@ -41,31 +42,37 @@ public final class OfflineConnectionBuilder {
     this.shortName = checkNotNull(shortName);
   }
 
+  @CanIgnoreReturnValue
   public OfflineConnectionBuilder productName(@Nullable String productName) {
     this.productName = productName;
     return this;
   }
 
+  @CanIgnoreReturnValue
   public OfflineConnectionBuilder version(@Nullable String version) {
     this.version = version;
     return this;
   }
 
+  @CanIgnoreReturnValue
   public OfflineConnectionBuilder snapshot(@Nullable String snapshot) {
     this.snapshot = snapshot;
     return this;
   }
 
+  @CanIgnoreReturnValue
   public OfflineConnectionBuilder catalog(@Nullable String catalog) {
     this.catalog = catalog;
     return this;
   }
 
+  @CanIgnoreReturnValue
   public OfflineConnectionBuilder schema(@Nullable String schema) {
     this.schema = schema;
     return this;
   }
 
+  @CanIgnoreReturnValue
   public OfflineConnectionBuilder databaseParams(Map<String, String> databaseParams) {
     this.databaseParams = checkNotNull(databaseParams);
     return this;

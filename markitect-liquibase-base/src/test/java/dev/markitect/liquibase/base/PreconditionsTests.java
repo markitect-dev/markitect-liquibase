@@ -19,6 +19,7 @@ package dev.markitect.liquibase.base;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
 
+import com.google.errorprone.annotations.Var;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -36,7 +37,7 @@ class PreconditionsTests {
   @SuppressWarnings("DataFlowIssue")
   void checkIndex(int index, int size) {
     // when
-    int result = Preconditions.checkIndex(index, size);
+    @Var int result = Preconditions.checkIndex(index, size);
 
     // then
     assertThat(result).isEqualTo(index);
@@ -60,7 +61,7 @@ class PreconditionsTests {
       delimiter = '|')
   void checkIndex_throwsIndexOutOfBoundsException(int index, int size) {
     // when
-    var thrown = catchThrowable(() -> Preconditions.checkIndex(index, size));
+    @Var var thrown = catchThrowable(() -> Preconditions.checkIndex(index, size));
 
     // then
     assertThat(thrown).isInstanceOf(IndexOutOfBoundsException.class);
@@ -79,7 +80,7 @@ class PreconditionsTests {
     var reference = new Object();
 
     // when
-    var result = Preconditions.checkNotNull(reference);
+    @Var var result = Preconditions.checkNotNull(reference);
 
     // then
     assertThat(result).isSameAs(reference);
@@ -95,7 +96,7 @@ class PreconditionsTests {
   @SuppressWarnings({"DataFlowIssue", "NullAway"})
   void checkNotNull_throwsNullPointerException() {
     // when
-    var thrown = catchThrowable(() -> Preconditions.checkNotNull(null));
+    @Var var thrown = catchThrowable(() -> Preconditions.checkNotNull(null));
 
     // then
     assertThat(thrown).isInstanceOf(NullPointerException.class);
@@ -113,8 +114,8 @@ class PreconditionsTests {
     var thrown =
         catchThrowable(
             () -> {
-              Preconditions.checkState(true);
-              Preconditions.checkState(true, "errorMessage");
+              Preconditions.checkState(/* expression= */ true);
+              Preconditions.checkState(/* expression= */ true, "errorMessage");
             });
 
     // then
@@ -125,13 +126,14 @@ class PreconditionsTests {
   @SuppressWarnings("DataFlowIssue")
   void checkState_throwsIllegalStateException() {
     // when
-    var thrown = catchThrowable(() -> Preconditions.checkState(false));
+    @Var var thrown = catchThrowable(() -> Preconditions.checkState(/* expression= */ false));
 
     // then
     assertThat(thrown).isInstanceOf(IllegalStateException.class);
 
     // when
-    thrown = catchThrowable(() -> Preconditions.checkState(false, "errorMessage"));
+    thrown =
+        catchThrowable(() -> Preconditions.checkState(/* expression= */ false, "errorMessage"));
 
     // then
     assertThat(thrown).isInstanceOf(IllegalStateException.class).hasMessage("errorMessage");

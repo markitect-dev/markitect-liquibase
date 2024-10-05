@@ -16,6 +16,7 @@
 
 package dev.markitect.liquibase.spring;
 
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import liquibase.integration.spring.SpringLiquibase;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -34,6 +35,7 @@ public class SpringLiquibaseBeanPostProcessor implements BeanPostProcessor {
     this.environment = environment;
   }
 
+  @CanIgnoreReturnValue
   @Override
   @SuppressWarnings("NullableProblems")
   public @Nullable Object postProcessBeforeInitialization(Object bean, String beanName) {
@@ -44,6 +46,7 @@ public class SpringLiquibaseBeanPostProcessor implements BeanPostProcessor {
     return bean;
   }
 
+  @CanIgnoreReturnValue
   @Override
   @SuppressWarnings("NullableProblems")
   public @Nullable Object postProcessAfterInitialization(Object bean, String beanName) {

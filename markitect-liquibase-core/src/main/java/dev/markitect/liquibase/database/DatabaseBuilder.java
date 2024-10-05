@@ -18,6 +18,7 @@ package dev.markitect.liquibase.database;
 
 import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
 
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import dev.markitect.liquibase.base.Verify;
 import java.util.function.UnaryOperator;
 import liquibase.database.Database;
@@ -41,6 +42,7 @@ public final class DatabaseBuilder<D extends Database> {
     this.databaseClass = checkNotNull(databaseClass);
   }
 
+  @CanIgnoreReturnValue
   public DatabaseBuilder<D> databaseConnection(
       @Nullable DatabaseConnectionBuilder databaseConnectionBuilder) {
     this.databaseConnectionBuilder = databaseConnectionBuilder;
@@ -48,10 +50,12 @@ public final class DatabaseBuilder<D extends Database> {
     return this;
   }
 
+  @CanIgnoreReturnValue
   public DatabaseBuilder<D> offlineConnection() {
     return offlineConnection(UnaryOperator.identity());
   }
 
+  @CanIgnoreReturnValue
   public DatabaseBuilder<D> offlineConnection(
       @Nullable UnaryOperator<OfflineConnectionBuilder> offlineConnectionCustomizer) {
     this.databaseConnectionBuilder = null;
@@ -59,17 +63,20 @@ public final class DatabaseBuilder<D extends Database> {
     return this;
   }
 
+  @CanIgnoreReturnValue
   public DatabaseBuilder<D> objectQuotingStrategy(
       @Nullable ObjectQuotingStrategy objectQuotingStrategy) {
     this.objectQuotingStrategy = objectQuotingStrategy;
     return this;
   }
 
+  @CanIgnoreReturnValue
   public DatabaseBuilder<D> outputDefaultCatalog(@Nullable Boolean outputDefaultCatalog) {
     this.outputDefaultCatalog = outputDefaultCatalog;
     return this;
   }
 
+  @CanIgnoreReturnValue
   public DatabaseBuilder<D> outputDefaultSchema(@Nullable Boolean outputDefaultSchema) {
     this.outputDefaultSchema = outputDefaultSchema;
     return this;

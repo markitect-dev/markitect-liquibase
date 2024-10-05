@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Markitect
+ * Copyright 2023-2024 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,6 +18,7 @@ package dev.markitect.liquibase.base;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.google.errorprone.annotations.Var;
 import org.junit.jupiter.api.Test;
 
 class VerifyExceptionTests {
@@ -28,7 +29,7 @@ class VerifyExceptionTests {
     var cause = new Exception();
 
     // when
-    var exception = new VerifyException();
+    @Var var exception = new VerifyException();
 
     // then
     assertThat(exception).hasMessage(null).hasNoCause();
