@@ -19,6 +19,7 @@ package dev.markitect.liquibase.database;
 import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
 import static java.util.Collections.emptyMap;
 
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.util.Map;
 import java.util.StringJoiner;
 import liquibase.Scope;
@@ -26,7 +27,7 @@ import org.jspecify.annotations.Nullable;
 
 public final class OfflineConnectionBuilder {
   public static OfflineConnectionBuilder newBuilder(String shortName) {
-<span class="fc" id="L29">    return new OfflineConnectionBuilder(checkNotNull(shortName));</span>
+<span class="fc" id="L30">    return new OfflineConnectionBuilder(checkNotNull(shortName));</span>
   }
 
   private final String shortName;
@@ -35,63 +36,69 @@ public final class OfflineConnectionBuilder {
   private @Nullable String snapshot;
   private @Nullable String catalog;
   private @Nullable String schema;
-<span class="fc" id="L38">  private Map&lt;String, String&gt; databaseParams = emptyMap();</span>
+<span class="fc" id="L39">  private Map&lt;String, String&gt; databaseParams = emptyMap();</span>
 
-<span class="fc" id="L40">  private OfflineConnectionBuilder(String shortName) {</span>
-<span class="fc" id="L41">    this.shortName = checkNotNull(shortName);</span>
-<span class="fc" id="L42">  }</span>
+<span class="fc" id="L41">  private OfflineConnectionBuilder(String shortName) {</span>
+<span class="fc" id="L42">    this.shortName = checkNotNull(shortName);</span>
+<span class="fc" id="L43">  }</span>
 
+  @CanIgnoreReturnValue
   public OfflineConnectionBuilder productName(@Nullable String productName) {
-<span class="fc" id="L45">    this.productName = productName;</span>
-<span class="fc" id="L46">    return this;</span>
+<span class="fc" id="L47">    this.productName = productName;</span>
+<span class="fc" id="L48">    return this;</span>
   }
 
+  @CanIgnoreReturnValue
   public OfflineConnectionBuilder version(@Nullable String version) {
-<span class="fc" id="L50">    this.version = version;</span>
-<span class="fc" id="L51">    return this;</span>
+<span class="fc" id="L53">    this.version = version;</span>
+<span class="fc" id="L54">    return this;</span>
   }
 
+  @CanIgnoreReturnValue
   public OfflineConnectionBuilder snapshot(@Nullable String snapshot) {
-<span class="fc" id="L55">    this.snapshot = snapshot;</span>
-<span class="fc" id="L56">    return this;</span>
+<span class="fc" id="L59">    this.snapshot = snapshot;</span>
+<span class="fc" id="L60">    return this;</span>
   }
 
+  @CanIgnoreReturnValue
   public OfflineConnectionBuilder catalog(@Nullable String catalog) {
-<span class="fc" id="L60">    this.catalog = catalog;</span>
-<span class="fc" id="L61">    return this;</span>
-  }
-
-  public OfflineConnectionBuilder schema(@Nullable String schema) {
-<span class="fc" id="L65">    this.schema = schema;</span>
+<span class="fc" id="L65">    this.catalog = catalog;</span>
 <span class="fc" id="L66">    return this;</span>
   }
 
+  @CanIgnoreReturnValue
+  public OfflineConnectionBuilder schema(@Nullable String schema) {
+<span class="fc" id="L71">    this.schema = schema;</span>
+<span class="fc" id="L72">    return this;</span>
+  }
+
+  @CanIgnoreReturnValue
   public OfflineConnectionBuilder databaseParams(Map&lt;String, String&gt; databaseParams) {
-<span class="fc" id="L70">    this.databaseParams = checkNotNull(databaseParams);</span>
-<span class="fc" id="L71">    return this;</span>
+<span class="fc" id="L77">    this.databaseParams = checkNotNull(databaseParams);</span>
+<span class="fc" id="L78">    return this;</span>
   }
 
   public MarkitectOfflineConnection build() {
-<span class="fc" id="L75">    var params = new StringJoiner(&quot;&amp;&quot;, &quot;?&quot;, &quot;&quot;);</span>
-<span class="fc bfc" id="L76" title="All 2 branches covered.">    if (productName != null) {</span>
-<span class="fc" id="L77">      params.add(&quot;productName=&quot; + productName);</span>
+<span class="fc" id="L82">    var params = new StringJoiner(&quot;&amp;&quot;, &quot;?&quot;, &quot;&quot;);</span>
+<span class="fc bfc" id="L83" title="All 2 branches covered.">    if (productName != null) {</span>
+<span class="fc" id="L84">      params.add(&quot;productName=&quot; + productName);</span>
     }
-<span class="fc bfc" id="L79" title="All 2 branches covered.">    if (version != null) {</span>
-<span class="fc" id="L80">      params.add(&quot;version=&quot; + version);</span>
+<span class="fc bfc" id="L86" title="All 2 branches covered.">    if (version != null) {</span>
+<span class="fc" id="L87">      params.add(&quot;version=&quot; + version);</span>
     }
-<span class="fc bfc" id="L82" title="All 2 branches covered.">    if (snapshot != null) {</span>
-<span class="fc" id="L83">      params.add(&quot;snapshot=&quot; + snapshot);</span>
+<span class="fc bfc" id="L89" title="All 2 branches covered.">    if (snapshot != null) {</span>
+<span class="fc" id="L90">      params.add(&quot;snapshot=&quot; + snapshot);</span>
     }
-<span class="fc bfc" id="L85" title="All 2 branches covered.">    if (catalog != null) {</span>
-<span class="fc" id="L86">      params.add(&quot;catalog=&quot; + catalog);</span>
+<span class="fc bfc" id="L92" title="All 2 branches covered.">    if (catalog != null) {</span>
+<span class="fc" id="L93">      params.add(&quot;catalog=&quot; + catalog);</span>
     }
-<span class="fc" id="L88">    databaseParams.forEach((key, value) -&gt; params.add(key + &quot;=&quot; + value));</span>
-<span class="fc" id="L89">    String url = &quot;offline:&quot; + shortName + params;</span>
-<span class="fc" id="L90">    var connection =</span>
-<span class="fc" id="L91">        new MarkitectOfflineConnection(url, Scope.getCurrentScope().getResourceAccessor());</span>
-<span class="fc" id="L92">    connection.setCatalog(catalog);</span>
-<span class="fc" id="L93">    connection.setSchema(schema);</span>
-<span class="fc" id="L94">    return connection;</span>
+<span class="fc" id="L95">    databaseParams.forEach((key, value) -&gt; params.add(key + &quot;=&quot; + value));</span>
+<span class="fc" id="L96">    String url = &quot;offline:&quot; + shortName + params;</span>
+<span class="fc" id="L97">    var connection =</span>
+<span class="fc" id="L98">        new MarkitectOfflineConnection(url, Scope.getCurrentScope().getResourceAccessor());</span>
+<span class="fc" id="L99">    connection.setCatalog(catalog);</span>
+<span class="fc" id="L100">    connection.setSchema(schema);</span>
+<span class="fc" id="L101">    return connection;</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

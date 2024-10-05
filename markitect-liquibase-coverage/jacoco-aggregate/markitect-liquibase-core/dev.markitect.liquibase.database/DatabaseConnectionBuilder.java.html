@@ -18,15 +18,16 @@ package dev.markitect.liquibase.database;
 
 import static dev.markitect.liquibase.base.Preconditions.checkState;
 
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import liquibase.Scope;
 import liquibase.database.DatabaseConnection;
 import liquibase.database.DatabaseFactory;
 import liquibase.exception.DatabaseException;
 import org.jspecify.annotations.Nullable;
 
-<span class="fc" id="L27">public final class DatabaseConnectionBuilder {</span>
+<span class="fc" id="L28">public final class DatabaseConnectionBuilder {</span>
   public static DatabaseConnectionBuilder newBuilder() {
-<span class="fc" id="L29">    return new DatabaseConnectionBuilder();</span>
+<span class="fc" id="L30">    return new DatabaseConnectionBuilder();</span>
   }
 
   private @Nullable String url;
@@ -34,31 +35,35 @@ import org.jspecify.annotations.Nullable;
   private @Nullable String password;
   private @Nullable String driver;
 
+  @CanIgnoreReturnValue
   public DatabaseConnectionBuilder url(@Nullable String url) {
-<span class="fc" id="L38">    this.url = url;</span>
-<span class="fc" id="L39">    return this;</span>
+<span class="fc" id="L40">    this.url = url;</span>
+<span class="fc" id="L41">    return this;</span>
   }
 
+  @CanIgnoreReturnValue
   public DatabaseConnectionBuilder username(@Nullable String username) {
-<span class="fc" id="L43">    this.username = username;</span>
-<span class="fc" id="L44">    return this;</span>
+<span class="fc" id="L46">    this.username = username;</span>
+<span class="fc" id="L47">    return this;</span>
   }
 
+  @CanIgnoreReturnValue
   public DatabaseConnectionBuilder password(@Nullable String password) {
-<span class="fc" id="L48">    this.password = password;</span>
-<span class="fc" id="L49">    return this;</span>
+<span class="fc" id="L52">    this.password = password;</span>
+<span class="fc" id="L53">    return this;</span>
   }
 
+  @CanIgnoreReturnValue
   public DatabaseConnectionBuilder driver(@Nullable String driver) {
-<span class="fc" id="L53">    this.driver = driver;</span>
-<span class="fc" id="L54">    return this;</span>
+<span class="fc" id="L58">    this.driver = driver;</span>
+<span class="fc" id="L59">    return this;</span>
   }
 
   public DatabaseConnection build() {
-<span class="fc bfc" id="L58" title="All 2 branches covered.">    checkState(url != null);</span>
+<span class="fc bfc" id="L63" title="All 2 branches covered.">    checkState(url != null);</span>
     try {
-<span class="fc" id="L60">      return DatabaseFactory.getInstance()</span>
-<span class="fc" id="L61">          .openConnection(</span>
+<span class="fc" id="L65">      return DatabaseFactory.getInstance()</span>
+<span class="fc" id="L66">          .openConnection(</span>
               url,
               username,
               password,
@@ -66,9 +71,9 @@ import org.jspecify.annotations.Nullable;
               null,
               null,
               null,
-<span class="fc" id="L69">              Scope.getCurrentScope().getResourceAccessor());</span>
-<span class="fc" id="L70">    } catch (DatabaseException | RuntimeException e) {</span>
-<span class="fc" id="L71">      throw new IllegalStateException(e);</span>
+<span class="fc" id="L74">              Scope.getCurrentScope().getResourceAccessor());</span>
+<span class="fc" id="L75">    } catch (DatabaseException | RuntimeException e) {</span>
+<span class="fc" id="L76">      throw new IllegalStateException(e);</span>
     }
   }
 }
