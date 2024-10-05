@@ -13,16 +13,13 @@ dependencies {
 
 tasks.withType<JavaCompile>().configureEach {
     options.errorprone {
-        allDisabledChecksAsWarnings = true
-        disable("AndroidJdkLibsChecker")
-        disable("BooleanParameter")
-        disable("BuilderReturnThis")
-        disable("CanIgnoreReturnValueSuggester")
-        disable("Java7ApiChecker")
-        disable("Java8ApiChecker")
-        disable("Var")
-        disable("Varifier")
-        errorproneArgs.add("-XepAllSuggestionsAsWarnings")
+        if (!providers.environmentVariable("CI").isPresent) {
+            allDisabledChecksAsWarnings = true
+            disable("AndroidJdkLibsChecker")
+            disable("Java7ApiChecker")
+            disable("Java8ApiChecker")
+            errorproneArgs.add("-XepAllSuggestionsAsWarnings")
+        }
         nullaway {
             excludedFieldAnnotations.add("org.mockito.Captor")
             excludedFieldAnnotations.add("org.mockito.InjectMocks")

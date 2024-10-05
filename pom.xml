@@ -87,6 +87,10 @@
     <maven.test.redirectTestOutputToFile>true</maven.test.redirectTestOutputToFile>
     <node.installDirectory>${maven.multiModuleProjectDirectory}/target</node.installDirectory>
     <node.executable>${node.installDirectory}/node/node</node.executable>
+    <nullaway.annotatedPackages>dev.markitect.liquibase</nullaway.annotatedPackages>
+    <nullaway.excludedFieldAnnotations xml:space="preserve">
+      org.mockito.Captor,org.mockito.InjectMocks,org.mockito.Mock
+    </nullaway.excludedFieldAnnotations>
     <project.build.outputTimestamp>2024-01-01T00:00:00Z</project.build.outputTimestamp>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -447,7 +451,6 @@
           <artifactId>maven-compiler-plugin</artifactId>
           <version>${maven-compiler-plugin.version}</version>
           <configuration>
-            <failOnWarning>true</failOnWarning>
             <parameters>true</parameters>
             <compilerArgs>
               <arg>-XDcompilePolicy=simple</arg>
@@ -455,17 +458,12 @@
                 -XepAllSuggestionsAsWarnings
                 -XepAllDisabledChecksAsWarnings
                 -Xep:AndroidJdkLibsChecker:OFF
-                -Xep:BooleanParameter:OFF
-                -Xep:BuilderReturnThis:OFF
-                -Xep:CanIgnoreReturnValueSuggester:OFF
                 -Xep:Java7ApiChecker:OFF
                 -Xep:Java8ApiChecker:OFF
-                -Xep:Var:OFF
-                -Xep:Varifier:OFF
                 -Xep:NullAway:WARN
-                -XepOpt:NullAway:AnnotatedPackages=dev.markitect.liquibase
-                -XepOpt:NullAway:ExcludedFieldAnnotations=org.mockito.Captor,org.mockito.InjectMocks,org.mockito.Mock</arg>
-              <arg>-Xlint:all,-options,-processing</arg>
+                -XepOpt:NullAway:AnnotatedPackages=${nullaway.annotatedPackages}
+                -XepOpt:NullAway:ExcludedFieldAnnotations=${nullaway.excludedFieldAnnotations}</arg>
+              <arg>-Xlint:all,-processing</arg>
             </compilerArgs>
             <annotationProcessorPaths>
               <path>
@@ -1244,6 +1242,22 @@
                   <phase>none</phase>
                 </execution>
               </executions>
+            </plugin>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-compiler-plugin</artifactId>
+              <version>${maven-compiler-plugin.version}</version>
+              <configuration>
+                <failOnWarning>true</failOnWarning>
+                <compilerArgs>
+                  <arg>-XDcompilePolicy=simple</arg>
+                  <arg>-Xplugin:ErrorProne
+                    -Xep:NullAway:WARN
+                    -XepOpt:NullAway:AnnotatedPackages=${nullaway.annotatedPackages}
+                    -XepOpt:NullAway:ExcludedFieldAnnotations=${nullaway.excludedFieldAnnotations}</arg>
+                  <arg>-Xlint:all,-processing</arg>
+                </compilerArgs>
+              </configuration>
             </plugin>
           </plugins>
         </pluginManagement>

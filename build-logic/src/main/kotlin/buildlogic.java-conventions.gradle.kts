@@ -122,8 +122,10 @@ java {
 
 tasks.withType<JavaCompile>().configureEach {
     options.compilerArgs.add("-parameters")
-    options.compilerArgs.add("-Werror")
-    options.compilerArgs.add("-Xlint:all,-options,-processing,-serial")
+    if (providers.environmentVariable("CI").isPresent) {
+        options.compilerArgs.add("-Werror")
+    }
+    options.compilerArgs.add("-Xlint:all,-processing")
     options.release = 17
 }
 
