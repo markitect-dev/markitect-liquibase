@@ -192,6 +192,10 @@
       groupName: 'jspecify',
     },
     {
+      matchPackageNames: ['org.junit-pioneer:junit-pioneer'],
+      groupName: 'junit-pioneer',
+    },
+    {
       matchPackageNames: ['org.liquibase:**'],
       groupName: 'liquibase',
     },
