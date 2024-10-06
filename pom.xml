@@ -141,7 +141,7 @@
     <jooq.version>3.19.13</jooq.version>
     <jspecify.version>1.0.0</jspecify.version>
     <junit-jupiter.version>5.11.2</junit-jupiter.version>
-    <junit-pioneer.version>2.2.0</junit-pioneer.version>
+    <junit-pioneer.version>2.3.0</junit-pioneer.version>
     <junit.version>4.13.2</junit.version>
     <liquibase.version>4.29.2</liquibase.version>
     <log4j2.version>2.24.1</log4j2.version>
