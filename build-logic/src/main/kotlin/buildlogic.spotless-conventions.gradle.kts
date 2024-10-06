@@ -12,7 +12,13 @@ spotless {
         java {
             targetExclude("build/**")
             licenseHeaderFile(rootProject.file("config/spotless/license-header-java"))
-            removeUnusedImports("cleanthat-javaparser-unnecessaryimport")
+            cleanthat()
+                .version(libs.versions.cleanthat.get())
+                .sourceCompatibility("17")
+                .addMutator("SafeButNotConsensual")
+                .excludeMutator("AvoidInlineConditionals")
+                .excludeMutator("LiteralsFirstInComparisons")
+                .excludeMutator("LocalVariableTypeInference")
             googleJavaFormat(libs.versions.google.java.format.get()).reflowLongStrings()
         }
     }

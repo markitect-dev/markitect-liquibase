@@ -239,6 +239,11 @@
         <version>${project.version}</version>
       </dependency>
       <dependency>
+        <groupId>io.github.solven-eu.cleanthat</groupId>
+        <artifactId>java</artifactId>
+        <version>${cleanthat.version}</version>
+      </dependency>
+      <dependency>
         <groupId>io.r2dbc</groupId>
         <artifactId>r2dbc-spi</artifactId>
         <version>${r2dbc-spi.version}</version>

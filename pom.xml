@@ -113,6 +113,7 @@
     <bnd-annotation.version>7.0.0</bnd-annotation.version>
     <byte-buddy.version>1.15.3</byte-buddy.version>
     <checkstyle.version>10.18.2</checkstyle.version>
+    <cleanthat.version>2.21</cleanthat.version>
     <commons-codec.version>1.17.1</commons-codec.version>
     <commons-collections4.version>4.4</commons-collections4.version>
     <commons-compress.version>1.27.1</commons-compress.version>
@@ -249,9 +250,19 @@
               <licenseHeader>
                 <file>${spotless.configDirectory}/license-header-java</file>
               </licenseHeader>
-              <removeUnusedImports>
-                <engine>cleanthat-javaparser-unnecessaryimport</engine>
-              </removeUnusedImports>
+              <cleanthat>
+                <version>${cleanthat.version}</version>
+                <sourceJdk>17</sourceJdk>
+                <mutators>
+                  <mutator>SafeAndConsensual</mutator>
+                  <mutator>SafeButNotConsensual</mutator>
+                </mutators>
+                <excludedMutators>
+                  <excludedMutator>AvoidInlineConditionals</excludedMutator>
+                  <excludedMutator>LiteralsFirstInComparisons</excludedMutator>
+                  <excludedMutator>LocalVariableTypeInference</excludedMutator>
+                </excludedMutators>
+              </cleanthat>
               <googleJavaFormat>
                 <version>${google-java-format.version}</version>
                 <reflowLongStrings>true</reflowLongStrings>
