@@ -144,8 +144,16 @@
       groupName: 'commons-collections4',
     },
     {
+      matchPackageNames: ['commons-codec:commons-codec'],
+      groupName: 'commons-codec',
+    },
+    {
       matchPackageNames: ['org.apache.commons:commons-compress'],
       groupName: 'commons-compress',
+    },
+    {
+      matchPackageNames: ['commons-io:commons-io'],
+      groupName: 'commons-io',
     },
     {
       matchPackageNames: ['org.apache.commons:commons-lang3'],

@@ -58,6 +58,8 @@ dependencies {
         testImplementation(libs.com.microsoft.sqlserver.mssql.jdbc)
         testImplementation(libs.com.opencsv.opencsv)
         testImplementation(libs.com.zaxxer.hikaricp)
+        testImplementation(libs.commons.codec.commons.codec)
+        testImplementation(libs.commons.io.commons.io)
         testImplementation(libs.io.r2dbc.r2dbc.spi)
         testImplementation(libs.jakarta.activation.jakarta.activation.api)
         testImplementation(libs.jakarta.annotation.jakarta.annotation.api)

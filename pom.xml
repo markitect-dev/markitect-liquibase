@@ -113,8 +113,10 @@
     <bnd-annotation.version>7.0.0</bnd-annotation.version>
     <byte-buddy.version>1.15.3</byte-buddy.version>
     <checkstyle.version>10.18.2</checkstyle.version>
+    <commons-codec.version>1.17.1</commons-codec.version>
     <commons-collections4.version>4.4</commons-collections4.version>
     <commons-compress.version>1.27.1</commons-compress.version>
+    <commons-io.version>2.17.0</commons-io.version>
     <commons-lang3.version>3.17.0</commons-lang3.version>
     <commons-text.version>1.12.0</commons-text.version>
     <docker-java.version>3.4.0</docker-java.version>
