@@ -863,25 +863,13 @@
           <version>${versions-maven-plugin.version}</version>
           <configuration>
             <ruleSet>
+              <ignoreVersions>
+                <ignoreVersion>
+                  <type>regex</type>
+                  <version>.+[-.](?:alpha|B|beta|M|pr|RC|rc).*</version>
+                </ignoreVersion>
+              </ignoreVersions>
               <rules>
-                <rule>
-                  <groupId>ch.qos.logback</groupId>
-                  <ignoreVersions>
-                    <ignoreVersion>
-                      <type>regex</type>
-                      <version>.+-(?:alpha|beta)\d+\b.*</version>
-                    </ignoreVersion>
-                  </ignoreVersions>
-                </rule>
-                <rule>
-                  <groupId>com.fasterxml.jackson.core</groupId>
-                  <ignoreVersions>
-                    <ignoreVersion>
-                      <type>regex</type>
-                      <version>.+[-.](?:pr|RC|rc)\d+\b.*</version>
-                    </ignoreVersion>
-                  </ignoreVersions>
-                </rule>
                 <rule>
                   <groupId>com.microsoft.sqlserver</groupId>
                   <ignoreVersions>
@@ -892,105 +880,6 @@
                     <ignoreVersion>
                       <type>regex</type>
                       <version>.+-preview</version>
-                    </ignoreVersion>
-                  </ignoreVersions>
-                </rule>
-                <rule>
-                  <groupId>jakarta.activation</groupId>
-                  <ignoreVersions>
-                    <ignoreVersion>
-                      <type>regex</type>
-                      <version>.+-(?:M|RC|rc)\d+\b.*</version>
-                    </ignoreVersion>
-                  </ignoreVersions>
-                </rule>
-                <rule>
-                  <groupId>jakarta.annotation</groupId>
-                  <ignoreVersions>
-                    <ignoreVersion>
-                      <type>regex</type>
-                      <version>.+-(?:B|M|RC)\d+\b.*</version>
-                    </ignoreVersion>
-                  </ignoreVersions>
-                </rule>
-                <rule>
-                  <groupId>jakarta.xml.bind</groupId>
-                  <ignoreVersions>
-                    <ignoreVersion>
-                      <type>regex</type>
-                      <version>.+-(?:M|RC)\d+\b.*</version>
-                    </ignoreVersion>
-                  </ignoreVersions>
-                </rule>
-                <rule>
-                  <groupId>org.apache.commons</groupId>
-                  <ignoreVersions>
-                    <ignoreVersion>
-                      <type>regex</type>
-                      <version>.+-(?:M|RC)\d+\b.*</version>
-                    </ignoreVersion>
-                  </ignoreVersions>
-                </rule>
-                <rule>
-                  <groupId>org.apache.logging.log4j</groupId>
-                  <ignoreVersions>
-                    <ignoreVersion>
-                      <type>regex</type>
-                      <version>.+-(?:alpha|beta)\d+\b.*</version>
-                    </ignoreVersion>
-                  </ignoreVersions>
-                </rule>
-                <rule>
-                  <groupId>org.junit</groupId>
-                  <ignoreVersions>
-                    <ignoreVersion>
-                      <type>regex</type>
-                      <version>.+-(?:M|RC)\d+\b.*</version>
-                    </ignoreVersion>
-                  </ignoreVersions>
-                </rule>
-                <rule>
-                  <groupId>org.junit.jupiter</groupId>
-                  <ignoreVersions>
-                    <ignoreVersion>
-                      <type>regex</type>
-                      <version>.+-(?:M|RC)\d+\b.*</version>
-                    </ignoreVersion>
-                  </ignoreVersions>
-                </rule>
-                <rule>
-                  <groupId>org.junit.platform</groupId>
-                  <ignoreVersions>
-                    <ignoreVersion>
-                      <type>regex</type>
-                      <version>.+-(?:M|RC)\d+\b.*</version>
-                    </ignoreVersion>
-                  </ignoreVersions>
-                </rule>
-                <rule>
-                  <groupId>org.junit.vintage</groupId>
-                  <ignoreVersions>
-                    <ignoreVersion>
-                      <type>regex</type>
-                      <version>.+-(?:M|RC)\d+\b.*</version>
-                    </ignoreVersion>
-                  </ignoreVersions>
-                </rule>
-                <rule>
-                  <groupId>org.opentest4j</groupId>
-                  <ignoreVersions>
-                    <ignoreVersion>
-                      <type>regex</type>
-                      <version>.+-(?:M|RC)\d+\b.*</version>
-                    </ignoreVersion>
-                  </ignoreVersions>
-                </rule>
-                <rule>
-                  <groupId>org.slf4j</groupId>
-                  <ignoreVersions>
-                    <ignoreVersion>
-                      <type>regex</type>
-                      <version>.+-(?:alpha|beta)\d+\b.*</version>
                     </ignoreVersion>
                   </ignoreVersions>
                 </rule>
