@@ -168,6 +168,13 @@
       groupName: 'error-prone',
     },
     {
+      matchPackageNames: [
+        'de.thetaphi.forbiddenapis',
+        'de.thetaphi:forbiddenapis',
+      ],
+      groupName: 'forbiddenapis',
+    },
+    {
       matchPackageNames: ['com.google.googlejavaformat:google-java-format'],
       groupName: 'google-java-format',
     },
