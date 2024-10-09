@@ -262,7 +262,6 @@
                   <excludedMutator>LambdaIsMethodReference</excludedMutator>
                   <excludedMutator>LiteralsFirstInComparisons</excludedMutator>
                   <excludedMutator>LocalVariableTypeInference</excludedMutator>
-                  <excludedMutator>UnnecessaryModifier</excludedMutator>
                 </excludedMutators>
               </cleanthat>
               <googleJavaFormat>

@@ -20,7 +20,6 @@ spotless {
                 .excludeMutator("LambdaIsMethodReference")
                 .excludeMutator("LiteralsFirstInComparisons")
                 .excludeMutator("LocalVariableTypeInference")
-                .excludeMutator("UnnecessaryModifier")
             googleJavaFormat(libs.versions.google.java.format.get()).reflowLongStrings()
         }
     }
