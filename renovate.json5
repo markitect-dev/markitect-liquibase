@@ -140,6 +140,10 @@
       groupName: 'checkstyle',
     },
     {
+      matchPackageNames: ['io.github.solven-eu.cleanthat:**'],
+      groupName: 'cleanthat',
+    },
+    {
       matchPackageNames: ['org.apache.commons:commons-collections4'],
       groupName: 'commons-collections4',
     },
