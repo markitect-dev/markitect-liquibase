@@ -196,7 +196,7 @@
     <sortpom.version>4.0.0</sortpom.version>
     <spotbugs-maven-plugin.version>4.8.6.4</spotbugs-maven-plugin.version>
     <spotbugs.version>4.8.6</spotbugs.version>
-    <spotless-maven-plugin.version>2.44.0.BETA2</spotless-maven-plugin.version>
+    <spotless-maven-plugin.version>2.44.0.BETA3</spotless-maven-plugin.version>
     <spring-boot.version>3.3.4</spring-boot.version>
     <spring-framework.version>6.1.13</spring-framework.version>
     <testcontainers.version>1.20.2</testcontainers.version>
