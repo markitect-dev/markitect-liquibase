@@ -468,6 +468,7 @@
             <parameters>true</parameters>
             <compilerArgs>
               <arg>-XDcompilePolicy=simple</arg>
+              <arg>--should-stop=ifError=FLOW</arg>
               <arg>-Xplugin:ErrorProne
                 -XepAllSuggestionsAsWarnings
                 -XepAllDisabledChecksAsWarnings
@@ -1154,6 +1155,7 @@
                 <failOnWarning>true</failOnWarning>
                 <compilerArgs>
                   <arg>-XDcompilePolicy=simple</arg>
+                  <arg>--should-stop=ifError=FLOW</arg>
                   <arg>-Xplugin:ErrorProne
                     -Xep:NullAway:WARN
                     -XepOpt:NullAway:AnnotatedPackages=${nullaway.annotatedPackages}

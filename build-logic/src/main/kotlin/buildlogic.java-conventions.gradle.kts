@@ -127,6 +127,7 @@ tasks.withType<JavaCompile>().configureEach {
     if (providers.environmentVariable("CI").isPresent) {
         options.compilerArgs.add("-Werror")
     }
+    options.compilerArgs.add("--should-stop=ifError=FLOW")
     options.compilerArgs.add("-Xlint:all,-processing")
     options.release = 17
 }
