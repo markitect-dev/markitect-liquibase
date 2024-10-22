@@ -6,6 +6,7 @@ plugins {
     id("buildlogic.errorprone-conventions")
     id("buildlogic.forbiddenapis-conventions")
     id("buildlogic.jacoco-conventions")
+    id("buildlogic.rewrite-conventions")
     id("buildlogic.spotbugs-conventions")
     `java-library`
 }

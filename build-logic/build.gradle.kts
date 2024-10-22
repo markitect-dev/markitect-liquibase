@@ -15,6 +15,7 @@ dependencies {
     implementation(plugin(libs.plugins.de.thetaphi.forbiddenapis))
     implementation(plugin(libs.plugins.net.ltgt.errorprone))
     implementation(plugin(libs.plugins.net.ltgt.nullaway))
+    implementation(plugin(libs.plugins.org.openrewrite.rewrite))
     implementation(plugin(libs.plugins.org.sonarqube))
 }
 

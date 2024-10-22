@@ -64,6 +64,8 @@ prettier-plugin-properties = "0.3.0"
 prettier-plugin-toml = "2.0.1"
 r2dbc-spi = "1.0.0.RELEASE"
 reactive-streams = "1.0.4"
+rewrite-plugin = "6.25.1"
+rewrite-static-analysis = "1.18.0"
 slf4j = "2.0.16"
 snakeyaml = "2.3"
 sonarqube-plugin = "5.1.0.4882"
@@ -139,6 +141,7 @@ org-mockito-mockito-bom = { module = "org.mockito:mockito-bom", version.ref = "m
 org-mockito-mockito-core = { module = "org.mockito:mockito-core" }
 org-mockito-mockito-junit-jupiter = { module = "org.mockito:mockito-junit-jupiter" }
 org-objenesis-objenesis = { module = "org.objenesis:objenesis", version.ref = "objenesis" }
+org-openrewrite-recipe-rewrite-static-analysis = { module = "org.openrewrite.recipe:rewrite-static-analysis", version.ref = "rewrite-static-analysis" }
 org-opentest4j-opentest4j = { module = "org.opentest4j:opentest4j", version.ref = "opentest4j" }
 org-osgi-org-osgi-annotation-bundle = { module = "org.osgi:org.osgi.annotation.bundle", version.ref = "osgi-annotation-bundle" }
 org-osgi-org-osgi-annotation-versioning = { module = "org.osgi:org.osgi.annotation.versioning", version.ref = "osgi-annotation-versioning" }
@@ -180,4 +183,5 @@ io-github-gradle-nexus-publish-plugin = { id = "io.github.gradle-nexus.publish-p
 net-ltgt-errorprone = { id = "net.ltgt.errorprone", version.ref = "errorprone-plugin" }
 net-ltgt-nullaway = { id = "net.ltgt.nullaway", version.ref = "nullaway-plugin" }
 nu-studer-jooq = { id = "nu.studer.jooq", version.ref = "jooq-plugin" }
+org-openrewrite-rewrite = { id = "org.openrewrite.rewrite", version.ref = "rewrite-plugin" }
 org-sonarqube = { id = "org.sonarqube", version.ref = "sonarqube-plugin" }
