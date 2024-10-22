@@ -68,6 +68,8 @@ public class LoggerAdapter {
       checkNotNull(name);
       return new JulLogger(name);
     }
+
+    private JulAdapter() {}
   }
 
   private static class Log4jAdapter {
@@ -78,6 +80,8 @@ public class LoggerAdapter {
       checkNotNull(name);
       return new Log4jLogger(context.getLogger(name));
     }
+
+    private Log4jAdapter() {}
   }
 
   private static class Slf4jAdapter {
@@ -89,6 +93,8 @@ public class LoggerAdapter {
       }
       return new Slf4jLogger<>(logger);
     }
+
+    private Slf4jAdapter() {}
   }
 
   private LoggerAdapter() {}
