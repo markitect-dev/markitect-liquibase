@@ -16,6 +16,7 @@ spotless {
                 .version(libs.versions.cleanthat.get())
                 .sourceCompatibility("17")
                 .addMutator("SafeButNotConsensual")
+                .addMutator("UnnecessarySemicolon")
                 .excludeMutator("AvoidInlineConditionals")
                 .excludeMutator("LambdaIsMethodReference")
                 .excludeMutator("LiteralsFirstInComparisons")
