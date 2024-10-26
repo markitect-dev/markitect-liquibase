@@ -112,7 +112,7 @@
     <awaitility.version>4.2.2</awaitility.version>
     <bnd-annotation.version>7.0.0</bnd-annotation.version>
     <byte-buddy.version>1.15.7</byte-buddy.version>
-    <checkstyle.version>10.18.2</checkstyle.version>
+    <checkstyle.version>10.19.0</checkstyle.version>
     <cleanthat.version>2.22</cleanthat.version>
     <commons-codec.version>1.17.1</commons-codec.version>
     <commons-collections4.version>4.4</commons-collections4.version>
