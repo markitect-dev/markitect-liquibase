@@ -195,6 +195,10 @@
       groupName: 'hikaricp',
     },
     {
+      matchPackageNames: ['org.hsqldb:**'],
+      groupName: 'hsqldb',
+    },
+    {
       matchPackageNames: ['com.fasterxml.jackson:jackson-bom'],
       groupName: 'jackson',
     },
