@@ -821,8 +821,8 @@
           <version>${maven-surefire.version}</version>
           <configuration>
             <argLine>@{argLine}
-              -XX:-EnableDynamicAgentLoading
-              -javaagent:${settings.localRepository}${file.separator}net${file.separator}bytebuddy${file.separator}byte-buddy-agent${file.separator}${byte-buddy.version}${file.separator}byte-buddy-agent-${byte-buddy.version}.jar</argLine>
+              -javaagent:${settings.localRepository}${file.separator}org${file.separator}mockito${file.separator}mockito-core${file.separator}${mockito.version}${file.separator}mockito-core-${mockito.version}.jar
+              -XX:-EnableDynamicAgentLoading</argLine>
             <excludes>
               <exclude>**/*$*</exclude>
             </excludes>

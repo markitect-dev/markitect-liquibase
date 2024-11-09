@@ -11,7 +11,7 @@ plugins {
     `java-library`
 }
 
-val byteBuddyAgent: Configuration by configurations.creating
+val mockitoAgent: Configuration by configurations.creating
 
 configurations.testImplementation {
     resolutionStrategy.dependencySubstitution {
@@ -27,7 +27,8 @@ configurations.testImplementation {
 }
 
 dependencies {
-    byteBuddyAgent(libs.net.bytebuddy.byte.buddy.agent)
+    mockitoAgent(platform(libs.org.mockito.mockito.bom))
+    mockitoAgent(libs.org.mockito.mockito.core) { isTransitive = false }
 
     compileOnly(libs.com.github.spotbugs.spotbugs.annotations)
     compileOnly(libs.de.thetaphi.forbiddenapis)
@@ -138,8 +139,8 @@ testing.suites.withType<JvmTestSuite>().configureEach {
     targets.all {
         testTask.configure {
             onlyIf { !providers.systemProperty("skipTests").isPresent }
+            jvmArgs("-javaagent:${mockitoAgent.asPath}")
             jvmArgs("-XX:-EnableDynamicAgentLoading")
-            jvmArgs("-javaagent:${byteBuddyAgent.singleFile}")
         }
     }
 }
