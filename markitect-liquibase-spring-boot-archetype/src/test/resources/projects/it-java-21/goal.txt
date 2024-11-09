@@ -1,1 +1,1 @@
--ntp verify -Dliquibase.analytics.enabled=false -Dmaven.test.redirectTestOutputToFile=true
+-ntp verify -Dliquibase.analytics.enabled=false -Dliquibase.sql.logLevel=info -Dmaven.test.redirectTestOutputToFile=true

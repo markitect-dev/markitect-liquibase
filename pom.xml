@@ -822,6 +822,7 @@
           <configuration>
             <environmentVariables>
               <LIQUIBASE_ANALYTICS_ENABLED>false</LIQUIBASE_ANALYTICS_ENABLED>
+              <LIQUIBASE_SQL_LOG_LEVEL>info</LIQUIBASE_SQL_LOG_LEVEL>
             </environmentVariables>
             <argLine>@{argLine}
               -javaagent:${settings.localRepository}${file.separator}org${file.separator}mockito${file.separator}mockito-core${file.separator}${mockito.version}${file.separator}mockito-core-${mockito.version}.jar
