@@ -139,6 +139,7 @@ testing.suites.withType<JvmTestSuite>().configureEach {
     targets.all {
         testTask.configure {
             onlyIf { !providers.systemProperty("skipTests").isPresent }
+            environment("LIQUIBASE_ANALYTICS_ENABLED", "false")
             jvmArgs("-javaagent:${mockitoAgent.asPath}")
             jvmArgs("-XX:-EnableDynamicAgentLoading")
         }

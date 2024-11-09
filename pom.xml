@@ -820,6 +820,9 @@
           <artifactId>maven-surefire-plugin</artifactId>
           <version>${maven-surefire.version}</version>
           <configuration>
+            <environmentVariables>
+              <LIQUIBASE_ANALYTICS_ENABLED>false</LIQUIBASE_ANALYTICS_ENABLED>
+            </environmentVariables>
             <argLine>@{argLine}
               -javaagent:${settings.localRepository}${file.separator}org${file.separator}mockito${file.separator}mockito-core${file.separator}${mockito.version}${file.separator}mockito-core-${mockito.version}.jar
               -XX:-EnableDynamicAgentLoading</argLine>
