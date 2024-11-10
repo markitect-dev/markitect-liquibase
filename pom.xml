@@ -928,9 +928,9 @@
           <version>${jooq.version}</version>
         </plugin>
         <plugin>
-          <groupId>org.liquibase</groupId>
-          <artifactId>liquibase-maven-plugin</artifactId>
-          <version>${liquibase.version}</version>
+          <groupId>org.jooq</groupId>
+          <artifactId>jooq-meta-extensions-liquibase</artifactId>
+          <version>${jooq.version}</version>
         </plugin>
         <plugin>
           <groupId>org.sonarsource.scanner.maven</groupId>

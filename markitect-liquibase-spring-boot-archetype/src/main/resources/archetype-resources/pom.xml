@@ -104,16 +104,28 @@
     </pluginManagement>
     <plugins>
       <plugin>
-        <groupId>org.liquibase</groupId>
-        <artifactId>liquibase-maven-plugin</artifactId>
-        <version>${liquibase.version}</version>
+        <groupId>org.jooq</groupId>
+        <artifactId>jooq-codegen-maven</artifactId>
+        <version>${jooq.version}</version>
         <configuration>
-          <driver>org.h2.Driver</driver>
-          <url>jdbc:h2:${project.build.directory}${file.separator}jooq-liquibase${file.separator}h2</url>
-          <includeArtifact>false</includeArtifact>
-          <includeTestOutputDirectory>false</includeTestOutputDirectory>
-          <searchPath>src/main/resources</searchPath>
-          <changeLogFile>db/changelog/db.changelog-master.yaml</changeLogFile>
+          <generator>
+            <database>
+              <name>org.jooq.meta.extensions.liquibase.LiquibaseDatabase</name>
+              <properties>
+                <property>
+                  <key>rootPath</key>
+                  <value>${project.basedir}/src/main/resources</value>
+                </property>
+                <property>
+                  <key>scripts</key>
+                  <value>db/changelog/db.changelog-master.yaml</value>
+                </property>
+              </properties>
+            </database>
+            <target>
+              <packageName>${package}.jooq</packageName>
+            </target>
+          </generator>
         </configuration>
         <dependencies>
           <dependency>
@@ -126,39 +138,17 @@
             <artifactId>markitect-liquibase-core</artifactId>
             <version>${markitect-liquibase.version}</version>
           </dependency>
+          <dependency>
+            <groupId>org.jooq</groupId>
+            <artifactId>jooq-meta-extensions-liquibase</artifactId>
+            <version>${jooq.version}</version>
+          </dependency>
+          <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+            <version>${liquibase.version}</version>
+          </dependency>
         </dependencies>
-        <executions>
-          <execution>
-            <id>jooq-liquibase</id>
-            <goals>
-              <goal>update</goal>
-            </goals>
-            <phase>generate-sources</phase>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.jooq</groupId>
-        <artifactId>jooq-codegen-maven</artifactId>
-        <version>${jooq.version}</version>
-        <configuration>
-          <jdbc>
-            <driver>org.h2.Driver</driver>
-            <url>jdbc:h2:${project.build.directory}${file.separator}jooq-liquibase${file.separator}h2</url>
-          </jdbc>
-          <generator>
-            <database>
-              <name>org.jooq.meta.h2.H2Database</name>
-              <excludes>DATABASECHANGELOG.*</excludes>
-              <inputSchema>PUBLIC</inputSchema>
-              <outputSchemaToDefault>true</outputSchemaToDefault>
-            </database>
-            <target>
-              <packageName>${package}.jooq</packageName>
-              <directory>target/generated-sources/jooq</directory>
-            </target>
-          </generator>
-        </configuration>
         <executions>
           <execution>
             <id>jooq-codegen</id>
