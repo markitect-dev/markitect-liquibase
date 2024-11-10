@@ -110,8 +110,6 @@
         <configuration>
           <driver>org.h2.Driver</driver>
           <url>jdbc:h2:${project.build.directory}${file.separator}jooq-liquibase${file.separator}h2</url>
-          <username>sa</username>
-          <password/>
           <includeArtifact>false</includeArtifact>
           <includeTestOutputDirectory>false</includeTestOutputDirectory>
           <searchPath>src/main/resources</searchPath>
@@ -147,8 +145,6 @@
           <jdbc>
             <driver>org.h2.Driver</driver>
             <url>jdbc:h2:${project.build.directory}${file.separator}jooq-liquibase${file.separator}h2</url>
-            <user>sa</user>
-            <password/>
           </jdbc>
           <generator>
             <database>
