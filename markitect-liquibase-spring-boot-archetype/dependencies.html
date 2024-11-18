@@ -189,39 +189,51 @@
 <tr class="a">
 <td>com.zaxxer</td>
 <td><a class="externalLink" href="https://github.com/brettwooldridge/HikariCP">HikariCP</a></td>
-<td>6.1.0</td>
+<td>6.2.0</td>
 <td>jar</td>
 <td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
 <tr class="b">
+<td>commons-codec</td>
+<td><a class="externalLink" href="https://commons.apache.org/proper/commons-codec/">commons-codec</a></td>
+<td>1.17.1</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></td></tr>
+<tr class="a">
 <td>commons-io</td>
 <td><a class="externalLink" href="https://commons.apache.org/proper/commons-io/">commons-io</a></td>
 <td>2.17.0</td>
 <td>jar</td>
 <td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></td></tr>
-<tr class="a">
+<tr class="b">
 <td>io.micrometer</td>
 <td><a class="externalLink" href="https://github.com/micrometer-metrics/micrometer">micrometer-commons</a></td>
 <td>1.14.1</td>
 <td>jar</td>
 <td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
-<tr class="b">
+<tr class="a">
 <td>io.micrometer</td>
 <td><a class="externalLink" href="https://github.com/micrometer-metrics/micrometer">micrometer-observation</a></td>
 <td>1.14.1</td>
 <td>jar</td>
 <td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
-<tr class="a">
+<tr class="b">
 <td>jakarta.annotation</td>
 <td><a class="externalLink" href="https://projects.eclipse.org/projects/ee4j.ca">jakarta.annotation-api</a></td>
 <td>3.0.0</td>
 <td>jar</td>
 <td><a class="externalLink" href="https://www.eclipse.org/legal/epl-2.0">EPL 2.0</a><a class="externalLink" href="https://www.gnu.org/software/classpath/license.html">GPL2 w/ CPE</a></td></tr>
-<tr class="b">
+<tr class="a">
 <td>org.apache.commons</td>
 <td><a class="externalLink" href="https://commons.apache.org/proper/commons-collections/">commons-collections4</a></td>
 <td>4.4</td>
 <td>jar</td>
 <td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
+<tr class="b">
+<td>org.apache.commons</td>
+<td><a class="externalLink" href="https://commons.apache.org/proper/commons-compress/">commons-compress</a></td>
+<td>1.27.1</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></td></tr>
 <tr class="a">
 <td>org.apache.commons</td>
 <td><a class="externalLink" href="https://commons.apache.org/proper/commons-lang/">commons-lang3</a></td>
@@ -696,7 +708,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>URL: </b><a class="externalLink" href="https://spring.io/projects/spring-boot">https://spring.io/projects/spring-boot</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a></p></td></tr></table></div>
 <ul>
-<li>com.zaxxer:HikariCP:jar:6.1.0 (test) <img id="_img67" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep66', '_img67' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep66" style="display:none">
+<li>com.zaxxer:HikariCP:jar:6.2.0 (test) <img id="_img67" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep66', '_img67' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep66" style="display:none">
 <table class="table table-striped">
 <tr class="a">
 <th>HikariCP</th></tr>
@@ -714,8 +726,33 @@ file comparators, endian transformation classes, and much more.</p>
 <td>
 <p><b>Description: </b>The slf4j API</p>
 <p><b>URL: </b><a class="externalLink" href="http://www.slf4j.org">http://www.slf4j.org</a></p>
-<p><b>Project Licenses: </b><a class="externalLink" href="http://www.opensource.org/licenses/mit-license.php">MIT License</a></p></td></tr></table></div></li></ul></li>
-<li>org.springframework:spring-jdbc:jar:6.2.0 (test) <img id="_img71" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep70', '_img71' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep70" style="display:none">
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.opensource.org/licenses/mit-license.php">MIT License</a></p></td></tr></table></div></li>
+<li>org.apache.commons:commons-compress:jar:1.27.1 (test) <img id="_img71" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep70', '_img71' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep70" style="display:none">
+<table class="table table-striped">
+<tr class="a">
+<th>Apache Commons Compress</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Apache Commons Compress defines an API for working with
+compression and archive formats. These include bzip2, gzip, pack200,
+LZMA, XZ, Snappy, traditional Unix Compress, DEFLATE, DEFLATE64, LZ4,
+Brotli, Zstandard and ar, cpio, jar, tar, zip, dump, 7z, arj.</p>
+<p><b>URL: </b><a class="externalLink" href="https://commons.apache.org/proper/commons-compress/">https://commons.apache.org/proper/commons-compress/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></p></td></tr></table></div>
+<ul>
+<li>commons-codec:commons-codec:jar:1.17.1 (test) <img id="_img73" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep72', '_img73' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep72" style="display:none">
+<table class="table table-striped">
+<tr class="a">
+<th>Apache Commons Codec</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>The Apache Commons Codec component contains encoders and decoders for
+     various formats such as Base16, Base32, Base64, digest, and Hexadecimal. In addition to these
+     widely used encoders and decoders, the codec package also maintains a
+     collection of phonetic encoding utilities.</p>
+<p><b>URL: </b><a class="externalLink" href="https://commons.apache.org/proper/commons-codec/">https://commons.apache.org/proper/commons-codec/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></p></td></tr></table></div></li></ul></li></ul></li>
+<li>org.springframework:spring-jdbc:jar:6.2.0 (test) <img id="_img75" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep74', '_img75' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep74" style="display:none">
 <table class="table table-striped">
 <tr class="a">
 <th>Spring JDBC</th></tr>
@@ -725,7 +762,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>URL: </b><a class="externalLink" href="https://github.com/spring-projects/spring-framework">https://github.com/spring-projects/spring-framework</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a></p></td></tr></table></div>
 <ul>
-<li>org.springframework:spring-tx:jar:6.2.0 (test) <img id="_img73" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep72', '_img73' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep72" style="display:none">
+<li>org.springframework:spring-tx:jar:6.2.0 (test) <img id="_img77" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep76', '_img77' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep76" style="display:none">
 <table class="table table-striped">
 <tr class="a">
 <th>Spring Transaction</th></tr>
@@ -734,7 +771,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>Description: </b>Spring Transaction</p>
 <p><b>URL: </b><a class="externalLink" href="https://github.com/spring-projects/spring-framework">https://github.com/spring-projects/spring-framework</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a></p></td></tr></table></div></li></ul></li></ul></li></ul></li>
-<li>com.github.spotbugs:spotbugs-annotations:jar:4.8.6 (compile) <img id="_img75" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep74', '_img75' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep74" style="display:none">
+<li>com.github.spotbugs:spotbugs-annotations:jar:4.8.6 (compile) <img id="_img79" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep78', '_img79' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep78" style="display:none">
 <table class="table table-striped">
 <tr class="a">
 <th>SpotBugs Annotations</th></tr>
@@ -743,7 +780,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>Description: </b>Annotations the SpotBugs tool supports</p>
 <p><b>URL: </b><a class="externalLink" href="https://spotbugs.github.io/">https://spotbugs.github.io/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.gnu.org/licenses/old-licenses/lgpl-2.1.en.html">GNU LESSER GENERAL PUBLIC LICENSE, Version 2.1</a></p></td></tr></table></div></li>
-<li>com.google.errorprone:error_prone_annotations:jar:2.35.1 (compile) <img id="_img77" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep76', '_img77' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep76" style="display:none">
+<li>com.google.errorprone:error_prone_annotations:jar:2.35.1 (compile) <img id="_img81" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep80', '_img81' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep80" style="display:none">
 <table class="table table-striped">
 <tr class="a">
 <th>error-prone annotations</th></tr>
@@ -752,7 +789,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>Description: </b>Error Prone is a static analysis tool for Java that catches common programming mistakes at compile-time.</p>
 <p><b>URL: </b><a class="externalLink" href="https://errorprone.info/error_prone_annotations">https://errorprone.info/error_prone_annotations</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache 2.0</a></p></td></tr></table></div></li>
-<li>de.thetaphi:forbiddenapis:jar:3.8 (compile) <img id="_img79" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep78', '_img79' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep78" style="display:none">
+<li>de.thetaphi:forbiddenapis:jar:3.8 (compile) <img id="_img83" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep82', '_img83' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep82" style="display:none">
 <table class="table table-striped">
 <tr class="a">
 <th>Policeman's Forbidden API Checker</th></tr>
@@ -761,7 +798,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>Description: </b>Allows to parse Java byte code to find invocations of method/class/field signatures and fail build (Apache Ant, Apache Maven, Gradle, or CLI)</p>
 <p><b>URL: </b><a class="externalLink" href="https://github.com/policeman-tools/forbidden-apis">https://github.com/policeman-tools/forbidden-apis</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
-<li>org.jspecify:jspecify:jar:1.0.0 (compile) <img id="_img81" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep80', '_img81' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep80" style="display:none">
+<li>org.jspecify:jspecify:jar:1.0.0 (compile) <img id="_img85" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep84', '_img85' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep84" style="display:none">
 <table class="table table-striped">
 <tr class="a">
 <th>JSpecify annotations</th></tr>
@@ -776,7 +813,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>The Apache License, Version 2.0: </b>JSpecify annotations</p>
 <p><b>MIT License: </b>JUL to SLF4J bridge, SLF4J API Module</p>
 <p><b>Apache License, Version 2.0: </b>Apache Commons Collections, Liquibase, SnakeYAML, Spring AOP, Spring Beans, Spring Commons Logging Bridge, Spring Context, Spring Core, Spring Expression Language (SpEL), Spring JDBC, Spring Transaction, markitect-liquibase-base, markitect-liquibase-bom, markitect-liquibase-core, markitect-liquibase-logging, markitect-liquibase-spring, markitect-liquibase-spring-boot-archetype, markitect-liquibase-spring-boot-starter, spring-boot, spring-boot-autoconfigure, spring-boot-starter, spring-boot-starter-jdbc, spring-boot-starter-logging</p>
-<p><b>Apache-2.0: </b>Apache Commons IO, Apache Commons Lang, Apache Commons Text, Apache Log4j API, Log4j API to SLF4J Adapter</p>
+<p><b>Apache-2.0: </b>Apache Commons Codec, Apache Commons Compress, Apache Commons IO, Apache Commons Lang, Apache Commons Text, Apache Log4j API, Log4j API to SLF4J Adapter</p>
 <p><b>EPL 2.0: </b>Jakarta Annotations API</p>
 <p><b>GPL2 w/ CPE: </b>Jakarta Annotations API</p>
 <p><b>GNU Lesser General Public License: </b>Logback Classic Module, Logback Core Module</p>
@@ -834,17 +871,17 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: center;">1.8</td>
 <td style="text-align: center;">Yes</td></tr>
 <tr class="a">
-<td style="text-align: left;">HikariCP-6.1.0.jar</td>
-<td style="text-align: right;">168.6 kB</td>
+<td style="text-align: left;">HikariCP-6.2.0.jar</td>
+<td style="text-align: right;">168.9 kB</td>
 <td style="text-align: right;">97</td>
 <td style="text-align: right;">80</td>
 <td style="text-align: right;">9</td>
 <td style="text-align: center;">11</td>
 <td style="text-align: center;">Yes</td></tr>
 <tr class="b">
-<td style="text-align: left;">commons-io-2.17.0.jar</td>
-<td style="text-align: right;">516 kB</td>
-<td style="text-align: right;">378</td>
+<td style="text-align: left;">commons-codec-1.17.1.jar</td>
+<td style="text-align: right;">372.7 kB</td>
+<td style="text-align: right;">262</td>
 <td style="text-align: right;">-</td>
 <td style="text-align: right;">-</td>
 <td style="text-align: center;">-</td>
@@ -852,9 +889,9 @@ file comparators, endian transformation classes, and much more.</p>
 <tr class="a">
 <td style="text-align: left;">&#160;&#160;&#160;&#x2022; Root</td>
 <td style="text-align: right;">-</td>
-<td style="text-align: right;">377</td>
-<td style="text-align: right;">350</td>
-<td style="text-align: right;">15</td>
+<td style="text-align: right;">261</td>
+<td style="text-align: right;">114</td>
+<td style="text-align: right;">7</td>
 <td style="text-align: center;">1.8</td>
 <td style="text-align: center;">Yes</td></tr>
 <tr class="b">
@@ -866,6 +903,30 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: center;">9</td>
 <td style="text-align: center;">No</td></tr>
 <tr class="a">
+<td style="text-align: left;">commons-io-2.17.0.jar</td>
+<td style="text-align: right;">516 kB</td>
+<td style="text-align: right;">378</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td></tr>
+<tr class="b">
+<td style="text-align: left;">&#160;&#160;&#160;&#x2022; Root</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">377</td>
+<td style="text-align: right;">350</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: center;">1.8</td>
+<td style="text-align: center;">Yes</td></tr>
+<tr class="a">
+<td style="text-align: left;">&#160;&#160;&#160;&#x2022; Versioned</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">No</td></tr>
+<tr class="b">
 <td style="text-align: left;">markitect-liquibase-base-0.1.0-SNAPSHOT.jar</td>
 <td style="text-align: right;">10.4 kB</td>
 <td style="text-align: right;">17</td>
@@ -873,7 +934,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">1</td>
 <td style="text-align: center;">17</td>
 <td style="text-align: center;">Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <td style="text-align: left;">pom.xml</td>
 <td style="text-align: right;">2.7 kB</td>
 <td style="text-align: right;">-</td>
@@ -881,7 +942,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">-</td>
 <td style="text-align: center;">-</td>
 <td style="text-align: center;">-</td></tr>
-<tr class="a">
+<tr class="b">
 <td style="text-align: left;">markitect-liquibase-core-0.1.0-SNAPSHOT.jar</td>
 <td style="text-align: right;">87.2 kB</td>
 <td style="text-align: right;">87</td>
@@ -889,7 +950,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">11</td>
 <td style="text-align: center;">17</td>
 <td style="text-align: center;">Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <td style="text-align: left;">markitect-liquibase-logging-0.1.0-SNAPSHOT.jar</td>
 <td style="text-align: right;">19.9 kB</td>
 <td style="text-align: right;">26</td>
@@ -897,7 +958,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">1</td>
 <td style="text-align: center;">17</td>
 <td style="text-align: center;">Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <td style="text-align: left;">markitect-liquibase-spring-0.1.0-SNAPSHOT.jar</td>
 <td style="text-align: right;">12.8 kB</td>
 <td style="text-align: right;">20</td>
@@ -905,7 +966,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">1</td>
 <td style="text-align: center;">17</td>
 <td style="text-align: center;">Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <td style="text-align: left;">markitect-liquibase-spring-boot-starter-0.1.0-SNAPSHOT.jar</td>
 <td style="text-align: right;">20.6 kB</td>
 <td style="text-align: right;">28</td>
@@ -913,7 +974,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">1</td>
 <td style="text-align: center;">17</td>
 <td style="text-align: center;">Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <td style="text-align: left;">micrometer-commons-1.14.1.jar</td>
 <td style="text-align: right;">47.8 kB</td>
 <td style="text-align: right;">50</td>
@@ -921,7 +982,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">6</td>
 <td style="text-align: center;">1.8</td>
 <td style="text-align: center;">Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <td style="text-align: left;">micrometer-observation-1.14.1.jar</td>
 <td style="text-align: right;">74.9 kB</td>
 <td style="text-align: right;">74</td>
@@ -929,7 +990,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">6</td>
 <td style="text-align: center;">1.8</td>
 <td style="text-align: center;">Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <td style="text-align: left;">jakarta.annotation-api-3.0.0.jar</td>
 <td style="text-align: right;">26.4 kB</td>
 <td style="text-align: right;">32</td>
@@ -937,7 +998,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">4</td>
 <td style="text-align: center;">11</td>
 <td style="text-align: center;">Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <td style="text-align: left;">commons-collections4-4.4.jar</td>
 <td style="text-align: right;">751.9 kB</td>
 <td style="text-align: right;">555</td>
@@ -945,6 +1006,30 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">19</td>
 <td style="text-align: center;">1.8</td>
 <td style="text-align: center;">Yes</td></tr>
+<tr class="b">
+<td style="text-align: left;">commons-compress-1.27.1.jar</td>
+<td style="text-align: right;">1.1 MB</td>
+<td style="text-align: right;">625</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td></tr>
+<tr class="a">
+<td style="text-align: left;">&#160;&#160;&#160;&#x2022; Root</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">624</td>
+<td style="text-align: right;">572</td>
+<td style="text-align: right;">36</td>
+<td style="text-align: center;">1.8</td>
+<td style="text-align: center;">Yes</td></tr>
+<tr class="b">
+<td style="text-align: left;">&#160;&#160;&#160;&#x2022; Versioned</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">No</td></tr>
 <tr class="a">
 <td style="text-align: left;">commons-lang3-3.17.0.jar</td>
 <td style="text-align: right;">673.6 kB</td>
@@ -1298,13 +1383,13 @@ file comparators, endian transformation classes, and much more.</p>
 <th>Java Version</th>
 <th>Debug Information</th></tr>
 <tr class="a">
-<td style="text-align: right;">40</td>
-<td style="text-align: right;">17.5 MB</td>
-<td style="text-align: right;">11949</td>
-<td style="text-align: right;">10368</td>
-<td style="text-align: right;">708</td>
+<td style="text-align: right;">42</td>
+<td style="text-align: right;">19 MB</td>
+<td style="text-align: right;">12836</td>
+<td style="text-align: right;">11054</td>
+<td style="text-align: right;">751</td>
 <td style="text-align: center;">17</td>
-<td style="text-align: right;">35</td></tr>
+<td style="text-align: right;">37</td></tr>
 <tr class="b">
 <td style="text-align: right;">compile: 4</td>
 <td style="text-align: right;">compile: 492.2 kB</td>
@@ -1314,13 +1399,13 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: center;">1.8</td>
 <td style="text-align: right;">compile: 3</td></tr>
 <tr class="a">
-<td style="text-align: right;">test: 36</td>
-<td style="text-align: right;">test: 17 MB</td>
-<td style="text-align: right;">test: 11627</td>
-<td style="text-align: right;">test: 10195</td>
-<td style="text-align: right;">test: 695</td>
+<td style="text-align: right;">test: 38</td>
+<td style="text-align: right;">test: 18.5 MB</td>
+<td style="text-align: right;">test: 12514</td>
+<td style="text-align: right;">test: 10881</td>
+<td style="text-align: right;">test: 738</td>
 <td style="text-align: center;">17</td>
-<td style="text-align: right;">test: 32</td></tr></table></section>        </main>
+<td style="text-align: right;">test: 34</td></tr></table></section>        </main>
       </div>
     </div>
     <hr/>
