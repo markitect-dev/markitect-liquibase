@@ -4,13 +4,13 @@ plugins {
 }
 
 dependencies {
-    api(project(":markitect-liquibase-base"))
     api(libs.org.liquibase.liquibase.core)
     compileOnly(libs.biz.aqute.bnd.biz.aqute.bnd.annotation)
     compileOnly(libs.org.apache.logging.log4j.log4j.api)
     compileOnly(libs.org.osgi.org.osgi.annotation.bundle)
     compileOnly(libs.org.osgi.org.osgi.annotation.versioning)
     compileOnly(libs.org.slf4j.slf4j.api)
+    implementation(libs.com.google.guava.guava)
 
     testCompileOnly(libs.biz.aqute.bnd.biz.aqute.bnd.annotation)
     testCompileOnly(libs.org.osgi.org.osgi.annotation.bundle)

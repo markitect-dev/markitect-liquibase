@@ -8,6 +8,7 @@ dependencies {
 
     api(project(":markitect-liquibase-spring"))
     api(libs.org.springframework.boot.spring.boot.starter.jdbc)
+    implementation(libs.com.google.guava.guava)
 
     testImplementation(libs.com.h2database.h2)
     testImplementation(libs.org.springframework.boot.spring.boot.starter.test)

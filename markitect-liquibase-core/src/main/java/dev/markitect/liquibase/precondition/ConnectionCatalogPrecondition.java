@@ -16,7 +16,7 @@
 
 package dev.markitect.liquibase.precondition;
 
-import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.Objects;
 import liquibase.changelog.ChangeSet;

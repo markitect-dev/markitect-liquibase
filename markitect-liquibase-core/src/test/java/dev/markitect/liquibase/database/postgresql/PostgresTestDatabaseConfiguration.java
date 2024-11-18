@@ -16,7 +16,7 @@
 
 package dev.markitect.liquibase.database.postgresql;
 
-import static dev.markitect.liquibase.base.Verify.verifyNotNull;
+import static com.google.common.base.Verify.verifyNotNull;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;

@@ -184,11 +184,6 @@
       </dependency>
       <dependency>
         <groupId>dev.markitect.liquibase</groupId>
-        <artifactId>markitect-liquibase-base</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>dev.markitect.liquibase</groupId>
         <artifactId>markitect-liquibase-bom</artifactId>
         <version>${project.version}</version>
         <type>pom</type>

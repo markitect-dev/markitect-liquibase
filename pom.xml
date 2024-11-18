@@ -33,7 +33,6 @@
   </developers>
 
   <modules>
-    <module>markitect-liquibase-base</module>
     <module>markitect-liquibase-bom</module>
     <module>markitect-liquibase-core</module>
     <module>markitect-liquibase-coverage</module>

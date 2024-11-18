@@ -16,7 +16,7 @@
 
 package dev.markitect.liquibase.database;
 
-import static dev.markitect.liquibase.base.Preconditions.checkState;
+import static com.google.common.base.Preconditions.checkState;
 
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import liquibase.Scope;

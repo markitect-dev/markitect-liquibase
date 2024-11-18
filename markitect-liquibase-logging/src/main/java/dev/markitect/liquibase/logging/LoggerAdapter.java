@@ -16,7 +16,7 @@
 
 package dev.markitect.liquibase.logging;
 
-import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 import liquibase.logging.Logger;
 import org.apache.logging.log4j.LogManager;
