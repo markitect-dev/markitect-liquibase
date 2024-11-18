@@ -16,11 +16,11 @@
 
 package dev.markitect.liquibase.spring;
 
-import static dev.markitect.liquibase.base.Preconditions.checkIndex;
-import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkElementIndex;
+import static com.google.common.base.Preconditions.checkNotNull;
 import static dev.markitect.liquibase.spring.SpringEnvironmentHolder.getEnvironment;
 
-import dev.markitect.liquibase.base.Preconditions;
+import com.google.common.base.Preconditions;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.Optional;
@@ -41,7 +41,7 @@ public class SpringEnvironmentValueProvider extends AbstractConfigurationValuePr
   @Override
   public @Nullable ProvidedValue getProvidedValue(String... keyAndAliases) {
     checkNotNull(keyAndAliases);
-    String actualKey = checkNotNull(keyAndAliases[checkIndex(0, keyAndAliases.length)]);
+    String actualKey = checkNotNull(keyAndAliases[checkElementIndex(0, keyAndAliases.length)]);
     return Arrays.stream(keyAndAliases)
         .map(Preconditions::checkNotNull)
         .map(

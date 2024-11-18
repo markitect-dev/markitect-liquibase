@@ -16,10 +16,11 @@
 
 package dev.markitect.liquibase.database;
 
-import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkNotNull;
 import static java.util.Collections.emptyMap;
 
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.Map;
 import java.util.StringJoiner;
 import liquibase.Scope;
@@ -73,6 +74,7 @@ public final class OfflineConnectionBuilder {
   }
 
   @CanIgnoreReturnValue
+  @SuppressFBWarnings("EI_EXPOSE_REP2")
   public OfflineConnectionBuilder databaseParams(Map<String, String> databaseParams) {
     this.databaseParams = checkNotNull(databaseParams);
     return this;

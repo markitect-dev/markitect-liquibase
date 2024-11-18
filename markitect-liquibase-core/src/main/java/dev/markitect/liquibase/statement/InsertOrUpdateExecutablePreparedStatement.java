@@ -16,7 +16,7 @@
 
 package dev.markitect.liquibase.statement;
 
-import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkNotNull;
 import static java.util.Collections.unmodifiableList;
 
 import java.util.ArrayList;

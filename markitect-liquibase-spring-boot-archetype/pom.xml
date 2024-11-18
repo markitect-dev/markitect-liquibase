@@ -31,11 +31,6 @@
   <dependencies>
     <dependency>
       <groupId>dev.markitect.liquibase</groupId>
-      <artifactId>markitect-liquibase-base</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>dev.markitect.liquibase</groupId>
       <artifactId>markitect-liquibase-bom</artifactId>
       <type>pom</type>
       <scope>test</scope>
@@ -104,17 +99,6 @@
           <artifactId>maven-install-plugin</artifactId>
           <version>${maven-install-plugin.version}</version>
           <executions>
-            <execution>
-              <id>install-markitect-liquibase-base</id>
-              <goals>
-                <goal>install-file</goal>
-              </goals>
-              <phase>none</phase>
-              <configuration>
-                <file>../markitect-liquibase-base/target/markitect-liquibase-base-${project.version}.jar</file>
-                <pomFile>../markitect-liquibase-base/.flattened-pom.xml</pomFile>
-              </configuration>
-            </execution>
             <execution>
               <id>install-markitect-liquibase-bom</id>
               <goals>
@@ -228,10 +212,6 @@
               <artifactId>maven-install-plugin</artifactId>
               <version>${maven-install-plugin.version}</version>
               <executions>
-                <execution>
-                  <id>install-markitect-liquibase-base</id>
-                  <phase>pre-integration-test</phase>
-                </execution>
                 <execution>
                   <id>install-markitect-liquibase-bom</id>
                   <phase>pre-integration-test</phase>

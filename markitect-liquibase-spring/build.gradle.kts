@@ -6,6 +6,7 @@ plugins {
 dependencies {
     api(project(":markitect-liquibase-core"))
     api(libs.org.springframework.spring.context)
+    implementation(libs.com.google.guava.guava)
 
     testImplementation(libs.org.springframework.spring.jdbc)
     testImplementation(libs.org.springframework.boot.spring.boot.starter.test)

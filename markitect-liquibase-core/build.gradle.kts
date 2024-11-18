@@ -4,9 +4,9 @@ plugins {
 }
 
 dependencies {
-    api(project(":markitect-liquibase-base"))
     api(project(":markitect-liquibase-logging"))
     api(libs.org.liquibase.liquibase.core)
+    implementation(libs.com.google.guava.guava)
 
     testImplementation(libs.com.google.guava.guava)
     testImplementation(libs.org.junit.pioneer.junit.pioneer)

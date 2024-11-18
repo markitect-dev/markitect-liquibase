@@ -30,6 +30,10 @@
 
   <dependencies>
     <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+    </dependency>
+    <dependency>
       <groupId>dev.markitect.liquibase</groupId>
       <artifactId>markitect-liquibase-spring</artifactId>
     </dependency>
@@ -62,17 +66,6 @@
           <artifactId>maven-install-plugin</artifactId>
           <version>${maven-install-plugin.version}</version>
           <executions>
-            <execution>
-              <id>install-markitect-liquibase-base</id>
-              <goals>
-                <goal>install-file</goal>
-              </goals>
-              <phase>none</phase>
-              <configuration>
-                <file>../markitect-liquibase-base/target/markitect-liquibase-base-${project.version}.jar</file>
-                <pomFile>../markitect-liquibase-base/.flattened-pom.xml</pomFile>
-              </configuration>
-            </execution>
             <execution>
               <id>install-markitect-liquibase-bom</id>
               <goals>
@@ -202,10 +195,6 @@
               <artifactId>maven-install-plugin</artifactId>
               <version>${maven-install-plugin.version}</version>
               <executions>
-                <execution>
-                  <id>install-markitect-liquibase-base</id>
-                  <phase>pre-integration-test</phase>
-                </execution>
                 <execution>
                   <id>install-markitect-liquibase-bom</id>
                   <phase>pre-integration-test</phase>

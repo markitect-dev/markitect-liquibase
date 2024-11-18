@@ -5,7 +5,6 @@ plugins {
 
 dependencies {
     constraints {
-        api(project(":markitect-liquibase-base"))
         api(project(":markitect-liquibase-core"))
         api(project(":markitect-liquibase-logging"))
         api(project(":markitect-liquibase-spring"))

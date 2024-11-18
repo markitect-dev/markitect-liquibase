@@ -7,7 +7,6 @@ plugins {
 }
 
 dependencies {
-    jacocoAggregation(project(":markitect-liquibase-base"))
     jacocoAggregation(project(":markitect-liquibase-core"))
     jacocoAggregation(project(":markitect-liquibase-logging"))
     jacocoAggregation(project(":markitect-liquibase-logging-jul-test"))

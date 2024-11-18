@@ -16,7 +16,7 @@
 
 package dev.markitect.liquibase.sqlgenerator;
 
-import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkNotNull;
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toCollection;
 import static org.apache.commons.lang3.BooleanUtils.isTrue;

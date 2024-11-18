@@ -16,9 +16,9 @@
 
 package dev.markitect.liquibase.database;
 
-import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
-import static dev.markitect.liquibase.base.Preconditions.checkState;
-import static dev.markitect.liquibase.base.Verify.verifyNotNull;
+import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkState;
+import static com.google.common.base.Verify.verifyNotNull;
 
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import org.jspecify.annotations.Nullable;

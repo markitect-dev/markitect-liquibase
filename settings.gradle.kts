@@ -40,7 +40,6 @@ develocity {
     }
 }
 
-include(":markitect-liquibase-base")
 include(":markitect-liquibase-bom")
 include(":markitect-liquibase-core")
 include(":markitect-liquibase-coverage")
