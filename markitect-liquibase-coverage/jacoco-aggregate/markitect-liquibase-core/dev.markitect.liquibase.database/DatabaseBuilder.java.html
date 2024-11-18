@@ -16,10 +16,10 @@
 
 package dev.markitect.liquibase.database;
 
-import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkNotNull;
 
+import com.google.common.base.Verify;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
-import dev.markitect.liquibase.base.Verify;
 import java.util.function.UnaryOperator;
 import liquibase.database.Database;
 import liquibase.database.ObjectQuotingStrategy;

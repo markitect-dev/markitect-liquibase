@@ -16,8 +16,8 @@
 
 package dev.markitect.liquibase.spring.boot.autoconfigure;
 
-import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
-import static dev.markitect.liquibase.base.Verify.verifyNotNull;
+import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Verify.verifyNotNull;
 
 import dev.markitect.liquibase.spring.MarkitectSpringLiquibase;
 import dev.markitect.liquibase.spring.SpringLiquibaseBeanPostProcessor;

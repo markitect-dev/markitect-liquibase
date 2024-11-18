@@ -16,7 +16,7 @@
 
 package dev.markitect.liquibase.change;
 
-import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkNotNull;
 import static org.apache.commons.lang3.BooleanUtils.isTrue;
 
 import dev.markitect.liquibase.statement.SetIdentityInsertStatement;

@@ -16,7 +16,7 @@
 
 package dev.markitect.liquibase.database.h2;
 
-import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 import dev.markitect.liquibase.database.MarkitectDatabase;
 import liquibase.database.core.H2Database;

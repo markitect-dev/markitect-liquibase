@@ -16,11 +16,11 @@
 
 package dev.markitect.liquibase.spring;
 
-import static dev.markitect.liquibase.base.Preconditions.checkIndex;
-import static dev.markitect.liquibase.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkElementIndex;
+import static com.google.common.base.Preconditions.checkNotNull;
 import static dev.markitect.liquibase.spring.SpringEnvironmentHolder.getEnvironment;
 
-import dev.markitect.liquibase.base.Preconditions;
+import com.google.common.base.Preconditions;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.Optional;
@@ -41,7 +41,7 @@ import org.jspecify.annotations.Nullable;
   @Override
   public @Nullable ProvidedValue getProvidedValue(String... keyAndAliases) {
 <span class="fc" id="L43">    checkNotNull(keyAndAliases);</span>
-<span class="fc" id="L44">    String actualKey = checkNotNull(keyAndAliases[checkIndex(0, keyAndAliases.length)]);</span>
+<span class="fc" id="L44">    String actualKey = checkNotNull(keyAndAliases[checkElementIndex(0, keyAndAliases.length)]);</span>
 <span class="fc" id="L45">    return Arrays.stream(keyAndAliases)</span>
 <span class="fc" id="L46">        .map(Preconditions::checkNotNull)</span>
 <span class="fc" id="L47">        .map(</span>
