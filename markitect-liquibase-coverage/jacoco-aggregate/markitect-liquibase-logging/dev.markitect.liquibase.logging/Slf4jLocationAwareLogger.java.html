@@ -109,7 +109,10 @@ public class Slf4jLocationAwareLogger extends Slf4jLogger&lt;LocationAwareLogger
   @Override
   public void log(Level level, @Nullable String message, @Nullable Throwable e) {
 <span class="fc" id="L111">    checkNotNull(level);</span>
-<span class="fc" id="L112">    logger.log(null, FQCN, toSlf4jLevel(level), message, null, e);</span>
-<span class="fc" id="L113">  }</span>
+<span class="fc bfc" id="L112" title="All 2 branches covered.">    if (level.equals(Level.OFF)) {</span>
+<span class="fc" id="L113">      return;</span>
+    }
+<span class="fc" id="L115">    logger.log(null, FQCN, toSlf4jLevel(level), message, null, e);</span>
+<span class="fc" id="L116">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

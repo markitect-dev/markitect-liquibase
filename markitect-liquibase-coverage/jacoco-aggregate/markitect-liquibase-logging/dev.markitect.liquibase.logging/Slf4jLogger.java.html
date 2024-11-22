@@ -106,18 +106,21 @@ public class Slf4jLogger&lt;L extends Logger&gt; extends AbstractLogger {
   @Override
   public void log(Level level, @Nullable String message, @Nullable Throwable e) {
 <span class="fc" id="L108">    checkNotNull(level);</span>
-<span class="fc" id="L109">    int value = level.intValue();</span>
-<span class="fc bfc" id="L110" title="All 2 branches covered.">    if (value &lt; DEBUG_THRESHOLD) {</span>
-<span class="fc" id="L111">      logger.trace(message, e);</span>
-<span class="fc bfc" id="L112" title="All 2 branches covered.">    } else if (value &lt; INFO_THRESHOLD) {</span>
-<span class="fc" id="L113">      logger.debug(message, e);</span>
-<span class="fc bfc" id="L114" title="All 2 branches covered.">    } else if (value &lt; WARN_THRESHOLD) {</span>
-<span class="fc" id="L115">      logger.info(message, e);</span>
-<span class="fc bfc" id="L116" title="All 2 branches covered.">    } else if (value &lt; ERROR_THRESHOLD) {</span>
-<span class="fc" id="L117">      logger.warn(message, e);</span>
-    } else {
-<span class="fc" id="L119">      logger.error(message, e);</span>
+<span class="fc bfc" id="L109" title="All 2 branches covered.">    if (level.equals(Level.OFF)) {</span>
+<span class="fc" id="L110">      return;</span>
     }
-<span class="fc" id="L121">  }</span>
+<span class="fc" id="L112">    int value = level.intValue();</span>
+<span class="fc bfc" id="L113" title="All 2 branches covered.">    if (value &lt; DEBUG_THRESHOLD) {</span>
+<span class="fc" id="L114">      logger.trace(message, e);</span>
+<span class="fc bfc" id="L115" title="All 2 branches covered.">    } else if (value &lt; INFO_THRESHOLD) {</span>
+<span class="fc" id="L116">      logger.debug(message, e);</span>
+<span class="fc bfc" id="L117" title="All 2 branches covered.">    } else if (value &lt; WARN_THRESHOLD) {</span>
+<span class="fc" id="L118">      logger.info(message, e);</span>
+<span class="fc bfc" id="L119" title="All 2 branches covered.">    } else if (value &lt; ERROR_THRESHOLD) {</span>
+<span class="fc" id="L120">      logger.warn(message, e);</span>
+    } else {
+<span class="fc" id="L122">      logger.error(message, e);</span>
+    }
+<span class="fc" id="L124">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
