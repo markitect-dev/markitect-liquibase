@@ -58,6 +58,7 @@ class Slf4jLocationAwareLoggerTests {
     slf4jLogger.log(Level.FINE, "f", null);
     slf4jLogger.log(Level.FINER, "fr", null);
     slf4jLogger.log(Level.FINEST, "ft", null);
+    slf4jLogger.log(Level.OFF, "o", null);
     slf4jLogger.close();
 
     // then

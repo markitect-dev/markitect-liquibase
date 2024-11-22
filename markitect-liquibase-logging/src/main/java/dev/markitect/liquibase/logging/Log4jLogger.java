@@ -32,6 +32,9 @@ public class Log4jLogger extends AbstractLogger {
   private static final int ERROR_THRESHOLD = Level.SEVERE.intValue();
 
   private static org.apache.logging.log4j.Level toLog4jLevel(Level level) {
+    if (level.equals(Level.OFF)) {
+      return org.apache.logging.log4j.Level.OFF;
+    }
     int value = level.intValue();
     if (value < DEBUG_THRESHOLD) {
       return org.apache.logging.log4j.Level.TRACE;

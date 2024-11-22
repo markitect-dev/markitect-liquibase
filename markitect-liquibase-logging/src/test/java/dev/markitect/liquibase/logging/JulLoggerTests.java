@@ -76,12 +76,13 @@ class JulLoggerTests {
     julLogger.debug("d", thrown);
     julLogger.log(Level.FINER, "fr", null);
     julLogger.log(Level.FINEST, "ft", null);
+    julLogger.log(Level.OFF, "o", null);
     julLogger.close();
 
     // then
     mockedLogger.verify(() -> Logger.getLogger(name));
-    then(logger).should(times(14)).isLoggable(levelCaptor.capture());
-    then(logger).should(times(13)).log(logRecordCaptor.capture());
+    then(logger).should(times(15)).isLoggable(levelCaptor.capture());
+    then(logger).should(times(14)).log(logRecordCaptor.capture());
     verifyNoMoreInteractions(logger);
     assertThat(levelCaptor.getAllValues())
         .containsExactly(
@@ -98,7 +99,8 @@ class JulLoggerTests {
             Level.FINE,
             Level.FINE,
             Level.FINER,
-            Level.FINEST);
+            Level.FINEST,
+            Level.OFF);
     assertThat(logRecordCaptor.getAllValues())
         .extracting(
             LogRecord::getLevel,
@@ -122,6 +124,7 @@ class JulLoggerTests {
             tuple(Level.FINE, "f", name, thrown, sourceClassName, "test", "rb", rb),
             tuple(Level.FINE, "d", name, null, sourceClassName, "test", "rb", rb),
             tuple(Level.FINE, "d", name, thrown, sourceClassName, "test", "rb", rb),
-            tuple(Level.FINER, "fr", name, null, sourceClassName, "test", "rb", rb));
+            tuple(Level.FINER, "fr", name, null, sourceClassName, "test", "rb", rb),
+            tuple(Level.OFF, "o", name, null, sourceClassName, "test", "rb", rb));
   }
 }

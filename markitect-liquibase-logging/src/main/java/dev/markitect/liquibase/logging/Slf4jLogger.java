@@ -106,6 +106,9 @@ public class Slf4jLogger<L extends Logger> extends AbstractLogger {
   @Override
   public void log(Level level, @Nullable String message, @Nullable Throwable e) {
     checkNotNull(level);
+    if (level.equals(Level.OFF)) {
+      return;
+    }
     int value = level.intValue();
     if (value < DEBUG_THRESHOLD) {
       logger.trace(message, e);

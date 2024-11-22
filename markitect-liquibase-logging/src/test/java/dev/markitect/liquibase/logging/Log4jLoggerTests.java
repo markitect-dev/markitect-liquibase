@@ -58,6 +58,7 @@ class Log4jLoggerTests {
     log4jLogger.log(java.util.logging.Level.FINE, "f", null);
     log4jLogger.log(java.util.logging.Level.FINER, "fr", null);
     log4jLogger.log(java.util.logging.Level.FINEST, "ft", null);
+    log4jLogger.log(java.util.logging.Level.OFF, "o", null);
     log4jLogger.close();
 
     // then
@@ -82,6 +83,7 @@ class Log4jLoggerTests {
     then(logger).should(inOrder).logIfEnabled(fqcn, Level.DEBUG, null, "f", (Throwable) null);
     then(logger).should(inOrder).logIfEnabled(fqcn, Level.DEBUG, null, "fr", (Throwable) null);
     then(logger).should(inOrder).logIfEnabled(fqcn, Level.TRACE, null, "ft", (Throwable) null);
+    then(logger).should(inOrder).logIfEnabled(fqcn, Level.OFF, null, "o", (Throwable) null);
     then(logger).shouldHaveNoMoreInteractions();
   }
 }
