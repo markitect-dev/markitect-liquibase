@@ -109,6 +109,9 @@ public class Slf4jLocationAwareLogger extends Slf4jLogger<LocationAwareLogger> {
   @Override
   public void log(Level level, @Nullable String message, @Nullable Throwable e) {
     checkNotNull(level);
+    if (level.equals(Level.OFF)) {
+      return;
+    }
     logger.log(null, FQCN, toSlf4jLevel(level), message, null, e);
   }
 }
