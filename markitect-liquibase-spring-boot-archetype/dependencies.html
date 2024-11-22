@@ -152,7 +152,22 @@
 <td>jar</td>
 <td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a></td></tr></table></section></section><section><a id="Project_Transitive_Dependencies"></a>
 <h1>Project Transitive Dependencies</h1>
-<p>The following is a list of transitive dependencies for this project. Transitive dependencies are the dependencies of the project dependencies.</p><section><a id="Project_Transitive_Dependencies_test"></a>
+<p>The following is a list of transitive dependencies for this project. Transitive dependencies are the dependencies of the project dependencies.</p><section><a id="Project_Transitive_Dependencies_compile"></a>
+<h2>compile</h2>
+<p>The following is a list of compile dependencies for this project. These dependencies are required to compile and run the application:</p>
+<table class="table table-striped">
+<tr class="a">
+<th>GroupId</th>
+<th>ArtifactId</th>
+<th>Version</th>
+<th>Type</th>
+<th>Licenses</th></tr>
+<tr class="b">
+<td>com.google.code.findbugs</td>
+<td><a class="externalLink" href="http://findbugs.sourceforge.net/">jsr305</a></td>
+<td>3.0.2</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr></table></section><section><a id="Project_Transitive_Dependencies_test"></a>
 <h2>test</h2>
 <p>The following is a list of test dependencies for this project. These dependencies are only required to compile and run unit tests for the application:</p>
 <table class="table table-striped">
@@ -829,8 +844,18 @@ file comparators, endian transformation classes, and much more.</p>
 <td>
 <p><b>Description: </b>Annotations the SpotBugs tool supports</p>
 <p><b>URL: </b><a class="externalLink" href="https://spotbugs.github.io/">https://spotbugs.github.io/</a></p>
-<p><b>Project Licenses: </b><a class="externalLink" href="https://www.gnu.org/licenses/old-licenses/lgpl-2.1.en.html">GNU LESSER GENERAL PUBLIC LICENSE, Version 2.1</a></p></td></tr></table></div></li>
-<li>com.google.errorprone:error_prone_annotations:jar:2.36.0 (compile) <img id="_img85" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep84', '_img85' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep84" style="display:none">
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.gnu.org/licenses/old-licenses/lgpl-2.1.en.html">GNU LESSER GENERAL PUBLIC LICENSE, Version 2.1</a></p></td></tr></table></div>
+<ul>
+<li>com.google.code.findbugs:jsr305:jar:3.0.2 (compile) <img id="_img85" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep84', '_img85' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep84" style="display:none">
+<table class="table table-striped">
+<tr class="a">
+<th>FindBugs-jsr305</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>JSR305 Annotations for Findbugs</p>
+<p><b>URL: </b><a class="externalLink" href="http://findbugs.sourceforge.net/">http://findbugs.sourceforge.net/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li></ul></li>
+<li>com.google.errorprone:error_prone_annotations:jar:2.36.0 (compile) <img id="_img87" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep86', '_img87' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep86" style="display:none">
 <table class="table table-striped">
 <tr class="a">
 <th>error-prone annotations</th></tr>
@@ -839,7 +864,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>Description: </b>Error Prone is a static analysis tool for Java that catches common programming mistakes at compile-time.</p>
 <p><b>URL: </b><a class="externalLink" href="https://errorprone.info/error_prone_annotations">https://errorprone.info/error_prone_annotations</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache 2.0</a></p></td></tr></table></div></li>
-<li>de.thetaphi:forbiddenapis:jar:3.8 (compile) <img id="_img87" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep86', '_img87' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep86" style="display:none">
+<li>de.thetaphi:forbiddenapis:jar:3.8 (compile) <img id="_img89" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep88', '_img89' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep88" style="display:none">
 <table class="table table-striped">
 <tr class="a">
 <th>Policeman's Forbidden API Checker</th></tr>
@@ -848,7 +873,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>Description: </b>Allows to parse Java byte code to find invocations of method/class/field signatures and fail build (Apache Ant, Apache Maven, Gradle, or CLI)</p>
 <p><b>URL: </b><a class="externalLink" href="https://github.com/policeman-tools/forbidden-apis">https://github.com/policeman-tools/forbidden-apis</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
-<li>org.jspecify:jspecify:jar:1.0.0 (compile) <img id="_img89" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep88', '_img89' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep88" style="display:none">
+<li>org.jspecify:jspecify:jar:1.0.0 (compile) <img id="_img91" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep90', '_img91' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep90" style="display:none">
 <table class="table table-striped">
 <tr class="a">
 <th>JSpecify annotations</th></tr>
@@ -869,7 +894,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>Apache License, Version 2.0: </b>Apache Commons Collections, Guava: Google Core Libraries for Java, J2ObjC Annotations, Liquibase, SnakeYAML, Spring AOP, Spring Beans, Spring Commons Logging Bridge, Spring Context, Spring Core, Spring Expression Language (SpEL), Spring JDBC, Spring Transaction, markitect-liquibase-bom, markitect-liquibase-core, markitect-liquibase-logging, markitect-liquibase-spring, markitect-liquibase-spring-boot-archetype, markitect-liquibase-spring-boot-starter, spring-boot, spring-boot-autoconfigure, spring-boot-starter, spring-boot-starter-jdbc, spring-boot-starter-logging</p>
 <p><b>Apache-2.0: </b>Apache Commons IO, Apache Commons Lang, Apache Commons Text, Apache Log4j API, Log4j API to SLF4J Adapter</p>
 <p><b>EPL 2.0: </b>Jakarta Annotations API</p>
-<p><b>The Apache Software License, Version 2.0: </b>Guava InternalFutureFailureAccess and InternalFutures, Guava ListenableFuture only, HikariCP, Policeman's Forbidden API Checker, micrometer-commons, micrometer-observation</p>
+<p><b>The Apache Software License, Version 2.0: </b>FindBugs-jsr305, Guava InternalFutureFailureAccess and InternalFutures, Guava ListenableFuture only, HikariCP, Policeman's Forbidden API Checker, micrometer-commons, micrometer-observation</p>
 <p><b>Eclipse Public License - v 1.0: </b>Logback Classic Module, Logback Core Module</p></section><section><a id="Dependency_File_Details"></a>
 <h1>Dependency File Details</h1>
 <table class="table table-striped">
@@ -914,6 +939,14 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: center;">21</td>
 <td style="text-align: center;">Yes</td></tr>
 <tr class="b">
+<td style="text-align: left;">jsr305-3.0.2.jar</td>
+<td style="text-align: right;">19.9 kB</td>
+<td style="text-align: right;">46</td>
+<td style="text-align: right;">35</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: center;">1.5</td>
+<td style="text-align: center;">Yes</td></tr>
+<tr class="a">
 <td style="text-align: left;">failureaccess-1.0.2.jar</td>
 <td style="text-align: right;">4.7 kB</td>
 <td style="text-align: right;">15</td>
@@ -921,7 +954,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">1</td>
 <td style="text-align: center;">1.7</td>
 <td style="text-align: center;">Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <td style="text-align: left;">guava-33.3.1-jre.jar</td>
 <td style="text-align: right;">3.1 MB</td>
 <td style="text-align: right;">2056</td>
@@ -929,7 +962,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">18</td>
 <td style="text-align: center;">1.8</td>
 <td style="text-align: center;">Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <td style="text-align: left;">listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar</td>
 <td style="text-align: right;">2.2 kB</td>
 <td style="text-align: right;">7</td>
@@ -937,7 +970,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">0</td>
 <td style="text-align: center;">-</td>
 <td style="text-align: center;">-</td></tr>
-<tr class="a">
+<tr class="b">
 <td style="text-align: left;">j2objc-annotations-3.0.0.jar</td>
 <td style="text-align: right;">12.5 kB</td>
 <td style="text-align: right;">31</td>
@@ -945,7 +978,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">-</td>
 <td style="text-align: center;">-</td>
 <td style="text-align: center;">-</td></tr>
-<tr class="b">
+<tr class="a">
 <td style="text-align: left;">&#160;&#160;&#160;&#x2022; Root</td>
 <td style="text-align: right;">-</td>
 <td style="text-align: right;">29</td>
@@ -953,7 +986,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">1</td>
 <td style="text-align: center;">1.8</td>
 <td style="text-align: center;">Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <td style="text-align: left;">&#160;&#160;&#160;&#x2022; Versioned</td>
 <td style="text-align: right;">-</td>
 <td style="text-align: right;">2</td>
@@ -961,7 +994,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">1</td>
 <td style="text-align: center;">9</td>
 <td style="text-align: center;">No</td></tr>
-<tr class="b">
+<tr class="a">
 <td style="text-align: left;">opencsv-5.9.jar</td>
 <td style="text-align: right;">240.4 kB</td>
 <td style="text-align: right;">195</td>
@@ -969,7 +1002,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">15</td>
 <td style="text-align: center;">1.8</td>
 <td style="text-align: center;">Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <td style="text-align: left;">HikariCP-6.2.1.jar</td>
 <td style="text-align: right;">168.9 kB</td>
 <td style="text-align: right;">97</td>
@@ -977,7 +1010,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">9</td>
 <td style="text-align: center;">11</td>
 <td style="text-align: center;">Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <td style="text-align: left;">commons-io-2.18.0.jar</td>
 <td style="text-align: right;">538.9 kB</td>
 <td style="text-align: right;">398</td>
@@ -985,7 +1018,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">-</td>
 <td style="text-align: center;">-</td>
 <td style="text-align: center;">-</td></tr>
-<tr class="a">
+<tr class="b">
 <td style="text-align: left;">&#160;&#160;&#160;&#x2022; Root</td>
 <td style="text-align: right;">-</td>
 <td style="text-align: right;">397</td>
@@ -993,7 +1026,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">15</td>
 <td style="text-align: center;">1.8</td>
 <td style="text-align: center;">Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <td style="text-align: left;">&#160;&#160;&#160;&#x2022; Versioned</td>
 <td style="text-align: right;">-</td>
 <td style="text-align: right;">1</td>
@@ -1001,7 +1034,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">1</td>
 <td style="text-align: center;">9</td>
 <td style="text-align: center;">No</td></tr>
-<tr class="a">
+<tr class="b">
 <td style="text-align: left;">pom.xml</td>
 <td style="text-align: right;">2.5 kB</td>
 <td style="text-align: right;">-</td>
@@ -1009,7 +1042,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">-</td>
 <td style="text-align: center;">-</td>
 <td style="text-align: center;">-</td></tr>
-<tr class="b">
+<tr class="a">
 <td style="text-align: left;">markitect-liquibase-core-0.1.0-SNAPSHOT.jar</td>
 <td style="text-align: right;">87.7 kB</td>
 <td style="text-align: right;">87</td>
@@ -1017,7 +1050,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">11</td>
 <td style="text-align: center;">17</td>
 <td style="text-align: center;">Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <td style="text-align: left;">markitect-liquibase-logging-0.1.0-SNAPSHOT.jar</td>
 <td style="text-align: right;">20.1 kB</td>
 <td style="text-align: right;">26</td>
@@ -1025,7 +1058,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">1</td>
 <td style="text-align: center;">17</td>
 <td style="text-align: center;">Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <td style="text-align: left;">markitect-liquibase-spring-0.1.0-SNAPSHOT.jar</td>
 <td style="text-align: right;">12.8 kB</td>
 <td style="text-align: right;">20</td>
@@ -1033,7 +1066,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">1</td>
 <td style="text-align: center;">17</td>
 <td style="text-align: center;">Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <td style="text-align: left;">markitect-liquibase-spring-boot-starter-0.1.0-SNAPSHOT.jar</td>
 <td style="text-align: right;">20.6 kB</td>
 <td style="text-align: right;">28</td>
@@ -1041,7 +1074,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">1</td>
 <td style="text-align: center;">17</td>
 <td style="text-align: center;">Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <td style="text-align: left;">micrometer-commons-1.14.1.jar</td>
 <td style="text-align: right;">47.8 kB</td>
 <td style="text-align: right;">50</td>
@@ -1049,7 +1082,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">6</td>
 <td style="text-align: center;">1.8</td>
 <td style="text-align: center;">Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <td style="text-align: left;">micrometer-observation-1.14.1.jar</td>
 <td style="text-align: right;">74.9 kB</td>
 <td style="text-align: right;">74</td>
@@ -1057,7 +1090,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">6</td>
 <td style="text-align: center;">1.8</td>
 <td style="text-align: center;">Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <td style="text-align: left;">jakarta.annotation-api-3.0.0.jar</td>
 <td style="text-align: right;">26.4 kB</td>
 <td style="text-align: right;">32</td>
@@ -1065,7 +1098,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">4</td>
 <td style="text-align: center;">11</td>
 <td style="text-align: center;">Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <td style="text-align: left;">commons-collections4-4.4.jar</td>
 <td style="text-align: right;">751.9 kB</td>
 <td style="text-align: right;">555</td>
@@ -1073,7 +1106,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">19</td>
 <td style="text-align: center;">1.8</td>
 <td style="text-align: center;">Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <td style="text-align: left;">commons-lang3-3.17.0.jar</td>
 <td style="text-align: right;">673.6 kB</td>
 <td style="text-align: right;">426</td>
@@ -1081,7 +1114,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">-</td>
 <td style="text-align: center;">-</td>
 <td style="text-align: center;">-</td></tr>
-<tr class="a">
+<tr class="b">
 <td style="text-align: left;">&#160;&#160;&#160;&#x2022; Root</td>
 <td style="text-align: right;">-</td>
 <td style="text-align: right;">425</td>
@@ -1089,7 +1122,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">18</td>
 <td style="text-align: center;">1.8</td>
 <td style="text-align: center;">Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <td style="text-align: left;">&#160;&#160;&#160;&#x2022; Versioned</td>
 <td style="text-align: right;">-</td>
 <td style="text-align: right;">1</td>
@@ -1097,7 +1130,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">1</td>
 <td style="text-align: center;">9</td>
 <td style="text-align: center;">No</td></tr>
-<tr class="a">
+<tr class="b">
 <td style="text-align: left;">commons-text-1.12.0.jar</td>
 <td style="text-align: right;">251.2 kB</td>
 <td style="text-align: right;">181</td>
@@ -1105,7 +1138,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">-</td>
 <td style="text-align: center;">-</td>
 <td style="text-align: center;">-</td></tr>
-<tr class="b">
+<tr class="a">
 <td style="text-align: left;">&#160;&#160;&#160;&#x2022; Root</td>
 <td style="text-align: right;">-</td>
 <td style="text-align: right;">180</td>
@@ -1113,7 +1146,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">8</td>
 <td style="text-align: center;">1.8</td>
 <td style="text-align: center;">Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <td style="text-align: left;">&#160;&#160;&#160;&#x2022; Versioned</td>
 <td style="text-align: right;">-</td>
 <td style="text-align: right;">1</td>
@@ -1121,7 +1154,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">1</td>
 <td style="text-align: center;">9</td>
 <td style="text-align: center;">No</td></tr>
-<tr class="b">
+<tr class="a">
 <td style="text-align: left;">log4j-api-2.24.1.jar</td>
 <td style="text-align: right;">348.4 kB</td>
 <td style="text-align: right;">247</td>
@@ -1129,7 +1162,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">-</td>
 <td style="text-align: center;">-</td>
 <td style="text-align: center;">-</td></tr>
-<tr class="a">
+<tr class="b">
 <td style="text-align: left;">&#160;&#160;&#160;&#x2022; Root</td>
 <td style="text-align: right;">-</td>
 <td style="text-align: right;">236</td>
@@ -1137,7 +1170,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">11</td>
 <td style="text-align: center;">1.8</td>
 <td style="text-align: center;">Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <td style="text-align: left;">&#160;&#160;&#160;&#x2022; Versioned</td>
 <td style="text-align: right;">-</td>
 <td style="text-align: right;">11</td>
@@ -1145,7 +1178,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">2</td>
 <td style="text-align: center;">9</td>
 <td style="text-align: center;">Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <td style="text-align: left;">log4j-to-slf4j-2.24.1.jar</td>
 <td style="text-align: right;">23.8 kB</td>
 <td style="text-align: right;">26</td>
@@ -1153,7 +1186,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">2</td>
 <td style="text-align: center;">1.8</td>
 <td style="text-align: center;">Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <td style="text-align: left;">checker-qual-3.43.0.jar</td>
 <td style="text-align: right;">231.5 kB</td>
 <td style="text-align: right;">439</td>
@@ -1161,7 +1194,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">31</td>
 <td style="text-align: center;">1.8</td>
 <td style="text-align: center;">Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <td style="text-align: left;">liquibase-core-4.30.0.jar</td>
 <td style="text-align: right;">3.1 MB</td>
 <td style="text-align: right;">1604</td>
@@ -1169,7 +1202,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">90</td>
 <td style="text-align: center;">1.8</td>
 <td style="text-align: center;">Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <td style="text-align: left;">jul-to-slf4j-2.0.16.jar</td>
 <td style="text-align: right;">6.4 kB</td>
 <td style="text-align: right;">15</td>
@@ -1177,7 +1210,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">-</td>
 <td style="text-align: center;">-</td>
 <td style="text-align: center;">-</td></tr>
-<tr class="a">
+<tr class="b">
 <td style="text-align: left;">&#160;&#160;&#160;&#x2022; Root</td>
 <td style="text-align: right;">-</td>
 <td style="text-align: right;">13</td>
@@ -1185,7 +1218,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">1</td>
 <td style="text-align: center;">1.8</td>
 <td style="text-align: center;">Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <td style="text-align: left;">&#160;&#160;&#160;&#x2022; Versioned</td>
 <td style="text-align: right;">-</td>
 <td style="text-align: right;">2</td>
@@ -1193,7 +1226,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">1</td>
 <td style="text-align: center;">9</td>
 <td style="text-align: center;">No</td></tr>
-<tr class="a">
+<tr class="b">
 <td style="text-align: left;">slf4j-api-2.0.16.jar</td>
 <td style="text-align: right;">69.4 kB</td>
 <td style="text-align: right;">71</td>
@@ -1201,7 +1234,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">-</td>
 <td style="text-align: center;">-</td>
 <td style="text-align: center;">-</td></tr>
-<tr class="b">
+<tr class="a">
 <td style="text-align: left;">&#160;&#160;&#160;&#x2022; Root</td>
 <td style="text-align: right;">-</td>
 <td style="text-align: right;">69</td>
@@ -1209,7 +1242,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">4</td>
 <td style="text-align: center;">1.8</td>
 <td style="text-align: center;">Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <td style="text-align: left;">&#160;&#160;&#160;&#x2022; Versioned</td>
 <td style="text-align: right;">-</td>
 <td style="text-align: right;">2</td>
@@ -1217,7 +1250,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">1</td>
 <td style="text-align: center;">9</td>
 <td style="text-align: center;">No</td></tr>
-<tr class="b">
+<tr class="a">
 <td style="text-align: left;">spring-aop-6.2.0.jar</td>
 <td style="text-align: right;">418.3 kB</td>
 <td style="text-align: right;">321</td>
@@ -1225,7 +1258,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">17</td>
 <td style="text-align: center;">17</td>
 <td style="text-align: center;">Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <td style="text-align: left;">spring-beans-6.2.0.jar</td>
 <td style="text-align: right;">875.1 kB</td>
 <td style="text-align: right;">479</td>
@@ -1233,7 +1266,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">13</td>
 <td style="text-align: center;">17</td>
 <td style="text-align: center;">Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <td style="text-align: left;">spring-context-6.2.0.jar</td>
 <td style="text-align: right;">1.3 MB</td>
 <td style="text-align: right;">946</td>
@@ -1241,7 +1274,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">58</td>
 <td style="text-align: center;">17</td>
 <td style="text-align: center;">Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <td style="text-align: left;">spring-core-6.2.0.jar</td>
 <td style="text-align: right;">2 MB</td>
 <td style="text-align: right;">1262</td>
@@ -1249,7 +1282,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">-</td>
 <td style="text-align: center;">-</td>
 <td style="text-align: center;">-</td></tr>
-<tr class="b">
+<tr class="a">
 <td style="text-align: left;">&#160;&#160;&#160;&#x2022; Root</td>
 <td style="text-align: right;">-</td>
 <td style="text-align: right;">1256</td>
@@ -1257,7 +1290,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">59</td>
 <td style="text-align: center;">17</td>
 <td style="text-align: center;">Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <td style="text-align: left;">&#160;&#160;&#160;&#x2022; Versioned</td>
 <td style="text-align: right;">-</td>
 <td style="text-align: right;">6</td>
@@ -1265,7 +1298,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">1</td>
 <td style="text-align: center;">21</td>
 <td style="text-align: center;">Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <td style="text-align: left;">spring-expression-6.2.0.jar</td>
 <td style="text-align: right;">317.5 kB</td>
 <td style="text-align: right;">168</td>
@@ -1273,7 +1306,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">6</td>
 <td style="text-align: center;">17</td>
 <td style="text-align: center;">Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <td style="text-align: left;">spring-jcl-6.2.0.jar</td>
 <td style="text-align: right;">24.5 kB</td>
 <td style="text-align: right;">26</td>
@@ -1281,7 +1314,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">2</td>
 <td style="text-align: center;">17</td>
 <td style="text-align: center;">Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <td style="text-align: left;">spring-jdbc-6.2.0.jar</td>
 <td style="text-align: right;">471 kB</td>
 <td style="text-align: right;">335</td>
@@ -1289,7 +1322,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">17</td>
 <td style="text-align: center;">17</td>
 <td style="text-align: center;">Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <td style="text-align: left;">spring-tx-6.2.0.jar</td>
 <td style="text-align: right;">285 kB</td>
 <td style="text-align: right;">238</td>
@@ -1297,7 +1330,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">13</td>
 <td style="text-align: center;">17</td>
 <td style="text-align: center;">Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <td style="text-align: left;">spring-boot-3.3.6.jar</td>
 <td style="text-align: right;">1.6 MB</td>
 <td style="text-align: right;">1118</td>
@@ -1305,7 +1338,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">82</td>
 <td style="text-align: center;">17</td>
 <td style="text-align: center;">Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <td style="text-align: left;">spring-boot-autoconfigure-3.3.6.jar</td>
 <td style="text-align: right;">2 MB</td>
 <td style="text-align: right;">1531</td>
@@ -1313,7 +1346,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">111</td>
 <td style="text-align: center;">17</td>
 <td style="text-align: center;">Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <td style="text-align: left;">spring-boot-starter-3.3.6.jar</td>
 <td style="text-align: right;">4.8 kB</td>
 <td style="text-align: right;">4</td>
@@ -1321,7 +1354,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">0</td>
 <td style="text-align: center;">-</td>
 <td style="text-align: center;">-</td></tr>
-<tr class="a">
+<tr class="b">
 <td style="text-align: left;">spring-boot-starter-jdbc-3.3.6.jar</td>
 <td style="text-align: right;">4.8 kB</td>
 <td style="text-align: right;">4</td>
@@ -1329,7 +1362,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">0</td>
 <td style="text-align: center;">-</td>
 <td style="text-align: center;">-</td></tr>
-<tr class="b">
+<tr class="a">
 <td style="text-align: left;">spring-boot-starter-logging-3.3.6.jar</td>
 <td style="text-align: right;">4.8 kB</td>
 <td style="text-align: right;">4</td>
@@ -1337,7 +1370,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">0</td>
 <td style="text-align: center;">-</td>
 <td style="text-align: center;">-</td></tr>
-<tr class="a">
+<tr class="b">
 <td style="text-align: left;">snakeyaml-2.3.jar</td>
 <td style="text-align: right;">342.2 kB</td>
 <td style="text-align: right;">284</td>
@@ -1345,7 +1378,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">-</td>
 <td style="text-align: center;">-</td>
 <td style="text-align: center;">-</td></tr>
-<tr class="b">
+<tr class="a">
 <td style="text-align: left;">&#160;&#160;&#160;&#x2022; Root</td>
 <td style="text-align: right;">-</td>
 <td style="text-align: right;">276</td>
@@ -1353,7 +1386,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">23</td>
 <td style="text-align: center;">1.7</td>
 <td style="text-align: center;">Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <td style="text-align: left;">&#160;&#160;&#160;&#x2022; Versioned</td>
 <td style="text-align: right;">-</td>
 <td style="text-align: right;">8</td>
@@ -1361,7 +1394,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">2</td>
 <td style="text-align: center;">9</td>
 <td style="text-align: center;">Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <td style="text-align: left;">spotbugs-annotations-4.8.6.jar</td>
 <td style="text-align: right;">15.3 kB</td>
 <td style="text-align: right;">31</td>
@@ -1369,7 +1402,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">1</td>
 <td style="text-align: center;">1.8</td>
 <td style="text-align: center;">Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <td style="text-align: left;">error_prone_annotations-2.36.0.jar</td>
 <td style="text-align: right;">19.4 kB</td>
 <td style="text-align: right;">47</td>
@@ -1377,7 +1410,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">-</td>
 <td style="text-align: center;">-</td>
 <td style="text-align: center;">-</td></tr>
-<tr class="b">
+<tr class="a">
 <td style="text-align: left;">&#160;&#160;&#160;&#x2022; Root</td>
 <td style="text-align: right;">-</td>
 <td style="text-align: right;">40</td>
@@ -1385,7 +1418,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">2</td>
 <td style="text-align: center;">1.8</td>
 <td style="text-align: center;">Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <td style="text-align: left;">&#160;&#160;&#160;&#x2022; Versioned</td>
 <td style="text-align: right;">-</td>
 <td style="text-align: right;">7</td>
@@ -1393,7 +1426,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">1</td>
 <td style="text-align: center;">9</td>
 <td style="text-align: center;">No</td></tr>
-<tr class="b">
+<tr class="a">
 <td style="text-align: left;">forbiddenapis-3.8.jar</td>
 <td style="text-align: right;">453.7 kB</td>
 <td style="text-align: right;">230</td>
@@ -1401,7 +1434,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">9</td>
 <td style="text-align: center;">1.7</td>
 <td style="text-align: center;">Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <td style="text-align: left;">jspecify-1.0.0.jar</td>
 <td style="text-align: right;">3.8 kB</td>
 <td style="text-align: right;">14</td>
@@ -1409,7 +1442,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">-</td>
 <td style="text-align: center;">-</td>
 <td style="text-align: center;">-</td></tr>
-<tr class="b">
+<tr class="a">
 <td style="text-align: left;">&#160;&#160;&#160;&#x2022; Root</td>
 <td style="text-align: right;">-</td>
 <td style="text-align: right;">10</td>
@@ -1417,7 +1450,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">1</td>
 <td style="text-align: center;">1.8</td>
 <td style="text-align: center;">No</td></tr>
-<tr class="a">
+<tr class="b">
 <td style="text-align: left;">&#160;&#160;&#160;&#x2022; Versioned</td>
 <td style="text-align: right;">-</td>
 <td style="text-align: right;">4</td>
@@ -1425,7 +1458,7 @@ file comparators, endian transformation classes, and much more.</p>
 <td style="text-align: right;">1</td>
 <td style="text-align: center;">9</td>
 <td style="text-align: center;">No</td></tr>
-<tr class="b">
+<tr class="a">
 <th>Total</th>
 <th>Size</th>
 <th>Entries</th>
@@ -1433,23 +1466,23 @@ file comparators, endian transformation classes, and much more.</p>
 <th>Packages</th>
 <th>Java Version</th>
 <th>Debug Information</th></tr>
-<tr class="a">
-<td style="text-align: right;">44</td>
-<td style="text-align: right;">20.9 MB</td>
-<td style="text-align: right;">14500</td>
-<td style="text-align: right;">12790</td>
-<td style="text-align: right;">758</td>
-<td style="text-align: center;">17</td>
-<td style="text-align: right;">38</td></tr>
 <tr class="b">
-<td style="text-align: right;">compile: 4</td>
-<td style="text-align: right;">compile: 492.2 kB</td>
-<td style="text-align: right;">compile: 322</td>
-<td style="text-align: right;">compile: 173</td>
-<td style="text-align: right;">compile: 13</td>
-<td style="text-align: center;">1.8</td>
-<td style="text-align: right;">compile: 3</td></tr>
+<td style="text-align: right;">45</td>
+<td style="text-align: right;">20.9 MB</td>
+<td style="text-align: right;">14546</td>
+<td style="text-align: right;">12825</td>
+<td style="text-align: right;">761</td>
+<td style="text-align: center;">17</td>
+<td style="text-align: right;">39</td></tr>
 <tr class="a">
+<td style="text-align: right;">compile: 5</td>
+<td style="text-align: right;">compile: 512.1 kB</td>
+<td style="text-align: right;">compile: 368</td>
+<td style="text-align: right;">compile: 208</td>
+<td style="text-align: right;">compile: 16</td>
+<td style="text-align: center;">1.8</td>
+<td style="text-align: right;">compile: 4</td></tr>
+<tr class="b">
 <td style="text-align: right;">test: 40</td>
 <td style="text-align: right;">test: 20.4 MB</td>
 <td style="text-align: right;">test: 14178</td>
