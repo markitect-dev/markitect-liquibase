@@ -551,7 +551,6 @@
                   </banDynamicVersions>
                   <bannedDependencies>
                     <excludes>
-                      <exclude>com.google.code.findbugs:jsr305</exclude>
                       <exclude>com.jayway.jsonpath:json-path</exclude>
                       <exclude>javax.activation</exclude>
                       <exclude>javax.xml.bind</exclude>

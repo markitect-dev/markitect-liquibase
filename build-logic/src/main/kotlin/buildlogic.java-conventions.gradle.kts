@@ -18,7 +18,6 @@ configurations.testImplementation {
         substitute(module("org.hamcrest:hamcrest-core"))
             .using(module(libs.org.hamcrest.hamcrest.get().toString()))
     }
-    exclude(group = "com.google.code.findbugs", module = "jsr305")
     exclude(group = "com.jayway.jsonpath", module = "json-path")
     exclude(group = "javax.xml.bind", module = "jaxb-api")
     exclude(group = "net.minidev", module = "json-smart")
