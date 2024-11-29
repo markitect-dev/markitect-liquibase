@@ -251,7 +251,10 @@
       groupName: 'snakeyaml',
     },
     {
-      matchFileNames: ['**/src/it/spring-boot-3.2/pom.xml'],
+      matchFileNames: [
+        '**/src/it/spring-boot-3.2/pom.xml',
+        '**/src/it/spring-boot-3.3/pom.xml',
+      ],
       matchPackageNames: ['org.springframework.boot:**'],
       matchUpdateTypes: ['major', 'minor'],
       enabled: false,
