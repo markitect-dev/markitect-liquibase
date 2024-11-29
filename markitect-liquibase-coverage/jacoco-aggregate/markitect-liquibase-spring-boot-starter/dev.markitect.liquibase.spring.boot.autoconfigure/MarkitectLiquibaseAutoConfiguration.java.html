@@ -202,7 +202,7 @@ public class MarkitectLiquibaseAutoConfiguration {
 <span class="fc bfc" id="L202" title="All 2 branches covered.">      if (liquibaseDataSource != null) {</span>
 <span class="fc" id="L203">        return liquibaseDataSource;</span>
       }
-<span class="fc" id="L205">      @Nullable String url = connectionDetails.getJdbcUrl();</span>
+<span class="fc" id="L205">      String url = connectionDetails.getJdbcUrl();</span>
 <span class="fc bfc" id="L206" title="All 2 branches covered.">      if (url != null) {</span>
 <span class="fc" id="L207">        var builder = DataSourceBuilder.create();</span>
 <span class="fc" id="L208">        builder.type(SimpleDriverDataSource.class);</span>

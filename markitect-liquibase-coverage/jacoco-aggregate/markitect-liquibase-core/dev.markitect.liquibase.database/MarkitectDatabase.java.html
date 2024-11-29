@@ -40,7 +40,7 @@ public interface MarkitectDatabase extends Database {
 <span class="fc bfc" id="L40" title="All 2 branches covered.">    if (objectName == null) {</span>
 <span class="fc" id="L41">      return null;</span>
     }
-    @Nullable Boolean unquotedObjectsAreUppercased;
+    Boolean unquotedObjectsAreUppercased;
 <span class="fc bfc" id="L44" title="All 2 branches covered.">    if ((unquotedObjectsAreUppercased = getUnquotedObjectsAreUppercased()) == null</span>
 <span class="fc bfc" id="L45" title="All 2 branches covered.">        || (supportsPreservingIdentifierCase(objectType)</span>
 <span class="fc bfc" id="L46" title="All 2 branches covered.">            &amp;&amp; (getObjectQuotingStrategy() == ObjectQuotingStrategy.QUOTE_ALL_OBJECTS</span>
@@ -64,8 +64,8 @@ public interface MarkitectDatabase extends Database {
 <span class="fc bfc" id="L64" title="All 2 branches covered.">    if (Index.class.isAssignableFrom(objectType)) {</span>
 <span class="fc" id="L65">      return escapeObjectName(objectName, objectType);</span>
     }
-<span class="fc" id="L67">    @Nullable String catalogNameToUse = toCatalogNameToUse(catalogName);</span>
-<span class="fc" id="L68">    @Nullable String schemaNameToUse = toSchemaNameToUse(catalogName, schemaName);</span>
+<span class="fc" id="L67">    String catalogNameToUse = toCatalogNameToUse(catalogName);</span>
+<span class="fc" id="L68">    String schemaNameToUse = toSchemaNameToUse(catalogName, schemaName);</span>
 <span class="fc bfc" id="L69" title="All 2 branches covered.">    return (catalogNameToUse != null ? escapeObjectName(catalogNameToUse, Catalog.class) + &quot;.&quot; : &quot;&quot;)</span>
 <span class="fc bfc" id="L70" title="All 2 branches covered.">        + (schemaNameToUse != null ? escapeObjectName(schemaNameToUse, Schema.class) : &quot;&quot;)</span>
 <span class="fc bfc" id="L71" title="All 4 branches covered.">        + (catalogNameToUse != null || schemaNameToUse != null ? &quot;.&quot; : &quot;&quot;)</span>
@@ -89,7 +89,7 @@ public interface MarkitectDatabase extends Database {
       String objectName, Class&lt;? extends DatabaseObject&gt; objectType) {
 <span class="fc" id="L90">    checkNotNull(objectName);</span>
 <span class="fc" id="L91">    checkNotNull(objectType);</span>
-    @Nullable Boolean unquotedObjectsAreUppercased;
+    Boolean unquotedObjectsAreUppercased;
 <span class="fc bfc" id="L93" title="All 2 branches covered.">    return getObjectQuotingStrategy() == ObjectQuotingStrategy.QUOTE_ALL_OBJECTS</span>
 <span class="fc bfc" id="L94" title="All 2 branches covered.">        || isIllegalIdentifier(objectName)</span>
 <span class="fc bfc" id="L95" title="All 2 branches covered.">        || isReservedWord(objectName)</span>
