@@ -202,7 +202,7 @@ public class MarkitectLiquibaseAutoConfiguration {
       if (liquibaseDataSource != null) {
         return liquibaseDataSource;
       }
-      @Nullable String url = connectionDetails.getJdbcUrl();
+      String url = connectionDetails.getJdbcUrl();
       if (url != null) {
         var builder = DataSourceBuilder.create();
         builder.type(SimpleDriverDataSource.class);

@@ -40,7 +40,7 @@ public interface MarkitectDatabase extends Database {
     if (objectName == null) {
       return null;
     }
-    @Nullable Boolean unquotedObjectsAreUppercased;
+    Boolean unquotedObjectsAreUppercased;
     if ((unquotedObjectsAreUppercased = getUnquotedObjectsAreUppercased()) == null
         || (supportsPreservingIdentifierCase(objectType)
             && (getObjectQuotingStrategy() == ObjectQuotingStrategy.QUOTE_ALL_OBJECTS
@@ -64,8 +64,8 @@ public interface MarkitectDatabase extends Database {
     if (Index.class.isAssignableFrom(objectType)) {
       return escapeObjectName(objectName, objectType);
     }
-    @Nullable String catalogNameToUse = toCatalogNameToUse(catalogName);
-    @Nullable String schemaNameToUse = toSchemaNameToUse(catalogName, schemaName);
+    String catalogNameToUse = toCatalogNameToUse(catalogName);
+    String schemaNameToUse = toSchemaNameToUse(catalogName, schemaName);
     return (catalogNameToUse != null ? escapeObjectName(catalogNameToUse, Catalog.class) + "." : "")
         + (schemaNameToUse != null ? escapeObjectName(schemaNameToUse, Schema.class) : "")
         + (catalogNameToUse != null || schemaNameToUse != null ? "." : "")
@@ -89,7 +89,7 @@ public interface MarkitectDatabase extends Database {
       String objectName, Class<? extends DatabaseObject> objectType) {
     checkNotNull(objectName);
     checkNotNull(objectType);
-    @Nullable Boolean unquotedObjectsAreUppercased;
+    Boolean unquotedObjectsAreUppercased;
     return getObjectQuotingStrategy() == ObjectQuotingStrategy.QUOTE_ALL_OBJECTS
         || isIllegalIdentifier(objectName)
         || isReservedWord(objectName)
