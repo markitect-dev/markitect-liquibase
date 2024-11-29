@@ -29,6 +29,7 @@ import dev.markitect.liquibase.spring.boot.autoconfigure.MarkitectLiquibaseAutoC
 import dev.markitect.liquibase.spring.boot.autoconfigure.MarkitectLiquibaseAutoConfiguration.LiquibaseDataSourceCondition;
 import dev.markitect.liquibase.spring.boot.autoconfigure.MarkitectLiquibaseAutoConfiguration.MarkitectLiquibaseConfiguration;
 import dev.markitect.liquibase.spring.boot.autoconfigure.MarkitectLiquibaseAutoConfiguration.PropertiesLiquibaseConnectionDetails;
+import dev.markitect.liquibase.spring.boot.autoconfigure.MarkitectLiquibaseAutoConfiguration.SpringLiquibaseCustomizer;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.Optional;
 import java.util.UUID;
@@ -71,6 +72,7 @@ class MarkitectLiquibaseAutoConfigurationTests {
     private final MarkitectLiquibaseConfiguration markitectLiquibaseConfiguration =
         new MarkitectLiquibaseConfiguration();
     @Mock private ObjectProvider<DataSource> dataSourceProvider;
+    @Mock private ObjectProvider<SpringLiquibaseCustomizer> customizers;
     @Mock private ObjectProvider<DataSource> liquibaseDataSourceProvider;
     @Mock private DataSource liquibaseDataSource;
     @Mock private LiquibaseConnectionDetails connectionDetails;
@@ -86,6 +88,7 @@ class MarkitectLiquibaseAutoConfigurationTests {
                       dataSourceProvider,
                       liquibaseDataSourceProvider,
                       liquibaseProperties,
+                      customizers,
                       connectionDetails,
                       markitectLiquibaseProperties));
 
@@ -107,6 +110,7 @@ class MarkitectLiquibaseAutoConfigurationTests {
               dataSourceProvider,
               liquibaseDataSourceProvider,
               liquibaseProperties,
+              customizers,
               connectionDetails,
               markitectLiquibaseProperties);
       liquibase.setBeanName("liquibase");
@@ -134,6 +138,7 @@ class MarkitectLiquibaseAutoConfigurationTests {
               dataSourceProvider,
               liquibaseDataSourceProvider,
               liquibaseProperties,
+              customizers,
               connectionDetails,
               markitectLiquibaseProperties);
       liquibase.setBeanName("liquibase");
@@ -172,6 +177,7 @@ class MarkitectLiquibaseAutoConfigurationTests {
               dataSourceProvider,
               liquibaseDataSourceProvider,
               liquibaseProperties,
+              customizers,
               connectionDetails,
               markitectLiquibaseProperties);
       liquibase.setBeanName("liquibase");
@@ -221,6 +227,7 @@ class MarkitectLiquibaseAutoConfigurationTests {
               dataSourceProvider,
               liquibaseDataSourceProvider,
               liquibaseProperties,
+              customizers,
               connectionDetails,
               markitectLiquibaseProperties);
       liquibase.setBeanName("liquibase");

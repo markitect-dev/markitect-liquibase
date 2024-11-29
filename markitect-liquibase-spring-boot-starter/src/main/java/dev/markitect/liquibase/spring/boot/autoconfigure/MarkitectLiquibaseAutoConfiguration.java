@@ -18,16 +18,21 @@ package dev.markitect.liquibase.spring.boot.autoconfigure;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Verify.verifyNotNull;
+import static java.util.function.Predicate.not;
 
+import com.google.common.annotations.VisibleForTesting;
 import dev.markitect.liquibase.spring.MarkitectSpringLiquibase;
 import dev.markitect.liquibase.spring.SpringLiquibaseBeanPostProcessor;
 import dev.markitect.liquibase.spring.boot.autoconfigure.MarkitectLiquibaseAutoConfiguration.LiquibaseAutoConfigurationRuntimeHints;
 import dev.markitect.liquibase.spring.boot.autoconfigure.MarkitectLiquibaseAutoConfiguration.LiquibaseDataSourceCondition;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Optional;
 import javax.sql.DataSource;
+import liquibase.Liquibase;
 import liquibase.UpdateSummaryEnum;
 import liquibase.UpdateSummaryOutputEnum;
 import liquibase.change.DatabaseChange;
+import liquibase.integration.spring.Customizer;
 import liquibase.integration.spring.SpringLiquibase;
 import liquibase.ui.UIServiceEnum;
 import org.jspecify.annotations.Nullable;
@@ -59,6 +64,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.ConnectionCallback;
 import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 import org.springframework.util.Assert;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 @AutoConfiguration(
@@ -95,12 +101,14 @@ public class MarkitectLiquibaseAutoConfiguration {
         ObjectProvider<DataSource> dataSource,
         @LiquibaseDataSource ObjectProvider<DataSource> liquibaseDataSource,
         LiquibaseProperties properties,
+        ObjectProvider<SpringLiquibaseCustomizer> customizers,
         LiquibaseConnectionDetails connectionDetails,
         MarkitectLiquibaseProperties markitectProperties) {
       return toSpringLiquibase(
           dataSource.getIfUnique(),
           liquibaseDataSource.getIfAvailable(),
           properties,
+          customizers,
           connectionDetails,
           markitectProperties);
     }
@@ -109,6 +117,7 @@ public class MarkitectLiquibaseAutoConfiguration {
         @Nullable DataSource dataSource,
         @Nullable DataSource liquibaseDataSource,
         LiquibaseProperties properties,
+        ObjectProvider<SpringLiquibaseCustomizer> customizers,
         LiquibaseConnectionDetails connectionDetails,
         MarkitectLiquibaseProperties markitectProperties) {
       var migrationDataSource =
@@ -119,8 +128,42 @@ public class MarkitectLiquibaseAutoConfiguration {
       liquibase.setShouldRun(properties.isEnabled());
       liquibase.setDataSource(migrationDataSource);
       liquibase.setChangeLog(properties.getChangeLog());
-      liquibase.setContexts(properties.getContexts());
-      liquibase.setLabelFilter(properties.getLabelFilter());
+      try {
+        Optional.ofNullable(properties.getContexts())
+            .filter(not(CollectionUtils::isEmpty))
+            .map(StringUtils::collectionToCommaDelimitedString)
+            .ifPresent(liquibase::setContexts);
+      } catch (NoSuchMethodError e) {
+        // Spring Boot 3.3 and earlier
+        try {
+          liquibase.setContexts(
+              (String) LiquibaseProperties.class.getMethod("getContexts").invoke(properties));
+        } catch (NoSuchMethodException
+            | IllegalAccessException
+            | InvocationTargetException
+            | RuntimeException unused) {
+          // Unsupported Spring Boot version
+          throw e;
+        }
+      }
+      try {
+        Optional.ofNullable(properties.getLabelFilter())
+            .filter(not(CollectionUtils::isEmpty))
+            .map(StringUtils::collectionToCommaDelimitedString)
+            .ifPresent(liquibase::setLabelFilter);
+      } catch (NoSuchMethodError e) {
+        // Spring Boot 3.3 and earlier
+        try {
+          liquibase.setLabelFilter(
+              (String) LiquibaseProperties.class.getMethod("getLabelFilter").invoke(properties));
+        } catch (NoSuchMethodException
+            | IllegalAccessException
+            | InvocationTargetException
+            | RuntimeException unused) {
+          // Unsupported Spring Boot version
+          throw e;
+        }
+      }
       liquibase.setTag(properties.getTag());
       liquibase.setDefaultSchema(properties.getDefaultSchema());
       liquibase.setLiquibaseTablespace(properties.getLiquibaseTablespace());
@@ -146,6 +189,7 @@ public class MarkitectLiquibaseAutoConfiguration {
       } catch (NoSuchMethodError ignore) {
         // Not supported on Spring Boot 3.2
       }
+      customizers.orderedStream().forEach(customizer -> customizer.customize(liquibase));
       liquibase.setOutputDefaultCatalog(markitectProperties.isOutputDefaultCatalog());
       liquibase.setOutputDefaultSchema(markitectProperties.isOutputDefaultSchema());
       return liquibase;
@@ -183,6 +227,16 @@ public class MarkitectLiquibaseAutoConfiguration {
       Optional.ofNullable(connectionDetails.getDriverClassName())
           .filter(StringUtils::hasText)
           .ifPresent(builder::driverClassName);
+    }
+  }
+
+  @ConditionalOnClass(Customizer.class)
+  @SuppressWarnings("unused")
+  static class CustomizerConfiguration {
+    @Bean
+    @ConditionalOnBean(Customizer.class)
+    SpringLiquibaseCustomizer springLiquibaseCustomizer(Customizer<Liquibase> customizer) {
+      return liquibase -> liquibase.setCustomizer(customizer);
     }
   }
 
@@ -239,5 +293,11 @@ public class MarkitectLiquibaseAutoConfiguration {
       return Optional.ofNullable(properties.getDriverClassName())
           .orElseGet(LiquibaseConnectionDetails.super::getDriverClassName);
     }
+  }
+
+  @FunctionalInterface
+  @VisibleForTesting
+  interface SpringLiquibaseCustomizer {
+    void customize(SpringLiquibase liquibase);
   }
 }
