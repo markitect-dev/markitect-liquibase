@@ -81,15 +81,15 @@
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" /></td>
 <td># of properties using the latest version available</td>
-<td>89</td></tr>
+<td>86</td></tr>
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" /></td>
 <td># of properties where the next version available is smaller than an incremental version update</td>
 <td>0</td></tr>
 <tr class="b">
-<td><img src="images/icon_success_sml.gif" /></td>
+<td><img src="images/icon_warning_sml.gif" /></td>
 <td># of properties where the next version available is an incremental version update</td>
-<td>0</td></tr>
+<td>3</td></tr>
 <tr class="a">
 <td><img src="images/icon_warning_sml.gif" /></td>
 <td># of properties where the next version available is a minor version update</td>
@@ -269,11 +269,11 @@
 <td></td>
 <td></td></tr>
 <tr class="b">
-<td><img src="images/icon_success_sml.gif" /></td>
+<td><img src="images/icon_warning_sml.gif" /></td>
 <td>${google-java-format.version}</td>
 <td>1.25.0</td>
 <td></td>
-<td></td>
+<td><b>1.25.1</b></td>
 <td></td>
 <td></td></tr>
 <tr class="a">
@@ -373,11 +373,11 @@
 <td></td>
 <td></td></tr>
 <tr class="a">
-<td><img src="images/icon_success_sml.gif" /></td>
+<td><img src="images/icon_warning_sml.gif" /></td>
 <td>${jooq.version}</td>
 <td>3.19.15</td>
 <td></td>
-<td></td>
+<td><b>3.19.16</b></td>
 <td></td>
 <td></td></tr>
 <tr class="b">
@@ -621,11 +621,11 @@
 <td></td>
 <td></td></tr>
 <tr class="b">
-<td><img src="images/icon_success_sml.gif" /></td>
+<td><img src="images/icon_warning_sml.gif" /></td>
 <td>${micrometer.version}</td>
 <td>1.14.1</td>
 <td></td>
-<td></td>
+<td><b>1.14.2</b></td>
 <td></td>
 <td></td></tr>
 <tr class="a">
@@ -1422,7 +1422,7 @@
 <table class="table table-striped">
 <tr class="a">
 <th>Status</th>
-<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
+<td style="text-align: left;"><img src="images/icon_warning_sml.gif" />&#160;There is at least one newer incremental version available. Incremental updates are typically passive.</td></tr>
 <tr class="b">
 <th>Property</th>
 <td style="text-align: left;">${google-java-format.version}</td></tr>
@@ -1433,18 +1433,21 @@
 <th>Current Version</th>
 <td style="text-align: left;">1.25.0</td></tr>
 <tr class="a">
+<th>Newer versions</th>
+<td style="text-align: left;"><b>1.25.1</b>&#160;<i>Latest Incremental</i></td></tr>
+<tr class="b">
 <th>Allowed version range</th>
 <td style="text-align: left;">1.25.0</td></tr>
-<tr class="b">
+<tr class="a">
 <th>Infer associations from project</th>
 <td style="text-align: left;">Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <th>Only use release versions</th>
 <td style="text-align: left;">No</td></tr>
-<tr class="b">
+<tr class="a">
 <th>Include projects from reactor</th>
 <td style="text-align: left;">Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <th>Always use reactor projects (even if older or -SNAPSHOT)</th>
 <td style="text-align: left;">Yes</td></tr></table></section><section><a id="a.24.7Bguava.version.7D"></a>
 <h2>${guava.version}</h2>
@@ -1799,7 +1802,7 @@
 <table class="table table-striped">
 <tr class="a">
 <th>Status</th>
-<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
+<td style="text-align: left;"><img src="images/icon_warning_sml.gif" />&#160;There is at least one newer incremental version available. Incremental updates are typically passive.</td></tr>
 <tr class="b">
 <th>Property</th>
 <td style="text-align: left;">${jooq.version}</td></tr>
@@ -1810,18 +1813,21 @@
 <th>Current Version</th>
 <td style="text-align: left;">3.19.15</td></tr>
 <tr class="a">
+<th>Newer versions</th>
+<td style="text-align: left;"><b>3.19.16</b>&#160;<i>Latest Incremental</i></td></tr>
+<tr class="b">
 <th>Allowed version range</th>
 <td style="text-align: left;">3.19.15</td></tr>
-<tr class="b">
+<tr class="a">
 <th>Infer associations from project</th>
 <td style="text-align: left;">Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <th>Only use release versions</th>
 <td style="text-align: left;">No</td></tr>
-<tr class="b">
+<tr class="a">
 <th>Include projects from reactor</th>
 <td style="text-align: left;">Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <th>Always use reactor projects (even if older or -SNAPSHOT)</th>
 <td style="text-align: left;">Yes</td></tr></table></section><section><a id="a.24.7Bjspecify.version.7D"></a>
 <h2>${jspecify.version}</h2>
@@ -2701,7 +2707,7 @@
 <table class="table table-striped">
 <tr class="a">
 <th>Status</th>
-<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
+<td style="text-align: left;"><img src="images/icon_warning_sml.gif" />&#160;There is at least one newer incremental version available. Incremental updates are typically passive.</td></tr>
 <tr class="b">
 <th>Property</th>
 <td style="text-align: left;">${micrometer.version}</td></tr>
@@ -2712,18 +2718,21 @@
 <th>Current Version</th>
 <td style="text-align: left;">1.14.1</td></tr>
 <tr class="a">
+<th>Newer versions</th>
+<td style="text-align: left;"><b>1.14.2</b>&#160;<i>Latest Incremental</i></td></tr>
+<tr class="b">
 <th>Allowed version range</th>
 <td style="text-align: left;">1.14.1</td></tr>
-<tr class="b">
+<tr class="a">
 <th>Infer associations from project</th>
 <td style="text-align: left;">Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <th>Only use release versions</th>
 <td style="text-align: left;">No</td></tr>
-<tr class="b">
+<tr class="a">
 <th>Include projects from reactor</th>
 <td style="text-align: left;">Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <th>Always use reactor projects (even if older or -SNAPSHOT)</th>
 <td style="text-align: left;">Yes</td></tr></table></section><section><a id="a.24.7Bmockito.version.7D"></a>
 <h2>${mockito.version}</h2>
