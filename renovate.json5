@@ -172,6 +172,10 @@
       groupName: 'commons-text',
     },
     {
+      matchPackageNames: ['com.github.docker-java:**'],
+      groupName: 'docker-java',
+    },
+    {
       matchPackageNames: ['com.google.errorprone:**'],
       groupName: 'error-prone',
     },
