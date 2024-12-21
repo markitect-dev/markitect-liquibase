@@ -132,6 +132,10 @@
       sourceUrl: 'https://github.com/apache/maven-mvnd',
     },
     {
+      matchPackageNames: ['org.assertj:assertj-bom'],
+      groupName: 'assertj',
+    },
+    {
       matchPackageNames: ['biz.aQute.bnd:biz.aQute.bnd.annotation'],
       groupName: 'bnd-annotation',
     },
