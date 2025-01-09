@@ -175,7 +175,7 @@
     <mockito.version>5.15.2</mockito.version>
     <mssql-jdbc.version>12.8.1.jre11</mssql-jdbc.version>
     <nexus-staging-maven-plugin.version>1.7.0</nexus-staging-maven-plugin.version>
-    <node.version>22.12.0</node.version>
+    <node.version>22.13.0</node.version>
     <nullaway.version>0.12.3</nullaway.version>
     <objenesis.version>3.4</objenesis.version>
     <opencsv.version>5.9</opencsv.version>
