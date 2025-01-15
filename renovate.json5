@@ -251,6 +251,10 @@
       groupName: 'nullaway',
     },
     {
+      matchPackageNames: ['com.opencsv:opencsv'],
+      groupName: 'opencsv',
+    },
+    {
       matchPackageNames: ['org.postgresql:postgresql'],
       groupName: 'postgresql',
     },
