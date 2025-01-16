@@ -85,9 +85,9 @@ spotless {
             ".java-version",
             ".sdkmanrc",
         )
+        leadingTabsToSpaces(2)
         trimTrailingWhitespace()
         endWithNewline()
-        indentWithSpaces(2)
     }
 }
 
