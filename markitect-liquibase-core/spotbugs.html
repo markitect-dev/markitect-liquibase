@@ -71,7 +71,7 @@
       <h2>Project Information</h2>
       <p>Project: 
 		markitect-liquibase-core</p>
-      <p>SpotBugs version: 4.8.6</p>
+      <p>SpotBugs version: 4.9.0</p>
       <p>Code analyzed:</p>
       <ul>
          <li>/home/runner/work/markitect-liquibase/markitect-liquibase/markitect-liquibase-core/target/classes</li>
@@ -103,18 +103,18 @@
          </tr>
          <tr class="tablerow1">
             <td>Low Priority Warnings</td>
-            <td align="right">2</td>
-            <td align="right">0.62</td>
+            <td align="right">58</td>
+            <td align="right">17.91</td>
          </tr>
          <tr class="$totalClass">
             <td>
                <b>Total Warnings</b>
             </td>
             <td align="right">
-               <b>2</b>
+               <b>58</b>
             </td>
             <td align="right">
-               <b>0.62</b>
+               <b>17.91</b>
             </td>
          </tr>
       </table>
@@ -127,6 +127,9 @@
       </p>
       <h2>Contents</h2>
       <ul>
+         <li>
+            <a href="#Warnings_BAD_PRACTICE">Bad practice Warnings</a>
+         </li>
          <li>
             <a href="#Warnings_CORRECTNESS">Correctness Warnings</a>
          </li>
@@ -142,23 +145,29 @@
          </tr>
          <tr class="tablerow0">
             <td>
+               <a href="#Warnings_BAD_PRACTICE">Bad practice Warnings</a>
+            </td>
+            <td align="right">56</td>
+         </tr>
+         <tr class="tablerow1">
+            <td>
                <a href="#Warnings_CORRECTNESS">Correctness Warnings</a>
             </td>
             <td align="right">2</td>
          </tr>
-         <tr class="tablerow1">
+         <tr class="tablerow0">
             <td>
                <b>Total</b>
             </td>
             <td align="right">
-               <b>2</b>
+               <b>58</b>
             </td>
          </tr>
       </table>
       <h1>Warnings</h1>
       <p>Click on a warning row to see full context information.</p>
       <h2>
-         <a name="Warnings_CORRECTNESS">Correctness Warnings</a>
+         <a name="Warnings_BAD_PRACTICE">Bad practice Warnings</a>
       </h2>
       <table class="warningtable" width="100%" cellspacing="0">
          <tr class="tableheader">
@@ -167,6 +176,799 @@
          </tr>
          <tr class="tablerow1" onclick="toggleRow('d1e102');">
             <td>
+               <span class="priority-3">THROWS</span>
+            </td>
+            <td>Method lists Exception in its throws clause, but it could be more specific.</td>
+         </tr>
+         <tr class="detailrow1">
+            <td/>
+            <td>
+               <p id="d1e102" style="display: none;">
+                  <a href="#THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION">Bug type THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.change.CreateDatabaseChangeTests<br/>In method dev.markitect.liquibase.change.CreateDatabaseChangeTests.generateRollbackSql(Class, String, String)<br/>At CreateDatabaseChangeTests.java:[lines 246-263]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0" onclick="toggleRow('d1e114');">
+            <td>
+               <span class="priority-3">THROWS</span>
+            </td>
+            <td>Method lists Exception in its throws clause, but it could be more specific.</td>
+         </tr>
+         <tr class="detailrow0">
+            <td/>
+            <td>
+               <p id="d1e114" style="display: none;">
+                  <a href="#THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION">Bug type THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.change.CreateDatabaseChangeTests<br/>In method dev.markitect.liquibase.change.CreateDatabaseChangeTests.generateSql(Class, String, String)<br/>At CreateDatabaseChangeTests.java:[lines 216-231]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1" onclick="toggleRow('d1e126');">
+            <td>
+               <span class="priority-3">THROWS</span>
+            </td>
+            <td>Method lists Exception in its throws clause, but it could be more specific.</td>
+         </tr>
+         <tr class="detailrow1">
+            <td/>
+            <td>
+               <p id="d1e126" style="display: none;">
+                  <a href="#THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION">Bug type THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.change.CreateDatabaseChangeTests<br/>In method dev.markitect.liquibase.change.CreateDatabaseChangeTests.generateStatements(Class, String)<br/>At CreateDatabaseChangeTests.java:[lines 185-202]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0" onclick="toggleRow('d1e138');">
+            <td>
+               <span class="priority-3">THROWS</span>
+            </td>
+            <td>Method lists Exception in its throws clause, but it could be more specific.</td>
+         </tr>
+         <tr class="detailrow0">
+            <td/>
+            <td>
+               <p id="d1e138" style="display: none;">
+                  <a href="#THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION">Bug type THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.change.CreateDatabaseChangeTests<br/>In method dev.markitect.liquibase.change.CreateDatabaseChangeTests.supports(Class, boolean)<br/>At CreateDatabaseChangeTests.java:[lines 47-56]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1" onclick="toggleRow('d1e150');">
+            <td>
+               <span class="priority-3">THROWS</span>
+            </td>
+            <td>Method lists Exception in its throws clause, but it could be more specific.</td>
+         </tr>
+         <tr class="detailrow1">
+            <td/>
+            <td>
+               <p id="d1e150" style="display: none;">
+                  <a href="#THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION">Bug type THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.change.CreateDatabaseChangeTests<br/>In method dev.markitect.liquibase.change.CreateDatabaseChangeTests.validate(Class, String, List)<br/>At CreateDatabaseChangeTests.java:[lines 116-129]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0" onclick="toggleRow('d1e162');">
+            <td>
+               <span class="priority-3">THROWS</span>
+            </td>
+            <td>Method lists Exception in its throws clause, but it could be more specific.</td>
+         </tr>
+         <tr class="detailrow0">
+            <td/>
+            <td>
+               <p id="d1e162" style="display: none;">
+                  <a href="#THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION">Bug type THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.change.CreateDatabaseChangeTests<br/>In method dev.markitect.liquibase.change.CreateDatabaseChangeTests.warn(Class, List)<br/>At CreateDatabaseChangeTests.java:[lines 75-86]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1" onclick="toggleRow('d1e174');">
+            <td>
+               <span class="priority-3">THROWS</span>
+            </td>
+            <td>Method lists Exception in its throws clause, but it could be more specific.</td>
+         </tr>
+         <tr class="detailrow1">
+            <td/>
+            <td>
+               <p id="d1e174" style="display: none;">
+                  <a href="#THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION">Bug type THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.change.CreateSchemaChangeTests<br/>In method dev.markitect.liquibase.change.CreateSchemaChangeTests.generateRollbackSql(Class, String, String, String)<br/>At CreateSchemaChangeTests.java:[lines 311-329]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0" onclick="toggleRow('d1e186');">
+            <td>
+               <span class="priority-3">THROWS</span>
+            </td>
+            <td>Method lists Exception in its throws clause, but it could be more specific.</td>
+         </tr>
+         <tr class="detailrow0">
+            <td/>
+            <td>
+               <p id="d1e186" style="display: none;">
+                  <a href="#THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION">Bug type THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.change.CreateSchemaChangeTests<br/>In method dev.markitect.liquibase.change.CreateSchemaChangeTests.generateSql(Class, String, String, String)<br/>At CreateSchemaChangeTests.java:[lines 275-291]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1" onclick="toggleRow('d1e198');">
+            <td>
+               <span class="priority-3">THROWS</span>
+            </td>
+            <td>Method lists Exception in its throws clause, but it could be more specific.</td>
+         </tr>
+         <tr class="detailrow1">
+            <td/>
+            <td>
+               <p id="d1e198" style="display: none;">
+                  <a href="#THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION">Bug type THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.change.CreateSchemaChangeTests<br/>In method dev.markitect.liquibase.change.CreateSchemaChangeTests.generateStatements(Class, String, String)<br/>At CreateSchemaChangeTests.java:[lines 236-255]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0" onclick="toggleRow('d1e210');">
+            <td>
+               <span class="priority-3">THROWS</span>
+            </td>
+            <td>Method lists Exception in its throws clause, but it could be more specific.</td>
+         </tr>
+         <tr class="detailrow0">
+            <td/>
+            <td>
+               <p id="d1e210" style="display: none;">
+                  <a href="#THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION">Bug type THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.change.CreateSchemaChangeTests<br/>In method dev.markitect.liquibase.change.CreateSchemaChangeTests.supports(Class, boolean)<br/>At CreateSchemaChangeTests.java:[lines 48-57]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1" onclick="toggleRow('d1e223');">
+            <td>
+               <span class="priority-3">THROWS</span>
+            </td>
+            <td>Method lists Exception in its throws clause, but it could be more specific.</td>
+         </tr>
+         <tr class="detailrow1">
+            <td/>
+            <td>
+               <p id="d1e223" style="display: none;">
+                  <a href="#THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION">Bug type THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.change.CreateSchemaChangeTests<br/>In method dev.markitect.liquibase.change.CreateSchemaChangeTests.validate(Class, String, String, List)<br/>At CreateSchemaChangeTests.java:[lines 158-172]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0" onclick="toggleRow('d1e235');">
+            <td>
+               <span class="priority-3">THROWS</span>
+            </td>
+            <td>Method lists Exception in its throws clause, but it could be more specific.</td>
+         </tr>
+         <tr class="detailrow0">
+            <td/>
+            <td>
+               <p id="d1e235" style="display: none;">
+                  <a href="#THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION">Bug type THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.change.CreateSchemaChangeTests<br/>In method dev.markitect.liquibase.change.CreateSchemaChangeTests.warn(Class, List)<br/>At CreateSchemaChangeTests.java:[lines 84-95]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1" onclick="toggleRow('d1e247');">
+            <td>
+               <span class="priority-3">THROWS</span>
+            </td>
+            <td>Method lists Exception in its throws clause, but it could be more specific.</td>
+         </tr>
+         <tr class="detailrow1">
+            <td/>
+            <td>
+               <p id="d1e247" style="display: none;">
+                  <a href="#THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION">Bug type THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.change.DropDatabaseChangeTests<br/>In method dev.markitect.liquibase.change.DropDatabaseChangeTests.generateRollbackSql(Class, String, String)<br/>At DropDatabaseChangeTests.java:[lines 246-263]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0" onclick="toggleRow('d1e259');">
+            <td>
+               <span class="priority-3">THROWS</span>
+            </td>
+            <td>Method lists Exception in its throws clause, but it could be more specific.</td>
+         </tr>
+         <tr class="detailrow0">
+            <td/>
+            <td>
+               <p id="d1e259" style="display: none;">
+                  <a href="#THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION">Bug type THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.change.DropDatabaseChangeTests<br/>In method dev.markitect.liquibase.change.DropDatabaseChangeTests.generateSql(Class, String, String)<br/>At DropDatabaseChangeTests.java:[lines 216-231]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1" onclick="toggleRow('d1e271');">
+            <td>
+               <span class="priority-3">THROWS</span>
+            </td>
+            <td>Method lists Exception in its throws clause, but it could be more specific.</td>
+         </tr>
+         <tr class="detailrow1">
+            <td/>
+            <td>
+               <p id="d1e271" style="display: none;">
+                  <a href="#THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION">Bug type THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.change.DropDatabaseChangeTests<br/>In method dev.markitect.liquibase.change.DropDatabaseChangeTests.generateStatements(Class, String)<br/>At DropDatabaseChangeTests.java:[lines 185-202]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0" onclick="toggleRow('d1e283');">
+            <td>
+               <span class="priority-3">THROWS</span>
+            </td>
+            <td>Method lists Exception in its throws clause, but it could be more specific.</td>
+         </tr>
+         <tr class="detailrow0">
+            <td/>
+            <td>
+               <p id="d1e283" style="display: none;">
+                  <a href="#THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION">Bug type THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.change.DropDatabaseChangeTests<br/>In method dev.markitect.liquibase.change.DropDatabaseChangeTests.supports(Class, boolean)<br/>At DropDatabaseChangeTests.java:[lines 47-56]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1" onclick="toggleRow('d1e295');">
+            <td>
+               <span class="priority-3">THROWS</span>
+            </td>
+            <td>Method lists Exception in its throws clause, but it could be more specific.</td>
+         </tr>
+         <tr class="detailrow1">
+            <td/>
+            <td>
+               <p id="d1e295" style="display: none;">
+                  <a href="#THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION">Bug type THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.change.DropDatabaseChangeTests<br/>In method dev.markitect.liquibase.change.DropDatabaseChangeTests.validate(Class, String, List)<br/>At DropDatabaseChangeTests.java:[lines 116-129]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0" onclick="toggleRow('d1e307');">
+            <td>
+               <span class="priority-3">THROWS</span>
+            </td>
+            <td>Method lists Exception in its throws clause, but it could be more specific.</td>
+         </tr>
+         <tr class="detailrow0">
+            <td/>
+            <td>
+               <p id="d1e307" style="display: none;">
+                  <a href="#THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION">Bug type THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.change.DropDatabaseChangeTests<br/>In method dev.markitect.liquibase.change.DropDatabaseChangeTests.warn(Class, List)<br/>At DropDatabaseChangeTests.java:[lines 75-86]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1" onclick="toggleRow('d1e319');">
+            <td>
+               <span class="priority-3">THROWS</span>
+            </td>
+            <td>Method lists Exception in its throws clause, but it could be more specific.</td>
+         </tr>
+         <tr class="detailrow1">
+            <td/>
+            <td>
+               <p id="d1e319" style="display: none;">
+                  <a href="#THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION">Bug type THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.change.DropSchemaChangeTests<br/>In method dev.markitect.liquibase.change.DropSchemaChangeTests.generateRollbackSql(Class, String, String, String)<br/>At DropSchemaChangeTests.java:[lines 312-330]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0" onclick="toggleRow('d1e331');">
+            <td>
+               <span class="priority-3">THROWS</span>
+            </td>
+            <td>Method lists Exception in its throws clause, but it could be more specific.</td>
+         </tr>
+         <tr class="detailrow0">
+            <td/>
+            <td>
+               <p id="d1e331" style="display: none;">
+                  <a href="#THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION">Bug type THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.change.DropSchemaChangeTests<br/>In method dev.markitect.liquibase.change.DropSchemaChangeTests.generateSql(Class, String, String, String)<br/>At DropSchemaChangeTests.java:[lines 276-292]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1" onclick="toggleRow('d1e343');">
+            <td>
+               <span class="priority-3">THROWS</span>
+            </td>
+            <td>Method lists Exception in its throws clause, but it could be more specific.</td>
+         </tr>
+         <tr class="detailrow1">
+            <td/>
+            <td>
+               <p id="d1e343" style="display: none;">
+                  <a href="#THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION">Bug type THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.change.DropSchemaChangeTests<br/>In method dev.markitect.liquibase.change.DropSchemaChangeTests.generateStatements(Class, String, String)<br/>At DropSchemaChangeTests.java:[lines 237-256]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0" onclick="toggleRow('d1e356');">
+            <td>
+               <span class="priority-3">THROWS</span>
+            </td>
+            <td>Method lists Exception in its throws clause, but it could be more specific.</td>
+         </tr>
+         <tr class="detailrow0">
+            <td/>
+            <td>
+               <p id="d1e356" style="display: none;">
+                  <a href="#THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION">Bug type THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.change.DropSchemaChangeTests<br/>In method dev.markitect.liquibase.change.DropSchemaChangeTests.supports(Class, boolean)<br/>At DropSchemaChangeTests.java:[lines 48-57]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1" onclick="toggleRow('d1e368');">
+            <td>
+               <span class="priority-3">THROWS</span>
+            </td>
+            <td>Method lists Exception in its throws clause, but it could be more specific.</td>
+         </tr>
+         <tr class="detailrow1">
+            <td/>
+            <td>
+               <p id="d1e368" style="display: none;">
+                  <a href="#THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION">Bug type THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.change.DropSchemaChangeTests<br/>In method dev.markitect.liquibase.change.DropSchemaChangeTests.validate(Class, String, String, List)<br/>At DropSchemaChangeTests.java:[lines 159-173]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0" onclick="toggleRow('d1e380');">
+            <td>
+               <span class="priority-3">THROWS</span>
+            </td>
+            <td>Method lists Exception in its throws clause, but it could be more specific.</td>
+         </tr>
+         <tr class="detailrow0">
+            <td/>
+            <td>
+               <p id="d1e380" style="display: none;">
+                  <a href="#THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION">Bug type THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.change.DropSchemaChangeTests<br/>In method dev.markitect.liquibase.change.DropSchemaChangeTests.warn(Class, List)<br/>At DropSchemaChangeTests.java:[lines 84-95]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1" onclick="toggleRow('d1e392');">
+            <td>
+               <span class="priority-3">THROWS</span>
+            </td>
+            <td>Method lists Exception in its throws clause, but it could be more specific.</td>
+         </tr>
+         <tr class="detailrow1">
+            <td/>
+            <td>
+               <p id="d1e392" style="display: none;">
+                  <a href="#THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION">Bug type THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.change.MarkitectLoadDataChangeTests<br/>In method dev.markitect.liquibase.change.MarkitectLoadDataChangeTests.generateStatementsVolatile(String, LoadDataChange$LOAD_DATA_TYPE, boolean)<br/>At MarkitectLoadDataChangeTests.java:[lines 70-87]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0" onclick="toggleRow('d1e404');">
+            <td>
+               <span class="priority-3">THROWS</span>
+            </td>
+            <td>Method lists Exception in its throws clause, but it could be more specific.</td>
+         </tr>
+         <tr class="detailrow0">
+            <td/>
+            <td>
+               <p id="d1e404" style="display: none;">
+                  <a href="#THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION">Bug type THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.change.MarkitectLoadDataChangeTests<br/>In method dev.markitect.liquibase.change.MarkitectLoadDataChangeTests.supports(Class, boolean)<br/>At MarkitectLoadDataChangeTests.java:[lines 45-54]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1" onclick="toggleRow('d1e416');">
+            <td>
+               <span class="priority-3">THROWS</span>
+            </td>
+            <td>Method lists Exception in its throws clause, but it could be more specific.</td>
+         </tr>
+         <tr class="detailrow1">
+            <td/>
+            <td>
+               <p id="d1e416" style="display: none;">
+                  <a href="#THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION">Bug type THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.change.MarkitectLoadUpdateDataChangeTests<br/>In method dev.markitect.liquibase.change.MarkitectLoadUpdateDataChangeTests.generateStatementsVolatile(String, LoadDataChange$LOAD_DATA_TYPE, boolean)<br/>At MarkitectLoadUpdateDataChangeTests.java:[lines 44-61]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0" onclick="toggleRow('d1e428');">
+            <td>
+               <span class="priority-3">THROWS</span>
+            </td>
+            <td>Method lists Exception in its throws clause, but it could be more specific.</td>
+         </tr>
+         <tr class="detailrow0">
+            <td/>
+            <td>
+               <p id="d1e428" style="display: none;">
+                  <a href="#THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION">Bug type THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.database.DatabaseBuilderTests<br/>In method dev.markitect.liquibase.database.DatabaseBuilderTests.build(Class, ObjectQuotingStrategy, Boolean, Boolean, boolean, String, String, String, Map, String, String, int, int, String, String)<br/>At DatabaseBuilderTests.java:[lines 158-192]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1" onclick="toggleRow('d1e440');">
+            <td>
+               <span class="priority-3">THROWS</span>
+            </td>
+            <td>Method lists Exception in its throws clause, but it could be more specific.</td>
+         </tr>
+         <tr class="detailrow1">
+            <td/>
+            <td>
+               <p id="d1e440" style="display: none;">
+                  <a href="#THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION">Bug type THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.database.DatabaseFactoryTests<br/>In method dev.markitect.liquibase.database.DatabaseFactoryTests.findCorrectDatabaseImplementation(String, Class)<br/>At DatabaseFactoryTests.java:[lines 44-53]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0" onclick="toggleRow('d1e452');">
+            <td>
+               <span class="priority-3">THROWS</span>
+            </td>
+            <td>Method lists Exception in its throws clause, but it could be more specific.</td>
+         </tr>
+         <tr class="detailrow0">
+            <td/>
+            <td>
+               <p id="d1e452" style="display: none;">
+                  <a href="#THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION">Bug type THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.database.OfflineConnectionBuilderTests<br/>In method dev.markitect.liquibase.database.OfflineConnectionBuilderTests.build(String, String, String, String, String, String, Map, String, String, int, int, String, String)<br/>At OfflineConnectionBuilderTests.java:[lines 114-139]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1" onclick="toggleRow('d1e464');">
+            <td>
+               <span class="priority-3">THROWS</span>
+            </td>
+            <td>Method lists Exception in its throws clause, but it could be more specific.</td>
+         </tr>
+         <tr class="detailrow1">
+            <td/>
+            <td>
+               <p id="d1e464" style="display: none;">
+                  <a href="#THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION">Bug type THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.database.h2.H2DatabaseTests<br/>In method dev.markitect.liquibase.database.h2.H2DatabaseTests.escapeTableName(Boolean, String, String, String, String)<br/>At H2DatabaseTests.java:[lines 171-184]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0" onclick="toggleRow('d1e476');">
+            <td>
+               <span class="priority-3">THROWS</span>
+            </td>
+            <td>Method lists Exception in its throws clause, but it could be more specific.</td>
+         </tr>
+         <tr class="detailrow0">
+            <td/>
+            <td>
+               <p id="d1e476" style="display: none;">
+                  <a href="#THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION">Bug type THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.database.h2.MarkitectH2DatabaseIntegrationTests<br/>In method dev.markitect.liquibase.database.h2.MarkitectH2DatabaseIntegrationTests.escapeTableName(Boolean, String, String, String, String)<br/>At MarkitectH2DatabaseIntegrationTests.java:[lines 180-189]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1" onclick="toggleRow('d1e489');">
+            <td>
+               <span class="priority-3">THROWS</span>
+            </td>
+            <td>Method lists Exception in its throws clause, but it could be more specific.</td>
+         </tr>
+         <tr class="detailrow1">
+            <td/>
+            <td>
+               <p id="d1e489" style="display: none;">
+                  <a href="#THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION">Bug type THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.database.h2.MarkitectH2DatabaseTests<br/>In method dev.markitect.liquibase.database.h2.MarkitectH2DatabaseTests.escapeTableName(Boolean, String, String, String, String)<br/>At MarkitectH2DatabaseTests.java:[lines 170-183]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0" onclick="toggleRow('d1e501');">
+            <td>
+               <span class="priority-3">THROWS</span>
+            </td>
+            <td>Method lists Exception in its throws clause, but it could be more specific.</td>
+         </tr>
+         <tr class="detailrow0">
+            <td/>
+            <td>
+               <p id="d1e501" style="display: none;">
+                  <a href="#THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION">Bug type THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.database.hsqldb.HsqlDatabaseTests<br/>In method dev.markitect.liquibase.database.hsqldb.HsqlDatabaseTests.escapeTableName(Boolean, String, String, String, String)<br/>At HsqlDatabaseTests.java:[lines 153-166]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1" onclick="toggleRow('d1e513');">
+            <td>
+               <span class="priority-3">THROWS</span>
+            </td>
+            <td>Method lists Exception in its throws clause, but it could be more specific.</td>
+         </tr>
+         <tr class="detailrow1">
+            <td/>
+            <td>
+               <p id="d1e513" style="display: none;">
+                  <a href="#THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION">Bug type THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.database.hsqldb.MarkitectHsqlDatabaseIntegrationTests<br/>In method dev.markitect.liquibase.database.hsqldb.MarkitectHsqlDatabaseIntegrationTests.escapeTableName(Boolean, String, String, String, String)<br/>At MarkitectHsqlDatabaseIntegrationTests.java:[lines 162-171]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0" onclick="toggleRow('d1e525');">
+            <td>
+               <span class="priority-3">THROWS</span>
+            </td>
+            <td>Method lists Exception in its throws clause, but it could be more specific.</td>
+         </tr>
+         <tr class="detailrow0">
+            <td/>
+            <td>
+               <p id="d1e525" style="display: none;">
+                  <a href="#THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION">Bug type THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.database.hsqldb.MarkitectHsqlDatabaseTests<br/>In method dev.markitect.liquibase.database.hsqldb.MarkitectHsqlDatabaseTests.escapeTableName(Boolean, String, String, String, String)<br/>At MarkitectHsqlDatabaseTests.java:[lines 152-165]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1" onclick="toggleRow('d1e537');">
+            <td>
+               <span class="priority-3">THROWS</span>
+            </td>
+            <td>Method lists Exception in its throws clause, but it could be more specific.</td>
+         </tr>
+         <tr class="detailrow1">
+            <td/>
+            <td>
+               <p id="d1e537" style="display: none;">
+                  <a href="#THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION">Bug type THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.precondition.CatalogExistsPreconditionIntegrationTests<br/>In method dev.markitect.liquibase.precondition.CatalogExistsPreconditionIntegrationTests.check(Class, String)<br/>At CatalogExistsPreconditionIntegrationTests.java:[lines 56-68]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0" onclick="toggleRow('d1e549');">
+            <td>
+               <span class="priority-3">THROWS</span>
+            </td>
+            <td>Method lists Exception in its throws clause, but it could be more specific.</td>
+         </tr>
+         <tr class="detailrow0">
+            <td/>
+            <td>
+               <p id="d1e549" style="display: none;">
+                  <a href="#THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION">Bug type THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.precondition.CatalogExistsPreconditionIntegrationTests<br/>In method dev.markitect.liquibase.precondition.CatalogExistsPreconditionIntegrationTests.check_throwsPreconditionFailedException(Class, String)<br/>At CatalogExistsPreconditionIntegrationTests.java:[lines 84-96]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1" onclick="toggleRow('d1e561');">
+            <td>
+               <span class="priority-3">THROWS</span>
+            </td>
+            <td>Method lists Exception in its throws clause, but it could be more specific.</td>
+         </tr>
+         <tr class="detailrow1">
+            <td/>
+            <td>
+               <p id="d1e561" style="display: none;">
+                  <a href="#THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION">Bug type THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.precondition.CatalogExistsPreconditionTests<br/>In method dev.markitect.liquibase.precondition.CatalogExistsPreconditionTests.check(Class, String, String, String)<br/>At CatalogExistsPreconditionTests.java:[lines 131-149]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0" onclick="toggleRow('d1e573');">
+            <td>
+               <span class="priority-3">THROWS</span>
+            </td>
+            <td>Method lists Exception in its throws clause, but it could be more specific.</td>
+         </tr>
+         <tr class="detailrow0">
+            <td/>
+            <td>
+               <p id="d1e573" style="display: none;">
+                  <a href="#THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION">Bug type THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.precondition.CatalogExistsPreconditionTests<br/>In method dev.markitect.liquibase.precondition.CatalogExistsPreconditionTests.check_throwsPreconditionErrorException(Class, String, String, String)<br/>At CatalogExistsPreconditionTests.java:[lines 169-187]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1" onclick="toggleRow('d1e585');">
+            <td>
+               <span class="priority-3">THROWS</span>
+            </td>
+            <td>Method lists Exception in its throws clause, but it could be more specific.</td>
+         </tr>
+         <tr class="detailrow1">
+            <td/>
+            <td>
+               <p id="d1e585" style="display: none;">
+                  <a href="#THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION">Bug type THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.precondition.ConnectionCatalogPreconditionTests<br/>In method dev.markitect.liquibase.precondition.ConnectionCatalogPreconditionTests.check(Class, String, String, Boolean, ObjectQuotingStrategy, String)<br/>At ConnectionCatalogPreconditionTests.java:[lines 137-162]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0" onclick="toggleRow('d1e597');">
+            <td>
+               <span class="priority-3">THROWS</span>
+            </td>
+            <td>Method lists Exception in its throws clause, but it could be more specific.</td>
+         </tr>
+         <tr class="detailrow0">
+            <td/>
+            <td>
+               <p id="d1e597" style="display: none;">
+                  <a href="#THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION">Bug type THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.precondition.ConnectionCatalogPreconditionTests<br/>In method dev.markitect.liquibase.precondition.ConnectionCatalogPreconditionTests.check_throwsPreconditionErrorException(Class, String)<br/>At ConnectionCatalogPreconditionTests.java:[lines 175-187]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1" onclick="toggleRow('d1e609');">
+            <td>
+               <span class="priority-3">THROWS</span>
+            </td>
+            <td>Method lists Exception in its throws clause, but it could be more specific.</td>
+         </tr>
+         <tr class="detailrow1">
+            <td/>
+            <td>
+               <p id="d1e609" style="display: none;">
+                  <a href="#THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION">Bug type THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.precondition.ConnectionCatalogPreconditionTests<br/>In method dev.markitect.liquibase.precondition.ConnectionCatalogPreconditionTests.check_throwsPreconditionFailedException(Class, String, String, String, String)<br/>At ConnectionCatalogPreconditionTests.java:[lines 206-229]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0" onclick="toggleRow('d1e622');">
+            <td>
+               <span class="priority-3">THROWS</span>
+            </td>
+            <td>Method lists Exception in its throws clause, but it could be more specific.</td>
+         </tr>
+         <tr class="detailrow0">
+            <td/>
+            <td>
+               <p id="d1e622" style="display: none;">
+                  <a href="#THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION">Bug type THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.precondition.ConnectionCatalogPreconditionTests<br/>In method dev.markitect.liquibase.precondition.ConnectionCatalogPreconditionTests.validate(Class, String, List)<br/>At ConnectionCatalogPreconditionTests.java:[lines 103-115]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1" onclick="toggleRow('d1e634');">
+            <td>
+               <span class="priority-3">THROWS</span>
+            </td>
+            <td>Method lists Exception in its throws clause, but it could be more specific.</td>
+         </tr>
+         <tr class="detailrow1">
+            <td/>
+            <td>
+               <p id="d1e634" style="display: none;">
+                  <a href="#THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION">Bug type THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.precondition.ConnectionCatalogPreconditionTests<br/>In method dev.markitect.liquibase.precondition.ConnectionCatalogPreconditionTests.warn(Class, List)<br/>At ConnectionCatalogPreconditionTests.java:[lines 68-78]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0" onclick="toggleRow('d1e646');">
+            <td>
+               <span class="priority-3">THROWS</span>
+            </td>
+            <td>Method lists Exception in its throws clause, but it could be more specific.</td>
+         </tr>
+         <tr class="detailrow0">
+            <td/>
+            <td>
+               <p id="d1e646" style="display: none;">
+                  <a href="#THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION">Bug type THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.precondition.SchemaExistsPreconditionIntegrationTests<br/>In method dev.markitect.liquibase.precondition.SchemaExistsPreconditionIntegrationTests.check(Class, String, String)<br/>At SchemaExistsPreconditionIntegrationTests.java:[lines 73-86]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1" onclick="toggleRow('d1e658');">
+            <td>
+               <span class="priority-3">THROWS</span>
+            </td>
+            <td>Method lists Exception in its throws clause, but it could be more specific.</td>
+         </tr>
+         <tr class="detailrow1">
+            <td/>
+            <td>
+               <p id="d1e658" style="display: none;">
+                  <a href="#THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION">Bug type THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.precondition.SchemaExistsPreconditionIntegrationTests<br/>In method dev.markitect.liquibase.precondition.SchemaExistsPreconditionIntegrationTests.check_throwsPreconditionErrorException(Class, String, String)<br/>At SchemaExistsPreconditionIntegrationTests.java:[lines 148-161]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0" onclick="toggleRow('d1e670');">
+            <td>
+               <span class="priority-3">THROWS</span>
+            </td>
+            <td>Method lists Exception in its throws clause, but it could be more specific.</td>
+         </tr>
+         <tr class="detailrow0">
+            <td/>
+            <td>
+               <p id="d1e670" style="display: none;">
+                  <a href="#THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION">Bug type THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.precondition.SchemaExistsPreconditionIntegrationTests<br/>In method dev.markitect.liquibase.precondition.SchemaExistsPreconditionIntegrationTests.check_throwsPreconditionFailedException(Class, String, String)<br/>At SchemaExistsPreconditionIntegrationTests.java:[lines 115-128]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1" onclick="toggleRow('d1e682');">
+            <td>
+               <span class="priority-3">THROWS</span>
+            </td>
+            <td>Method lists Exception in its throws clause, but it could be more specific.</td>
+         </tr>
+         <tr class="detailrow1">
+            <td/>
+            <td>
+               <p id="d1e682" style="display: none;">
+                  <a href="#THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION">Bug type THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.precondition.SchemaExistsPreconditionTests<br/>In method dev.markitect.liquibase.precondition.SchemaExistsPreconditionTests.check(Class, String, String, String, String)<br/>At SchemaExistsPreconditionTests.java:[lines 165-184]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0" onclick="toggleRow('d1e694');">
+            <td>
+               <span class="priority-3">THROWS</span>
+            </td>
+            <td>Method lists Exception in its throws clause, but it could be more specific.</td>
+         </tr>
+         <tr class="detailrow0">
+            <td/>
+            <td>
+               <p id="d1e694" style="display: none;">
+                  <a href="#THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION">Bug type THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.precondition.SchemaExistsPreconditionTests<br/>In method dev.markitect.liquibase.precondition.SchemaExistsPreconditionTests.check_throwsPreconditionErrorException(Class, String, String, String, String)<br/>At SchemaExistsPreconditionTests.java:[lines 245-264]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1" onclick="toggleRow('d1e706');">
+            <td>
+               <span class="priority-3">THROWS</span>
+            </td>
+            <td>Method lists Exception in its throws clause, but it could be more specific.</td>
+         </tr>
+         <tr class="detailrow1">
+            <td/>
+            <td>
+               <p id="d1e706" style="display: none;">
+                  <a href="#THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION">Bug type THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.precondition.SchemaExistsPreconditionTests<br/>In method dev.markitect.liquibase.precondition.SchemaExistsPreconditionTests.check_throwsPreconditionFailedException(Class, String, String, String, String)<br/>At SchemaExistsPreconditionTests.java:[lines 207-226]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0" onclick="toggleRow('d1e718');">
+            <td>
+               <span class="priority-3">THROWS</span>
+            </td>
+            <td>Method lists Exception in its throws clause, but it could be more specific.</td>
+         </tr>
+         <tr class="detailrow0">
+            <td/>
+            <td>
+               <p id="d1e718" style="display: none;">
+                  <a href="#THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION">Bug type THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.sqlgenerator.CatalogExistsGeneratorTests<br/>In method dev.markitect.liquibase.sqlgenerator.CatalogExistsGeneratorTests.generateSql(Class, String, String, String, String)<br/>At CatalogExistsGeneratorTests.java:[lines 48-68]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1" onclick="toggleRow('d1e730');">
+            <td>
+               <span class="priority-3">THROWS</span>
+            </td>
+            <td>Method lists Exception in its throws clause, but it could be more specific.</td>
+         </tr>
+         <tr class="detailrow1">
+            <td/>
+            <td>
+               <p id="d1e730" style="display: none;">
+                  <a href="#THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION">Bug type THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.sqlgenerator.CatalogExistsGeneratorTests<br/>In method dev.markitect.liquibase.sqlgenerator.CatalogExistsGeneratorTests.supports(Class, boolean)<br/>At CatalogExistsGeneratorTests.java:[lines 84-94]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0" onclick="toggleRow('d1e742');">
+            <td>
+               <span class="priority-3">THROWS</span>
+            </td>
+            <td>Method lists Exception in its throws clause, but it could be more specific.</td>
+         </tr>
+         <tr class="detailrow0">
+            <td/>
+            <td>
+               <p id="d1e742" style="display: none;">
+                  <a href="#THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION">Bug type THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.sqlgenerator.SchemaExistsGeneratorTests<br/>In method dev.markitect.liquibase.sqlgenerator.SchemaExistsGeneratorTests.generateSql(Class, String, String, String, String, String)<br/>At SchemaExistsGeneratorTests.java:[lines 52-73]</p>
+            </td>
+         </tr>
+         <tr class="tablerow1" onclick="toggleRow('d1e755');">
+            <td>
+               <span class="priority-3">THROWS</span>
+            </td>
+            <td>Method lists Exception in its throws clause, but it could be more specific.</td>
+         </tr>
+         <tr class="detailrow1">
+            <td/>
+            <td>
+               <p id="d1e755" style="display: none;">
+                  <a href="#THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION">Bug type THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.sqlgenerator.SchemaExistsGeneratorTests<br/>In method dev.markitect.liquibase.sqlgenerator.SchemaExistsGeneratorTests.supports(Class, boolean)<br/>At SchemaExistsGeneratorTests.java:[lines 89-99]</p>
+            </td>
+         </tr>
+         <tr class="tablerow0" onclick="toggleRow('d1e767');">
+            <td>
+               <span class="priority-3">THROWS</span>
+            </td>
+            <td>Method lists Exception in its throws clause, but it could be more specific.</td>
+         </tr>
+         <tr class="detailrow0">
+            <td/>
+            <td>
+               <p id="d1e767" style="display: none;">
+                  <a href="#THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION">Bug type THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION (click for details)</a>
+                  <br/>In class dev.markitect.liquibase.statement.InsertOrUpdateExecutablePreparedStatementTests<br/>In method dev.markitect.liquibase.statement.InsertOrUpdateExecutablePreparedStatementTests.test()<br/>At InsertOrUpdateExecutablePreparedStatementTests.java:[lines 32-49]</p>
+            </td>
+         </tr>
+      </table>
+      <h2>
+         <a name="Warnings_CORRECTNESS">Correctness Warnings</a>
+      </h2>
+      <table class="warningtable" width="100%" cellspacing="0">
+         <tr class="tableheader">
+            <th align="left">Code</th>
+            <th align="left">Warning</th>
+         </tr>
+         <tr class="tablerow1" onclick="toggleRow('d1e779');">
+            <td>
                <span class="priority-3">RV</span>
             </td>
             <td>Return value of Structures.isCatalogOrSchemaType(Class) ignored in dev.markitect.liquibase.structure.StructuresTests.lambda$isCatalogOrSchemaType_throwsNullPointerException$0()</td>
@@ -174,12 +976,12 @@
          <tr class="detailrow1">
             <td/>
             <td>
-               <p id="d1e102" style="display: none;">
+               <p id="d1e779" style="display: none;">
                   <a href="#RV_RETURN_VALUE_IGNORED">Bug type RV_RETURN_VALUE_IGNORED (click for details)</a>
                   <br/>In class dev.markitect.liquibase.structure.StructuresTests<br/>In method dev.markitect.liquibase.structure.StructuresTests.lambda$isCatalogOrSchemaType_throwsNullPointerException$0()<br/>Called method dev.markitect.liquibase.structure.Structures.isCatalogOrSchemaType(Class)<br/>At StructuresTests.java:[line 59]</p>
             </td>
          </tr>
-         <tr class="tablerow0" onclick="toggleRow('d1e117');">
+         <tr class="tablerow0" onclick="toggleRow('d1e794');">
             <td>
                <span class="priority-3">RV</span>
             </td>
@@ -188,7 +990,7 @@
          <tr class="detailrow0">
             <td/>
             <td>
-               <p id="d1e117" style="display: none;">
+               <p id="d1e794" style="display: none;">
                   <a href="#RV_RETURN_VALUE_IGNORED">Bug type RV_RETURN_VALUE_IGNORED (click for details)</a>
                   <br/>In class dev.markitect.liquibase.util.StringsTests<br/>In method dev.markitect.liquibase.util.StringsTests.lambda$isIllegalIdentifier_throwsNullPointerException$0()<br/>Called method dev.markitect.liquibase.util.Strings.isIllegalIdentifier(String)<br/>At StringsTests.java:[line 52]</p>
             </td>
@@ -216,5 +1018,19 @@ should be corrected to: </p>
 dateString = dateString.trim();
 </code></pre>
 
+    <h2>
+         <a name="THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION">THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION: Method lists Exception in its throws clause, but it could be more specific.</a>
+      </h2>
+      
+        <p>
+        Method lists Exception in its throws clause.<br>
+
+
+        When declaring a method, the types of exceptions in the throws clause should be the most specific.
+        Therefore, using Exception in the throws clause would force the caller to either use it in its own throws clause, or use it in a try-catch block (when it does not necessarily 
+        contain any meaningful information about the thrown exception).<br><br>
+        
+        For more information, see the <a href="https://wiki.sei.cmu.edu/confluence/display/java/ERR07-J.+Do+not+throw+RuntimeException%2C+Exception%2C+or+Throwable">SEI CERT ERR07-J rule</a>.
+        </p>
     </body>
 </html>
