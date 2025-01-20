@@ -103,18 +103,18 @@
          </tr>
          <tr class="tablerow1">
             <td>Low Priority Warnings</td>
-            <td align="right">4</td>
-            <td align="right">1.23</td>
+            <td align="right">2</td>
+            <td align="right">0.62</td>
          </tr>
          <tr class="$totalClass">
             <td>
                <b>Total Warnings</b>
             </td>
             <td align="right">
-               <b>4</b>
+               <b>2</b>
             </td>
             <td align="right">
-               <b>1.23</b>
+               <b>0.62</b>
             </td>
          </tr>
       </table>
@@ -144,14 +144,14 @@
             <td>
                <a href="#Warnings_CORRECTNESS">Correctness Warnings</a>
             </td>
-            <td align="right">4</td>
+            <td align="right">2</td>
          </tr>
          <tr class="tablerow1">
             <td>
                <b>Total</b>
             </td>
             <td align="right">
-               <b>4</b>
+               <b>2</b>
             </td>
          </tr>
       </table>
@@ -167,34 +167,6 @@
          </tr>
          <tr class="tablerow1" onclick="toggleRow('d1e102');">
             <td>
-               <span class="priority-3">NP</span>
-            </td>
-            <td>Non-virtual method call in dev.markitect.liquibase.structure.StructuresTests.lambda$isCatalogOrSchemaType_throwsNullPointerException$0() passes null for non-null parameter of Structures.isCatalogOrSchemaType(Class)</td>
-         </tr>
-         <tr class="detailrow1">
-            <td/>
-            <td>
-               <p id="d1e102" style="display: none;">
-                  <a href="#NP_NULL_PARAM_DEREF_NONVIRTUAL">Bug type NP_NULL_PARAM_DEREF_NONVIRTUAL (click for details)</a>
-                  <br/>In class dev.markitect.liquibase.structure.StructuresTests<br/>In method dev.markitect.liquibase.structure.StructuresTests.lambda$isCatalogOrSchemaType_throwsNullPointerException$0()<br/>Called method dev.markitect.liquibase.structure.Structures.isCatalogOrSchemaType(Class)<br/>At StructuresTests.java:[line 59]<br/>Argument 1 is definitely null but must not be null</p>
-            </td>
-         </tr>
-         <tr class="tablerow0" onclick="toggleRow('d1e140');">
-            <td>
-               <span class="priority-3">NP</span>
-            </td>
-            <td>Non-virtual method call in dev.markitect.liquibase.util.StringsTests.lambda$isIllegalIdentifier_throwsNullPointerException$0() passes null for non-null parameter of Strings.isIllegalIdentifier(String)</td>
-         </tr>
-         <tr class="detailrow0">
-            <td/>
-            <td>
-               <p id="d1e140" style="display: none;">
-                  <a href="#NP_NULL_PARAM_DEREF_NONVIRTUAL">Bug type NP_NULL_PARAM_DEREF_NONVIRTUAL (click for details)</a>
-                  <br/>In class dev.markitect.liquibase.util.StringsTests<br/>In method dev.markitect.liquibase.util.StringsTests.lambda$isIllegalIdentifier_throwsNullPointerException$0()<br/>Called method dev.markitect.liquibase.util.Strings.isIllegalIdentifier(String)<br/>At StringsTests.java:[line 52]<br/>Argument 1 is definitely null but must not be null</p>
-            </td>
-         </tr>
-         <tr class="tablerow1" onclick="toggleRow('d1e125');">
-            <td>
                <span class="priority-3">RV</span>
             </td>
             <td>Return value of Structures.isCatalogOrSchemaType(Class) ignored in dev.markitect.liquibase.structure.StructuresTests.lambda$isCatalogOrSchemaType_throwsNullPointerException$0()</td>
@@ -202,12 +174,12 @@
          <tr class="detailrow1">
             <td/>
             <td>
-               <p id="d1e125" style="display: none;">
+               <p id="d1e102" style="display: none;">
                   <a href="#RV_RETURN_VALUE_IGNORED">Bug type RV_RETURN_VALUE_IGNORED (click for details)</a>
                   <br/>In class dev.markitect.liquibase.structure.StructuresTests<br/>In method dev.markitect.liquibase.structure.StructuresTests.lambda$isCatalogOrSchemaType_throwsNullPointerException$0()<br/>Called method dev.markitect.liquibase.structure.Structures.isCatalogOrSchemaType(Class)<br/>At StructuresTests.java:[line 59]</p>
             </td>
          </tr>
-         <tr class="tablerow0" onclick="toggleRow('d1e163');">
+         <tr class="tablerow0" onclick="toggleRow('d1e117');">
             <td>
                <span class="priority-3">RV</span>
             </td>
@@ -216,7 +188,7 @@
          <tr class="detailrow0">
             <td/>
             <td>
-               <p id="d1e163" style="display: none;">
+               <p id="d1e117" style="display: none;">
                   <a href="#RV_RETURN_VALUE_IGNORED">Bug type RV_RETURN_VALUE_IGNORED (click for details)</a>
                   <br/>In class dev.markitect.liquibase.util.StringsTests<br/>In method dev.markitect.liquibase.util.StringsTests.lambda$isIllegalIdentifier_throwsNullPointerException$0()<br/>Called method dev.markitect.liquibase.util.Strings.isIllegalIdentifier(String)<br/>At StringsTests.java:[line 52]</p>
             </td>
@@ -226,17 +198,6 @@
          <a name="Details">Details</a>
       </h1>
       <h2>
-         <a name="NP_NULL_PARAM_DEREF_NONVIRTUAL">NP_NULL_PARAM_DEREF_NONVIRTUAL: Non-virtual method call passes null for non-null parameter</a>
-      </h2>
-      
-      <p>
-      A possibly-null value is passed to a non-null method parameter.
-    Either the parameter is annotated as a parameter that should
-    always be non-null, or analysis has shown that it will always be
-    dereferenced.
-      </p>
-      
-   <h2>
          <a name="RV_RETURN_VALUE_IGNORED">RV_RETURN_VALUE_IGNORED: Method ignores return value</a>
       </h2>
 
