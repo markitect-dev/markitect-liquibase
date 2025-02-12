@@ -263,6 +263,10 @@
       groupName: 'snakeyaml',
     },
     {
+      matchPackageNames: ['com.github.spotbugs:**'],
+      groupName: 'spotbugs',
+    },
+    {
       matchFileNames: [
         '**/src/it/spring-boot-3.2/pom.xml',
         '**/src/it/spring-boot-3.3/pom.xml',
