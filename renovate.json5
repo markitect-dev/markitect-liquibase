@@ -263,7 +263,10 @@
       groupName: 'snakeyaml',
     },
     {
-      matchPackageNames: ['com.github.spotbugs:**'],
+      matchPackageNames: [
+        'com.github.spotbugs:spotbugs',
+        'com.github.spotbugs:spotbugs-annotations',
+      ],
       groupName: 'spotbugs',
     },
     {
