@@ -108,7 +108,7 @@
 
     <apiguardian.version>1.1.2</apiguardian.version>
     <assertj.version>3.27.3</assertj.version>
-    <awaitility.version>4.2.2</awaitility.version>
+    <awaitility.version>4.3.0</awaitility.version>
     <bnd-annotation.version>7.1.0</bnd-annotation.version>
     <byte-buddy.version>1.17.1</byte-buddy.version>
     <checkstyle.version>10.21.2</checkstyle.version>
