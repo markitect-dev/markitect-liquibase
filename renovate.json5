@@ -136,6 +136,10 @@
       groupName: 'assertj',
     },
     {
+      matchPackageNames: ['org.awaitility:awaitility'],
+      groupName: 'awaitility',
+    },
+    {
       matchPackageNames: ['biz.aQute.bnd:biz.aQute.bnd.annotation'],
       groupName: 'bnd-annotation',
     },
