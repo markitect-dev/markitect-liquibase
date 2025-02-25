@@ -41,6 +41,7 @@ jspecify = "1.0.0"
 junit = "4.13.2"
 junit-jupiter = "5.12.0"
 junit-pioneer = "2.3.0"
+ktfmt = "0.54"
 ktlint = "1.5.0"
 liquibase = "4.31.1"
 log4j2 = "2.24.3"
@@ -80,6 +81,7 @@ testcontainers = "1.20.5"
 biz-aqute-bnd-biz-aqute-bnd-annotation = { module = "biz.aQute.bnd:biz.aQute.bnd.annotation", version.ref = "bnd-annotation" }
 ch-qos-logback-logback-classic = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
 ch-qos-logback-logback-core = { module = "ch.qos.logback:logback-core", version.ref = "logback" }
+com-facebook-ktfmt = { module = "com.facebook:ktfmt", version.ref = "ktfmt" }
 com-fasterxml-jackson-core-jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind" }
 com-fasterxml-jackson-jackson-bom = { module = "com.fasterxml.jackson:jackson-bom", version.ref = "jackson" }
 com-github-docker-java-docker-java-api = { module = "com.github.docker-java:docker-java-api", version.ref = "docker-java" }

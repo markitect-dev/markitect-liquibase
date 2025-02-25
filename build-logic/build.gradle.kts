@@ -41,10 +41,11 @@ listOf("npmInstall", "npmSetup", "pnpmInstall", "pnpmSetup", "yarn", "yarnSetup"
 spotless {
     ratchetFrom("origin/main")
     kotlin {
-        targetExclude("build/**")
-        ktlint(libs.versions.ktlint.get())
+        targetExclude("build/**", "src/**/*.gradle.kts")
+        ktfmt(libs.versions.ktfmt.get())
     }
     kotlinGradle {
+        target("src/**/*.gradle.kts", "*.gradle.kts")
         ktlint(libs.versions.ktlint.get())
     }
     format("properties") {
