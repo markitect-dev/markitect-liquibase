@@ -24,8 +24,7 @@ ij_java_packages_to_use_import_on_demand = unset
 ij_java_ternary_operation_signs_on_next_line = true
 
 [{*.kt,*.kts}]
-indent_size = 4
-max_line_length = 120
+max_line_length = 100
 ij_kotlin_block_comment_add_space = true
 ij_kotlin_block_comment_at_first_column = false
 ij_kotlin_imports_layout = *
@@ -35,9 +34,15 @@ ij_kotlin_line_comment_at_first_column = false
 ij_kotlin_name_count_to_use_star_import = 999
 ij_kotlin_name_count_to_use_star_import_for_members = 999
 ij_kotlin_packages_to_use_import_on_demand = unset
-ij_visual_guides = 100, 120
+
+[*.gradle.kts]
+indent_size = 4
+max_line_length = 140
 ktlint_code_style = ktlint_official
 ktlint_standard_chain-method-continuation = disabled
+
+[*.properties]
+ij_properties_keep_blank_lines = true
 
 [*.xml]
 ij_xml_align_attributes = false
