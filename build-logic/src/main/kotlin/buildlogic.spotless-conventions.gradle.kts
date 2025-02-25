@@ -1,3 +1,4 @@
+import com.diffplug.spotless.npm.PrettierFormatterStep
 import com.github.gradle.node.variant.computeNodeDir
 import com.github.gradle.node.variant.computeNodeExec
 
@@ -43,7 +44,7 @@ spotless {
         target("src/**/*.properties", "gradle.properties")
         prettier(
             mapOf(
-                "prettier" to libs.versions.prettier.asProvider().get(),
+                "prettier" to PrettierFormatterStep.DEFAULT_VERSION,
                 "prettier-plugin-properties" to libs.versions.prettier.plugin.properties.get(),
             ),
         )
