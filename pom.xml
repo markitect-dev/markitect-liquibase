@@ -185,7 +185,7 @@
     <osgi-resource.version>1.0.1</osgi-resource.version>
     <osgi-service-serviceloader.version>1.0.0</osgi-service-serviceloader.version>
     <postgresql.version>42.7.5</postgresql.version>
-    <prettier.version>3.5.2</prettier.version>
+    <prettier.version>3.5.3</prettier.version>
     <prettier-plugin-properties.version>0.3.0</prettier-plugin-properties.version>
     <r2dbc-spi.version>1.0.0.RELEASE</r2dbc-spi.version>
     <reactive-streams.version>1.0.4</reactive-streams.version>
