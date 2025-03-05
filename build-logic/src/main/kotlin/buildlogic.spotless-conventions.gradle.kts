@@ -1,4 +1,3 @@
-import com.diffplug.spotless.npm.PrettierFormatterStep
 import com.github.gradle.node.variant.computeNodeDir
 import com.github.gradle.node.variant.computeNodeExec
 
@@ -33,6 +32,7 @@ spotless {
         prettier(libs.versions.prettier.asProvider().get())
             .nodeExecutable(computeNodeExec(node, computeNodeDir(node)))
             .npmInstallCache(rootProject.layout.projectDirectory.dir(".gradle/spotless-npm-install-cache"))
+            .npmrc(rootProject.file("config/spotless/.npmrc"))
             .config(
                 mapOf(
                     "parser" to "json5",
@@ -44,12 +44,13 @@ spotless {
         target("src/**/*.properties", "gradle.properties")
         prettier(
             mapOf(
-                "prettier" to PrettierFormatterStep.DEFAULT_VERSION,
+                "prettier" to libs.versions.prettier.asProvider().get(),
                 "prettier-plugin-properties" to libs.versions.prettier.plugin.properties.get(),
             ),
         )
             .nodeExecutable(computeNodeExec(node, computeNodeDir(node)))
             .npmInstallCache(rootProject.layout.projectDirectory.dir(".gradle/spotless-npm-install-cache"))
+            .npmrc(rootProject.file("config/spotless/.npmrc"))
             .config(
                 mapOf(
                     "parser" to "dot-properties",
@@ -69,6 +70,7 @@ spotless {
         )
             .nodeExecutable(computeNodeExec(node, computeNodeDir(node)))
             .npmInstallCache(rootProject.layout.projectDirectory.dir(".gradle/spotless-npm-install-cache"))
+            .npmrc(rootProject.file("config/spotless/.npmrc"))
             .config(
                 mapOf(
                     "parser" to "toml",
@@ -78,6 +80,7 @@ spotless {
     }
     format("misc") {
         target(
+            "config/**/.npmrc",
             "config/**/*.xml",
             "src/**/*.xml",
             "src/**/*.yaml",

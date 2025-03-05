@@ -291,6 +291,7 @@
                 <prettier>
                   <nodeExecutable>${node.executable}</nodeExecutable>
                   <npmInstallCache>${spotless.npmInstallCache}</npmInstallCache>
+                  <npmrc>${spotless.configDirectory}/.npmrc</npmrc>
                   <prettierVersion>${prettier.version}</prettierVersion>
                   <config>
                     <parser>json5</parser>
@@ -305,6 +306,7 @@
                 <prettier>
                   <nodeExecutable>${node.executable}</nodeExecutable>
                   <npmInstallCache>${spotless.npmInstallCache}</npmInstallCache>
+                  <npmrc>${spotless.configDirectory}/.npmrc</npmrc>
                   <devDependencies>
                     <prettier>${prettier.version}</prettier>
                     <prettier-plugin-properties>${prettier-plugin-properties.version}</prettier-plugin-properties>
@@ -319,6 +321,7 @@
               </format>
               <format>
                 <includes>
+                  <include>config/**/.npmrc</include>
                   <include>config/**/*.xml</include>
                   <include>src/*/resources/**/*.java</include>
                   <include>src/**/*.txt</include>
