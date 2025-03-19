@@ -81,7 +81,7 @@
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" /></td>
 <td># of properties using the latest version available</td>
-<td>88</td></tr>
+<td>86</td></tr>
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" /></td>
 <td># of properties where the next version available is smaller than an incremental version update</td>
@@ -89,7 +89,7 @@
 <tr class="b">
 <td><img src="images/icon_warning_sml.gif" /></td>
 <td># of properties where the next version available is an incremental version update</td>
-<td>1</td></tr>
+<td>3</td></tr>
 <tr class="a">
 <td><img src="images/icon_warning_sml.gif" /></td>
 <td># of properties where the next version available is a minor version update</td>
@@ -229,12 +229,12 @@
 <td></td>
 <td></td></tr>
 <tr class="a">
-<td><img src="images/icon_success_sml.gif" /></td>
+<td><img src="images/icon_warning_sml.gif" /></td>
 <td>${error-prone.version}</td>
 <td>2.36.0</td>
 <td></td>
 <td></td>
-<td></td>
+<td><b>2.37.0</b></td>
 <td></td></tr>
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" /></td>
@@ -277,11 +277,11 @@
 <td></td>
 <td></td></tr>
 <tr class="a">
-<td><img src="images/icon_success_sml.gif" /></td>
+<td><img src="images/icon_warning_sml.gif" /></td>
 <td>${guava.version}</td>
 <td>33.4.0-jre</td>
 <td></td>
-<td></td>
+<td><b>33.4.5-jre</b></td>
 <td></td>
 <td></td></tr>
 <tr class="b">
@@ -637,12 +637,12 @@
 <td></td>
 <td></td></tr>
 <tr class="b">
-<td><img src="images/icon_warning_sml.gif" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td>${mssql-jdbc.version}</td>
-<td>12.8.1.jre11</td>
+<td>12.10.0.jre11</td>
 <td></td>
 <td></td>
-<td><b>12.10.0.jre11</b></td>
+<td></td>
 <td></td></tr>
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" /></td>
@@ -805,11 +805,11 @@
 <td></td>
 <td></td></tr>
 <tr class="a">
-<td><img src="images/icon_success_sml.gif" /></td>
+<td><img src="images/icon_warning_sml.gif" /></td>
 <td>${spring-framework.version}</td>
 <td>6.2.4</td>
 <td></td>
-<td></td>
+<td><b>6.2.5</b></td>
 <td></td>
 <td></td></tr>
 <tr class="b">
@@ -1277,7 +1277,7 @@
 <table class="table table-striped">
 <tr class="a">
 <th>Status</th>
-<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
+<td style="text-align: left;"><img src="images/icon_warning_sml.gif" />&#160;There is at least one newer minor version available. Minor updates are sometimes passive.</td></tr>
 <tr class="b">
 <th>Property</th>
 <td style="text-align: left;">${error-prone.version}</td></tr>
@@ -1288,18 +1288,21 @@
 <th>Current Version</th>
 <td style="text-align: left;">2.36.0</td></tr>
 <tr class="a">
+<th>Newer versions</th>
+<td style="text-align: left;"><b>2.37.0</b>&#160;<i>Latest Minor</i></td></tr>
+<tr class="b">
 <th>Allowed version range</th>
 <td style="text-align: left;">2.36.0</td></tr>
-<tr class="b">
+<tr class="a">
 <th>Infer associations from project</th>
 <td style="text-align: left;">Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <th>Only use release versions</th>
 <td style="text-align: left;">No</td></tr>
-<tr class="b">
+<tr class="a">
 <th>Include projects from reactor</th>
 <td style="text-align: left;">Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <th>Always use reactor projects (even if older or -SNAPSHOT)</th>
 <td style="text-align: left;">Yes</td></tr></table></section><section><a id="a.24.7Bextra-enforcer-rules.version.7D"></a>
 <h2>${extra-enforcer-rules.version}</h2>
@@ -1451,7 +1454,7 @@
 <table class="table table-striped">
 <tr class="a">
 <th>Status</th>
-<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
+<td style="text-align: left;"><img src="images/icon_warning_sml.gif" />&#160;There is at least one newer incremental version available. Incremental updates are typically passive.</td></tr>
 <tr class="b">
 <th>Property</th>
 <td style="text-align: left;">${guava.version}</td></tr>
@@ -1462,18 +1465,21 @@
 <th>Current Version</th>
 <td style="text-align: left;">33.4.0-jre</td></tr>
 <tr class="a">
+<th>Newer versions</th>
+<td style="text-align: left;">33.4.1-android<br />33.4.1-jre<br />33.4.2-android<br />33.4.2-jre<br />33.4.3-android<br />33.4.3-jre<br />33.4.4-android<br />33.4.4-jre<br />33.4.5-android<br /><b>33.4.5-jre</b>&#160;<i>Latest Incremental</i></td></tr>
+<tr class="b">
 <th>Allowed version range</th>
 <td style="text-align: left;">33.4.0-jre</td></tr>
-<tr class="b">
+<tr class="a">
 <th>Infer associations from project</th>
 <td style="text-align: left;">Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <th>Only use release versions</th>
 <td style="text-align: left;">No</td></tr>
-<tr class="b">
+<tr class="a">
 <th>Include projects from reactor</th>
 <td style="text-align: left;">Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <th>Always use reactor projects (even if older or -SNAPSHOT)</th>
 <td style="text-align: left;">Yes</td></tr></table></section><section><a id="a.24.7Bh2.version.7D"></a>
 <h2>${h2.version}</h2>
@@ -2759,7 +2765,7 @@
 <table class="table table-striped">
 <tr class="a">
 <th>Status</th>
-<td style="text-align: left;"><img src="images/icon_warning_sml.gif" />&#160;There is at least one newer minor version available. Minor updates are sometimes passive.</td></tr>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
 <th>Property</th>
 <td style="text-align: left;">${mssql-jdbc.version}</td></tr>
@@ -2768,23 +2774,20 @@
 <td style="text-align: left;">com.microsoft.sqlserver:mssql-jdbc</td></tr>
 <tr class="b">
 <th>Current Version</th>
-<td style="text-align: left;">12.8.1.jre11</td></tr>
+<td style="text-align: left;">12.10.0.jre11</td></tr>
 <tr class="a">
-<th>Newer versions</th>
-<td style="text-align: left;"><b>12.10.0.jre11</b>&#160;<i>Latest Minor</i></td></tr>
-<tr class="b">
 <th>Allowed version range</th>
-<td style="text-align: left;">12.8.1.jre11</td></tr>
-<tr class="a">
+<td style="text-align: left;">12.10.0.jre11</td></tr>
+<tr class="b">
 <th>Infer associations from project</th>
 <td style="text-align: left;">Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <th>Only use release versions</th>
 <td style="text-align: left;">No</td></tr>
-<tr class="a">
+<tr class="b">
 <th>Include projects from reactor</th>
 <td style="text-align: left;">Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <th>Always use reactor projects (even if older or -SNAPSHOT)</th>
 <td style="text-align: left;">Yes</td></tr></table></section><section><a id="a.24.7Bnexus-staging-maven-plugin.version.7D"></a>
 <h2>${nexus-staging-maven-plugin.version}</h2>
@@ -3371,7 +3374,7 @@
 <table class="table table-striped">
 <tr class="a">
 <th>Status</th>
-<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
+<td style="text-align: left;"><img src="images/icon_warning_sml.gif" />&#160;There is at least one newer incremental version available. Incremental updates are typically passive.</td></tr>
 <tr class="b">
 <th>Property</th>
 <td style="text-align: left;">${spring-framework.version}</td></tr>
@@ -3382,18 +3385,21 @@
 <th>Current Version</th>
 <td style="text-align: left;">6.2.4</td></tr>
 <tr class="a">
+<th>Newer versions</th>
+<td style="text-align: left;"><b>6.2.5</b>&#160;<i>Latest Incremental</i></td></tr>
+<tr class="b">
 <th>Allowed version range</th>
 <td style="text-align: left;">6.2.4</td></tr>
-<tr class="b">
+<tr class="a">
 <th>Infer associations from project</th>
 <td style="text-align: left;">Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <th>Only use release versions</th>
 <td style="text-align: left;">No</td></tr>
-<tr class="b">
+<tr class="a">
 <th>Include projects from reactor</th>
 <td style="text-align: left;">Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <th>Always use reactor projects (even if older or -SNAPSHOT)</th>
 <td style="text-align: left;">Yes</td></tr></table></section><section><a id="a.24.7Btestcontainers.version.7D"></a>
 <h2>${testcontainers.version}</h2>
