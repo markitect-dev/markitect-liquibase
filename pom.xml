@@ -110,7 +110,7 @@
     <assertj.version>3.27.3</assertj.version>
     <awaitility.version>4.3.0</awaitility.version>
     <bnd-annotation.version>7.1.0</bnd-annotation.version>
-    <byte-buddy.version>1.17.3</byte-buddy.version>
+    <byte-buddy.version>1.17.4</byte-buddy.version>
     <checkstyle.version>10.21.4</checkstyle.version>
     <cleanthat.version>2.22</cleanthat.version>
     <commons-codec.version>1.18.0</commons-codec.version>
