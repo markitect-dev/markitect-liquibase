@@ -140,7 +140,7 @@
     <jakarta-xml-bind.version>4.0.2</jakarta-xml-bind.version>
     <jetbrains-annotations.version>26.0.2</jetbrains-annotations.version>
     <jna.version>5.17.0</jna.version>
-    <jooq.version>3.20.2</jooq.version>
+    <jooq.version>3.20.3</jooq.version>
     <jspecify.version>1.0.0</jspecify.version>
     <junit.version>4.13.2</junit.version>
     <junit-jupiter.version>5.12.1</junit-jupiter.version>
