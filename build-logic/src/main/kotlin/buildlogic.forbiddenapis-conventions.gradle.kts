@@ -5,7 +5,7 @@ plugins {
 forbiddenApis {
     bundledSignatures =
         setOf(
-            "commons-io-unsafe-2.17.0",
+            "commons-io-unsafe-2.18.0",
             "jdk-deprecated",
             "jdk-internal",
             "jdk-non-portable",
