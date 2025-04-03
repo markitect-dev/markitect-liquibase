@@ -219,6 +219,10 @@
       groupName: 'jackson',
     },
     {
+      matchPackageNames: ['org.jacoco:**'],
+      groupName: 'jacoco',
+    },
+    {
       matchPackageNames: ['org.jetbrains:annotations'],
       groupName: 'jetbrains-annotations',
     },
