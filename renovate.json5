@@ -201,7 +201,7 @@
     {
       matchPackageNames: ['com.google.guava:guava'],
       groupName: 'guava',
-      versionScheme: "docker",
+      versioning: "docker",
     },
     {
       matchPackageNames: ['com.h2database:**'],
