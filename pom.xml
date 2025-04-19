@@ -476,7 +476,6 @@
                 -XepAllSuggestionsAsWarnings
                 -XepAllDisabledChecksAsWarnings
                 -Xep:AndroidJdkLibsChecker:OFF
-                -Xep:Java7ApiChecker:OFF
                 -Xep:Java8ApiChecker:OFF
                 -Xep:NullAway:WARN
                 -XepOpt:NullAway:AnnotatedPackages=${nullaway.annotatedPackages}

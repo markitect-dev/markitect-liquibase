@@ -16,7 +16,6 @@ tasks.withType<JavaCompile>().configureEach {
         if (!providers.environmentVariable("CI").isPresent) {
             allDisabledChecksAsWarnings = true
             disable("AndroidJdkLibsChecker")
-            disable("Java7ApiChecker")
             disable("Java8ApiChecker")
             errorproneArgs.add("-XepAllSuggestionsAsWarnings")
         }
