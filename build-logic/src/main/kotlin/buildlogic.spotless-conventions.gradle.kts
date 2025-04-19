@@ -95,8 +95,8 @@ spotless {
     }
 }
 
-listOf("spotlessJson5", "spotlessProperties", "spotlessToml").forEach {
-    tasks.named(it) {
+listOf("spotlessJson5", "spotlessProperties", "spotlessToml").forEach { name ->
+    tasks.named(name) {
         dependsOn(rootProject.tasks.nodeSetup)
     }
 }

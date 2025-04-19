@@ -14,8 +14,8 @@ tasks.nodeSetup {
     enabled = project == rootProject
 }
 
-listOf("npmInstall", "npmSetup", "pnpmInstall", "pnpmSetup", "yarn", "yarnSetup").forEach {
-    tasks.named(it) {
+listOf("npmInstall", "npmSetup", "pnpmInstall", "pnpmSetup", "yarn", "yarnSetup").forEach { name ->
+    tasks.named(name) {
         enabled = false
     }
 }

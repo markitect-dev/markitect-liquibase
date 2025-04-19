@@ -3,9 +3,9 @@ plugins {
     alias(libs.plugins.io.github.gradle.nexus.publish.plugin)
 }
 
-listOf("check", "spotlessApply", "spotlessCheck").forEach {
-    tasks.named(it) {
-        dependsOn(gradle.includedBuild("build-logic").task(":$it"))
+listOf("check", "spotlessApply", "spotlessCheck").forEach { name ->
+    tasks.named(name) {
+        dependsOn(gradle.includedBuild("build-logic").task(":$name"))
     }
 }
 
