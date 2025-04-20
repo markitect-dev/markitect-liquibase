@@ -188,6 +188,10 @@
       groupName: 'error-prone',
     },
     {
+      matchPackageNames: ['com.h3xstream.findsecbugs:findsecbugs-plugin'],
+      groupName: 'findsecbugs-plugin',
+    },
+    {
       matchPackageNames: [
         'de.thetaphi.forbiddenapis',
         'de.thetaphi:forbiddenapis',
