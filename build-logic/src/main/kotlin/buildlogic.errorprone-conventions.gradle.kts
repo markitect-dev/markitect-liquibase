@@ -23,6 +23,7 @@ tasks.withType<JavaCompile>().configureEach {
             excludedFieldAnnotations.add("org.mockito.Captor")
             excludedFieldAnnotations.add("org.mockito.InjectMocks")
             excludedFieldAnnotations.add("org.mockito.Mock")
+            excludedFieldAnnotations.add("org.springframework.test.context.bean.override.mockito.MockitoBean")
             warn()
         }
     }
