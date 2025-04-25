@@ -470,8 +470,7 @@
           <configuration>
             <parameters>true</parameters>
             <compilerArgs>
-              <arg>-XDcompilePolicy=simple</arg>
-              <arg>--should-stop=ifError=FLOW</arg>
+              <arg>-Xlint:all,-processing</arg>
               <arg>-Xplugin:ErrorProne
                 -XepAllSuggestionsAsWarnings
                 -XepAllDisabledChecksAsWarnings
@@ -480,7 +479,9 @@
                 -Xep:NullAway:WARN
                 -XepOpt:NullAway:AnnotatedPackages=${nullaway.annotatedPackages}
                 -XepOpt:NullAway:ExcludedFieldAnnotations=${nullaway.excludedFieldAnnotations}</arg>
-              <arg>-Xlint:all,-processing</arg>
+              <arg>-XDcompilePolicy=simple</arg>
+              <arg>-XDshould-stop.ifError=FLOW</arg>
+              <arg>-XDshouldStopPolicyIfError=FLOW</arg>
             </compilerArgs>
             <annotationProcessorPaths>
               <path>
@@ -1161,13 +1162,14 @@
               <configuration>
                 <failOnWarning>true</failOnWarning>
                 <compilerArgs>
-                  <arg>-XDcompilePolicy=simple</arg>
-                  <arg>--should-stop=ifError=FLOW</arg>
+                  <arg>-Xlint:all,-processing</arg>
                   <arg>-Xplugin:ErrorProne
                     -Xep:NullAway:WARN
                     -XepOpt:NullAway:AnnotatedPackages=${nullaway.annotatedPackages}
                     -XepOpt:NullAway:ExcludedFieldAnnotations=${nullaway.excludedFieldAnnotations}</arg>
-                  <arg>-Xlint:all,-processing</arg>
+                  <arg>-XDcompilePolicy=simple</arg>
+                  <arg>-XDshould-stop.ifError=FLOW</arg>
+                  <arg>-XDshouldStopPolicyIfError=FLOW</arg>
                 </compilerArgs>
               </configuration>
             </plugin>
