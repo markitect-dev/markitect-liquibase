@@ -6,6 +6,8 @@ plugins {
     id("com.diffplug.spotless")
 }
 
+val ci = providers.environmentVariable("CI").isPresent
+
 spotless {
     ratchetFrom("origin/main")
     plugins.withId("java") {
@@ -102,7 +104,7 @@ listOf("spotlessJson5", "spotlessProperties", "spotlessToml").forEach { name ->
 }
 
 tasks.spotlessCheck {
-    if (!providers.environmentVariable("CI").isPresent) {
+    if (!ci) {
         dependsOn(tasks.spotlessApply)
     }
 }

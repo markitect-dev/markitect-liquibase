@@ -15,6 +15,10 @@ plugins {
     `java-library`
 }
 
+val ci = providers.environmentVariable("CI").isPresent
+val skipTests = providers.systemProperty("skipTests").isPresent
+val testProject = project.name.endsWith("-test")
+
 val mockitoAgent: Configuration by configurations.creating
 
 configurations.testImplementation {
@@ -131,16 +135,16 @@ java {
 }
 
 tasks.withType<JavaCompile>().configureEach {
-    if (!providers.environmentVariable("CI").isPresent) {
+    if (!ci) {
         outputs.upToDateWhen { false }
     }
     options.compilerArgs.add("-parameters")
-    if (providers.environmentVariable("CI").isPresent) {
+    if (ci) {
         options.compilerArgs.add("-Werror")
     }
     options.compilerArgs.add("-Xlint:all,-processing")
     options.errorprone {
-        if (!providers.environmentVariable("CI").isPresent) {
+        if (!ci) {
             allDisabledChecksAsWarnings = true
             disable("AndroidJdkLibsChecker")
             disable("Java8ApiChecker")
@@ -161,7 +165,7 @@ testing.suites.withType<JvmTestSuite>().configureEach {
     useJUnitJupiter(libs.versions.junit.jupiter.get())
     targets.all {
         testTask.configure {
-            onlyIf { !providers.systemProperty("skipTests").isPresent }
+            onlyIf { !skipTests }
             environment("LIQUIBASE_ANALYTICS_ENABLED", "false")
             environment("LIQUIBASE_ANALYTICS_LOG_LEVEL", "info")
             environment("LIQUIBASE_SHOW_BANNER", "false")
@@ -173,7 +177,7 @@ testing.suites.withType<JvmTestSuite>().configureEach {
 }
 
 tasks.jar {
-    onlyIf { !project.name.endsWith("-test") }
+    onlyIf { !testProject }
     if (project.hasProperty("automaticModuleName")) {
         manifest {
             attributes("Automatic-Module-Name" to project.property("automaticModuleName"))
@@ -193,11 +197,11 @@ tasks.javadoc {
 }
 
 tasks.named<Jar>("javadocJar") {
-    onlyIf { !project.name.endsWith("-test") }
+    onlyIf { !testProject }
 }
 
 tasks.named<Jar>("sourcesJar") {
-    onlyIf { !project.name.endsWith("-test") }
+    onlyIf { !testProject }
     metaInf {
         from(rootProject.file("LICENSE.txt"))
         from(rootProject.file("NOTICE.txt"))

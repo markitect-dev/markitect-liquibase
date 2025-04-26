@@ -9,6 +9,8 @@ plugins {
     id("org.gradle.toolchains.foojay-resolver-convention") version "0.10.0"
 }
 
+val ci = providers.environmentVariable("CI").isPresent
+
 rootProject.name = "markitect-liquibase-build"
 
 dependencyResolutionManagement {
@@ -32,7 +34,7 @@ dependencyResolutionManagement {
 
 develocity {
     buildScan {
-        if (providers.environmentVariable("CI").isPresent) {
+        if (ci) {
             termsOfUseUrl = "https://gradle.com/help/legal-terms-of-use"
             termsOfUseAgree = "yes"
         }

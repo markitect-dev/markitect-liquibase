@@ -7,6 +7,8 @@ plugins {
     alias(libs.plugins.com.github.node.gradle.node)
 }
 
+val ci = providers.environmentVariable("CI").isPresent
+
 dependencies {
     implementation(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
     implementation(plugin(libs.plugins.com.diffplug.spotless))
@@ -74,7 +76,7 @@ tasks.named("spotlessProperties") {
 }
 
 tasks.spotlessCheck {
-    if (!providers.environmentVariable("CI").isPresent) {
+    if (!ci) {
         dependsOn(tasks.spotlessApply)
     }
 }
