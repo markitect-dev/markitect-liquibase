@@ -88,7 +88,7 @@
     <node.executable>${node.installDirectory}/node/node</node.executable>
     <nullaway.annotatedPackages>dev.markitect.liquibase</nullaway.annotatedPackages>
     <nullaway.excludedFieldAnnotations xml:space="preserve">
-      org.mockito.Captor,org.mockito.InjectMocks,org.mockito.Mock,org.springframework.test.context.bean.override.mockito.MockitoBean
+      org.junit.jupiter.api.io.TempDir,org.mockito.Captor,org.mockito.InjectMocks,org.mockito.Mock,org.springframework.test.context.bean.override.mockito.MockitoBean
     </nullaway.excludedFieldAnnotations>
     <project.build.outputTimestamp>2024-01-01T00:00:00Z</project.build.outputTimestamp>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -477,8 +477,8 @@
                 -Xep:AndroidJdkLibsChecker:OFF
                 -Xep:Java8ApiChecker:OFF
                 -Xep:NullAway:WARN
-                -XepOpt:NullAway:AnnotatedPackages=${nullaway.annotatedPackages}
-                -XepOpt:NullAway:ExcludedFieldAnnotations=${nullaway.excludedFieldAnnotations}</arg>
+                -XepOpt:NullAway:ExcludedFieldAnnotations=${nullaway.excludedFieldAnnotations}
+                -XepOpt:NullAway:OnlyNullMarked=true</arg>
               <arg>-XDcompilePolicy=simple</arg>
               <arg>-XDshould-stop.ifError=FLOW</arg>
               <arg>-XDshouldStopPolicyIfError=FLOW</arg>
@@ -1165,8 +1165,8 @@
                   <arg>-Xlint:all,-processing</arg>
                   <arg>-Xplugin:ErrorProne
                     -Xep:NullAway:WARN
-                    -XepOpt:NullAway:AnnotatedPackages=${nullaway.annotatedPackages}
-                    -XepOpt:NullAway:ExcludedFieldAnnotations=${nullaway.excludedFieldAnnotations}</arg>
+                    -XepOpt:NullAway:ExcludedFieldAnnotations=${nullaway.excludedFieldAnnotations}
+                    -XepOpt:NullAway:OnlyNullMarked=true</arg>
                   <arg>-XDcompilePolicy=simple</arg>
                   <arg>-XDshould-stop.ifError=FLOW</arg>
                   <arg>-XDshouldStopPolicyIfError=FLOW</arg>

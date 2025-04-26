@@ -151,6 +151,7 @@ tasks.withType<JavaCompile>().configureEach {
             errorproneArgs.add("-XepAllSuggestionsAsWarnings")
         }
         nullaway {
+            excludedFieldAnnotations.add("org.junit.jupiter.api.io.TempDir")
             excludedFieldAnnotations.add("org.mockito.Captor")
             excludedFieldAnnotations.add("org.mockito.InjectMocks")
             excludedFieldAnnotations.add("org.mockito.Mock")
@@ -209,5 +210,5 @@ tasks.named<Jar>("sourcesJar") {
 }
 
 nullaway {
-    annotatedPackages.add("dev.markitect.liquibase")
+    onlyNullMarked = true
 }
