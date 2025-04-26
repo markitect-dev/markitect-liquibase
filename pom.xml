@@ -86,7 +86,6 @@
     <maven.test.redirectTestOutputToFile>true</maven.test.redirectTestOutputToFile>
     <node.installDirectory>${maven.multiModuleProjectDirectory}/target</node.installDirectory>
     <node.executable>${node.installDirectory}/node/node</node.executable>
-    <nullaway.annotatedPackages>dev.markitect.liquibase</nullaway.annotatedPackages>
     <nullaway.excludedFieldAnnotations xml:space="preserve">
       org.junit.jupiter.api.io.TempDir,org.mockito.Captor,org.mockito.InjectMocks,org.mockito.Mock,org.springframework.test.context.bean.override.mockito.MockitoBean
     </nullaway.excludedFieldAnnotations>
