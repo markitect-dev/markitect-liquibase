@@ -1,13 +1,17 @@
 @file:Suppress("UnstableApiUsage")
 
+import net.ltgt.gradle.errorprone.errorprone
+import net.ltgt.gradle.nullaway.nullaway
+
 plugins {
     id("buildlogic.common-conventions")
     id("buildlogic.checkstyle-conventions")
-    id("buildlogic.errorprone-conventions")
     id("buildlogic.forbiddenapis-conventions")
     id("buildlogic.jacoco-conventions")
     id("buildlogic.rewrite-conventions")
     id("buildlogic.spotbugs-conventions")
+    id("net.ltgt.errorprone")
+    id("net.ltgt.nullaway")
     `java-library`
 }
 
@@ -26,6 +30,9 @@ configurations.testImplementation {
 }
 
 dependencies {
+    errorprone(libs.com.google.errorprone.error.prone.core)
+    errorprone(libs.com.uber.nullaway.nullaway)
+
     mockitoAgent(platform(libs.org.mockito.mockito.bom))
     mockitoAgent(libs.org.mockito.mockito.core) { isTransitive = false }
 
@@ -132,6 +139,21 @@ tasks.withType<JavaCompile>().configureEach {
         options.compilerArgs.add("-Werror")
     }
     options.compilerArgs.add("-Xlint:all,-processing")
+    options.errorprone {
+        if (!providers.environmentVariable("CI").isPresent) {
+            allDisabledChecksAsWarnings = true
+            disable("AndroidJdkLibsChecker")
+            disable("Java8ApiChecker")
+            errorproneArgs.add("-XepAllSuggestionsAsWarnings")
+        }
+        nullaway {
+            excludedFieldAnnotations.add("org.mockito.Captor")
+            excludedFieldAnnotations.add("org.mockito.InjectMocks")
+            excludedFieldAnnotations.add("org.mockito.Mock")
+            excludedFieldAnnotations.add("org.springframework.test.context.bean.override.mockito.MockitoBean")
+            warn()
+        }
+    }
     options.release = 17
 }
 
@@ -180,4 +202,8 @@ tasks.named<Jar>("sourcesJar") {
         from(rootProject.file("LICENSE.txt"))
         from(rootProject.file("NOTICE.txt"))
     }
+}
+
+nullaway {
+    annotatedPackages.add("dev.markitect.liquibase")
 }
