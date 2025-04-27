@@ -8,6 +8,7 @@ indent_style = space
 insert_final_newline = true
 trim_trailing_whitespace = true
 ij_continuation_indent_size = 4
+ij_visual_guides = 80, 100, 140
 
 [{*.bat,*.cmd,*.ps1}]
 end_of_line = crlf
@@ -15,9 +16,12 @@ end_of_line = crlf
 [*.java]
 max_line_length = 100
 ij_java_binary_operation_sign_on_next_line = true
+ij_java_block_comment_add_space = true
 ij_java_block_comment_at_first_column = false
 ij_java_class_count_to_use_import_on_demand = 999
 ij_java_imports_layout = $*, |, *
+ij_java_line_comment_add_space = true
+ij_java_line_comment_add_space_on_reformat = true
 ij_java_line_comment_at_first_column = false
 ij_java_names_count_to_use_import_on_demand = 999
 ij_java_packages_to_use_import_on_demand = unset
