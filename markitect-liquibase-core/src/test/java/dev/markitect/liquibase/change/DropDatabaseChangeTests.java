@@ -1,5 +1,5 @@
 /*
- * Copyright 2023-2024 Markitect
+ * Copyright 2023-2025 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,11 +17,13 @@
 package dev.markitect.liquibase.change;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.catchThrowable;
 
 import dev.markitect.liquibase.database.DatabaseBuilder;
 import dev.markitect.liquibase.statement.DropDatabaseStatement;
 import java.util.List;
 import liquibase.database.Database;
+import liquibase.exception.RollbackImpossibleException;
 import liquibase.sql.UnparsedSql;
 import liquibase.sqlgenerator.SqlGeneratorFactory;
 import liquibase.structure.core.Catalog;
@@ -132,28 +134,6 @@ class DropDatabaseChangeTests {
   @CsvSource(
       textBlock =
           """
-          # databaseName
-          cat1
-          """,
-      delimiter = '|')
-  void createInverses(String databaseName) {
-    // given
-    var change = new DropDatabaseChange();
-    change.setDatabaseName(databaseName);
-    var inverse = new CreateDatabaseChange();
-    inverse.setDatabaseName(databaseName);
-
-    // when
-    var inverses = change.createInverses();
-
-    // then
-    assertThat(inverses).usingRecursiveFieldByFieldElementComparator().containsExactly(inverse);
-  }
-
-  @ParameterizedTest
-  @CsvSource(
-      textBlock =
-          """
           # databaseName | expected
           cat1           | Database cat1 dropped
           """,
@@ -234,13 +214,12 @@ class DropDatabaseChangeTests {
   @CsvSource(
       textBlock =
           """
-          # databaseClass                          | databaseName | expectedSql
-          liquibase.database.core.MSSQLDatabase    | cat1         | CREATE DATABASE cat1
-          liquibase.database.core.PostgresDatabase | cat1         | CREATE DATABASE cat1
+          # databaseClass                          | databaseName
+          liquibase.database.core.MSSQLDatabase    | cat1
+          liquibase.database.core.PostgresDatabase | cat1
           """,
       delimiter = '|')
-  void generateRollbackSql(
-      Class<? extends Database> databaseClass, String databaseName, String expectedSql)
+  void generateRollbackSql(Class<? extends Database> databaseClass, String databaseName)
       throws Exception {
     // given
     var change = new DropDatabaseChange();
@@ -251,14 +230,14 @@ class DropDatabaseChangeTests {
       assertThat(change.validate(database).hasErrors()).isFalse();
 
       // when
-      var rollbackSql =
-          SqlGeneratorFactory.getInstance()
-              .generateSql(change.generateRollbackStatements(database), database);
+      var thrown =
+          catchThrowable(
+              () ->
+                  SqlGeneratorFactory.getInstance()
+                      .generateSql(change.generateRollbackStatements(database), database));
 
       // then
-      assertThat(rollbackSql)
-          .usingRecursiveFieldByFieldElementComparator()
-          .containsExactly(new UnparsedSql(expectedSql, new Catalog(databaseName)));
+      assertThat(thrown).isInstanceOf(RollbackImpossibleException.class);
     }
   }
 }

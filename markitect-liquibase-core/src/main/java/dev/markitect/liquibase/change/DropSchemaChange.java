@@ -1,5 +1,5 @@
 /*
- * Copyright 2023-2024 Markitect
+ * Copyright 2023-2025 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,7 +20,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import dev.markitect.liquibase.statement.DropSchemaStatement;
 import liquibase.change.AbstractChange;
-import liquibase.change.Change;
 import liquibase.change.ChangeMetaData;
 import liquibase.change.DatabaseChange;
 import liquibase.change.DatabaseChangeProperty;
@@ -60,14 +59,6 @@ public class DropSchemaChange extends AbstractChange {
 
   public void setSchemaName(@Nullable String schemaName) {
     this.schemaName = schemaName;
-  }
-
-  @Override
-  protected Change[] createInverses() {
-    var inverse = new CreateSchemaChange();
-    inverse.setCatalogName(catalogName);
-    inverse.setSchemaName(schemaName);
-    return new Change[] {inverse};
   }
 
   @Override

@@ -1,5 +1,5 @@
 /*
- * Copyright 2023-2024 Markitect
+ * Copyright 2023-2025 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,11 +17,13 @@
 package dev.markitect.liquibase.change;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.catchThrowable;
 
 import dev.markitect.liquibase.database.DatabaseBuilder;
 import dev.markitect.liquibase.statement.CreateSchemaStatement;
 import java.util.List;
 import liquibase.database.Database;
+import liquibase.exception.RollbackImpossibleException;
 import liquibase.sql.UnparsedSql;
 import liquibase.sqlgenerator.SqlGeneratorFactory;
 import liquibase.structure.core.Schema;
@@ -176,31 +178,6 @@ class DropSchemaChangeTests {
   @CsvSource(
       textBlock =
           """
-          # catalogName | schemaName
-                        | sch1
-          cat1          | sch1
-          """,
-      delimiter = '|')
-  void createInverses(@Nullable String catalogName, String schemaName) {
-    // given
-    var change = new DropSchemaChange();
-    change.setCatalogName(catalogName);
-    change.setSchemaName(schemaName);
-    var inverse = new CreateSchemaChange();
-    inverse.setCatalogName(catalogName);
-    inverse.setSchemaName(schemaName);
-
-    // when
-    var inverses = change.createInverses();
-
-    // then
-    assertThat(inverses).usingRecursiveFieldByFieldElementComparator().containsExactly(inverse);
-  }
-
-  @ParameterizedTest
-  @CsvSource(
-      textBlock =
-          """
           # catalogName | schemaName | expected
                         | sch1       | Schema sch1 dropped
           cat1          | sch1       | Schema cat1.sch1 dropped
@@ -295,18 +272,15 @@ class DropSchemaChangeTests {
   @CsvSource(
       textBlock =
           """
-          # databaseClass                          | catalogName | schemaName | expectedSql
-          liquibase.database.core.H2Database       |             | sch1       | CREATE SCHEMA sch1
-          liquibase.database.core.HsqlDatabase     |             | sch1       | CREATE SCHEMA sch1
-          liquibase.database.core.MSSQLDatabase    |             | sch1       | CREATE SCHEMA sch1
-          liquibase.database.core.PostgresDatabase |             | sch1       | CREATE SCHEMA sch1
+          # databaseClass                          | catalogName | schemaName
+          liquibase.database.core.H2Database       |             | sch1
+          liquibase.database.core.HsqlDatabase     |             | sch1
+          liquibase.database.core.MSSQLDatabase    |             | sch1
+          liquibase.database.core.PostgresDatabase |             | sch1
           """,
       delimiter = '|')
   void generateRollbackSql(
-      Class<? extends Database> databaseClass,
-      @Nullable String catalogName,
-      String schemaName,
-      String expectedSql)
+      Class<? extends Database> databaseClass, @Nullable String catalogName, String schemaName)
       throws Exception {
     // given
     var change = new DropSchemaChange();
@@ -318,14 +292,14 @@ class DropSchemaChangeTests {
       assertThat(change.validate(database).hasErrors()).isFalse();
 
       // when
-      var rollbackSql =
-          SqlGeneratorFactory.getInstance()
-              .generateSql(change.generateRollbackStatements(database), database);
+      var thrown =
+          catchThrowable(
+              () ->
+                  SqlGeneratorFactory.getInstance()
+                      .generateSql(change.generateRollbackStatements(database), database));
 
       // then
-      assertThat(rollbackSql)
-          .usingRecursiveFieldByFieldElementComparator()
-          .containsExactly(new UnparsedSql(expectedSql, new Schema(catalogName, schemaName)));
+      assertThat(thrown).isInstanceOf(RollbackImpossibleException.class);
     }
   }
 }

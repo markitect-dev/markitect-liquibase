@@ -1,5 +1,5 @@
 /*
- * Copyright 2023-2024 Markitect
+ * Copyright 2023-2025 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,7 +20,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import dev.markitect.liquibase.statement.DropDatabaseStatement;
 import liquibase.change.AbstractChange;
-import liquibase.change.Change;
 import liquibase.change.ChangeMetaData;
 import liquibase.change.DatabaseChange;
 import liquibase.change.DatabaseChangeProperty;
@@ -47,13 +46,6 @@ public class DropDatabaseChange extends AbstractChange {
 
   public void setDatabaseName(@Nullable String databaseName) {
     this.databaseName = databaseName;
-  }
-
-  @Override
-  protected Change[] createInverses() {
-    var inverse = new CreateDatabaseChange();
-    inverse.setDatabaseName(databaseName);
-    return new Change[] {inverse};
   }
 
   @Override
