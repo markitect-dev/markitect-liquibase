@@ -1,12 +1,14 @@
-import com.github.gradle.node.variant.computeNodeDir
-import com.github.gradle.node.variant.computeNodeExec
-
 plugins {
     id("buildlogic.node-conventions")
     id("com.diffplug.spotless")
 }
 
 val ci = providers.environmentVariable("CI").isPresent
+val windows = providers.systemProperty("os.name").get().startsWith("Windows", ignoreCase = true)
+val nodeExecutable = tasks.nodeSetup.map { it.nodeDir.get().file(if (windows) "node.exe" else "bin/node") }
+val npmExecutable = tasks.nodeSetup.map { it.nodeDir.get().file(if (windows) "npm.cmd" else "bin/npm") }
+val npmInstallCache = rootProject.layout.projectDirectory.dir(".gradle/spotless-npm-install-cache")
+val npmrc = rootProject.file("config/spotless/.npmrc")
 
 spotless {
     ratchetFrom("origin/main")
@@ -23,7 +25,8 @@ spotless {
                 .excludeMutator("LambdaIsMethodReference")
                 .excludeMutator("LiteralsFirstInComparisons")
                 .excludeMutator("LocalVariableTypeInference")
-            googleJavaFormat(libs.versions.google.java.format.get()).reflowLongStrings()
+            googleJavaFormat(libs.versions.google.java.format.get())
+                .reflowLongStrings()
         }
     }
     kotlinGradle {
@@ -32,9 +35,10 @@ spotless {
     format("json5") {
         target("renovate.json5")
         prettier(libs.versions.prettier.asProvider().get())
-            .nodeExecutable(computeNodeExec(node, computeNodeDir(node)))
-            .npmInstallCache(rootProject.layout.projectDirectory.dir(".gradle/spotless-npm-install-cache"))
-            .npmrc(rootProject.file("config/spotless/.npmrc"))
+            .nodeExecutable(nodeExecutable)
+            .npmExecutable(npmExecutable)
+            .npmInstallCache(npmInstallCache)
+            .npmrc(npmrc)
             .config(
                 mapOf(
                     "parser" to "json5",
@@ -50,9 +54,10 @@ spotless {
                 "prettier-plugin-properties" to libs.versions.prettier.plugin.properties.get(),
             ),
         )
-            .nodeExecutable(computeNodeExec(node, computeNodeDir(node)))
-            .npmInstallCache(rootProject.layout.projectDirectory.dir(".gradle/spotless-npm-install-cache"))
-            .npmrc(rootProject.file("config/spotless/.npmrc"))
+            .nodeExecutable(nodeExecutable)
+            .npmExecutable(npmExecutable)
+            .npmInstallCache(npmInstallCache)
+            .npmrc(npmrc)
             .config(
                 mapOf(
                     "parser" to "dot-properties",
@@ -70,9 +75,10 @@ spotless {
                 "prettier-plugin-toml" to libs.versions.prettier.plugin.toml.get(),
             ),
         )
-            .nodeExecutable(computeNodeExec(node, computeNodeDir(node)))
-            .npmInstallCache(rootProject.layout.projectDirectory.dir(".gradle/spotless-npm-install-cache"))
-            .npmrc(rootProject.file("config/spotless/.npmrc"))
+            .nodeExecutable(nodeExecutable)
+            .npmExecutable(npmExecutable)
+            .npmInstallCache(npmInstallCache)
+            .npmrc(npmrc)
             .config(
                 mapOf(
                     "parser" to "toml",

@@ -86,6 +86,7 @@
     <maven.test.redirectTestOutputToFile>true</maven.test.redirectTestOutputToFile>
     <node.installDirectory>${maven.multiModuleProjectDirectory}/target</node.installDirectory>
     <node.executable>${node.installDirectory}/node/node</node.executable>
+    <npm.executable>${node.installDirectory}/node/npm</npm.executable>
     <nullaway.excludedFieldAnnotations xml:space="preserve">
       org.junit.jupiter.api.io.TempDir,org.mockito.Captor,org.mockito.InjectMocks,org.mockito.Mock,org.springframework.test.context.bean.override.mockito.MockitoBean
     </nullaway.excludedFieldAnnotations>
@@ -289,6 +290,7 @@
                 </includes>
                 <prettier>
                   <nodeExecutable>${node.executable}</nodeExecutable>
+                  <npmExecutable>${npm.executable}</npmExecutable>
                   <npmInstallCache>${spotless.npmInstallCache}</npmInstallCache>
                   <npmrc>${spotless.configDirectory}/.npmrc</npmrc>
                   <prettierVersion>${prettier.version}</prettierVersion>
@@ -304,6 +306,7 @@
                 </includes>
                 <prettier>
                   <nodeExecutable>${node.executable}</nodeExecutable>
+                  <npmExecutable>${npm.executable}</npmExecutable>
                   <npmInstallCache>${spotless.npmInstallCache}</npmInstallCache>
                   <npmrc>${spotless.configDirectory}/.npmrc</npmrc>
                   <devDependencies>
@@ -1327,6 +1330,7 @@
       </activation>
       <properties>
         <node.executable>${node.installDirectory}/node/node.exe</node.executable>
+        <npm.executable>${node.installDirectory}/node/npm.cmd</npm.executable>
       </properties>
     </profile>
   </profiles>
