@@ -1,5 +1,5 @@
 /*
- * Copyright 2023-2024 Markitect
+ * Copyright 2023-2025 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,10 +32,10 @@ class CatalogExistsGeneratorTests {
   @CsvSource(
       textBlock =
           """
-# databaseClass                                                       | connectionCatalogName | connectionSchemaName | catalogName | expectedSql
-dev.markitect.liquibase.database.mssql.MarkitectMssqlDatabase         | Cat1                  | dbo                  | Cat2        | SELECT CAST(CASE WHEN DB_ID(N'Cat2') IS NOT NULL THEN 1 ELSE 0 END AS bit)
-dev.markitect.liquibase.database.postgresql.MarkitectPostgresDatabase | Cat1                  | PUBLIC               | Cat2        | SELECT EXISTS(SELECT 1 FROM pg_catalog.pg_database WHERE datname = 'cat2')
-""",
+          # databaseClass                                                       | connectionCatalogName | connectionSchemaName | catalogName | expectedSql
+          dev.markitect.liquibase.database.mssql.MarkitectMssqlDatabase         | Cat1                  | dbo                  | Cat2        | SELECT CAST(CASE WHEN DB_ID(N'Cat2') IS NOT NULL THEN 1 ELSE 0 END AS bit)
+          dev.markitect.liquibase.database.postgresql.MarkitectPostgresDatabase | Cat1                  | PUBLIC               | Cat2        | SELECT EXISTS(SELECT 1 FROM pg_catalog.pg_database WHERE datname = 'cat2')
+          """,
       delimiter = '|')
   void generateSql(
       Class<? extends Database> databaseClass,
