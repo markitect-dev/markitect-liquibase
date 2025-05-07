@@ -43,14 +43,14 @@
   customManagers: [
     {
       customType: 'regex',
-      fileMatch: ['^\\.sdkmanrc$'],
+      managerFilePatterns: ['/^\\.sdkmanrc$/'],
       matchStrings: ['java=(?<currentValue>.+)-zulu\\n'],
       depNameTemplate: 'java',
       datasourceTemplate: 'custom.sdkmanJavaVersion',
     },
     {
       customType: 'regex',
-      fileMatch: ['^\\.sdkmanrc$'],
+      managerFilePatterns: ['/^\\.sdkmanrc$/'],
       matchStrings: ['gradle=(?<currentValue>.+)\\n'],
       depNameTemplate: 'gradle',
       datasourceTemplate: 'custom.sdkmanGradleVersion',
@@ -58,7 +58,7 @@
     },
     {
       customType: 'regex',
-      fileMatch: ['^\\.sdkmanrc$'],
+      managerFilePatterns: ['/^\\.sdkmanrc$/'],
       matchStrings: ['maven=(?<currentValue>.+)\\n'],
       depNameTemplate: 'maven',
       datasourceTemplate: 'custom.sdkmanMavenVersion',
@@ -66,7 +66,7 @@
     },
     {
       customType: 'regex',
-      fileMatch: ['^\\.sdkmanrc$'],
+      managerFilePatterns: ['/^\\.sdkmanrc$/'],
       matchStrings: ['mvnd=(?<currentValue>.+)\\n'],
       depNameTemplate: 'mvnd',
       datasourceTemplate: 'custom.sdkmanMvndVersion',
@@ -74,13 +74,13 @@
     },
     {
       customType: 'regex',
-      fileMatch: ['^gradle/libs\\.versions\\.toml$'],
+      managerFilePatterns: ['/^gradle/libs\\.versions\\.toml$/'],
       matchStrings: ['(?<depName>node) = "(?<currentValue>.+)"\\n'],
       datasourceTemplate: 'node-version',
     },
     {
       customType: 'regex',
-      fileMatch: ['^gradle/libs\\.versions\\.toml$'],
+      managerFilePatterns: ['/^gradle/libs\\.versions\\.toml$/'],
       matchStrings: [
         '(?<depName>prettier(?:|-plugin-(?:properties|toml))?) = "(?<currentValue>.+)"\\n',
       ],
@@ -88,13 +88,13 @@
     },
     {
       customType: 'regex',
-      fileMatch: ['^pom\\.xml$'],
+      managerFilePatterns: ['/^pom\\.xml$/'],
       matchStrings: ['<(?<depName>node)\\.version>(?<currentValue>.+)<\\/'],
       datasourceTemplate: 'node-version',
     },
     {
       customType: 'regex',
-      fileMatch: ['^pom\\.xml$'],
+      managerFilePatterns: ['/^pom\\.xml$/'],
       matchStrings: [
         '<(?<depName>prettier(?:|-plugin-properties)?)\\.version>(?<currentValue>.+)<\\/',
       ],
