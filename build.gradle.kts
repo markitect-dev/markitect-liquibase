@@ -23,3 +23,15 @@ nexusPublishing {
         }
     }
 }
+
+idea {
+    module {
+        excludeDirs.addAll(
+            listOf(
+                file(".idea"),
+                file("markitect-liquibase-parent/target"),
+                file("markitect-liquibase-spring-boot-archetype/target"),
+            ),
+        )
+    }
+}

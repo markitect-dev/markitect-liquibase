@@ -2,6 +2,7 @@ plugins {
     `kotlin-dsl`
     alias(libs.plugins.com.diffplug.spotless)
     alias(libs.plugins.com.github.node.gradle.node)
+    idea
 }
 
 val ci = providers.environmentVariable("CI").isPresent
@@ -81,6 +82,12 @@ tasks.named("spotlessProperties") {
 tasks.spotlessCheck {
     if (!ci) {
         dependsOn(tasks.spotlessApply)
+    }
+}
+
+idea {
+    module {
+        excludeDirs.add(file(".kotlin"))
     }
 }
 
