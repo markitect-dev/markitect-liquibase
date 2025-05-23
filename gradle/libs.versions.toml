@@ -73,7 +73,7 @@ sonarqube-plugin = "6.2.0.5505"
 spotbugs = "4.9.3"
 spotbugs-plugin = "6.1.12"
 spotless-plugin = "7.0.3"
-spring-boot = "3.4.5"
+spring-boot = "3.4.6"
 spring-framework = "6.2.7"
 testcontainers = "1.21.0"
 
