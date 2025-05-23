@@ -1,5 +1,5 @@
 /*
- * Copyright 2023-2024 Markitect
+ * Copyright 2023-2025 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -71,7 +71,7 @@ import org.springframework.util.StringUtils;
     before = LiquibaseAutoConfiguration.class,
     after = {DataSourceAutoConfiguration.class, HibernateJpaAutoConfiguration.class})
 @ConditionalOnClass({SpringLiquibase.class, DatabaseChange.class})
-@ConditionalOnProperty(prefix = "spring.liquibase", name = "enabled", matchIfMissing = true)
+@ConditionalOnProperty(name = "spring.liquibase.enabled", matchIfMissing = true)
 @Conditional(LiquibaseDataSourceCondition.class)
 @Import(DatabaseInitializationDependencyConfigurer.class)
 @ImportRuntimeHints(LiquibaseAutoConfigurationRuntimeHints.class)
@@ -189,6 +189,16 @@ public class MarkitectLiquibaseAutoConfiguration {
       } catch (NoSuchMethodError ignore) {
         // Not supported on Spring Boot 3.2
       }
+      try {
+        liquibase.setAnalyticsEnabled(properties.getAnalyticsEnabled());
+      } catch (NoSuchMethodError ignore) {
+        // Spring Boot 3.4 and earlier
+      }
+      try {
+        liquibase.setLicenseKey(properties.getLicenseKey());
+      } catch (NoSuchMethodError ignore) {
+        // Spring Boot 3.4 and earlier
+      }
       customizers.orderedStream().forEach(customizer -> customizer.customize(liquibase));
       liquibase.setOutputDefaultCatalog(markitectProperties.isOutputDefaultCatalog());
       liquibase.setOutputDefaultSchema(markitectProperties.isOutputDefaultSchema());
@@ -253,7 +263,7 @@ public class MarkitectLiquibaseAutoConfiguration {
     @SuppressWarnings("unused")
     private static final class JdbcConnectionDetailsCondition {}
 
-    @ConditionalOnProperty(prefix = "spring.liquibase", name = "url")
+    @ConditionalOnProperty(name = "spring.liquibase.url")
     @SuppressWarnings("unused")
     interface LiquibaseUrlCondition {}
   }
