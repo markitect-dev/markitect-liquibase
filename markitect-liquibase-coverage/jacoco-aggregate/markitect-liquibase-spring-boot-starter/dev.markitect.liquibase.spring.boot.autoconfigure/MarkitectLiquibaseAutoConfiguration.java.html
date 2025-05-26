@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>MarkitectLiquibaseAutoConfiguration.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">markitect-liquibase-coverage</a> &gt; <a href="../index.html" class="el_bundle">markitect-liquibase-spring-boot-starter</a> &gt; <a href="index.source.html" class="el_package">dev.markitect.liquibase.spring.boot.autoconfigure</a> &gt; <span class="el_source">MarkitectLiquibaseAutoConfiguration.java</span></div><h1>MarkitectLiquibaseAutoConfiguration.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2023-2024 Markitect
+ * Copyright 2023-2025 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -71,7 +71,7 @@ import org.springframework.util.StringUtils;
     before = LiquibaseAutoConfiguration.class,
     after = {DataSourceAutoConfiguration.class, HibernateJpaAutoConfiguration.class})
 @ConditionalOnClass({SpringLiquibase.class, DatabaseChange.class})
-@ConditionalOnProperty(prefix = &quot;spring.liquibase&quot;, name = &quot;enabled&quot;, matchIfMissing = true)
+@ConditionalOnProperty(name = &quot;spring.liquibase.enabled&quot;, matchIfMissing = true)
 @Conditional(LiquibaseDataSourceCondition.class)
 @Import(DatabaseInitializationDependencyConfigurer.class)
 @ImportRuntimeHints(LiquibaseAutoConfigurationRuntimeHints.class)
@@ -189,61 +189,71 @@ public class MarkitectLiquibaseAutoConfiguration {
 <span class="nc" id="L189">      } catch (NoSuchMethodError ignore) {</span>
         // Not supported on Spring Boot 3.2
 <span class="fc" id="L191">      }</span>
-<span class="pc" id="L192">      customizers.orderedStream().forEach(customizer -&gt; customizer.customize(liquibase));</span>
-<span class="fc" id="L193">      liquibase.setOutputDefaultCatalog(markitectProperties.isOutputDefaultCatalog());</span>
-<span class="fc" id="L194">      liquibase.setOutputDefaultSchema(markitectProperties.isOutputDefaultSchema());</span>
-<span class="fc" id="L195">      return liquibase;</span>
+      try {
+<span class="fc" id="L193">        liquibase.setAnalyticsEnabled(properties.getAnalyticsEnabled());</span>
+<span class="nc" id="L194">      } catch (NoSuchMethodError ignore) {</span>
+        // Spring Boot 3.4 and earlier
+<span class="fc" id="L196">      }</span>
+      try {
+<span class="fc" id="L198">        liquibase.setLicenseKey(properties.getLicenseKey());</span>
+<span class="nc" id="L199">      } catch (NoSuchMethodError ignore) {</span>
+        // Spring Boot 3.4 and earlier
+<span class="fc" id="L201">      }</span>
+<span class="pc" id="L202">      customizers.orderedStream().forEach(customizer -&gt; customizer.customize(liquibase));</span>
+<span class="fc" id="L203">      liquibase.setOutputDefaultCatalog(markitectProperties.isOutputDefaultCatalog());</span>
+<span class="fc" id="L204">      liquibase.setOutputDefaultSchema(markitectProperties.isOutputDefaultSchema());</span>
+<span class="fc" id="L205">      return liquibase;</span>
     }
 
     private static DataSource toMigrationDataSource(
         @Nullable DataSource liquibaseDataSource,
         @Nullable DataSource dataSource,
         LiquibaseConnectionDetails connectionDetails) {
-<span class="fc bfc" id="L202" title="All 2 branches covered.">      if (liquibaseDataSource != null) {</span>
-<span class="fc" id="L203">        return liquibaseDataSource;</span>
+<span class="fc bfc" id="L212" title="All 2 branches covered.">      if (liquibaseDataSource != null) {</span>
+<span class="fc" id="L213">        return liquibaseDataSource;</span>
       }
-<span class="fc" id="L205">      String url = connectionDetails.getJdbcUrl();</span>
-<span class="fc bfc" id="L206" title="All 2 branches covered.">      if (url != null) {</span>
-<span class="fc" id="L207">        var builder = DataSourceBuilder.create();</span>
-<span class="fc" id="L208">        builder.type(SimpleDriverDataSource.class);</span>
-<span class="fc" id="L209">        builder.url(url);</span>
-<span class="fc" id="L210">        applyCommonBuilderProperties(connectionDetails, builder);</span>
-<span class="fc" id="L211">        return builder.build();</span>
+<span class="fc" id="L215">      String url = connectionDetails.getJdbcUrl();</span>
+<span class="fc bfc" id="L216" title="All 2 branches covered.">      if (url != null) {</span>
+<span class="fc" id="L217">        var builder = DataSourceBuilder.create();</span>
+<span class="fc" id="L218">        builder.type(SimpleDriverDataSource.class);</span>
+<span class="fc" id="L219">        builder.url(url);</span>
+<span class="fc" id="L220">        applyCommonBuilderProperties(connectionDetails, builder);</span>
+<span class="fc" id="L221">        return builder.build();</span>
       }
-<span class="fc bfc" id="L213" title="All 2 branches covered.">      Assert.state(dataSource != null, &quot;Liquibase migration DataSource missing&quot;);</span>
-<span class="fc bfc" id="L214" title="All 2 branches covered.">      if (connectionDetails.getUsername() != null) {</span>
-<span class="fc" id="L215">        var builder = DataSourceBuilder.derivedFrom(dataSource);</span>
-<span class="fc" id="L216">        builder.type(SimpleDriverDataSource.class);</span>
-<span class="fc" id="L217">        applyCommonBuilderProperties(connectionDetails, builder);</span>
-<span class="fc" id="L218">        return builder.build();</span>
+<span class="fc bfc" id="L223" title="All 2 branches covered.">      Assert.state(dataSource != null, &quot;Liquibase migration DataSource missing&quot;);</span>
+<span class="fc bfc" id="L224" title="All 2 branches covered.">      if (connectionDetails.getUsername() != null) {</span>
+<span class="fc" id="L225">        var builder = DataSourceBuilder.derivedFrom(dataSource);</span>
+<span class="fc" id="L226">        builder.type(SimpleDriverDataSource.class);</span>
+<span class="fc" id="L227">        applyCommonBuilderProperties(connectionDetails, builder);</span>
+<span class="fc" id="L228">        return builder.build();</span>
       }
-<span class="fc" id="L220">      return verifyNotNull(dataSource);</span>
+<span class="fc" id="L230">      return verifyNotNull(dataSource);</span>
     }
 
     private static void applyCommonBuilderProperties(
         LiquibaseConnectionDetails connectionDetails, DataSourceBuilder&lt;?&gt; builder) {
-<span class="fc" id="L225">      builder.username(connectionDetails.getUsername());</span>
-<span class="fc" id="L226">      builder.password(connectionDetails.getPassword());</span>
-<span class="fc" id="L227">      Optional.ofNullable(connectionDetails.getDriverClassName())</span>
-<span class="fc" id="L228">          .filter(StringUtils::hasText)</span>
-<span class="fc" id="L229">          .ifPresent(builder::driverClassName);</span>
-<span class="fc" id="L230">    }</span>
+<span class="fc" id="L235">      builder.username(connectionDetails.getUsername());</span>
+<span class="fc" id="L236">      builder.password(connectionDetails.getPassword());</span>
+<span class="fc" id="L237">      Optional.ofNullable(connectionDetails.getDriverClassName())</span>
+<span class="fc" id="L238">          .filter(StringUtils::hasText)</span>
+<span class="fc" id="L239">          .ifPresent(builder::driverClassName);</span>
+<span class="fc" id="L240">    }</span>
   }
 
   @ConditionalOnClass(Customizer.class)
   @SuppressWarnings(&quot;unused&quot;)
-<span class="fc" id="L235">  static class CustomizerConfiguration {</span>
+<span class="fc" id="L245">  static class CustomizerConfiguration {</span>
     @Bean
     @ConditionalOnBean(Customizer.class)
     SpringLiquibaseCustomizer springLiquibaseCustomizer(Customizer&lt;Liquibase&gt; customizer) {
-<span class="nc" id="L239">      return liquibase -&gt; liquibase.setCustomizer(customizer);</span>
+<span class="nc" id="L249">      return liquibase -&gt; liquibase.setCustomizer(customizer);</span>
     }
   }
 
   static final class LiquibaseDataSourceCondition extends AnyNestedCondition {
     LiquibaseDataSourceCondition() {
-<span class="fc" id="L245">      super(ConfigurationPhase.REGISTER_BEAN);</span>
-<span class="fc" id="L246">    }</span>
+<span class="fc" id="L255">      super(ConfigurationPhase.REGISTER_BEAN);</span>
+<span class="fc" id="L256">    }</span>
 
     @ConditionalOnBean(DataSource.class)
     @SuppressWarnings(&quot;unused&quot;)
@@ -253,45 +263,45 @@ public class MarkitectLiquibaseAutoConfiguration {
     @SuppressWarnings(&quot;unused&quot;)
     private static final class JdbcConnectionDetailsCondition {}
 
-    @ConditionalOnProperty(prefix = &quot;spring.liquibase&quot;, name = &quot;url&quot;)
+    @ConditionalOnProperty(name = &quot;spring.liquibase.url&quot;)
     @SuppressWarnings(&quot;unused&quot;)
     interface LiquibaseUrlCondition {}
   }
 
-<span class="fc" id="L261">  static class LiquibaseAutoConfigurationRuntimeHints implements RuntimeHintsRegistrar {</span>
+<span class="fc" id="L271">  static class LiquibaseAutoConfigurationRuntimeHints implements RuntimeHintsRegistrar {</span>
     @Override
     public void registerHints(RuntimeHints hints, @Nullable ClassLoader classLoader) {
-<span class="fc" id="L264">      hints.resources().registerPattern(&quot;db/changelog/*&quot;);</span>
-<span class="fc" id="L265">    }</span>
+<span class="fc" id="L274">      hints.resources().registerPattern(&quot;db/changelog/*&quot;);</span>
+<span class="fc" id="L275">    }</span>
   }
 
   static final class PropertiesLiquibaseConnectionDetails implements LiquibaseConnectionDetails {
     private final LiquibaseProperties properties;
 
-<span class="fc" id="L271">    PropertiesLiquibaseConnectionDetails(LiquibaseProperties properties) {</span>
-<span class="fc" id="L272">      checkNotNull(properties, &quot;Properties must not be null&quot;);</span>
-<span class="fc" id="L273">      this.properties = properties;</span>
-<span class="fc" id="L274">    }</span>
+<span class="fc" id="L281">    PropertiesLiquibaseConnectionDetails(LiquibaseProperties properties) {</span>
+<span class="fc" id="L282">      checkNotNull(properties, &quot;Properties must not be null&quot;);</span>
+<span class="fc" id="L283">      this.properties = properties;</span>
+<span class="fc" id="L284">    }</span>
 
     @Override
     public @Nullable String getUsername() {
-<span class="fc" id="L278">      return properties.getUser();</span>
+<span class="fc" id="L288">      return properties.getUser();</span>
     }
 
     @Override
     public @Nullable String getPassword() {
-<span class="fc" id="L283">      return properties.getPassword();</span>
+<span class="fc" id="L293">      return properties.getPassword();</span>
     }
 
     @Override
     public @Nullable String getJdbcUrl() {
-<span class="fc" id="L288">      return properties.getUrl();</span>
+<span class="fc" id="L298">      return properties.getUrl();</span>
     }
 
     @Override
     public @Nullable String getDriverClassName() {
-<span class="fc" id="L293">      return Optional.ofNullable(properties.getDriverClassName())</span>
-<span class="fc" id="L294">          .orElseGet(LiquibaseConnectionDetails.super::getDriverClassName);</span>
+<span class="fc" id="L303">      return Optional.ofNullable(properties.getDriverClassName())</span>
+<span class="fc" id="L304">          .orElseGet(LiquibaseConnectionDetails.super::getDriverClassName);</span>
     }
   }
 
