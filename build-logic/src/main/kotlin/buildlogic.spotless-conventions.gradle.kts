@@ -14,7 +14,7 @@ spotless {
     ratchetFrom("origin/main")
     plugins.withId("java") {
         java {
-            targetExclude("build/**")
+            target("src/**/*.java")
             licenseHeaderFile(rootProject.file("config/spotless/license-header-java"))
             cleanthat()
                 .version(libs.versions.cleanthat.get())
@@ -32,7 +32,7 @@ spotless {
     kotlinGradle {
         ktlint(libs.versions.ktlint.get())
     }
-    format("json5") {
+    json {
         target("renovate.json5")
         prettier(libs.versions.prettier.asProvider().get())
             .nodeExecutable(nodeExecutable)
@@ -41,7 +41,6 @@ spotless {
             .npmrc(npmrc)
             .config(
                 mapOf(
-                    "parser" to "json5",
                     "singleQuote" to true,
                 ),
             )
@@ -103,7 +102,7 @@ spotless {
     }
 }
 
-listOf("spotlessJson5", "spotlessProperties", "spotlessToml").forEach { name ->
+listOf("spotlessJson", "spotlessProperties", "spotlessToml").forEach { name ->
     tasks.named(name) {
         dependsOn(rootProject.tasks.nodeSetup)
     }

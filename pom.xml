@@ -233,9 +233,9 @@
           <configuration>
             <ratchetFrom>origin/main</ratchetFrom>
             <java>
-              <excludes>
-                <exclude>target/**</exclude>
-              </excludes>
+              <includes>
+                <include>src/**/*.java</include>
+              </includes>
               <licenseHeader>
                 <file>${spotless.configDirectory}/license-header-java</file>
               </licenseHeader>
@@ -259,6 +259,21 @@
                 <reflowLongStrings>true</reflowLongStrings>
               </googleJavaFormat>
             </java>
+            <json>
+              <includes>
+                <include>renovate.json5</include>
+              </includes>
+              <prettier>
+                <nodeExecutable>${node.executable}</nodeExecutable>
+                <npmExecutable>${npm.executable}</npmExecutable>
+                <npmInstallCache>${spotless.npmInstallCache}</npmInstallCache>
+                <npmrc>${spotless.configDirectory}/.npmrc</npmrc>
+                <prettierVersion>${prettier.version}</prettierVersion>
+                <config>
+                  <singleQuote>true</singleQuote>
+                </config>
+              </prettier>
+            </json>
             <pom>
               <includes>
                 <include>src/it/**/pom.xml</include>
@@ -274,22 +289,6 @@
               </sortPom>
             </pom>
             <formats>
-              <format>
-                <includes>
-                  <include>renovate.json5</include>
-                </includes>
-                <prettier>
-                  <nodeExecutable>${node.executable}</nodeExecutable>
-                  <npmExecutable>${npm.executable}</npmExecutable>
-                  <npmInstallCache>${spotless.npmInstallCache}</npmInstallCache>
-                  <npmrc>${spotless.configDirectory}/.npmrc</npmrc>
-                  <prettierVersion>${prettier.version}</prettierVersion>
-                  <config>
-                    <parser>json5</parser>
-                    <singleQuote>true</singleQuote>
-                  </config>
-                </prettier>
-              </format>
               <format>
                 <includes>
                   <include>src/**/*.properties</include>
