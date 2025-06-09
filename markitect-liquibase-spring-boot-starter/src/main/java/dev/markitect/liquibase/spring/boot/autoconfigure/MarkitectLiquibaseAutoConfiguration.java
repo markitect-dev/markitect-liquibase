@@ -25,7 +25,6 @@ import dev.markitect.liquibase.spring.MarkitectSpringLiquibase;
 import dev.markitect.liquibase.spring.SpringLiquibaseBeanPostProcessor;
 import dev.markitect.liquibase.spring.boot.autoconfigure.MarkitectLiquibaseAutoConfiguration.LiquibaseAutoConfigurationRuntimeHints;
 import dev.markitect.liquibase.spring.boot.autoconfigure.MarkitectLiquibaseAutoConfiguration.LiquibaseDataSourceCondition;
-import java.lang.reflect.InvocationTargetException;
 import java.util.Optional;
 import javax.sql.DataSource;
 import liquibase.Liquibase;
@@ -128,42 +127,14 @@ public class MarkitectLiquibaseAutoConfiguration {
       liquibase.setShouldRun(properties.isEnabled());
       liquibase.setDataSource(migrationDataSource);
       liquibase.setChangeLog(properties.getChangeLog());
-      try {
-        Optional.ofNullable(properties.getContexts())
-            .filter(not(CollectionUtils::isEmpty))
-            .map(StringUtils::collectionToCommaDelimitedString)
-            .ifPresent(liquibase::setContexts);
-      } catch (NoSuchMethodError e) {
-        // Spring Boot 3.3 and earlier
-        try {
-          liquibase.setContexts(
-              (String) LiquibaseProperties.class.getMethod("getContexts").invoke(properties));
-        } catch (NoSuchMethodException
-            | IllegalAccessException
-            | InvocationTargetException
-            | RuntimeException unused) {
-          // Unsupported Spring Boot version
-          throw e;
-        }
-      }
-      try {
-        Optional.ofNullable(properties.getLabelFilter())
-            .filter(not(CollectionUtils::isEmpty))
-            .map(StringUtils::collectionToCommaDelimitedString)
-            .ifPresent(liquibase::setLabelFilter);
-      } catch (NoSuchMethodError e) {
-        // Spring Boot 3.3 and earlier
-        try {
-          liquibase.setLabelFilter(
-              (String) LiquibaseProperties.class.getMethod("getLabelFilter").invoke(properties));
-        } catch (NoSuchMethodException
-            | IllegalAccessException
-            | InvocationTargetException
-            | RuntimeException unused) {
-          // Unsupported Spring Boot version
-          throw e;
-        }
-      }
+      Optional.ofNullable(properties.getContexts())
+          .filter(not(CollectionUtils::isEmpty))
+          .map(StringUtils::collectionToCommaDelimitedString)
+          .ifPresent(liquibase::setContexts);
+      Optional.ofNullable(properties.getLabelFilter())
+          .filter(not(CollectionUtils::isEmpty))
+          .map(StringUtils::collectionToCommaDelimitedString)
+          .ifPresent(liquibase::setLabelFilter);
       liquibase.setTag(properties.getTag());
       liquibase.setDefaultSchema(properties.getDefaultSchema());
       liquibase.setLiquibaseTablespace(properties.getLiquibaseTablespace());
@@ -181,14 +152,10 @@ public class MarkitectLiquibaseAutoConfiguration {
           .map(Enum::name)
           .map(UpdateSummaryOutputEnum::valueOf)
           .ifPresent(liquibase::setShowSummaryOutput);
-      try {
-        Optional.ofNullable(properties.getUiService())
-            .map(Enum::name)
-            .map(UIServiceEnum::valueOf)
-            .ifPresent(liquibase::setUiService);
-      } catch (NoSuchMethodError ignore) {
-        // Not supported on Spring Boot 3.2
-      }
+      Optional.ofNullable(properties.getUiService())
+          .map(Enum::name)
+          .map(UIServiceEnum::valueOf)
+          .ifPresent(liquibase::setUiService);
       try {
         liquibase.setAnalyticsEnabled(properties.getAnalyticsEnabled());
       } catch (NoSuchMethodError ignore) {
