@@ -158,12 +158,12 @@ public class MarkitectLiquibaseAutoConfiguration {
 <span class="fc" id="L158">          .ifPresent(liquibase::setUiService);</span>
       try {
 <span class="fc" id="L160">        liquibase.setAnalyticsEnabled(properties.getAnalyticsEnabled());</span>
-<span class="nc" id="L161">      } catch (NoSuchMethodError ignore) {</span>
+<span class="fc" id="L161">      } catch (NoSuchMethodError ignore) {</span>
         // Spring Boot 3.4 and earlier
 <span class="fc" id="L163">      }</span>
       try {
 <span class="fc" id="L165">        liquibase.setLicenseKey(properties.getLicenseKey());</span>
-<span class="nc" id="L166">      } catch (NoSuchMethodError ignore) {</span>
+<span class="fc" id="L166">      } catch (NoSuchMethodError ignore) {</span>
         // Spring Boot 3.4 and earlier
 <span class="fc" id="L168">      }</span>
 <span class="pc" id="L169">      customizers.orderedStream().forEach(customizer -&gt; customizer.customize(liquibase));</span>
