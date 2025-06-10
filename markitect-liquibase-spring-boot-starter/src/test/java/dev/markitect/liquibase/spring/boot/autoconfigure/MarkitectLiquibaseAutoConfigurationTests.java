@@ -1,5 +1,5 @@
 /*
- * Copyright 2023-2024 Markitect
+ * Copyright 2023-2025 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,7 +38,10 @@ import liquibase.integration.spring.SpringLiquibase;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.Mock;
+import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.aot.hint.ResourceHints;
 import org.springframework.aot.hint.RuntimeHints;
@@ -66,7 +69,7 @@ class MarkitectLiquibaseAutoConfigurationTests {
 
   @Nested
   class MarkitectLiquibaseConfigurationTests {
-    private final LiquibaseProperties liquibaseProperties = new LiquibaseProperties();
+    @Spy private final LiquibaseProperties liquibaseProperties = new LiquibaseProperties();
     private final MarkitectLiquibaseProperties markitectLiquibaseProperties =
         new MarkitectLiquibaseProperties();
     private final MarkitectLiquibaseConfiguration markitectLiquibaseConfiguration =
@@ -98,11 +101,16 @@ class MarkitectLiquibaseAutoConfigurationTests {
           .hasMessage("Liquibase migration DataSource missing");
     }
 
-    @Test
+    @ParameterizedTest
+    @ValueSource(strings = {"3.4.x", "3.5.x"})
     @SuppressWarnings("ResultOfMethodCallIgnored")
-    void shouldCreateLiquibaseBeanUsingLiquibaseDataSource() {
+    void shouldCreateLiquibaseBeanUsingLiquibaseDataSource(String springBootVersion) {
       // given
       given(liquibaseDataSourceProvider.getIfAvailable()).willReturn(liquibaseDataSource);
+      if (springBootVersion.equals("3.4.x")) {
+        given(liquibaseProperties.getAnalyticsEnabled()).willThrow(NoSuchMethodError.class);
+        given(liquibaseProperties.getLicenseKey()).willThrow(NoSuchMethodError.class);
+      }
 
       // when
       var liquibase =
@@ -125,12 +133,17 @@ class MarkitectLiquibaseAutoConfigurationTests {
           .isSameAs(liquibaseDataSource);
     }
 
-    @Test
+    @ParameterizedTest
+    @ValueSource(strings = {"3.4.x", "3.5.x"})
     @SuppressWarnings("ResultOfMethodCallIgnored")
-    void shouldCreateLiquibaseBeanUsingDataSource() {
+    void shouldCreateLiquibaseBeanUsingDataSource(String springBootVersion) {
       // given
       var dataSource = mock(DataSource.class);
       given(dataSourceProvider.getIfUnique()).willReturn(dataSource);
+      if (springBootVersion.equals("3.4.x")) {
+        given(liquibaseProperties.getAnalyticsEnabled()).willThrow(NoSuchMethodError.class);
+        given(liquibaseProperties.getLicenseKey()).willThrow(NoSuchMethodError.class);
+      }
 
       // when
       var liquibase =
@@ -153,10 +166,11 @@ class MarkitectLiquibaseAutoConfigurationTests {
           .isSameAs(dataSource);
     }
 
-    @Test
+    @ParameterizedTest
+    @ValueSource(strings = {"3.4.x", "3.5.x"})
     @SuppressFBWarnings("HARD_CODE_PASSWORD")
     @SuppressWarnings({"ResultOfMethodCallIgnored", "UnnecessarilyFullyQualified"})
-    void shouldCreateLiquibaseBeanUsingLiquibaseUrl() {
+    void shouldCreateLiquibaseBeanUsingLiquibaseUrl(String springBootVersion) {
       // given
       String url = "jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false";
       liquibaseProperties.setDriverClassName("org.h2.Driver");
@@ -170,6 +184,10 @@ class MarkitectLiquibaseAutoConfigurationTests {
           .willAnswer(invocation -> liquibaseProperties.getPassword());
       given(connectionDetails.getDriverClassName())
           .willAnswer(invocation -> liquibaseProperties.getDriverClassName());
+      if (springBootVersion.equals("3.4.x")) {
+        given(liquibaseProperties.getAnalyticsEnabled()).willThrow(NoSuchMethodError.class);
+        given(liquibaseProperties.getLicenseKey()).willThrow(NoSuchMethodError.class);
+      }
 
       // when
       var liquibase =
@@ -201,10 +219,11 @@ class MarkitectLiquibaseAutoConfigurationTests {
           .containsExactly(org.h2.Driver.class, url, "dbuser", "letmein");
     }
 
-    @Test
+    @ParameterizedTest
+    @ValueSource(strings = {"3.4.x", "3.5.x"})
     @SuppressFBWarnings("HARD_CODE_PASSWORD")
     @SuppressWarnings({"ResultOfMethodCallIgnored", "UnnecessarilyFullyQualified"})
-    void shouldCreateLiquibaseBeanUsingDataSourceUrl() {
+    void shouldCreateLiquibaseBeanUsingDataSourceUrl(String springBootVersion) {
       // given
       String url = "jdbc:h2:mem:" + UUID.randomUUID() + ";DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false";
       var dataSource = new SimpleDriverDataSource();
@@ -220,6 +239,10 @@ class MarkitectLiquibaseAutoConfigurationTests {
       given(connectionDetails.getPassword())
           .willAnswer(invocation -> liquibaseProperties.getPassword());
       given(connectionDetails.getDriverClassName()).willReturn("org.h2.Driver");
+      if (springBootVersion.equals("3.4.x")) {
+        given(liquibaseProperties.getAnalyticsEnabled()).willThrow(NoSuchMethodError.class);
+        given(liquibaseProperties.getLicenseKey()).willThrow(NoSuchMethodError.class);
+      }
 
       // when
       var liquibase =
