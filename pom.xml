@@ -100,7 +100,7 @@
     <assertj.version>3.27.3</assertj.version>
     <awaitility.version>4.3.0</awaitility.version>
     <bnd-annotation.version>7.1.0</bnd-annotation.version>
-    <byte-buddy.version>1.17.5</byte-buddy.version>
+    <byte-buddy.version>1.17.6</byte-buddy.version>
     <central-publishing-maven-plugin.version>0.7.0</central-publishing-maven-plugin.version>
     <checkstyle.version>10.25.0</checkstyle.version>
     <cleanthat.version>2.22</cleanthat.version>
