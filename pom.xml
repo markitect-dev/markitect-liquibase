@@ -165,7 +165,7 @@
     <micrometer.version>1.15.1</micrometer.version>
     <mockito.version>5.18.0</mockito.version>
     <mssql-jdbc.version>12.10.1.jre11</mssql-jdbc.version>
-    <node.version>22.16.0</node.version>
+    <node.version>22.17.0</node.version>
     <nullaway.version>0.12.7</nullaway.version>
     <objenesis.version>3.4</objenesis.version>
     <opencsv.version>5.11.2</opencsv.version>
