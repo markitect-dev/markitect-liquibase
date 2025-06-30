@@ -181,7 +181,7 @@ tasks.jar {
     onlyIf { !testProject }
     if (project.hasProperty("automaticModuleName")) {
         manifest {
-            attributes("Automatic-Module-Name" to project.property("automaticModuleName"))
+            attributes(mapOf("Automatic-Module-Name" to project.property("automaticModuleName")))
         }
     }
     metaInf {
