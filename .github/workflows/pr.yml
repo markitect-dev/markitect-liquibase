@@ -134,7 +134,7 @@ jobs:
           restore-keys: ${{ runner.os }}-sonar
 
       - name: Analyze
-        run: ./gradlew sonar --info -Dsonar.host.url="$SONAR_HOST_URL" -Dsonar.organization="$SONAR_ORGANIZATION" -Dsonar.projectKey="$SONAR_PROJECTKEY"
+        run: ./gradlew sonar --info --no-parallel -Dsonar.host.url="$SONAR_HOST_URL" -Dsonar.organization="$SONAR_ORGANIZATION" -Dsonar.projectKey="$SONAR_PROJECTKEY"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
