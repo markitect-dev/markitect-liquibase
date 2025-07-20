@@ -122,7 +122,7 @@
     <guava.version>33.4.8-jre</guava.version>
     <h2.version>2.3.232</h2.version>
     <hamcrest.version>3.0</hamcrest.version>
-    <hikaricp.version>6.3.0</hikaricp.version>
+    <hikaricp.version>6.3.1</hikaricp.version>
     <hsqldb.version>2.7.4</hsqldb.version>
     <jackson.version>2.19.2</jackson.version>
     <jacoco.version>0.8.13</jacoco.version>
