@@ -104,7 +104,7 @@
     <central-publishing-maven-plugin.version>0.8.0</central-publishing-maven-plugin.version>
     <checkstyle.version>10.26.1</checkstyle.version>
     <cleanthat.version>2.23</cleanthat.version>
-    <commons-codec.version>1.18.0</commons-codec.version>
+    <commons-codec.version>1.19.0</commons-codec.version>
     <commons-collections4.version>4.5.0</commons-collections4.version>
     <commons-compress.version>1.27.1</commons-compress.version>
     <commons-io.version>2.20.0</commons-io.version>
