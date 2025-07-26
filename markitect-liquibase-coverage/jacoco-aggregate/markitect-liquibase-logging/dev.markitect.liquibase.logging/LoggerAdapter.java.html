@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>LoggerAdapter.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">markitect-liquibase-coverage</a> &gt; <a href="../index.html" class="el_bundle">markitect-liquibase-logging</a> &gt; <a href="index.source.html" class="el_package">dev.markitect.liquibase.logging</a> &gt; <span class="el_source">LoggerAdapter.java</span></div><h1>LoggerAdapter.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2023-2024 Markitect
+ * Copyright 2023-2025 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -64,7 +64,7 @@ public class LoggerAdapter {
   }
 
   private static class JulAdapter {
-    public static Logger getLogger(String name) {
+    static Logger getLogger(String name) {
 <span class="fc" id="L68">      checkNotNull(name);</span>
 <span class="fc" id="L69">      return new JulLogger(name);</span>
     }
@@ -76,7 +76,7 @@ public class LoggerAdapter {
 <span class="fc" id="L76">    private static final LoggerContext context =</span>
 <span class="fc" id="L77">        LogManager.getContext(Log4jAdapter.class.getClassLoader(), /* currentContext= */ false);</span>
 
-    public static Logger getLogger(String name) {
+    static Logger getLogger(String name) {
 <span class="fc" id="L80">      checkNotNull(name);</span>
 <span class="fc" id="L81">      return new Log4jLogger(context.getLogger(name));</span>
     }
@@ -85,7 +85,7 @@ public class LoggerAdapter {
   }
 
   private static class Slf4jAdapter {
-    public static Logger getLogger(String name) {
+    static Logger getLogger(String name) {
 <span class="fc" id="L89">      checkNotNull(name);</span>
 <span class="fc" id="L90">      var logger = LoggerFactory.getLogger(name);</span>
 <span class="fc bfc" id="L91" title="All 2 branches covered.">      if (logger instanceof LocationAwareLogger locationAwareLogger) {</span>
