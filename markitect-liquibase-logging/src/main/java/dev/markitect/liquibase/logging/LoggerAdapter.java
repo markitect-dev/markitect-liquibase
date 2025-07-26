@@ -1,5 +1,5 @@
 /*
- * Copyright 2023-2024 Markitect
+ * Copyright 2023-2025 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -64,7 +64,7 @@ public class LoggerAdapter {
   }
 
   private static class JulAdapter {
-    public static Logger getLogger(String name) {
+    static Logger getLogger(String name) {
       checkNotNull(name);
       return new JulLogger(name);
     }
@@ -76,7 +76,7 @@ public class LoggerAdapter {
     private static final LoggerContext context =
         LogManager.getContext(Log4jAdapter.class.getClassLoader(), /* currentContext= */ false);
 
-    public static Logger getLogger(String name) {
+    static Logger getLogger(String name) {
       checkNotNull(name);
       return new Log4jLogger(context.getLogger(name));
     }
@@ -85,7 +85,7 @@ public class LoggerAdapter {
   }
 
   private static class Slf4jAdapter {
-    public static Logger getLogger(String name) {
+    static Logger getLogger(String name) {
       checkNotNull(name);
       var logger = LoggerFactory.getLogger(name);
       if (logger instanceof LocationAwareLogger locationAwareLogger) {
