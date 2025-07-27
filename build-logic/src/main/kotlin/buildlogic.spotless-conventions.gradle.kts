@@ -15,6 +15,7 @@ spotless {
     plugins.withId("java") {
         java {
             target("src/**/*.java")
+            targetExclude("src/it/*/src/**/*.java")
             licenseHeaderFile(rootProject.file("config/spotless/license-header-java"))
             cleanthat()
                 .version(libs.versions.cleanthat.get())
@@ -89,6 +90,7 @@ spotless {
         target(
             "config/**/.npmrc",
             "config/**/*.xml",
+            "src/it/*/src/**/*.java",
             "src/**/*.xml",
             "src/**/*.yaml",
             "src/**/*.yml",

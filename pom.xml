@@ -236,6 +236,10 @@
               <includes>
                 <include>src/**/*.java</include>
               </includes>
+              <excludes>
+                <exclude>src/it/*/src/**/*.java</exclude>
+                <exclude>src/*/resources/**/*.java</exclude>
+              </excludes>
               <licenseHeader>
                 <file>${spotless.configDirectory}/license-header-java</file>
               </licenseHeader>
@@ -314,6 +318,7 @@
                 <includes>
                   <include>config/**/.npmrc</include>
                   <include>config/**/*.xml</include>
+                  <include>src/it/*/src/**/*.java</include>
                   <include>src/*/resources/**/*.java</include>
                   <include>src/**/*.txt</include>
                   <include>src/**/*.xml</include>
