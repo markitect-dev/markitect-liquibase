@@ -1,0 +1,119 @@
+plugins {
+    id 'buildlogic.node-conventions'
+    id 'com.diffplug.spotless'
+}
+
+def ci = providers.environmentVariable('CI').present
+def windows = providers.systemProperty('os.name').get().startsWithIgnoreCase('Windows')
+def nodeExecutable = nodeSetup.nodeDir.file(windows ? 'node.exe' : 'bin/node')
+def npmExecutable = nodeSetup.nodeDir.file(windows ? 'npm.cmd' : 'bin/npm')
+def npmInstallCache = rootProject.layout.projectDirectory.dir('.gradle/spotless-npm-install-cache')
+def npmrc = rootProject.file('config/spotless/.npmrc')
+
+spotless {
+    ratchetFrom 'origin/main'
+    plugins.withId('java') {
+        java {
+            target 'src/**/*.java'
+            targetExclude 'src/it/*/src/**/*.java'
+            licenseHeaderFile rootProject.file('config/spotless/license-header-java')
+            cleanthat()
+                .version(libs.versions.cleanthat.get())
+                .sourceCompatibility('17')
+                .addMutator('SafeButNotConsensual')
+                .addMutator('UnnecessarySemicolon')
+                .excludeMutator('AvoidInlineConditionals')
+                .excludeMutator('LambdaIsMethodReference')
+                .excludeMutator('LiteralsFirstInComparisons')
+                .excludeMutator('LocalVariableTypeInference')
+            googleJavaFormat(libs.versions.google.java.format.get())
+                .reflowLongStrings()
+        }
+    }
+    groovyGradle {
+        leadingTabsToSpaces 4
+        trimTrailingWhitespace()
+        endWithNewline()
+    }
+    json {
+        target 'renovate.json5'
+        prettier(libs.versions.prettier.asProvider().get())
+            .nodeExecutable(nodeExecutable)
+            .npmExecutable(npmExecutable)
+            .npmInstallCache(npmInstallCache)
+            .npmrc(npmrc)
+            .config(
+                [
+                    'singleQuote': true,
+                ],
+            )
+    }
+    format('properties') {
+        target 'src/**/*.properties', 'gradle.properties'
+        prettier(
+            [
+                'prettier': libs.versions.prettier.asProvider().get(),
+                'prettier-plugin-properties': libs.versions.prettier.plugin.properties.get(),
+            ],
+        )
+            .nodeExecutable(nodeExecutable)
+            .npmExecutable(npmExecutable)
+            .npmInstallCache(npmInstallCache)
+            .npmrc(npmrc)
+            .config(
+                [
+                    'parser': 'dot-properties',
+                    'plugins': ['prettier-plugin-properties'],
+                    'keySeparator': '=',
+                    'printWidth': 0,
+                ],
+            )
+    }
+    format('toml') {
+        target 'gradle/**/*.toml'
+        prettier(
+            [
+                'prettier': libs.versions.prettier.asProvider().get(),
+                'prettier-plugin-toml': libs.versions.prettier.plugin.toml.get(),
+            ],
+        )
+            .nodeExecutable(nodeExecutable)
+            .npmExecutable(npmExecutable)
+            .npmInstallCache(npmInstallCache)
+            .npmrc(npmrc)
+            .config(
+                [
+                    'parser': 'toml',
+                    'plugins': ['prettier-plugin-toml'],
+                ],
+            )
+    }
+    format('misc') {
+        target(
+            'config/**/.npmrc',
+            'config/**/*.xml',
+            'src/it/*/src/**/*.java',
+            'src/**/*.xml',
+            'src/**/*.yaml',
+            'src/**/*.yml',
+            '.editorconfig',
+            '.java-version',
+            '.sdkmanrc',
+        )
+        leadingTabsToSpaces 2
+        trimTrailingWhitespace()
+        endWithNewline()
+    }
+}
+
+['spotlessJson', 'spotlessProperties', 'spotlessToml'].each { name ->
+    tasks.named(name) {
+        dependsOn rootProject.tasks.nodeSetup
+    }
+}
+
+spotlessCheck.configure {
+    if (!ci) {
+        dependsOn spotlessApply
+    }
+}
