@@ -115,7 +115,7 @@
     <error-prone.version>2.41.0</error-prone.version>
     <extra-enforcer-rules.version>1.10.0</extra-enforcer-rules.version>
     <findsecbugs-plugin.version>1.14.0</findsecbugs-plugin.version>
-    <flatten-maven-plugin.version>1.7.1</flatten-maven-plugin.version>
+    <flatten-maven-plugin.version>1.7.2</flatten-maven-plugin.version>
     <forbiddenapis.version>3.9</forbiddenapis.version>
     <frontend-maven-plugin.version>1.15.1</frontend-maven-plugin.version>
     <google-java-format.version>1.28.0</google-java-format.version>
