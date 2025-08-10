@@ -184,7 +184,7 @@
     <sonar-maven-plugin.version>5.1.0.4751</sonar-maven-plugin.version>
     <sortpom.version>4.0.0</sortpom.version>
     <spotbugs-maven-plugin.version>4.9.3.2</spotbugs-maven-plugin.version>
-    <spotbugs.version>4.9.3</spotbugs.version>
+    <spotbugs.version>4.9.4</spotbugs.version>
     <spotless-maven-plugin.version>2.46.1</spotless-maven-plugin.version>
     <spring-boot.version>3.5.4</spring-boot.version>
     <spring-framework.version>6.2.9</spring-framework.version>
