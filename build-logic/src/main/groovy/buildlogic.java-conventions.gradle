@@ -102,6 +102,7 @@ dependencies {
         testImplementation libs.org.osgi.org.osgi.resource
         testImplementation libs.org.osgi.org.osgi.service.serviceloader
         testImplementation libs.org.postgresql.postgresql
+        testImplementation libs.org.projectlombok.lombok
         testImplementation libs.org.reactivestreams.reactive.streams
         testImplementation libs.org.rnorth.duct.tape.duct.tape
         testImplementation libs.org.slf4j.jul.to.slf4j

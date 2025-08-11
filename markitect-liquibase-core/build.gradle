@@ -6,8 +6,10 @@ plugins {
 dependencies {
     api project(':markitect-liquibase-logging')
     api libs.org.liquibase.liquibase.core
+    compileOnly libs.org.projectlombok.lombok
     implementation libs.com.google.guava.guava
 
+    testCompileOnly libs.org.projectlombok.lombok
     testImplementation libs.com.google.guava.guava
     testImplementation libs.org.junit.pioneer.junit.pioneer
     testImplementation libs.org.springframework.boot.spring.boot.starter.jdbc

@@ -6,8 +6,10 @@ plugins {
 dependencies {
     api project(':markitect-liquibase-core')
     api libs.org.springframework.spring.context
+    compileOnly libs.org.projectlombok.lombok
     implementation libs.com.google.guava.guava
 
+    testCompileOnly libs.org.projectlombok.lombok
     testImplementation libs.org.springframework.spring.jdbc
     testImplementation libs.org.springframework.boot.spring.boot.starter.test
     testRuntimeOnly libs.com.h2database.h2
