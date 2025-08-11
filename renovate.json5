@@ -256,6 +256,10 @@
       groupName: 'logback',
     },
     {
+      matchPackageNames: ['org.projectlombok:lombok'],
+      groupName: 'lombok',
+    },
+    {
       matchPackageNames: ['io.micrometer:**'],
       groupName: 'micrometer',
     },
