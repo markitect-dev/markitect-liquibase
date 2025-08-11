@@ -9,6 +9,27 @@
     <Bug pattern="NP_NONNULL_PARAM_VIOLATION"/>
   </Match>
   <Match>
+    <Class name="dev.markitect.liquibase.spring.boot.autoconfigure.MarkitectLiquibaseAutoConfigurationTests$MarkitectLiquibaseConfigurationTests"/>
+    <Method name="~lambda\$shouldFailToCreateLiquibaseBeanWithNoDataSourceUrlOrLiquibaseUrl\$\d++"/>
+    <Bug pattern="RV_RETURN_VALUE_IGNORED"/>
+  </Match>
+  <Match>
+    <Class name="dev.markitect.liquibase.structure.StructuresTests"/>
+    <Method name="~lambda\$isCatalogOrSchemaType_throwsNullPointerException\$\d++"/>
+    <Or>
+      <Bug pattern="NP_NULL_PARAM_DEREF_NONVIRTUAL"/>
+      <Bug pattern="RV_RETURN_VALUE_IGNORED"/>
+    </Or>
+  </Match>
+  <Match>
+    <Class name="dev.markitect.liquibase.util.StringsTests"/>
+    <Method name="~lambda\$isIllegalIdentifier_throwsNullPointerException\$\d++"/>
+    <Or>
+      <Bug pattern="NP_NULL_PARAM_DEREF_NONVIRTUAL"/>
+      <Bug pattern="RV_RETURN_VALUE_IGNORED"/>
+    </Or>
+  </Match>
+  <Match>
     <Source name="~.*Tests\.java"/>
     <Bug pattern="THROWS_METHOD_THROWS_CLAUSE_BASIC_EXCEPTION"/>
   </Match>
