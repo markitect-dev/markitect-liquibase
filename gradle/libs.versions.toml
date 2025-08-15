@@ -73,7 +73,7 @@ spotbugs = "4.9.4"
 spotbugs-plugin = "6.2.4"
 spotless-plugin = "7.2.1"
 spring-boot = "3.5.4"
-spring-framework = "6.2.9"
+spring-framework = "6.2.10"
 testcontainers = "1.21.3"
 
 [libraries]
