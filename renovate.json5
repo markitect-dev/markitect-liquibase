@@ -113,6 +113,10 @@
   ],
   packageRules: [
     {
+      matchPackageNames: ['gradle'],
+      ignoreUnstable: false,
+    },
+    {
       matchPackageNames: ['java'],
       matchUpdateTypes: ['major', 'minor'],
       enabled: false,
