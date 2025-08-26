@@ -166,7 +166,7 @@ jobs:
           dependency-graph: generate-and-submit
 
       - name: Build and test, with coverage
-        run: ./gradlew build --info
+        run: ./gradlew build --info --stacktrace
 
       - name: Cache SonarCloud packages
         uses: actions/cache@0400d5f644dc74513175e3cd8d07132dd4860809 # v4.2.4
@@ -176,7 +176,7 @@ jobs:
           restore-keys: ${{ runner.os }}-sonar
 
       - name: Analyze
-        run: ./gradlew sonar --info --no-parallel -Dsonar.host.url="$SONAR_HOST_URL" -Dsonar.organization="$SONAR_ORGANIZATION" -Dsonar.projectKey="$SONAR_PROJECTKEY"
+        run: ./gradlew sonar --info --no-parallel --stacktrace -Dsonar.host.url="$SONAR_HOST_URL" -Dsonar.organization="$SONAR_ORGANIZATION" -Dsonar.projectKey="$SONAR_PROJECTKEY"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
@@ -185,7 +185,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
       - name: Publish artifacts
-        run: ./gradlew publishToSonatype --info
+        run: ./gradlew publishToSonatype --info --stacktrace
         env:
           ORG_GRADLE_PROJECT_signingKeyId: ${{ vars.GPG_KEY_ID }}
           ORG_GRADLE_PROJECT_signingKey: ${{ secrets.GPG_PRIVATE_KEY }}
