@@ -304,5 +304,45 @@
       matchUpdateTypes: ['major', 'minor'],
       enabled: false,
     },
+    {
+      matchPackageNames: ['com.diffplug.spotless'],
+      sourceUrl: 'https://github.com/diffplug/spotless',
+    },
+    {
+      matchPackageNames: ['com.github.node-gradle.node'],
+      sourceUrl: 'https://github.com/node-gradle/gradle-node-plugin',
+    },
+    {
+      matchPackageNames: ['com.github.spotbugs'],
+      sourceUrl: 'https://github.com/spotbugs/spotbugs-gradle-plugin',
+    },
+    {
+      matchPackageNames: ['de.thetaphi.forbiddenapis'],
+      sourceUrl: 'https://github.com/policeman-tools/forbidden-apis',
+    },
+    {
+      matchPackageNames: ['io.github.gradle-nexus.publish-plugin'],
+      sourceUrl: 'https://github.com/gradle-nexus/publish-plugin',
+    },
+    {
+      matchPackageNames: ['net.ltgt.errorprone'],
+      sourceUrl: 'https://github.com/tbroyer/gradle-errorprone-plugin',
+    },
+    {
+      matchPackageNames: ['net.ltgt.nullaway'],
+      sourceUrl: 'https://github.com/tbroyer/gradle-nullaway-plugin',
+    },
+    {
+      matchPackageNames: ['nu.studer.jooq'],
+      sourceUrl: 'https://github.com/etiennestuder/gradle-jooq-plugin',
+    },
+    {
+      matchPackageNames: ['org.openrewrite.rewrite'],
+      sourceUrl: 'https://github.com/openrewrite/rewrite-gradle-plugin',
+    },
+    {
+      matchPackageNames: ['org.sonarqube'],
+      sourceUrl: 'https://github.com/SonarSource/sonar-scanner-gradle',
+    },
   ],
 }
