@@ -305,43 +305,43 @@
       enabled: false,
     },
     {
-      matchPackageNames: ['com.diffplug.spotless'],
+      matchPackageNames: ['com.diffplug.spotless:com.diffplug.spotless.gradle.plugin'],
       sourceUrl: 'https://github.com/diffplug/spotless',
     },
     {
-      matchPackageNames: ['com.github.node-gradle.node'],
+      matchPackageNames: ['com.github.node-gradle.node:com.github.node-gradle.node.gradle.plugin'],
       sourceUrl: 'https://github.com/node-gradle/gradle-node-plugin',
     },
     {
-      matchPackageNames: ['com.github.spotbugs'],
+      matchPackageNames: ['com.github.spotbugs:com.github.spotbugs.gradle.plugin'],
       sourceUrl: 'https://github.com/spotbugs/spotbugs-gradle-plugin',
     },
     {
-      matchPackageNames: ['de.thetaphi.forbiddenapis'],
+      matchPackageNames: ['de.thetaphi.forbiddenapis:de.thetaphi.forbiddenapis.gradle.plugin'],
       sourceUrl: 'https://github.com/policeman-tools/forbidden-apis',
     },
     {
-      matchPackageNames: ['io.github.gradle-nexus.publish-plugin'],
+      matchPackageNames: ['io.github.gradle-nexus.publish-plugin:io.github.gradle-nexus.publish-plugin.gradle.plugin'],
       sourceUrl: 'https://github.com/gradle-nexus/publish-plugin',
     },
     {
-      matchPackageNames: ['net.ltgt.errorprone'],
+      matchPackageNames: ['net.ltgt.errorprone:net.ltgt.errorprone.gradle.plugin'],
       sourceUrl: 'https://github.com/tbroyer/gradle-errorprone-plugin',
     },
     {
-      matchPackageNames: ['net.ltgt.nullaway'],
+      matchPackageNames: ['net.ltgt.nullaway:net.ltgt.nullaway.gradle.plugin'],
       sourceUrl: 'https://github.com/tbroyer/gradle-nullaway-plugin',
     },
     {
-      matchPackageNames: ['nu.studer.jooq'],
+      matchPackageNames: ['nu.studer.jooq:nu.studer.jooq.gradle.plugin'],
       sourceUrl: 'https://github.com/etiennestuder/gradle-jooq-plugin',
     },
     {
-      matchPackageNames: ['org.openrewrite.rewrite'],
+      matchPackageNames: ['org.openrewrite.rewrite:org.openrewrite.rewrite.gradle.plugin'],
       sourceUrl: 'https://github.com/openrewrite/rewrite-gradle-plugin',
     },
     {
-      matchPackageNames: ['org.sonarqube'],
+      matchPackageNames: ['org.sonarqube:org.sonarqube.gradle.plugin'],
       sourceUrl: 'https://github.com/SonarSource/sonar-scanner-gradle',
     },
   ],
