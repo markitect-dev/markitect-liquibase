@@ -575,17 +575,6 @@
                   </requireSameVersions>
                   <requireSameVersions>
                     <dependencies>
-                      <dependency>com.fasterxml.jackson.core</dependency>
-                      <dependency>com.fasterxml.jackson.dataformat</dependency>
-                      <dependency>com.fasterxml.jackson.datatype</dependency>
-                      <dependency>com.fasterxml.jackson.jakarta.rs</dependency>
-                      <dependency>com.fasterxml.jackson.jaxrs</dependency>
-                      <dependency>com.fasterxml.jackson.jr</dependency>
-                      <dependency>com.fasterxml.jackson.module</dependency>
-                    </dependencies>
-                  </requireSameVersions>
-                  <requireSameVersions>
-                    <dependencies>
                       <dependency>com.github.docker-java</dependency>
                     </dependencies>
                   </requireSameVersions>
