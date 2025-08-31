@@ -197,7 +197,7 @@
     },
     {
       matchPackageNames: [
-        'de.thetaphi.forbiddenapis',
+        'de.thetaphi.forbiddenapis:de.thetaphi.forbiddenapis.gradle.plugin',
         'de.thetaphi:forbiddenapis',
       ],
       groupName: 'forbiddenapis',
@@ -264,6 +264,13 @@
       groupName: 'lombok',
     },
     {
+      matchPackageNames: [
+        'org.apache.maven.plugins:maven-wrapper-plugin',
+        'org.apache.maven.wrapper:maven-wrapper',
+      ],
+      groupName: 'maven-wrapper',
+    },
+    {
       matchPackageNames: ['io.micrometer:**'],
       groupName: 'micrometer',
     },
@@ -305,27 +312,39 @@
       enabled: false,
     },
     {
-      matchPackageNames: ['com.diffplug.spotless:com.diffplug.spotless.gradle.plugin'],
+      matchPackageNames: [
+        'com.diffplug.spotless:com.diffplug.spotless.gradle.plugin',
+      ],
       sourceUrl: 'https://github.com/diffplug/spotless',
     },
     {
-      matchPackageNames: ['com.github.node-gradle.node:com.github.node-gradle.node.gradle.plugin'],
+      matchPackageNames: [
+        'com.github.node-gradle.node:com.github.node-gradle.node.gradle.plugin',
+      ],
       sourceUrl: 'https://github.com/node-gradle/gradle-node-plugin',
     },
     {
-      matchPackageNames: ['com.github.spotbugs:com.github.spotbugs.gradle.plugin'],
+      matchPackageNames: [
+        'com.github.spotbugs:com.github.spotbugs.gradle.plugin',
+      ],
       sourceUrl: 'https://github.com/spotbugs/spotbugs-gradle-plugin',
     },
     {
-      matchPackageNames: ['de.thetaphi.forbiddenapis:de.thetaphi.forbiddenapis.gradle.plugin'],
+      matchPackageNames: [
+        'de.thetaphi.forbiddenapis:de.thetaphi.forbiddenapis.gradle.plugin',
+      ],
       sourceUrl: 'https://github.com/policeman-tools/forbidden-apis',
     },
     {
-      matchPackageNames: ['io.github.gradle-nexus.publish-plugin:io.github.gradle-nexus.publish-plugin.gradle.plugin'],
+      matchPackageNames: [
+        'io.github.gradle-nexus.publish-plugin:io.github.gradle-nexus.publish-plugin.gradle.plugin',
+      ],
       sourceUrl: 'https://github.com/gradle-nexus/publish-plugin',
     },
     {
-      matchPackageNames: ['net.ltgt.errorprone:net.ltgt.errorprone.gradle.plugin'],
+      matchPackageNames: [
+        'net.ltgt.errorprone:net.ltgt.errorprone.gradle.plugin',
+      ],
       sourceUrl: 'https://github.com/tbroyer/gradle-errorprone-plugin',
     },
     {
@@ -337,7 +356,9 @@
       sourceUrl: 'https://github.com/etiennestuder/gradle-jooq-plugin',
     },
     {
-      matchPackageNames: ['org.openrewrite.rewrite:org.openrewrite.rewrite.gradle.plugin'],
+      matchPackageNames: [
+        'org.openrewrite.rewrite:org.openrewrite.rewrite.gradle.plugin',
+      ],
       sourceUrl: 'https://github.com/openrewrite/rewrite-gradle-plugin',
     },
     {
