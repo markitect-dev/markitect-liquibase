@@ -190,7 +190,7 @@
     <spring-boot.version>3.5.5</spring-boot.version>
     <spring-framework.version>6.2.10</spring-framework.version>
     <testcontainers.version>1.21.3</testcontainers.version>
-    <versions-maven-plugin.version>2.18.0</versions-maven-plugin.version>
+    <versions-maven-plugin.version>2.19.0</versions-maven-plugin.version>
   </properties>
 
   <build>
