@@ -139,7 +139,7 @@
     <liquibase.version>4.33.0</liquibase.version>
     <log4j2.version>2.25.1</log4j2.version>
     <logback.version>1.5.18</logback.version>
-    <lombok.version>1.18.38</lombok.version>
+    <lombok.version>1.18.40</lombok.version>
     <maven-antrun-plugin.version>3.1.0</maven-antrun-plugin.version>
     <maven-archetype.version>3.4.0</maven-archetype.version>
     <maven-assembly-plugin.version>3.7.1</maven-assembly-plugin.version>
