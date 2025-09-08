@@ -184,7 +184,7 @@
     <snakeyaml.version>2.5</snakeyaml.version>
     <sonar-maven-plugin.version>5.2.0.4988</sonar-maven-plugin.version>
     <sortpom.version>4.0.0</sortpom.version>
-    <spotbugs-maven-plugin.version>4.9.4.1</spotbugs-maven-plugin.version>
+    <spotbugs-maven-plugin.version>4.9.4.2</spotbugs-maven-plugin.version>
     <spotbugs.version>4.9.4</spotbugs.version>
     <spotless-maven-plugin.version>2.46.1</spotless-maven-plugin.version>
     <spring-boot.version>3.5.5</spring-boot.version>
