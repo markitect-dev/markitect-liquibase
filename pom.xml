@@ -188,7 +188,7 @@
     <spotbugs.version>4.9.4</spotbugs.version>
     <spotless-maven-plugin.version>2.46.1</spotless-maven-plugin.version>
     <spring-boot.version>3.5.5</spring-boot.version>
-    <spring-framework.version>6.2.10</spring-framework.version>
+    <spring-framework.version>6.2.11</spring-framework.version>
     <testcontainers.version>1.21.3</testcontainers.version>
     <versions-maven-plugin.version>2.19.0</versions-maven-plugin.version>
   </properties>
