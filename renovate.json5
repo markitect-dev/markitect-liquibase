@@ -232,6 +232,10 @@
       groupName: 'jacoco',
     },
     {
+      matchPackageNames: ['jakarta.activation:**'],
+      groupName: 'jakarta-activation',
+    },
+    {
       matchPackageNames: ['org.jetbrains:annotations'],
       groupName: 'jetbrains-annotations',
     },
