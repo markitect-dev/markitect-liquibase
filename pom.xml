@@ -161,7 +161,7 @@
     <maven-scm-publish-plugin.version>3.3.0</maven-scm-publish-plugin.version>
     <maven-site-plugin.version>3.21.0</maven-site-plugin.version>
     <maven-source-plugin.version>3.3.1</maven-source-plugin.version>
-    <maven-surefire.version>3.5.3</maven-surefire.version>
+    <maven-surefire.version>3.5.4</maven-surefire.version>
     <maven-wrapper.version>3.3.4</maven-wrapper.version>
     <micrometer.version>1.15.4</micrometer.version>
     <mockito.version>5.19.0</mockito.version>
