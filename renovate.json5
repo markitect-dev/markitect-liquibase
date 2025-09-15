@@ -236,6 +236,10 @@
       groupName: 'jakarta-activation',
     },
     {
+      matchPackageNames: ['jakarta.xml.bind:**'],
+      groupName: 'jakarta-xml-bind',
+    },
+    {
       matchPackageNames: ['org.jetbrains:annotations'],
       groupName: 'jetbrains-annotations',
     },
