@@ -119,8 +119,7 @@
     },
     {
       matchPackageNames: ['java'],
-      matchUpdateTypes: ['major', 'minor'],
-      enabled: false,
+      allowedVersions: '/^(?:17|21|25)(?:\\.|-|$)/',
     },
     {
       matchPackageNames: ['maven'],
