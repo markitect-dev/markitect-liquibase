@@ -43,6 +43,14 @@
   customManagers: [
     {
       customType: 'regex',
+      managerFilePatterns: ['/^\\.java-version$/'],
+      matchStrings: ['(?<currentValue>.*)\\n'],
+      depNameTemplate: 'java',
+      datasourceTemplate: 'java-version',
+      extractVersionTemplate: '^(?<version>\\d+)',
+    },
+    {
+      customType: 'regex',
       managerFilePatterns: ['/^\\.sdkmanrc$/'],
       matchStrings: ['java=(?<currentValue>.+)-zulu\\n'],
       depNameTemplate: 'java',
@@ -119,7 +127,7 @@
     },
     {
       matchPackageNames: ['java'],
-      allowedVersions: '/^(?:17|21|25)(?:\\.|-|$)/',
+      allowedVersions: '/^(?:21|25)(?:\\.|-|$)/',
     },
     {
       matchPackageNames: ['maven'],
