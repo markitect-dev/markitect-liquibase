@@ -11,7 +11,7 @@
     </requiredProperty>
     <requiredProperty key="javaVersion">
       <defaultValue>17</defaultValue>
-      <validationRegex>21|17</validationRegex>
+      <validationRegex>25|21|17</validationRegex>
     </requiredProperty>
     <requiredProperty key="liquibaseVersion">
       <defaultValue>@liquibase.version@</defaultValue>
