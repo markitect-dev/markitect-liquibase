@@ -83,6 +83,14 @@
     {
       customType: 'regex',
       managerFilePatterns: ['/^gradle/libs\\.versions\\.toml$/'],
+      matchStrings: ['(?<depName>java) = "(?<currentValue>.+)"\\n'],
+      depNameTemplate: 'java',
+      datasourceTemplate: 'custom.sdkmanJavaVersion',
+      extractVersionTemplate: '^(?<version>\\d+)'
+    },
+    {
+      customType: 'regex',
+      managerFilePatterns: ['/^gradle/libs\\.versions\\.toml$/'],
       matchStrings: ['(?<depName>node) = "(?<currentValue>.+)"\\n'],
       datasourceTemplate: 'node-version',
     },
@@ -93,6 +101,14 @@
         '(?<depName>prettier(?:|-plugin-(?:properties|toml))?) = "(?<currentValue>.+)"\\n',
       ],
       datasourceTemplate: 'npm',
+    },
+    {
+      customType: 'regex',
+      managerFilePatterns: ['/^pom\\.xml$/'],
+      matchStrings: ['<(?<depName>java)\\.version>(?<currentValue>.+)<\\/'],
+      depNameTemplate: 'java',
+      datasourceTemplate: 'custom.sdkmanJavaVersion',
+      extractVersionTemplate: '^(?<version>\\d+)'
     },
     {
       customType: 'regex',
