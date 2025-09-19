@@ -46,7 +46,7 @@
       managerFilePatterns: ['/^\\.java-version$/'],
       matchStrings: ['(?<currentValue>.*)\\n'],
       depNameTemplate: 'java',
-      datasourceTemplate: 'java-version',
+      datasourceTemplate: 'custom.sdkmanJavaVersion',
       extractVersionTemplate: '^(?<version>\\d+)',
     },
     {
