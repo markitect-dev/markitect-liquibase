@@ -115,6 +115,7 @@
     {
       matchPackageNames: ['gradle'],
       ignoreUnstable: false,
+      allowedVersions: '!/-milestone-\\d+$/',
     },
     {
       matchPackageNames: ['java'],
