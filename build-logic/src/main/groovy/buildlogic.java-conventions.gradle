@@ -124,6 +124,7 @@ dependencies {
 }
 
 java {
+    sourceCompatibility = 17
     toolchain {
         languageVersion = JavaLanguageVersion.of(libs.versions.java.get())
         vendor = JvmVendorSpec.AZUL
