@@ -3,4 +3,4 @@
 gradle=9.1.0
 java=25-zulu
 maven=3.9.11
-mvnd=1.0.2
+mvnd=1.0.3
