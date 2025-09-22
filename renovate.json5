@@ -63,7 +63,7 @@
       customType: 'regex',
       managerFilePatterns: ['/(^|/)\\.sdkmanrc$/'],
       matchStrings: [
-        '# renovate:(?: datasource=(?<datasource>[a-zA-Z0-9-._]+?))? depName=(?<depName>[^\\s]+?)(?: packageName=(?<packageName>[^\\s]+?))?(?: versioning=(?<versioning>[^\\s]+?))?(?: extractVersion=(?<extractVersion>[^\\s]+?))?\\s+[^=]+=(?<currentValue>.+)\\n"',
+        '# renovate:(?: datasource=(?<datasource>[a-zA-Z0-9-._]+?))? depName=(?<depName>[^\\s]+?)(?: packageName=(?<packageName>[^\\s]+?))?(?: versioning=(?<versioning>[^\\s]+?))?(?: extractVersion=(?<extractVersion>[^\\s]+?))?\\s+[^=]+=(?<currentValue>.+)\\n',
       ],
       versioningTemplate: '{{#if versioning}}{{{versioning}}}{{/if}}',
     },
