@@ -145,9 +145,9 @@ tasks.withType(JavaCompile).configureEach {
     options.errorprone {
         if (!ci) {
             allDisabledChecksAsWarnings = true
+            allSuggestionsAsWarnings = true
             disable 'AndroidJdkLibsChecker'
             disable 'Java8ApiChecker'
-            errorproneArgs.add('-XepAllSuggestionsAsWarnings')
         }
         nullaway {
             excludedFieldAnnotations.add('org.junit.jupiter.api.io.TempDir')
