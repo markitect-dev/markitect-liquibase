@@ -103,6 +103,7 @@
     <byte-buddy.version>1.17.7</byte-buddy.version>
     <central-publishing-maven-plugin.version>0.8.0</central-publishing-maven-plugin.version>
     <checkstyle.version>11.0.1</checkstyle.version>
+    <!-- renovate: depName=io.github.solven-eu.cleanthat:java -->
     <cleanthat.version>2.24</cleanthat.version>
     <commons-codec.version>1.19.0</commons-codec.version>
     <commons-collections4.version>4.5.0</commons-collections4.version>
@@ -118,6 +119,7 @@
     <flatten-maven-plugin.version>1.7.3</flatten-maven-plugin.version>
     <forbiddenapis.version>3.9</forbiddenapis.version>
     <frontend-maven-plugin.version>1.15.1</frontend-maven-plugin.version>
+    <!-- renovate: depName=com.google.googlejavaformat:google-java-format -->
     <google-java-format.version>1.28.0</google-java-format.version>
     <guava.version>33.5.0-jre</guava.version>
     <h2.version>2.3.232</h2.version>
@@ -166,6 +168,7 @@
     <micrometer.version>1.15.4</micrometer.version>
     <mockito.version>5.20.0</mockito.version>
     <mssql-jdbc.version>13.2.0.jre11</mssql-jdbc.version>
+    <!-- renovate: datasource=node-version depName=node -->
     <node.version>22.19.0</node.version>
     <nullaway.version>0.12.10</nullaway.version>
     <objenesis.version>3.4</objenesis.version>
@@ -176,13 +179,16 @@
     <osgi-resource.version>1.0.1</osgi-resource.version>
     <osgi-service-serviceloader.version>1.0.0</osgi-service-serviceloader.version>
     <postgresql.version>42.7.8</postgresql.version>
+    <!-- renovate: datasource=npm depName=prettier -->
     <prettier.version>3.6.2</prettier.version>
+    <!-- renovate: datasource=npm depName=prettier-plugin-properties -->
     <prettier-plugin-properties.version>0.3.0</prettier-plugin-properties.version>
     <r2dbc-spi.version>1.0.0.RELEASE</r2dbc-spi.version>
     <reactive-streams.version>1.0.4</reactive-streams.version>
     <slf4j.version>2.0.17</slf4j.version>
     <snakeyaml.version>2.5</snakeyaml.version>
     <sonar-maven-plugin.version>5.2.0.4988</sonar-maven-plugin.version>
+    <!-- renovate: depName=com.github.ekryd.sortpom:sortpom-sorter -->
     <sortpom.version>4.0.0</sortpom.version>
     <spotbugs-maven-plugin.version>4.9.6.0</spotbugs-maven-plugin.version>
     <spotbugs.version>4.9.6</spotbugs.version>

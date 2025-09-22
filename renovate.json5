@@ -2,6 +2,7 @@
   $schema: 'https://docs.renovatebot.com/renovate-schema.json',
   extends: [
     'config:best-practices',
+    'customManagers:mavenPropertyVersions',
     ':automergeAll',
     ':automergePr',
     ':automergeRequireAllStatusChecks',
@@ -11,15 +12,15 @@
     ':separatePatchReleases',
   ],
   customDatasources: {
-    sdkmanJavaVersion: {
-      defaultRegistryUrlTemplate: 'https://api.sdkman.io/2/candidates/java/linuxx64/versions/all',
-      format: 'plain',
-      transformTemplates: [
-        '{ "releases": $map($filter($split(releases.version, ","), function($v) { $match($v, /(?<!\\.(?:crac|fx))-zulu/) }), function($v) { { "version": $replace($v, /-zulu/, "") } }) }',
-      ],
-    },
     sdkmanGradleVersion: {
       defaultRegistryUrlTemplate: 'https://api.sdkman.io/2/candidates/gradle/linuxx64/versions/all',
+      format: 'plain',
+      transformTemplates: [
+        '{ "releases": $map($split(releases.version, ","), function($v) { { "version": $v } }) }',
+      ],
+    },
+    sdkmanJavaVersion: {
+      defaultRegistryUrlTemplate: 'https://api.sdkman.io/2/candidates/java/linuxx64/versions/all',
       format: 'plain',
       transformTemplates: [
         '{ "releases": $map($split(releases.version, ","), function($v) { { "version": $v } }) }',
@@ -43,78 +44,86 @@
   customManagers: [
     {
       customType: 'regex',
-      managerFilePatterns: ['/^\\.java-version$/'],
-      matchStrings: ['(?<currentValue>.*)\\n'],
-      depNameTemplate: 'java',
+      datasourceTemplate: '{{#if datasource}}{{{datasource}}}{{else}}maven{{/if}}',
+      managerFilePatterns: ['/(^|/)gradle/.*\\.toml$/'],
+      matchStrings: [
+        '# renovate:(?: datasource=(?<datasource>[a-zA-Z0-9-._]+?))? depName=(?<depName>[^\\s]+?)(?: packageName=(?<packageName>[^\\s]+?))?(?: versioning=(?<versioning>[^\\s]+?))?(?: extractVersion=(?<extractVersion>[^\\s]+?))?\\s+[^"]+"(?<currentValue>[^"]+)"',
+      ],
+      versioningTemplate: '{{#if versioning}}{{{versioning}}}{{/if}}',
+    },
+    {
+      customType: 'regex',
       datasourceTemplate: 'custom.sdkmanJavaVersion',
+      managerFilePatterns: ['/(^|/)gradle/.*\\.toml$/'],
+      matchStrings: ['(?:^|\\n)java = "(?<currentValue>.+)"\\n'],
+      depNameTemplate: 'java',
       extractVersionTemplate: '^(?<version>\\d+)',
     },
     {
       customType: 'regex',
-      managerFilePatterns: ['/^\\.sdkmanrc$/'],
-      matchStrings: ['(?:^|\\n)java=(?<currentValue>.+)-zulu\\n'],
-      depNameTemplate: 'java',
-      datasourceTemplate: 'custom.sdkmanJavaVersion',
+      datasourceTemplate: 'node-version',
+      managerFilePatterns: ['/(^|/)gradle/.*\\.toml$/'],
+      matchStrings: ['(?:^|\\n)(?<depName>node) = "(?<currentValue>.+)"\\n'],
     },
     {
       customType: 'regex',
-      managerFilePatterns: ['/^\\.sdkmanrc$/'],
-      matchStrings: ['(?:^|\\n)gradle=(?<currentValue>.+)\\n'],
-      depNameTemplate: 'gradle',
+      datasourceTemplate: 'npm',
+      managerFilePatterns: ['/(^|/)gradle/.*\\.toml$/'],
+      matchStrings: [
+        '(?:^|\\n)(?<depName>prettier(?:-plugin-.+)?) = "(?<currentValue>.+)"\\n',
+      ],
+    },
+    {
+      customType: 'regex',
+      datasourceTemplate: 'custom.sdkmanJavaVersion',
+      managerFilePatterns: ['/(^|/)\\.java-version$/'],
+      matchStrings: ['(?<currentValue>.*)\\n'],
+      depNameTemplate: 'java',
+      extractVersionTemplate: '^(?<version>\\d+)',
+    },
+    {
+      customType: 'regex',
       datasourceTemplate: 'custom.sdkmanGradleVersion',
+      managerFilePatterns: ['/(^|/)\\.sdkmanrc$/'],
+      matchStrings: ['(?:^|\\n)(?<depName>gradle)=(?<currentValue>.+)\\n'],
       versioningTemplate: 'gradle',
     },
     {
       customType: 'regex',
-      managerFilePatterns: ['/^\\.sdkmanrc$/'],
-      matchStrings: ['(?:^|\\n)maven=(?<currentValue>.+)\\n'],
-      depNameTemplate: 'maven',
-      datasourceTemplate: 'custom.sdkmanMavenVersion',
-      versioningTemplate: 'maven',
-    },
-    {
-      customType: 'regex',
-      managerFilePatterns: ['/^\\.sdkmanrc$/'],
-      matchStrings: ['(?:^|\\n)mvnd=(?<currentValue>.+)\\n'],
-      depNameTemplate: 'mvnd',
-      datasourceTemplate: 'custom.sdkmanMvndVersion',
-      versioningTemplate: 'maven',
-    },
-    {
-      customType: 'regex',
-      managerFilePatterns: ['/^gradle/libs\\.versions\\.toml$/'],
-      matchStrings: ['(?:^|\\n)(?<depName>java) = "(?<currentValue>.+)"\\n'],
-      depNameTemplate: 'java',
       datasourceTemplate: 'custom.sdkmanJavaVersion',
-      extractVersionTemplate: '^(?<version>\\d+)'
+      managerFilePatterns: ['/(^|/)\\.sdkmanrc$/'],
+      matchStrings: ['(?:^|\\n)(?<depName>java)=(?<currentValue>.+)\\n'],
+      versioningTemplate: 'docker',
     },
     {
       customType: 'regex',
-      managerFilePatterns: ['/^gradle/libs\\.versions\\.toml$/'],
-      matchStrings: ['(?:^|\\n)(?<depName>node) = "(?<currentValue>.+)"\\n'],
+      datasourceTemplate: 'custom.sdkmanMavenVersion',
+      managerFilePatterns: ['/(^|/)\\.sdkmanrc$/'],
+      matchStrings: ['(?:^|\\n)(?<depName>maven)=(?<currentValue>.+)\\n'],
+      versioningTemplate: 'maven',
+    },
+    {
+      customType: 'regex',
+      datasourceTemplate: 'custom.sdkmanMvndVersion',
+      managerFilePatterns: ['/(^|/)\\.sdkmanrc$/'],
+      matchStrings: ['(?:^|\\n)(?<depName>mvnd)=(?<currentValue>.+)\\n'],
+      versioningTemplate: 'maven',
+    },
+    {
+      customType: 'regex',
       datasourceTemplate: 'node-version',
-    },
-    {
-      customType: 'regex',
-      managerFilePatterns: ['/^gradle/libs\\.versions\\.toml$/'],
+      managerFilePatterns: ['/(^|/)pom\\.xml$/'],
       matchStrings: [
-        '(?:^|\\n)(?<depName>prettier(?:|-plugin-(?:properties|toml))?) = "(?<currentValue>.+)"\\n',
+        '<(?<depName>node)\\.version>(?<currentValue>.+)<\\/.+\\.version>',
       ],
+    },
+    {
+      customType: 'regex',
       datasourceTemplate: 'npm',
-    },
-    {
-      customType: 'regex',
-      managerFilePatterns: ['/^pom\\.xml$/'],
-      matchStrings: ['<(?<depName>node)\\.version>(?<currentValue>.+)<\\/'],
-      datasourceTemplate: 'node-version',
-    },
-    {
-      customType: 'regex',
-      managerFilePatterns: ['/^pom\\.xml$/'],
+      managerFilePatterns: ['/(^|/)pom\\.xml$/'],
       matchStrings: [
-        '<(?<depName>prettier(?:|-plugin-properties)?)\\.version>(?<currentValue>.+)<\\/',
+        '<(?<depName>prettier(?:-plugin-.+)?)\\.version>(?<currentValue>.+)<\\/.+\\.version>',
       ],
-      datasourceTemplate: 'npm',
     },
   ],
   logLevelRemap: [
@@ -326,11 +335,7 @@
       groupName: 'spotbugs',
     },
     {
-      matchFileNames: [
-        '**/src/it/spring-boot-3.2/pom.xml',
-        '**/src/it/spring-boot-3.3/pom.xml',
-        '**/src/it/spring-boot-3.4/pom.xml',
-      ],
+      matchFileNames: ['**/src/it/spring-boot-3.4/pom.xml'],
       matchPackageNames: ['org.springframework.boot:**'],
       matchUpdateTypes: ['major', 'minor'],
       enabled: false,

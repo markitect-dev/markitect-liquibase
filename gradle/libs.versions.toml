@@ -7,6 +7,7 @@ awaitility = "4.3.0"
 bnd-annotation = "7.1.0"
 byte-buddy = "1.17.7"
 checkstyle = "11.0.1"
+# renovate: depName=io.github.solven-eu.cleanthat:java
 cleanthat = "2.24"
 commons-codec = "1.19.0"
 commons-collections4 = "4.5.0"
@@ -20,6 +21,7 @@ error-prone = "2.42.0"
 errorprone-plugin = "4.3.0"
 findsecbugs-plugin = "1.14.0"
 forbiddenapis = "3.9"
+# renovate: depName=com.google.googlejavaformat:google-java-format
 google-java-format = "1.28.0"
 gradle-nexus-publish-plugin = "2.0.0"
 gradle-node-plugin = "7.1.0"
@@ -33,6 +35,7 @@ jacoco = "0.8.13"
 jakarta-activation = "2.1.4"
 jakarta-annotation = "3.0.0"
 jakarta-xml-bind = "4.0.4"
+# renovate: datasource=custom.sdkmanJavaVersion depName=java extractVersion=^(?<version>\d+)
 java = "25"
 jetbrains-annotations = "26.0.2-1"
 jna = "5.17.0"
@@ -49,6 +52,7 @@ logback = "1.5.18"
 micrometer = "1.15.4"
 mockito = "5.20.0"
 mssql-jdbc = "13.2.0.jre11"
+# renovate: datasource=node-version depName=node
 node = "22.19.0"
 nullaway = "0.12.10"
 nullaway-plugin = "2.3.0"
@@ -60,8 +64,11 @@ osgi-annotation-versioning = "1.1.2"
 osgi-resource = "1.0.1"
 osgi-service-serviceloader = "1.0.0"
 postgresql = "42.7.8"
+# renovate: datasource=npm depName=prettier
 prettier = "3.6.2"
+# renovate: datasource=npm depName=prettier-plugin-properties
 prettier-plugin-properties = "0.3.0"
+# renovate: datasource=npm depName=prettier-plugin-toml
 prettier-plugin-toml = "2.0.6"
 r2dbc-spi = "1.0.0.RELEASE"
 reactive-streams = "1.0.4"
@@ -90,7 +97,6 @@ com-github-spotbugs-spotbugs = { module = "com.github.spotbugs:spotbugs", versio
 com-github-spotbugs-spotbugs-annotations = { module = "com.github.spotbugs:spotbugs-annotations", version.ref = "spotbugs" }
 com-google-errorprone-error-prone-annotations = { module = "com.google.errorprone:error_prone_annotations", version.ref = "error-prone" }
 com-google-errorprone-error-prone-core = { module = "com.google.errorprone:error_prone_core", version.ref = "error-prone" }
-com-google-googlejavaformat-google-java-format = { module = "com.google.googlejavaformat:google-java-format", version.ref = "google-java-format" }
 com-google-guava-guava = { module = "com.google.guava:guava", version.ref = "guava" }
 com-h2database-h2 = { module = "com.h2database:h2", version.ref = "h2" }
 com-h3xstream-findsecbugs-findsecbugs-plugin = { module = "com.h3xstream.findsecbugs:findsecbugs-plugin", version.ref = "findsecbugs-plugin" }
@@ -102,7 +108,6 @@ com-zaxxer-hikaricp = { module = "com.zaxxer:HikariCP", version.ref = "hikaricp"
 commons-codec-commons-codec = { module = "commons-codec:commons-codec", version.ref = "commons-codec" }
 commons-io-commons-io = { module = "commons-io:commons-io", version.ref = "commons-io" }
 de-thetaphi-forbiddenapis = { module = "de.thetaphi:forbiddenapis", version.ref = "forbiddenapis" }
-io-github-solven-eu-cleanthat-java = { module = "io.github.solven-eu.cleanthat:java", version.ref = "cleanthat" }
 io-micrometer-micrometer-bom = { module = "io.micrometer:micrometer-bom", version.ref = "micrometer" }
 io-r2dbc-r2dbc-spi = { module = "io.r2dbc:r2dbc-spi", version.ref = "r2dbc-spi" }
 jakarta-activation-jakarta-activation-api = { module = "jakarta.activation:jakarta.activation-api", version.ref = "jakarta-activation" }
