@@ -61,31 +61,11 @@
     },
     {
       customType: 'regex',
-      datasourceTemplate: 'custom.sdkmanGradleVersion',
       managerFilePatterns: ['/(^|/)\\.sdkmanrc$/'],
-      matchStrings: ['(?:^|\\n)(?<depName>gradle)=(?<currentValue>.+)\\n'],
-      versioningTemplate: 'gradle',
-    },
-    {
-      customType: 'regex',
-      datasourceTemplate: 'custom.sdkmanJavaVersion',
-      managerFilePatterns: ['/(^|/)\\.sdkmanrc$/'],
-      matchStrings: ['(?:^|\\n)(?<depName>java)=(?<currentValue>.+)\\n'],
-      versioningTemplate: 'docker',
-    },
-    {
-      customType: 'regex',
-      datasourceTemplate: 'custom.sdkmanMavenVersion',
-      managerFilePatterns: ['/(^|/)\\.sdkmanrc$/'],
-      matchStrings: ['(?:^|\\n)(?<depName>maven)=(?<currentValue>.+)\\n'],
-      versioningTemplate: 'maven',
-    },
-    {
-      customType: 'regex',
-      datasourceTemplate: 'custom.sdkmanMvndVersion',
-      managerFilePatterns: ['/(^|/)\\.sdkmanrc$/'],
-      matchStrings: ['(?:^|\\n)(?<depName>mvnd)=(?<currentValue>.+)\\n'],
-      versioningTemplate: 'maven',
+      matchStrings: [
+        '# renovate:(?: datasource=(?<datasource>[a-zA-Z0-9-._]+?))? depName=(?<depName>[^\\s]+?)(?: packageName=(?<packageName>[^\\s]+?))?(?: versioning=(?<versioning>[^\\s]+?))?(?: extractVersion=(?<extractVersion>[^\\s]+?))?\\s+[^=]+=(?<currentValue>.+)\\n"',
+      ],
+      versioningTemplate: '{{#if versioning}}{{{versioning}}}{{/if}}',
     },
   ],
   logLevelRemap: [
