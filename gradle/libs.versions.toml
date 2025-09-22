@@ -38,7 +38,7 @@ jakarta-xml-bind = "4.0.4"
 # renovate: datasource=custom.sdkmanJavaVersion depName=java extractVersion=^(?<version>\d+)
 java = "25"
 jetbrains-annotations = "26.0.2-1"
-jna = "5.17.0"
+jna = "5.18.0"
 jooq = "3.20.7"
 jooq-plugin = "10.1.1"
 jspecify = "1.0.0"
