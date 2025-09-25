@@ -56,7 +56,7 @@ public interface MarkitectInsertOrUpdateGenerator extends SqlGenerator&lt;Insert
 <span class="fc" id="L56">                        column.getValueObject(),</span>
 <span class="fc" id="L57">                        statement.getAllowColumnUpdate(column.getName()),</span>
 <span class="fc" id="L58">                        primaryKeyColumnNames.contains(column.getName()),</span>
-<span class="pc bpc" id="L59" title="1 of 2 branches missed.">                        !(column.getValueObject() instanceof DatabaseFunction)))</span>
+<span class="fc bfc" id="L59" title="All 2 branches covered.">                        !(column.getValueObject() instanceof DatabaseFunction)))</span>
 <span class="fc" id="L60">            .toList();</span>
 <span class="fc bfc" id="L61" title="All 2 branches covered.">    return isTrue(statement.getOnlyUpdate())</span>
 <span class="fc" id="L62">        ? prepareUpdateSql(database, statement, columnValues)</span>
@@ -106,15 +106,15 @@ public interface MarkitectInsertOrUpdateGenerator extends SqlGenerator&lt;Insert
       Database database, InsertOrUpdateStatement statement, List&lt;ColumnValue&gt; columnValues);
 
   default String columnValueToSql(Database database, ColumnValue columnValue) {
-<span class="pc bpc" id="L109" title="1 of 2 branches missed.">    return columnValue.isBindValue()</span>
+<span class="fc bfc" id="L109" title="All 2 branches covered.">    return columnValue.isBindValue()</span>
 <span class="fc" id="L110">        ? &quot;?&quot;</span>
-<span class="nc" id="L111">        : Optional.ofNullable(columnValue.getValueObject())</span>
-<span class="nc" id="L112">            .map(</span>
+<span class="fc" id="L111">        : Optional.ofNullable(columnValue.getValueObject())</span>
+<span class="fc" id="L112">            .map(</span>
                 valueObject -&gt;
-<span class="nc" id="L114">                    DataTypeFactory.getInstance()</span>
-<span class="nc" id="L115">                        .fromObject(valueObject, database)</span>
-<span class="nc" id="L116">                        .objectToSql(valueObject, database))</span>
-<span class="nc" id="L117">            .orElse(&quot;NULL&quot;);</span>
+<span class="fc" id="L114">                    DataTypeFactory.getInstance()</span>
+<span class="fc" id="L115">                        .fromObject(valueObject, database)</span>
+<span class="fc" id="L116">                        .objectToSql(valueObject, database))</span>
+<span class="fc" id="L117">            .orElse(&quot;NULL&quot;);</span>
   }
 
   @SuppressWarnings({&quot;ClassCanBeRecord&quot;, &quot;squid:S6206&quot;})
@@ -152,7 +152,7 @@ public interface MarkitectInsertOrUpdateGenerator extends SqlGenerator&lt;Insert
     }
 
     public @Nullable Object getValueObject() {
-<span class="nc" id="L155">      return valueObject;</span>
+<span class="fc" id="L155">      return valueObject;</span>
     }
 
     public boolean isAllowUpdate() {
