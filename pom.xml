@@ -122,7 +122,7 @@
     <!-- renovate: depName=com.google.googlejavaformat:google-java-format -->
     <google-java-format.version>1.28.0</google-java-format.version>
     <guava.version>33.5.0-jre</guava.version>
-    <h2.version>2.3.232</h2.version>
+    <h2.version>2.4.240</h2.version>
     <hamcrest.version>3.0</hamcrest.version>
     <hikaricp.version>7.0.2</hikaricp.version>
     <hsqldb.version>2.7.4</hsqldb.version>
