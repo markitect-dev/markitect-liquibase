@@ -21,7 +21,7 @@ dependencies {
     testRuntimeOnly libs.com.h2database.h2
     testRuntimeOnly libs.com.microsoft.sqlserver.mssql.jdbc
     testRuntimeOnly libs.org.hsqldb.hsqldb
-    testRuntimeOnly(libs.org.junit.pioneer.junit.pioneer) {
+    testRuntimeOnly libs.org.junit.pioneer.junit.pioneer, {
         capabilities {
             requireCapability 'org.junit-pioneer:junit-pioneer-jackson'
         }

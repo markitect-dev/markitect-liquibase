@@ -35,7 +35,7 @@ dependencies {
     errorprone libs.com.uber.nullaway.nullaway
 
     mockitoAgent platform(libs.org.mockito.mockito.bom)
-    mockitoAgent(libs.org.mockito.mockito.core) { transitive = false }
+    mockitoAgent libs.org.mockito.mockito.core, { transitive = false }
 
     compileOnly libs.com.github.spotbugs.spotbugs.annotations
     compileOnly libs.de.thetaphi.forbiddenapis
