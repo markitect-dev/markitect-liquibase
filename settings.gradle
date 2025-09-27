@@ -13,7 +13,11 @@ rootProject.name = 'markitect-liquibase-build'
 
 dependencyResolutionManagement {
     repositories {
-        mavenCentral()
+        mavenCentral() {
+            content {
+                excludeModule 'org.nodejs', 'node'
+            }
+        }
         ivy {
             name = 'Node.js'
             url = 'https://nodejs.org/dist/'

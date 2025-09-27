@@ -2,8 +2,16 @@ rootProject.name = 'build-logic'
 
 dependencyResolutionManagement {
     repositories {
-        mavenCentral()
-        gradlePluginPortal()
+        mavenCentral() {
+            content {
+                excludeModule 'org.nodejs', 'node'
+            }
+        }
+        gradlePluginPortal() {
+            content {
+                excludeModule 'org.nodejs', 'node'
+            }
+        }
         ivy {
             name = 'Node.js'
             url = 'https://nodejs.org/dist/'
