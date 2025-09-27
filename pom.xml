@@ -244,8 +244,8 @@
                 <include>src/**/*.java</include>
               </includes>
               <excludes>
-                <exclude>src/it/*/src/**/*.java</exclude>
-                <exclude>src/*/resources/**/*.java</exclude>
+                <exclude>src/it/*/src/</exclude>
+                <exclude>src/*/resources/</exclude>
               </excludes>
               <licenseHeader>
                 <file>${spotless.configDirectory}/license-header-java</file>
@@ -272,8 +272,12 @@
             </java>
             <json>
               <includes>
+                <include>src/**/*.json</include>
                 <include>renovate.json5</include>
               </includes>
+              <excludes>
+                <exclude>src/test/resources/snapshots/</exclude>
+              </excludes>
               <prettier>
                 <nodeExecutable>${node.executable}</nodeExecutable>
                 <npmExecutable>${npm.executable}</npmExecutable>
@@ -299,7 +303,31 @@
                 <quiet>true</quiet>
               </sortPom>
             </pom>
+            <yaml>
+              <includes>
+                <include>.github/**/*.yml</include>
+                <include>src/**/*.yaml</include>
+                <include>src/**/*.yml</include>
+              </includes>
+              <indent>
+                <spaces>true</spaces>
+                <spacesPerTab>2</spacesPerTab>
+              </indent>
+              <trimTrailingWhitespace/>
+              <endWithNewline/>
+            </yaml>
             <formats>
+              <format>
+                <includes>
+                  <include>*.md</include>
+                </includes>
+                <indent>
+                  <spaces>true</spaces>
+                  <spacesPerTab>4</spacesPerTab>
+                </indent>
+                <trimTrailingWhitespace/>
+                <endWithNewline/>
+              </format>
               <format>
                 <includes>
                   <include>src/**/*.properties</include>
@@ -323,28 +351,43 @@
               </format>
               <format>
                 <includes>
-                  <include>config/**/.npmrc</include>
                   <include>config/**/*.xml</include>
-                  <include>src/it/*/src/**/*.java</include>
-                  <include>src/*/resources/**/*.java</include>
-                  <include>src/**/*.txt</include>
                   <include>src/**/*.xml</include>
-                  <include>src/**/*.yaml</include>
-                  <include>src/**/*.yml</include>
-                  <include>.editorconfig</include>
-                  <include>.java-version</include>
-                  <include>.sdkmanrc</include>
                 </includes>
                 <excludes>
                   <exclude>src/it/**/pom.xml</exclude>
                   <exclude>src/test/resources/projects/*/reference/**/pom.xml</exclude>
                 </excludes>
-                <trimTrailingWhitespace/>
-                <endWithNewline/>
                 <indent>
                   <spaces>true</spaces>
                   <spacesPerTab>2</spacesPerTab>
                 </indent>
+                <trimTrailingWhitespace/>
+                <endWithNewline/>
+              </format>
+              <format>
+                <includes>
+                  <include>.github/CODEOWNERS</include>
+                  <include>config/**/.npmrc</include>
+                  <include>config/**/*.txt</include>
+                  <include>src/it/*/src/**/*.java</include>
+                  <include>src/*/resources/**/*.java</include>
+                  <include>src/**/META-INF/services/liquibase.*</include>
+                  <include>src/**/META-INF/services/org.assertj.core.configuration.Configuration</include>
+                  <include>src/**/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports</include>
+                  <include>src/**/*.csv</include>
+                  <include>src/**/*.txt</include>
+                  <include>*.txt</include>
+                  <include>.editorconfig</include>
+                  <include>.java-version</include>
+                  <include>.sdkmanrc</include>
+                </includes>
+                <indent>
+                  <spaces>true</spaces>
+                  <spacesPerTab>2</spacesPerTab>
+                </indent>
+                <trimTrailingWhitespace/>
+                <endWithNewline/>
               </format>
             </formats>
           </configuration>

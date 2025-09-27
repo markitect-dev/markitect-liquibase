@@ -45,12 +45,15 @@ nodeSetup.configure {
 spotless {
     ratchetFrom 'origin/main'
     groovyGradle {
-        target 'src/**/*.gradle', 'src/**/*.gradle'
+        target (
+            'src/**/*.gradle',
+            '*.gradle',
+        )
         leadingTabsToSpaces 4
         trimTrailingWhitespace()
         endWithNewline()
     }
-    format('properties') {
+    format 'properties', {
         target 'gradle.properties'
         prettier(
             [

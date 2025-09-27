@@ -41,6 +41,9 @@ ij_java_names_count_to_use_import_on_demand = 999
 ij_java_packages_to_use_import_on_demand = unset
 ij_java_ternary_operation_signs_on_next_line = true
 
+[*.md]
+indent_size = 4
+
 [*.properties]
 ij_properties_keep_blank_lines = true
 
