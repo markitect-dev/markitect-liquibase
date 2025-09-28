@@ -55,6 +55,7 @@ spotless {
     }
     format 'properties', {
         target 'gradle.properties'
+        replaceRegex 'prePrettier', '(?m)^([ \\t]*[#!])', '# $1'
         prettier(
             [
                 'prettier': libs.versions.prettier.asProvider().get(),
@@ -73,6 +74,7 @@ spotless {
                     'printWidth': 0,
                 ],
             )
+        replaceRegex 'postPrettier', '(?m)^# ', ''
     }
 }
 

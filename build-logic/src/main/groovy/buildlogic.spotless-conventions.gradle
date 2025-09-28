@@ -65,6 +65,7 @@ spotless {
             'src/**/*.properties',
             'gradle.properties',
         )
+        replaceRegex 'prePrettier', '(?m)^([ \\t]*[#!])', '# $1'
         prettier(
             [
                 'prettier': libs.versions.prettier.asProvider().get(),
@@ -83,6 +84,7 @@ spotless {
                     'printWidth': 0,
                 ],
             )
+        replaceRegex 'postPrettier', '(?m)^# ', ''
     }
     format 'toml', {
         target 'gradle/**/*.toml'
