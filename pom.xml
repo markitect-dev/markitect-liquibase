@@ -140,7 +140,7 @@
     <junit-pioneer.version>2.3.0</junit-pioneer.version>
     <liquibase.version>4.33.0</liquibase.version>
     <log4j2.version>2.25.2</log4j2.version>
-    <logback.version>1.5.18</logback.version>
+    <logback.version>1.5.19</logback.version>
     <lombok.version>1.18.42</lombok.version>
     <maven-antrun-plugin.version>3.1.0</maven-antrun-plugin.version>
     <maven-archetype.version>3.4.0</maven-archetype.version>
