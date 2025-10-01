@@ -133,7 +133,7 @@
     <jakarta-xml-bind.version>4.0.4</jakarta-xml-bind.version>
     <jetbrains-annotations.version>26.0.2-1</jetbrains-annotations.version>
     <jna.version>5.18.1</jna.version>
-    <jooq.version>3.20.7</jooq.version>
+    <jooq.version>3.20.8</jooq.version>
     <jspecify.version>1.0.0</jspecify.version>
     <junit.version>4.13.2</junit.version>
     <junit-jupiter.version>6.0.0</junit-jupiter.version>
