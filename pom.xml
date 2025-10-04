@@ -138,7 +138,7 @@
     <junit.version>4.13.2</junit.version>
     <junit-jupiter.version>6.0.0</junit-jupiter.version>
     <junit-pioneer.version>2.3.0</junit-pioneer.version>
-    <liquibase.version>5.0.0</liquibase.version>
+    <liquibase.version>5.0.1</liquibase.version>
     <log4j2.version>2.25.2</log4j2.version>
     <logback.version>1.5.19</logback.version>
     <lombok.version>1.18.42</lombok.version>
