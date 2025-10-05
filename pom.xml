@@ -441,7 +441,7 @@
           <version>${forbiddenapis.version}</version>
           <configuration>
             <bundledSignatures>
-              <bundledSignature>commons-io-unsafe-2.18.0</bundledSignature>
+              <bundledSignature>commons-io-unsafe-2.20.0</bundledSignature>
               <bundledSignature>jdk-deprecated</bundledSignature>
               <bundledSignature>jdk-internal</bundledSignature>
               <bundledSignature>jdk-non-portable</bundledSignature>
