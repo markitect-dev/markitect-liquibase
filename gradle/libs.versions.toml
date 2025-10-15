@@ -82,7 +82,7 @@ spotbugs-plugin = "6.4.3"
 spotless-plugin = "8.0.0"
 spring-boot = "3.5.6"
 spring-framework = "6.2.11"
-testcontainers = "1.21.3"
+testcontainers = "2.0.0"
 
 [libraries]
 biz-aqute-bnd-biz-aqute-bnd-annotation = { module = "biz.aQute.bnd:biz.aQute.bnd.annotation", version.ref = "bnd-annotation" }
@@ -174,10 +174,10 @@ org-springframework-boot-spring-boot-test-autoconfigure = { module = "org.spring
 org-springframework-spring-context = { module = "org.springframework:spring-context", version.ref = "spring-framework" }
 org-springframework-spring-framework-bom = { module = "org.springframework:spring-framework-bom", version.ref = "spring-framework" }
 org-springframework-spring-jdbc = { module = "org.springframework:spring-jdbc" }
-org-testcontainers-junit-jupiter = { module = "org.testcontainers:junit-jupiter" }
-org-testcontainers-mssqlserver = { module = "org.testcontainers:mssqlserver" }
-org-testcontainers-postgresql = { module = "org.testcontainers:postgresql" }
 org-testcontainers-testcontainers-bom = { module = "org.testcontainers:testcontainers-bom", version.ref = "testcontainers" }
+org-testcontainers-testcontainers-junit-jupiter = { module = "org.testcontainers:testcontainers-junit-jupiter" }
+org-testcontainers-testcontainers-mssqlserver = { module = "org.testcontainers:testcontainers-mssqlserver" }
+org-testcontainers-testcontainers-postgresql = { module = "org.testcontainers:testcontainers-postgresql" }
 org-yaml-snakeyaml = { module = "org.yaml:snakeyaml", version.ref = "snakeyaml" }
 
 [plugins]
