@@ -43,15 +43,15 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junitpioneer.jupiter.json.JsonSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.testcontainers.containers.MSSQLServerContainer;
 import org.testcontainers.junit.jupiter.Testcontainers;
+import org.testcontainers.mssqlserver.MSSQLServerContainer;
 
 @SpringBootTest(classes = TestDatabaseConfiguration.class)
 @Testcontainers(disabledWithoutDocker = true)
 class MarkitectMssqlDatabaseIntegrationTests {
   @Autowired private DatabaseBuilder<MarkitectMssqlDatabase> databaseBuilder;
   @Autowired private TestDatabaseSpecs specs;
-  @Autowired private MSSQLServerContainer<?> container;
+  @Autowired private MSSQLServerContainer container;
 
   @ParameterizedTest
   @CsvSource(
