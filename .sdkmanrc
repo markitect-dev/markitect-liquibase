@@ -1,7 +1,7 @@
 # Enable auto-env through the sdkman_auto_env config
 # Add key=value pairs of SDKs to use below
 # renovate: datasource=custom.sdkmanGradleVersion depName=gradle versioning=gradle
-gradle=9.2.0-rc-1
+gradle=9.2.0-rc-2
 # renovate: datasource=custom.sdkmanJavaVersion depName=java versioning=docker
 java=25-zulu
 # renovate: datasource=custom.sdkmanMavenVersion depName=maven versioning=maven
