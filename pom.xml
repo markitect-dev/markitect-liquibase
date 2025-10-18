@@ -190,7 +190,7 @@
     <sonar-maven-plugin.version>5.2.0.4988</sonar-maven-plugin.version>
     <!-- renovate: depName=com.github.ekryd.sortpom:sortpom-sorter -->
     <sortpom.version>4.0.0</sortpom.version>
-    <spotbugs-maven-plugin.version>4.9.7.0</spotbugs-maven-plugin.version>
+    <spotbugs-maven-plugin.version>4.9.8.0</spotbugs-maven-plugin.version>
     <spotbugs.version>4.9.8</spotbugs.version>
     <spotless-maven-plugin.version>3.0.0</spotless-maven-plugin.version>
     <spring-boot.version>3.5.6</spring-boot.version>
