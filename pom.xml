@@ -142,7 +142,7 @@
     <log4j2.version>2.25.2</log4j2.version>
     <logback.version>1.5.20</logback.version>
     <lombok.version>1.18.42</lombok.version>
-    <maven-antrun-plugin.version>3.1.0</maven-antrun-plugin.version>
+    <maven-antrun-plugin.version>3.2.0</maven-antrun-plugin.version>
     <maven-archetype.version>3.4.1</maven-archetype.version>
     <maven-assembly-plugin.version>3.7.1</maven-assembly-plugin.version>
     <maven-checkstyle-plugin.version>3.6.0</maven-checkstyle-plugin.version>
