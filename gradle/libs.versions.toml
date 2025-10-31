@@ -54,7 +54,7 @@ mockito = "5.20.0"
 mssql-jdbc = "13.2.1.jre11"
 # renovate: datasource=node-version depName=node
 node = "24.11.0"
-nullaway = "0.12.10"
+nullaway = "0.12.11"
 nullaway-plugin = "2.3.0"
 objenesis = "3.4"
 opencsv = "5.12.0"
