@@ -105,7 +105,7 @@
     <checkstyle.version>12.1.1</checkstyle.version>
     <!-- renovate: depName=io.github.solven-eu.cleanthat:java -->
     <cleanthat.version>2.24</cleanthat.version>
-    <commons-codec.version>1.19.0</commons-codec.version>
+    <commons-codec.version>1.20.0</commons-codec.version>
     <commons-collections4.version>4.5.0</commons-collections4.version>
     <commons-compress.version>1.28.0</commons-compress.version>
     <commons-io.version>2.20.0</commons-io.version>
