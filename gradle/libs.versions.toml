@@ -53,7 +53,7 @@ micrometer = "1.16.0"
 mockito = "5.20.0"
 mssql-jdbc = "13.2.1.jre11"
 # renovate: datasource=node-version depName=node
-node = "24.11.0"
+node = "24.11.1"
 nullaway = "0.12.12"
 nullaway-plugin = "2.3.0"
 objenesis = "3.4"
