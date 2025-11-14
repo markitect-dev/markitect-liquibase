@@ -82,7 +82,7 @@ spotbugs-plugin = "6.4.5"
 spotless-plugin = "8.0.0"
 spring-boot = "3.5.7"
 spring-framework = "6.2.13"
-testcontainers = "2.0.1"
+testcontainers = "2.0.2"
 
 [libraries]
 biz-aqute-bnd-biz-aqute-bnd-annotation = { module = "biz.aQute.bnd:biz.aQute.bnd.annotation", version.ref = "bnd-annotation" }

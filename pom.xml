@@ -195,7 +195,7 @@
     <spotless-maven-plugin.version>3.0.0</spotless-maven-plugin.version>
     <spring-boot.version>3.5.7</spring-boot.version>
     <spring-framework.version>6.2.13</spring-framework.version>
-    <testcontainers.version>2.0.1</testcontainers.version>
+    <testcontainers.version>2.0.2</testcontainers.version>
     <versions-maven-plugin.version>2.19.1</versions-maven-plugin.version>
   </properties>
 
