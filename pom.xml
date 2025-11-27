@@ -113,7 +113,7 @@
     <commons-text.version>1.14.0</commons-text.version>
     <docker-java.version>3.7.0</docker-java.version>
     <duct-tape.version>1.0.8</duct-tape.version>
-    <error-prone.version>2.44.0</error-prone.version>
+    <error-prone.version>2.45.0</error-prone.version>
     <extra-enforcer-rules.version>1.11.0</extra-enforcer-rules.version>
     <findsecbugs-plugin.version>1.14.0</findsecbugs-plugin.version>
     <flatten-maven-plugin.version>1.7.3</flatten-maven-plugin.version>
