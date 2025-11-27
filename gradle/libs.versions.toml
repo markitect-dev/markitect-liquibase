@@ -65,7 +65,7 @@ osgi-resource = "1.0.1"
 osgi-service-serviceloader = "1.0.0"
 postgresql = "42.7.8"
 # renovate: datasource=npm depName=prettier
-prettier = "3.6.2"
+prettier = "3.7.1"
 # renovate: datasource=npm depName=prettier-plugin-properties
 prettier-plugin-properties = "0.3.0"
 # renovate: datasource=npm depName=prettier-plugin-toml
