@@ -146,8 +146,9 @@ tasks.withType(JavaCompile).configureEach {
         if (!ci) {
             allDisabledChecksAsWarnings = true
             allSuggestionsAsWarnings = true
-            disable 'AndroidJdkLibsChecker'
             disable 'Java8ApiChecker'
+            disable 'SuppressWarningsWithoutExplanation'
+            warn 'RequireExplicitNullMarking'
         }
         nullaway {
             excludedFieldAnnotations.add('org.junit.jupiter.api.io.TempDir')

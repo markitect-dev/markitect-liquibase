@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Markitect
+ * Copyright 2023-2025 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,9 @@ package dev.markitect.liquibase.logging;
 
 import org.assertj.core.configuration.Configuration;
 import org.assertj.core.configuration.PreferredAssumptionException;
+import org.jspecify.annotations.NullMarked;
 
+@NullMarked
 public class AssertjConfiguration extends Configuration {
   @Override
   public int maxStackTraceElementsDisplayed() {

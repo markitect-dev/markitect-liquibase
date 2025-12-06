@@ -519,9 +519,10 @@
               <arg>-Xplugin:ErrorProne
                 -XepAllSuggestionsAsWarnings
                 -XepAllDisabledChecksAsWarnings
-                -Xep:AndroidJdkLibsChecker:OFF
                 -Xep:Java8ApiChecker:OFF
                 -Xep:NullAway:WARN
+                -Xep:RequireExplicitNullMarking:WARN
+                -Xep:SuppressWarningsWithoutExplanation:OFF
                 -XepOpt:NullAway:ExcludedFieldAnnotations=${nullaway.excludedFieldAnnotations}
                 -XepOpt:NullAway:OnlyNullMarked=true</arg>
               <arg>-XDcompilePolicy=simple</arg>
