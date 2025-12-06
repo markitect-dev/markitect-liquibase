@@ -45,7 +45,9 @@
     {
       customType: 'regex',
       datasourceTemplate: '{{#if datasource}}{{{datasource}}}{{else}}maven{{/if}}',
-      managerFilePatterns: ['/(^|/)gradle/.*\\.toml$/'],
+      managerFilePatterns: [
+        '/(^|/)gradle/.*\\.toml$/',
+      ],
       matchStrings: [
         '# renovate:(?: datasource=(?<datasource>[a-zA-Z0-9-._]+?))? depName=(?<depName>[^\\s]+?)(?: packageName=(?<packageName>[^\\s]+?))?(?: versioning=(?<versioning>[^\\s]+?))?(?: extractVersion=(?<extractVersion>[^\\s]+?))?\\s+[^"]+"(?<currentValue>[^"]+)"',
       ],
@@ -54,14 +56,20 @@
     {
       customType: 'regex',
       datasourceTemplate: 'custom.sdkmanJavaVersion',
-      managerFilePatterns: ['/(^|/)\\.java-version$/'],
-      matchStrings: ['(?<currentValue>.*)\\n'],
+      managerFilePatterns: [
+        '/(^|/)\\.java-version$/',
+      ],
+      matchStrings: [
+        '(?<currentValue>.*)\\n',
+      ],
       depNameTemplate: 'java',
       extractVersionTemplate: '^(?<version>\\d+)',
     },
     {
       customType: 'regex',
-      managerFilePatterns: ['/(^|/)\\.sdkmanrc$/'],
+      managerFilePatterns: [
+        '/(^|/)\\.sdkmanrc$/',
+      ],
       matchStrings: [
         '# renovate:(?: datasource=(?<datasource>[a-zA-Z0-9-._]+?))? depName=(?<depName>[^\\s]+?)(?: packageName=(?<packageName>[^\\s]+?))?(?: versioning=(?<versioning>[^\\s]+?))?(?: extractVersion=(?<extractVersion>[^\\s]+?))?\\s+[^=]+=(?<currentValue>.+)\\n',
       ],
@@ -80,86 +88,130 @@
   ],
   packageRules: [
     {
-      matchPackageNames: ['gradle'],
+      matchPackageNames: [
+        'gradle',
+      ],
       ignoreUnstable: false,
       allowedVersions: '!/-milestone-\\d+$/',
     },
     {
-      matchPackageNames: ['java'],
+      matchPackageNames: [
+        'java',
+      ],
       allowedVersions: '/^(?:21|25)(?:\\.|-|$)/',
     },
     {
-      matchPackageNames: ['maven'],
-      matchUpdateTypes: ['major'],
+      matchPackageNames: [
+        'maven',
+      ],
+      matchUpdateTypes: [
+        'major',
+      ],
       enabled: false,
     },
     {
-      matchPackageNames: ['mvnd'],
-      matchUpdateTypes: ['major'],
+      matchPackageNames: [
+        'mvnd',
+      ],
+      matchUpdateTypes: [
+        'major',
+      ],
       enabled: false,
     },
     {
-      matchDatasources: ['custom.sdkmanMvndVersion'],
+      matchDatasources: [
+        'custom.sdkmanMvndVersion',
+      ],
       sourceUrl: 'https://github.com/apache/maven-mvnd',
     },
     {
-      matchPackageNames: ['org.assertj:assertj-bom'],
+      matchPackageNames: [
+        'org.assertj:assertj-bom',
+      ],
       groupName: 'assertj',
     },
     {
-      matchPackageNames: ['org.awaitility:awaitility'],
+      matchPackageNames: [
+        'org.awaitility:awaitility',
+      ],
       groupName: 'awaitility',
     },
     {
-      matchPackageNames: ['biz.aQute.bnd:biz.aQute.bnd.annotation'],
+      matchPackageNames: [
+        'biz.aQute.bnd:biz.aQute.bnd.annotation',
+      ],
       groupName: 'bnd-annotation',
     },
     {
-      matchPackageNames: ['net.bytebuddy:**'],
+      matchPackageNames: [
+        'net.bytebuddy:**',
+      ],
       groupName: 'byte-buddy',
     },
     {
-      matchPackageNames: ['com.puppycrawl.tools:checkstyle'],
+      matchPackageNames: [
+        'com.puppycrawl.tools:checkstyle',
+      ],
       groupName: 'checkstyle',
     },
     {
-      matchPackageNames: ['io.github.solven-eu.cleanthat:**'],
+      matchPackageNames: [
+        'io.github.solven-eu.cleanthat:**',
+      ],
       groupName: 'cleanthat',
     },
     {
-      matchPackageNames: ['org.apache.commons:commons-collections4'],
+      matchPackageNames: [
+        'org.apache.commons:commons-collections4',
+      ],
       groupName: 'commons-collections4',
     },
     {
-      matchPackageNames: ['commons-codec:commons-codec'],
+      matchPackageNames: [
+        'commons-codec:commons-codec',
+      ],
       groupName: 'commons-codec',
     },
     {
-      matchPackageNames: ['org.apache.commons:commons-compress'],
+      matchPackageNames: [
+        'org.apache.commons:commons-compress',
+      ],
       groupName: 'commons-compress',
     },
     {
-      matchPackageNames: ['commons-io:commons-io'],
+      matchPackageNames: [
+        'commons-io:commons-io',
+      ],
       groupName: 'commons-io',
     },
     {
-      matchPackageNames: ['org.apache.commons:commons-lang3'],
+      matchPackageNames: [
+        'org.apache.commons:commons-lang3',
+      ],
       groupName: 'commons-lang3',
     },
     {
-      matchPackageNames: ['org.apache.commons:commons-text'],
+      matchPackageNames: [
+        'org.apache.commons:commons-text',
+      ],
       groupName: 'commons-text',
     },
     {
-      matchPackageNames: ['com.github.docker-java:**'],
+      matchPackageNames: [
+        'com.github.docker-java:**',
+      ],
       groupName: 'docker-java',
     },
     {
-      matchPackageNames: ['com.google.errorprone:**'],
+      matchPackageNames: [
+        'com.google.errorprone:**',
+      ],
       groupName: 'error-prone',
     },
     {
-      matchPackageNames: ['com.h3xstream.findsecbugs:findsecbugs-plugin'],
+      matchPackageNames: [
+        'com.h3xstream.findsecbugs:findsecbugs-plugin',
+      ],
       groupName: 'findsecbugs-plugin',
     },
     {
@@ -170,72 +222,106 @@
       groupName: 'forbiddenapis',
     },
     {
-      matchPackageNames: ['com.google.googlejavaformat:google-java-format'],
+      matchPackageNames: [
+        'com.google.googlejavaformat:google-java-format',
+      ],
       groupName: 'google-java-format',
     },
     {
-      matchPackageNames: ['com.google.guava:guava'],
+      matchPackageNames: [
+        'com.google.guava:guava',
+      ],
       groupName: 'guava',
       versioning: 'docker',
     },
     {
-      matchPackageNames: ['com.h2database:**'],
+      matchPackageNames: [
+        'com.h2database:**',
+      ],
       groupName: 'h2',
     },
     {
-      matchPackageNames: ['com.zaxxer:HikariCP'],
+      matchPackageNames: [
+        'com.zaxxer:HikariCP',
+      ],
       groupName: 'hikaricp',
     },
     {
-      matchPackageNames: ['org.hsqldb:**'],
+      matchPackageNames: [
+        'org.hsqldb:**',
+      ],
       groupName: 'hsqldb',
     },
     {
-      matchPackageNames: ['com.fasterxml.jackson:jackson-bom'],
+      matchPackageNames: [
+        'com.fasterxml.jackson:jackson-bom',
+      ],
       groupName: 'jackson',
     },
     {
-      matchPackageNames: ['org.jacoco:**'],
+      matchPackageNames: [
+        'org.jacoco:**',
+      ],
       groupName: 'jacoco',
     },
     {
-      matchPackageNames: ['jakarta.activation:**'],
+      matchPackageNames: [
+        'jakarta.activation:**',
+      ],
       groupName: 'jakarta-activation',
     },
     {
-      matchPackageNames: ['jakarta.xml.bind:**'],
+      matchPackageNames: [
+        'jakarta.xml.bind:**',
+      ],
       groupName: 'jakarta-xml-bind',
     },
     {
-      matchPackageNames: ['org.jetbrains:annotations'],
+      matchPackageNames: [
+        'org.jetbrains:annotations',
+      ],
       groupName: 'jetbrains-annotations',
     },
     {
-      matchPackageNames: ['org.jooq:**'],
+      matchPackageNames: [
+        'org.jooq:**',
+      ],
       groupName: 'jooq',
     },
     {
-      matchPackageNames: ['org.jspecify:**'],
+      matchPackageNames: [
+        'org.jspecify:**',
+      ],
       groupName: 'jspecify',
     },
     {
-      matchPackageNames: ['org.junit:**'],
+      matchPackageNames: [
+        'org.junit:**',
+      ],
       groupName: 'junit',
     },
     {
-      matchPackageNames: ['org.junit-pioneer:junit-pioneer'],
+      matchPackageNames: [
+        'org.junit-pioneer:junit-pioneer',
+      ],
       groupName: 'junit-pioneer',
     },
     {
-      matchPackageNames: ['org.liquibase:**'],
+      matchPackageNames: [
+        'org.liquibase:**',
+      ],
       groupName: 'liquibase',
     },
     {
-      matchPackageNames: ['ch.qos.logback:**'],
+      matchPackageNames: [
+        'ch.qos.logback:**',
+      ],
       groupName: 'logback',
     },
     {
-      matchPackageNames: ['org.projectlombok:lombok'],
+      matchPackageNames: [
+        'org.projectlombok:lombok',
+      ],
       groupName: 'lombok',
     },
     {
@@ -246,27 +332,39 @@
       groupName: 'maven-wrapper',
     },
     {
-      matchPackageNames: ['io.micrometer:**'],
+      matchPackageNames: [
+        'io.micrometer:**',
+      ],
       groupName: 'micrometer',
     },
     {
-      matchPackageNames: ['com.microsoft.sqlserver:mssql-jdbc'],
+      matchPackageNames: [
+        'com.microsoft.sqlserver:mssql-jdbc',
+      ],
       groupName: 'mssql-jdbc',
     },
     {
-      matchPackageNames: ['com.uber.nullaway:**'],
+      matchPackageNames: [
+        'com.uber.nullaway:**',
+      ],
       groupName: 'nullaway',
     },
     {
-      matchPackageNames: ['com.opencsv:opencsv'],
+      matchPackageNames: [
+        'com.opencsv:opencsv',
+      ],
       groupName: 'opencsv',
     },
     {
-      matchPackageNames: ['org.postgresql:postgresql'],
+      matchPackageNames: [
+        'org.postgresql:postgresql',
+      ],
       groupName: 'postgresql',
     },
     {
-      matchPackageNames: ['org.yaml:snakeyaml'],
+      matchPackageNames: [
+        'org.yaml:snakeyaml',
+      ],
       groupName: 'snakeyaml',
     },
     {
@@ -277,9 +375,16 @@
       groupName: 'spotbugs',
     },
     {
-      matchFileNames: ['**/src/it/spring-boot-3.4/pom.xml'],
-      matchPackageNames: ['org.springframework.boot:**'],
-      matchUpdateTypes: ['major', 'minor'],
+      matchFileNames: [
+        '**/src/it/spring-boot-3.4/pom.xml',
+      ],
+      matchPackageNames: [
+        'org.springframework.boot:**',
+      ],
+      matchUpdateTypes: [
+        'major',
+        'minor',
+      ],
       enabled: false,
     },
     {
@@ -319,11 +424,15 @@
       sourceUrl: 'https://github.com/tbroyer/gradle-errorprone-plugin',
     },
     {
-      matchPackageNames: ['net.ltgt.nullaway:net.ltgt.nullaway.gradle.plugin'],
+      matchPackageNames: [
+        'net.ltgt.nullaway:net.ltgt.nullaway.gradle.plugin',
+      ],
       sourceUrl: 'https://github.com/tbroyer/gradle-nullaway-plugin',
     },
     {
-      matchPackageNames: ['nu.studer.jooq:nu.studer.jooq.gradle.plugin'],
+      matchPackageNames: [
+        'nu.studer.jooq:nu.studer.jooq.gradle.plugin',
+      ],
       sourceUrl: 'https://github.com/etiennestuder/gradle-jooq-plugin',
     },
     {
@@ -333,7 +442,9 @@
       sourceUrl: 'https://github.com/openrewrite/rewrite-gradle-plugin',
     },
     {
-      matchPackageNames: ['org.sonarqube:org.sonarqube.gradle.plugin'],
+      matchPackageNames: [
+        'org.sonarqube:org.sonarqube.gradle.plugin',
+      ],
       sourceUrl: 'https://github.com/SonarSource/sonar-scanner-gradle',
     },
   ],

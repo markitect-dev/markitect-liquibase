@@ -45,7 +45,7 @@ nodeSetup.configure {
 spotless {
     ratchetFrom 'origin/main'
     groovyGradle {
-        target (
+        target(
             'src/**/*.gradle',
             '*.gradle',
         )
@@ -82,8 +82,8 @@ tasks.named('spotlessProperties') {
     dependsOn rootProject.tasks.nodeSetup
 }
 
-spotlessCheck.configure {
-    if (!ci) {
+if (!ci) {
+    spotlessCheck.configure {
         dependsOn spotlessApply
     }
 }

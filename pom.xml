@@ -183,6 +183,8 @@
     <prettier.version>3.7.4</prettier.version>
     <!-- renovate: datasource=npm depName=prettier-plugin-properties -->
     <prettier-plugin-properties.version>0.3.0</prettier-plugin-properties.version>
+    <!-- renovate: datasource=npm depName=prettier-plugin-toml -->
+    <prettier-plugin-toml.version>2.0.6</prettier-plugin-toml.version>
     <r2dbc-spi.version>1.0.0.RELEASE</r2dbc-spi.version>
     <reactive-streams.version>1.0.4</reactive-streams.version>
     <slf4j.version>2.0.17</slf4j.version>
@@ -238,8 +240,8 @@
           <artifactId>spotless-maven-plugin</artifactId>
           <version>${spotless-maven-plugin.version}</version>
           <configuration>
-            <ratchetFrom>origin/main</ratchetFrom>
             <java>
+              <ratchetFrom>origin/main</ratchetFrom>
               <includes>
                 <include>src/**/*.java</include>
               </includes>
@@ -285,16 +287,19 @@
                 <npmrc>${spotless.configDirectory}/.npmrc</npmrc>
                 <prettierVersion>${prettier.version}</prettierVersion>
                 <config>
+                  <printWidth>0</printWidth>
                   <singleQuote>true</singleQuote>
                 </config>
               </prettier>
             </json>
             <pom>
               <includes>
-                <include>src/it/**/pom.xml</include>
-                <include>src/test/resources/projects/*/reference/**/pom.xml</include>
+                <include>src/**/pom.xml</include>
                 <include>pom.xml</include>
               </includes>
+              <excludes>
+                <exclude>src/main/resources/archetype-resources/</exclude>
+              </excludes>
               <sortPom>
                 <version>${sortpom.version}</version>
                 <lineSeparator>\n</lineSeparator>
@@ -319,6 +324,19 @@
             <formats>
               <format>
                 <includes>
+                  <include>build-logic/src/**/*.gradle</include>
+                  <include>build-logic/*.gradle</include>
+                  <include>*.gradle</include>
+                </includes>
+                <indent>
+                  <spaces>true</spaces>
+                  <spacesPerTab>4</spacesPerTab>
+                </indent>
+                <trimTrailingWhitespace/>
+                <endWithNewline/>
+              </format>
+              <format>
+                <includes>
                   <include>*.md</include>
                 </includes>
                 <indent>
@@ -330,8 +348,14 @@
               </format>
               <format>
                 <includes>
+                  <include>build-logic/gradle.properties</include>
                   <include>src/**/*.properties</include>
                 </includes>
+                <replaceRegex>
+                  <name>prePrettier</name>
+                  <searchRegex>(?m)^([ \t]*[#!])</searchRegex>
+                  <replacement># $1</replacement>
+                </replaceRegex>
                 <prettier>
                   <nodeExecutable>${node.executable}</nodeExecutable>
                   <npmExecutable>${npm.executable}</npmExecutable>
@@ -348,6 +372,30 @@
                     <printWidth>0</printWidth>
                   </config>
                 </prettier>
+                <replaceRegex>
+                  <name>postPrettier</name>
+                  <searchRegex xml:space="preserve">(?m)^# </searchRegex>
+                  <replacement/>
+                </replaceRegex>
+              </format>
+              <format>
+                <includes>
+                  <include>gradle/**/*.toml</include>
+                </includes>
+                <prettier>
+                  <nodeExecutable>${node.executable}</nodeExecutable>
+                  <npmExecutable>${npm.executable}</npmExecutable>
+                  <npmInstallCache>${spotless.npmInstallCache}</npmInstallCache>
+                  <npmrc>${spotless.configDirectory}/.npmrc</npmrc>
+                  <devDependencies>
+                    <prettier>${prettier.version}</prettier>
+                    <prettier-plugin-toml>${prettier-plugin-toml.version}</prettier-plugin-toml>
+                  </devDependencies>
+                  <config>
+                    <parser>toml</parser>
+                    <plugins>prettier-plugin-toml</plugins>
+                  </config>
+                </prettier>
               </format>
               <format>
                 <includes>
@@ -355,8 +403,7 @@
                   <include>src/**/*.xml</include>
                 </includes>
                 <excludes>
-                  <exclude>src/it/**/pom.xml</exclude>
-                  <exclude>src/test/resources/projects/*/reference/**/pom.xml</exclude>
+                  <exclude>src/**/pom.xml</exclude>
                 </excludes>
                 <indent>
                   <spaces>true</spaces>
@@ -370,6 +417,7 @@
                   <include>.github/CODEOWNERS</include>
                   <include>config/**/.npmrc</include>
                   <include>config/**/*.txt</include>
+                  <include>src/main/resources/archetype-resources/**/pom.xml</include>
                   <include>src/it/*/src/**/*.java</include>
                   <include>src/*/resources/**/*.java</include>
                   <include>src/**/META-INF/services/liquibase.*</include>

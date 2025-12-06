@@ -20,10 +20,6 @@ nexusPublishing {
 
 idea {
     module {
-        excludeDirs += [
-            file('.idea'),
-            file('markitect-liquibase-parent/target'),
-            file('markitect-liquibase-spring-boot-archetype/target'),
-        ]
+        excludeDirs += file('.idea')
     }
 }

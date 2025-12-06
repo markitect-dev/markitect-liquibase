@@ -11,36 +11,33 @@ def npmInstallCache = rootProject.layout.projectDirectory.dir('.gradle/spotless-
 def npmrc = rootProject.file('config/spotless/.npmrc')
 
 spotless {
-    ratchetFrom 'origin/main'
-    plugins.withId('java') {
-        groovyGradle {
-            leadingTabsToSpaces 4
-            trimTrailingWhitespace()
-            endWithNewline()
-        }
-        java {
-            target 'src/**/*.java'
-            targetExclude 'src/it/*/src/'
-            licenseHeaderFile rootProject.file('config/spotless/license-header-java')
-            cleanthat()
-                .version(libs.versions.cleanthat.get())
-                .sourceCompatibility('17')
-                .addMutator('SafeButNotConsensual')
-                .addMutator('UnnecessarySemicolon')
-                .excludeMutator('AvoidInlineConditionals')
-                .excludeMutator('LambdaIsMethodReference')
-                .excludeMutator('LiteralsFirstInComparisons')
-                .excludeMutator('LocalVariableTypeInference')
-            googleJavaFormat(libs.versions.google.java.format.get())
-                .reflowLongStrings()
-        }
+    groovyGradle {
+        leadingTabsToSpaces 4
+        trimTrailingWhitespace()
+        endWithNewline()
+    }
+    java {
+        ratchetFrom 'origin/main'
+        target 'src/**/*.java'
+        licenseHeaderFile(rootProject.file('config/spotless/license-header-java'))
+            .onlyIfContentMatches('(?m)^package dev\\.markitect[.;]')
+        cleanthat()
+            .version(libs.versions.cleanthat.get())
+            .sourceCompatibility('17')
+            .addMutator('SafeButNotConsensual')
+            .addMutator('UnnecessarySemicolon')
+            .excludeMutator('AvoidInlineConditionals')
+            .excludeMutator('LambdaIsMethodReference')
+            .excludeMutator('LiteralsFirstInComparisons')
+            .excludeMutator('LocalVariableTypeInference')
+        googleJavaFormat(libs.versions.google.java.format.get())
+            .reflowLongStrings()
     }
     json {
-        target (
+        target(
             'src/**/*.json',
             'renovate.json5',
         )
-        targetExclude 'src/test/resources/snapshots/'
         prettier(libs.versions.prettier.asProvider().get())
             .nodeExecutable(nodeExecutable)
             .npmExecutable(npmExecutable)
@@ -48,20 +45,31 @@ spotless {
             .npmrc(npmrc)
             .config(
                 [
+                    'printWidth': 0,
                     'singleQuote': true,
                 ],
             )
     }
     format 'markdown', {
-        target (
-            '*.md',
-        )
+        target '*.md'
         leadingTabsToSpaces 4
         trimTrailingWhitespace()
         endWithNewline()
     }
+    pom {
+        target(
+            'src/**/pom.xml',
+            'pom.xml',
+        )
+        targetExclude 'src/main/resources/archetype-resources/'
+        sortPom(libs.versions.sortpom.get())
+            .lineSeparator('\n')
+            .expandEmptyElements(false)
+            .indentAttribute('schemaLocation')
+            .quiet(true)
+    }
     format 'properties', {
-        target (
+        target(
             'src/**/*.properties',
             'gradle.properties',
         )
@@ -110,6 +118,7 @@ spotless {
             'config/**/*.xml',
             'src/**/*.xml',
         )
+        targetExclude 'src/**/pom.xml'
         leadingTabsToSpaces 2
         trimTrailingWhitespace()
         endWithNewline()
@@ -129,7 +138,7 @@ spotless {
             '.github/CODEOWNERS',
             'config/**/.npmrc',
             'config/**/*.txt',
-            'src/it/*/src/**/*.java',
+            'src/main/resources/archetype-resources/**/pom.xml',
             'src/**/META-INF/services/liquibase.*',
             'src/**/META-INF/services/org.assertj.core.configuration.Configuration',
             'src/**/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports',
@@ -152,8 +161,8 @@ spotless {
     }
 }
 
-spotlessCheck.configure {
-    if (!ci) {
+if (!ci) {
+    spotlessCheck.configure {
         dependsOn spotlessApply
     }
 }
