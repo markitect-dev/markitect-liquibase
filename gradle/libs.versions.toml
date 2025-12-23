@@ -61,7 +61,6 @@ org-jacoco-org-jacoco-ant = { module = "org.jacoco:org.jacoco.ant", version.ref 
 org-jspecify-jspecify = { module = "org.jspecify:jspecify", version.ref = "jspecify" }
 org-junit-pioneer-junit-pioneer = { module = "org.junit-pioneer:junit-pioneer", version.ref = "junit-pioneer" }
 org-liquibase-liquibase-core = { module = "org.liquibase:liquibase-core" }
-org-mockito-mockito-core = { module = "org.mockito:mockito-core" }
 org-openrewrite-recipe-rewrite-static-analysis = { module = "org.openrewrite.recipe:rewrite-static-analysis", version.ref = "rewrite-static-analysis" }
 org-osgi-org-osgi-annotation-bundle = { module = "org.osgi:org.osgi.annotation.bundle" }
 org-osgi-org-osgi-annotation-versioning = { module = "org.osgi:org.osgi.annotation.versioning" }

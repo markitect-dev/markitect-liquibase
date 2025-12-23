@@ -226,6 +226,7 @@
     },
     {
       matchFileNames: [
+        'gradle/libs.versions.toml',
         'markitect-liquibase-spring-boot-starter/src/it/spring-boot-3.4/pom.xml',
         'pom.xml',
       ],
