@@ -17,10 +17,6 @@
       <defaultValue>@liquibase.version@</defaultValue>
       <validationRegex>@liquibase.version@|inherit|.+</validationRegex>
     </requiredProperty>
-    <requiredProperty key="snakeyamlVersion">
-      <defaultValue>@snakeyaml.version@</defaultValue>
-      <validationRegex>@snakeyaml.version@|inherit|.+</validationRegex>
-    </requiredProperty>
     <requiredProperty key="h2Version">
       <defaultValue>@h2.version@</defaultValue>
       <validationRegex>@h2.version@|inherit|.+</validationRegex>

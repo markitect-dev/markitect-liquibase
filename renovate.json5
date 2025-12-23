@@ -126,30 +126,6 @@
     },
     {
       matchPackageNames: [
-        'org.assertj:assertj-bom',
-      ],
-      groupName: 'assertj',
-    },
-    {
-      matchPackageNames: [
-        'org.awaitility:awaitility',
-      ],
-      groupName: 'awaitility',
-    },
-    {
-      matchPackageNames: [
-        'biz.aQute.bnd:biz.aQute.bnd.annotation',
-      ],
-      groupName: 'bnd-annotation',
-    },
-    {
-      matchPackageNames: [
-        'net.bytebuddy:**',
-      ],
-      groupName: 'byte-buddy',
-    },
-    {
-      matchPackageNames: [
         'com.puppycrawl.tools:checkstyle',
       ],
       groupName: 'checkstyle',
@@ -159,48 +135,6 @@
         'io.github.solven-eu.cleanthat:**',
       ],
       groupName: 'cleanthat',
-    },
-    {
-      matchPackageNames: [
-        'org.apache.commons:commons-collections4',
-      ],
-      groupName: 'commons-collections4',
-    },
-    {
-      matchPackageNames: [
-        'commons-codec:commons-codec',
-      ],
-      groupName: 'commons-codec',
-    },
-    {
-      matchPackageNames: [
-        'org.apache.commons:commons-compress',
-      ],
-      groupName: 'commons-compress',
-    },
-    {
-      matchPackageNames: [
-        'commons-io:commons-io',
-      ],
-      groupName: 'commons-io',
-    },
-    {
-      matchPackageNames: [
-        'org.apache.commons:commons-lang3',
-      ],
-      groupName: 'commons-lang3',
-    },
-    {
-      matchPackageNames: [
-        'org.apache.commons:commons-text',
-      ],
-      groupName: 'commons-text',
-    },
-    {
-      matchPackageNames: [
-        'com.github.docker-java:**',
-      ],
-      groupName: 'docker-java',
     },
     {
       matchPackageNames: [
@@ -242,45 +176,9 @@
     },
     {
       matchPackageNames: [
-        'com.zaxxer:HikariCP',
-      ],
-      groupName: 'hikaricp',
-    },
-    {
-      matchPackageNames: [
-        'org.hsqldb:**',
-      ],
-      groupName: 'hsqldb',
-    },
-    {
-      matchPackageNames: [
-        'com.fasterxml.jackson:jackson-bom',
-      ],
-      groupName: 'jackson',
-    },
-    {
-      matchPackageNames: [
         'org.jacoco:**',
       ],
       groupName: 'jacoco',
-    },
-    {
-      matchPackageNames: [
-        'jakarta.activation:**',
-      ],
-      groupName: 'jakarta-activation',
-    },
-    {
-      matchPackageNames: [
-        'jakarta.xml.bind:**',
-      ],
-      groupName: 'jakarta-xml-bind',
-    },
-    {
-      matchPackageNames: [
-        'org.jetbrains:annotations',
-      ],
-      groupName: 'jetbrains-annotations',
     },
     {
       matchPackageNames: [
@@ -296,12 +194,6 @@
     },
     {
       matchPackageNames: [
-        'org.junit:**',
-      ],
-      groupName: 'junit',
-    },
-    {
-      matchPackageNames: [
         'org.junit-pioneer:junit-pioneer',
       ],
       groupName: 'junit-pioneer',
@@ -314,18 +206,6 @@
     },
     {
       matchPackageNames: [
-        'ch.qos.logback:**',
-      ],
-      groupName: 'logback',
-    },
-    {
-      matchPackageNames: [
-        'org.projectlombok:lombok',
-      ],
-      groupName: 'lombok',
-    },
-    {
-      matchPackageNames: [
         'org.apache.maven.plugins:maven-wrapper-plugin',
         'org.apache.maven.wrapper:maven-wrapper',
       ],
@@ -333,39 +213,9 @@
     },
     {
       matchPackageNames: [
-        'io.micrometer:**',
-      ],
-      groupName: 'micrometer',
-    },
-    {
-      matchPackageNames: [
-        'com.microsoft.sqlserver:mssql-jdbc',
-      ],
-      groupName: 'mssql-jdbc',
-    },
-    {
-      matchPackageNames: [
         'com.uber.nullaway:**',
       ],
       groupName: 'nullaway',
-    },
-    {
-      matchPackageNames: [
-        'com.opencsv:opencsv',
-      ],
-      groupName: 'opencsv',
-    },
-    {
-      matchPackageNames: [
-        'org.postgresql:postgresql',
-      ],
-      groupName: 'postgresql',
-    },
-    {
-      matchPackageNames: [
-        'org.yaml:snakeyaml',
-      ],
-      groupName: 'snakeyaml',
     },
     {
       matchPackageNames: [
@@ -376,9 +226,13 @@
     },
     {
       matchFileNames: [
-        '**/src/it/spring-boot-3.4/pom.xml',
+        'markitect-liquibase-spring-boot-starter/src/it/spring-boot-3.4/pom.xml',
+        'pom.xml',
       ],
       matchPackageNames: [
+        'com.h2database:**',
+        'org.jooq:**',
+        'org.liquibase:**',
         'org.springframework.boot:**',
       ],
       matchUpdateTypes: [
@@ -428,12 +282,6 @@
         'net.ltgt.nullaway:net.ltgt.nullaway.gradle.plugin',
       ],
       sourceUrl: 'https://github.com/tbroyer/gradle-nullaway-plugin',
-    },
-    {
-      matchPackageNames: [
-        'nu.studer.jooq:nu.studer.jooq.gradle.plugin',
-      ],
-      sourceUrl: 'https://github.com/etiennestuder/gradle-jooq-plugin',
     },
     {
       matchPackageNames: [
