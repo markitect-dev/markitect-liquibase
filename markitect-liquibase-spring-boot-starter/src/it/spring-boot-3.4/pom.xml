@@ -18,11 +18,10 @@
     <argLine/>
     <java.version>@java.version@</java.version>
 
-    <h2.version>@h2.version@</h2.version>
-    <jooq.version>@jooq.version@</jooq.version>
-    <liquibase.version>@liquibase.version@</liquibase.version>
+    <h2.version>2.3.232</h2.version>
+    <jooq.version>3.19.29</jooq.version>
+    <liquibase.version>4.29.2</liquibase.version>
     <markitect-liquibase.version>@project.version@</markitect-liquibase.version>
-    <snakeyaml.version>@snakeyaml.version@</snakeyaml.version>
   </properties>
 
   <dependencyManagement>
@@ -73,9 +72,6 @@
               <LIQUIBASE_SHOW_BANNER>false</LIQUIBASE_SHOW_BANNER>
               <LIQUIBASE_SQL_LOG_LEVEL>info</LIQUIBASE_SQL_LOG_LEVEL>
             </environmentVariables>
-            <argLine>@{argLine}
-              -javaagent:${settings.localRepository}${file.separator}net${file.separator}bytebuddy${file.separator}byte-buddy-agent${file.separator}${byte-buddy.version}${file.separator}byte-buddy-agent-${byte-buddy.version}.jar
-              -XX:-EnableDynamicAgentLoading</argLine>
             <useManifestOnlyJar>false</useManifestOnlyJar>
           </configuration>
         </plugin>

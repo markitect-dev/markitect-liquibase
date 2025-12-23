@@ -28,9 +28,6 @@
     <liquibase.version>${liquibaseVersion}</liquibase.version>
 #end
     <markitect-liquibase.version>@project.version@</markitect-liquibase.version>
-#if($snakeyamlVersion != 'inherit')
-    <snakeyaml.version>${snakeyamlVersion}</snakeyaml.version>
-#end
     <spring-boot.version>${springBootVersion}</spring-boot.version>
   </properties>
 
@@ -95,9 +92,6 @@
               <LIQUIBASE_SHOW_BANNER>false</LIQUIBASE_SHOW_BANNER>
               <LIQUIBASE_SQL_LOG_LEVEL>info</LIQUIBASE_SQL_LOG_LEVEL>
             </environmentVariables>
-            <argLine>@{argLine}
-              -javaagent:${settings.localRepository}${file.separator}net${file.separator}bytebuddy${file.separator}byte-buddy-agent${file.separator}${byte-buddy.version}${file.separator}byte-buddy-agent-${byte-buddy.version}.jar
-              -XX:-EnableDynamicAgentLoading</argLine>
             <useManifestOnlyJar>false</useManifestOnlyJar>
           </configuration>
         </plugin>
