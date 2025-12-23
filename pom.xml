@@ -65,7 +65,6 @@
 
   <properties>
     <archetype.test.streamLogs>false</archetype.test.streamLogs>
-    <argLine/>
     <changelist>-SNAPSHOT</changelist>
     <checkstyle.configDirectory>${maven.multiModuleProjectDirectory}/config/checkstyle</checkstyle.configDirectory>
     <forbiddenapis.configDirectory>${maven.multiModuleProjectDirectory}/config/forbiddenapis</forbiddenapis.configDirectory>

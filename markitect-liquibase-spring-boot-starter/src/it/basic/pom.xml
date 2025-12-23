@@ -15,7 +15,6 @@
   <version>0.1-SNAPSHOT</version>
 
   <properties>
-    <argLine/>
     <java.version>@java.version@</java.version>
 
     <h2.version>@h2.version@</h2.version>

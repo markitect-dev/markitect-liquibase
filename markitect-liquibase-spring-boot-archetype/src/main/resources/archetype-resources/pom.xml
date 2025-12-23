@@ -15,7 +15,6 @@
   <version>${version}</version>
 
   <properties>
-    <argLine/>
     <java.version>${javaVersion}</java.version>
 
 #if($h2Version != 'inherit')
