@@ -153,7 +153,6 @@
     <spotbugs.version>4.9.8</spotbugs.version>
     <spotless-maven-plugin.version>3.1.0</spotless-maven-plugin.version>
     <spring-boot.version>3.5.9</spring-boot.version>
-    <testcontainers.version>2.0.3</testcontainers.version>
     <versions-maven-plugin.version>2.20.1</versions-maven-plugin.version>
   </properties>
 
@@ -519,7 +518,7 @@
           <configuration>
             <parameters>true</parameters>
             <compilerArgs>
-              <arg>-Xlint:all,-processing</arg>
+              <arg>-Xlint:all,-classfile,-processing</arg>
               <arg>-Xplugin:ErrorProne
                 -XepAllSuggestionsAsWarnings
                 -XepAllDisabledChecksAsWarnings
@@ -1079,7 +1078,7 @@
               <configuration>
                 <failOnWarning>true</failOnWarning>
                 <compilerArgs>
-                  <arg>-Xlint:all,-processing</arg>
+                  <arg>-Xlint:all,-classfile,-processing</arg>
                   <arg>-Xplugin:ErrorProne
                     -Xep:NullAway:WARN
                     -XepOpt:NullAway:ExcludedFieldAnnotations=${nullaway.excludedFieldAnnotations}

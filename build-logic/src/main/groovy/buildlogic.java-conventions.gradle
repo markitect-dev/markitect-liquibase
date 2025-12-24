@@ -29,7 +29,6 @@ dependencies {
     testCompileOnly libs.com.google.errorprone.error.prone.annotations
     testCompileOnly libs.de.thetaphi.forbiddenapis
     testCompileOnly libs.org.jspecify.jspecify
-    testImplementation platform(libs.org.testcontainers.testcontainers.bom)
 }
 
 java {
@@ -50,7 +49,7 @@ tasks.withType(JavaCompile).configureEach {
     if (ci) {
         options.compilerArgs += '-Werror'
     }
-    options.compilerArgs += '-Xlint:all,-processing'
+    options.compilerArgs += '-Xlint:all,-classfile,-processing'
     options.errorprone {
         if (!ci) {
             allDisabledChecksAsWarnings = true

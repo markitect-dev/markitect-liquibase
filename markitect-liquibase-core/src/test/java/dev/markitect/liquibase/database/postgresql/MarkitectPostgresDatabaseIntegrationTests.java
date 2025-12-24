@@ -44,15 +44,15 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junitpioneer.jupiter.json.JsonSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Testcontainers;
-import org.testcontainers.postgresql.PostgreSQLContainer;
 
 @SpringBootTest(classes = TestDatabaseConfiguration.class)
 @Testcontainers(disabledWithoutDocker = true)
 class MarkitectPostgresDatabaseIntegrationTests {
   @Autowired private DatabaseBuilder<MarkitectPostgresDatabase> databaseBuilder;
   @Autowired private TestDatabaseSpecs specs;
-  @Autowired private PostgreSQLContainer container;
+  @Autowired private PostgreSQLContainer<?> container;
 
   @ParameterizedTest
   @CsvSource(

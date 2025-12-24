@@ -37,10 +37,8 @@ spotbugs = "4.9.8"
 spotbugs-plugin = "6.4.8"
 spotless-plugin = "8.1.0"
 spring-boot = "3.5.9"
-testcontainers = "2.0.3"
 
 [libraries]
-biz-aqute-bnd-biz-aqute-bnd-annotation = { module = "biz.aQute.bnd:biz.aQute.bnd.annotation" }
 com-fasterxml-jackson-core-jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind" }
 com-github-spotbugs-spotbugs = { module = "com.github.spotbugs:spotbugs", version.ref = "spotbugs" }
 com-github-spotbugs-spotbugs-annotations = { module = "com.github.spotbugs:spotbugs-annotations", version.ref = "spotbugs" }
@@ -62,8 +60,6 @@ org-jspecify-jspecify = { module = "org.jspecify:jspecify", version.ref = "jspec
 org-junit-pioneer-junit-pioneer = { module = "org.junit-pioneer:junit-pioneer", version.ref = "junit-pioneer" }
 org-liquibase-liquibase-core = { module = "org.liquibase:liquibase-core" }
 org-openrewrite-recipe-rewrite-static-analysis = { module = "org.openrewrite.recipe:rewrite-static-analysis", version.ref = "rewrite-static-analysis" }
-org-osgi-org-osgi-annotation-bundle = { module = "org.osgi:org.osgi.annotation.bundle" }
-org-osgi-org-osgi-annotation-versioning = { module = "org.osgi:org.osgi.annotation.versioning" }
 org-postgresql-postgresql = { module = "org.postgresql:postgresql" }
 org-projectlombok-lombok = { module = "org.projectlombok:lombok" }
 org-slf4j-slf4j-api = { module = "org.slf4j:slf4j-api" }
@@ -76,10 +72,9 @@ org-springframework-boot-spring-boot-starter-log4j2 = { module = "org.springfram
 org-springframework-boot-spring-boot-starter-test = { module = "org.springframework.boot:spring-boot-starter-test" }
 org-springframework-spring-context = { module = "org.springframework:spring-context" }
 org-springframework-spring-jdbc = { module = "org.springframework:spring-jdbc" }
-org-testcontainers-testcontainers-bom = { module = "org.testcontainers:testcontainers-bom", version.ref = "testcontainers" }
-org-testcontainers-testcontainers-junit-jupiter = { module = "org.testcontainers:testcontainers-junit-jupiter" }
-org-testcontainers-testcontainers-mssqlserver = { module = "org.testcontainers:testcontainers-mssqlserver" }
-org-testcontainers-testcontainers-postgresql = { module = "org.testcontainers:testcontainers-postgresql" }
+org-testcontainers-junit-jupiter = { module = "org.testcontainers:junit-jupiter" }
+org-testcontainers-mssqlserver = { module = "org.testcontainers:mssqlserver" }
+org-testcontainers-postgresql = { module = "org.testcontainers:postgresql" }
 
 [plugins]
 com-diffplug-spotless = { id = "com.diffplug.spotless", version.ref = "spotless-plugin" }
