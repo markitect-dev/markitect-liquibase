@@ -32,7 +32,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Scope;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.testcontainers.containers.PostgreSQLContainer;
+import org.testcontainers.postgresql.PostgreSQLContainer;
 import org.testcontainers.utility.DockerImageName;
 
 @Configuration
@@ -40,7 +40,7 @@ public class PostgresTestDatabaseConfiguration {
   @Bean
   @Scope("prototype")
   public DatabaseBuilder<MarkitectPostgresDatabase> postgresTestDatabaseBuilder(
-      TestDatabaseSpecs specs, PostgreSQLContainer<?> container) {
+      TestDatabaseSpecs specs, PostgreSQLContainer container) {
     var databaseConnectionBuilder =
         DatabaseConnectionBuilder.newBuilder()
             .url(container.getJdbcUrl())
@@ -55,10 +55,10 @@ public class PostgresTestDatabaseConfiguration {
   @Lazy
   @SuppressFBWarnings("SQL_INJECTION_SPRING_JDBC")
   @SuppressWarnings("resource")
-  public PostgreSQLContainer<?> postgresTestDatabaseContainer(TestDatabaseSpecs specs) {
+  public PostgreSQLContainer postgresTestDatabaseContainer(TestDatabaseSpecs specs) {
     var database = new MarkitectPostgresDatabase();
     var container =
-        new PostgreSQLContainer<>(DockerImageName.parse("postgres").withTag("15"))
+        new PostgreSQLContainer(DockerImageName.parse("postgres").withTag("15"))
             .withDatabaseName(specs.getCatalogName())
             .withUsername(specs.getUsername())
             .withPassword(specs.getPassword());
