@@ -33,7 +33,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Scope;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.testcontainers.containers.MSSQLServerContainer;
+import org.testcontainers.mssqlserver.MSSQLServerContainer;
 import org.testcontainers.utility.DockerImageName;
 
 @Configuration
@@ -41,7 +41,7 @@ public class MssqlTestDatabaseConfiguration {
   @Bean
   @Scope("prototype")
   public DatabaseBuilder<MarkitectMssqlDatabase> mssqlTestDatabaseBuilder(
-      TestDatabaseSpecs specs, MSSQLServerContainer<?> container) {
+      TestDatabaseSpecs specs, MSSQLServerContainer container) {
     var databaseConnectionBuilder =
         DatabaseConnectionBuilder.newBuilder()
             .url(container.getJdbcUrl() + ";databaseName=" + specs.getCatalogName())
@@ -56,10 +56,10 @@ public class MssqlTestDatabaseConfiguration {
   @Lazy
   @SuppressFBWarnings("SQL_INJECTION_SPRING_JDBC")
   @SuppressWarnings({"resource", "SqlSourceToSinkFlow"})
-  public MSSQLServerContainer<?> mssqlTestDatabaseContainer(TestDatabaseSpecs specs) {
+  public MSSQLServerContainer mssqlTestDatabaseContainer(TestDatabaseSpecs specs) {
     var database = new MarkitectMssqlDatabase();
     var container =
-        new MSSQLServerContainer<>(
+        new MSSQLServerContainer(
                 DockerImageName.parse("mcr.microsoft.com/mssql/server").withTag("2022-latest"))
             .acceptLicense();
     container.start();

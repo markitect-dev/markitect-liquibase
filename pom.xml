@@ -108,12 +108,11 @@
     <!-- renovate: depName=com.google.googlejavaformat:google-java-format -->
     <google-java-format.version>1.33.0</google-java-format.version>
     <guava.version>33.5.0-jre</guava.version>
-    <h2.version>2.3.232</h2.version>
+    <h2.version>2.4.240</h2.version>
     <jacoco.version>0.8.14</jacoco.version>
     <jooq.version>3.19.29</jooq.version>
-    <jspecify.version>1.0.0</jspecify.version>
     <junit-pioneer.version>2.3.0</junit-pioneer.version>
-    <liquibase.version>4.31.1</liquibase.version>
+    <liquibase.version>5.0.1</liquibase.version>
     <maven-antrun-plugin.version>3.2.0</maven-antrun-plugin.version>
     <maven-archetype.version>3.4.1</maven-archetype.version>
     <maven-assembly-plugin.version>3.8.0</maven-assembly-plugin.version>
@@ -152,7 +151,7 @@
     <spotbugs-maven-plugin.version>4.9.8.2</spotbugs-maven-plugin.version>
     <spotbugs.version>4.9.8</spotbugs.version>
     <spotless-maven-plugin.version>3.1.0</spotless-maven-plugin.version>
-    <spring-boot.version>3.5.9</spring-boot.version>
+    <spring-boot.version>4.0.1</spring-boot.version>
     <versions-maven-plugin.version>2.20.1</versions-maven-plugin.version>
   </properties>
 

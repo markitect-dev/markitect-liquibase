@@ -16,7 +16,6 @@ guava = "33.5.0-jre"
 jacoco = "0.8.14"
 # renovate: datasource=custom.sdkmanJavaVersion depName=java extractVersion=^(?<version>\d+)
 java = "25"
-jspecify = "1.0.0"
 junit-pioneer = "2.3.0"
 # renovate: datasource=node-version depName=node
 node = "24.12.0"
@@ -36,7 +35,7 @@ sortpom = "4.0.0"
 spotbugs = "4.9.8"
 spotbugs-plugin = "6.4.8"
 spotless-plugin = "8.1.0"
-spring-boot = "3.5.9"
+spring-boot = "4.0.1"
 
 [libraries]
 com-fasterxml-jackson-core-jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind" }
@@ -56,7 +55,7 @@ org-apache-logging-log4j-log4j-to-slf4j = { module = "org.apache.logging.log4j:l
 org-hsqldb-hsqldb = { module = "org.hsqldb:hsqldb" }
 org-jacoco-org-jacoco-agent = { module = "org.jacoco:org.jacoco.agent", version.ref = "jacoco" }
 org-jacoco-org-jacoco-ant = { module = "org.jacoco:org.jacoco.ant", version.ref = "jacoco" }
-org-jspecify-jspecify = { module = "org.jspecify:jspecify", version.ref = "jspecify" }
+org-jspecify-jspecify = { module = "org.jspecify:jspecify" }
 org-junit-pioneer-junit-pioneer = { module = "org.junit-pioneer:junit-pioneer", version.ref = "junit-pioneer" }
 org-liquibase-liquibase-core = { module = "org.liquibase:liquibase-core" }
 org-openrewrite-recipe-rewrite-static-analysis = { module = "org.openrewrite.recipe:rewrite-static-analysis", version.ref = "rewrite-static-analysis" }
@@ -67,14 +66,16 @@ org-slf4j-slf4j-jdk14 = { module = "org.slf4j:slf4j-jdk14" }
 org-slf4j-slf4j-simple = { module = "org.slf4j:slf4j-simple" }
 org-springframework-boot-spring-boot-configuration-processor = { module = "org.springframework.boot:spring-boot-configuration-processor" }
 org-springframework-boot-spring-boot-dependencies = { module = "org.springframework.boot:spring-boot-dependencies", version.ref = "spring-boot" }
-org-springframework-boot-spring-boot-starter-jdbc = { module = "org.springframework.boot:spring-boot-starter-jdbc" }
+org-springframework-boot-spring-boot-starter-jdbc-test = { module = "org.springframework.boot:spring-boot-starter-jdbc-test" }
+org-springframework-boot-spring-boot-starter-liquibase = { module = "org.springframework.boot:spring-boot-starter-liquibase" }
+org-springframework-boot-spring-boot-starter-liquibase-test = { module = "org.springframework.boot:spring-boot-starter-liquibase-test" }
 org-springframework-boot-spring-boot-starter-log4j2 = { module = "org.springframework.boot:spring-boot-starter-log4j2" }
 org-springframework-boot-spring-boot-starter-test = { module = "org.springframework.boot:spring-boot-starter-test" }
 org-springframework-spring-context = { module = "org.springframework:spring-context" }
 org-springframework-spring-jdbc = { module = "org.springframework:spring-jdbc" }
-org-testcontainers-junit-jupiter = { module = "org.testcontainers:junit-jupiter" }
-org-testcontainers-mssqlserver = { module = "org.testcontainers:mssqlserver" }
-org-testcontainers-postgresql = { module = "org.testcontainers:postgresql" }
+org-testcontainers-testcontainers-junit-jupiter = { module = "org.testcontainers:testcontainers-junit-jupiter" }
+org-testcontainers-testcontainers-mssqlserver = { module = "org.testcontainers:testcontainers-mssqlserver" }
+org-testcontainers-testcontainers-postgresql = { module = "org.testcontainers:testcontainers-postgresql" }
 
 [plugins]
 com-diffplug-spotless = { id = "com.diffplug.spotless", version.ref = "spotless-plugin" }
