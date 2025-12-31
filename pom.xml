@@ -142,7 +142,7 @@
     <!-- renovate: datasource=npm depName=prettier -->
     <prettier.version>3.7.4</prettier.version>
     <!-- renovate: datasource=npm depName=prettier-plugin-properties -->
-    <prettier-plugin-properties.version>0.3.0</prettier-plugin-properties.version>
+    <prettier-plugin-properties.version>0.3.1</prettier-plugin-properties.version>
     <!-- renovate: datasource=npm depName=prettier-plugin-toml -->
     <prettier-plugin-toml.version>2.0.6</prettier-plugin-toml.version>
     <sonar-maven-plugin.version>5.5.0.6356</sonar-maven-plugin.version>
