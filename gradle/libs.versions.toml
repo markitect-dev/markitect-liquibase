@@ -1,7 +1,7 @@
 # https://docs.gradle.org/current/userguide/platforms.html#sub::toml-dependencies-format
 
 [versions]
-checkstyle = "12.3.0"
+checkstyle = "12.3.1"
 # renovate: depName=io.github.solven-eu.cleanthat:java
 cleanthat = "2.24"
 error-prone = "2.45.0"
