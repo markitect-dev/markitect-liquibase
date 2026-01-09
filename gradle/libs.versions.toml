@@ -4,7 +4,7 @@
 checkstyle = "13.0.0"
 # renovate: depName=io.github.solven-eu.cleanthat:java
 cleanthat = "2.24"
-error-prone = "2.45.0"
+error-prone = "2.46.0"
 errorprone-plugin = "4.3.0"
 findsecbugs-plugin = "1.14.0"
 forbiddenapis = "3.10"
