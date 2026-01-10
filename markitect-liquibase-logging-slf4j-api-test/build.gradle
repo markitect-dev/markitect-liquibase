@@ -2,13 +2,11 @@ plugins {
     id 'buildlogic.java-conventions'
 }
 
-configurations.testImplementation {
-    exclude group: 'ch.qos.logback', module: 'logback-classic'
-}
-
 dependencies {
     testImplementation project(':markitect-liquibase-logging')
-    testImplementation libs.org.springframework.boot.spring.boot.starter.test
+    testImplementation libs.org.springframework.boot.spring.boot.starter.test, {
+        exclude group: 'ch.qos.logback', module: 'logback-classic'
+    }
     testRuntimeOnly libs.org.slf4j.slf4j.simple
 }
 
