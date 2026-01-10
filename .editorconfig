@@ -43,7 +43,6 @@ ij_java_ternary_operation_signs_on_next_line = true
 
 [*.md]
 max_line_length = off
-indent_size = 4
 
 [*.properties]
 ij_properties_keep_blank_lines = true
