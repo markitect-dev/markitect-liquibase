@@ -11,6 +11,8 @@ plugins {
 }
 
 def ci = providers.environmentVariable('CI').present
+def epPatchChecks = findProperty('epPatchChecks')
+def epPatchLocation = findProperty('epPatchLocation') ?: 'IN_PLACE'
 def skipTests = providers.systemProperty('skipTests').present
 def testProject = project.name.endsWith('-test')
 
@@ -58,6 +60,10 @@ tasks.withType(JavaCompile).configureEach {
             disable 'Java8ApiChecker'
             disable 'SuppressWarningsWithoutExplanation'
             warn 'RequireExplicitNullMarking'
+            if (epPatchChecks) {
+                errorproneArgs.add("-XepPatchChecks:$epPatchChecks")
+                errorproneArgs.add("-XepPatchLocation:$epPatchLocation")
+            }
         }
         nullaway {
             excludedFieldAnnotations.add('org.junit.jupiter.api.io.TempDir')
