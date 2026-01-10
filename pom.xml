@@ -521,6 +521,7 @@
               <arg>-Xplugin:ErrorProne
                 -XepAllSuggestionsAsWarnings
                 -XepAllDisabledChecksAsWarnings
+                -Xep:AddNullMarkedToClass:OFF
                 -Xep:Java8ApiChecker:OFF
                 -Xep:NullAway:WARN
                 -Xep:RequireExplicitNullMarking:WARN
@@ -530,6 +531,7 @@
               <arg>-XDcompilePolicy=simple</arg>
               <arg>-XDshould-stop.ifError=FLOW</arg>
               <arg>-XDshouldStopPolicyIfError=FLOW</arg>
+              <arg>-XDaddTypeAnnotationsToSymbol=true</arg>
             </compilerArgs>
             <annotationProcessorPaths>
               <path>
@@ -1085,6 +1087,7 @@
                   <arg>-XDcompilePolicy=simple</arg>
                   <arg>-XDshould-stop.ifError=FLOW</arg>
                   <arg>-XDshouldStopPolicyIfError=FLOW</arg>
+                  <arg>-XDaddTypeAnnotationsToSymbol=true</arg>
                 </compilerArgs>
               </configuration>
             </plugin>
