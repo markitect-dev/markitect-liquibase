@@ -89,13 +89,6 @@
   packageRules: [
     {
       matchPackageNames: [
-        'gradle',
-      ],
-      ignoreUnstable: false,
-      allowedVersions: '!/-milestone-\\d+$/',
-    },
-    {
-      matchPackageNames: [
         'java',
       ],
       allowedVersions: '/^(?:21|25)(?:\\.|-|$)/',
