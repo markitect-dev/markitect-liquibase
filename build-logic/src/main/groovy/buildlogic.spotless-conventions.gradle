@@ -11,6 +11,12 @@ def npmInstallCache = rootProject.layout.projectDirectory.dir('.gradle/spotless-
 def npmrc = rootProject.file('config/spotless/.npmrc')
 
 spotless {
+    format 'csv', {
+        target 'src/**/*.csv'
+        leadingTabsToSpaces 2
+        trimTrailingWhitespace()
+        endWithNewline()
+    }
     groovyGradle {
         leadingTabsToSpaces 4
         trimTrailingWhitespace()
@@ -142,7 +148,6 @@ spotless {
             'src/**/META-INF/services/liquibase.*',
             'src/**/META-INF/services/org.assertj.core.configuration.Configuration',
             'src/**/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports',
-            'src/**/*.csv',
             'src/**/*.txt',
             '*.txt',
             '.editorconfig',

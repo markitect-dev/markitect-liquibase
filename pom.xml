@@ -278,6 +278,17 @@
             <formats>
               <format>
                 <includes>
+                  <include>src/**/*.csv</include>
+                </includes>
+                <indent>
+                  <spaces>true</spaces>
+                  <spacesPerTab>2</spacesPerTab>
+                </indent>
+                <trimTrailingWhitespace/>
+                <endWithNewline/>
+              </format>
+              <format>
+                <includes>
                   <include>build-logic/src/**/*.gradle</include>
                   <include>build-logic/*.gradle</include>
                   <include>*.gradle</include>
@@ -377,7 +388,6 @@
                   <include>src/**/META-INF/services/liquibase.*</include>
                   <include>src/**/META-INF/services/org.assertj.core.configuration.Configuration</include>
                   <include>src/**/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports</include>
-                  <include>src/**/*.csv</include>
                   <include>src/**/*.txt</include>
                   <include>*.txt</include>
                   <include>.editorconfig</include>
