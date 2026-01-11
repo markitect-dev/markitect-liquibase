@@ -168,6 +168,15 @@ jobs:
       - name: Build and test, with coverage
         run: ./gradlew build --info --stacktrace
 
+      - name: Upload build output
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+        if: always()
+        with:
+          name: gradle-build-output
+          path: |
+            **/build/reports/
+          retention-days: 15
+
       - name: Cache SonarCloud packages
         uses: actions/cache@9255dc7a253b0ccc959486e2bca901246202afeb # v5.0.1
         with:
