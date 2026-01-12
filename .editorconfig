@@ -16,20 +16,6 @@ end_of_line = crlf
 [*.csv]
 end_of_line = crlf
 
-[*.gradle]
-indent_size = 4
-max_line_length = 140
-ij_groovy_align_named_args_in_map = false
-ij_groovy_block_comment_add_space = true
-ij_groovy_block_comment_at_first_column = false
-ij_groovy_class_count_to_use_import_on_demand = 999
-ij_groovy_imports_layout = *, |, $*
-ij_groovy_line_comment_add_space = true
-ij_groovy_line_comment_add_space_on_reformat = true
-ij_groovy_line_comment_at_first_column = false
-ij_groovy_names_count_to_use_import_on_demand = 999
-ij_groovy_packages_to_use_import_on_demand = unset
-
 [*.java]
 max_line_length = 100
 ij_java_binary_operation_sign_on_next_line = true
@@ -43,6 +29,24 @@ ij_java_line_comment_at_first_column = false
 ij_java_names_count_to_use_import_on_demand = 999
 ij_java_packages_to_use_import_on_demand = unset
 ij_java_ternary_operation_signs_on_next_line = true
+
+[{*.kt,*.kts}]
+max_line_length = 100
+ij_kotlin_block_comment_add_space = true
+ij_kotlin_block_comment_at_first_column = false
+ij_kotlin_imports_layout = *
+ij_kotlin_line_comment_add_space = true
+ij_kotlin_line_comment_add_space_on_reformat = true
+ij_kotlin_line_comment_at_first_column = false
+ij_kotlin_name_count_to_use_star_import = 999
+ij_kotlin_name_count_to_use_star_import_for_members = 999
+ij_kotlin_packages_to_use_import_on_demand = unset
+
+[*.gradle.kts]
+indent_size = 4
+max_line_length = 140
+ktlint_code_style = ktlint_official
+ktlint_standard_chain-method-continuation = disabled
 
 [*.md]
 max_line_length = off
