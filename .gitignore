@@ -28,6 +28,9 @@ out/
 !**/src/main/**/out/
 !**/src/test/**/out/
 
+### Kotlin ###
+.kotlin
+
 ### STS ###
 .apt_generated
 .classpath
