@@ -13,7 +13,6 @@ dependencyResolutionManagement {
             }
         }
         ivy {
-            name = 'Node.js'
             url = 'https://nodejs.org/dist/'
             patternLayout {
                 artifact 'v[revision]/[artifact](-v[revision]-[classifier]).[ext]'
