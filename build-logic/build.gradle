@@ -12,7 +12,18 @@ def npmExecutable = nodeSetup.nodeDir.file(windows ? 'npm.cmd' : 'bin/npm')
 def npmInstallCache = rootProject.layout.projectDirectory.dir('.gradle/spotless-npm-install-cache')
 def npmrc = rootProject.file('../config/spotless/.npmrc')
 
+configurations {
+    verification
+}
+
 dependencies {
+    verification "org.nodejs:node:${libs.versions.node.get()}:darwin-arm64@tar.gz"
+    verification "org.nodejs:node:${libs.versions.node.get()}:darwin-x64@tar.gz"
+    verification "org.nodejs:node:${libs.versions.node.get()}:linux-arm64@tar.gz"
+    verification "org.nodejs:node:${libs.versions.node.get()}:linux-x64@tar.gz"
+    verification "org.nodejs:node:${libs.versions.node.get()}:win-arm64@zip"
+    verification "org.nodejs:node:${libs.versions.node.get()}:win-x64@zip"
+
     implementation files(libs.class.superclass.protectionDomain.codeSource.location)
     implementation plugin(libs.plugins.com.diffplug.spotless)
     implementation plugin(libs.plugins.com.github.node.gradle.node)
