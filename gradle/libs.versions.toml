@@ -4,9 +4,11 @@
 checkstyle = "13.0.0"
 # renovate: depName=io.github.solven-eu.cleanthat:java
 cleanthat = "2.24"
+develocity-plugin = "4.3"
 error-prone = "2.46.0"
 errorprone-plugin = "4.4.0"
 findsecbugs-plugin = "1.14.0"
+foojay-toolchains-plugin = "1.0.0"
 forbiddenapis = "3.10"
 # renovate: depName=com.google.googlejavaformat:google-java-format
 google-java-format = "1.33.0"
@@ -81,9 +83,11 @@ org-testcontainers-testcontainers-postgresql = { module = "org.testcontainers:te
 com-diffplug-spotless = { id = "com.diffplug.spotless", version.ref = "spotless-plugin" }
 com-github-node-gradle-node = { id = "com.github.node-gradle.node", version.ref = "gradle-node-plugin" }
 com-github-spotbugs = { id = "com.github.spotbugs", version.ref = "spotbugs-plugin" }
+com-gradle-develocity = { id = "com.gradle.develocity", version.ref = "develocity-plugin" }
 de-thetaphi-forbiddenapis = { id = "de.thetaphi.forbiddenapis", version.ref = "forbiddenapis" }
 io-github-gradle-nexus-publish-plugin = { id = "io.github.gradle-nexus.publish-plugin", version.ref = "gradle-nexus-publish-plugin" }
 net-ltgt-errorprone = { id = "net.ltgt.errorprone", version.ref = "errorprone-plugin" }
 net-ltgt-nullaway = { id = "net.ltgt.nullaway", version.ref = "nullaway-plugin" }
+org-gradle-toolchains-foojay-resolver-convention = { id = "org.gradle.toolchains.foojay-resolver-convention", version.ref = "foojay-toolchains-plugin" }
 org-openrewrite-rewrite = { id = "org.openrewrite.rewrite", version.ref = "rewrite-plugin" }
 org-sonarqube = { id = "org.sonarqube", version.ref = "sonarqube-plugin" }

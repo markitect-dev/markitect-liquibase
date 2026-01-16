@@ -17,9 +17,11 @@ dependencies {
     implementation plugin(libs.plugins.com.diffplug.spotless)
     implementation plugin(libs.plugins.com.github.node.gradle.node)
     implementation plugin(libs.plugins.com.github.spotbugs)
+    implementation plugin(libs.plugins.com.gradle.develocity)
     implementation plugin(libs.plugins.de.thetaphi.forbiddenapis)
     implementation plugin(libs.plugins.net.ltgt.errorprone)
     implementation plugin(libs.plugins.net.ltgt.nullaway)
+    implementation plugin(libs.plugins.org.gradle.toolchains.foojay.resolver.convention)
     implementation plugin(libs.plugins.org.openrewrite.rewrite)
     implementation plugin(libs.plugins.org.sonarqube)
 }
