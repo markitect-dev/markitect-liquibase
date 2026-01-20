@@ -26,16 +26,43 @@ dependencies {
     errorprone(libs.com.uber.nullaway.nullaway)
 
     annotationProcessor(platform(libs.org.springframework.boot.spring.boot.dependencies))
+    api(platform(libs.org.springframework.boot.spring.boot.dependencies))
     compileOnly(libs.com.github.spotbugs.spotbugs.annotations)
     compileOnly(libs.de.thetaphi.forbiddenapis)
     compileOnly(libs.com.google.errorprone.error.prone.annotations)
     compileOnly(libs.org.jspecify.jspecify)
-    implementation(platform(libs.org.springframework.boot.spring.boot.dependencies))
 
     testCompileOnly(libs.com.github.spotbugs.spotbugs.annotations)
     testCompileOnly(libs.com.google.errorprone.error.prone.annotations)
     testCompileOnly(libs.de.thetaphi.forbiddenapis)
     testCompileOnly(libs.org.jspecify.jspecify)
+
+    constraints {
+        annotationProcessor(libs.com.google.guava.guava)
+        annotationProcessor(libs.com.opencsv.opencsv)
+        annotationProcessor(libs.commons.beanutils.commons.beanutils)
+        annotationProcessor(libs.commons.io.commons.io)
+        annotationProcessor(libs.info.picocli.picocli)
+        annotationProcessor(libs.javax.activation.javax.activation.api)
+        annotationProcessor(libs.javax.xml.bind.jaxb.api)
+        annotationProcessor(libs.org.apache.commons.commons.collections4)
+        annotationProcessor(libs.org.apache.commons.commons.lang3)
+        annotationProcessor(libs.org.apache.commons.commons.text)
+        annotationProcessor(libs.org.liquibase.liquibase.cdi)
+        annotationProcessor(libs.org.liquibase.liquibase.core)
+        api(libs.com.google.guava.guava)
+        api(libs.com.opencsv.opencsv)
+        api(libs.commons.beanutils.commons.beanutils)
+        api(libs.commons.io.commons.io)
+        api(libs.info.picocli.picocli)
+        api(libs.javax.activation.javax.activation.api)
+        api(libs.javax.xml.bind.jaxb.api)
+        api(libs.org.apache.commons.commons.collections4)
+        api(libs.org.apache.commons.commons.lang3)
+        api(libs.org.apache.commons.commons.text)
+        api(libs.org.liquibase.liquibase.cdi)
+        api(libs.org.liquibase.liquibase.core)
+    }
 }
 
 java {
