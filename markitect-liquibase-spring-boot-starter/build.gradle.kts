@@ -5,7 +5,6 @@ plugins {
 
 dependencies {
     annotationProcessor(libs.org.springframework.boot.spring.boot.configuration.processor)
-
     api(project(":markitect-liquibase-spring"))
     api(libs.org.springframework.boot.spring.boot.starter.liquibase)
     implementation(libs.com.google.guava.guava)

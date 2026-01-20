@@ -3,6 +3,11 @@
 [versions]
 checkstyle = "13.0.0"
 cleanthat = "2.24"
+commons-beanutils = "1.11.0"
+commons-collections4 = "4.5.0"
+commons-io = "2.21.0"
+commons-lang3 = "3.20.0"
+commons-text = "1.15.0"
 develocity-plugin = "4.3.1"
 error-prone = "2.46.0"
 errorprone-plugin = "4.4.0"
@@ -16,13 +21,18 @@ guava = "33.5.0-jre"
 jacoco = "0.8.14"
 # renovate: datasource=custom.sdkmanJavaVersion depName=java extractVersion=^(?<version>\d+)
 java = "25"
+javax-activation = "1.2.0"
+javax-jaxb = "2.3.1"
 junit-pioneer = "2.3.0"
 ktfmt = "0.61"
 ktlint = "1.8.0"
+liquibase = { strictly = "4.33.0" }
 # renovate: datasource=node-version depName=node
 node = "24.13.0"
 nullaway = "0.12.15"
 nullaway-plugin = "2.3.0"
+opencsv = "5.12.0"
+picocli = "4.7.7"
 # renovate: datasource=npm depName=prettier
 prettier = "3.8.0"
 # renovate: datasource=npm depName=prettier-plugin-properties
@@ -49,11 +59,20 @@ com-google-guava-guava = { module = "com.google.guava:guava", version.ref = "gua
 com-h2database-h2 = { module = "com.h2database:h2" }
 com-h3xstream-findsecbugs-findsecbugs-plugin = { module = "com.h3xstream.findsecbugs:findsecbugs-plugin", version.ref = "findsecbugs-plugin" }
 com-microsoft-sqlserver-mssql-jdbc = { module = "com.microsoft.sqlserver:mssql-jdbc" }
+com-opencsv-opencsv = { module = "com.opencsv:opencsv", version.ref = "opencsv" }
 com-pinterest-ktlint-ktlint-cli = { module = "com.pinterest.ktlint:ktlint-cli", version.ref = "ktlint" }
 com-puppycrawl-tools-checkstyle = { module = "com.puppycrawl.tools:checkstyle", version.ref = "checkstyle" }
 com-uber-nullaway-nullaway = { module = "com.uber.nullaway:nullaway", version.ref = "nullaway" }
+commons-beanutils-commons-beanutils = { module = "commons-beanutils:commons-beanutils", version.ref = "commons-beanutils" }
+commons-io-commons-io = { module = "commons-io:commons-io", version.ref = "commons-io" }
 de-thetaphi-forbiddenapis = { module = "de.thetaphi:forbiddenapis", version.ref = "forbiddenapis" }
 io-github-solven-eu-cleanthat-java = { module = "io.github.solven-eu.cleanthat:java", version.ref = "cleanthat" }
+info-picocli-picocli = { module = "info.picocli:picocli", version.ref = "picocli" }
+javax-activation-javax-activation-api = { module = "javax.activation:javax.activation-api", version.ref = "javax-activation" }
+javax-xml-bind-jaxb-api = { module = "javax.xml.bind:jaxb-api", version.ref = "javax-jaxb" }
+org-apache-commons-commons-collections4 = { module = "org.apache.commons:commons-collections4", version.ref = "commons-collections4" }
+org-apache-commons-commons-lang3 = { module = "org.apache.commons:commons-lang3", version.ref = "commons-lang3" }
+org-apache-commons-commons-text = { module = "org.apache.commons:commons-text", version.ref = "commons-text" }
 org-apache-logging-log4j-log4j-api = { module = "org.apache.logging.log4j:log4j-api" }
 org-apache-logging-log4j-log4j-to-slf4j = { module = "org.apache.logging.log4j:log4j-to-slf4j" }
 org-hsqldb-hsqldb = { module = "org.hsqldb:hsqldb" }
@@ -61,7 +80,8 @@ org-jacoco-org-jacoco-agent = { module = "org.jacoco:org.jacoco.agent", version.
 org-jacoco-org-jacoco-ant = { module = "org.jacoco:org.jacoco.ant", version.ref = "jacoco" }
 org-jspecify-jspecify = { module = "org.jspecify:jspecify" }
 org-junit-pioneer-junit-pioneer = { module = "org.junit-pioneer:junit-pioneer", version.ref = "junit-pioneer" }
-org-liquibase-liquibase-core = { module = "org.liquibase:liquibase-core" }
+org-liquibase-liquibase-cdi = { module = "org.liquibase:liquibase-cdi", version.ref = "liquibase" }
+org-liquibase-liquibase-core = { module = "org.liquibase:liquibase-core", version.ref = "liquibase" }
 org-openrewrite-recipe-rewrite-static-analysis = { module = "org.openrewrite.recipe:rewrite-static-analysis", version.ref = "rewrite-static-analysis" }
 org-postgresql-postgresql = { module = "org.postgresql:postgresql" }
 org-projectlombok-lombok = { module = "org.projectlombok:lombok" }
