@@ -6,9 +6,3 @@ plugins {
 
 group = 'dev.markitect.liquibase'
 version = providers.gradleProperty('version').get()
-
-idea {
-    module {
-        excludeDirs += file('target')
-    }
-}

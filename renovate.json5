@@ -2,7 +2,6 @@
   $schema: 'https://docs.renovatebot.com/renovate-schema.json',
   extends: [
     'config:best-practices',
-    'customManagers:mavenPropertyVersions',
     ':automergeAll',
     ':automergePr',
     ':automergeRequireAllStatusChecks',
@@ -24,20 +23,6 @@
       format: 'plain',
       transformTemplates: [
         '{ "releases": $map($split(releases.version, ","), function($v) { { "version": $v } }) }',
-      ],
-    },
-    sdkmanMavenVersion: {
-      defaultRegistryUrlTemplate: 'https://api.sdkman.io/2/candidates/maven/linuxx64/versions/all',
-      format: 'plain',
-      transformTemplates: [
-        '{ "releases": $map($split(releases.version, ","), function($v) { { "version": $v } }) }',
-      ],
-    },
-    sdkmanMvndVersion: {
-      defaultRegistryUrlTemplate: 'https://api.sdkman.io/2/candidates/mvnd/linuxx64/versions/list?installed=',
-      format: 'plain',
-      transformTemplates: [
-        '{ "releases": $map($reduce($map(releases[version ~> /^\\d/].version, function($v) { $split($v, /\\s+/) }), $append), function($v) { { "version": $v } }) }',
       ],
     },
   },
@@ -95,139 +80,9 @@
     },
     {
       matchPackageNames: [
-        'maven',
-      ],
-      matchUpdateTypes: [
-        'major',
-      ],
-      enabled: false,
-    },
-    {
-      matchPackageNames: [
-        'mvnd',
-      ],
-      matchUpdateTypes: [
-        'major',
-      ],
-      enabled: false,
-    },
-    {
-      matchDatasources: [
-        'custom.sdkmanMvndVersion',
-      ],
-      sourceUrl: 'https://github.com/apache/maven-mvnd',
-    },
-    {
-      matchPackageNames: [
-        'com.puppycrawl.tools:checkstyle',
-      ],
-      groupName: 'checkstyle',
-    },
-    {
-      matchPackageNames: [
-        'io.github.solven-eu.cleanthat:**',
-      ],
-      groupName: 'cleanthat',
-    },
-    {
-      matchPackageNames: [
-        'com.google.errorprone:**',
-      ],
-      groupName: 'error-prone',
-    },
-    {
-      matchPackageNames: [
-        'com.h3xstream.findsecbugs:findsecbugs-plugin',
-      ],
-      groupName: 'findsecbugs-plugin',
-    },
-    {
-      matchPackageNames: [
-        'de.thetaphi.forbiddenapis:de.thetaphi.forbiddenapis.gradle.plugin',
-        'de.thetaphi:forbiddenapis',
-      ],
-      groupName: 'forbiddenapis',
-    },
-    {
-      matchPackageNames: [
-        'com.google.googlejavaformat:google-java-format',
-      ],
-      groupName: 'google-java-format',
-    },
-    {
-      matchPackageNames: [
         'com.google.guava:guava',
       ],
-      groupName: 'guava',
       versioning: 'docker',
-    },
-    {
-      matchPackageNames: [
-        'com.h2database:**',
-      ],
-      groupName: 'h2',
-    },
-    {
-      matchPackageNames: [
-        'org.jacoco:**',
-      ],
-      groupName: 'jacoco',
-    },
-    {
-      matchPackageNames: [
-        'org.jooq:**',
-      ],
-      groupName: 'jooq',
-    },
-    {
-      matchPackageNames: [
-        'org.junit-pioneer:junit-pioneer',
-      ],
-      groupName: 'junit-pioneer',
-    },
-    {
-      matchPackageNames: [
-        'org.liquibase:**',
-      ],
-      groupName: 'liquibase',
-    },
-    {
-      matchPackageNames: [
-        'org.apache.maven.plugins:maven-wrapper-plugin',
-        'org.apache.maven.wrapper:maven-wrapper',
-      ],
-      groupName: 'maven-wrapper',
-    },
-    {
-      matchPackageNames: [
-        'com.uber.nullaway:**',
-      ],
-      groupName: 'nullaway',
-    },
-    {
-      matchPackageNames: [
-        'com.github.spotbugs:spotbugs',
-        'com.github.spotbugs:spotbugs-annotations',
-      ],
-      groupName: 'spotbugs',
-    },
-    {
-      matchFileNames: [
-        'gradle/libs.versions.toml',
-        'markitect-liquibase-spring-boot-starter/src/it/spring-boot-3.4/pom.xml',
-        'pom.xml',
-      ],
-      matchPackageNames: [
-        'com.h2database:**',
-        'org.jooq:**',
-        'org.liquibase:**',
-        'org.springframework.boot:**',
-      ],
-      matchUpdateTypes: [
-        'major',
-        'minor',
-      ],
-      enabled: false,
     },
     {
       matchPackageNames: [
