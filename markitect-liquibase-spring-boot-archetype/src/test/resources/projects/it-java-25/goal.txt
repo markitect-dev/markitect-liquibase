@@ -1,1 +1,0 @@
--ntp verify -Dliquibase.analytics.enabled=false -Dliquibase.analytics.logLevel=info -Dliquibase.showBanner=false -Dliquibase.sql.logLevel=info -Dmaven.test.redirectTestOutputToFile=true -Dorg.jooq.no-logo=true -Dorg.jooq.no-tips=true

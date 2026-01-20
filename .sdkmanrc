@@ -4,7 +4,3 @@
 gradle=9.3.0
 # renovate: datasource=custom.sdkmanJavaVersion depName=java versioning=docker
 java=25-zulu
-# renovate: datasource=custom.sdkmanMavenVersion depName=maven versioning=maven
-maven=3.9.12
-# renovate: datasource=custom.sdkmanMvndVersion depName=mvnd versioning=maven
-mvnd=1.0.3
