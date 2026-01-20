@@ -2,7 +2,6 @@
 
 [versions]
 checkstyle = "13.0.0"
-# renovate: depName=io.github.solven-eu.cleanthat:java
 cleanthat = "2.24"
 develocity-plugin = "4.3.1"
 error-prone = "2.46.0"
@@ -10,7 +9,6 @@ errorprone-plugin = "4.4.0"
 findsecbugs-plugin = "1.14.0"
 foojay-toolchains-plugin = "1.0.0"
 forbiddenapis = "3.10"
-# renovate: depName=com.google.googlejavaformat:google-java-format
 google-java-format = "1.33.0"
 gradle-nexus-publish-plugin = "2.0.0"
 gradle-node-plugin = "7.1.0"
@@ -46,6 +44,7 @@ com-github-spotbugs-spotbugs = { module = "com.github.spotbugs:spotbugs", versio
 com-github-spotbugs-spotbugs-annotations = { module = "com.github.spotbugs:spotbugs-annotations", version.ref = "spotbugs" }
 com-google-errorprone-error-prone-annotations = { module = "com.google.errorprone:error_prone_annotations", version.ref = "error-prone" }
 com-google-errorprone-error-prone-core = { module = "com.google.errorprone:error_prone_core", version.ref = "error-prone" }
+com-google-googlejavaformat-google-java-format = { module = "com.google.googlejavaformat:google-java-format", version.ref = "google-java-format" }
 com-google-guava-guava = { module = "com.google.guava:guava", version.ref = "guava" }
 com-h2database-h2 = { module = "com.h2database:h2" }
 com-h3xstream-findsecbugs-findsecbugs-plugin = { module = "com.h3xstream.findsecbugs:findsecbugs-plugin", version.ref = "findsecbugs-plugin" }
@@ -54,6 +53,7 @@ com-pinterest-ktlint-ktlint-cli = { module = "com.pinterest.ktlint:ktlint-cli", 
 com-puppycrawl-tools-checkstyle = { module = "com.puppycrawl.tools:checkstyle", version.ref = "checkstyle" }
 com-uber-nullaway-nullaway = { module = "com.uber.nullaway:nullaway", version.ref = "nullaway" }
 de-thetaphi-forbiddenapis = { module = "de.thetaphi:forbiddenapis", version.ref = "forbiddenapis" }
+io-github-solven-eu-cleanthat-java = { module = "io.github.solven-eu.cleanthat:java", version.ref = "cleanthat" }
 org-apache-logging-log4j-log4j-api = { module = "org.apache.logging.log4j:log4j-api" }
 org-apache-logging-log4j-log4j-to-slf4j = { module = "org.apache.logging.log4j:log4j-to-slf4j" }
 org-hsqldb-hsqldb = { module = "org.hsqldb:hsqldb" }
