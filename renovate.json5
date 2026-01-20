@@ -86,6 +86,24 @@
     },
     {
       matchPackageNames: [
+        'org.liquibase:**',
+      ],
+      matchUpdateTypes: [
+        'major',
+      ],
+      enabled: false,
+    },
+    {
+      matchPackageNames: [
+        'org.springframework.boot:**',
+      ],
+      matchUpdateTypes: [
+        'major',
+      ],
+      enabled: false,
+    },
+    {
+      matchPackageNames: [
         'com.diffplug.spotless:com.diffplug.spotless.gradle.plugin',
       ],
       sourceUrl: 'https://github.com/diffplug/spotless',
