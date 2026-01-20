@@ -19,6 +19,8 @@ jacoco = "0.8.14"
 # renovate: datasource=custom.sdkmanJavaVersion depName=java extractVersion=^(?<version>\d+)
 java = "25"
 junit-pioneer = "2.3.0"
+ktfmt = "0.61"
+ktlint = "1.8.0"
 # renovate: datasource=node-version depName=node
 node = "24.13.0"
 nullaway = "0.12.15"
@@ -38,6 +40,7 @@ spotless-plugin = "8.1.0"
 spring-boot = "4.0.1"
 
 [libraries]
+com-facebook-ktfmt = { module = "com.facebook:ktfmt", version.ref = "ktfmt" }
 com-fasterxml-jackson-core-jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind" }
 com-github-spotbugs-spotbugs = { module = "com.github.spotbugs:spotbugs", version.ref = "spotbugs" }
 com-github-spotbugs-spotbugs-annotations = { module = "com.github.spotbugs:spotbugs-annotations", version.ref = "spotbugs" }
@@ -47,6 +50,7 @@ com-google-guava-guava = { module = "com.google.guava:guava", version.ref = "gua
 com-h2database-h2 = { module = "com.h2database:h2" }
 com-h3xstream-findsecbugs-findsecbugs-plugin = { module = "com.h3xstream.findsecbugs:findsecbugs-plugin", version.ref = "findsecbugs-plugin" }
 com-microsoft-sqlserver-mssql-jdbc = { module = "com.microsoft.sqlserver:mssql-jdbc" }
+com-pinterest-ktlint-ktlint-cli = { module = "com.pinterest.ktlint:ktlint-cli", version.ref = "ktlint" }
 com-puppycrawl-tools-checkstyle = { module = "com.puppycrawl.tools:checkstyle", version.ref = "checkstyle" }
 com-uber-nullaway-nullaway = { module = "com.uber.nullaway:nullaway", version.ref = "nullaway" }
 de-thetaphi-forbiddenapis = { module = "de.thetaphi:forbiddenapis", version.ref = "forbiddenapis" }
