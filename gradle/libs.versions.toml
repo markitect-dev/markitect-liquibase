@@ -12,7 +12,7 @@ develocity-plugin = "4.3.1"
 error-prone = "2.46.0"
 errorprone-plugin = "4.4.0"
 findsecbugs-plugin = "1.14.0"
-foojay-toolchains-plugin = "1.0.0"
+foojay-resolver = '1.0.0'
 forbiddenapis = "3.10"
 google-java-format = "1.33.0"
 gradle-nexus-publish-plugin = "2.0.0"
@@ -110,6 +110,6 @@ de-thetaphi-forbiddenapis = { id = "de.thetaphi.forbiddenapis", version.ref = "f
 io-github-gradle-nexus-publish-plugin = { id = "io.github.gradle-nexus.publish-plugin", version.ref = "gradle-nexus-publish-plugin" }
 net-ltgt-errorprone = { id = "net.ltgt.errorprone", version.ref = "errorprone-plugin" }
 net-ltgt-nullaway = { id = "net.ltgt.nullaway", version.ref = "nullaway-plugin" }
-org-gradle-toolchains-foojay-resolver-convention = { id = "org.gradle.toolchains.foojay-resolver-convention", version.ref = "foojay-toolchains-plugin" }
+org-gradle-toolchains-foojay-resolver-convention = { id = "org.gradle.toolchains.foojay-resolver-convention", version.ref = "foojay-resolver" }
 org-openrewrite-rewrite = { id = "org.openrewrite.rewrite", version.ref = "rewrite-plugin" }
 org-sonarqube = { id = "org.sonarqube", version.ref = "sonarqube-plugin" }
