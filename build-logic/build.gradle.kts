@@ -39,19 +39,11 @@ dependencies {
 
 java {
     sourceCompatibility = JavaVersion.VERSION_17
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(libs.versions.java.get())
-        vendor = JvmVendorSpec.AZUL
-    }
 }
 
 kotlin {
     compilerOptions {
         jvmTarget = JvmTarget.JVM_17
-    }
-    jvmToolchain {
-        languageVersion = JavaLanguageVersion.of(libs.versions.java.get())
-        vendor = JvmVendorSpec.AZUL
     }
 }
 
