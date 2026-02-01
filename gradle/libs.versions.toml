@@ -1,7 +1,7 @@
 # https://docs.gradle.org/current/userguide/platforms.html#sub::toml-dependencies-format
 
 [versions]
-checkstyle = "13.0.0"
+checkstyle = "13.1.0"
 cleanthat = "2.24"
 commons-beanutils = "1.11.0"
 commons-codec = "1.21.0"
