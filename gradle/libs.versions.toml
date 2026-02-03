@@ -2,7 +2,7 @@
 
 [versions]
 checkstyle = "13.1.0"
-cleanthat = "2.24"
+cleanthat = "2.25"
 commons-beanutils = "1.11.0"
 commons-codec = "1.21.0"
 commons-collections = "3.2.2"
