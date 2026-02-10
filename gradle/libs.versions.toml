@@ -32,7 +32,7 @@ ktfmt = "0.61"
 ktlint = "1.8.0"
 liquibase = { strictly = "4.33.0" }
 # renovate: datasource=node-version depName=node
-node = "24.13.0"
+node = "24.13.1"
 nullaway = "0.13.1"
 nullaway-plugin = "3.0.0"
 opencsv = "5.12.0"
