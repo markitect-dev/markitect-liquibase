@@ -94,6 +94,13 @@
       enabled: false,
     },
     {
+      groupName: 'OpenRewrite',
+      matchPackageNames: [
+        'org.openrewrite.recipe:**',
+        'org.openrewrite.rewrite:**',
+      ],
+    },
+    {
       matchPackageNames: [
         'org.springframework.boot:**',
       ],
@@ -122,6 +129,12 @@
     },
     {
       matchPackageNames: [
+        'com.gradle.develocity:com.gradle.develocity.gradle.plugin',
+      ],
+      changelogUrl: 'https://docs.gradle.com/develocity/gradle/current/release-history/',
+    },
+    {
+      matchPackageNames: [
         'de.thetaphi.forbiddenapis:de.thetaphi.forbiddenapis.gradle.plugin',
       ],
       sourceUrl: 'https://github.com/policeman-tools/forbidden-apis',
@@ -143,6 +156,12 @@
         'net.ltgt.nullaway:net.ltgt.nullaway.gradle.plugin',
       ],
       sourceUrl: 'https://github.com/tbroyer/gradle-nullaway-plugin',
+    },
+    {
+      matchPackageNames: [
+        'org.gradle.toolchains.foojay-resolver-convention:org.gradle.toolchains.foojay-resolver-convention.gradle.plugin',
+      ],
+      sourceUrl: 'https://github.com/gradle/foojay-toolchains',
     },
     {
       matchPackageNames: [
