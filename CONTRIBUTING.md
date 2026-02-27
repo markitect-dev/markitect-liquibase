@@ -149,6 +149,22 @@ The project uses:
 - Spotless for code formatting
 - Gradle's dependency verification for security
 
+### Running Spotless
+
+Spotless is used to automatically format code according to the project's style guidelines.
+
+To check if your code is properly formatted:
+```bash
+./gradlew spotlessCheck
+```
+
+To automatically apply formatting fixes:
+```bash
+./gradlew spotlessApply
+```
+
+**Note**: Always run `spotlessApply` before committing your changes to ensure consistent code formatting across the project.
+
 ## Questions?
 
 If you have questions or need help, please open an issue on GitHub.
