@@ -100,6 +100,8 @@ Over time, the verification metadata file accumulates checksums for old dependen
    </verification-metadata>
    EOF
    ```
+   
+   This creates a minimal file with an empty `<components>` section that will be repopulated in the next step.
 
 2. Regenerate verification metadata for current dependencies:
    ```bash
