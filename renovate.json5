@@ -96,8 +96,7 @@
     {
       groupName: 'OpenRewrite',
       matchPackageNames: [
-        'org.openrewrite.recipe:**',
-        'org.openrewrite.rewrite:**',
+        '/^org\\.openrewrite/',
       ],
     },
     {
