@@ -68,6 +68,62 @@ When running the update command, Gradle will:
 - Generate SHA-256 checksums for each artifact
 - Update the XML file with the new checksums
 
+### Pruning Gradle Verification Metadata
+
+Over time, the verification metadata file accumulates checksums for old dependency versions that are no longer used. Pruning removes these unused entries while keeping only the current dependencies.
+
+#### When to Prune
+
+- After multiple dependency updates
+- When the file has grown significantly
+- As part of regular maintenance (e.g., quarterly)
+
+#### Steps to Prune
+
+1. Delete the contents of the `<components>` section while keeping the trusted artifacts configuration:
+   ```bash
+   cat > gradle/verification-metadata.xml << 'EOF'
+   <?xml version="1.0" encoding="UTF-8"?>
+   <verification-metadata xmlns="https://schema.gradle.org/dependency-verification" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://schema.gradle.org/dependency-verification https://schema.gradle.org/dependency-verification/dependency-verification-1.3.xsd">
+      <configuration>
+         <verify-metadata>false</verify-metadata>
+         <verify-signatures>false</verify-signatures>
+         <trusted-artifacts>
+            <trust group="org.gradle" name="github-dependency-graph-gradle-plugin"/>
+            <trust file=".*-javadoc[.]jar" regex="true"/>
+            <trust file=".*-sources[.]jar" regex="true"/>
+            <trust file=".*-src[.]zip" regex="true"/>
+         </trusted-artifacts>
+      </configuration>
+      <components>
+      </components>
+   </verification-metadata>
+   EOF
+   ```
+
+2. Regenerate verification metadata for current dependencies:
+   ```bash
+   ./gradlew --write-verification-metadata sha256 dependencies --write-locks
+   ```
+
+3. Verify the build works with the pruned metadata:
+   ```bash
+   ./gradlew help
+   ```
+
+4. Review the changes (should show old versions removed):
+   ```bash
+   git diff --stat gradle/verification-metadata.xml
+   ```
+
+5. Commit the changes:
+   ```bash
+   git add gradle/verification-metadata.xml
+   git commit -m "Prune Gradle verification metadata"
+   ```
+
+**Note**: The `<components>` section is required by the schema but you can delete its contents (all `<component>` entries). The regeneration process will repopulate it with only the current dependencies needed by the project.
+
 #### Troubleshooting
 
 **Issue: `No such reference 'origin/main'` error**
