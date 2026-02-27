@@ -34,7 +34,7 @@ When dependencies are updated (e.g., by Renovate or manual dependency changes), 
 
 1. Run the Gradle command to regenerate verification metadata:
    ```bash
-   ./gradlew --write-verification-metadata sha256 build -x test
+   ./gradlew --write-verification-metadata sha256 spotlessApply
    ```
 
 2. Clean up any temporary files that were generated:
@@ -99,12 +99,12 @@ Over time, the verification metadata file accumulates checksums for old dependen
    </verification-metadata>
    EOF
    ```
-   
+
    This creates a minimal file with an empty `<components>` section that will be repopulated in the next step.
 
 2. Regenerate verification metadata for current dependencies:
    ```bash
-   ./gradlew --write-verification-metadata sha256 build -x test
+   ./gradlew --write-verification-metadata sha256 spotlessApply
    ```
 
 3. Verify the build works with the pruned metadata:
