@@ -34,13 +34,12 @@ When dependencies are updated (e.g., by Renovate or manual dependency changes), 
 
 1. Run the Gradle command to regenerate verification metadata:
    ```bash
-   ./gradlew --write-verification-metadata sha256 dependencies --write-locks
+   ./gradlew --write-verification-metadata sha256 dependencies
    ```
 
 2. Clean up any temporary files that were generated:
    ```bash
    rm -f gradle/verification-metadata.dryrun.xml
-   rm -f settings-gradle.lockfile
    ```
 
 3. Review the changes to `gradle/verification-metadata.xml`:
@@ -105,7 +104,7 @@ Over time, the verification metadata file accumulates checksums for old dependen
 
 2. Regenerate verification metadata for current dependencies:
    ```bash
-   ./gradlew --write-verification-metadata sha256 dependencies --write-locks
+   ./gradlew --write-verification-metadata sha256 dependencies
    ```
 
 3. Verify the build works with the pruned metadata:
