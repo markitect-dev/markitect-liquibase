@@ -98,6 +98,7 @@
       matchPackageNames: [
         'org.openrewrite.recipe:**',
         'org.openrewrite.rewrite',
+        'org.openrewrite.rewrite:**',
       ],
     },
     {
