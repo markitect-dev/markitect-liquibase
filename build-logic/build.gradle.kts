@@ -14,16 +14,7 @@ val npmExecutable = tasks.nodeSetup.map { it.nodeDir.get().file(if (windows) "np
 val npmInstallCache = rootProject.layout.projectDirectory.dir(".gradle/spotless-npm-install-cache")
 val npmrc = rootProject.file("../config/spotless/.npmrc")
 
-val verification: Configuration by configurations.creating
-
 dependencies {
-    verification("org.nodejs:node:${libs.versions.node.get()}:darwin-arm64@tar.gz")
-    verification("org.nodejs:node:${libs.versions.node.get()}:darwin-x64@tar.gz")
-    verification("org.nodejs:node:${libs.versions.node.get()}:linux-arm64@tar.gz")
-    verification("org.nodejs:node:${libs.versions.node.get()}:linux-x64@tar.gz")
-    verification("org.nodejs:node:${libs.versions.node.get()}:win-arm64@zip")
-    verification("org.nodejs:node:${libs.versions.node.get()}:win-x64@zip")
-
     implementation(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
     implementation(plugin(libs.plugins.com.diffplug.spotless))
     implementation(plugin(libs.plugins.com.github.node.gradle.node))
