@@ -85,8 +85,8 @@
       versioning: 'docker',
     },
     {
-      matchPackageNames: [
-        'org.liquibase:**',
+      matchPackagePrefixes: [
+        'org.liquibase:',
       ],
       matchUpdateTypes: [
         'major',
@@ -95,15 +95,14 @@
     },
     {
       groupName: 'OpenRewrite',
-      matchPackageNames: [
-        'org.openrewrite.recipe:**',
-        'org.openrewrite.rewrite',
-        'org.openrewrite.rewrite:**',
+      matchPackagePrefixes: [
+        'org.openrewrite.recipe:',
+        'org.openrewrite.rewrite:',
       ],
     },
     {
-      matchPackageNames: [
-        'org.springframework.boot:**',
+      matchPackagePrefixes: [
+        'org.springframework.boot:',
       ],
       matchUpdateTypes: [
         'major',
