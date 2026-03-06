@@ -101,6 +101,12 @@
       ],
     },
     {
+      groupName: 'OpenRewrite',
+      matchDepNames: [
+        'org.openrewrite.rewrite',
+      ],
+    },
+    {
       matchPackageNames: [
         'org.springframework.boot:{/,}**',
       ],
