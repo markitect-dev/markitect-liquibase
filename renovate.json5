@@ -99,12 +99,10 @@
         'org.openrewrite.recipe:rewrite-static-analysis',
         'org.openrewrite.rewrite:org.openrewrite.rewrite.gradle.plugin',
       ],
-    },
-    {
-      groupName: 'OpenRewrite',
-      matchDepNames: [
-        'org.openrewrite.rewrite',
-      ],
+      separateMajorMinor: false,
+      separateMinorPatch: false,
+      separateMultipleMajor: false,
+      separateMultipleMinor: false,
     },
     {
       matchPackageNames: [
