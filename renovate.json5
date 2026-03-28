@@ -68,6 +68,15 @@
       newLogLevel: 'debug',
     },
   ],
+  postUpgradeTasks: {
+    commands: [
+      './gradlew --write-verification-metadata sha256 dependencies resolveNodeDependencies',
+    ],
+    fileFilters: [
+      'gradle/verification-metadata.xml',
+    ],
+    executionMode: 'branch',
+  },
   packageRules: [
     {
       matchPackageNames: [

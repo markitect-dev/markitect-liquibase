@@ -68,6 +68,13 @@ dependencies {
     node("org.nodejs:node:${libs.versions.node.get()}:win-x64@zip")
 }
 
+tasks.register("resolveNodeDependencies") {
+    description = "Resolves Node.js binary dependencies for all platforms to generate dependency verification metadata"
+    doLast {
+        node.get().resolve()
+    }
+}
+
 listOf("check", "spotlessApply", "spotlessCheck").forEach { name ->
     tasks.named(name) {
         dependsOn(gradle.includedBuild("build-logic").task(":$name"))
