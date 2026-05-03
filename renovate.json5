@@ -70,6 +70,20 @@
   ],
   packageRules: [
     {
+      groupName: 'GitHub Actions dependencies',
+      matchManagers: [
+        'github-actions',
+      ],
+    },
+    {
+      groupName: 'Other dependencies',
+      matchManagers: [
+        'custom.regex',
+        'gradle',
+        'gradle-wrapper',
+      ],
+    },
+    {
       matchPackageNames: [
         'java',
       ],
@@ -91,42 +105,10 @@
       enabled: false,
     },
     {
-      groupName: 'Error Prone dependencies',
       matchPackageNames: [
-        'com.google.errorprone:**',
-        'com.uber.nullaway:**',
-        'net.ltgt.errorprone:**',
-        'net.ltgt.nullaway:**',
+        'org.nodejs:node',
       ],
-    },
-    {
-      groupName: 'OpenRewrite dependencies',
-      matchPackageNames: [
-        'org.openrewrite.recipe:**',
-        'org.openrewrite.rewrite:**',
-      ],
-    },
-    {
-      groupName: 'Spotbugs dependencies',
-      matchPackageNames: [
-        'com.github.spotbugs:**',
-        'com.h3xstream.findsecbugs:**',
-      ],
-    },
-    {
-      groupName: 'Spotless dependencies',
-      matchPackageNames: [
-        'com.diffplug.spotless:**',
-        'com.facebook:ktfmt',
-        'com.github.node-gradle.node:**',
-        'com.google.googlejavaformat:**',
-        'com.pinterest.ktlint:**',
-        'io.github.solven-eu.cleanthat:**',
-        'node',
-        'prettier',
-        'prettier-plugin-properties',
-        'prettier-plugin-toml',
-      ],
+      enabled: false,
     },
     {
       matchPackageNames: [
