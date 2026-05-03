@@ -139,7 +139,7 @@
       matchManagers: [
         'gradle',
         'gradle-wrapper',
-        'regex',
+        'custom.regex',
       ],
     },
     {
