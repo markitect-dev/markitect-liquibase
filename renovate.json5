@@ -129,6 +129,19 @@
       ],
     },
     {
+      groupName: 'GitHub Actions dependencies',
+      matchManagers: [
+        'github-actions',
+      ],
+    },
+    {
+      groupName: 'Other dependencies',
+      matchManagers: [
+        'gradle',
+        'gradle-wrapper',
+      ],
+    },
+    {
       matchPackageNames: [
         'org.springframework.boot:**',
       ],
