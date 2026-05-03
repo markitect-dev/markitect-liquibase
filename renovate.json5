@@ -76,7 +76,7 @@
       ],
     },
     {
-      groupName: 'Other dependencies',
+      groupName: 'other dependencies',
       matchManagers: [
         'custom.regex',
         'gradle',
