@@ -139,6 +139,7 @@
       matchManagers: [
         'gradle',
         'gradle-wrapper',
+        'regex',
       ],
     },
     {
