@@ -1,5 +1,5 @@
 /*
- * Copyright 2023-2024 Markitect
+ * Copyright 2023-2026 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,7 @@ package dev.markitect.liquibase.statement;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static java.util.Collections.unmodifiableList;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.ArrayList;
 import java.util.List;
 import liquibase.change.ColumnConfig;
@@ -33,6 +34,7 @@ import org.jspecify.annotations.Nullable;
 public class InsertOrUpdateExecutablePreparedStatement extends ExecutablePreparedStatementBase {
   private final PreparedSql preparedSql;
 
+  @SuppressFBWarnings("CT_CONSTRUCTOR_THROW")
   @SuppressWarnings("squid:S107")
   public InsertOrUpdateExecutablePreparedStatement(
       Database database,
@@ -74,6 +76,7 @@ public class InsertOrUpdateExecutablePreparedStatement extends ExecutablePrepare
   public static class PreparedSql extends UnparsedSql {
     private final List<ColumnConfig> bindColumns;
 
+    @SuppressFBWarnings("CT_CONSTRUCTOR_THROW")
     public PreparedSql(
         String sql,
         List<? extends ColumnConfig> bindColumns,
@@ -81,6 +84,7 @@ public class InsertOrUpdateExecutablePreparedStatement extends ExecutablePrepare
       this(sql, bindColumns, ";", affectedDatabaseObjects);
     }
 
+    @SuppressFBWarnings("CT_CONSTRUCTOR_THROW")
     @SuppressWarnings("Java9CollectionFactory")
     public PreparedSql(
         String sql,

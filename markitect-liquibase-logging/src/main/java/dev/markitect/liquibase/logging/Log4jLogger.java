@@ -1,5 +1,5 @@
 /*
- * Copyright 2023-2024 Markitect
+ * Copyright 2023-2026 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,6 +18,7 @@ package dev.markitect.liquibase.logging;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.logging.Level;
 import liquibase.logging.core.AbstractLogger;
 import org.apache.logging.log4j.spi.ExtendedLogger;
@@ -53,6 +54,7 @@ public class Log4jLogger extends AbstractLogger {
 
   private final ExtendedLogger logger;
 
+  @SuppressFBWarnings("CT_CONSTRUCTOR_THROW")
   public Log4jLogger(ExtendedLogger logger) {
     this.logger = checkNotNull(logger);
   }
