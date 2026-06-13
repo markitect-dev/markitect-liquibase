@@ -1,5 +1,5 @@
 /*
- * Copyright 2023-2024 Markitect
+ * Copyright 2023-2026 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -46,7 +46,7 @@ class MarkitectLoadDataChangeTests {
     try (var database = DatabaseBuilder.newBuilder(databaseClass).build()) {
 
       // when
-      var actual = change.supports(database);
+      boolean actual = change.supports(database);
 
       // then
       assertThat(actual).isEqualTo(expected);
@@ -79,7 +79,7 @@ class MarkitectLoadDataChangeTests {
     try (var database = DatabaseBuilder.newBuilder(H2Database.class).build()) {
 
       // when
-      var actual = change.generateStatementsVolatile(database);
+      boolean actual = change.generateStatementsVolatile(database);
 
       // then
       assertThat(actual).isEqualTo(expected);
