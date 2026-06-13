@@ -84,6 +84,12 @@
       ],
     },
     {
+      groupName: 'SpotBugs dependencies',
+      matchPackageNames: [
+        'com.github.spotbugs:**',
+      ],
+    },
+    {
       matchPackageNames: [
         'java',
       ],
