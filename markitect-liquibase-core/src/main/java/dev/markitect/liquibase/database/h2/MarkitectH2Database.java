@@ -1,5 +1,5 @@
 /*
- * Copyright 2023-2024 Markitect
+ * Copyright 2023-2026 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,7 @@ package dev.markitect.liquibase.database.h2;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import dev.markitect.liquibase.database.MarkitectDatabase;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import liquibase.database.core.H2Database;
 import liquibase.structure.DatabaseObject;
 import liquibase.structure.core.Catalog;
@@ -52,6 +53,7 @@ public class MarkitectH2Database extends H2Database implements MarkitectDatabase
     return MarkitectDatabase.super.escapeObjectName(objectName, objectType);
   }
 
+  @SuppressFBWarnings("IAOM_DO_NOT_INCREASE_METHOD_ACCESSIBILITY")
   @Override
   public boolean mustQuoteObjectName(
       String objectName, Class<? extends DatabaseObject> objectType) {

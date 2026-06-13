@@ -1,5 +1,5 @@
 /*
- * Copyright 2023-2024 Markitect
+ * Copyright 2023-2026 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,6 +34,7 @@ public class Slf4jLogger<L extends Logger> extends AbstractLogger {
 
   protected final L logger;
 
+  @SuppressFBWarnings("CT_CONSTRUCTOR_THROW")
   public Slf4jLogger(L logger) {
     this.logger = checkNotNull(logger);
   }
