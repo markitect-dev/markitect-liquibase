@@ -28,11 +28,11 @@ java = "25"
 javax-activation = "1.2.0"
 javax-jaxb = "2.3.1"
 junit-pioneer = "2.3.0"
-ktfmt = "0.63"
+ktfmt = "0.64"
 ktlint = "1.8.0"
 liquibase = { strictly = "4.33.0" }
 # renovate: datasource=node-version depName=node
-node = "24.17.0"
+node = "24.18.0"
 nullaway = "0.13.7"
 nullaway-plugin = "3.1.0"
 opencsv = "5.12.0"
