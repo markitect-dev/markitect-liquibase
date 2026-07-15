@@ -1,7 +1,7 @@
 # https://docs.gradle.org/current/userguide/platforms.html#sub::toml-dependencies-format
 
 [versions]
-checkstyle = "13.7.0"
+checkstyle = "13.8.0"
 cleanthat = "2.26"
 commons-beanutils = "1.11.0"
 commons-codec = "1.22.0"
@@ -38,13 +38,13 @@ nullaway-plugin = "3.1.0"
 opencsv = "5.12.0"
 picocli = "4.7.7"
 # renovate: datasource=npm depName=prettier
-prettier = "3.9.4"
+prettier = "3.9.5"
 # renovate: datasource=npm depName=prettier-plugin-properties
 prettier-plugin-properties = "0.3.1"
 # renovate: datasource=npm depName=prettier-plugin-toml
 prettier-plugin-toml = "2.0.6"
-rewrite-plugin = "7.36.0"
-rewrite-static-analysis = "2.38.0"
+rewrite-plugin = "7.37.0"
+rewrite-static-analysis = "2.39.0"
 sonarqube-plugin = "7.3.1.8318"
 spotbugs = "4.10.2"
 spotbugs-plugin = "6.5.8"
