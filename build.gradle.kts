@@ -56,6 +56,18 @@ val node =
         isCanBeConsumed = false
     }
 
+val spotless =
+    configurations.register("spotless") {
+        isCanBeConsumed = false
+        attributes {
+            attribute(Bundling.BUNDLING_ATTRIBUTE, objects.named(Bundling.EXTERNAL))
+            attribute(Category.CATEGORY_ATTRIBUTE, objects.named(Category.LIBRARY))
+            attribute(LibraryElements.LIBRARY_ELEMENTS_ATTRIBUTE, objects.named(LibraryElements.JAR))
+            attribute(TargetJvmEnvironment.TARGET_JVM_ENVIRONMENT_ATTRIBUTE, objects.named(TargetJvmEnvironment.STANDARD_JVM))
+            attribute(Usage.USAGE_ATTRIBUTE, objects.named(Usage.JAVA_RUNTIME))
+        }
+    }
+
 dependencies {
     cleanthat(libs.io.github.solven.eu.cleanthat.java)
 
@@ -71,6 +83,8 @@ dependencies {
     node("org.nodejs:node:${libs.versions.node.get()}:linux-x64@tar.gz")
     node("org.nodejs:node:${libs.versions.node.get()}:win-arm64@zip")
     node("org.nodejs:node:${libs.versions.node.get()}:win-x64@zip")
+
+    spotless(plugin(libs.plugins.com.diffplug.spotless))
 }
 
 listOf("check", "spotlessApply", "spotlessCheck").forEach { name ->
@@ -93,3 +107,7 @@ idea {
         excludeDirs.add(file(".idea"))
     }
 }
+
+@Suppress("UnusedReceiverParameter")
+fun DependencyHandlerScope.plugin(plugin: Provider<PluginDependency>) =
+    plugin.map { "${it.pluginId}:${it.pluginId}.gradle.plugin:${it.version}" }
