@@ -1,10 +1,10 @@
 # https://docs.gradle.org/current/userguide/platforms.html#sub::toml-dependencies-format
 
 [versions]
-checkstyle = "13.8.0"
+checkstyle = "13.9.0"
 cleanthat = "2.26"
 commons-beanutils = "1.11.0"
-commons-codec = "1.22.0"
+commons-codec = "1.22.1"
 commons-collections = "3.2.2"
 commons-collections4 = "4.5.0"
 commons-compress = "1.28.0"
@@ -18,7 +18,7 @@ errorprone-plugin = "5.1.0"
 findsecbugs-plugin = "1.14.0"
 foojay-resolver = '1.0.0'
 forbiddenapis = "3.10"
-google-java-format = "1.35.0"
+google-java-format = "1.36.1"
 gradle-nexus-publish-plugin = "2.0.0"
 gradle-node-plugin = "7.1.0"
 guava = "33.6.0-jre"
@@ -32,23 +32,23 @@ ktfmt = "0.64"
 ktlint = "1.8.0"
 liquibase = { strictly = "4.33.0" }
 # renovate: datasource=node-version depName=node
-node = "24.18.0"
+node = "24.19.0"
 nullaway = "0.13.8"
 nullaway-plugin = "3.1.0"
 opencsv = "5.12.0"
 picocli = "4.7.7"
 # renovate: datasource=npm depName=prettier
-prettier = "3.9.5"
+prettier = "3.9.6"
 # renovate: datasource=npm depName=prettier-plugin-properties
 prettier-plugin-properties = "0.3.1"
 # renovate: datasource=npm depName=prettier-plugin-toml
 prettier-plugin-toml = "2.0.6"
-rewrite-plugin = "7.37.0"
-rewrite-static-analysis = "2.39.0"
-sonarqube-plugin = "7.3.1.8318"
+rewrite-plugin = "7.38.0"
+rewrite-static-analysis = "2.40.0"
+sonarqube-plugin = "7.4.0.8496"
 spotbugs = "4.10.3"
 spotbugs-plugin = "6.5.10"
-spotless-plugin = "8.8.0"
+spotless-plugin = "8.9.0"
 spring-boot = "4.1.0"
 
 [libraries]
