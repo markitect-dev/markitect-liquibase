@@ -84,9 +84,22 @@
       ],
     },
     {
+      groupName: 'OpenRewrite dependencies',
+      matchPackageNames: [
+        'org.openrewrite.recipe:**',
+        'org.openrewrite.rewrite:**',
+      ],
+    },
+    {
       groupName: 'SpotBugs dependencies',
       matchPackageNames: [
         'com.github.spotbugs:**',
+      ],
+    },
+    {
+      groupName: 'Spotless dependencies',
+      matchPackageNames: [
+        'com.diffplug.spotless:**',
       ],
     },
     {
