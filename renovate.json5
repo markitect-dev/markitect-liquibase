@@ -196,7 +196,7 @@
       matchPackageNames: [
         'org.openrewrite.rewrite:org.openrewrite.rewrite.gradle.plugin',
       ],
-      allowedVersions: '!/^7\\.41\\.0$/',
+      allowedVersions: '!/^7\\.4[01]\\.0$/',
       sourceUrl: 'https://github.com/openrewrite/rewrite-gradle-plugin',
     },
     {
