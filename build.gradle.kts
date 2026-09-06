@@ -56,6 +56,18 @@ val node =
         isCanBeConsumed = false
     }
 
+val rewrite =
+    configurations.register("rewrite") {
+        isCanBeConsumed = false
+        attributes {
+            attribute(Bundling.BUNDLING_ATTRIBUTE, objects.named(Bundling.EXTERNAL))
+            attribute(Category.CATEGORY_ATTRIBUTE, objects.named(Category.LIBRARY))
+            attribute(LibraryElements.LIBRARY_ELEMENTS_ATTRIBUTE, objects.named(LibraryElements.JAR))
+            attribute(TargetJvmEnvironment.TARGET_JVM_ENVIRONMENT_ATTRIBUTE, objects.named(TargetJvmEnvironment.STANDARD_JVM))
+            attribute(Usage.USAGE_ATTRIBUTE, objects.named(Usage.JAVA_RUNTIME))
+        }
+    }
+
 val spotless =
     configurations.register("spotless") {
         isCanBeConsumed = false
@@ -83,6 +95,8 @@ dependencies {
     node("org.nodejs:node:${libs.versions.node.get()}:linux-x64@tar.gz")
     node("org.nodejs:node:${libs.versions.node.get()}:win-arm64@zip")
     node("org.nodejs:node:${libs.versions.node.get()}:win-x64@zip")
+
+    rewrite(plugin(libs.plugins.org.openrewrite.rewrite))
 
     spotless(plugin(libs.plugins.com.diffplug.spotless))
 }
