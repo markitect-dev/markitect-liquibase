@@ -97,6 +97,7 @@ dependencies {
     node("org.nodejs:node:${libs.versions.node.get()}:win-x64@zip")
 
     rewrite(plugin(libs.plugins.org.openrewrite.rewrite))
+    rewrite(libs.org.openrewrite.recipe.rewrite.static.analysis)
 
     spotless(plugin(libs.plugins.com.diffplug.spotless))
 }
