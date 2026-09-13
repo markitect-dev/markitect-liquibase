@@ -15,6 +15,18 @@ val cleanthat =
         }
     }
 
+val develocity =
+    configurations.register("develocity") {
+        isCanBeConsumed = false
+        attributes {
+            attribute(Bundling.BUNDLING_ATTRIBUTE, objects.named(Bundling.EXTERNAL))
+            attribute(Category.CATEGORY_ATTRIBUTE, objects.named(Category.LIBRARY))
+            attribute(LibraryElements.LIBRARY_ELEMENTS_ATTRIBUTE, objects.named(LibraryElements.JAR))
+            attribute(TargetJvmEnvironment.TARGET_JVM_ENVIRONMENT_ATTRIBUTE, objects.named(TargetJvmEnvironment.STANDARD_JVM))
+            attribute(Usage.USAGE_ATTRIBUTE, objects.named(Usage.JAVA_RUNTIME))
+        }
+    }
+
 val googleJavaFormat =
     configurations.register("googleJavaFormat") {
         isCanBeConsumed = false
@@ -82,6 +94,8 @@ val spotless =
 
 dependencies {
     cleanthat(libs.io.github.solven.eu.cleanthat.java)
+
+    develocity(plugin(libs.plugins.com.gradle.develocity))
 
     googleJavaFormat(libs.com.google.googlejavaformat.google.java.format)
 
