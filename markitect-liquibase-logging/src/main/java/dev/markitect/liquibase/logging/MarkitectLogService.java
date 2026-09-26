@@ -1,5 +1,5 @@
 /*
- * Copyright 2023-2024 Markitect
+ * Copyright 2023-2026 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,6 +21,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import liquibase.logging.Logger;
 import liquibase.logging.core.AbstractLogService;
 
+/** Provides logger adapters that route Liquibase logging to other frameworks. */
 public class MarkitectLogService extends AbstractLogService {
   @Override
   public int getPriority() {

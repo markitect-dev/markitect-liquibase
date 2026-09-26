@@ -1,5 +1,5 @@
 /*
- * Copyright 2023-2024 Markitect
+ * Copyright 2023-2026 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,7 +25,9 @@ import liquibase.database.Database;
 import liquibase.database.ObjectQuotingStrategy;
 import org.jspecify.annotations.Nullable;
 
+/** Builds configured Liquibase database instances. */
 public final class DatabaseBuilder<D extends Database> {
+  /** Creates a new database builder. */
   public static <T extends Database> DatabaseBuilder<T> newBuilder(Class<T> databaseClass) {
     checkNotNull(databaseClass);
     return new DatabaseBuilder<>(databaseClass);
@@ -42,6 +44,7 @@ public final class DatabaseBuilder<D extends Database> {
     this.databaseClass = checkNotNull(databaseClass);
   }
 
+  /** Sets the database connection builder. */
   @CanIgnoreReturnValue
   public DatabaseBuilder<D> databaseConnection(
       @Nullable DatabaseConnectionBuilder databaseConnectionBuilder) {
@@ -50,11 +53,13 @@ public final class DatabaseBuilder<D extends Database> {
     return this;
   }
 
+  /** Sets the default offline connection. */
   @CanIgnoreReturnValue
   public DatabaseBuilder<D> offlineConnection() {
     return offlineConnection(UnaryOperator.identity());
   }
 
+  /** Sets the customized offline connection. */
   @CanIgnoreReturnValue
   public DatabaseBuilder<D> offlineConnection(
       @Nullable UnaryOperator<OfflineConnectionBuilder> offlineConnectionCustomizer) {
@@ -63,6 +68,7 @@ public final class DatabaseBuilder<D extends Database> {
     return this;
   }
 
+  /** Sets the object quoting strategy. */
   @CanIgnoreReturnValue
   public DatabaseBuilder<D> objectQuotingStrategy(
       @Nullable ObjectQuotingStrategy objectQuotingStrategy) {
@@ -70,18 +76,21 @@ public final class DatabaseBuilder<D extends Database> {
     return this;
   }
 
+  /** Sets whether the default catalog is output. */
   @CanIgnoreReturnValue
   public DatabaseBuilder<D> outputDefaultCatalog(@Nullable Boolean outputDefaultCatalog) {
     this.outputDefaultCatalog = outputDefaultCatalog;
     return this;
   }
 
+  /** Sets whether the default schema is output. */
   @CanIgnoreReturnValue
   public DatabaseBuilder<D> outputDefaultSchema(@Nullable Boolean outputDefaultSchema) {
     this.outputDefaultSchema = outputDefaultSchema;
     return this;
   }
 
+  /** Builds the configured database instance. */
   public D build() {
     D database;
     try {

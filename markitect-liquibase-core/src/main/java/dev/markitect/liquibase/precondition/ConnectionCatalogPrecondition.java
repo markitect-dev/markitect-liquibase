@@ -1,5 +1,5 @@
 /*
- * Copyright 2023-2024 Markitect
+ * Copyright 2023-2026 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,6 +32,7 @@ import liquibase.precondition.AbstractPrecondition;
 import liquibase.structure.core.Catalog;
 import org.jspecify.annotations.Nullable;
 
+/** Verifies that the current database connection uses the configured catalog. */
 public class ConnectionCatalogPrecondition extends AbstractPrecondition {
   private @Nullable String catalogName;
 

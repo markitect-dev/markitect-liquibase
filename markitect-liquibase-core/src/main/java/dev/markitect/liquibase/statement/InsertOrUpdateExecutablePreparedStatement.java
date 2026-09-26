@@ -31,9 +31,11 @@ import liquibase.statement.ExecutablePreparedStatementBase;
 import liquibase.structure.DatabaseObject;
 import org.jspecify.annotations.Nullable;
 
+/** Executes prepared insert-or-update SQL generated for loadUpdateData changes. */
 public class InsertOrUpdateExecutablePreparedStatement extends ExecutablePreparedStatementBase {
   private final PreparedSql preparedSql;
 
+  /** Creates an executable prepared statement for generated insert-or-update SQL. */
   @SuppressFBWarnings("CT_CONSTRUCTOR_THROW")
   @SuppressWarnings("squid:S107")
   public InsertOrUpdateExecutablePreparedStatement(
@@ -73,9 +75,11 @@ public class InsertOrUpdateExecutablePreparedStatement extends ExecutablePrepare
     return preparedSql.getBindColumns();
   }
 
+  /** Stores generated SQL with the columns bound as prepared statement parameters. */
   public static class PreparedSql extends UnparsedSql {
     private final List<ColumnConfig> bindColumns;
 
+    /** Creates prepared SQL with the default statement delimiter. */
     @SuppressFBWarnings("CT_CONSTRUCTOR_THROW")
     public PreparedSql(
         String sql,
@@ -84,6 +88,7 @@ public class InsertOrUpdateExecutablePreparedStatement extends ExecutablePrepare
       this(sql, bindColumns, ";", affectedDatabaseObjects);
     }
 
+    /** Creates prepared SQL with a custom statement delimiter. */
     @SuppressFBWarnings("CT_CONSTRUCTOR_THROW")
     @SuppressWarnings("Java9CollectionFactory")
     public PreparedSql(

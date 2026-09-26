@@ -1,5 +1,5 @@
 /*
- * Copyright 2023-2024 Markitect
+ * Copyright 2023-2026 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,7 +26,9 @@ import java.util.StringJoiner;
 import liquibase.Scope;
 import org.jspecify.annotations.Nullable;
 
+/** Builds configured offline database connections. */
 public final class OfflineConnectionBuilder {
+  /** Creates a new offline connection builder. */
   public static OfflineConnectionBuilder newBuilder(String shortName) {
     return new OfflineConnectionBuilder(checkNotNull(shortName));
   }
@@ -43,36 +45,42 @@ public final class OfflineConnectionBuilder {
     this.shortName = checkNotNull(shortName);
   }
 
+  /** Sets the database product name. */
   @CanIgnoreReturnValue
   public OfflineConnectionBuilder productName(@Nullable String productName) {
     this.productName = productName;
     return this;
   }
 
+  /** Sets the database version. */
   @CanIgnoreReturnValue
   public OfflineConnectionBuilder version(@Nullable String version) {
     this.version = version;
     return this;
   }
 
+  /** Sets the snapshot path. */
   @CanIgnoreReturnValue
   public OfflineConnectionBuilder snapshot(@Nullable String snapshot) {
     this.snapshot = snapshot;
     return this;
   }
 
+  /** Sets the catalog name. */
   @CanIgnoreReturnValue
   public OfflineConnectionBuilder catalog(@Nullable String catalog) {
     this.catalog = catalog;
     return this;
   }
 
+  /** Sets the schema name. */
   @CanIgnoreReturnValue
   public OfflineConnectionBuilder schema(@Nullable String schema) {
     this.schema = schema;
     return this;
   }
 
+  /** Sets additional database parameters. */
   @CanIgnoreReturnValue
   @SuppressFBWarnings("EI_EXPOSE_REP2")
   public OfflineConnectionBuilder databaseParams(Map<String, String> databaseParams) {
@@ -80,6 +88,7 @@ public final class OfflineConnectionBuilder {
     return this;
   }
 
+  /** Builds the configured offline connection. */
   public MarkitectOfflineConnection build() {
     var params = new StringJoiner("&", "?", "");
     if (productName != null) {

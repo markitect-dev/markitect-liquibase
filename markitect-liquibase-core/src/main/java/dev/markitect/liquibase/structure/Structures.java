@@ -1,5 +1,5 @@
 /*
- * Copyright 2023-2024 Markitect
+ * Copyright 2023-2026 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,7 +22,9 @@ import liquibase.structure.DatabaseObject;
 import liquibase.structure.core.Catalog;
 import liquibase.structure.core.Schema;
 
+/** Provides helpers for Liquibase database object structures. */
 public final class Structures {
+  /** Determines whether a database object type is a catalog or schema type. */
   public static boolean isCatalogOrSchemaType(Class<? extends DatabaseObject> objectType) {
     checkNotNull(objectType);
     return objectType == Catalog.class || objectType == Schema.class;

@@ -1,5 +1,5 @@
 /*
- * Copyright 2023-2024 Markitect
+ * Copyright 2023-2026 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,9 +20,11 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.regex.Pattern;
 
+/** Provides helpers for string validation. */
 public final class Strings {
   private static final Pattern LEGAL_IDENTIFIER_PATTERN = Pattern.compile("[a-zA-Z_]\\w*");
 
+  /** Determines whether an object name is outside the supported identifier pattern. */
   public static boolean isIllegalIdentifier(String objectName) {
     checkNotNull(objectName);
     return !LEGAL_IDENTIFIER_PATTERN.matcher(objectName).matches();

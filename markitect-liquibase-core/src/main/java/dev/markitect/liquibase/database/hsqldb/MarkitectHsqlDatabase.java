@@ -22,6 +22,7 @@ import liquibase.database.core.HsqlDatabase;
 import liquibase.structure.DatabaseObject;
 import org.jspecify.annotations.Nullable;
 
+/** HSQLDB database with this library's customizations. */
 public class MarkitectHsqlDatabase extends HsqlDatabase implements MarkitectDatabase {
   @Override
   public int getPriority() {

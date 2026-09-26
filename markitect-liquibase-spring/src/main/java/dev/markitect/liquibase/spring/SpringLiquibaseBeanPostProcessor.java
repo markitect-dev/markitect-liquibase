@@ -1,5 +1,5 @@
 /*
- * Copyright 2023-2024 Markitect
+ * Copyright 2023-2026 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,11 +25,13 @@ import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.core.env.Environment;
 import org.springframework.util.Assert;
 
+/** Makes the Spring environment available while Spring Liquibase beans initialize. */
 public class SpringLiquibaseBeanPostProcessor implements BeanPostProcessor {
   private static final Log log = LogFactory.getLog(SpringLiquibaseBeanPostProcessor.class);
 
   private final Environment environment;
 
+  /** Creates a bean post-processor using the provided Spring environment. */
   public SpringLiquibaseBeanPostProcessor(Environment environment) {
     Assert.notNull(environment, "Environment must not be null");
     this.environment = environment;

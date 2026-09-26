@@ -1,5 +1,5 @@
 /*
- * Copyright 2023-2024 Markitect
+ * Copyright 2023-2026 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,6 +32,7 @@ import liquibase.precondition.AbstractPrecondition;
 import liquibase.snapshot.InvalidExampleException;
 import org.jspecify.annotations.Nullable;
 
+/** Verifies that a configured schema exists in the target database. */
 public class SchemaExistsPrecondition extends AbstractPrecondition {
   private @Nullable String catalogName;
   private @Nullable String schemaName;

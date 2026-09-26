@@ -1,5 +1,5 @@
 /*
- * Copyright 2023-2024 Markitect
+ * Copyright 2023-2026 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,6 +22,7 @@ import java.util.logging.Level;
 import org.jspecify.annotations.Nullable;
 import org.slf4j.spi.LocationAwareLogger;
 
+/** Logs Liquibase messages through an SLF4J location-aware logger. */
 public class Slf4jLocationAwareLogger extends Slf4jLogger<LocationAwareLogger> {
   private static final String FQCN = Slf4jLocationAwareLogger.class.getName();
 
@@ -42,6 +43,7 @@ public class Slf4jLocationAwareLogger extends Slf4jLogger<LocationAwareLogger> {
     return LocationAwareLogger.ERROR_INT;
   }
 
+  /** Creates a logger backed by the provided SLF4J location-aware logger. */
   public Slf4jLocationAwareLogger(LocationAwareLogger logger) {
     super(logger);
   }

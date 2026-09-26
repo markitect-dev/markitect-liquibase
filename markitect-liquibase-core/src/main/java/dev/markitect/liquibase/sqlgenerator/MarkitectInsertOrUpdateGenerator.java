@@ -39,7 +39,9 @@ import liquibase.structure.core.Column;
 import liquibase.structure.core.Table;
 import org.jspecify.annotations.Nullable;
 
+/** Defines prepared SQL generation for insert-or-update changes. */
 public interface MarkitectInsertOrUpdateGenerator extends SqlGenerator<InsertOrUpdateStatement> {
+  /** Builds prepared SQL for an insert-or-update statement. */
   default PreparedSql prepareSql(
       Database database, InsertOrUpdateStatement statement, List<? extends ColumnConfig> columns) {
     var primaryKeyColumnNames =
@@ -63,6 +65,7 @@ public interface MarkitectInsertOrUpdateGenerator extends SqlGenerator<InsertOrU
         : prepareInsertOrUpdateSql(database, statement, columnValues);
   }
 
+  /** Builds prepared SQL for an update-only insert-or-update statement. */
   default PreparedSql prepareUpdateSql(
       Database database, InsertOrUpdateStatement statement, List<ColumnValue> columnValues) {
     var updateValues =
@@ -102,9 +105,11 @@ public interface MarkitectInsertOrUpdateGenerator extends SqlGenerator<InsertOrU
         new Table(statement.getCatalogName(), statement.getSchemaName(), statement.getTableName()));
   }
 
+  /** Builds prepared SQL for a database-specific insert-or-update statement. */
   PreparedSql prepareInsertOrUpdateSql(
       Database database, InsertOrUpdateStatement statement, List<ColumnValue> columnValues);
 
+  /** Converts a column value into a SQL literal or bind marker. */
   default String columnValueToSql(Database database, ColumnValue columnValue) {
     return columnValue.isBindValue()
         ? "?"
@@ -117,6 +122,7 @@ public interface MarkitectInsertOrUpdateGenerator extends SqlGenerator<InsertOrU
             .orElse("NULL");
   }
 
+  /** Holds metadata for a column participating in insert-or-update SQL generation. */
   @SuppressWarnings({"ClassCanBeRecord", "squid:S6206"})
   class ColumnValue {
     private final @Nullable ColumnConfig column;

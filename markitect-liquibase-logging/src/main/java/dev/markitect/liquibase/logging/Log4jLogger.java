@@ -24,6 +24,7 @@ import liquibase.logging.core.AbstractLogger;
 import org.apache.logging.log4j.spi.ExtendedLogger;
 import org.jspecify.annotations.Nullable;
 
+/** Logs Liquibase messages through the Log4j API. */
 @SuppressWarnings("squid:S2160")
 public class Log4jLogger extends AbstractLogger {
   private static final String FQCN = Log4jLogger.class.getName();
@@ -54,6 +55,7 @@ public class Log4jLogger extends AbstractLogger {
 
   private final ExtendedLogger logger;
 
+  /** Creates a logger backed by the provided Log4j extended logger. */
   @SuppressFBWarnings("CT_CONSTRUCTOR_THROW")
   public Log4jLogger(ExtendedLogger logger) {
     this.logger = checkNotNull(logger);

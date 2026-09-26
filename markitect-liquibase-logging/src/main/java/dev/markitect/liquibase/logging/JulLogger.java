@@ -26,6 +26,7 @@ import java.util.logging.Logger;
 import liquibase.logging.core.AbstractLogger;
 import org.jspecify.annotations.Nullable;
 
+/** Logs Liquibase messages through the Java Util Logging API. */
 @SuppressWarnings("squid:S2160")
 public class JulLogger extends AbstractLogger {
   private static final StackWalker stackWalker =

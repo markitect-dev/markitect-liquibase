@@ -1,5 +1,5 @@
 /*
- * Copyright 2023-2024 Markitect
+ * Copyright 2023-2026 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,7 +32,9 @@ import liquibase.snapshot.SnapshotGeneratorFactory;
 import liquibase.structure.core.Schema;
 import org.jspecify.annotations.Nullable;
 
+/** Provides database metadata helper methods. */
 public final class Databases {
+  /** Checks whether the catalog exists. */
   @SuppressWarnings("BooleanMethodIsAlwaysInverted")
   public static boolean catalogExists(Database database, @Nullable String catalogName)
       throws DatabaseException {
@@ -52,6 +54,7 @@ public final class Databases {
             .queryForObject(statement, Boolean.class));
   }
 
+  /** Checks whether the schema exists. */
   public static boolean schemaExists(
       Database database, @Nullable String catalogName, @Nullable String schemaName)
       throws DatabaseException, InvalidExampleException {

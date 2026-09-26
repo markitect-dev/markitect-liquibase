@@ -22,6 +22,7 @@ import liquibase.database.core.MSSQLDatabase;
 import liquibase.structure.DatabaseObject;
 import org.jspecify.annotations.Nullable;
 
+/** SQL Server database with this library's customizations. */
 public class MarkitectMssqlDatabase extends MSSQLDatabase implements MarkitectDatabase {
   @Override
   public int getPriority() {

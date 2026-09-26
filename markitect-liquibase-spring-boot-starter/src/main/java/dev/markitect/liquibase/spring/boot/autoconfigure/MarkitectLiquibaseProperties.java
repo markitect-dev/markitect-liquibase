@@ -1,5 +1,5 @@
 /*
- * Copyright 2023-2024 Markitect
+ * Copyright 2023-2026 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,6 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
+/** Holds configuration properties for the extended Liquibase integration. */
 @ConfigurationProperties(prefix = "markitect.liquibase")
 public class MarkitectLiquibaseProperties {
   /** Whether to qualify the names of objects in the default catalog. */
@@ -37,6 +38,7 @@ public class MarkitectLiquibaseProperties {
     return outputDefaultCatalog;
   }
 
+  /** Sets whether generated output qualifies objects in the default catalog. */
   @CanIgnoreReturnValue
   public MarkitectLiquibaseProperties setOutputDefaultCatalog(boolean outputDefaultCatalog) {
     this.outputDefaultCatalog = outputDefaultCatalog;
@@ -47,6 +49,7 @@ public class MarkitectLiquibaseProperties {
     return outputDefaultSchema;
   }
 
+  /** Sets whether generated output qualifies objects in the default schema. */
   @CanIgnoreReturnValue
   public MarkitectLiquibaseProperties setOutputDefaultSchema(boolean outputDefaultSchema) {
     this.outputDefaultSchema = outputDefaultSchema;

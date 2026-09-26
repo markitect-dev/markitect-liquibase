@@ -1,5 +1,5 @@
 /*
- * Copyright 2023-2024 Markitect
+ * Copyright 2023-2026 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,6 +30,7 @@ import liquibase.sqlgenerator.core.AbstractSqlGenerator;
 import liquibase.structure.core.Catalog;
 import liquibase.structure.core.Column;
 
+/** Generates SQL that checks whether a catalog exists. */
 public class CatalogExistsGenerator extends AbstractSqlGenerator<CatalogExistsStatement> {
   @Override
   public boolean supports(CatalogExistsStatement statement, Database database) {

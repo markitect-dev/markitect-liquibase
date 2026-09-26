@@ -24,6 +24,7 @@ import liquibase.logging.core.AbstractLogger;
 import org.jspecify.annotations.Nullable;
 import org.slf4j.Logger;
 
+/** Logs Liquibase messages through the SLF4J API. */
 @SuppressFBWarnings("CRLF_INJECTION_LOGS")
 @SuppressWarnings("squid:S2160")
 public class Slf4jLogger<L extends Logger> extends AbstractLogger {
@@ -34,6 +35,7 @@ public class Slf4jLogger<L extends Logger> extends AbstractLogger {
 
   protected final L logger;
 
+  /** Creates a logger backed by the provided SLF4J logger. */
   @SuppressFBWarnings("CT_CONSTRUCTOR_THROW")
   public Slf4jLogger(L logger) {
     this.logger = checkNotNull(logger);

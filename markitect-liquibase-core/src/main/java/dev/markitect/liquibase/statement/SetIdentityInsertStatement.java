@@ -1,5 +1,5 @@
 /*
- * Copyright 2023-2024 Markitect
+ * Copyright 2023-2026 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,12 +19,14 @@ package dev.markitect.liquibase.statement;
 import liquibase.statement.AbstractSqlStatement;
 import org.jspecify.annotations.Nullable;
 
+/** Represents a SQL Server IDENTITY_INSERT toggle statement. */
 public class SetIdentityInsertStatement extends AbstractSqlStatement {
   private final @Nullable String catalogName;
   private final @Nullable String schemaName;
   private final @Nullable String tableName;
   private final @Nullable IdentityInsert value;
 
+  /** Creates a statement that toggles SQL Server IDENTITY_INSERT for a table. */
   public SetIdentityInsertStatement(
       @Nullable String catalogName,
       @Nullable String schemaName,
@@ -57,6 +59,7 @@ public class SetIdentityInsertStatement extends AbstractSqlStatement {
     return true;
   }
 
+  /** Defines SQL Server IDENTITY_INSERT toggle values. */
   public enum IdentityInsert {
     ON,
     OFF

@@ -25,6 +25,7 @@ import liquibase.structure.DatabaseObject;
 import liquibase.structure.core.Catalog;
 import org.jspecify.annotations.Nullable;
 
+/** H2 database with this library's customizations. */
 public class MarkitectH2Database extends H2Database implements MarkitectDatabase {
   @Override
   public int getPriority() {

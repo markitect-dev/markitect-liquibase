@@ -1,5 +1,5 @@
 /*
- * Copyright 2023-2025 Markitect
+ * Copyright 2023-2026 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,6 +24,7 @@ import org.apache.logging.log4j.spi.LoggerContext;
 import org.slf4j.LoggerFactory;
 import org.slf4j.spi.LocationAwareLogger;
 
+/** Selects the available logging API and creates Liquibase logger adapters. */
 public class LoggerAdapter {
   private static final LoggingApi LOGGING_API;
 
@@ -48,6 +49,7 @@ public class LoggerAdapter {
     }
   }
 
+  /** Creates a Liquibase logger for the given logger name. */
   public static Logger getLogger(String name) {
     checkNotNull(name);
     return switch (LOGGING_API) {

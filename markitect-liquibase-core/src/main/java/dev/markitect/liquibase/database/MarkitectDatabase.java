@@ -1,5 +1,5 @@
 /*
- * Copyright 2023-2024 Markitect
+ * Copyright 2023-2026 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,6 +32,7 @@ import liquibase.structure.core.Index;
 import liquibase.structure.core.Schema;
 import org.jspecify.annotations.Nullable;
 
+/** Customizations shared by this library's Liquibase database types. */
 public interface MarkitectDatabase extends Database {
   @Override
   default @Nullable String correctObjectName(
@@ -84,6 +85,7 @@ public interface MarkitectDatabase extends Database {
         : objectName;
   }
 
+  /** Checks whether the object name must be quoted. */
   @SuppressFBWarnings("IMPROPER_UNICODE")
   default boolean mustQuoteObjectName(
       String objectName, Class<? extends DatabaseObject> objectType) {
@@ -103,11 +105,14 @@ public interface MarkitectDatabase extends Database {
                     : objectName.toLowerCase(Locale.US)));
   }
 
+  /** Quotes the database object name. */
   @Nullable String quoteObject(
       @Nullable String objectName, Class<? extends DatabaseObject> objectType);
 
+  /** Indicates whether unquoted object names are uppercased. */
   @Nullable Boolean getUnquotedObjectsAreUppercased();
 
+  /** Selects the catalog name to use. */
   default @Nullable String toCatalogNameToUse(@Nullable String catalogName) {
     if ((isTrue(GlobalConfiguration.INCLUDE_CATALOG_IN_SPECIFICATION.getCurrentValue())
             && getOutputDefaultCatalog())
@@ -120,6 +125,7 @@ public interface MarkitectDatabase extends Database {
     return null;
   }
 
+  /** Selects the schema name to use. */
   default @Nullable String toSchemaNameToUse(
       @Nullable String catalogName, @Nullable String schemaName) {
     if ((isTrue(GlobalConfiguration.INCLUDE_CATALOG_IN_SPECIFICATION.getCurrentValue())
@@ -137,10 +143,12 @@ public interface MarkitectDatabase extends Database {
     return null;
   }
 
+  /** Indicates whether inner schema names may be omitted. */
   default boolean supportsOmittedInnerSchemaName() {
     return false;
   }
 
+  /** Indicates whether identifier case can be preserved. */
   default boolean supportsPreservingIdentifierCase(Class<? extends DatabaseObject> objectType) {
     checkNotNull(objectType);
     return true;

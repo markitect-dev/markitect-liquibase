@@ -1,5 +1,5 @@
 /*
- * Copyright 2023-2024 Markitect
+ * Copyright 2023-2026 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,6 +29,7 @@ import liquibase.sqlgenerator.SqlGeneratorChain;
 import liquibase.sqlgenerator.core.AbstractSqlGenerator;
 import liquibase.structure.core.Catalog;
 
+/** Generates SQL for dropping a database catalog. */
 public class DropDatabaseGenerator extends AbstractSqlGenerator<DropDatabaseStatement> {
   @Override
   public boolean supports(DropDatabaseStatement statement, Database database) {

@@ -1,5 +1,5 @@
 /*
- * Copyright 2023-2024 Markitect
+ * Copyright 2023-2026 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,10 +21,12 @@ import liquibase.exception.DatabaseException;
 import liquibase.resource.ResourceAccessor;
 import org.jspecify.annotations.Nullable;
 
+/** Represents an offline connection with optional catalog and schema overrides. */
 public class MarkitectOfflineConnection extends OfflineConnection {
   private @Nullable String catalog;
   private @Nullable String schema;
 
+  /** Creates an offline connection for the supplied URL and resources. */
   public MarkitectOfflineConnection(String url, ResourceAccessor resourceAccessor) {
     super(url, resourceAccessor);
   }

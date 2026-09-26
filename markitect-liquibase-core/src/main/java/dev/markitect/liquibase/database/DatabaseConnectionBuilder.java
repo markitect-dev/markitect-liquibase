@@ -1,5 +1,5 @@
 /*
- * Copyright 2023-2024 Markitect
+ * Copyright 2023-2026 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,7 +25,9 @@ import liquibase.database.DatabaseFactory;
 import liquibase.exception.DatabaseException;
 import org.jspecify.annotations.Nullable;
 
+/** Builds configured Liquibase database connections. */
 public final class DatabaseConnectionBuilder {
+  /** Creates a new database connection builder. */
   public static DatabaseConnectionBuilder newBuilder() {
     return new DatabaseConnectionBuilder();
   }
@@ -35,30 +37,35 @@ public final class DatabaseConnectionBuilder {
   private @Nullable String password;
   private @Nullable String driver;
 
+  /** Sets the JDBC URL. */
   @CanIgnoreReturnValue
   public DatabaseConnectionBuilder url(@Nullable String url) {
     this.url = url;
     return this;
   }
 
+  /** Sets the database username. */
   @CanIgnoreReturnValue
   public DatabaseConnectionBuilder username(@Nullable String username) {
     this.username = username;
     return this;
   }
 
+  /** Sets the database password. */
   @CanIgnoreReturnValue
   public DatabaseConnectionBuilder password(@Nullable String password) {
     this.password = password;
     return this;
   }
 
+  /** Sets the JDBC driver. */
   @CanIgnoreReturnValue
   public DatabaseConnectionBuilder driver(@Nullable String driver) {
     this.driver = driver;
     return this;
   }
 
+  /** Builds the configured database connection. */
   public DatabaseConnection build() {
     checkState(url != null);
     try {

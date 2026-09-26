@@ -1,5 +1,5 @@
 /*
- * Copyright 2023-2024 Markitect
+ * Copyright 2023-2026 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,6 +31,7 @@ import liquibase.sqlgenerator.SqlGeneratorChain;
 import liquibase.sqlgenerator.core.AbstractSqlGenerator;
 import liquibase.structure.core.Schema;
 
+/** Generates SQL for creating a database schema. */
 public class CreateSchemaGenerator extends AbstractSqlGenerator<CreateSchemaStatement> {
   @Override
   public boolean supports(CreateSchemaStatement statement, Database database) {

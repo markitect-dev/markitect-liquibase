@@ -1,5 +1,5 @@
 /*
- * Copyright 2023-2024 Markitect
+ * Copyright 2023-2026 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,7 @@ package dev.markitect.liquibase.statement;
 import liquibase.statement.AbstractSqlStatement;
 import org.jspecify.annotations.Nullable;
 
+/** Represents a check for an existing database schema. */
 public class SchemaExistsStatement extends AbstractSqlStatement {
   private @Nullable String catalogName;
   private @Nullable String schemaName;

@@ -1,5 +1,5 @@
 /*
- * Copyright 2023-2025 Markitect
+ * Copyright 2023-2026 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -65,6 +65,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
+/** Configures the extended Liquibase integration before Spring Boot's auto-configuration. */
 @AutoConfiguration(
     before = LiquibaseAutoConfiguration.class,
     after = DataSourceAutoConfiguration.class)
@@ -74,6 +75,7 @@ import org.springframework.util.StringUtils;
 @Import(DatabaseInitializationDependencyConfigurer.class)
 @ImportRuntimeHints(LiquibaseAutoConfigurationRuntimeHints.class)
 public class MarkitectLiquibaseAutoConfiguration {
+  /** Creates the bean post-processor that exposes the Spring environment to Liquibase. */
   @Bean
   public static SpringLiquibaseBeanPostProcessor springLiquibaseBeanPostProcessor(
       Environment environment) {
@@ -82,6 +84,7 @@ public class MarkitectLiquibaseAutoConfiguration {
 
   private MarkitectLiquibaseAutoConfiguration() {}
 
+  /** Configures the default Spring Liquibase bean when none is already defined. */
   @Configuration(proxyBeanMethods = false)
   @ConditionalOnClass(ConnectionCallback.class)
   @ConditionalOnMissingBean(SpringLiquibase.class)

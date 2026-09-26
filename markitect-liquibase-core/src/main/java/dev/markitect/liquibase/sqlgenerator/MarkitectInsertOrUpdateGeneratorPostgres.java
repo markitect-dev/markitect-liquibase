@@ -1,5 +1,5 @@
 /*
- * Copyright 2023-2024 Markitect
+ * Copyright 2023-2026 Markitect
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,6 +29,7 @@ import liquibase.statement.core.InsertOrUpdateStatement;
 import liquibase.structure.core.Column;
 import liquibase.structure.core.Table;
 
+/** Generates PostgreSQL upsert statements for insert-or-update changes. */
 public class MarkitectInsertOrUpdateGeneratorPostgres extends InsertOrUpdateGeneratorPostgres
     implements MarkitectInsertOrUpdateGenerator {
   @Override

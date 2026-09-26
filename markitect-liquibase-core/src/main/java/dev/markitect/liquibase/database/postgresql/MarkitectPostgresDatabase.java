@@ -22,6 +22,7 @@ import liquibase.database.core.PostgresDatabase;
 import liquibase.structure.DatabaseObject;
 import org.jspecify.annotations.Nullable;
 
+/** PostgreSQL database with this library's customizations. */
 public class MarkitectPostgresDatabase extends PostgresDatabase implements MarkitectDatabase {
   @Override
   public int getPriority() {
