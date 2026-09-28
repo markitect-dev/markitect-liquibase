@@ -100,7 +100,6 @@ spotless {
             .npmrc(npmrc)
             .config(
                 mapOf(
-                    "parser" to "toml",
                     "plugins" to listOf("prettier-plugin-toml"),
                 ),
             )
