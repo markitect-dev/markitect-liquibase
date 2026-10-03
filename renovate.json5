@@ -84,6 +84,12 @@
       ],
     },
     {
+      groupName: 'google-java-format dependencies',
+      matchPackageNames: [
+        'com.google.googlejavaformat:**',
+      ],
+    },
+    {
       groupName: 'OpenRewrite dependencies',
       matchPackageNames: [
         'org.openrewrite.recipe:**',
