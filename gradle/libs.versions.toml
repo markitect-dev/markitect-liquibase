@@ -48,7 +48,7 @@ rewrite-static-analysis = "2.41.1"
 sonarqube-plugin = "7.5.0.8588"
 spotbugs = "4.10.5"
 spotbugs-plugin = "6.5.13"
-spotless-plugin = "8.10.4"
+spotless-plugin = "8.11.0"
 spring-boot = "4.1.2"
 
 [libraries]
