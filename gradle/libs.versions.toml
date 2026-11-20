@@ -13,7 +13,7 @@ commons-lang3 = "3.22.0"
 commons-logging = "1.4.0"
 commons-text = "1.15.0"
 develocity-plugin = "4.6.1"
-error-prone = "2.52.0"
+error-prone = "2.53.0"
 errorprone-plugin = "5.2.0"
 findsecbugs-plugin = "1.14.0"
 foojay-resolver = "1.0.0"
@@ -33,14 +33,14 @@ ktlint = "1.8.0"
 liquibase = { strictly = "4.33.0" }
 # renovate: datasource=node-version depName=node
 node = "26.13.1"
-nullaway = "0.14.3"
+nullaway = "0.14.4"
 nullaway-plugin = "3.3.0"
 opencsv = "5.12.0"
 picocli = "4.7.7"
 # renovate: datasource=npm depName=prettier
-prettier = "3.9.10"
+prettier = "3.10.1"
 # renovate: datasource=npm depName=prettier-plugin-properties
-prettier-plugin-properties = "0.3.1"
+prettier-plugin-properties = "0.4.0"
 # renovate: datasource=npm depName=prettier-plugin-toml
 prettier-plugin-toml = "4.1.0"
 rewrite-plugin = "7.39.0"
@@ -49,7 +49,7 @@ sonarqube-plugin = "7.6.0.18749"
 spotbugs = "4.10.5"
 spotbugs-plugin = "6.5.13"
 spotless-plugin = "8.11.0"
-spring-boot = "4.1.2"
+spring-boot = "4.2.0"
 
 [libraries]
 com-facebook-ktfmt = { module = "com.facebook:ktfmt", version.ref = "ktfmt" }
